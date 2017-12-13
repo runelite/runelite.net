@@ -1,0 +1,47 @@
+{
+  "name": "redux-boot",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.0.1",
+    "@fortawesome/fontawesome-free-brands": "^5.0.1",
+    "@fortawesome/fontawesome-free-solid": "^5.0.1",
+    "@fortawesome/react-fontawesome": "0.0.16",
+    "bootstrap": "^4.0.0-beta",
+    "github-markdown-css": "^2.9.0",
+    "history": "^4.7.2",
+    "js-cookie": "^2.1.4",
+    "qs": "^6.5.0",
+    "ramda": "^0.24.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-helmet": "^5.2.0",
+    "react-redux": "^5.0.6",
+    "react-redux-loading-bar": "^3.0.3",
+    "react-timeago": "^3.4.3",
+    "react-transition-group": "^1.2.0",
+    "reactstrap": "^5.0.0-alpha.3",
+    "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
+    "redux-first-router": "0.0.16-next",
+    "redux-first-router-link": "^1.4.1",
+    "redux-routines": "^2.0.0-0",
+    "reselect": "^3.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-react": "^7.3.0",
+    "markdown-with-front-matter-loader": "^0.1.0",
+    "react-scripts": "1.0.12",
+    "remote-redux-devtools": "^0.5.12",
+    "standard": "^10.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "standard && react-scripts test --env=jsdom",
+    "lint": "standard",
+    "eject": "react-scripts eject"
+  }
+}
