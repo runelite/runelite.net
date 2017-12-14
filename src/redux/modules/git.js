@@ -71,7 +71,10 @@ export const latestCommitSelector = createSelector(
       const commit = realCommits[0]
       return {
         url: commit.html_url,
-        message: commit.commit.message.substr(0, 50),
+        message: (commit.commit.message.length >= 50
+          ? commit.commit.message.substr(0, 50) + '...'
+          : commit.commit.message
+        ),
         date: commit.commit.committer.date,
         author: {
           name: commit.commit.author.name,
