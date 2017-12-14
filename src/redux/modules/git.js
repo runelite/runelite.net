@@ -91,7 +91,6 @@ export const latestCommitSelector = createSelector(
 export const latestReleaseSelector = createSelector(
   releasesSelector,
   releases => {
-    console.log(releases)
     if (releases.length > 0) {
       const release = releases[0]
       return {

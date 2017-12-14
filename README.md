@@ -1,8 +1,16 @@
-# redux-boot
+# runelite.net
 
-React and Redux simple boilerplate
+[![Build Status](https://travis-ci.org/runelite/runelite.net.svg?branch=master)](https://travis-ci.org/runelite/runelite.net)
+
+Based on [redux-boot](https://github.com/deathbeam/redux-boot).
 
 ## Local development
+
+First, you need to install all dependencies, so run
+
+```
+npm install
+```
 
 To start local server, simply run
 
@@ -15,41 +23,57 @@ will be able to see it from your web browser. To debug Redux actions, navigate
 to `http://remotedev.io/local/` and you will be able to see all your Redux
 actions.
 
+### Creating blog posts
+
+To create blog post, navigate to [_posts](src/_posts) directory. Here, create
+file with format
+
+```
+YYYY-MM-DD-My-Post-Title.md
+```
+
+and edit it in your favorite markdown editor. Content of each post should
+consists of:
+
+```
+---
+title: 'My Post Title'
+description: 'My Post description'
+---
+
+... rest of markdown content
+```
+
+Now save it and create PR to master branch on this repo.
+
+### Adding features
+
+To add new feature to feature list, simply take image and put it in
+[features](public/img/features) directory. Then, open
+[features.js](src/_data/features.js) file and add your feature at the bottom,
+before `]`
+
+```diff
+  {
+    image: '/img/features/mousehighlight.png',
+    title: 'Mouse highlighting',
+    subtitle: 'Highlights content under your mouse cursor',
+    description: '...'
+-  }
++  },
+  {
+    image: '/img/features/my_feature.png',
+    title: 'My Feature Name',
+    subtitle: 'My feature sub title',
+    description: 'My feature description'
+  }
+]
+```
+
+Now save the file and create PR to master branch on this repo.
+
 ## Publishing to GitHub pages
 
 The deployement to GitHub pages is done automatically using [Travis CI GitHub
-pages deployement](https://docs.travis-ci.com/user/deployment/pages).
-First read the guide and set up GITHUB_TOKEN so the travis deployement will
-work.
-
-If you are deploying to a GitHub user page instead of a project page you'll need
-to make two additional modifications:
-
-First, change your repository's source branch to be any branch other than
-master.
-Additionally, tweak your .travis.yml scripts to push deployments to master:
-```diff
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-  local_dir: "build"
--  target_branch: "gh-pages"
-+  target_branch: master
-  on:
--    branch: master
-+    branch: "my-branch"
-```
-
-Note that if you are setting up a Project Pages site and not using a custom
-domain (i.e. your site's address is `username.github.io/repo-name`), then you need
-to set `segmentCount` to `1` in the `public/404.html` file in order to keep `/repo-name` in the
-path after the redirect.
-
-Finally, make sure GitHub Pages option in your GitHub project settings is set to
-use the gh-pages branch:
-
-<img src="http://i.imgur.com/HUjEr9l.png" width="500" alt="gh-pages branch setting">
-
-After all above setup is done, Travis CI should automatically deploy your site
-after you push commit.
+pages deployement](https://docs.travis-ci.com/user/deployment/pages) and it is
+deployed to the `gh-pages` branch from `master` branch.

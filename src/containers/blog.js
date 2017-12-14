@@ -19,7 +19,7 @@ const Blog = ({ slug }) => (
       {[...blog.keys()].map(path => {
         const { date, title, description } = blog.get(path)
         return (
-          <ListGroupItem tag={NavLink} to={`/blog/show/${path}`}>
+          <ListGroupItem key={title} tag={NavLink} to={`/blog/show/${path}`}>
             <ListGroupItemHeading>{title || path} <small className='text-muted'><TimeAgo date={date} /></small></ListGroupItemHeading>
             <ListGroupItemText className='text-muted'>
               {description}

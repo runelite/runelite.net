@@ -24,7 +24,7 @@ const Hero = ({ title, logo, description, buttons, release }) => (
         <p className='lead'>{description}</p>
         <p className='lead'>
           {buttons.map(({ link, color, icon, text }) => (
-            <span>
+            <span key={link}>
               <Button color={color} href={link}>
                 <FontAwesomeIcon icon={icon} /> {text}
               </Button>

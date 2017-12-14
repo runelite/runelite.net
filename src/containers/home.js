@@ -28,7 +28,7 @@ const Home = ({ commit, release }) => (
         {features
             .filter(feature => feature.home)
             .map(({ image, title }) => ({ image, title }))
-            .map(feature => (<Feature {...feature} />))}
+            .map(feature => (<Feature key={feature.title} {...feature} />))}
       </Row>
       <h1>Latest news <NavLink to='/blog' style={{ fontSize: 18 }}>See all news...</NavLink></h1>
       <hr />

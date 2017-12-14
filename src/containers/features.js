@@ -14,7 +14,7 @@ const Features = () => (
     <h1>Features</h1>
     <hr />
     <Row>
-      {features.map(feature => (<Feature {...feature} />))}
+      {features.map(feature => (<Feature key={feature.title} {...feature} />))}
     </Row>
   </Layout>
 )
