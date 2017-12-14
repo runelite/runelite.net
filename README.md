@@ -35,13 +35,13 @@ YYYY-MM-DD-My-Post-Title.md
 and edit it in your favorite markdown editor. Content of each post should
 consists of:
 
-```
----
-title: 'My Post Title'
-description: 'My Post description'
----
-
-... rest of markdown content
+```diff
++ ---
++ title: 'My Post Title'
++ description: 'My Post description'
++ ---
++ 
++ ... rest of markdown content
 ```
 
 Now save it and create PR to master branch on this repo.
@@ -59,14 +59,14 @@ before `]`
     title: 'Mouse highlighting',
     subtitle: 'Highlights content under your mouse cursor',
     description: '...'
--  }
-+  },
-  {
-    image: '/img/features/my_feature.png',
-    title: 'My Feature Name',
-    subtitle: 'My feature sub title',
-    description: 'My feature description'
-  }
+- }
++ },
++ {
++   image: '/img/features/my_feature.png',
++   title: 'My Feature Name',
++   subtitle: 'My feature sub title',
++   description: 'My feature description'
++ }
 ]
 ```
 
