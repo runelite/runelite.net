@@ -34,7 +34,10 @@ const Hero = ({ title, logo, description, buttons, release, stars }) => (
           ))}
         </p>
         <p className='lead'>
-          <a href='https://github.com/runelite/runelite/stargazers'>{stars} <FontAwesomeIcon icon={faStar} /></a>{' '}
+          <Button size='sm' color='secondary'
+            href='https://github.com/runelite/runelite/stargazers'>
+            {stars} <FontAwesomeIcon icon={faStar} />
+          </Button>{' '}
           Latest release: <b>{release || 'unknown'}</b>
         </p>
       </div>

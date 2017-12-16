@@ -26,7 +26,7 @@ export default {
       link: 'https://github.com/runelite/',
       icon: faGithub,
       text: 'View on GitHub',
-      color: 'secondary'
+      color: 'info'
     }
   ]
 }
