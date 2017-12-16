@@ -1,8 +1,9 @@
 import React from 'react'
 import { NavLink as ActiveLink } from 'redux-first-router-link'
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
+  UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faCogs, faNewspaper, faFileAlt } from '@fortawesome/fontawesome-free-solid'
+import { faCogs, faNewspaper, faFileAlt, faFont } from '@fortawesome/fontawesome-free-solid'
 import { faGithub, faDiscord } from '@fortawesome/fontawesome-free-brands'
 import hero from '../_data/hero'
 
@@ -34,6 +35,13 @@ class Navigation extends React.Component {
             <NavItem>
               <NavLink href='https://github.com/runelite/runelite/wiki'><FontAwesomeIcon icon={faFileAlt} /> Wiki</NavLink>
             </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret><FontAwesomeIcon icon={faFont} /> API</DropdownToggle>
+              <DropdownMenu >
+                <DropdownItem href='http://static.runelite.net/api/runelite-api/'>net.runelite.api</DropdownItem>
+                <DropdownItem href='http://static.runelite.net/api/runelite-client/'>net.runelite.client</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
           </Nav>
           <Nav navbar className='ml-auto'>
             <NavItem>
