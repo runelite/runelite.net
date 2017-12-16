@@ -1,8 +1,9 @@
 import React from 'react'
 import { Button, Jumbotron } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/fontawesome-free-solid'
 
-const Hero = ({ title, logo, description, buttons, release }) => (
+const Hero = ({ title, logo, description, buttons, release, stars }) => (
   <Jumbotron fluid style={{
     background: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/img/fullpic.png)',
     backgroundPosition: 'center',
@@ -32,7 +33,10 @@ const Hero = ({ title, logo, description, buttons, release }) => (
             </span>
           ))}
         </p>
-        <p className='lead'>Latest release: <b>{release || 'unknown'}</b></p>
+        <p className='lead'>
+          <a href='https://github.com/runelite/runelite/stargazers'>{stars} <FontAwesomeIcon icon={faStar} /></a>{' '}
+          Latest release: <b>{release || 'unknown'}</b>
+        </p>
       </div>
     </div>
   </Jumbotron>

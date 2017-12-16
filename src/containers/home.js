@@ -9,17 +9,17 @@ import Commit from '../components/commit'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import { getLatest } from '../blog'
-import { latestCommitSelector, latestReleaseSelector } from '../redux/modules/git'
+import { latestCommitSelector, latestReleaseSelector, stargazersSelector } from '../redux/modules/git'
 import hero from '../_data/hero'
 import features from '../_data/features'
 
-const Home = ({ commit, release }) => (
+const Home = ({ commit, release, stars }) => (
   <div>
     <Helmet>
       <title>{hero.title} - Open Source Old School RuneScape Client</title>
       <meta name='description' content={hero.description} />
     </Helmet>
-    <Hero {...hero} release={release.name} />
+    <Hero {...hero} release={release.name} stars={stars} />
     <Layout>
       <Commit {...commit} />
       <h1>Features <NavLink to='/features' style={{ fontSize: 18 }}>See all features...</NavLink></h1>
@@ -40,6 +40,7 @@ const Home = ({ commit, release }) => (
 export default connect(
   (state, props) => ({
     commit: latestCommitSelector(state, props),
-    release: latestReleaseSelector(state, props)
+    release: latestReleaseSelector(state, props),
+    stars: stargazersSelector(state, props)
   })
 )(Home)

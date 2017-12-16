@@ -1,4 +1,4 @@
-import { createAction, combineActions, handleActions } from 'redux-actions'
+import { createAction, handleActions } from 'redux-actions'
 import { createRoutine } from 'redux-routines'
 import { createSelector } from 'reselect'
 import api from '../../api'
@@ -9,20 +9,26 @@ const githubApi = api('https://api.github.com/')
 // Actions
 export const getCommitsRoutine = createRoutine('react-ui/git/GET_COMMITS')
 export const getReleasesRoutine = createRoutine('react-ui/git/GET_RELEASES')
+export const getRepositoryRoutine = createRoutine('react-ui/git/GET_REPOSITORY')
 
 // Reducer
 export default handleActions({
-  [combineActions(getCommitsRoutine.SUCCESS)]: (state, { payload }) => ({
+  [getCommitsRoutine.SUCCESS]: (state, { payload }) => ({
     ...state,
     commits: payload
   }),
-  [combineActions(getReleasesRoutine.SUCCESS)]: (state, { payload }) => ({
+  [getReleasesRoutine.SUCCESS]: (state, { payload }) => ({
     ...state,
     releases: payload
+  }),
+  [getRepositoryRoutine.SUCCESS]: (state, { payload }) => ({
+    ...state,
+    repository: payload
   })
 }, {
   commits: [],
-  releases: []
+  releases: [],
+  repository: {}
 })
 
 // Action creators
@@ -58,9 +64,26 @@ export const getReleases = createAction(getCommitsRoutine.TRIGGER, (payload) => 
   }
 })
 
+export const getRepository = createAction(getCommitsRoutine.TRIGGER, (payload) => async (dispatch) => {
+  try {
+    dispatch(getRepositoryRoutine.request())
+    const response = await githubApi.wrapFailure(dispatch, githubApi.fetch(
+      `repos/${git.user}/${git.repository}`, { method: 'GET' }
+    ))
+
+    dispatch(getRepositoryRoutine.success(response))
+    return response
+  } catch (e) {
+    dispatch(getRepositoryRoutine.failure(e))
+  } finally {
+    dispatch(getRepositoryRoutine.fulfill())
+  }
+})
+
 // Selectors
 const commitsSelector = state => state.git.commits
 const releasesSelector = state => state.git.releases
+const repositorySelector = state => state.git.repository
 
 export const latestCommitSelector = createSelector(
   commitsSelector,
@@ -102,4 +125,9 @@ export const latestReleaseSelector = createSelector(
 
     return {}
   }
+)
+
+export const stargazersSelector = createSelector(
+  repositorySelector,
+  repository => repository.stargazers_count
 )
