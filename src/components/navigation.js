@@ -38,8 +38,8 @@ class Navigation extends React.Component {
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret><FontAwesomeIcon icon={faFont} /> API</DropdownToggle>
               <DropdownMenu >
-                <DropdownItem href='http://static.runelite.net/api/runelite-api/'>net.runelite.api</DropdownItem>
-                <DropdownItem href='http://static.runelite.net/api/runelite-client/'>net.runelite.client</DropdownItem>
+                <DropdownItem href='http://static.runelite.net/api/runelite-api/'>RuneLite API</DropdownItem>
+                <DropdownItem href='http://static.runelite.net/api/runelite-client/'>RuneLite Client API</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
