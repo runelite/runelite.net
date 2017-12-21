@@ -8,7 +8,7 @@ const Commit = ({ url, message, author, date }) => url ? (
     <a href={url}>{message}</a> by{' '}
     <a href={author.url ? author.url : url}>
       {author.avatar
-        ? (<div><img src={author.avatar} width='30' height='30' alt='Avatar' className='rounded' />{' '}</div>)
+        ? (<span><img src={author.avatar} width='30' height='30' alt='Avatar' className='rounded' />{' '}</span>)
         : (<noscript />)}
       {author.name}
     </a>{' '}
