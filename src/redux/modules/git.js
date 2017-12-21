@@ -101,8 +101,8 @@ export const latestCommitSelector = createSelector(
         date: commit.commit.committer.date,
         author: {
           name: commit.commit.author.name,
-          url: commit.author.html_url,
-          avatar: commit.author.avatar_url
+          url: commit.author ? commit.author.html_url : null,
+          avatar: commit.author ? commit.author.avatar_url : null
         }
       }
     }
