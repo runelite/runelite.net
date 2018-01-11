@@ -11,13 +11,13 @@ export default {
   `,
   buttons: [
     {
-      link: 'https://github.com/runelite/launcher/releases/download/1.2.1/Runelite.exe',
+      link: 'https://github.com/runelite/launcher/releases/download/1.3.0/RuneLite.exe',
       icon: faWindows,
       text: 'Download for Windows',
       color: 'primary'
     },
     {
-      link: 'https://github.com/runelite/launcher/releases/download/1.2.1/runelite.jar',
+      link: 'https://github.com/runelite/launcher/releases/download/1.3.0/RuneLite.jar',
       icon: faCoffee,
       text: 'Download for all platforms',
       color: 'success'
