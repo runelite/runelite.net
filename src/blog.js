@@ -4,7 +4,7 @@ const blog = webpackRequireContext.keys().sort().reverse().reduce((memo, fileNam
   // frontmatter and content (actual markdown is loaded on '__content', frontmatter is right on root)
   const frontMatterMarkdown = webpackRequireContext(fileName)
   // remove cd and extension
-  fileName = fileName.match(/\.\/([^.]+)\.*/)[1]
+  fileName = fileName.match(/\.\/([\w\d-.]+)\.md/)[1]
   // extract year and path
   let tokenizedFilename = fileName.match(/^(\d{4}-\d{2}-\d{2})(.*)/)
   // validation

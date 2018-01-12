@@ -8,7 +8,12 @@ import hero from '../_data/hero'
 
 const BlogShow = ({ slug }) => {
   const post = blog.get(slug)
-  const { date, title, description, __content } = post
+  const { date, title, description, __content } = post || {
+    title: 'Blog post not found',
+    date: '',
+    description: '',
+    __content: ''
+  }
 
   return (
     <Layout>
