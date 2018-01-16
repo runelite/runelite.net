@@ -25,5 +25,12 @@ export default [
     title: 'Mouse highlighting',
     subtitle: 'Highlights content under your mouse cursor',
     description: '...'
+  },
+  {
+    image: '/img/features/hunter.png',
+    title: 'Hunter Trap overlay',
+    subtitle: 'Adds timers to hunter traps',
+    description: '...'
+  },
   }
 ]
