@@ -32,5 +32,11 @@ export default [
     subtitle: 'Adds timers to hunter traps',
     description: '...'
   },
+  {
+    image: '/img/features/runepouch.png',
+    title: 'RunePouch Overlay',
+    subtitle: 'Shows what runes are currently in the runepouch',
+    description: '...'
+  },
   }
 ]
