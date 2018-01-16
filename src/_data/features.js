@@ -44,5 +44,10 @@ export default [
     subtitle: 'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues',
     description: '...'
   },
+  {
+    image: '/img/features/imp.png',
+    title: 'Impling overlay',
+    subtitle: 'Highlights impling tile location',
+    description: '...'
   }
 ]
