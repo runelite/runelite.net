@@ -2,52 +2,49 @@ export default [
   {
     image: '/img/features/attackstyles.png',
     title: 'Attack style',
-    subtitle: 'Attack style indicator and hiding.',
-    description: '...',
+    description: 'Attack style indicator and hiding.',
     home: true
   },
   {
     image: '/img/features/grounditems.png',
     title: 'Ground items overlay',
-    subtitle: 'Filter and color items by name and price.',
-    description: '...',
+    description: 'Filter and color items by name and price.',
     home: true
   },
   {
     image: '/img/features/boosts.png',
     title: 'Detailed information widgets',
-    subtitle: 'For times and other useful informations.',
-    description: '...',
+    description: 'For times and other useful informations.',
     home: true
   },
   {
     image: '/img/features/mousehighlight.png',
     title: 'Mouse highlighting',
-    subtitle: 'Highlights content under your mouse cursor',
-    description: '...'
+    description: 'Highlights content under your mouse cursor.'
   },
   {
     image: '/img/features/hunter.png',
     title: 'Hunter Trap overlay',
-    subtitle: 'Adds timers to hunter traps',
-    description: '...'
+    description: 'Adds timers to hunter traps.'
   },
   {
     image: '/img/features/runepouch.png',
     title: 'RunePouch Overlay',
-    subtitle: 'Shows what runes are currently in the runepouch',
-    description: '...'
+    description: 'Shows what runes are currently in the runepouch.'
   },
   {
     image: '/img/features/cluescroll.png',
     title: 'Clue scroll solver',
-    subtitle: 'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues',
-    description: '...'
+    description: 'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues.'
   },
   {
     image: '/img/features/imp.png',
     title: 'Impling overlay',
-    subtitle: 'Highlights impling tile location',
-    description: '...'
+    description: 'Highlights impling tile location.'
+  },
+  {
+    image: '/img/features/playerindicators.png',
+    title: 'Player indicators',
+    description: 'Draws own, friend and clan mate names.'
   }
 ]
