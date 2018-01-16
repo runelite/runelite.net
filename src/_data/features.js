@@ -38,5 +38,11 @@ export default [
     subtitle: 'Shows what runes are currently in the runepouch',
     description: '...'
   },
+  {
+    image: '/img/features/cluescroll.png',
+    title: 'Clue scroll solver',
+    subtitle: 'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues',
+    description: '...'
+  },
   }
 ]
