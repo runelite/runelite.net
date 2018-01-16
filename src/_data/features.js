@@ -25,5 +25,29 @@ export default [
     title: 'Mouse highlighting',
     subtitle: 'Highlights content under your mouse cursor',
     description: '...'
+  },
+  {
+    image: '/img/features/hunter.png',
+    title: 'Hunter Trap overlay',
+    subtitle: 'Adds timers to hunter traps',
+    description: '...'
+  },
+  {
+    image: '/img/features/runepouch.png',
+    title: 'RunePouch Overlay',
+    subtitle: 'Shows what runes are currently in the runepouch',
+    description: '...'
+  },
+  {
+    image: '/img/features/cluescroll.png',
+    title: 'Clue scroll solver',
+    subtitle: 'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues',
+    description: '...'
+  },
+  {
+    image: '/img/features/imp.png',
+    title: 'Impling overlay',
+    subtitle: 'Highlights impling tile location',
+    description: '...'
   }
 ]
