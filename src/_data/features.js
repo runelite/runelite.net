@@ -56,7 +56,7 @@ export default [
     image: '/img/features/zulrah.png',
     title: 'Zulrah Helper',
     description: 'Helps you learn the patterns to kill Zulrah.'
-  }
+  },
   {
     image: '/img/features/globes.png',
     title: 'XP Globes',
@@ -65,21 +65,21 @@ export default [
   {
     image: '/img/features/idle.png',
     title: 'Idle Notifier',
-    description: 'Sends system tray alerts when idle'
+    description: 'Sends system tray alerts when idle.'
   },
   {
     image: '/img/features/teamcape.png',
     title: 'Teamcape Overlay',
-    description: 'Displays Teamcape numbers in your area'
+    description: 'Displays Teamcape numbers in your area.'
   },
   {
     image: '/img/features/volcanic.png',
     title: 'Volcanic Mine helper',
-    description: 'Helps you with timers/paths in the Volcanic Mine'
+    description: 'Helps you with timers/paths in the Volcanic Mine.'
   },
   {
-    image: '/img/features/overlayorder.png'
-    title: 'Overlay rendering layers'
+    image: '/img/features/overlayorder.png',
+    title: 'Overlay rendering layers',
     description: 'Ordering of drawn overlays can be customized to show beneath RS overlays.'
   }
 ]
