@@ -46,5 +46,11 @@ export default [
     image: '/img/features/playerindicators.png',
     title: 'Player indicators',
     description: 'Draws own, friend and clan mate names.'
+  },
+  {
+    image: '/img/features/fishing.png',
+    title: 'Fishing Overlay',
+    description: 'Draws fishing spot overlays as well as tracks fish stats.'
+  },
   }
 ]
