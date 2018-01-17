@@ -57,5 +57,10 @@ export default [
     title: 'Zulrah Helper',
     description: 'Helps you learn the patterns to kill Zulrah.'
   }
+  {
+    image: '/img/features/globes.png',
+    title: 'XP Globes',
+    description: 'Shows skills when gained xp as well as detailed tooltips.'
+  },
   }
 ]
