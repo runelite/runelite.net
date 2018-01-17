@@ -67,5 +67,9 @@ export default [
     title: 'Idle Notifier',
     description: 'Sends system tray alerts when idle'
   },
+  {
+    image: '/img/features/teamcape.png',
+    title: 'Teamcape Overlay',
+    description: 'Displays Teamcape numbers in your area'
   }
 ]
