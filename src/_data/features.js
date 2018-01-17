@@ -62,5 +62,10 @@ export default [
     title: 'XP Globes',
     description: 'Shows skills when gained xp as well as detailed tooltips.'
   },
+  {
+    image: '/img/features/idle.png',
+    title: 'Idle Notifier',
+    description: 'Sends system tray alerts when idle'
+  },
   }
 ]
