@@ -76,5 +76,10 @@ export default [
     image: '/img/features/volcanic.png',
     title: 'Volcanic Mine helper',
     description: 'Helps you with timers/paths in the Volcanic Mine'
+  },
+  {
+    image: '/img/features/overlayorder.png'
+    title: 'Overlay rendering layers'
+    description: 'Ordering of drawn overlays can be customized to show beneath RS overlays.'
   }
 ]
