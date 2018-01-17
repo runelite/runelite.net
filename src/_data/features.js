@@ -71,5 +71,10 @@ export default [
     image: '/img/features/teamcape.png',
     title: 'Teamcape Overlay',
     description: 'Displays Teamcape numbers in your area'
+  },
+  {
+    image: '/img/features/volcanic.png',
+    title: 'Volcanic Mine helper',
+    description: 'Helps you with timers/paths in the Volcanic Mine'
   }
 ]
