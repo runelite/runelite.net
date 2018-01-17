@@ -52,5 +52,10 @@ export default [
     title: 'Fishing Overlay',
     description: 'Draws fishing spot overlays as well as tracks fish stats.'
   },
+  {
+    image: '/img/features/zulrah.png',
+    title: 'Zulrah Helper',
+    description: 'Helps you learn the patterns to kill Zulrah.'
+  }
   }
 ]
