@@ -53,11 +53,6 @@ export default [
     description: 'Draws fishing spot overlays as well as tracks fish stats.'
   },
   {
-    image: '/img/features/zulrah.png',
-    title: 'Zulrah Helper',
-    description: 'Helps you learn the patterns to kill Zulrah.'
-  },
-  {
     image: '/img/features/globes.png',
     title: 'XP Globes',
     description: 'Shows skills when gained xp as well as detailed tooltips.'
@@ -66,16 +61,6 @@ export default [
     image: '/img/features/idle.png',
     title: 'Idle Notifier',
     description: 'Sends system tray alerts when idle.'
-  },
-  {
-    image: '/img/features/teamcape.png',
-    title: 'Teamcape Overlay',
-    description: 'Displays Teamcape numbers in your area.'
-  },
-  {
-    image: '/img/features/volcanic.png',
-    title: 'Volcanic Mine helper',
-    description: 'Helps you with timers/paths in the Volcanic Mine.'
   },
   {
     image: '/img/features/overlayorder.png',
