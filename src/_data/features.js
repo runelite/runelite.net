@@ -63,6 +63,11 @@ export default [
     description: 'Sends system tray alerts when idle.'
   },
   {
+    image: '/img/features/teamcape.png',
+    title: 'Teamcape Overlay',
+    description: 'Displays Teamcape numbers in your area.'
+  },
+  {
     image: '/img/features/overlayorder.png',
     title: 'Overlay rendering layers',
     description: 'Ordering of drawn overlays can be customized to show beneath RS overlays.'
