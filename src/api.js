@@ -1,4 +1,4 @@
-import R from 'ramda'
+import * as R from 'ramda'
 import Cookie from 'js-cookie'
 import {stringify} from 'qs'
 

@@ -1,4 +1,4 @@
-import R from 'ramda'
+import * as R from 'ramda'
 import { getCommits, getReleases, getRepository } from './modules/git'
 
 const createThunk = (fns) => async (dispatch, getState) => R.reduce(
