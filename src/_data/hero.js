@@ -9,6 +9,11 @@ export default {
     RuneScape. You can download the RuneLite launcher for various platforms below
     or contribute to the project on GitHub.
   `,
+  images: [
+    '/img/carousel/1.png',
+    '/img/carousel/2.png',
+    '/img/carousel/3.png'
+  ],
   buttons: [
     {
       link: 'https://github.com/runelite/launcher/releases/download/1.3.1/RuneLite.exe',
