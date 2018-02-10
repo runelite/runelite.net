@@ -3,32 +3,24 @@ import { Button, Jumbotron } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/fontawesome-free-solid'
 
-const secs = 5
-
 class Hero extends React.Component {
   constructor (props) {
     super(props)
-    this.backgroundSequence = this.backgroundSequence.bind(this)
-    this.backgroundSequence()
+
+    this.state = {
+      index: 0,
+      interval: setInterval(() => {
+        const image = this.props.images[this.state.index]
+        const jumbo = document.getElementById('jumbo')
+        jumbo.style.background = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${image}) no-repeat center center fixed`
+        jumbo.style.backgroundSize = 'cover'
+        this.state.index = (this.state.index + 1) % this.props.images.length
+      }, 5000)
+    }
   }
 
-  backgroundSequence () {
-    let k = 0
-
-    for (let i = 0; i < this.props.images.length; i++) {
-      setTimeout(() => {
-        const jumbo = document.getElementById('jumbo')
-        jumbo.style.background =
-          `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${this.props.images[i]}) no-repeat center center fixed`
-        jumbo.style.backgroundSize = 'cover'
-
-        if ((k + 1) === this.props.images.length) {
-          setTimeout(() => this.backgroundSequence(), (secs * 1000))
-        } else {
-          k++
-        }
-      }, (secs * 1000) * i)
-    }
+  componentWillUnmount () {
+    clearInterval(this.state.interval)
   }
 
   render () {
