@@ -6,17 +6,28 @@ import { faStar } from '@fortawesome/fontawesome-free-solid'
 class Hero extends React.Component {
   constructor (props) {
     super(props)
+    this.updateBackground = this.updateBackground.bind(this)
 
     this.state = {
       index: 0,
-      interval: setInterval(() => {
-        const image = this.props.images[this.state.index]
-        const jumbo = document.getElementById('jumbo')
-        jumbo.style.background = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${image}) no-repeat center center fixed`
-        jumbo.style.backgroundSize = 'cover'
-        this.state.index = (this.state.index + 1) % this.props.images.length
-      }, 5000)
+      interval: setInterval(() => this.updateBackground(this.state.index), 5000)
     }
+  }
+
+  updateBackground (index) {
+    const image = this.props.images[index]
+    const jumbo = document.getElementById('jumbo')
+    jumbo.style.background = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${image}) no-repeat center center fixed`
+    jumbo.style.backgroundSize = 'cover'
+
+    this.setState({
+      ...this.state,
+      index: (index + 1) % this.props.images.length
+    })
+  }
+
+  componentDidMount () {
+    this.updateBackground(0)
   }
 
   componentWillUnmount () {
