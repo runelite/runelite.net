@@ -2,18 +2,16 @@ export default [
   {
     image: '/img/features/attackstyles.png',
     title: 'Attack style',
-    description: 'Attack style indicator and hiding.',
-    home: true
+    description: 'Attack style indicator and hiding.'
   },
   {
     image: '/img/features/grounditems.png',
     title: 'Ground items overlay',
-    description: 'Filter and color items by name and price.',
-    home: true
+    description: 'Filter and color items by name and price.'
   },
   {
     image: '/img/features/boosts.png',
-    title: 'Detailed information widgets',
+    title: 'Information widgets',
     description: 'For times and other useful informations.',
     home: true
   },
@@ -35,7 +33,8 @@ export default [
   {
     image: '/img/features/cluescroll.png',
     title: 'Clue scroll solver',
-    description: 'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues.'
+    description: 'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues.',
+    home: true
   },
   {
     image: '/img/features/imp.png',
@@ -110,7 +109,8 @@ export default [
   {
     image: '/img/features/discord.png',
     title: 'Discord Integration',
-    description: 'Displays current game information to discord'
+    description: 'Displays current game information to discord',
+    home: true
   },
   {
     image: '/img/features/itemstats.png',
@@ -125,7 +125,8 @@ export default [
   {
     image: '/img/features/lowdetail.png',
     title: 'Low detail mode',
-    description: 'Enables low detail mode in RS'
+    description: 'Enables low detail mode in RS',
+    home: true
   },
   {
     image: '/img/features/mlm.png',
