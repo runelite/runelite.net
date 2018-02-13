@@ -11,14 +11,14 @@ class Hero extends React.Component {
 
     this.state = {
       index: 0,
-      interval: setInterval(() => this.updateBackground(this.state.index), 5000)
+      interval: setInterval(() => this.updateBackground(this.state.index), 8000)
     }
   }
 
   updateBackground (index) {
     const image = this.props.images[index]
     const jumbo = document.getElementById('jumbo')
-    jumbo.style.background = `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${image}) no-repeat center center fixed`
+    jumbo.style.backgroundImage = `url(${image})`
     jumbo.style.backgroundSize = 'cover'
 
     this.setState({
@@ -82,13 +82,14 @@ class Hero extends React.Component {
 
     const style = {
       backgroundBlendMode: 'darken',
-      transition: '3s',
+      transition: 'background-image 3s',
       color: 'white',
       textShadow: '1px 1px 2px black',
       display: 'table',
       width: '100%',
       margin: 0,
-      height: '100%'
+      height: '100%',
+      background: 'rgba(0,0,0,0.3) no-repeat center center fixed'
     }
 
     return (
