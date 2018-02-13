@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button, Jumbotron } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/fontawesome-free-solid'
+import { faStar, faArrowCircleDown } from '@fortawesome/fontawesome-free-solid'
+import Commit from './commit'
 
 class Hero extends React.Component {
   constructor (props) {
@@ -17,7 +18,7 @@ class Hero extends React.Component {
   updateBackground (index) {
     const image = this.props.images[index]
     const jumbo = document.getElementById('jumbo')
-    jumbo.style.background = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${image}) no-repeat center center fixed`
+    jumbo.style.background = `url(${image}) no-repeat center center fixed`
     jumbo.style.backgroundSize = 'cover'
 
     this.setState({
@@ -26,14 +27,20 @@ class Hero extends React.Component {
     })
   }
 
+  static getNavbar () {
+    return document.getElementsByClassName('navbar')[0]
+  }
+
   static makeNavigationDark () {
-    const navbar = document.getElementsByClassName('navbar')[0]
+    const navbar = Hero.getNavbar()
     navbar.className = navbar.className.replace('navbar-light', 'navbar-dark').replace('bg-white', 'bg-faded')
+    navbar.style = 'background: rgba(0,0,0,0.5)'
   }
 
   static makeNavigationWhite () {
-    const navbar = document.getElementsByClassName('navbar')[0]
+    const navbar = Hero.getNavbar()
     navbar.className = navbar.className.replace('navbar-dark', 'navbar-light').replace('bg-faded', 'bg-white')
+    navbar.style = ''
   }
 
   static handleScroll () {
@@ -73,7 +80,7 @@ class Hero extends React.Component {
   }
 
   render () {
-    const { title, logo, description, buttons, release, stars } = this.props
+    const { title, logo, description, buttons, release, stars, commit } = this.props
 
     const style = {
       backgroundBlendMode: 'darken',
@@ -90,12 +97,12 @@ class Hero extends React.Component {
       <Jumbotron fluid style={style} id='jumbo'>
         <div style={{
           display: 'table-cell',
-          verticalAlign: 'middle',
-          textAlign: 'center'
+          verticalAlign: 'bottom'
         }}>
-          <div style={{maxWidth: 900, margin: 'auto'}}>
-            <img src={logo} alt='Logo' />
-            <h1 className='display-1'>{title}</h1>
+          <div style={{maxWidth: '800px', background: 'rgba(0,0,0,0.5)', padding: 25, paddingLeft: 50 }}>
+            <h1 className='display-1'>
+              {title}
+            </h1>
             <p className='lead'>{description}</p>
             <p className='lead'>
               {buttons.map(({link, color, icon, text}) => (
@@ -112,7 +119,8 @@ class Hero extends React.Component {
                 </Button>
               </span>
             </p>
-            <p className='lead'>
+            <p className='small'>
+              <Commit {...commit} />
               Latest release: <b>{release || 'unknown'}</b>
             </p>
           </div>

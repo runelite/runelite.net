@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet'
 import { Row } from 'reactstrap'
 import { NavLink } from 'redux-first-router-link'
 import Feature from '../components/feature'
-import Commit from '../components/commit'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import { getLatest } from '../blog'
@@ -19,9 +18,8 @@ const Home = ({ children, commit, release, stars }) => (
       <title>{hero.title} - Open Source Old School RuneScape Client</title>
       <meta name='description' content={hero.description} />
     </Helmet>
-    <Hero {...hero} release={release.name} stars={stars} />
+    <Hero {...hero} release={release.name} stars={stars} commit={commit} />
     <Layout>
-      <Commit {...commit} />
       <h1>Features <NavLink to='/features' style={{ fontSize: 18 }}>See all features...</NavLink></h1>
       <hr />
       <Row>

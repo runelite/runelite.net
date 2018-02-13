@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from 'reactstrap'
 
 const Layout = ({ children }) => (
-  <Container style={{ marginTop: 15, marginBottom: 15 }}>
+  <Container id='layout' style={{ paddingTop: 60, paddingBottom: 15 }}>
     {children}
   </Container>
 )
