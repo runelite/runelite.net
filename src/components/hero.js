@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Jumbotron } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faStar, faArrowCircleDown } from '@fortawesome/fontawesome-free-solid'
+import { faStar } from '@fortawesome/fontawesome-free-solid'
 import Commit from './commit'
 
 class Hero extends React.Component {
@@ -18,7 +18,7 @@ class Hero extends React.Component {
   updateBackground (index) {
     const image = this.props.images[index]
     const jumbo = document.getElementById('jumbo')
-    jumbo.style.background = `url(${image}) no-repeat center center fixed`
+    jumbo.style.background = `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${image}) no-repeat center center fixed`
     jumbo.style.backgroundSize = 'cover'
 
     this.setState({
@@ -34,13 +34,11 @@ class Hero extends React.Component {
   static makeNavigationDark () {
     const navbar = Hero.getNavbar()
     navbar.className = navbar.className.replace('navbar-light', 'navbar-dark').replace('bg-white', 'bg-faded')
-    navbar.style = 'background: rgba(0,0,0,0.5)'
   }
 
   static makeNavigationWhite () {
     const navbar = Hero.getNavbar()
     navbar.className = navbar.className.replace('navbar-dark', 'navbar-light').replace('bg-faded', 'bg-white')
-    navbar.style = ''
   }
 
   static handleScroll () {
@@ -80,7 +78,7 @@ class Hero extends React.Component {
   }
 
   render () {
-    const { title, logo, description, buttons, release, stars, commit } = this.props
+    const { title, description, buttons, release, stars, commit } = this.props
 
     const style = {
       backgroundBlendMode: 'darken',
@@ -99,7 +97,7 @@ class Hero extends React.Component {
           display: 'table-cell',
           verticalAlign: 'bottom'
         }}>
-          <div style={{maxWidth: '800px', background: 'rgba(0,0,0,0.5)', padding: 25, paddingLeft: 50 }}>
+          <div style={{maxWidth: '800px', padding: 25, paddingLeft: 50}}>
             <h1 className='display-1'>
               {title}
             </h1>
@@ -111,6 +109,7 @@ class Hero extends React.Component {
                     <FontAwesomeIcon icon={icon} /> {text}
                   </Button>
                   {' '}
+                  <br style={{ marginBottom: 10 }} className='d-md-none' />
                 </span>
               ))}
               <span>
