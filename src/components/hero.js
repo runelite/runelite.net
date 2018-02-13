@@ -120,7 +120,7 @@ class Hero extends React.Component {
             </p>
             <p className='small'>
               <Commit {...commit} />
-              Latest release: <b>{release || 'unknown'}</b>
+              <b>Latest release:</b> <a href='#news' style={{color: 'cyan'}}>{release || 'unknown'}</a>
             </p>
           </div>
         </div>

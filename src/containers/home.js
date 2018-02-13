@@ -28,7 +28,7 @@ const Home = ({ children, commit, release, stars }) => (
             .map(({ image, title }) => ({ image, title }))
             .map(feature => (<Feature key={feature.title} {...feature} />))}
       </Row>
-      <h1>Latest news <NavLink to='/blog' style={{ fontSize: 18 }}>See all news...</NavLink></h1>
+      <h1 id='news'>Latest news <NavLink to='/blog' style={{ fontSize: 18 }}>See all news...</NavLink></h1>
       <hr />
       <div className='markdown-body' dangerouslySetInnerHTML={{__html: getLatest().__content}} />
       {children}
