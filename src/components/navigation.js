@@ -21,7 +21,7 @@ class Navigation extends React.Component {
 
   render () {
     return (
-      <Navbar color='faded' light expand='md'>
+      <Navbar color='white' light expand='md' fixed='top'>
         <NavbarBrand tag={ActiveLink} to='/'><img src={hero.logo} alt='Logo' width='30' height='30' /> Home</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>

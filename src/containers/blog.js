@@ -8,7 +8,7 @@ import Layout from '../components/layout'
 import blog from '../blog'
 import hero from '../_data/hero'
 
-const Blog = ({ slug }) => (
+const Blog = ({ children }) => (
   <Layout>
     <Helmet>
       <title>Blog - {hero.title}</title>
@@ -28,6 +28,7 @@ const Blog = ({ slug }) => (
         )
       })}
     </ListGroup>
+    {children}
   </Layout>
 )
 

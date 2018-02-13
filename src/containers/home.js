@@ -13,8 +13,8 @@ import { latestCommitSelector, latestReleaseSelector, stargazersSelector } from 
 import hero from '../_data/hero'
 import features from '../_data/features'
 
-const Home = ({ commit, release, stars }) => (
-  <div>
+const Home = ({ children, commit, release, stars }) => (
+  <div style={{height: 'inherit'}}>
     <Helmet>
       <title>{hero.title} - Open Source Old School RuneScape Client</title>
       <meta name='description' content={hero.description} />
@@ -33,6 +33,7 @@ const Home = ({ commit, release, stars }) => (
       <h1>Latest news <NavLink to='/blog' style={{ fontSize: 18 }}>See all news...</NavLink></h1>
       <hr />
       <div className='markdown-body' dangerouslySetInnerHTML={{__html: getLatest().__content}} />
+      {children}
     </Layout>
   </div>
 )

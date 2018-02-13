@@ -9,11 +9,12 @@ const App = ({ title, component, payload }) => {
   const Component = require(`../containers/${component}`).default
 
   return (
-    <div>
+    <div style={{ height: '100%' }}>
       <Navigation />
       <LoadingBar />
-      <Component {...payload} />
-      <Footer />
+      <Component {...payload}>
+        <Footer />
+      </Component>
     </div>
   )
 }

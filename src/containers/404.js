@@ -8,7 +8,7 @@ const Error404 = (store) => (
     backgroundImage: 'url(/img/cat.jpg)',
     display: 'table',
     width: '100%',
-    height: 'calc(100% - 3.5em)',
+    height: '100%',
     boxShadow: 'inset 0 0 5rem rgba(0,0,0,.5)'
   }}>
     <Helmet>
