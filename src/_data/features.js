@@ -71,5 +71,85 @@ export default [
     image: '/img/features/overlayorder.png',
     title: 'Overlay rendering layers',
     description: 'Ordering of drawn overlays can be customized to show beneath RS overlays.'
+  },
+  {
+    image: '/img/features/abyss.png',
+    title: 'Abyss rifts Overlay',
+    description: 'Displays minimap icons aswell as clickboxes for each rift'
+  },
+  {
+    image: '/img/features/agility.png',
+    title: 'Agility overlay',
+    description: 'Displays clickboxes for all agility courses'
+  },
+  {
+    image: '/img/features/barbassault.png',
+    title: 'Barbarian Assault Overlay',
+    description: 'Displays timer for next change aswell as changing the left click option'
+  },
+  {
+    image: '/img/features/cannon.png',
+    title: 'Cannon Overlay',
+    description: 'Displays the amount of cannonballs left in your cannon'
+  },
+  {
+    image: '/img/features/chatcommands.png',
+    title: 'Chat commands plugin',
+    description: 'Allows easy lookup for levels as well as prices in the RS chat'
+  },
+  {
+    image: '/img/features/clanchat.png',
+    title: 'Clan Chat Overlay',
+    description: 'Displays clan chat rank in the RS chat window'
+  },
+  {
+    image: '/img/features/diary.png',
+    title: 'Achievement Diary Overlay',
+    description: 'Updates diary progress tab to make it easier to see which diaries are missing'
+  },
+  {
+    image: '/img/features/discord.png',
+    title: 'Discord Integration',
+    description: 'Displays current game information to discord'
+  },
+  {
+    image: '/img/features/itemstats.png',
+    title: 'Item stats Overlay',
+    description: 'Displays various information about food and potion effects'
+  },
+  {
+    image: '/img/features/jewellerycount.png',
+    title: 'Jewellery Overlay',
+    description: 'Displays charges of all jewellery in the game'
+  },
+  {
+    image: '/img/features/lowdetail.png',
+    title: 'Low detail mode',
+    description: 'Enables low detail mode in RS'
+  },
+  {
+    image: '/img/features/mlm.png',
+    title: 'Motherlode Mine Overlay',
+    description: 'Displays veins and rock obstacles in MLM'
+  },
+  {
+    image: '/img/features/poh.png',
+    title: 'Player Owned House Overlay',
+    description: 'Displays minimap icons aswell as shows unlit/lit burners'
+  },
+  {
+    image: '/img/features/tileindicators.png',
+    title: 'Tile Indicators Overlay',
+    description: 'Displays the tile you have clicked on'
+  },
+  {
+    image: '/img/features/wcing.png',
+    title: 'Woodcutting Overlay',
+    description: 'Displays various information about the logs you are cutting'
+  },
+  {
+    image: '/img/features/zoom.png',
+    title: 'Zoom plugin',
+    description: 'Allows you to zoom past the RS limits'
   }
 ]
