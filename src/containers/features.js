@@ -6,7 +6,7 @@ import Feature from '../components/feature'
 import features from '../_data/features'
 import hero from '../_data/hero'
 
-const Features = () => (
+const Features = ({ children }) => (
   <Layout>
     <Helmet>
       <title>Features - {hero.title}</title>
@@ -16,6 +16,7 @@ const Features = () => (
     <Row>
       {features.map(feature => (<Feature key={feature.title} {...feature} />))}
     </Row>
+    {children}
   </Layout>
 )
 

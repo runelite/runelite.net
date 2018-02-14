@@ -21,7 +21,7 @@ class Navigation extends React.Component {
 
   render () {
     return (
-      <Navbar color='faded' light expand='md'>
+      <Navbar color='white' light expand='md' fixed='top'>
         <NavbarBrand tag={ActiveLink} to='/'><img src={hero.logo} alt='Logo' width='30' height='30' /> Home</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
@@ -42,11 +42,11 @@ class Navigation extends React.Component {
                 <DropdownItem href='http://static.runelite.net/api/runelite-client/'>RuneLite Client API</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-          </Nav>
-          <Nav navbar className='ml-auto'>
             <NavItem>
               <NavLink href='https://discord.gg/mePCs8U'><FontAwesomeIcon icon={faDiscord} /> Discord</NavLink>
             </NavItem>
+          </Nav>
+          <Nav navbar className='ml-auto'>
             <NavItem>
               <NavLink href='https://github.com/runelite'><FontAwesomeIcon icon={faGithub} /> GitHub</NavLink>
             </NavItem>

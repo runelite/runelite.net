@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import Layout from '../components/layout'
 import hero from '../_data/hero'
 
-const LoggedIn = ({ commit }) => (
+const LoggedIn = ({ children }) => (
   <div>
     <Helmet>
       <title>Succesfully logged in - {hero.title}</title>
@@ -14,6 +14,7 @@ const LoggedIn = ({ commit }) => (
       <div>
         You succesfully logged into the RuneLite. You can now close this window.
       </div>
+      {children}
     </Layout>
   </div>
 )
