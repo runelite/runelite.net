@@ -42,11 +42,11 @@ class Navigation extends React.Component {
                 <DropdownItem href='http://static.runelite.net/api/runelite-client/'>RuneLite Client API</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-          </Nav>
-          <Nav navbar className='ml-auto'>
             <NavItem>
               <NavLink href='https://discord.gg/mePCs8U'><FontAwesomeIcon icon={faDiscord} /> Discord</NavLink>
             </NavItem>
+          </Nav>
+          <Nav navbar className='ml-auto'>
             <NavItem>
               <NavLink href='https://github.com/runelite'><FontAwesomeIcon icon={faGithub} /> GitHub</NavLink>
             </NavItem>

@@ -34,11 +34,13 @@ class Hero extends React.Component {
   static makeNavigationDark () {
     const navbar = Hero.getNavbar()
     navbar.className = navbar.className.replace('navbar-light', 'navbar-dark').replace('bg-white', 'bg-faded')
+    navbar.style = 'background: linear-gradient(rgba(0,0,0,0.7) 40%, transparent)'
   }
 
   static makeNavigationWhite () {
     const navbar = Hero.getNavbar()
     navbar.className = navbar.className.replace('navbar-dark', 'navbar-light').replace('bg-faded', 'bg-white')
+    navbar.style = ''
   }
 
   static handleScroll () {
@@ -89,7 +91,7 @@ class Hero extends React.Component {
       width: '100%',
       margin: 0,
       height: '100%',
-      background: 'rgba(0,0,0,0.3) no-repeat center center fixed'
+      background: 'rgba(0,0,0,0.4) no-repeat center center fixed'
     }
 
     return (
@@ -98,8 +100,16 @@ class Hero extends React.Component {
           display: 'table-cell',
           verticalAlign: 'bottom'
         }}>
+          <style>
+            {`
+            .navbar-dark .navbar-nav .nav-link {
+              color: white;
+              text-shadow: black 1px 1px 2px;
+            }
+            `}
+          </style>
           <div style={{maxWidth: '800px', padding: 25, paddingLeft: 50}}>
-            <h1 className='display-1'>
+            <h1 className='display-2'>
               {title}
             </h1>
             <p className='lead'>{description}</p>
