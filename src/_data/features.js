@@ -33,8 +33,7 @@ export default [
   {
     image: '/img/features/cluescroll.png',
     title: 'Clue scroll solver',
-    description: 'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues.',
-    home: true
+    description: 'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues.'
   },
   {
     image: '/img/features/imp.png',
@@ -152,5 +151,26 @@ export default [
     image: '/img/features/zoom.png',
     title: 'Zoom plugin',
     description: 'Allows you to zoom past the RS limits'
+  },
+  {
+    image: '/img/features/barrows.png',
+    title: 'Barrows Overlay',
+    description: 'Displays minimap information for the tunnel aswell as the names of each brother'
+  },
+  {
+    image: '/img/features/nmz.png',
+    title: 'Nightmare Zone Overlay',
+    description: 'Displays NMZ points/absorption aswell as notifications for potions'
+  },
+  {
+    image: '/img/features/puzzlebox.png',
+    title: 'Puzzle box Solver',
+    description: 'Shows you where to press to solve puzzle boxes',
+    home: true
+  },
+  {
+    image: '/img/features/roguesden.png',
+    title: 'Rogues den Overlay',
+    description: 'Displays tiles and clickboxes to help you traverse the minigame'
   }
 ]
