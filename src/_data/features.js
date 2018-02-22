@@ -172,5 +172,25 @@ export default [
     image: '/img/features/roguesden.png',
     title: 'Rogues den Overlay',
     description: 'Displays tiles and clickboxes to help you traverse the minigame'
+  },
+  {
+    image: '/img/features/raids.png',
+    title: 'Raid Scouter Overlay',
+    description: 'Displays the current layout of raids aswell as tracks the raid time'
+  },
+  {
+    image: '/img/features/blastfurnace.png',
+    title: 'Blast Furnace Overlay',
+    description: 'Displays your current bars/ores aswell as displays clickbox of conveyor belt'
+  },
+  {
+    image: '/img/features/minimapdots.png',
+    title: 'Minimap dots plugin',
+    description: 'Allows you to customize the color of minimap dots'
+  },
+  {
+    image: '/img/features/kourend.png',
+    title: 'Kourend Library  plugin',
+    description: 'Displays current book locations in the Kourend library'
   }
 ]
