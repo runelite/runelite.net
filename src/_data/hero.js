@@ -16,19 +16,19 @@ export default {
   ],
   buttons: [
     {
-      link: 'https://github.com/runelite/launcher/releases/download/1.4.1/RuneLiteSetup.exe',
+      link: 'https://github.com/runelite/launcher/releases/download/1.4.2/RuneLiteSetup.exe',
       icon: faWindows,
       text: 'Download for Windows',
       color: 'primary'
     },
     {
-      link: 'https://github.com/runelite/launcher/releases/download/1.4.1/RuneLiteSetup.exe',
+      link: 'https://github.com/runelite/launcher/releases/download/1.4.2/RuneLite.dmg',
       icon: faApple,
       text: 'Download for macOS',
       color: 'secondary'
     },
     {
-      link: 'https://github.com/runelite/launcher/releases/download/1.4.1/RuneLite.jar',
+      link: 'https://github.com/runelite/launcher/releases/download/1.4.2/RuneLite.jar',
       icon: faCoffee,
       text: 'Download for all platforms',
       color: 'success'
