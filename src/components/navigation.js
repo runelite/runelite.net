@@ -3,9 +3,11 @@ import { NavLink as ActiveLink } from 'redux-first-router-link'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
   UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faCogs, faNewspaper, faFileAlt, faFont } from '@fortawesome/fontawesome-free-solid'
+import { faCogs, faNewspaper, faFileAlt, faFont, faStar } from '@fortawesome/fontawesome-free-solid'
 import { faGithub, faDiscord } from '@fortawesome/fontawesome-free-brands'
 import hero from '../_data/hero'
+import {stargazersSelector} from '../redux/modules/git'
+import {connect} from 'react-redux'
 
 class Navigation extends React.Component {
   constructor (props) {
@@ -50,6 +52,11 @@ class Navigation extends React.Component {
             <NavItem>
               <NavLink href='https://github.com/runelite'><FontAwesomeIcon icon={faGithub} /> GitHub</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href='https://github.com/runelite/runelite/stargazers'>
+                <FontAwesomeIcon icon={faStar} /> {this.props.stars} Stargazers
+              </NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
@@ -57,4 +64,8 @@ class Navigation extends React.Component {
   }
 }
 
-export default Navigation
+export default connect(
+  (state, props) => ({
+    stars: stargazersSelector(state, props)
+  })
+)(Navigation)

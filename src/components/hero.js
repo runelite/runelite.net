@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Jumbotron } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/fontawesome-free-solid'
 import Commit from './commit'
 
 class Hero extends React.Component {
@@ -80,7 +79,7 @@ class Hero extends React.Component {
   }
 
   render () {
-    const { title, description, buttons, release, stars, commit } = this.props
+    const { title, description, buttons, release, commit } = this.props
 
     const style = {
       backgroundBlendMode: 'darken',
@@ -108,7 +107,7 @@ class Hero extends React.Component {
             }
             `}
           </style>
-          <div style={{maxWidth: '800px', padding: 25, paddingLeft: 50}}>
+          <div style={{maxWidth: '1000px', padding: 25, paddingLeft: 50}}>
             <h1 className='display-2'>
               {title}
             </h1>
@@ -123,11 +122,6 @@ class Hero extends React.Component {
                   <br style={{ marginBottom: 10 }} className='d-md-none' />
                 </span>
               ))}
-              <span>
-                <Button color='secondary' href='https://github.com/runelite/runelite/stargazers'>
-                  {stars} <FontAwesomeIcon icon={faStar} />
-                </Button>
-              </span>
             </p>
             <p className='small'>
               <Commit {...commit} />
