@@ -66,11 +66,6 @@ export default [
     description: 'Displays Teamcape numbers in your area.'
   },
   {
-    image: '/img/features/overlayorder.png',
-    title: 'Overlay rendering layers',
-    description: 'Ordering of drawn overlays can be customized to show beneath RS overlays.'
-  },
-  {
     image: '/img/features/abyss.png',
     title: 'Abyss rifts Overlay',
     description: 'Displays minimap icons aswell as clickboxes for each rift'
