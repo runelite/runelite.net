@@ -6,13 +6,13 @@ export default [
   },
   {
     image: '/img/features/grounditems.png',
-    title: 'Ground items overlay',
+    title: 'Ground items',
     description: 'Filter and color items by name and price.'
   },
   {
     image: '/img/features/boosts.png',
     title: 'Information widgets',
-    description: 'For times and other useful informations.',
+    description: 'For timers and other useful information.',
     home: true
   },
   {
@@ -22,170 +22,170 @@ export default [
   },
   {
     image: '/img/features/hunter.png',
-    title: 'Hunter Trap overlay',
+    title: 'Hunter',
     description: 'Adds timers to hunter traps.'
   },
   {
     image: '/img/features/runepouch.png',
-    title: 'RunePouch Overlay',
-    description: 'Shows what runes are currently in the runepouch.'
+    title: 'Runepouch',
+    description: 'Shows what runes are currently in your rune pouch.'
   },
   {
     image: '/img/features/cluescroll.png',
-    title: 'Clue scroll solver',
+    title: 'Clue scroll helper',
     description: 'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues.'
   },
   {
     image: '/img/features/imp.png',
-    title: 'Impling overlay',
-    description: 'Highlights impling tile location.'
+    title: 'Impling finder',
+    description: 'Highlights where implings are.'
   },
   {
     image: '/img/features/playerindicators.png',
-    title: 'Player indicators',
-    description: 'Draws own, friend and clan mate names.'
+    title: 'Player Indicators',
+    description: 'Draws the names of friends, clan mates and yourself.'
   },
   {
     image: '/img/features/fishing.png',
-    title: 'Fishing Overlay',
-    description: 'Draws fishing spot overlays as well as tracks fish stats.'
+    title: 'Fishing',
+    description: 'Draws fishing spot overlays and tracks fishing stats.'
   },
   {
     image: '/img/features/globes.png',
     title: 'XP Globes',
-    description: 'Shows skills when gained xp as well as detailed tooltips.'
+    description: 'Displays skill globes when you gain exp, and detailed information on hover.'
   },
   {
     image: '/img/features/idle.png',
     title: 'Idle Notifier',
-    description: 'Sends system tray alerts when idle.'
+    description: 'Sends system tray alerts when idle or about to be logged out.'
   },
   {
     image: '/img/features/teamcape.png',
     title: 'Teamcape Overlay',
-    description: 'Displays Teamcape numbers in your area.'
+    description: 'Displays teamcape wearer counts.'
   },
   {
     image: '/img/features/abyss.png',
-    title: 'Abyss rifts Overlay',
-    description: 'Displays minimap icons aswell as clickboxes for each rift'
+    title: 'Runecraft',
+    description: 'Displays minimap icons and clickboxes for abyssal rifts.'
   },
   {
     image: '/img/features/agility.png',
-    title: 'Agility overlay',
-    description: 'Displays clickboxes for all agility courses'
+    title: 'Agility',
+    description: 'Displays clickboxes for agility courses.'
   },
   {
     image: '/img/features/barbassault.png',
-    title: 'Barbarian Assault Overlay',
-    description: 'Displays timer for next change aswell as changing the left click option'
+    title: 'Barbarian Assault',
+    description: 'Displays a timer for the next change and changes the left click option.'
   },
   {
     image: '/img/features/cannon.png',
-    title: 'Cannon Overlay',
-    description: 'Displays the amount of cannonballs left in your cannon'
+    title: 'Cannon',
+    description: 'Displays the amount of cannonballs left in your cannon.'
   },
   {
     image: '/img/features/chatcommands.png',
-    title: 'Chat commands plugin',
-    description: 'Allows easy lookup for levels as well as prices in the RS chat'
+    title: 'Chat commands',
+    description: 'Allows easy lookup for !level:s as well as !price:s in the RS chat.'
   },
   {
     image: '/img/features/clanchat.png',
-    title: 'Clan Chat Overlay',
-    description: 'Displays clan chat rank in the RS chat window'
+    title: 'Clan Chat',
+    description: 'Adds the sender\'s rank to clan chat messages.'
   },
   {
     image: '/img/features/diary.png',
-    title: 'Achievement Diary Overlay',
-    description: 'Updates diary progress tab to make it easier to see which diaries are missing'
+    title: 'Achievement Diary',
+    description: 'Updates diary progress tab to make it easier to see which diaries are missing.'
   },
   {
     image: '/img/features/discord.png',
     title: 'Discord Integration',
-    description: 'Displays current game information to discord',
+    description: 'Integrates with Discord to display what you\'re doing in the game.',
     home: true
   },
   {
     image: '/img/features/itemstats.png',
-    title: 'Item stats Overlay',
-    description: 'Displays various information about food and potion effects'
+    title: 'Item stats',
+    description: 'Displays various information about food and potion effects.'
   },
   {
     image: '/img/features/jewellerycount.png',
     title: 'Jewellery Overlay',
-    description: 'Displays charges of all jewellery in the game'
+    description: 'Displays the amount of charges that your jewellery has.'
   },
   {
     image: '/img/features/lowdetail.png',
     title: 'Low detail mode',
-    description: 'Enables low detail mode in RS',
+    description: 'Enables low detail mode, removing some of the game\'s eye candy.',
     home: true
   },
   {
     image: '/img/features/mlm.png',
-    title: 'Motherlode Mine Overlay',
-    description: 'Displays veins and rock obstacles in MLM'
+    title: 'Motherlode Mine',
+    description: 'Marks veins and rock obstacles in the motherlode mine.'
   },
   {
     image: '/img/features/poh.png',
-    title: 'Player Owned House Overlay',
-    description: 'Displays minimap icons aswell as shows unlit/lit burners'
+    title: 'Player Owned House',
+    description: 'Displays minimap icons and marks unlit/lit burners.'
   },
   {
     image: '/img/features/tileindicators.png',
-    title: 'Tile Indicators Overlay',
-    description: 'Displays the tile you have clicked on'
+    title: 'Tile Indicator',
+    description: 'Marks the tile you have clicked on.'
   },
   {
     image: '/img/features/wcing.png',
-    title: 'Woodcutting Overlay',
-    description: 'Displays various information about the logs you are cutting'
+    title: 'Woodcutting',
+    description: 'Displays various information about the logs you are cutting.'
   },
   {
     image: '/img/features/zoom.png',
-    title: 'Zoom plugin',
-    description: 'Allows you to zoom past the RS limits'
+    title: 'Zoom unlimiter',
+    description: 'Allows you to zoom past the game\'s limits.'
   },
   {
     image: '/img/features/barrows.png',
-    title: 'Barrows Overlay',
-    description: 'Displays minimap information for the tunnel aswell as the names of each brother'
+    title: 'Barrows',
+    description: 'Displays minimap information for the tunnel and marks the location of brothers.'
   },
   {
     image: '/img/features/nmz.png',
-    title: 'Nightmare Zone Overlay',
-    description: 'Displays NMZ points/absorption aswell as notifications for potions'
+    title: 'Nightmare Zone',
+    description: 'Displays NMZ points/absorption and notifies you about potions.'
   },
   {
     image: '/img/features/puzzlebox.png',
     title: 'Puzzle box Solver',
-    description: 'Shows you where to press to solve puzzle boxes',
+    description: 'Shows you where to press to solve puzzle boxes.',
     home: true
   },
   {
     image: '/img/features/roguesden.png',
-    title: 'Rogues den Overlay',
-    description: 'Displays tiles and clickboxes to help you traverse the minigame'
+    title: 'Rogues\' Den',
+    description: 'Marks tiles and clickboxes to help you traverse the minigame.'
   },
   {
     image: '/img/features/raids.png',
-    title: 'Raid Scouter Overlay',
-    description: 'Displays the current layout of raids aswell as tracks the raid time'
+    title: 'Raid Scouter',
+    description: 'Displays the current layout of raids and tracks the raid duration.'
   },
   {
     image: '/img/features/blastfurnace.png',
-    title: 'Blast Furnace Overlay',
-    description: 'Displays your current bars/ores aswell as displays clickbox of conveyor belt'
+    title: 'Blast Furnace',
+    description: 'Shows your current bars/ores and marks the clickbox of the conveyor belt.'
   },
   {
     image: '/img/features/minimapdots.png',
-    title: 'Minimap dots plugin',
-    description: 'Allows you to customize the color of minimap dots'
+    title: 'Minimap dot customizer',
+    description: 'Allows you to customize the color of minimap dots.'
   },
   {
     image: '/img/features/kourend.png',
-    title: 'Kourend Library  plugin',
-    description: 'Displays current book locations in the Kourend library'
+    title: 'Kourend Library',
+    description: 'Shows you where books are in the Kourend library.'
   }
 ]
