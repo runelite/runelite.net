@@ -3,6 +3,7 @@ import { faWindows, faGithub, faApple } from '@fortawesome/fontawesome-free-bran
 
 export default {
   title: 'RuneLite',
+  url: 'https://runelite.net',
   logo: '/img/logo.png',
   description: `
     RuneLite is a free, open-source and super fast client for Old School

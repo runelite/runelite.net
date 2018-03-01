@@ -28,9 +28,16 @@
     "reselect": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^4.5.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-react": "^7.3.0",
+    "front-matter": "^2.3.0",
+    "jstoxml": "^1.2.0",
+    "markdown-it": "^8.4.1",
     "markdown-with-front-matter-loader": "^0.1.0",
     "react-scripts": "1.1.0",
     "remote-redux-devtools": "^0.5.12",
@@ -38,6 +45,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "generate": "babel-node generate-feed.js --presets es2015",
     "build": "react-scripts build",
     "test": "standard && react-scripts test --env=jsdom",
     "lint": "standard",
