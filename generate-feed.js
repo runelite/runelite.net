@@ -95,6 +95,8 @@ const posts = fs.readdirSync(postsFolder)
       ]
     }
   })
+  // Order from newest to oldest
+  .reverse()
 
 // Build the Atom XML from JSON
 const xml = jstoxml.toXML({
