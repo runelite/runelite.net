@@ -7,12 +7,13 @@ import hero from './src/_data/hero'
 
 const postsFolder = path.join('src', '_posts')
 
-const now = new Date().toISOString()
+const now = new Date()
 
 const md = MarkdownIt({
   html: true,
   linkify: true,
-  typographer: true
+  typographer: true,
+  xhtmlOut: true
 })
 
 // Read each file in posts folder and convert it to json-formatted meta tags
@@ -50,42 +51,85 @@ const posts = fs.readdirSync(postsFolder)
     const content = md.render(frontMatterContext.body)
 
     return {
-      item: {
-        title,
-        link,
-        content,
-        description,
-        pubDate: date.toISOString(),
-        timestamp: date.getTime()
-      }
+      entry: [
+        {
+          id: link
+        },
+        {
+          link: {
+            _attrs: {
+              href: link
+            }
+          }
+        },
+        {
+          title
+        },
+        {
+          summary: description
+        },
+        {
+          updated: date.toISOString()
+        },
+        {
+          author: {
+            name: hero.title
+          }
+        },
+        {
+          _name: 'content',
+          _attrs: {
+            type: 'xhtml'
+          },
+          _content: [
+            {
+              div: {
+                _attrs: {
+                  xmlns: 'http://www.w3.org/1999/xhtml'
+                },
+                div: content
+              }
+            }
+          ]
+        }
+      ]
     }
   })
 
 const xml = jstoxml.toXML({
-  _name: 'rss',
+  _name: 'feed',
   _attrs: {
-    version: '2.0'
+    xmlns: 'http://www.w3.org/2005/Atom'
   },
-  _content: {
-    channel: [
-      {
-        title: hero.title
-      },
-      {
-        description: hero.description
-      },
-      {
-        link: hero.url
-      },
-      {
-        lastBuildDate: now
-      },
-      {
-        pubDate: now
-      },
-      {language: 'en'}
-    ].concat(posts)
-  }
+  _content: [
+    {
+      title: hero.title
+    },
+    {
+      subtitle: hero.description
+    },
+    {
+      link: {
+        _attrs: {
+          href: hero.url
+        }
+      }
+    },
+    {
+      link: {
+        _attrs: {
+          href: 'https://raw.githubusercontent.com/runelite/runelite.net/gh-pages/rss.xml',
+          rel: 'self'
+        }
+      }
+    },
+    {
+      id: hero.url + '/'
+    },
+    {
+      updated: now.toISOString()
+    }
+  ].concat(posts)
 }, {header: true, indent: '  '})
 
-fs.writeFileSync(path.join('build', 'rss.xml'), xml)
+fs.writeFileSync(path.join('build', 'atom.xml'), xml)
