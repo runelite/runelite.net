@@ -6,9 +6,9 @@ import frontmatter from 'front-matter'
 import hero from './src/_data/hero'
 
 const postsFolder = path.join('src', '_posts')
-
 const now = new Date()
 
+// Prepare markdown renderer to be xhtml-compatible
 const md = MarkdownIt({
   html: true,
   linkify: true,
@@ -96,6 +96,7 @@ const posts = fs.readdirSync(postsFolder)
     }
   })
 
+// Build the Atom XML from JSON
 const xml = jstoxml.toXML({
   _name: 'feed',
   _attrs: {
@@ -118,7 +119,7 @@ const xml = jstoxml.toXML({
     {
       link: {
         _attrs: {
-          href: 'https://raw.githubusercontent.com/runelite/runelite.net/gh-pages/rss.xml',
+          href: 'https://raw.githubusercontent.com/runelite/runelite.net/gh-pages/atom.xml',
           rel: 'self'
         }
       }
@@ -132,4 +133,5 @@ const xml = jstoxml.toXML({
   ].concat(posts)
 }, {header: true, indent: '  '})
 
+// Write feed to build folder
 fs.writeFileSync(path.join('build', 'atom.xml'), xml)
