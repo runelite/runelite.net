@@ -187,5 +187,20 @@ export default [
     image: '/img/features/kourend.png',
     title: 'Kourend Library',
     description: 'Shows you where books are in the Kourend library.'
+  },
+  {
+    image: '/img/features/ge.png',
+    title: 'Grand Exchange',
+    description: 'Displays your current Grand Exchange offers'
+  },
+  {
+    image: '/img/features/cannontiles.png',
+    title: 'Cannon double hit spots',
+    description: 'Shows you where to stand for cannon double hits'
+  },
+  {
+    image: '/img/features/pp.png',
+    title: 'Pyramid Plunder',
+    description: 'Removes the large clunky overlay for a text based timer/floor information.'
   }
 ]
