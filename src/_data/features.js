@@ -96,11 +96,6 @@ export default [
     description: 'Adds the sender\'s rank to clan chat messages.'
   },
   {
-    image: '/img/features/diary.png',
-    title: 'Achievement Diary',
-    description: 'Updates diary progress tab to make it easier to see which diaries are missing.'
-  },
-  {
     image: '/img/features/discord.png',
     title: 'Discord Integration',
     description: 'Integrates with Discord to display what you\'re doing in the game.',
