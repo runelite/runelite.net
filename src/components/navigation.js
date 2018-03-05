@@ -4,7 +4,7 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
   UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faCogs, faNewspaper, faFileAlt, faFont, faStar } from '@fortawesome/fontawesome-free-solid'
-import { faGithub, faDiscord } from '@fortawesome/fontawesome-free-brands'
+import { faGithub, faDiscord, faPatreon } from '@fortawesome/fontawesome-free-brands'
 import hero from '../_data/hero'
 import {stargazersSelector} from '../redux/modules/git'
 import {connect} from 'react-redux'
@@ -49,6 +49,9 @@ class Navigation extends React.Component {
             </NavItem>
           </Nav>
           <Nav navbar className='ml-auto'>
+            <NavItem>
+              <NavLink href='https://www.patreon.com/user?u=10095059'><FontAwesomeIcon icon={faPatreon} /> Become a patron</NavLink>
+            </NavItem>
             <NavItem>
               <NavLink href='https://github.com/runelite'><FontAwesomeIcon icon={faGithub} /> GitHub</NavLink>
             </NavItem>
