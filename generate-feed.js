@@ -42,6 +42,7 @@ const posts = fs.readdirSync(postsFolder)
     const pathString = tokenizedFilename[2]
     const title = frontMatterContext.attributes.title
     const description = frontMatterContext.attributes.description
+    const author = frontMatterContext.attributes.author
 
     // create required metadata
     const date = new Date(dateString)
@@ -73,7 +74,7 @@ const posts = fs.readdirSync(postsFolder)
         },
         {
           author: {
-            name: hero.title
+            name: author
           }
         },
         {

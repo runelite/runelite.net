@@ -8,7 +8,7 @@ import hero from '../_data/hero'
 
 const BlogShow = ({ children, slug }) => {
   const post = blog.get(slug)
-  const { date, title, description, __content } = post || {
+  const { date, title, description, author, __content } = post || {
     title: 'Blog post not found',
     date: '',
     description: '',
@@ -21,7 +21,8 @@ const BlogShow = ({ children, slug }) => {
         <title>{title} - {hero.title}</title>
         <meta name='description' content={description} />
       </Helmet>
-      <h1>{title} <small className='text-muted'><TimeAgo date={date} /></small></h1>
+      <h1>{title}</h1>
+      <p className='text-muted'><TimeAgo date={date} /> by {author}</p>
       <hr />
       <div className='markdown-body' dangerouslySetInnerHTML={{__html: __content}} />
       {children}

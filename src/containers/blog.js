@@ -17,10 +17,10 @@ const Blog = ({ children }) => (
     <hr />
     <ListGroup>
       {[...blog.keys()].map(path => {
-        const { date, title, description } = blog.get(path)
+        const { date, title, description, author } = blog.get(path)
         return (
           <ListGroupItem key={title} tag={NavLink} to={`/blog/show/${path}`}>
-            <ListGroupItemHeading>{title || path} <small className='text-muted'><TimeAgo date={date} /></small></ListGroupItemHeading>
+            <ListGroupItemHeading>{title || path} <small className='text-muted'><TimeAgo date={date} /> by {author}</small></ListGroupItemHeading>
             <ListGroupItemText className='text-muted'>
               {description}
             </ListGroupItemText>
