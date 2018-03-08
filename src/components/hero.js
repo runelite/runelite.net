@@ -79,7 +79,7 @@ class Hero extends React.Component {
   }
 
   render () {
-    const { title, description, buttons, release, commit } = this.props
+    const { title, description, buttons, release, commit, playing } = this.props
 
     const style = {
       backgroundBlendMode: 'darken',
@@ -125,7 +125,8 @@ class Hero extends React.Component {
             </p>
             <p className='small'>
               <Commit {...commit} />
-              <b>Latest release:</b> <a href='#news' style={{color: 'cyan'}}>{release || 'unknown'}</a>
+              <b>Latest release:</b> <a href='#news' style={{color: 'cyan'}}>{release || 'unknown'}</a><br />
+              <b>Players online:</b> {playing || 'unknown'}
             </p>
           </div>
         </div>

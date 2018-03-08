@@ -11,14 +11,15 @@ import { getLatest } from '../blog'
 import { latestCommitSelector, latestReleaseSelector, stargazersSelector } from '../redux/modules/git'
 import hero from '../_data/hero'
 import features from '../_data/features'
+import {sessionCountSelector} from '../redux/modules/runelite'
 
-const Home = ({ children, commit, release, stars }) => (
+const Home = ({ children, commit, release, stars, sessionCount }) => (
   <div style={{height: 'inherit'}}>
     <Helmet>
       <title>{hero.title} - Open Source Old School RuneScape Client</title>
       <meta name='description' content={hero.description} />
     </Helmet>
-    <Hero {...hero} release={release.name} stars={stars} commit={commit} />
+    <Hero {...hero} release={release.name} stars={stars} commit={commit} playing={sessionCount} />
     <Layout>
       <h1>Features <NavLink to='/features' style={{ fontSize: 18 }}>See all features...</NavLink></h1>
       <hr />
@@ -40,6 +41,7 @@ export default connect(
   (state, props) => ({
     commit: latestCommitSelector(state, props),
     release: latestReleaseSelector(state, props),
-    stars: stargazersSelector(state, props)
+    stars: stargazersSelector(state, props),
+    sessionCount: sessionCountSelector(state, props)
   })
 )(Home)

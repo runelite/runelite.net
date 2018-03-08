@@ -34,12 +34,6 @@ const injectBaseHeaders = (options) => {
     result.body = JSON.stringify(options.body)
   }
 
-  result.headers = {
-    ...(options.headers || {}),
-    'Accept': 'application/json, text/plain, */*',
-    'Content-Type': 'application/json'
-  }
-
   return result
 }
 
