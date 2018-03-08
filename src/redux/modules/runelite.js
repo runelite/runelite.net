@@ -36,7 +36,7 @@ export const getSessionCount = createAction(getSessionCountRoutine.TRIGGER, () =
       release.name.length)
 
     const response = await runeliteApi.wrapFailure(dispatch, runeliteApi.fetch(
-      `${version}/session/count`, { method: 'GET' }
+      `runelite-${version}/session/count`, { method: 'GET' }
     ))
 
     dispatch(getSessionCountRoutine.success(response))

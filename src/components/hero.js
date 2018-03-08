@@ -125,8 +125,8 @@ class Hero extends React.Component {
             </p>
             <p className='small'>
               <Commit {...commit} />
-              <b>Latest release:</b> <a href='#news' style={{color: 'cyan'}}>{release || 'unknown'}</a><br/>
-              <b>Currently playing:</b> {playing || 'unknown'}
+              <b>Latest release:</b> <a href='#news' style={{color: 'cyan'}}>{release || 'unknown'}</a><br />
+              <b>Players online:</b> {playing || 'unknown'}
             </p>
           </div>
         </div>
