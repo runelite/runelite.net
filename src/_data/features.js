@@ -197,5 +197,20 @@ export default [
     image: '/img/features/pp.png',
     title: 'Pyramid Plunder',
     description: 'Removes the large clunky overlay for a text based timer/floor information.'
+  },
+  {
+    image: '/img/features/gesearch.png',
+    title: 'Grand Exchange Lookup',
+    description: 'Quickly lookup any item on the Grand Exchange'
+  },
+  {
+    image: '/img/features/newsfeed.png',
+    title: 'News Feed',
+    description: 'Displays the latest RuneLite blog posts, OldSchool RuneScape news, and a Twitter feed of JMods.'
+  },
+  {
+    image: '/img/features/stretchedfixed.png',
+    title: 'Stretched Fixed Mode',
+    description: 'Allows you stretch the game to the size of your client while in fixed mode'
   }
 ]
