@@ -78,7 +78,7 @@ export default [
   {
     image: '/img/features/barbassault.png',
     title: 'Barbarian Assault',
-    description: 'Displays a timer for the next change and changes the left click option.'
+    description: 'Displays a timer for the next change'
   },
   {
     image: '/img/features/cannon.png',
