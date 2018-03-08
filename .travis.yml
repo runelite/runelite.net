@@ -7,9 +7,10 @@ script:
   - npm run generate
 deploy:
   provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-  local_dir: build
-  target_branch: gh-pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  local-dir: build
+  target-branch: gh-pages
+  verbose: true
   on:
     branch: master
