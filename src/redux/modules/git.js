@@ -32,7 +32,7 @@ export default handleActions({
 })
 
 // Action creators
-export const getCommits = createAction(getCommitsRoutine.TRIGGER, (payload) => async (dispatch) => {
+export const getCommits = createAction(getCommitsRoutine.TRIGGER, () => async (dispatch) => {
   try {
     dispatch(getCommitsRoutine.request())
     const response = await githubApi.wrapFailure(dispatch, githubApi.fetch(
@@ -48,7 +48,7 @@ export const getCommits = createAction(getCommitsRoutine.TRIGGER, (payload) => a
   }
 })
 
-export const getReleases = createAction(getCommitsRoutine.TRIGGER, (payload) => async (dispatch) => {
+export const getReleases = createAction(getReleasesRoutine.TRIGGER, () => async (dispatch) => {
   try {
     dispatch(getReleasesRoutine.request())
     const response = await githubApi.wrapFailure(dispatch, githubApi.fetch(
@@ -64,7 +64,7 @@ export const getReleases = createAction(getCommitsRoutine.TRIGGER, (payload) => 
   }
 })
 
-export const getRepository = createAction(getCommitsRoutine.TRIGGER, (payload) => async (dispatch) => {
+export const getRepository = createAction(getRepositoryRoutine.TRIGGER, () => async (dispatch) => {
   try {
     dispatch(getRepositoryRoutine.request())
     const response = await githubApi.wrapFailure(dispatch, githubApi.fetch(
