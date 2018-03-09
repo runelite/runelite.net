@@ -32,14 +32,11 @@
     "@babel/preset-env": "^7.0.0-beta.40",
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "eslint": "^4.5.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-react": "^7.3.0",
     "front-matter": "^2.3.0",
     "jstoxml": "^1.2.0",
     "markdown-it": "^8.4.1",
     "markdown-with-front-matter-loader": "^0.1.0",
-    "react-scripts": "1.1.0",
+    "react-scripts": "^2.0.0-next.47d2d941",
     "remote-redux-devtools": "^0.5.12",
     "standard": "^10.0.3"
   },
@@ -50,5 +47,18 @@
     "test": "standard && react-scripts test --env=jsdom",
     "lint": "standard",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
   }
 }

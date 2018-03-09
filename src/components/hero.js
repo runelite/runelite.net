@@ -123,11 +123,11 @@ class Hero extends React.Component {
                 </span>
               ))}
             </p>
-            <p className='small'>
+            <div className='small'>
               <Commit {...commit} />
               <b>Latest release:</b> <a href='#news' style={{color: 'cyan'}}>{release || 'unknown'}</a><br />
               <b>Players online:</b> {playing || 'unknown'}
-            </p>
+            </div>
           </div>
         </div>
       </Jumbotron>
