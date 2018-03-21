@@ -83,7 +83,7 @@ export default [
   {
     image: '/img/features/cannon.png',
     title: 'Cannon',
-    description: 'Displays the amount of cannonballs left in your cannon.'
+    description: 'Displays the amount of cannonballs left in your cannon, along with common cannon spots.'
   },
   {
     image: '/img/features/chatcommands.png',
@@ -222,5 +222,25 @@ export default [
     image: '/img/features/menuswap.png',
     title: 'Menu Swapping',
     description: 'Allows you to swap pre-defined menu options'
+  }
+  {
+    image: '/img/features/bankeval.png',
+    title: 'Bank Evaluator',
+    description: 'Displays your current bank GE and Alch total value.'
+  },
+  {
+    image: '/img/features/npctag.png',
+    title: 'Npc Tagging',
+    description: 'Allows you tag and keep track of an NPC.'
+  },
+  {
+    image: '/img/features/herbiboar.png',
+    title: 'Herbiboar',
+    description: 'Displays the path and objects to search at the end of the trail.'
+  },
+  {
+    image: '/img/features/prayerorder.png',
+    title: 'Prayer Reorder',
+    description: 'Allows you reorder the prayers in your prayer book.'
   }
 ]
