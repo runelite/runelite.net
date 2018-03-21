@@ -1,6 +1,5 @@
-import { applyMiddleware, createStore, combineReducers } from 'redux'
+import {applyMiddleware, createStore, combineReducers, compose} from 'redux'
 import { connectRoutes } from 'redux-first-router'
-import { composeWithDevTools } from 'remote-redux-devtools'
 import { loadingBarReducer, loadingBarMiddleware } from 'react-redux-loading-bar'
 import thunkMiddleware from './middleware/thunkMiddleware'
 import rootReducer from './reducer'
@@ -33,7 +32,7 @@ const configureStore = (history, initialState) => {
   )
 
   // Compose our enhancer from various middlewares
-  const enhancers = composeWithDevTools(enhancer, middlewares)
+  const enhancers = compose(enhancer, middlewares)
 
   // Create our store from rootReducer and initial state
   const store = createStore(reducers, initialState, enhancers)
