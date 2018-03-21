@@ -212,5 +212,15 @@ export default [
     image: '/img/features/stretchedfixed.png',
     title: 'Stretched Fixed Mode',
     description: 'Allows you stretch the game to the size of your client while in fixed mode'
+  },
+  {
+    image: '/img/features/regen.png',
+    title: 'Regen Meters',
+    description: 'Tracks and displays the current Hitpoints/Special attack regen timer'
+  },
+  {
+    image: '/img/features/menuswap.png',
+    title: 'Menu Swapping',
+    description: 'Allows you to swap pre-defined menu options'
   }
 ]
