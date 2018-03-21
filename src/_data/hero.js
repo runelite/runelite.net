@@ -17,7 +17,7 @@ export default {
   ],
   buttons: [
     {
-      link: 'https://github.com/runelite/launcher/releases/download/1.4.2/RuneLiteSetup.exe',
+      link: 'https://github.com/runelite/launcher/releases/download/1.4.3/RuneLiteSetup.exe',
       icon: faWindows,
       text: 'Download for Windows',
       color: 'primary'
