@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import { NavLink } from 'redux-first-router-link'
 import hero from '../_data/hero'
 
-const Error404 = (store) => (
+const Error404 = () => (
   <div style={{
     backgroundImage: 'url(/img/cat.jpg)',
     display: 'table',

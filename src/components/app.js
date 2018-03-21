@@ -5,7 +5,7 @@ import LoadingBar from 'react-redux-loading-bar'
 import Navigation from './navigation'
 import Footer from './footer'
 
-const App = ({ title, component, payload }) => {
+const App = ({ component, payload }) => {
   const Component = require(`../containers/${component}`).default
 
   return (
