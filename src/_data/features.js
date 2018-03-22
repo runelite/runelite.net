@@ -222,7 +222,7 @@ export default [
     image: '/img/features/menuswap.png',
     title: 'Menu Swapping',
     description: 'Allows you to swap pre-defined menu options'
-  }
+  },
   {
     image: '/img/features/bankeval.png',
     title: 'Bank Evaluator',
