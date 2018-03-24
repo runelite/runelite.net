@@ -13,40 +13,30 @@ const highlightChangeValue = (value) => value >= 0
   ? (<span style={{color: 'green'}}>+{numberWithCommas(value)}</span>)
   : (<span style={{color: 'red'}}>{numberWithCommas(value)}</span>)
 
-const getRandomColor = () => {
-  const letters = '0123456789ABCDEF'
-  let color = '#'
-
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)]
-  }
-
-  return color
-}
-
 const skills = {
-  attack: getRandomColor(),
-  construction: getRandomColor(),
-  cooking: getRandomColor(),
-  crafting: getRandomColor(),
-  defence: getRandomColor(),
-  farming: getRandomColor(),
-  firemaking: getRandomColor(),
-  fishing: getRandomColor(),
-  fletching: getRandomColor(),
-  herblore: getRandomColor(),
-  hitpoints: getRandomColor(),
-  hunter: getRandomColor(),
-  magic: getRandomColor(),
-  mining: getRandomColor(),
-  prayer: getRandomColor(),
-  ranged: getRandomColor(),
-  runecraft: getRandomColor(),
-  slayer: getRandomColor(),
-  smithing: getRandomColor(),
-  strength: getRandomColor(),
-  thieving: getRandomColor(),
-  woodcutting: getRandomColor()
+  agility: 'rgb(35, 37, 93)',
+  attack: 'rgb(111, 31, 28)',
+  construction: 'rgb(130, 119, 104)',
+  cooking: 'rgb( 74, 27, 77)',
+  crafting: 'rgb( 111, 84, 64)',
+  defence: 'rgb( 94, 113, 163)',
+  farming: 'rgb( 32, 84, 44)',
+  firemaking: 'rgb( 163, 85, 34)',
+  fishing: 'rgb( 105, 132, 153)',
+  fletching: 'rgb( 0, 58, 60)',
+  herblore: 'rgb( 0, 86, 27)',
+  hitpoints: 'rgb( 156, 30, 24)',
+  hunter: 'rgb( 94, 90, 67)',
+  magic: 'rgb( 47, 49, 132)',
+  mining: 'rgb( 84, 135, 153)',
+  prayer: 'rgb( 159, 138, 47)',
+  ranged: 'rgb( 130, 80, 45)',
+  runecraft: 'rgb( 183, 159, 55)',
+  slayer: 'rgb( 53, 48, 48)',
+  smithing: 'rgb( 67, 67, 54)',
+  strength: 'rgb( 0, 105, 72)',
+  thieving: 'rgb( 102, 57, 83)',
+  woodcutting: 'rgb( 113, 92, 57)'
 }
 
 const skillNames = Object.keys(skills)
