@@ -1,42 +1,59 @@
 import React from 'react'
-import moment from 'moment'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { Line } from 'react-chartjs-2'
+import {Bar, Line} from 'react-chartjs-2'
 import Layout from '../components/layout'
 import hero from '../_data/hero'
 import {Col, ListGroup, ListGroupItem, Row} from 'reactstrap'
 import * as R from 'ramda'
 
 const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1)
-const numberWithCommas = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+const numberWithCommas = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 const highlightChangeValue = (value) => value >= 0
   ? (<span style={{color: 'green'}}>+{numberWithCommas(value)}</span>)
   : (<span style={{color: 'red'}}>{numberWithCommas(value)}</span>)
 
-const calculateOverallXp = (xpEntry) => xpEntry.agility_xp +
-  xpEntry.attack_xp +
-  xpEntry.construction_xp +
-  xpEntry.cooking_xp +
-  xpEntry.crafting_xp +
-  xpEntry.defence_xp +
-  xpEntry.farming_xp +
-  xpEntry.firemaking_xp +
-  xpEntry.fishing_xp +
-  xpEntry.fletching_xp +
-  xpEntry.herblore_xp +
-  xpEntry.hitpoints_xp +
-  xpEntry.hunter_xp +
-  xpEntry.magic_xp +
-  xpEntry.mining_xp +
-  xpEntry.prayer_xp +
-  xpEntry.ranged_xp +
-  xpEntry.runecraft_xp +
-  xpEntry.slayer_xp +
-  xpEntry.smithing_xp +
-  xpEntry.strength_xp +
-  xpEntry.thieving_xp +
-  xpEntry.woodcutting_xp
+const getRandomColor = () => {
+  const letters = '0123456789ABCDEF'
+  let color = '#'
+
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)]
+  }
+
+  return color
+}
+
+const skills = {
+  attack: getRandomColor(),
+  construction: getRandomColor(),
+  cooking: getRandomColor(),
+  crafting: getRandomColor(),
+  defence: getRandomColor(),
+  farming: getRandomColor(),
+  firemaking: getRandomColor(),
+  fishing: getRandomColor(),
+  fletching: getRandomColor(),
+  herblore: getRandomColor(),
+  hitpoints: getRandomColor(),
+  hunter: getRandomColor(),
+  magic: getRandomColor(),
+  mining: getRandomColor(),
+  prayer: getRandomColor(),
+  ranged: getRandomColor(),
+  runecraft: getRandomColor(),
+  slayer: getRandomColor(),
+  smithing: getRandomColor(),
+  strength: getRandomColor(),
+  thieving: getRandomColor(),
+  woodcutting: getRandomColor()
+}
+
+const skillNames = Object.keys(skills)
+const capitalizedSkills = Object.keys(skills).map(skill => capitalizeFirstLetter(skill))
+const skillColors = Object.values(skills)
+
+const calculateOverallXp = (xpEntry) => skillNames.map(skill => xpEntry[skill + '_xp'] || 0).reduce((a, b) => a + b, 0)
 
 const calculateRanksAndExp = (collector) => (value, key) => {
   let curKey = key
@@ -74,42 +91,40 @@ const calculateRanksAndExp = (collector) => (value, key) => {
 }
 
 const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
-  const labels = xp.map(xpEntry => moment(xpEntry.date).fromNow())
+  const correctedXp = xp.map(xpEntry => ({
+    ...xpEntry,
+    overall_xp: calculateOverallXp(xpEntry)
+  }))
+
+  const labels = correctedXp.map(xpEntry => xpEntry.date.toDateString())
 
   const overallData = {
     labels: labels,
     datasets: [
       {
         label: 'Overall rank',
+        backgroundColor: 'yellow',
         fill: false,
-        data: xp.map(xpEntry => xpEntry.overall_rank)
+        data: correctedXp.map(xpEntry => xpEntry.overall_rank)
       }
     ]
   }
 
   const overallXp = {
     labels: labels,
-    datasets: [
-      {
-        label: 'Total experience',
-        fill: false,
-        data: xp.map(calculateOverallXp)
-      }
-    ]
+    datasets: [{
+      label: 'Total XP',
+      backgroundColor: 'green',
+      fill: false,
+      data: correctedXp.map(xpEntry => xpEntry.overall_xp)
+    }]
   }
 
-  const startEntry = xp[0]
-  const endEntry = xp[xp.length - 1]
+  const startEntry = correctedXp[0]
+  const endEntry = correctedXp[correctedXp.length - 1]
   const collector = {}
   R.forEachObjIndexed(calculateRanksAndExp(collector), startEntry)
   R.forEachObjIndexed(calculateRanksAndExp(collector), endEntry)
-
-  if (collector.overall) {
-    collector.overall = {
-      rank: collector.overall.rank,
-      xp: calculateOverallXp(endEntry) - calculateOverallXp(startEntry)
-    }
-  }
 
   const ranks = []
   R.forEachObjIndexed((value, key) => ranks.push({ ...value, img: key }), collector)
@@ -119,6 +134,24 @@ const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
     if (a.img > b.img) return 1
     return 0
   })
+
+  const allXp = {
+    labels: capitalizedSkills,
+    datasets: [{
+      label: 'Experience gained',
+      backgroundColor: skillColors,
+      data: skillNames.map(skill => collector[skill] ? collector[skill].xp : 0)
+    }]
+  }
+
+  const allRanks = {
+    labels: capitalizedSkills,
+    datasets: [{
+      label: 'Ranks gained',
+      backgroundColor: skillColors,
+      data: skillNames.map(skill => collector[skill] ? collector[skill].rank : 0)
+    }]
+  }
 
   return (
     <div style={{height: 'inherit'}}>
@@ -151,6 +184,8 @@ const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
               }
             }} />
             <Line data={overallXp} />
+            <Bar data={allXp} />
+            <Bar data={allRanks} />
           </Col>
         </Row>
         {children}
