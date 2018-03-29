@@ -80,6 +80,14 @@ const calculateRanksAndExp = (collector) => (value, key) => {
   }
 }
 
+const numberWithCommasOptions = {
+  tooltips: {
+    callbacks: {
+      label: (tooltipItem, data) => numberWithCommas(tooltipItem.yLabel.toString())
+    }
+  }
+}
+
 const reverseGraphOptions = {
   scales: {
     yAxes: [{
@@ -174,10 +182,10 @@ const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
             </ListGroup>
           </Col>
           <Col md='9' sm='8' xs='7'>
-            <Line data={overallData} options={reverseGraphOptions} />
-            <Line data={overallXp} />
-            <Bar data={allXp} />
-            <Bar data={allRanks} options={reverseGraphOptions} />
+            <Line data={overallData} options={{...numberWithCommasOptions, ...reverseGraphOptions}} />
+            <Line data={overallXp} options={numberWithCommasOptions} />
+            <Bar data={allXp} options={numberWithCommasOptions} />
+            <Bar data={allRanks} options={{...numberWithCommasOptions, ...reverseGraphOptions}} />
           </Col>
         </Row>
         {children}
