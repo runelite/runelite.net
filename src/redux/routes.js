@@ -9,6 +9,8 @@ const createThunk = (fns) => async (dispatch, getState) => R.reduce(
 
 const createRoute = (path, fns) => ({
   path,
+  fromPath: (value) => value.replace(/_/g, ':'),
+  toPath: (value) => value.replace(/:/g, '_'),
   thunk: createThunk(fns || [])
 })
 
@@ -18,5 +20,5 @@ export default {
   FEATURES: createRoute('/features'),
   BLOG_SHOW: createRoute('/blog/show/:id'),
   LOGGED_IN: createRoute('/logged-in'),
-  XP_TRACKER: createRoute('/xp/:name/:start/:end', [ getXpRange ])
+  XP_SHOW: createRoute('/xp/show/:skill/:name/:start/:end', [ getXpRange ])
 }

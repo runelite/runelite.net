@@ -4,6 +4,7 @@ import { createRoutine } from 'redux-routines'
 import { createSelector } from 'reselect'
 import { getReleases } from './git'
 import api from '../../api'
+import skills from '../../_data/skills'
 import moment from 'moment'
 
 const runeliteApi = api('https://api.runelite.net/')
@@ -21,8 +22,11 @@ export default handleActions({
   }),
   [getXpRoutine.SUCCESS]: (state, { payload }) => ({
     ...state,
-    ...payload,
-    xp: R.concat(state.xp, [payload.xp])
+    xp: R.uniq(R.concat(state.xp, [payload]))
+  }),
+  [getXpRangeRoutine.REQUEST]: (state, { payload }) => ({
+    ...state,
+    ...payload
   }),
   [getXpRangeRoutine.SUCCESS]: (state, { payload }) => ({
     ...state,
@@ -31,6 +35,7 @@ export default handleActions({
 }, {
   sessionCount: 0,
   xp: [],
+  skill: '',
   name: '',
   start: '',
   end: ''
@@ -80,13 +85,8 @@ export const getXp = createAction(getSessionCountRoutine.TRIGGER, (name, date) =
     ))
 
     const formattedResponse = {
-      name,
-      start: date,
-      end: date,
-      xp: {
-        date,
-        ...response
-      }
+      date,
+      ...response
     }
 
     dispatch(getXpRoutine.success(formattedResponse))
@@ -98,10 +98,8 @@ export const getXp = createAction(getSessionCountRoutine.TRIGGER, (name, date) =
   }
 })
 
-export const getXpRange = createAction(getSessionCountRoutine.TRIGGER, ({name, start, end}) => async (dispatch) => {
+export const getXpRange = createAction(getSessionCountRoutine.TRIGGER, ({skill, name, start, end}) => async (dispatch) => {
   try {
-    dispatch(getXpRangeRoutine.request())
-
     const endDate = end === 'now' ? new Date() : new Date(end)
     let startDate = Date.parse(start)
 
@@ -112,15 +110,23 @@ export const getXpRange = createAction(getSessionCountRoutine.TRIGGER, ({name, s
       startDate = new Date(start)
     }
 
+    dispatch(getXpRangeRoutine.request({
+      start: startDate,
+      end: endDate,
+      name,
+      skill
+    }))
+
     const dayXps = []
 
     for (let date = moment(startDate); date.diff(endDate) <= 0; date.add(1, 'days')) {
       const dayXp = await dispatch(getXp(name, date.toDate()))
-      dayXps.push(dayXp.xp)
+      dayXps.push(dayXp)
     }
 
     const formattedResponse = {
       name,
+      skill,
       start: startDate,
       end: endDate,
       xp: dayXps
@@ -135,8 +141,158 @@ export const getXpRange = createAction(getSessionCountRoutine.TRIGGER, ({name, s
   }
 })
 
+const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1)
+const skillNames = Object.keys(skills)
+const capitalizedSkills = Object.keys(skills).map(skill => capitalizeFirstLetter(skill))
+const skillColors = Object.values(skills)
+const calculateOverallXp = (xpEntry) => skillNames.map(skill => xpEntry[skill + '_xp'] || 0).reduce((a, b) => a + b, 0)
+
+const calculateRanksAndExp = (collector) => (value, key) => {
+  let curKey = key
+  let isRank = true
+
+  if (key.indexOf('_rank') !== -1) {
+    curKey = key.replace('_rank', '')
+    isRank = true
+  } else if (key.indexOf('_xp') !== -1) {
+    curKey = key.replace('_xp', '')
+    isRank = false
+  } else {
+    return
+  }
+
+  const curObj = collector[curKey]
+
+  if (isRank) {
+    collector[curKey] = curObj ? {
+      ...curObj,
+      rank: value - curObj.rank
+    } : {
+      xp: 0,
+      rank: value
+    }
+  } else {
+    collector[curKey] = curObj ? {
+      ...curObj,
+      xp: value - curObj.xp
+    } : {
+      xp: value,
+      rank: 0
+    }
+  }
+}
+
+const inverseRank = (rankCollector) => {
+  rankCollector.rank = -rankCollector.rank
+  return rankCollector
+}
+
 // Selectors
-export const sessionCountSelector = createSelector(
-  state => state.runelite.sessionCount,
-  sessionCount => sessionCount
+export const sessionCountSelector = (state) => state.runelite.sessionCount
+export const xpSelector = (state) => state.runelite.xp.filter(xpEntry => !!xpEntry)
+export const nameSelector = (state) => state.runelite.name
+export const skillSelector = (state) => state.runelite.skill
+
+export const skillDatesSelector = createSelector(
+  xpSelector,
+  (xp) => xp.map(xpEntry => xpEntry.date.toDateString())
+)
+
+export const xpWithOverallSelector = createSelector(
+  xpSelector,
+  (xp) => xp.map(xpEntry => ({
+    ...xpEntry,
+    overall_xp: calculateOverallXp(xpEntry)
+  })))
+
+export const collectedSkillsSelector = createSelector(
+  xpWithOverallSelector,
+  (xp) => {
+    const startEntry = xp[0]
+    const endEntry = xp[xp.length - 1]
+    const collector = {}
+    R.forEachObjIndexed(calculateRanksAndExp(collector), startEntry)
+    R.forEachObjIndexed(calculateRanksAndExp(collector), endEntry)
+    return collector
+  }
+)
+
+export const ranksSelector = createSelector(
+  collectedSkillsSelector,
+  (collectedSkills) => {
+    const ranks = skillNames
+      .map(name => ({
+        skill: name,
+        ...(collectedSkills[name] ? inverseRank(collectedSkills[name]) : {
+          xp: 0,
+          rank: 0
+        })
+      }))
+      .sort()
+
+    ranks.unshift({
+      skill: 'overall',
+      ...(collectedSkills['overall'] ? inverseRank(collectedSkills['overall']) : {
+        xp: 0,
+        rank: 0
+      })
+    })
+
+    return ranks
+  })
+
+export const skillRankSelector = createSelector(
+  skillSelector,
+  skillDatesSelector,
+  xpWithOverallSelector,
+  (skill, dates, xp) => ({
+    labels: dates,
+    datasets: [
+      {
+        label: `${capitalizeFirstLetter(skill)} rank`,
+        backgroundColor: 'yellow',
+        fill: false,
+        data: xp.map(xpEntry => xpEntry[skill + '_rank'])
+      }
+    ]
+  })
+)
+
+export const skillXpSelector = createSelector(
+  skillSelector,
+  skillDatesSelector,
+  xpWithOverallSelector,
+  (skill, dates, xp) => ({
+    labels: dates,
+    datasets: [{
+      label: `${capitalizeFirstLetter(skill)} XP`,
+      backgroundColor: 'green',
+      fill: false,
+      data: xp.map(xpEntry => xpEntry[skill + '_xp'])
+    }]
+  })
+)
+
+export const allXpSelector = createSelector(
+  collectedSkillsSelector,
+  (collectedXp) => ({
+    labels: capitalizedSkills,
+    datasets: [{
+      label: 'Experience gained',
+      backgroundColor: skillColors,
+      data: skillNames.map(skill => collectedXp[skill] ? collectedXp[skill].xp : 0)
+    }]
+  })
+)
+
+export const allRanksSelector = createSelector(
+  collectedSkillsSelector,
+  (collectedXp) => ({
+    labels: capitalizedSkills,
+    datasets: [{
+      label: 'Ranks gained',
+      backgroundColor: skillColors,
+      data: skillNames.map(skill => collectedXp[skill] ? collectedXp[skill].rank : 0)
+    }]
+  })
 )

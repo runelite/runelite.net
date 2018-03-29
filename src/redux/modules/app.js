@@ -33,9 +33,9 @@ export default handleActions({
     component: 'logged-in',
     payload: payload
   }),
-  XP_TRACKER: (state, { payload }) => ({
+  XP_SHOW: (state, { payload }) => ({
     ...state,
-    component: 'xp',
+    component: 'xp/show',
     payload: payload
   })
 }, {

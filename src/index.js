@@ -6,6 +6,9 @@ import App from './components/app'
 import configureStore from './redux/store'
 import * as serviceWorker from './service-worker'
 
+window.escape = (string) => string
+window.unescape = (string) => string
+
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()
 
