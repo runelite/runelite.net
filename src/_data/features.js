@@ -73,7 +73,7 @@ export default [
   {
     image: '/img/features/agility.png',
     title: 'Agility',
-    description: 'Displays clickboxes for agility courses.'
+    description: 'Displays clickboxes for agility courses, and counts the amount of laps you have done.'
   },
   {
     image: '/img/features/barbassault.png',
@@ -242,5 +242,25 @@ export default [
     image: '/img/features/prayerorder.png',
     title: 'Prayer Reorder',
     description: 'Allows you reorder the prayers in your prayer book.'
+  },
+  {
+    image: '/img/features/tithefarm.png',
+    title: 'Tithe Farm',
+    description: 'Displays timers for the farming patches within the Tithe farm minigame.'
+  },
+  {
+    image: '/img/features/moveableoverlay.png',
+    title: 'Custom Overlay Position',
+    description: 'Allows you to move runelite overlays to any position on the screen.'
+  },
+  {
+    image: '/img/features/daily.png',
+    title: 'Daily Task Indicators',
+    description: 'Notifies you on login what daily tasks you are able to complete.'
+  },
+  {
+    image: '/img/features/favor.png',
+    title: 'Miscellania Favor',
+    description: 'Displays information about managing the Kingdom of Miscellania'
   }
 ]
