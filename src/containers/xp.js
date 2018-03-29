@@ -104,6 +104,11 @@ const calculateRanksAndExp = (collector) => (value, key) => {
   }
 }
 
+const inverseOverallRank = (overallRankCollector) => {
+  overallRankCollector.rank = -overallRankCollector.rank
+  return overallRankCollector
+}
+
 const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
   const xpWithOverall = xp.map(xpEntry => ({
     ...xpEntry,
@@ -130,7 +135,7 @@ const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
 
   ranks.unshift({
     img: 'overall',
-    ...(collector['overall'] ? collector['overall'] : {
+    ...(collector['overall'] ? inverseOverallRank(collector['overall']) : {
       xp: 0,
       rank: 0
     })
@@ -172,7 +177,7 @@ const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
     datasets: [{
       label: 'Ranks gained',
       backgroundColor: skillColors,
-      data: skillNames.map(skill => collector[skill] ? -collector[skill].rank : 0)
+      data: skillNames.map(skill => collector[skill] ? collector[skill].rank : 0)
     }]
   }
 
