@@ -105,17 +105,17 @@ export const getXpRange = createAction(getSessionCountRoutine.TRIGGER, ({name, s
     const endDate = end === 'now' ? new Date() : new Date(end)
     let startDate = Date.parse(start)
 
-    if (isNaN(start)) {
+    if (isNaN(startDate)) {
       const parsed = start.match(/(\d+)(\w+)/)
       startDate = moment(endDate).subtract(parsed[1], parsed[2]).toDate()
     } else {
-      startDate = new Date(startDate)
+      startDate = new Date(start)
     }
 
     const dayXps = []
 
-    for (let d = new Date(startDate); new Date(d.getTime()) <= endDate; d.setDate(d.getDate() + 1)) {
-      const dayXp = await dispatch(getXp(name, new Date(d.getTime())))
+    for (let date = moment(startDate); date.diff(endDate) <= 0; date.add(1, 'days')) {
+      const dayXp = await dispatch(getXp(name, date.toDate()))
       dayXps.push(dayXp.xp)
     }
 

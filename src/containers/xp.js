@@ -80,10 +80,13 @@ const calculateRanksAndExp = (collector) => (value, key) => {
   }
 }
 
-const numberWithCommasOptions = {
+const defaultSensibleOptions = {
+  animation: {
+    duration: 300
+  },
   tooltips: {
     callbacks: {
-      label: (tooltipItem, data) => numberWithCommas(tooltipItem.yLabel.toString())
+      label: (tooltipItem) => numberWithCommas(tooltipItem.yLabel.toString())
     }
   }
 }
@@ -157,7 +160,7 @@ const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
     datasets: [{
       label: 'Ranks gained',
       backgroundColor: skillColors,
-      data: skillNames.map(skill => collector[skill] ? collector[skill].rank : 0)
+      data: skillNames.map(skill => collector[skill] ? -collector[skill].rank : 0)
     }]
   }
 
@@ -182,10 +185,10 @@ const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
             </ListGroup>
           </Col>
           <Col md='9' sm='8' xs='7'>
-            <Line data={overallData} options={{...numberWithCommasOptions, ...reverseGraphOptions}} />
-            <Line data={overallXp} options={numberWithCommasOptions} />
-            <Bar data={allXp} options={numberWithCommasOptions} />
-            <Bar data={allRanks} options={{...numberWithCommasOptions, ...reverseGraphOptions}} />
+            <Line data={overallData} options={{...defaultSensibleOptions, ...reverseGraphOptions}} />
+            <Line data={overallXp} options={defaultSensibleOptions} />
+            <Bar data={allXp} options={defaultSensibleOptions} />
+            <Bar data={allRanks} options={{...defaultSensibleOptions, ...reverseGraphOptions}} />
           </Col>
         </Row>
         {children}
