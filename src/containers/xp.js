@@ -130,7 +130,7 @@ const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
 
   ranks.unshift({
     img: 'overall',
-    ...(collector[name] ? collector[name] : {
+    ...(collector['overall'] ? collector['overall'] : {
       xp: 0,
       rank: 0
     })
