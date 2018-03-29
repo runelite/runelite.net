@@ -1,11 +1,35 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
+import Chart from 'chart.js'
 import {Bar, Line} from 'react-chartjs-2'
 import Layout from '../components/layout'
 import hero from '../_data/hero'
 import {Col, ListGroup, ListGroupItem, Row} from 'reactstrap'
 import * as R from 'ramda'
+
+Chart.defaults.options = {
+  responsive: true,
+  maintainAspectRatio: false,
+  animation: {
+    duration: 300
+  },
+  tooltips: {
+    callbacks: {
+      label: (tooltipItem) => numberWithCommas(tooltipItem.yLabel.toString())
+    }
+  }
+}
+
+const reverseGraphOptions = {
+  scales: {
+    yAxes: [{
+      ticks: {
+        reverse: true
+      }
+    }]
+  }
+}
 
 const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1)
 const numberWithCommas = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -80,71 +104,59 @@ const calculateRanksAndExp = (collector) => (value, key) => {
   }
 }
 
-const defaultSensibleOptions = {
-  animation: {
-    duration: 300
-  },
-  tooltips: {
-    callbacks: {
-      label: (tooltipItem) => numberWithCommas(tooltipItem.yLabel.toString())
-    }
-  }
-}
-
-const reverseGraphOptions = {
-  scales: {
-    yAxes: [{
-      ticks: {
-        reverse: true
-      }
-    }]
-  }
-}
-
 const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
-  const correctedXp = xp.map(xpEntry => ({
+  const xpWithOverall = xp.map(xpEntry => ({
     ...xpEntry,
     overall_xp: calculateOverallXp(xpEntry)
   }))
 
-  const labels = correctedXp.map(xpEntry => xpEntry.date.toDateString())
+  const dates = xpWithOverall.map(xpEntry => xpEntry.date.toDateString())
+  const startEntry = xpWithOverall[0]
+  const endEntry = xpWithOverall[xpWithOverall.length - 1]
+  const collector = {}
 
-  const overallData = {
-    labels: labels,
+  R.forEachObjIndexed(calculateRanksAndExp(collector), startEntry)
+  R.forEachObjIndexed(calculateRanksAndExp(collector), endEntry)
+
+  const ranks = skillNames
+    .map(name => ({
+      img: name,
+      ...(collector[name] ? collector[name] : {
+        xp: 0,
+        rank: 0
+      })
+    }))
+    .sort()
+
+  ranks.unshift({
+    img: 'overall',
+    ...(collector[name] ? collector[name] : {
+      xp: 0,
+      rank: 0
+    })
+  })
+
+  const overallRank = {
+    labels: dates,
     datasets: [
       {
         label: 'Overall rank',
         backgroundColor: 'yellow',
         fill: false,
-        data: correctedXp.map(xpEntry => xpEntry.overall_rank)
+        data: xpWithOverall.map(xpEntry => xpEntry.overall_rank)
       }
     ]
   }
 
   const overallXp = {
-    labels: labels,
+    labels: dates,
     datasets: [{
       label: 'Total XP',
       backgroundColor: 'green',
       fill: false,
-      data: correctedXp.map(xpEntry => xpEntry.overall_xp)
+      data: xpWithOverall.map(xpEntry => xpEntry.overall_xp)
     }]
   }
-
-  const startEntry = correctedXp[0]
-  const endEntry = correctedXp[correctedXp.length - 1]
-  const collector = {}
-  R.forEachObjIndexed(calculateRanksAndExp(collector), startEntry)
-  R.forEachObjIndexed(calculateRanksAndExp(collector), endEntry)
-
-  const ranks = []
-  R.forEachObjIndexed((value, key) => ranks.push({ ...value, img: key }), collector)
-  ranks.sort((a, b) => {
-    if (b.img === 'overall') return 1
-    if (a.img < b.img) return -1
-    if (a.img > b.img) return 1
-    return 0
-  })
 
   const allXp = {
     labels: capitalizedSkills,
@@ -174,7 +186,7 @@ const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
         <p className='text-muted'>{start ? start.toDateString() : ''} - {end ? end.toDateString() : ''}</p>
         <hr />
         <Row>
-          <Col md='3' sm='4' xs='5'>
+          <Col md='3' sm='4' xs='12'>
             <ListGroup>
               {ranks.map(({img, rank, xp}) => (
                 <ListGroupItem key={img}>
@@ -184,11 +196,11 @@ const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
               ))}
             </ListGroup>
           </Col>
-          <Col md='9' sm='8' xs='7'>
-            <Line data={overallData} options={{...defaultSensibleOptions, ...reverseGraphOptions}} />
-            <Line data={overallXp} options={defaultSensibleOptions} />
-            <Bar data={allXp} options={defaultSensibleOptions} />
-            <Bar data={allRanks} options={{...defaultSensibleOptions, ...reverseGraphOptions}} />
+          <Col md='9' sm='8' xs='12'>
+            <Line data={overallRank} options={{reverseGraphOptions}} />
+            <Line data={overallXp} />
+            <Bar data={allXp} />
+            <Bar data={allRanks} />
           </Col>
         </Row>
         {children}
