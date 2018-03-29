@@ -80,6 +80,16 @@ const calculateRanksAndExp = (collector) => (value, key) => {
   }
 }
 
+const reverseGraphOptions = {
+  scales: {
+    yAxes: [{
+      ticks: {
+        reverse: true
+      }
+    }]
+  }
+}
+
 const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
   const correctedXp = xp.map(xpEntry => ({
     ...xpEntry,
@@ -164,18 +174,10 @@ const Xp = ({ children, xpRange: { name, start, end, xp } }) => {
             </ListGroup>
           </Col>
           <Col md='9' sm='8' xs='7'>
-            <Line data={overallData} options={{
-              scales: {
-                yAxes: [{
-                  ticks: {
-                    reverse: true
-                  }
-                }]
-              }
-            }} />
+            <Line data={overallData} options={reverseGraphOptions} />
             <Line data={overallXp} />
             <Bar data={allXp} />
-            <Bar data={allRanks} />
+            <Bar data={allRanks} options={reverseGraphOptions} />
           </Col>
         </Row>
         {children}
