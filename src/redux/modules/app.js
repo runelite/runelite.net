@@ -32,6 +32,11 @@ export default handleActions({
     ...state,
     component: 'logged-in',
     payload: payload
+  }),
+  XP_TRACKER: (state, { payload }) => ({
+    ...state,
+    component: 'xp',
+    payload: payload
   })
 }, {
   component: 'home'

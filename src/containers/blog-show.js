@@ -6,8 +6,8 @@ import Layout from '../components/layout'
 import blog from '../blog'
 import hero from '../_data/hero'
 
-const BlogShow = ({ children, slug }) => {
-  const post = blog.get(slug)
+const BlogShow = ({ children, id }) => {
+  const post = blog.get(id)
   const { date, title, description, author, __content } = post || {
     title: 'Blog post not found',
     date: '',

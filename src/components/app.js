@@ -10,8 +10,8 @@ const App = ({ component, payload }) => {
 
   return (
     <div style={{ height: '100%' }}>
+      <LoadingBar style={{zIndex: 9999}} />
       <Navigation />
-      <LoadingBar />
       <Component {...payload}>
         <Footer />
       </Component>
