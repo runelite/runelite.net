@@ -4,7 +4,6 @@ node_js:
 script:
   - npm run lint
   - npm run build
-  - npm run generate
 deploy:
   edge:
     branch: v1.8.47

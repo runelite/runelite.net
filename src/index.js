@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-dom'
+import { render } from 'react-snapshot'
 import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
 import App from './components/app'
@@ -15,6 +15,7 @@ const history = createHistory()
 // Create redux store
 const store = configureStore(history)
 
+// Render website
 render(
   <Provider store={store}>
     <App />

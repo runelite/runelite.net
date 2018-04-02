@@ -40,13 +40,14 @@
     "markdown-it": "^8.4.1",
     "markdown-with-front-matter-loader": "^0.1.0",
     "react-scripts": "^2.0.0-next.47d2d941",
+    "react-snapshot": "^1.3.0",
     "remote-redux-devtools": "^0.5.12",
     "standard": "^10.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
-    "generate": "babel-node generate-feed.js --presets es2015",
     "build": "react-scripts build",
+    "postbuild": "babel-node generate-feed.js --presets es2015 && react-snapshot",
     "test": "standard && react-scripts test --env=jsdom",
     "lint": "standard",
     "eject": "react-scripts eject"
