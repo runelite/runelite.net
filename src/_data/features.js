@@ -2,23 +2,23 @@ export default [
   {
     image: '/img/features/attackstyles.png',
     title: 'Attack style',
-    description: 'Attack style indicator and hiding.'
+    description: 'Indicates your attack style and hides unwanted styles.'
   },
   {
     image: '/img/features/grounditems.png',
     title: 'Ground items',
-    description: 'Filter and color items by name and price.'
+    description: 'Hides, highlights, and adds filterable price colors to dropped items.'
   },
   {
     image: '/img/features/boosts.png',
-    title: 'Information widgets',
-    description: 'For timers and other useful information.',
+    title: 'Status widgets',
+    description: 'Shows boost timers, enemy HP, and other useful overlays.',
     home: true
   },
   {
     image: '/img/features/mousehighlight.png',
-    title: 'Mouse highlighting',
-    description: 'Highlights content under your mouse cursor.'
+    title: 'Action tooltips',
+    description: 'Displays tooltips for actions under your mouse cursor.'
   },
   {
     image: '/img/features/hunter.png',
@@ -27,7 +27,7 @@ export default [
   },
   {
     image: '/img/features/runepouch.png',
-    title: 'Runepouch',
+    title: 'Rune pouch',
     description: 'Shows what runes are currently in your rune pouch.'
   },
   {
@@ -38,32 +38,32 @@ export default [
   {
     image: '/img/features/imp.png',
     title: 'Impling finder',
-    description: 'Highlights where implings are.'
+    description: 'Highlights nearby implings on the minimap and on-screen.'
   },
   {
     image: '/img/features/playerindicators.png',
-    title: 'Player Indicators',
-    description: 'Draws the names of friends, clan mates and yourself.'
+    title: 'Player indicators',
+    description: 'Draws the names of friends, clan mates and yourself overhead.'
   },
   {
     image: '/img/features/fishing.png',
     title: 'Fishing',
-    description: 'Draws fishing spot overlays and tracks fishing stats.'
+    description: 'Highlights fishing spots and tracks fishing stats.'
   },
   {
     image: '/img/features/globes.png',
-    title: 'XP Globes',
-    description: 'Displays skill globes when you gain exp, and detailed information on hover.'
+    title: 'XP globes',
+    description: 'Displays skill globes when you gain XP, with more detailed stats on hover.'
   },
   {
     image: '/img/features/idle.png',
-    title: 'Idle Notifier',
+    title: 'Idle notifications',
     description: 'Sends system tray alerts when idle or about to be logged out.'
   },
   {
     image: '/img/features/teamcape.png',
-    title: 'Teamcape Overlay',
-    description: 'Displays teamcape wearer counts.'
+    title: 'Team cape overlay',
+    description: 'Displays team cape wearer counts.'
   },
   {
     image: '/img/features/abyss.png',
@@ -73,43 +73,43 @@ export default [
   {
     image: '/img/features/agility.png',
     title: 'Agility',
-    description: 'Displays clickboxes for agility courses, and counts the amount of laps you have done.'
+    description: 'Displays clickboxes for agility courses, and counts the number of laps you have done.'
   },
   {
     image: '/img/features/barbassault.png',
     title: 'Barbarian Assault',
-    description: 'Displays a timer for the next change'
+    description: 'Displays a timer for the next change of horn commands.'
   },
   {
     image: '/img/features/cannon.png',
-    title: 'Cannon',
-    description: 'Displays the amount of cannonballs left in your cannon, along with common cannon spots.'
+    title: 'Dwarf multicannon',
+    description: 'Displays the number of cannonballs left in your cannon, along with common cannon spots.'
   },
   {
     image: '/img/features/chatcommands.png',
     title: 'Chat commands',
-    description: 'Allows easy lookup for !level:s as well as !price:s in the RS chat.'
+    description: 'Allows easy lookup of !level(s) and !price(s) from the chat box.'
   },
   {
     image: '/img/features/clanchat.png',
-    title: 'Clan Chat',
+    title: 'Clan chat',
     description: 'Adds the sender\'s rank to clan chat messages.'
   },
   {
     image: '/img/features/discord.png',
-    title: 'Discord Integration',
-    description: 'Integrates with Discord to display what you\'re doing in the game.',
+    title: 'Discord integration',
+    description: 'Integrates with Discord\'s Rich Presence to display what you\'re doing in the game.',
     home: true
   },
   {
     image: '/img/features/itemstats.png',
     title: 'Item stats',
-    description: 'Displays various information about food and potion effects.'
+    description: 'Displays information about food and potion effects.'
   },
   {
     image: '/img/features/jewellerycount.png',
-    title: 'Jewellery Overlay',
-    description: 'Displays the amount of charges that your jewellery has.'
+    title: 'Jewellery charges',
+    description: 'Displays the number of charges that your jewellery has.'
   },
   {
     image: '/img/features/lowdetail.png',
@@ -120,27 +120,27 @@ export default [
   {
     image: '/img/features/mlm.png',
     title: 'Motherlode Mine',
-    description: 'Marks veins and rock obstacles in the motherlode mine.'
+    description: 'Marks veins and rock obstacles in the Motherlode Mine.'
   },
   {
     image: '/img/features/poh.png',
-    title: 'Player Owned House',
+    title: 'Player-owned houses',
     description: 'Displays minimap icons and marks unlit/lit burners.'
   },
   {
     image: '/img/features/tileindicators.png',
-    title: 'Tile Indicator',
-    description: 'Marks the tile you have clicked on.'
+    title: 'Tile indicator',
+    description: 'Marks the tile you last clicked on.'
   },
   {
     image: '/img/features/wcing.png',
     title: 'Woodcutting',
-    description: 'Displays various information about the logs you are cutting.'
+    description: 'Displays information about the logs you are cutting.'
   },
   {
     image: '/img/features/zoom.png',
     title: 'Zoom unlimiter',
-    description: 'Allows you to zoom past the game\'s limits.'
+    description: 'Allows you to zoom past the default camera distance limits.'
   },
   {
     image: '/img/features/barrows.png',
@@ -150,22 +150,22 @@ export default [
   {
     image: '/img/features/nmz.png',
     title: 'Nightmare Zone',
-    description: 'Displays NMZ points/absorption and notifies you about potions.'
+    description: 'Displays NMZ points/absorption and notifies you about expiring potions.'
   },
   {
     image: '/img/features/puzzlebox.png',
-    title: 'Puzzle box Solver',
-    description: 'Shows you where to press to solve puzzle boxes.',
+    title: 'Puzzle box solver',
+    description: 'Shows you where to click to solve puzzle boxes.',
     home: true
   },
   {
     image: '/img/features/roguesden.png',
     title: 'Rogues\' Den',
-    description: 'Marks tiles and clickboxes to help you traverse the minigame.'
+    description: 'Marks tiles and clickboxes to help you traverse the maze.'
   },
   {
     image: '/img/features/raids.png',
-    title: 'Raid Scouter',
+    title: 'Raid scouter',
     description: 'Displays the current layout of raids and tracks the raid duration.'
   },
   {
@@ -176,72 +176,72 @@ export default [
   {
     image: '/img/features/minimapdots.png',
     title: 'Minimap dot customizer',
-    description: 'Allows you to customize the color of minimap dots.'
+    description: 'Customizes the color of minimap dots.'
   },
   {
     image: '/img/features/kourend.png',
-    title: 'Kourend Library',
-    description: 'Shows you where books are in the Kourend library.'
+    title: 'Arceuus Library',
+    description: 'Shows you where books are in the Arceuus Library.'
   },
   {
     image: '/img/features/ge.png',
-    title: 'Grand Exchange',
-    description: 'Displays your current Grand Exchange offers'
+    title: 'Grand Exchange offers',
+    description: 'Lists your current Grand Exchange offers.'
   },
   {
     image: '/img/features/cannontiles.png',
     title: 'Cannon double hit spots',
-    description: 'Shows you where to stand for cannon double hits'
+    description: 'Shows you where to position enemies for double cannonball hits.'
   },
   {
     image: '/img/features/pp.png',
     title: 'Pyramid Plunder',
-    description: 'Removes the large clunky overlay for a text based timer/floor information.'
+    description: 'Replaces the large clunky overlay with a text based timer & floor information.'
   },
   {
     image: '/img/features/gesearch.png',
-    title: 'Grand Exchange Lookup',
-    description: 'Quickly lookup any item on the Grand Exchange'
+    title: 'Grand Exchange lookup',
+    description: 'Quickly price-check any item on the Grand Exchange.'
   },
   {
     image: '/img/features/newsfeed.png',
-    title: 'News Feed',
+    title: 'News feed',
     description: 'Displays the latest RuneLite blog posts, OldSchool RuneScape news, and a Twitter feed of JMods.'
   },
   {
     image: '/img/features/stretchedfixed.png',
-    title: 'Stretched Fixed Mode',
-    description: 'Allows you stretch the game to the size of your client while in fixed mode'
+    title: 'Stretched fixed mode',
+    description: 'Stretches the game to the size of your window while in fixed mode.'
   },
   {
     image: '/img/features/regen.png',
-    title: 'Regen Meters',
-    description: 'Tracks and displays the current Hitpoints/Special attack regen timer'
+    title: 'Regen timers',
+    description: 'Tracks and displays the hitpoints & special attack regen timers.'
   },
   {
     image: '/img/features/menuswap.png',
-    title: 'Menu Swapping',
-    description: 'Allows you to swap pre-defined menu options'
+    title: 'Menu entry swapping',
+    description: 'Swaps the left-click actions of certain objects.'
   },
   {
     image: '/img/features/bankeval.png',
-    title: 'Bank Evaluator',
-    description: 'Displays your current bank GE and Alch total value.'
+    title: 'Bank evaluator',
+    description: 'Displays your bank\'s total value based on GE and alch prices.'
   },
   {
     image: '/img/features/npctag.png',
-    title: 'Npc Tagging',
-    description: 'Allows you tag and keep track of an NPC.'
+    title: 'NPC tagging',
+    description: 'Tags and keeps track of an NPC.'
   },
   {
     image: '/img/features/herbiboar.png',
     title: 'Herbiboar',
-    description: 'Displays the path and objects to search at the end of the trail.'
+    description: 'Highlights the path and objects to search at the end of the trail.'
   },
   {
     image: '/img/features/prayerorder.png',
-    title: 'Prayer Reorder',
-    description: 'Allows you reorder the prayers in your prayer book.'
+    title: 'Prayer reordering',
+    description: 'Allows you to drag-and-drop prayers in your prayer book.'
   },
   {
     image: '/img/features/tithefarm.png',
@@ -250,17 +250,17 @@ export default [
   },
   {
     image: '/img/features/moveableoverlay.png',
-    title: 'Custom Overlay Position',
-    description: 'Allows you to move runelite overlays to any position on the screen.'
+    title: 'Custom overlay position',
+    description: 'Allows you to move RuneLite overlays to any position on the screen.'
   },
   {
     image: '/img/features/daily.png',
-    title: 'Daily Task Indicators',
+    title: 'Daily task indicators',
     description: 'Notifies you on login what daily tasks you are able to complete.'
   },
   {
     image: '/img/features/favor.png',
-    title: 'Miscellania Favor',
-    description: 'Displays information about managing the Kingdom of Miscellania'
+    title: 'Miscellania favor',
+    description: 'Displays your current favor and treasury in the Kingdom of Miscellania.'
   }
 ]
