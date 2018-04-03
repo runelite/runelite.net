@@ -1,5 +1,5 @@
 {
-  "name": "redux-boot",
+  "name": "runelite.net",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -40,17 +40,30 @@
     "markdown-it": "^8.4.1",
     "markdown-with-front-matter-loader": "^0.1.0",
     "react-scripts": "^2.0.0-next.47d2d941",
-    "react-snapshot": "^1.3.0",
+    "react-snap": "^1.12.0",
     "remote-redux-devtools": "^0.5.12",
-    "standard": "^10.0.3"
+    "standard": "^10.0.3",
+    "surge": "^0.20.1"
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "standard",
     "build": "react-scripts build",
-    "postbuild": "babel-node generate-feed.js --presets es2015 && react-snapshot",
-    "test": "standard && react-scripts test --env=jsdom",
-    "lint": "standard",
-    "eject": "react-scripts eject"
+    "postbuild": "babel-node generate-feed.js --presets es2015 && react-snap",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && surge -p build"
+  },
+  "reactSnap": {
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "crawl": false,
+    "include": [
+      "/",
+      "/blog",
+      "/features"
+    ]
   },
   "browserslist": {
     "development": [
