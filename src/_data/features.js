@@ -114,8 +114,7 @@ export default [
   {
     image: '/img/features/lowdetail.png',
     title: 'Low detail mode',
-    description: 'Enables low detail mode, removing some of the game\'s eye candy.',
-    home: true
+    description: 'Enables low detail mode, removing some of the game\'s eye candy.'
   },
   {
     image: '/img/features/mlm.png',
@@ -262,5 +261,16 @@ export default [
     image: '/img/features/favor.png',
     title: 'Miscellania favor',
     description: 'Displays your current favor and treasury in the Kingdom of Miscellania.'
+  },
+  {
+    image: '/img/features/shiftclick.png',
+    title: 'Shift click configuration',
+    description: 'Allows you to change/set shift click actions on items.'
+  },
+  {
+    image: '/img/features/banktags.png',
+    title: 'Bank tags',
+    description: 'Allows you to set searchable tags on items for your bank.',
+    home: true
   }
 ]
