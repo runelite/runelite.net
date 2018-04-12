@@ -1,6 +1,7 @@
 import * as R from 'ramda'
 import { getCommits, getReleases, getRepository } from './modules/git'
 import {getSessionCount, getXpRange} from './modules/runelite'
+import links from '../_data/links'
 
 const createThunk = (fns) => async (dispatch, getState) => R.reduce(
   (a, b) => a.then(() => dispatch(b(getState().location.payload))),
@@ -20,5 +21,6 @@ export default {
   FEATURES: createRoute('/features'),
   BLOG_SHOW: createRoute('/blog/show/:id'),
   LOGGED_IN: createRoute('/logged-in'),
-  XP_SHOW: createRoute('/xp/show/:skill/:name/:start/:end', [ getXpRange ])
+  XP_SHOW: createRoute('/xp/show/:skill/:name/:start/:end', [ getXpRange ]),
+  DISCORD: { path: '/discord', thunk: () => window.location.replace(links.discord) }
 }

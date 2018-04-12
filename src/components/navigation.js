@@ -6,6 +6,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faCogs, faNewspaper, faFileAlt, faFont, faStar } from '@fortawesome/fontawesome-free-solid'
 import { faGithub, faDiscord, faPatreon } from '@fortawesome/fontawesome-free-brands'
 import hero from '../_data/hero'
+import links from '../_data/links'
 import {stargazersSelector} from '../redux/modules/git'
 import {connect} from 'react-redux'
 
@@ -45,12 +46,12 @@ class Navigation extends React.Component {
               </DropdownMenu>
             </UncontrolledDropdown>
             <NavItem>
-              <NavLink href='https://discord.gg/mePCs8U'><FontAwesomeIcon icon={faDiscord} /> Discord</NavLink>
+              <NavLink href={links.discord}><FontAwesomeIcon icon={faDiscord} /> Discord</NavLink>
             </NavItem>
           </Nav>
           <Nav navbar className='ml-auto'>
             <NavItem>
-              <NavLink href='https://www.patreon.com/user?u=10095059'><FontAwesomeIcon icon={faPatreon} /> Become a patron</NavLink>
+              <NavLink href={links.patreon}><FontAwesomeIcon icon={faPatreon} /> Become a patron</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href='https://github.com/runelite'><FontAwesomeIcon icon={faGithub} /> GitHub</NavLink>
