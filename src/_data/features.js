@@ -193,11 +193,6 @@ export default [
     description: 'Shows you where to position enemies for double cannonball hits.'
   },
   {
-    image: '/img/features/pp.png',
-    title: 'Pyramid Plunder',
-    description: 'Replaces the large clunky overlay with a text based timer & floor information.'
-  },
-  {
     image: '/img/features/gesearch.png',
     title: 'Grand Exchange lookup',
     description: 'Quickly price-check any item on the Grand Exchange.'
