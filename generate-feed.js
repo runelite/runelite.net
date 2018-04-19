@@ -16,6 +16,22 @@ const md = MarkdownIt({
   xhtmlOut: true
 })
 
+// Escape html
+const escapeHtml = (unsafe) => {
+  return unsafe.replace(/[&<"']/g, (m) => {
+    switch (m) {
+      case '&':
+        return '&amp;'
+      case '<':
+        return '&lt;'
+      case '"':
+        return '&quot;'
+      default:
+        return '&#039;'
+    }
+  })
+}
+
 // Read each file in posts folder and convert it to json-formatted meta tags
 const posts = fs.readdirSync(postsFolder)
   .map(fileName => {
@@ -40,9 +56,9 @@ const posts = fs.readdirSync(postsFolder)
     // extract date, title and description
     const dateString = tokenizedFilename[1]
     const pathString = tokenizedFilename[2]
-    const title = frontMatterContext.attributes.title
-    const description = frontMatterContext.attributes.description
-    const author = frontMatterContext.attributes.author
+    const title = escapeHtml(frontMatterContext.attributes.title)
+    const description = escapeHtml(frontMatterContext.attributes.description)
+    const author = escapeHtml(frontMatterContext.attributes.author)
 
     // create required metadata
     const date = new Date(dateString)
