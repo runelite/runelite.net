@@ -33,7 +33,7 @@ YYYY-MM-DD-My-Post-Title.md
 ```
 
 and edit it in your favorite markdown editor. Content of each post should
-consists of:
+consist of:
 
 ```diff
 + ---
@@ -48,7 +48,7 @@ Now save it and create PR to master branch on this repo.
 
 ### Adding features
 
-To add new feature to feature list, simply take image and put it in
+To add new feature to feature list, simply take an image and put it in
 [features](public/img/features) directory. Then, open
 [features.js](src/_data/features.js) file and add your feature at the bottom,
 before `]`
@@ -74,6 +74,6 @@ Now save the file and create PR to master branch on this repo.
 
 ## Publishing to GitHub pages
 
-The deployement to GitHub pages is done automatically using [Travis CI GitHub
+The deployment to GitHub pages is done automatically using [Travis CI GitHub
 pages deployement](https://docs.travis-ci.com/user/deployment/pages) and it is
 deployed to the `gh-pages` branch from `master` branch.
