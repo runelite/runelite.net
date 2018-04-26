@@ -25,9 +25,9 @@ const Home = ({ children, commit, release, stars, sessionCount }) => (
       <hr />
       <Row>
         {features
-            .filter(feature => feature.home)
-            .map(({ image, title }) => ({ image, title }))
-            .map(feature => (<Feature key={feature.title} {...feature} />))}
+          .filter(feature => feature.home)
+          .map(({ image, title }) => ({ image, title }))
+          .map(feature => (<Feature key={feature.title} {...feature} />))}
       </Row>
       <h1 id='news'>Latest news <NavLink to='/blog' style={{ fontSize: 18 }}>See all news...</NavLink></h1>
       <hr />
