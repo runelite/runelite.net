@@ -7,7 +7,7 @@ const Feature = ({ image, title, description, link }) => (
       <CardImg top src={image} />
       <CardBody>
         <CardTitle>
-          { link ? (<a href={link}>{title}</a>) : title }
+          { link ? (<a href={link} alt='View on Wiki'>{title}</a>) : title }
         </CardTitle>
         <CardText>{description}</CardText>
       </CardBody>
