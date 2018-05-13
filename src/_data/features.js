@@ -15,7 +15,6 @@ export default [
     image: '/img/features/boosts.png',
     title: 'Status widgets',
     description: 'Shows boost timers, enemy HP, and other useful overlays.',
-    link: 'https://github.com/runelite/runelite/wiki/Status-Widgets',
     home: true
   },
   {
@@ -293,8 +292,7 @@ export default [
   {
     image: '/img/features/moveableoverlay.png',
     title: 'Custom overlay position',
-    description: 'Allows you to move RuneLite overlays to any position on the screen.',
-    link: 'https://github.com/runelite/runelite/wiki/Status-Widgets'
+    description: 'Allows you to move RuneLite overlays to any position on the screen.'
   },
   {
     image: '/img/features/daily.png',
