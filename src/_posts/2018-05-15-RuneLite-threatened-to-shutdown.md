@@ -1,5 +1,6 @@
 ---
 title: 'RuneLite threatened to shutdown'
+description: 'RuneLite threatened to shutdown'
 author: Adam
 ---
 
