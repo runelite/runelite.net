@@ -19,7 +19,7 @@ said code.".
 So, I have stripped the aforementioned tools and RuneScape client from GitHub. I
 will be removing the other distributions off of the server shortly.
 
-Unfortunatly this means now RuneLite will by only partially-open source.
+Unfortunately this means now RuneLite will be only partially-open source.
 RuneLite is BSD-2 licensed and the license permits me to do this. This will
 hinder new contributions some in that they cannot learn of and create new APIs
 for client access, but we already have a well established API which can be used
