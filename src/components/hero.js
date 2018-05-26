@@ -1,15 +1,18 @@
 import React from 'react'
-import { Button, Jumbotron } from 'reactstrap'
+import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Jumbotron} from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import Commit from './commit'
+import * as R from 'ramda'
 
 class Hero extends React.Component {
   constructor (props) {
     super(props)
     this.updateBackground = this.updateBackground.bind(this)
+    this.toggleDropdown = this.toggleDropdown.bind(this)
 
     this.state = {
       index: 0,
+      isDropdownOpen: false,
       interval: setInterval(() => this.updateBackground(this.state.index), 8000)
     }
   }
@@ -24,6 +27,32 @@ class Hero extends React.Component {
       ...this.state,
       index: (index + 1) % this.props.images.length
     })
+  }
+
+  static isOsCorrect (osName) {
+    const userAgent = window.navigator.userAgent
+    const platform = window.navigator.platform
+    const macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K']
+    const windows32Platforms = ['Win32', 'Windows', 'WinCE']
+    const windows64Platforms = ['Win64']
+    const iosPlatforms = ['iPhone', 'iPad', 'iPod']
+    let os = null
+
+    if (macosPlatforms.indexOf(platform) !== -1) {
+      os = 'macOS'
+    } else if (iosPlatforms.indexOf(platform) !== -1) {
+      os = 'iOS'
+    } else if (windows64Platforms.indexOf(platform) !== -1) {
+      os = 'Windows64'
+    } else if (windows32Platforms.indexOf(platform) !== -1) {
+      os = 'Windows32'
+    } else if (/Android/.test(userAgent)) {
+      os = 'Android'
+    } else if (!os && /Linux/.test(platform)) {
+      os = 'Linux'
+    }
+
+    return osName === os
   }
 
   static getNavbar () {
@@ -54,6 +83,13 @@ class Hero extends React.Component {
     } else {
       Hero.makeNavigationDark()
     }
+  }
+
+  toggleDropdown () {
+    this.setState({
+      ...this.state,
+      isDropdownOpen: !this.state.isDropdownOpen
+    })
   }
 
   componentDidMount () {
@@ -93,6 +129,15 @@ class Hero extends React.Component {
       background: 'rgba(0,0,0,0.4) no-repeat center center fixed'
     }
 
+    let regularButtons = R.filter(button => !button.dropdown)(buttons)
+    const dropdownButtons = R.filter(button => button.dropdown)(buttons)
+    const defaultDropdownItem = R.find(button => button.os === 'all')(dropdownButtons)
+    const mainDropdownItem = R.find(button => Hero.isOsCorrect(button.os))(dropdownButtons) || defaultDropdownItem
+
+    if (defaultDropdownItem !== mainDropdownItem) {
+      regularButtons = R.prepend(defaultDropdownItem)(regularButtons)
+    }
+
     return (
       <Jumbotron fluid style={style} id='jumbo'>
         <div style={{
@@ -113,12 +158,25 @@ class Hero extends React.Component {
             </h1>
             <p className='lead'>{description}</p>
             <p className='lead'>
-              {buttons.map(({link, color, icon, text}) => (
+              <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown}>
+                <Button id='caret' color={mainDropdownItem.color} href={mainDropdownItem.link}>
+                  <FontAwesomeIcon icon={mainDropdownItem.icon} /> {mainDropdownItem.text}
+                </Button>
+                <DropdownToggle caret color={mainDropdownItem.color} />
+                <DropdownMenu style={{textShadow: 'none'}}>
+                  {dropdownButtons.map(({link, color, icon, text}) => (
+                    <DropdownItem key={link} href={link}>
+                      <FontAwesomeIcon icon={icon} /> {text}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </ButtonDropdown>
+              {regularButtons.map(({link, color, icon, text}) => (
                 <span key={link}>
+                  {' '}
                   <Button color={color} href={link}>
                     <FontAwesomeIcon icon={icon} /> {text}
                   </Button>
-                  {' '}
                   <br style={{ marginBottom: 10 }} className='d-md-none' />
                 </span>
               ))}
