@@ -48,21 +48,44 @@ const posts = fs.readdirSync(postsFolder)
     fileName = fileName.match(/([\w\d-.]+)\.md/)[1]
 
     // extract year and path
-    const tokenizedFilename = fileName.match(/^(\d{4}-\d{2}-\d{2})(.*)/)
+    const tokenizedFilename = fileName.match(/^(\d{4}-\d{2}-\d{2})-(\d{2}-\d{2})(.*)/)
 
     // validation
-    if (!tokenizedFilename && !tokenizedFilename[1]) throw new Error('no ^YYYY-MM-DD date in blog filename')
+    if (!tokenizedFilename &&
+      !tokenizedFilename[1] &&
+      !tokenizedFilename[2] &&
+      !tokenizedFilename[3]) {
+      throw new Error('no ^YYYY-MM-DD-HH-mm date in blog filename')
+    }
 
-    // extract date, title and description
-    const dateString = tokenizedFilename[1]
-    const pathString = tokenizedFilename[2]
+    // extract date
+    const date = tokenizedFilename[1]
+    const time = tokenizedFilename[2]
+    const name = tokenizedFilename[3]
+    const pathString = date + name
+    const dateTime = date + '-' + time
+    const dateArray = dateTime.split('-')
+
+    // parse date
+    const dateObject = new Date(Date.UTC(
+      // Year
+      parseInt(dateArray[0]),
+      // Month
+      parseInt(dateArray[1]) - 1,
+      // Day
+      parseInt(dateArray[2]),
+      // Hour
+      parseInt(dateArray[3]),
+      // Minute
+      parseInt(dateArray[4])))
+
+    // extract metadata
     const title = escapeHtml(frontMatterContext.attributes.title)
     const description = escapeHtml(frontMatterContext.attributes.description)
     const author = escapeHtml(frontMatterContext.attributes.author)
 
     // create required metadata
-    const date = new Date(dateString)
-    const link = `${hero.url}/blog/show/${dateString + pathString}`
+    const link = `${hero.url}/blog/show/${pathString}`
 
     // build content from markdown
     const content = md.render(frontMatterContext.body)
@@ -86,7 +109,7 @@ const posts = fs.readdirSync(postsFolder)
           summary: description
         },
         {
-          updated: date.toISOString()
+          updated: dateObject.toISOString()
         },
         {
           author: {
