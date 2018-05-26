@@ -115,7 +115,7 @@ class Hero extends React.Component {
             <p className='lead'>
               {buttons.map(({link, color, icon, text}) => (
                 <span key={link}>
-                  <Button color={color} href={link}>
+                  <Button color={color} href={link}  style={{ margin: '5px 0' }}>
                     <FontAwesomeIcon icon={icon} /> {text}
                   </Button>
                   {' '}

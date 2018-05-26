@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './main.css'
 import React from 'react'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading-bar'
