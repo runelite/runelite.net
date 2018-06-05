@@ -1,8 +1,9 @@
 import React from 'react'
 import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Jumbotron} from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import Commit from './commit'
+import platform from 'platform'
 import * as R from 'ramda'
+import Commit from './commit'
 
 class Hero extends React.Component {
   constructor (props) {
@@ -30,29 +31,22 @@ class Hero extends React.Component {
   }
 
   static isOsCorrect (osName) {
-    const userAgent = window.navigator.userAgent
-    const platform = window.navigator.platform
-    const macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K']
-    const windows32Platforms = ['Win32', 'Windows', 'WinCE']
-    const windows64Platforms = ['Win64']
-    const iosPlatforms = ['iPhone', 'iPad', 'iPod']
-    let os = null
-
-    if (macosPlatforms.indexOf(platform) !== -1) {
-      os = 'macOS'
-    } else if (iosPlatforms.indexOf(platform) !== -1) {
-      os = 'iOS'
-    } else if (windows64Platforms.indexOf(platform) !== -1) {
-      os = 'Windows64'
-    } else if (windows32Platforms.indexOf(platform) !== -1) {
-      os = 'Windows32'
-    } else if (/Android/.test(userAgent)) {
-      os = 'Android'
-    } else if (!os && /Linux/.test(platform)) {
-      os = 'Linux'
+    if (!platform.os.family) {
+      return false
     }
 
-    return osName === os
+    const arch = platform.os.architecture
+    const family = platform.os.family.toLowerCase()
+
+    if (family.indexOf('os x') !== -1 || family.indexOf('mac') !== -1) {
+      return osName === 'macOS'
+    }
+
+    if (family.indexOf('win') !== -1) {
+      return osName === (arch === 64 ? 'Windows64' : 'Windows32')
+    }
+
+    return osName === family
   }
 
   static getNavbar () {
