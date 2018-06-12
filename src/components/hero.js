@@ -1,15 +1,19 @@
 import React from 'react'
-import { Button, Jumbotron } from 'reactstrap'
+import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Jumbotron} from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import platform from 'platform'
+import * as R from 'ramda'
 import Commit from './commit'
 
 class Hero extends React.Component {
   constructor (props) {
     super(props)
     this.updateBackground = this.updateBackground.bind(this)
+    this.toggleDropdown = this.toggleDropdown.bind(this)
 
     this.state = {
       index: 0,
+      isDropdownOpen: false,
       interval: setInterval(() => this.updateBackground(this.state.index), 8000)
     }
   }
@@ -24,6 +28,25 @@ class Hero extends React.Component {
       ...this.state,
       index: (index + 1) % this.props.images.length
     })
+  }
+
+  static isOsCorrect (osName) {
+    if (!platform.os.family) {
+      return false
+    }
+
+    const arch = platform.os.architecture
+    const family = platform.os.family.toLowerCase()
+
+    if (family.indexOf('os x') !== -1 || family.indexOf('mac') !== -1) {
+      return osName === 'macOS'
+    }
+
+    if (family.indexOf('win') !== -1) {
+      return osName === (arch === 64 ? 'Windows64' : 'Windows32')
+    }
+
+    return osName === family
   }
 
   static getNavbar () {
@@ -54,6 +77,13 @@ class Hero extends React.Component {
     } else {
       Hero.makeNavigationDark()
     }
+  }
+
+  toggleDropdown () {
+    this.setState({
+      ...this.state,
+      isDropdownOpen: !this.state.isDropdownOpen
+    })
   }
 
   componentDidMount () {
@@ -93,6 +123,15 @@ class Hero extends React.Component {
       background: 'rgba(0,0,0,0.4) no-repeat center center fixed'
     }
 
+    let regularButtons = R.filter(button => !button.dropdown)(buttons)
+    const dropdownButtons = R.filter(button => button.dropdown)(buttons)
+    const defaultDropdownItem = R.find(button => button.os === 'all')(dropdownButtons)
+    const mainDropdownItem = R.find(button => Hero.isOsCorrect(button.os))(dropdownButtons) || defaultDropdownItem
+
+    if (defaultDropdownItem !== mainDropdownItem) {
+      regularButtons = R.prepend(defaultDropdownItem)(regularButtons)
+    }
+
     return (
       <Jumbotron fluid style={style} id='jumbo'>
         <div style={{
@@ -113,12 +152,25 @@ class Hero extends React.Component {
             </h1>
             <p className='lead'>{description}</p>
             <p className='lead'>
-              {buttons.map(({link, color, icon, text}) => (
+              <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown}>
+                <Button id='caret' color={mainDropdownItem.color} href={mainDropdownItem.link}>
+                  <FontAwesomeIcon icon={mainDropdownItem.icon} /> {mainDropdownItem.text}
+                </Button>
+                <DropdownToggle caret color={mainDropdownItem.color} />
+                <DropdownMenu style={{textShadow: 'none'}}>
+                  {dropdownButtons.map(({link, color, icon, text}) => (
+                    <DropdownItem key={link} href={link}>
+                      <FontAwesomeIcon icon={icon} /> {text}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </ButtonDropdown>
+              {regularButtons.map(({link, color, icon, text}) => (
                 <span key={link}>
+                  {' '}
                   <Button color={color} href={link}>
                     <FontAwesomeIcon icon={icon} /> {text}
                   </Button>
-                  {' '}
                   <br style={{ marginBottom: 10 }} className='d-md-none' />
                 </span>
               ))}
