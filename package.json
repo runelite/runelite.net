@@ -32,7 +32,7 @@
     "reselect": "^3.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.0.0-beta.40",
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
@@ -40,7 +40,7 @@
     "jstoxml": "^1.2.0",
     "markdown-it": "^8.4.1",
     "markdown-with-front-matter-loader": "^0.1.0",
-    "react-scripts": "^2.0.0-next.47d2d941",
+    "react-scripts": "^2.0.0-next.b2fd8db8",
     "react-snap": "^1.12.0",
     "remote-redux-devtools": "^0.5.12",
     "standard": "^11.0.1",
