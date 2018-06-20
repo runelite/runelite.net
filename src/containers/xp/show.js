@@ -25,6 +25,14 @@ Chart.defaults.options = {
   }
 }
 
+const straightLineGraphOption = {
+  elements: {
+    line: {
+      tension: 0
+    }
+  }
+}
+
 const reverseGraphOptions = {
   scales: {
     yAxes: [{
@@ -32,7 +40,8 @@ const reverseGraphOptions = {
         reverse: true
       }
     }]
-  }
+  },
+  ...straightLineGraphOption
 }
 
 const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1)
@@ -70,7 +79,7 @@ const XpShow = ({ children, start, end, name, skill, ranks, skillRank, skillXp, 
         </Col>
         <Col md='9' sm='8' xs='12'>
           <Line data={skillRank} options={reverseGraphOptions} />
-          <Line data={skillXp} />
+          <Line data={skillXp} options={straightLineGraphOption} />
           <Bar data={allXp} />
           <Bar data={allRanks} />
         </Col>
