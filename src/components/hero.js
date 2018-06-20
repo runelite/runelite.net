@@ -158,7 +158,7 @@ class Hero extends React.Component {
                 </Button>
                 <DropdownToggle caret color={mainDropdownItem.color} />
                 <DropdownMenu style={{textShadow: 'none'}}>
-                  {dropdownButtons.map(({link, color, icon, text}) => (
+                  {dropdownButtons.map(({link, icon, text}) => (
                     <DropdownItem key={link} href={link}>
                       <FontAwesomeIcon icon={icon} /> {text}
                     </DropdownItem>
