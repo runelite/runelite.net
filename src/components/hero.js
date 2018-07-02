@@ -56,13 +56,13 @@ class Hero extends React.Component {
   static makeNavigationDark () {
     const navbar = Hero.getNavbar()
     navbar.className = navbar.className.replace('navbar-light', 'navbar-dark').replace('bg-white', 'bg-faded')
-    navbar.style = 'background: linear-gradient(rgba(0,0,0,0.7) 40%, transparent)'
+    navbar.style.background = 'linear-gradient(rgba(0,0,0,0.7) 40%, transparent)'
   }
 
   static makeNavigationWhite () {
     const navbar = Hero.getNavbar()
     navbar.className = navbar.className.replace('navbar-dark', 'navbar-light').replace('bg-faded', 'bg-white')
-    navbar.style = ''
+    navbar.style.background = ''
   }
 
   static handleScroll () {
