@@ -144,7 +144,7 @@ export const getXpRange = createAction(getSessionCountRoutine.TRIGGER, ({skill, 
 const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1)
 const skillNames = Object.keys(skills)
 const capitalizedSkills = Object.keys(skills).map(skill => capitalizeFirstLetter(skill))
-const skillColors = Object.values(skills)
+const skillColors = Object.keys(skills).map(key => skills[key])
 const calculateOverallXp = (xpEntry) => skillNames.map(skill => xpEntry[skill + '_xp'] || 0).reduce((a, b) => a + b, 0)
 
 const calculateRanksAndExp = (collector) => (value, key) => {
