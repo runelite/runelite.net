@@ -70,7 +70,7 @@ class Hero extends React.Component {
     const jumboBottom = jumbo.offsetTop + jumbo.offsetHeight
     const navbar = document.getElementsByClassName('navbar')[0]
     const fromTop = jumboBottom - navbar.offsetHeight
-    const stop = document.documentElement.scrollTop
+    const stop = window.scrollY || window.pageYOffset || document.body.scrollTop
 
     if (stop > fromTop) {
       Hero.makeNavigationWhite()
