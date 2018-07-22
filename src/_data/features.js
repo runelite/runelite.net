@@ -363,7 +363,7 @@ export default [
   }
   {
     image: '/img/features/prayerbar.png',
-    title: 'Prayer Bar HUD',
+    title: 'Prayer Bar',
     description: 'Displays a prayer bar underneath your hitpoints bar.',
     link: 'https://github.com/runelite/runelite/wiki/Prayer'
   }
