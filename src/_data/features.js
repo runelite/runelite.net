@@ -330,37 +330,37 @@ export default [
     title: 'Tears of Guthix',
     description: 'Displays the remaining time for streams of tears.',
     link: 'https://github.com/runelite/runelite/wiki/Tears-Of-Guthix'
-  }
+  },
   {
     image: '/img/features/deathlocation.png',
     title: 'Death Indicator',
     description: 'Displays your last death location and on which world.',
     link: 'https://github.com/runelite/runelite/wiki/Death-Indicator'
-  }
+  },
   {
     image: '/img/features/fairyringsearch.png',
     title: 'Fairy Ring Filter',
     description: 'Allows you to filter the fairy ring destination menu.',
     link: 'https://github.com/runelite/runelite/wiki/Fairy-Rings'
-  }
+  },
   {
     image: '/img/features/inventorytags.png',
     title: 'Inventory Tags',
     description: 'Allows you to assign group tags to inventory items.',
     link: 'https://github.com/runelite/runelite/wiki/Inventory-Tags'
-  }
+  },
   {
     image: '/img/features/inventoryviewer.png',
     title: 'Inventory Viewer',
     description: 'Displays an overlay of your current inventory.',
     link: 'https://github.com/runelite/runelite/wiki/Inventory-Viewer'
-  }
+  },
   {
     image: '/img/features/lightboxsolver.png',
     title: 'Light Box Puzzle Solver',
     description: 'Solves light box puzzles during clue scrolls.',
     link: 'https://github.com/runelite/runelite/wiki/Puzzle-Solver'
-  }
+  },
   {
     image: '/img/features/prayerbar.png',
     title: 'Prayer Bar',
