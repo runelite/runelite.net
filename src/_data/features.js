@@ -366,5 +366,11 @@ export default [
     title: 'Prayer Bar',
     description: 'Displays a prayer bar underneath your hitpoints bar.',
     link: 'https://github.com/runelite/runelite/wiki/Prayer'
+  },
+  {
+    image: '/img/features/birdhouses.png',
+    title: 'Birdhouse Timers',
+    description: 'Displays birdhouses and approximate completion.',
+    link: 'https://github.com/runelite/runelite/wiki/Farming-Tracker'
   }
 ]
