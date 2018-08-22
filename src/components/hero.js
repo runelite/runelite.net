@@ -1,6 +1,6 @@
 import React from 'react'
 import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Jumbotron} from 'reactstrap'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import platform from 'platform'
 import * as R from 'ramda'
 import Commit from './commit'

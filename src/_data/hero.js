@@ -1,5 +1,5 @@
-import { faCoffee } from '@fortawesome/fontawesome-free-solid'
-import { faWindows, faGithub, faApple } from '@fortawesome/fontawesome-free-brands'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faWindows, faGithub, faApple } from '@fortawesome/free-brands-svg-icons'
 
 export default {
   title: 'RuneLite',
