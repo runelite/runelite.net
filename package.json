@@ -35,16 +35,14 @@
     "markdown-with-front-matter-loader": "^0.1.0",
     "react-scripts": "^2.0.0-next.b2fd8db8",
     "react-snap": "^1.12.0",
-    "standard": "^11.0.1",
-    "surge": "^0.20.1"
+    "standard": "^11.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "prebuild": "standard",
     "build": "react-scripts build",
     "postbuild": "node generate-feed.js && react-snap",
-    "eject": "react-scripts eject",
-    "deploy": "npm run build && surge -p build"
+    "eject": "react-scripts eject"
   },
   "reactSnap": {
     "puppeteerArgs": [
