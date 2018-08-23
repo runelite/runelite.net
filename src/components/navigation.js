@@ -2,9 +2,6 @@ import React from 'react'
 import { NavLink as ActiveLink } from 'redux-first-router-link'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
   UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCogs, faNewspaper, faFileAlt, faFont, faStar } from '@fortawesome/free-solid-svg-icons'
-import { faGithub, faDiscord, faPatreon } from '@fortawesome/free-brands-svg-icons'
 import hero from '../_data/hero'
 import links from '../_data/links'
 import {stargazersSelector} from '../redux/modules/git'
@@ -30,35 +27,35 @@ class Navigation extends React.Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav navbar>
             <NavItem>
-              <NavLink tag={ActiveLink} to='/features'><FontAwesomeIcon icon={faCogs} /> Features</NavLink>
+              <NavLink tag={ActiveLink} to='/features'><i className='fas fa-cogs' /> Features</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={ActiveLink} to='/blog'><FontAwesomeIcon icon={faNewspaper} /> Blog</NavLink>
+              <NavLink tag={ActiveLink} to='/blog'><i className='fas fa-newspaper' /> Blog</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='https://github.com/runelite/runelite/wiki'><FontAwesomeIcon icon={faFileAlt} /> Wiki</NavLink>
+              <NavLink href='https://github.com/runelite/runelite/wiki'><i className='fas fa-file-alt' /> Wiki</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret><FontAwesomeIcon icon={faFont} /> API</DropdownToggle>
+              <DropdownToggle nav caret><i className='fas fa-font' /> API</DropdownToggle>
               <DropdownMenu >
                 <DropdownItem href='https://static.runelite.net/api/runelite-api/'>RuneLite API</DropdownItem>
                 <DropdownItem href='https://static.runelite.net/api/runelite-client/'>RuneLite Client API</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
             <NavItem>
-              <NavLink href={links.discord}><FontAwesomeIcon icon={faDiscord} /> Discord</NavLink>
+              <NavLink href={links.discord}><i className='fab fa-discord' /> Discord</NavLink>
             </NavItem>
           </Nav>
           <Nav navbar className='ml-auto'>
             <NavItem>
-              <NavLink href={links.patreon}><FontAwesomeIcon icon={faPatreon} /> Become a patron</NavLink>
+              <NavLink href={links.patreon}><i className='fab fa-patreon' /> Become a patron</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='https://github.com/runelite'><FontAwesomeIcon icon={faGithub} /> GitHub</NavLink>
+              <NavLink href='https://github.com/runelite'><i className='fab fa-github' /> GitHub</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href='https://github.com/runelite/runelite/stargazers'>
-                <FontAwesomeIcon icon={faStar} /> {this.props.stars} Stargazers
+                <i className='fas fa-star' /> {this.props.stars} Stargazers
               </NavLink>
             </NavItem>
           </Nav>
