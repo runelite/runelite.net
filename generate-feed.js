@@ -1,9 +1,9 @@
-import * as jstoxml from 'jstoxml'
-import fs from 'fs'
-import path from 'path'
-import MarkdownIt from 'markdown-it'
-import frontmatter from 'front-matter'
-import hero from './src/_data/hero'
+const jstoxml = require('jstoxml')
+const fs = require('fs')
+const path = require('path')
+const MarkdownIt = require('markdown-it')
+const frontmatter = require('front-matter')
+const hero = require('./src/_data/hero')
 
 const postsFolder = path.join('src', '_posts')
 const now = new Date()

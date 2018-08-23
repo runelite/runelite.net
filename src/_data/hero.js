@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   title: 'RuneLite',
   url: 'https://runelite.net',
   logo: '/img/logo.png',
