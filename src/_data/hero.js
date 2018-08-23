@@ -1,6 +1,3 @@
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-import { faWindows, faGithub, faApple } from '@fortawesome/free-brands-svg-icons'
-
 export default {
   title: 'RuneLite',
   url: 'https://runelite.net',
@@ -18,7 +15,7 @@ export default {
   buttons: [
     {
       link: 'https://github.com/runelite/launcher/releases/download/1.6.0/RuneLiteSetup32.exe',
-      icon: faWindows,
+      icon: 'fab fa-windows',
       text: 'Download for Windows (32 bit)',
       color: 'primary',
       dropdown: true,
@@ -26,7 +23,7 @@ export default {
     },
     {
       link: 'https://github.com/runelite/launcher/releases/download/1.6.0/RuneLiteSetup.exe',
-      icon: faWindows,
+      icon: 'fab fa-windows',
       text: 'Download for Windows (64 bit)',
       color: 'primary',
       dropdown: true,
@@ -34,7 +31,7 @@ export default {
     },
     {
       link: 'https://github.com/runelite/launcher/releases/download/1.6.0/RuneLite.dmg',
-      icon: faApple,
+      icon: 'fab fa-apple',
       text: 'Download for macOS',
       color: 'secondary',
       dropdown: true,
@@ -42,7 +39,7 @@ export default {
     },
     {
       link: 'https://github.com/runelite/launcher/releases/download/1.6.0/RuneLite.jar',
-      icon: faCoffee,
+      icon: 'fas fa-coffee',
       text: 'Download for all platforms',
       color: 'success',
       dropdown: true,
@@ -50,7 +47,7 @@ export default {
     },
     {
       link: 'https://github.com/runelite/',
-      icon: faGithub,
+      icon: 'fab fa-github',
       text: 'View on GitHub',
       color: 'info'
     }

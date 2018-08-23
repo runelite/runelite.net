@@ -1,6 +1,5 @@
 import React from 'react'
 import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Jumbotron} from 'reactstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import platform from 'platform'
 import * as R from 'ramda'
 import Commit from './commit'
@@ -154,13 +153,13 @@ class Hero extends React.Component {
             <p className='lead'>
               <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown}>
                 <Button id='caret' color={mainDropdownItem.color} href={mainDropdownItem.link}>
-                  <FontAwesomeIcon icon={mainDropdownItem.icon} /> {mainDropdownItem.text}
+                  <i className={mainDropdownItem.icon} /> {mainDropdownItem.text}
                 </Button>
                 <DropdownToggle caret color={mainDropdownItem.color} />
                 <DropdownMenu style={{textShadow: 'none'}}>
                   {dropdownButtons.map(({link, icon, text}) => (
                     <DropdownItem key={link} href={link}>
-                      <FontAwesomeIcon icon={icon} /> {text}
+                      <i className={icon} /> {text}
                     </DropdownItem>
                   ))}
                 </DropdownMenu>
@@ -169,7 +168,7 @@ class Hero extends React.Component {
                 <span key={link}>
                   {' '}
                   <Button color={color} href={link}>
-                    <FontAwesomeIcon icon={icon} /> {text}
+                    <i className={icon} /> {text}
                   </Button>
                   <br style={{ marginBottom: 10 }} className='d-md-none' />
                 </span>
