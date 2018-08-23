@@ -35,7 +35,6 @@
     "markdown-with-front-matter-loader": "^0.1.0",
     "react-scripts": "^2.0.0-next.b2fd8db8",
     "react-snap": "^1.12.0",
-    "remote-redux-devtools": "^0.5.13",
     "standard": "^11.0.1",
     "surge": "^0.20.1"
   },
