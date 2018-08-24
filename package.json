@@ -36,29 +36,17 @@
     "markdown-it": "^8.4.2",
     "markdown-with-front-matter-loader": "^0.1.0",
     "null-loader": "^0.1.1",
+    "prerender-spa-plugin": "^3.3.0",
     "react-app-rewire-preact": "^1.0.1",
     "react-app-rewired": "^1.5.2",
     "react-scripts": "^1.1.5",
-    "react-snap": "^1.12.0",
     "standard": "^11.0.1"
   },
   "scripts": {
     "start": "react-app-rewired start",
     "prebuild": "standard --parser babel-eslint",
     "build": "react-app-rewired build",
-    "postbuild": "node generate-feed.js && react-snap"
-  },
-  "reactSnap": {
-    "puppeteerArgs": [
-      "--no-sandbox",
-      "--disable-setuid-sandbox"
-    ],
-    "crawl": false,
-    "include": [
-      "/",
-      "/blog",
-      "/features"
-    ]
+    "postbuild": "node generate-feed.js"
   },
   "browserslist": {
     "development": [
