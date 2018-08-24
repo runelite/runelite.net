@@ -28,15 +28,15 @@ const blog = webpackRequireContext.keys().sort().reverse().reduce((memo, fileNam
     // parse date
     const dateObject = new Date(Date.UTC(
       // Year
-      parseInt(dateArray[0]),
+      parseInt(dateArray[0], 10),
       // Month
-      parseInt(dateArray[1]) - 1,
+      parseInt(dateArray[1], 10) - 1,
       // Day
-      parseInt(dateArray[2]),
+      parseInt(dateArray[2], 10),
       // Hour
-      parseInt(dateArray[3]),
+      parseInt(dateArray[3], 10),
       // Minute
-      parseInt(dateArray[4])))
+      parseInt(dateArray[4], 10)))
 
     return {
       date: dateObject,

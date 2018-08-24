@@ -12,19 +12,16 @@ class Hero extends React.Component {
 
     this.state = {
       index: 0,
+      image: this.props.images[0],
       isDropdownOpen: false,
       interval: setInterval(() => this.updateBackground(this.state.index), 8000)
     }
   }
 
   updateBackground (index) {
-    const image = this.props.images[index]
-    const jumbo = document.getElementById('jumbo')
-    jumbo.style.backgroundImage = `url(${image})`
-    jumbo.style.backgroundSize = 'cover'
-
     this.setState({
       ...this.state,
+      image: this.props.images[index],
       index: (index + 1) % this.props.images.length
     })
   }
@@ -119,7 +116,9 @@ class Hero extends React.Component {
       width: '100%',
       margin: 0,
       height: '100%',
-      background: 'rgba(0,0,0,0.4) no-repeat center center fixed'
+      background: 'rgba(0,0,0,0.4) no-repeat center center fixed',
+      backgroundImage: `url(${this.state.image})`,
+      backgroundSize: 'cover'
     }
 
     let regularButtons = R.filter(button => !button.dropdown)(buttons)
