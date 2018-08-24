@@ -1,9 +1,6 @@
-const webpackRequireContext = require.context('!markdown-with-front-matter-loader!./_posts', false, /.md$/)
+const webpackRequireContext = require.context('!null-loader!./_posts', false, /.md$/)
 
 const blog = webpackRequireContext.keys().sort().reverse().reduce((memo, fileName) => {
-  // frontmatter and content (actual markdown is loaded on '__content', frontmatter is right on root)
-  const frontMatterMarkdown = webpackRequireContext(fileName)
-
   // remove cd and extension
   fileName = fileName.match(/\.\/([\w\d-.]+)\.md/)[1]
 
@@ -22,23 +19,32 @@ const blog = webpackRequireContext.keys().sort().reverse().reduce((memo, fileNam
   const time = tokenizedFilename[2]
   const name = tokenizedFilename[3]
   const pathString = date + name
-  const dateTime = date + '-' + time
-  const dateArray = dateTime.split('-')
 
-  // parse date
-  const dateObject = new Date(Date.UTC(
-    // Year
-    parseInt(dateArray[0]),
-    // Month
-    parseInt(dateArray[1]) - 1,
-    // Day
-    parseInt(dateArray[2]),
-    // Hour
-    parseInt(dateArray[3]),
-    // Minute
-    parseInt(dateArray[4])))
+  // frontmatter and content (actual markdown is loaded on '__content', frontmatter is right on root)
+  const prom = import('!markdown-with-front-matter-loader!./_posts/' + fileName + '.md').then(md => {
+    const dateTime = date + '-' + time
+    const dateArray = dateTime.split('-')
 
-  return memo.set(pathString, Object.assign({date: dateObject}, frontMatterMarkdown))
+    // parse date
+    const dateObject = new Date(Date.UTC(
+      // Year
+      parseInt(dateArray[0]),
+      // Month
+      parseInt(dateArray[1]) - 1,
+      // Day
+      parseInt(dateArray[2]),
+      // Hour
+      parseInt(dateArray[3]),
+      // Minute
+      parseInt(dateArray[4])))
+
+    return {
+      date: dateObject,
+      ...md
+    }
+  })
+
+  return memo.set(pathString, prom)
 }, new Map())
 
 export const getLatest = () => blog.values().next().value

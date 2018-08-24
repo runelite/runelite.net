@@ -3,19 +3,20 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 import React from 'react'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading-bar'
+import universal from 'react-universal-component'
 import Navigation from './navigation'
 import Footer from './footer'
 
 const App = ({ component, payload }) => {
-  const Component = require(`../containers/${component}`).default
+  const UniversalComponent = universal(() => import(`../containers/${component}`))
 
   return (
     <div style={{ height: '100%' }}>
       <LoadingBar style={{zIndex: 9999}} />
       <Navigation />
-      <Component {...payload}>
+      <UniversalComponent {...payload}>
         <Footer />
-      </Component>
+      </UniversalComponent>
     </div>
   )
 }
