@@ -4,6 +4,55 @@ import platform from 'platform'
 import * as R from 'ramda'
 import Commit from './commit'
 
+function isOsCorrect (osName) {
+  if (!platform.os.family) {
+    return false
+  }
+
+  const arch = platform.os.architecture
+  const family = platform.os.family.toLowerCase()
+
+  if (family.indexOf('os x') !== -1 || family.indexOf('mac') !== -1) {
+    return osName === 'macOS'
+  }
+
+  if (family.indexOf('win') !== -1) {
+    return osName === (arch === 64 ? 'Windows64' : 'Windows32')
+  }
+
+  return osName === family
+}
+
+function getNavbar () {
+  return document.getElementsByClassName('navbar')[0]
+}
+
+function makeNavigationDark () {
+  const navbar = getNavbar()
+  navbar.className = navbar.className.replace('navbar-light', 'navbar-dark').replace('bg-white', 'bg-faded')
+  navbar.style.background = 'linear-gradient(rgba(0,0,0,0.7) 40%, transparent)'
+}
+
+function makeNavigationWhite () {
+  const navbar = getNavbar()
+  navbar.className = navbar.className.replace('navbar-dark', 'navbar-light').replace('bg-faded', 'bg-white')
+  navbar.style.background = ''
+}
+
+function handleScroll () {
+  const jumbo = document.getElementById('jumbo')
+  const jumboBottom = jumbo.offsetTop + jumbo.offsetHeight
+  const navbar = document.getElementsByClassName('navbar')[0]
+  const fromTop = jumboBottom - navbar.offsetHeight
+  const stop = window.scrollY || window.pageYOffset || document.body.scrollTop
+
+  if (stop > fromTop) {
+    makeNavigationWhite()
+  } else {
+    makeNavigationDark()
+  }
+}
+
 class Hero extends React.Component {
   constructor (props) {
     super(props)
@@ -26,55 +75,6 @@ class Hero extends React.Component {
     })
   }
 
-  static isOsCorrect (osName) {
-    if (!platform.os.family) {
-      return false
-    }
-
-    const arch = platform.os.architecture
-    const family = platform.os.family.toLowerCase()
-
-    if (family.indexOf('os x') !== -1 || family.indexOf('mac') !== -1) {
-      return osName === 'macOS'
-    }
-
-    if (family.indexOf('win') !== -1) {
-      return osName === (arch === 64 ? 'Windows64' : 'Windows32')
-    }
-
-    return osName === family
-  }
-
-  static getNavbar () {
-    return document.getElementsByClassName('navbar')[0]
-  }
-
-  static makeNavigationDark () {
-    const navbar = Hero.getNavbar()
-    navbar.className = navbar.className.replace('navbar-light', 'navbar-dark').replace('bg-white', 'bg-faded')
-    navbar.style.background = 'linear-gradient(rgba(0,0,0,0.7) 40%, transparent)'
-  }
-
-  static makeNavigationWhite () {
-    const navbar = Hero.getNavbar()
-    navbar.className = navbar.className.replace('navbar-dark', 'navbar-light').replace('bg-faded', 'bg-white')
-    navbar.style.background = ''
-  }
-
-  static handleScroll () {
-    const jumbo = document.getElementById('jumbo')
-    const jumboBottom = jumbo.offsetTop + jumbo.offsetHeight
-    const navbar = document.getElementsByClassName('navbar')[0]
-    const fromTop = jumboBottom - navbar.offsetHeight
-    const stop = window.scrollY || window.pageYOffset || document.body.scrollTop
-
-    if (stop > fromTop) {
-      Hero.makeNavigationWhite()
-    } else {
-      Hero.makeNavigationDark()
-    }
-  }
-
   toggleDropdown () {
     this.setState({
       ...this.state,
@@ -87,10 +87,10 @@ class Hero extends React.Component {
     this.updateBackground(0)
 
     // Change navigation bar to fit hero
-    Hero.handleScroll()
+    handleScroll()
 
     // Add scroll listener for navigation bar
-    document.addEventListener('scroll', Hero.handleScroll)
+    document.addEventListener('scroll', handleScroll)
   }
 
   componentWillUnmount () {
@@ -98,10 +98,10 @@ class Hero extends React.Component {
     clearInterval(this.state.interval)
 
     // Reset navigation bar
-    Hero.makeNavigationWhite()
+    makeNavigationWhite()
 
     // Remove scroll listener
-    document.removeEventListener('scroll', Hero.handleScroll)
+    document.removeEventListener('scroll', handleScroll)
   }
 
   render () {
@@ -124,7 +124,7 @@ class Hero extends React.Component {
     let regularButtons = R.filter(button => !button.dropdown)(buttons)
     const dropdownButtons = R.filter(button => button.dropdown)(buttons)
     const defaultDropdownItem = R.find(button => button.os === 'all')(dropdownButtons)
-    const mainDropdownItem = R.find(button => Hero.isOsCorrect(button.os))(dropdownButtons) || defaultDropdownItem
+    const mainDropdownItem = R.find(button => isOsCorrect(button.os))(dropdownButtons) || defaultDropdownItem
 
     if (defaultDropdownItem !== mainDropdownItem) {
       regularButtons = R.prepend(defaultDropdownItem)(regularButtons)
