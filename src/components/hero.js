@@ -3,6 +3,9 @@ import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Jumb
 import platform from 'platform'
 import * as R from 'ramda'
 import Commit from './commit'
+import {changeStyle} from '../redux/modules/navigation'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 
 function isOsCorrect (osName) {
   if (!platform.os.family) {
@@ -23,47 +26,18 @@ function isOsCorrect (osName) {
   return osName === family
 }
 
-function getNavbar () {
-  return document.getElementsByClassName('navbar')[0]
-}
-
-function makeNavigationDark () {
-  const navbar = getNavbar()
-  navbar.className = navbar.className.replace('navbar-light', 'navbar-dark').replace('bg-white', 'bg-faded')
-  navbar.style.background = 'linear-gradient(rgba(0,0,0,0.7) 40%, transparent)'
-}
-
-function makeNavigationWhite () {
-  const navbar = getNavbar()
-  navbar.className = navbar.className.replace('navbar-dark', 'navbar-light').replace('bg-faded', 'bg-white')
-  navbar.style.background = ''
-}
-
-function handleScroll () {
-  const jumbo = document.getElementById('jumbo')
-  const jumboBottom = jumbo.offsetTop + jumbo.offsetHeight
-  const navbar = document.getElementsByClassName('navbar')[0]
-  const fromTop = jumboBottom - navbar.offsetHeight
-  const stop = window.scrollY || window.pageYOffset || document.body.scrollTop
-
-  if (stop > fromTop) {
-    makeNavigationWhite()
-  } else {
-    makeNavigationDark()
-  }
-}
-
 class Hero extends React.Component {
   constructor (props) {
     super(props)
     this.updateBackground = this.updateBackground.bind(this)
     this.toggleDropdown = this.toggleDropdown.bind(this)
+    this.handleScroll = this.handleScroll.bind(this)
 
     this.state = {
       index: 0,
       image: this.props.images[0],
       isDropdownOpen: false,
-      interval: setInterval(() => this.updateBackground(this.state.index), 8000)
+      interval: 0
     }
   }
 
@@ -82,15 +56,29 @@ class Hero extends React.Component {
     })
   }
 
+  handleScroll () {
+    const jumbo = document.getElementById('jumbo')
+    const jumboBottom = jumbo.offsetTop + jumbo.offsetHeight
+    const navbar = document.getElementsByClassName('navbar')[0]
+    const fromTop = jumboBottom - navbar.offsetHeight
+    const stop = window.scrollY || window.pageYOffset || document.body.scrollTop
+    this.props.changeStyle(stop <= fromTop)
+  }
+
   componentDidMount () {
     // Update background
     this.updateBackground(0)
 
+    // Add background updater
+    this.setState({
+      internal: setInterval(() => this.updateBackground(this.state.index), 8000)
+    })
+
     // Change navigation bar to fit hero
-    handleScroll()
+    this.handleScroll()
 
     // Add scroll listener for navigation bar
-    document.addEventListener('scroll', handleScroll)
+    document.addEventListener('scroll', this.handleScroll)
   }
 
   componentWillUnmount () {
@@ -98,10 +86,10 @@ class Hero extends React.Component {
     clearInterval(this.state.interval)
 
     // Reset navigation bar
-    makeNavigationWhite()
+    this.props.changeStyle(false)
 
     // Remove scroll listener
-    document.removeEventListener('scroll', handleScroll)
+    document.removeEventListener('scroll', this.handleScroll)
   }
 
   render () {
@@ -185,4 +173,7 @@ class Hero extends React.Component {
   }
 }
 
-export default Hero
+export default connect(
+  (state) => state,
+  (dispatch) => bindActionCreators({ changeStyle }, dispatch)
+)(Hero)
