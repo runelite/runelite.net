@@ -98,7 +98,7 @@ export const latestCommitSelector = createSelector(
           ? commit.commit.message.substr(0, 50) + '...'
           : commit.commit.message
         ),
-        date: commit.commit.committer.date,
+        date: new Date(commit.commit.committer.date),
         author: {
           name: commit.commit.author.name,
           url: commit.author ? commit.author.html_url : null,

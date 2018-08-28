@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Jumbotron} from 'reactstrap'
+import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap'
 import platform from 'platform'
 import * as R from 'ramda'
 import Commit from './commit'
@@ -92,9 +92,7 @@ class Hero extends React.Component {
     document.removeEventListener('scroll', this.handleScroll)
   }
 
-  render () {
-    const { title, description, buttons, release, commit, playing } = this.props
-
+  render ({ title, description, buttons, release, commit, playing }) {
     const style = {
       backgroundBlendMode: 'darken',
       transition: 'background-image 3s',
@@ -119,7 +117,7 @@ class Hero extends React.Component {
     }
 
     return (
-      <Jumbotron fluid style={style} id='jumbo'>
+      <div className='jumbotron jumbotron-fluid' style={style} id='jumbo'>
         <div style={{
           display: 'table-cell',
           verticalAlign: 'bottom'
@@ -168,7 +166,7 @@ class Hero extends React.Component {
             </div>
           </div>
         </div>
-      </Jumbotron>
+      </div>
     )
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import universal from 'react-universal-component'
-import TimeAgo from 'react-timeago'
+import ago from 's-ago'
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap'
 import { NavLink } from 'redux-first-router-link'
 import Layout from '../components/layout'
@@ -19,7 +19,7 @@ const Blog = ({ children }) => (
       {[...blog.keys()].map(path => {
         const UniversalComponent = universal(() => blog.get(path).then(({date, title, description, author}) => (
           <ListGroupItem key={title} tag={NavLink} to={`/blog/show/${path}`}>
-            <ListGroupItemHeading>{title || path} <small className='text-muted'><TimeAgo date={date} /> by {author}</small></ListGroupItemHeading>
+            <ListGroupItemHeading>{title || path} <small className='text-muted'>{ago(date)} by {author}</small></ListGroupItemHeading>
             <ListGroupItemText className='text-muted'>
               {description}
             </ListGroupItemText>

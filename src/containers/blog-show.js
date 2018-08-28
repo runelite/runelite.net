@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import universal from 'react-universal-component'
-import TimeAgo from 'react-timeago'
+import ago from 's-ago'
 import Layout from '../components/layout'
 import blog from '../blog'
 import hero from '../_data/hero'
@@ -22,7 +22,7 @@ const BlogShow = ({ children, id }) => {
           <meta name='description' content={description} />
         </Helmet>
         <h1>{title}</h1>
-        <p className='text-muted'><TimeAgo date={date} /> by {author}</p>
+        <p className='text-muted'>{ago(date)} by {author}</p>
         <hr />
         <div className='markdown-body' dangerouslySetInnerHTML={{__html: __content}} />
         {children}

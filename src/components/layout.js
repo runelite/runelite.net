@@ -1,18 +1,13 @@
 import React from 'react'
-import { Container } from 'reactstrap'
 
-const Layout = ({ children, fullWidth }) => {
-  const style = { paddingTop: 60, paddingBottom: 15 }
-
-  if (fullWidth) {
-    style.maxWidth = '100%'
-  }
-
-  return (
-    <Container id='layout' style={style}>
-      {children}
-    </Container>
-  )
-}
+const Layout = ({ children, fullWidth }) => (
+  <div className='container' id='layout' style={{
+    paddingTop: 60,
+    paddingBottom: 15,
+    maxWidth: fullWidth ? '100%' : ''
+  }}>
+    {children}
+  </div>
+)
 
 export default Layout
