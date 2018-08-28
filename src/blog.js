@@ -1,6 +1,4 @@
-const webpackRequireContext = require.context('!null-loader!./_posts', false, /.md$/)
-
-const blog = webpackRequireContext.keys().sort().reverse().reduce((memo, fileName) => {
+const blog = require.context('!null-loader!./_posts', false, /.md$/).keys().sort().reverse().reduce((memo, fileName) => {
   // remove cd and extension
   fileName = fileName.match(/\.\/([\w\d-.]+)\.md/)[1]
 
