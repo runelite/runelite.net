@@ -53,6 +53,7 @@ class XpShow extends React.Component {
   }
 
   componentWillReceiveProps () {
+    this.componentWillUnmount()
     this.setState({
       skillRank: new Chart('skill-rank', {
         type: 'line',
