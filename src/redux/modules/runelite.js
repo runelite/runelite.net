@@ -35,10 +35,10 @@ export default handleActions({
 }, {
   sessionCount: 0,
   xp: [],
-  skill: '',
+  skill: 'overall',
   name: '',
-  start: '',
-  end: ''
+  start: new Date(),
+  end: new Date()
 })
 
 const getLatestVersion = async (dispatch) => {
@@ -74,34 +74,10 @@ export const getSessionCount = createAction(getSessionCountRoutine.TRIGGER, () =
   }
 })
 
-export const getXp = createAction(getSessionCountRoutine.TRIGGER, (name, date) => async (dispatch) => {
-  try {
-    dispatch(getXpRoutine.request())
-    const version = await getLatestVersion(dispatch)
-    const dateString = date.toISOString()
-
-    const response = await runeliteApi.wrapFailure(dispatch, runeliteApi.fetch(
-      `runelite-${version}/xp/get?username=${name}&time=${dateString}`, { method: 'GET' }
-    ))
-
-    const formattedResponse = {
-      date,
-      ...response
-    }
-
-    dispatch(getXpRoutine.success(formattedResponse))
-    return formattedResponse
-  } catch (e) {
-    dispatch(getXpRoutine.failure(e))
-  } finally {
-    dispatch(getXpRoutine.fulfill())
-  }
-})
-
 export const getXpRange = createAction(getSessionCountRoutine.TRIGGER, ({skill, name, start, end}) => async (dispatch) => {
   try {
     const endDate = end === 'now' ? new Date() : new Date(end)
-    let startDate = Date.parse(start)
+    let startDate = new Date(start)
 
     if (isNaN(startDate)) {
       const parsed = start.match(/(\d+)(\w+)/)
@@ -117,11 +93,24 @@ export const getXpRange = createAction(getSessionCountRoutine.TRIGGER, ({skill, 
       skill
     }))
 
+    const version = await getLatestVersion(dispatch)
     const dayXps = []
 
-    for (let date = moment(startDate); date.diff(endDate) <= 0; date.add(1, 'days')) {
-      const dayXp = await dispatch(getXp(name, date.toDate()))
-      dayXps.push(dayXp)
+    for (let momDate = moment(startDate); momDate.diff(endDate) <= 0; momDate.add(1, 'days')) {
+      const date = momDate.toDate()
+      const dateString = date.toISOString()
+
+      const dayResponse = await runeliteApi.wrapFailure(dispatch, runeliteApi.fetch(
+        `runelite-${version}/xp/get?username=${name}&time=${dateString}`, { method: 'GET' }
+      ))
+
+      const formattedResponse = {
+        date,
+        ...dayResponse
+      }
+
+      dispatch(getXpRoutine.success(formattedResponse))
+      dayXps.push(formattedResponse)
     }
 
     const formattedResponse = {

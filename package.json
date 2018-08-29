@@ -17,7 +17,6 @@
     "react-redux": "^5.0.7",
     "react-redux-loading-bar": "^4.0.5",
     "react-universal-component": "^3.0.0",
-    "reactstrap": "^6.4.0",
     "redux": "^4.0.0",
     "redux-actions": "^2.6.1",
     "redux-first-router": "0.0.16-next",

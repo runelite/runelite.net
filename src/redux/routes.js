@@ -10,8 +10,6 @@ const createThunk = (fns) => async (dispatch, getState) => R.reduce(
 
 const createRoute = (path, fns) => ({
   path,
-  fromPath: (value) => value.replace(/\?/g, ':'),
-  toPath: (value) => value.replace(/:/g, '?'),
   thunk: createThunk(fns || [])
 })
 

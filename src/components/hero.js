@@ -1,5 +1,4 @@
 import React from 'react'
-import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap'
 import platform from 'platform'
 import * as R from 'ramda'
 import Commit from './commit'
@@ -30,13 +29,11 @@ class Hero extends React.Component {
   constructor (props) {
     super(props)
     this.updateBackground = this.updateBackground.bind(this)
-    this.toggleDropdown = this.toggleDropdown.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
 
     this.state = {
       index: 0,
       image: this.props.images[0],
-      isDropdownOpen: false,
       interval: 0
     }
   }
@@ -46,13 +43,6 @@ class Hero extends React.Component {
       ...this.state,
       image: this.props.images[index],
       index: (index + 1) % this.props.images.length
-    })
-  }
-
-  toggleDropdown () {
-    this.setState({
-      ...this.state,
-      isDropdownOpen: !this.state.isDropdownOpen
     })
   }
 
@@ -136,25 +126,27 @@ class Hero extends React.Component {
             </h1>
             <p className='lead'>{description}</p>
             <p className='lead'>
-              <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown}>
-                <Button id='caret' color={mainDropdownItem.color} href={mainDropdownItem.link}>
+              <div className='btn-group dropdown'>
+                <a type='button' className={'btn btn-' + mainDropdownItem.color} href={mainDropdownItem.link}>
                   <i className={mainDropdownItem.icon} /> {mainDropdownItem.text}
-                </Button>
-                <DropdownToggle caret color={mainDropdownItem.color} />
-                <DropdownMenu style={{textShadow: 'none'}}>
+                </a>
+                <button type='button' className={'btn dropdown-toggle dropdown-toggle-split btn-' + mainDropdownItem.color} data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                  <span className='sr-only'>Toggle Dropdown</span>
+                </button>
+                <div className='dropdown-menu' style={{ textShadow: 'none' }}>
                   {dropdownButtons.map(({link, icon, text}) => (
-                    <DropdownItem key={link} href={link}>
+                    <a className='dropdown-item' href={link}>
                       <i className={icon} /> {text}
-                    </DropdownItem>
+                    </a>
                   ))}
-                </DropdownMenu>
-              </ButtonDropdown>
+                </div>
+              </div>
               {regularButtons.map(({link, color, icon, text}) => (
                 <span key={link}>
                   {' '}
-                  <Button color={color} href={link}>
+                  <a type='button' className={'btn btn-' + color} href={link}>
                     <i className={icon} /> {text}
-                  </Button>
+                  </a>
                   <br style={{ marginBottom: 10 }} className='d-md-none' />
                 </span>
               ))}
