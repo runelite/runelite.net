@@ -12,7 +12,6 @@
     "preact": "^8.3.1",
     "preact-compat": "^3.18.3",
     "ramda": "^0.25.0",
-    "react-chartjs-2": "^2.7.4",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
     "react-redux-loading-bar": "^4.0.5",
