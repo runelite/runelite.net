@@ -34,22 +34,5 @@ export default (base) => {
     return response
   }
 
-  /**
-   * Wrap promise, in case of failure run error action
-   *
-   * @param {function} dispatch redux dispatcher
-   * @param {Promise} promise js promise
-   * @param {function} errorAction error action
-   * @return {Promise}
-   */
-  async function wrapFailure (dispatch, promise, errorAction) {
-    try {
-      return await promise
-    } catch (error) {
-      if (errorAction) dispatch(errorAction(error))
-      throw error
-    }
-  }
-
-  return { fetch, wrapFailure }
+  return fetch
 }

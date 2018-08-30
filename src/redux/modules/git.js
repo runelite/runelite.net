@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions'
 import { createRoutine } from 'redux-routines'
 import { createSelector } from 'reselect'
+import { startLoading, stopLoading } from './app'
 import api from '../../api'
 import git from '../../_data/git'
 
@@ -33,51 +34,36 @@ export default handleActions({
 
 // Action creators
 export const getCommits = createAction(getCommitsRoutine.TRIGGER, () => async (dispatch) => {
-  try {
-    dispatch(getCommitsRoutine.request())
-    const response = await githubApi.wrapFailure(dispatch, githubApi.fetch(
-      `repos/${git.user}/${git.repository}/commits`, { method: 'GET' }
-    ))
+  dispatch(startLoading())
+  const response = await githubApi(
+    `repos/${git.user}/${git.repository}/commits`, { method: 'GET' }
+  )
 
-    dispatch(getCommitsRoutine.success(response))
-    return response
-  } catch (e) {
-    dispatch(getCommitsRoutine.failure(e))
-  } finally {
-    dispatch(getCommitsRoutine.fulfill())
-  }
+  dispatch(getCommitsRoutine.success(response))
+  dispatch(stopLoading())
+  return response
 })
 
 export const getReleases = createAction(getReleasesRoutine.TRIGGER, () => async (dispatch) => {
-  try {
-    dispatch(getReleasesRoutine.request())
-    const response = await githubApi.wrapFailure(dispatch, githubApi.fetch(
-      `repos/${git.user}/${git.repository}/tags`, { method: 'GET' }
-    ))
+  dispatch(startLoading())
+  const response = await githubApi(
+    `repos/${git.user}/${git.repository}/tags`, { method: 'GET' }
+  )
 
-    dispatch(getReleasesRoutine.success(response))
-    return response
-  } catch (e) {
-    dispatch(getReleasesRoutine.failure(e))
-  } finally {
-    dispatch(getReleasesRoutine.fulfill())
-  }
+  dispatch(getReleasesRoutine.success(response))
+  dispatch(stopLoading())
+  return response
 })
 
 export const getRepository = createAction(getRepositoryRoutine.TRIGGER, () => async (dispatch) => {
-  try {
-    dispatch(getRepositoryRoutine.request())
-    const response = await githubApi.wrapFailure(dispatch, githubApi.fetch(
-      `repos/${git.user}/${git.repository}`, { method: 'GET' }
-    ))
+  dispatch(startLoading())
+  const response = await githubApi(
+    `repos/${git.user}/${git.repository}`, { method: 'GET' }
+  )
 
-    dispatch(getRepositoryRoutine.success(response))
-    return response
-  } catch (e) {
-    dispatch(getRepositoryRoutine.failure(e))
-  } finally {
-    dispatch(getRepositoryRoutine.fulfill())
-  }
+  dispatch(getRepositoryRoutine.success(response))
+  dispatch(stopLoading())
+  return response
 })
 
 // Selectors

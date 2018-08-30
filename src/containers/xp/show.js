@@ -1,9 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Helmet} from 'react-helmet'
 import Chart from 'chart.js'
 import Layout from '../../components/layout'
-import hero from '../../_data/hero'
 import {
   allRanksSelector, allXpSelector, nameSelector, skillRankSelector,
   skillXpSelector, ranksSelector, skillSelector
@@ -52,26 +50,26 @@ class XpShow extends React.Component {
     }
   }
 
-  componentWillReceiveProps () {
+  componentWillReceiveProps (props) {
     this.componentWillUnmount()
     this.setState({
       skillRank: new Chart('skill-rank', {
         type: 'line',
-        data: this.props.skillRank,
+        data: props.skillRank,
         options: reverseGraphOptions
       }),
       skillXp: new Chart('skill-xp', {
         type: 'line',
-        data: this.props.skillXp,
+        data: props.skillXp,
         options: straightLineGraphOption
       }),
       allRanks: new Chart('all-ranks', {
         type: 'bar',
-        data: this.props.allRanks
+        data: props.allRanks
       }),
       allXp: new Chart('all-xp', {
         type: 'bar',
-        data: this.props.allXp
+        data: props.allXp
       })
     })
   }
@@ -98,9 +96,9 @@ class XpShow extends React.Component {
     return (
       <div style={{height: 'inherit'}}>
         <Layout fullWidth>
-          <Helmet>
-            <title>Experience Tracker - {hero.title}</title>
-          </Helmet>
+          {/* <Helmet> */}
+          {/* <title>Experience Tracker - {hero.title}</title> */}
+          {/* </Helmet> */}
           <h1>{name} / <small className='text-muted'>
             {skill} / {safeDate(start).toDateString().toLowerCase()} / {safeDate(end).toDateString().toLowerCase()}</small>
           </h1>

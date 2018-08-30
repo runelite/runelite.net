@@ -1,4 +1,4 @@
-import { handleActions } from 'redux-actions'
+import {createAction, handleActions} from 'redux-actions'
 import { NOT_FOUND } from 'redux-first-router'
 
 // Reducer
@@ -37,7 +37,31 @@ export default handleActions({
     ...state,
     component: 'xp/show',
     payload: payload
+  }),
+  START_LOADING: (state) => ({
+    ...state,
+    loading: true
+  }),
+  STOP_LOADING: (state) => ({
+    ...state,
+    loading: false
+  }),
+  SET_TITLE: (state, { payload }) => ({
+    ...state,
+    title: payload
+  }),
+  SET_DESCRIPTION: (state, { payload }) => ({
+    ...state,
+    description: payload
   })
 }, {
-  component: 'home'
+  component: 'home',
+  loading: false,
+  title: 'RuneLite',
+  description: ''
 })
+
+export const startLoading = createAction('START_LOADING')
+export const stopLoading = createAction('STOP_LOADING')
+export const setTitle = createAction('SET_TITLE')
+export const setDescription = createAction('SET_DESCRIPTION')

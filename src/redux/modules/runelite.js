@@ -2,6 +2,7 @@ import * as R from 'ramda'
 import { createAction, handleActions } from 'redux-actions'
 import { createRoutine } from 'redux-routines'
 import { createSelector } from 'reselect'
+import { startLoading, stopLoading } from './app'
 import { getReleases } from './git'
 import api from '../../api'
 import skills from '../../_data/skills'
@@ -57,77 +58,68 @@ const getLatestVersion = async (dispatch) => {
 
 // Action creators
 export const getSessionCount = createAction(getSessionCountRoutine.TRIGGER, () => async (dispatch) => {
-  try {
-    dispatch(getSessionCountRoutine.request())
-    const version = await getLatestVersion(dispatch)
+  dispatch(startLoading())
+  const version = await getLatestVersion(dispatch)
 
-    const response = await runeliteApi.wrapFailure(dispatch, runeliteApi.fetch(
-      `runelite-${version}/session/count`, { method: 'GET' }
-    ))
+  const response = await runeliteApi(
+    `runelite-${version}/session/count`, { method: 'GET' }
+  )
 
-    dispatch(getSessionCountRoutine.success(response))
-    return response
-  } catch (e) {
-    dispatch(getSessionCountRoutine.failure(e))
-  } finally {
-    dispatch(getSessionCountRoutine.fulfill())
-  }
+  dispatch(getSessionCountRoutine.success(response))
+  dispatch(stopLoading())
+  return response
 })
 
-export const getXpRange = createAction(getSessionCountRoutine.TRIGGER, ({skill, name, start, end}) => async (dispatch) => {
-  try {
-    const endDate = end === 'now' ? new Date() : new Date(end)
-    let startDate = new Date(start)
+export const getXpRange = createAction(getXpRangeRoutine.TRIGGER, ({skill, name, start, end}) => async (dispatch) => {
+  dispatch(startLoading())
+  const endDate = end === 'now' ? new Date() : new Date(end)
+  let startDate = new Date(start)
 
-    if (isNaN(startDate)) {
-      const parsed = start.match(/(\d+)(\w+)/)
-      startDate = moment(endDate).subtract(parsed[1], parsed[2]).toDate()
-    } else {
-      startDate = new Date(start)
-    }
+  if (isNaN(startDate)) {
+    const parsed = start.match(/(\d+)(\w+)/)
+    startDate = moment(endDate).subtract(parsed[1], parsed[2]).toDate()
+  } else {
+    startDate = new Date(start)
+  }
 
-    dispatch(getXpRangeRoutine.request({
-      start: startDate,
-      end: endDate,
-      name,
-      skill
-    }))
+  dispatch(getXpRangeRoutine.request({
+    start: startDate,
+    end: endDate,
+    name,
+    skill
+  }))
 
-    const version = await getLatestVersion(dispatch)
-    const dayXps = []
+  const version = await getLatestVersion(dispatch)
+  const dayXps = []
 
-    for (let momDate = moment(startDate); momDate.diff(endDate) <= 0; momDate.add(1, 'days')) {
-      const date = momDate.toDate()
-      const dateString = date.toISOString()
+  for (let momDate = moment(startDate); momDate.diff(endDate) <= 0; momDate.add(1, 'days')) {
+    const date = momDate.toDate()
+    const dateString = date.toISOString()
 
-      const dayResponse = await runeliteApi.wrapFailure(dispatch, runeliteApi.fetch(
-        `runelite-${version}/xp/get?username=${name}&time=${dateString}`, { method: 'GET' }
-      ))
-
-      const formattedResponse = {
-        date,
-        ...dayResponse
-      }
-
-      dispatch(getXpRoutine.success(formattedResponse))
-      dayXps.push(formattedResponse)
-    }
+    const dayResponse = await runeliteApi(
+      `runelite-${version}/xp/get?username=${name}&time=${dateString}`, { method: 'GET' }
+    )
 
     const formattedResponse = {
-      name,
-      skill,
-      start: startDate,
-      end: endDate,
-      xp: dayXps
+      date,
+      ...dayResponse
     }
 
-    dispatch(getXpRangeRoutine.success(formattedResponse))
-    return formattedResponse
-  } catch (e) {
-    dispatch(getXpRangeRoutine.failure(e))
-  } finally {
-    dispatch(getXpRangeRoutine.fulfill())
+    dispatch(getXpRoutine.success(formattedResponse))
+    dayXps.push(formattedResponse)
   }
+
+  const formattedResponse = {
+    name,
+    skill,
+    start: startDate,
+    end: endDate,
+    xp: dayXps
+  }
+
+  dispatch(getXpRangeRoutine.success(formattedResponse))
+  dispatch(stopLoading())
+  return formattedResponse
 })
 
 const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1)

@@ -1,6 +1,5 @@
 import {applyMiddleware, createStore, combineReducers, compose} from 'redux'
 import { connectRoutes } from 'redux-first-router'
-import { loadingBarReducer, loadingBarMiddleware } from 'react-redux-loading-bar'
 import thunkMiddleware from './middleware/thunkMiddleware'
 import rootReducer from './reducer'
 import routes from './routes'
@@ -18,15 +17,11 @@ const configureStore = (history, initialState) => {
   // Combine all reducers
   const reducers = combineReducers({
     ...rootReducer,
-    location: reducer,
-    loadingBar: loadingBarReducer
+    location: reducer
   })
 
   // Apply all middlewares
   const middlewares = applyMiddleware(
-    loadingBarMiddleware({
-      promiseTypeSuffixes: ['REQUEST', 'FULFILL', 'FULFILL']
-    }),
     thunkMiddleware,
     middleware
   )

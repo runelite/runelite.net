@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#000000">
     <meta name="google-site-verification" content="_wxrTRAcgx3bHof630x75_YKSXklUH55NkOAA_5GfmU" />
     <!--
-    favicons
+      favicons
     -->
     <link rel="apple-touch-icon" sizes="120x120" href="%PUBLIC_URL%/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png">
@@ -15,73 +15,21 @@
     <link rel="mask-icon" href="%PUBLIC_URL%/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#0d0b0a">
     <meta name="theme-color" content="#ffffff">
-	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.includes"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.includes"></script>
+    <script>
+      history.replaceState(null, null, sessionStorage.redirect)
+      delete sessionStorage.redirect
+    </script>
     <!--
-    small hack to allow us having full screen images/backgrounds etc
-    -->
-    <style type="text/css">
-      html, body, #root {
-        height: 100%!important;
-      }
-      pre {
-        background: #f6f8fa;
-        padding: 16px;
-        overflow: auto;
-        font-size: 85%;
-        line-height: 1.45;
-      }
-      .dropdown:hover .dropdown-menu {
-        display: block;
-      }
-      #navbar-toggle-cbox {
-        display:none
-      }
-      #navbar-toggle-cbox:checked ~ .collapse {
-        display: block;
-      }
-    </style>
-    <!--
-    Notice the use of %PUBLIC_URL% in the tags above.
-    It will be replaced with the URL of the `public` folder during the build.
-    Only files inside the `public` folder can be referenced from the HTML.
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-    Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-    work correctly both with client-side routing and a non-root public URL.
-    Learn how to configure a non-root public URL by running `npm run build`.
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>RuneLite</title>
-
-		<!-- Start Single Page Apps for GitHub Pages -->
-		<script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // https://github.com/rafrex/spa-github-pages
-      // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
-      // ----------------------------------------------------------------------
-      // This script checks to see if a redirect is present in the query string
-      // and converts it back into the correct url and adds it to the
-      // browser's history using window.history.replaceState(...),
-      // which won't cause the browser to attempt to load the new url.
-      // When the single page app is loaded further down in this file,
-      // the correct url will be waiting in the browser's history for
-      // the single page app to route accordingly.
-      (function(l) {
-        if (l.search) {
-          var q = {};
-          l.search.slice(1).split('&').forEach(function(v) {
-            var a = v.split('=');
-            q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-          });
-          if (q.p !== undefined) {
-            window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + (q.p || '') +
-              (q.q ? ('?' + q.q) : '') +
-              l.hash
-            );
-          }
-        }
-      }(window.location))
-		</script>
-    <!-- End Single Page Apps for GitHub Pages -->
   </head>
   <body>
     <noscript>
@@ -89,14 +37,14 @@
     </noscript>
     <div id="root"></div>
     <!--
-    This HTML file is a template.
-    If you open it directly in the browser, you will see an empty page.
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-    You can add webfonts, meta tags, or analytics to this file.
-    The build step will place the bundled scripts into the <body> tag.
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
-      -->
-    </body>
-  </html>
+    -->
+  </body>
+</html>
