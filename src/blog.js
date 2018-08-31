@@ -1,19 +1,18 @@
-const context = require.context(
-  '!markdown-with-front-matter-loader!./_posts',
-  false,
-  /.md$/
-)
+import * as posts from './_posts/*.md'
 
-const blog = context
-  .keys()
+const blog = Object.keys(posts)
   .sort()
   .reverse()
   .reduce((memo, fileName) => {
     // Get data
-    const md = context(fileName)
+    const parsed = posts[fileName]
+    const md = {
+      ...parsed.attributes,
+      __content: parsed.body
+    }
 
-    // Remove cd and extension
-    fileName = fileName.match(/\.\/([\w\d-.]+)\.md/)[1]
+    // Update filename
+    fileName = fileName.substr(1).replace(/__/g, '.').replace(/_/g, '-')
 
     // Extract date and path
     const tokenizedFilename = fileName.match(

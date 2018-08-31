@@ -1,4 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
+import logger from 'redux-logger'
 import { router5Reducer } from 'redux-router5'
 import thunkMiddleware from './middleware/thunk-middleware'
 import rootReducer from './modules'
@@ -10,26 +11,14 @@ export default () => {
   // Create middlewares
   const middlewares = [thunkMiddleware]
 
-  if (process.env.NODE_ENV === `development`) {
-    const { logger } = require(`redux-logger`)
+  // Add logger
+  if (process.env.NODE_ENV === 'development') {
     middlewares.push(logger)
   }
 
   // Create our store from rootReducer and initial state
-  const store = createStore(
+  return createStore(
     combineReducers({ ...rootReducer, router: router5Reducer }),
     applyMiddleware(...middlewares)
   )
-
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./modules/index', () => {
-      const nextRootReducer = require('./modules').default
-      store.replaceReducer(
-        combineReducers({ ...nextRootReducer, router: router5Reducer })
-      )
-    })
-  }
-
-  return store
 }

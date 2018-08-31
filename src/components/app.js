@@ -1,14 +1,18 @@
 /** @jsx h */
-import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { h } from 'preact'
 import { connect } from 'preact-redux'
+import { constants } from 'router5'
 import { createRouteNodeSelector } from 'redux-router5'
 import './app.css'
 import Navigation from './navigation'
+import * as routes from '../routes/*.js'
 
 const App = ({ route, loading }) => {
-  const Route = require(`../routes/${route.name}`).default
+  const Route =
+    route.name === constants.UNKNOWN_ROUTE
+      ? routes['_not_found']
+      : routes['_' + route.name.replace('-', '_')]
 
   return (
     <div style={{ height: '100%' }}>

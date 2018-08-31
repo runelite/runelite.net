@@ -4,7 +4,7 @@ import hero from '../_data/hero'
 import Link from '../components/link'
 import Meta from '../components/meta'
 
-const Error404 = () => (
+const NotFound = () => (
   <div
     style={{
       backgroundImage: 'url(/img/cat.jpg)',
@@ -39,4 +39,4 @@ const Error404 = () => (
   </div>
 )
 
-export default Error404
+export default NotFound
