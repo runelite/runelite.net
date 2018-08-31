@@ -8,7 +8,8 @@ export default [
   {
     image: '/img/features/grounditems.png',
     title: 'Ground items',
-    description: 'Hides, highlights, and adds filterable price colors to dropped items.',
+    description:
+      'Hides, highlights, and adds filterable price colors to dropped items.',
     link: 'https://github.com/runelite/runelite/wiki/Ground-Items'
   },
   {
@@ -38,7 +39,8 @@ export default [
   {
     image: '/img/features/cluescroll.png',
     title: 'Clue scroll helper',
-    description: 'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues.',
+    description:
+      'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues.',
     link: 'https://github.com/runelite/runelite/wiki/Clue-Scrolls'
   },
   {
@@ -50,7 +52,8 @@ export default [
   {
     image: '/img/features/playerindicators.png',
     title: 'Player indicators',
-    description: 'Draws the names of friends, clan mates and yourself overhead.',
+    description:
+      'Draws the names of friends, clan mates and yourself overhead.',
     link: 'https://github.com/runelite/runelite/wiki/Player-Indicators'
   },
   {
@@ -62,13 +65,15 @@ export default [
   {
     image: '/img/features/globes.png',
     title: 'XP globes',
-    description: 'Displays skill globes when you gain XP, with more detailed stats on hover.',
+    description:
+      'Displays skill globes when you gain XP, with more detailed stats on hover.',
     link: 'https://github.com/runelite/runelite/wiki/XP-Globes'
   },
   {
     image: '/img/features/idle.png',
     title: 'Idle notifications',
-    description: 'Sends system tray alerts when idle or about to be logged out.',
+    description:
+      'Sends system tray alerts when idle or about to be logged out.',
     link: 'https://github.com/runelite/runelite/wiki/Idle-Notifier'
   },
   {
@@ -86,7 +91,8 @@ export default [
   {
     image: '/img/features/agility.png',
     title: 'Agility',
-    description: 'Displays clickboxes for agility courses, and counts the number of laps you have done.',
+    description:
+      'Displays clickboxes for agility courses, and counts the number of laps you have done.',
     link: 'https://github.com/runelite/runelite/wiki/Agility'
   },
   {
@@ -98,25 +104,28 @@ export default [
   {
     image: '/img/features/cannon.png',
     title: 'Dwarf multicannon',
-    description: 'Displays the number of cannonballs left in your cannon, along with common cannon spots.',
+    description:
+      'Displays the number of cannonballs left in your cannon, along with common cannon spots.',
     link: 'https://github.com/runelite/runelite/wiki/Cannon'
   },
   {
     image: '/img/features/chatcommands.png',
     title: 'Chat commands',
-    description: 'Allows easy lookup of !level(s) and !price(s) from the chat box.',
+    description:
+      'Allows easy lookup of !level(s) and !price(s) from the chat box.',
     link: 'https://github.com/runelite/runelite/wiki/Chat-Commands'
   },
   {
     image: '/img/features/clanchat.png',
     title: 'Clan chat',
-    description: 'Adds the sender\'s rank to clan chat messages.',
+    description: "Adds the sender's rank to clan chat messages.",
     link: 'https://github.com/runelite/runelite/wiki/Clan-Chat'
   },
   {
     image: '/img/features/discord.png',
     title: 'Discord integration',
-    description: 'Integrates with Discord\'s Rich Presence to display what you\'re doing in the game.',
+    description:
+      "Integrates with Discord's Rich Presence to display what you're doing in the game.",
     link: 'https://github.com/runelite/runelite/wiki/Discord',
     home: true
   },
@@ -135,7 +144,8 @@ export default [
   {
     image: '/img/features/lowdetail.png',
     title: 'Low detail mode',
-    description: 'Enables low detail mode, removing some of the game\'s eye candy.',
+    description:
+      "Enables low detail mode, removing some of the game's eye candy.",
     link: 'https://github.com/runelite/runelite/wiki/Low-Detail'
   },
   {
@@ -171,13 +181,15 @@ export default [
   {
     image: '/img/features/barrows.png',
     title: 'Barrows',
-    description: 'Displays minimap information for the tunnel and marks the location of brothers.',
+    description:
+      'Displays minimap information for the tunnel and marks the location of brothers.',
     link: 'https://github.com/runelite/runelite/wiki/Barrows-Brothers'
   },
   {
     image: '/img/features/nmz.png',
     title: 'Nightmare Zone',
-    description: 'Displays NMZ points/absorption and notifies you about expiring potions.',
+    description:
+      'Displays NMZ points/absorption and notifies you about expiring potions.',
     link: 'https://github.com/runelite/runelite/wiki/Nightmare-Zone'
   },
   {
@@ -189,20 +201,22 @@ export default [
   },
   {
     image: '/img/features/roguesden.png',
-    title: 'Rogues\' Den',
+    title: "Rogues' Den",
     description: 'Marks tiles and clickboxes to help you traverse the maze.',
     link: 'https://github.com/runelite/runelite/wiki/Rogues%27-Den'
   },
   {
     image: '/img/features/raids.png',
     title: 'Raid scouter',
-    description: 'Displays the current layout of raids and tracks the raid duration.',
+    description:
+      'Displays the current layout of raids and tracks the raid duration.',
     link: 'https://github.com/runelite/runelite/wiki/Chambers-of-Xeric'
   },
   {
     image: '/img/features/blastfurnace.png',
     title: 'Blast Furnace',
-    description: 'Shows your current bars/ores and marks the clickbox of the conveyor belt.',
+    description:
+      'Shows your current bars/ores and marks the clickbox of the conveyor belt.',
     link: 'https://github.com/runelite/runelite/wiki/Blast-Furnace'
   },
   {
@@ -226,7 +240,8 @@ export default [
   {
     image: '/img/features/cannontiles.png',
     title: 'Cannon double hit spots',
-    description: 'Shows you where to position enemies for double cannonball hits.',
+    description:
+      'Shows you where to position enemies for double cannonball hits.',
     link: 'https://github.com/runelite/runelite/wiki/Cannon'
   },
   {
@@ -238,19 +253,22 @@ export default [
   {
     image: '/img/features/newsfeed.png',
     title: 'News feed',
-    description: 'Displays the latest RuneLite blog posts, OldSchool RuneScape news, and a Twitter feed of JMods.',
+    description:
+      'Displays the latest RuneLite blog posts, OldSchool RuneScape news, and a Twitter feed of JMods.',
     link: 'https://github.com/runelite/runelite/wiki/News-Feed'
   },
   {
     image: '/img/features/stretchedfixed.png',
     title: 'Stretched fixed mode',
-    description: 'Stretches the game to the size of your window while in fixed mode.',
+    description:
+      'Stretches the game to the size of your window while in fixed mode.',
     link: 'https://github.com/runelite/runelite/wiki/Stretched-Fixed-Mode'
   },
   {
     image: '/img/features/regen.png',
     title: 'Regen timers',
-    description: 'Tracks and displays the hitpoints & special attack regen timers.',
+    description:
+      'Tracks and displays the hitpoints & special attack regen timers.',
     link: 'https://github.com/runelite/runelite/wiki/Regeneration-Meter'
   },
   {
@@ -262,7 +280,8 @@ export default [
   {
     image: '/img/features/bankeval.png',
     title: 'Bank evaluator',
-    description: 'Displays your bank\'s total value based on GE and alch prices.',
+    description:
+      "Displays your bank's total value based on GE and alch prices.",
     link: 'https://github.com/runelite/runelite/wiki/Bank-Value'
   },
   {
@@ -274,7 +293,8 @@ export default [
   {
     image: '/img/features/herbiboar.png',
     title: 'Herbiboar',
-    description: 'Highlights the path and objects to search at the end of the trail.',
+    description:
+      'Highlights the path and objects to search at the end of the trail.',
     link: 'https://github.com/runelite/runelite/wiki/Herbiboar'
   },
   {
@@ -286,24 +306,28 @@ export default [
   {
     image: '/img/features/tithefarm.png',
     title: 'Tithe Farm',
-    description: 'Displays timers for the farming patches within the Tithe farm minigame.',
+    description:
+      'Displays timers for the farming patches within the Tithe farm minigame.',
     link: 'https://github.com/runelite/runelite/wiki/Tithe-Farm'
   },
   {
     image: '/img/features/moveableoverlay.png',
     title: 'Custom overlay position',
-    description: 'Allows you to move RuneLite overlays to any position on the screen.'
+    description:
+      'Allows you to move RuneLite overlays to any position on the screen.'
   },
   {
     image: '/img/features/daily.png',
     title: 'Daily task indicators',
-    description: 'Notifies you on login what daily tasks you are able to complete.',
+    description:
+      'Notifies you on login what daily tasks you are able to complete.',
     link: 'https://github.com/runelite/runelite/wiki/Daily-Task-Indicator'
   },
   {
     image: '/img/features/favor.png',
     title: 'Miscellania favor',
-    description: 'Displays your current favor and treasury in the Kingdom of Miscellania.',
+    description:
+      'Displays your current favor and treasury in the Kingdom of Miscellania.',
     link: 'https://github.com/runelite/runelite/wiki/Kingdom-of-Miscellania'
   },
   {

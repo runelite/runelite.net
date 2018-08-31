@@ -1,6 +1,9 @@
-html, body, #root {
-  height: 100%!important;
+html,
+body,
+#root {
+  height: 100% !important;
 }
+
 pre {
   background: #f6f8fa;
   padding: 16px;
@@ -8,12 +11,15 @@ pre {
   font-size: 85%;
   line-height: 1.45;
 }
+
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
 #navbar-toggle-cbox {
-  display:none
+  display: none;
 }
+
 #navbar-toggle-cbox:checked ~ .collapse {
   display: block;
 }
@@ -43,20 +49,38 @@ pre {
   z-index: 9999;
 }
 
-@keyframes horizontalProgressBar
-{
-  0%   {width: 0%;}
-  25%  {width: 22%;}
-  50%  {width: 55%;}
-  75%  {width: 83%;}
-  100% {width:100%;}
+@keyframes horizontalProgressBar {
+  0% {
+    width: 0%;
+  }
+  25% {
+    width: 22%;
+  }
+  50% {
+    width: 55%;
+  }
+  75% {
+    width: 83%;
+  }
+  100% {
+    width: 100%;
+  }
 }
 
-@-webkit-keyframes horizontalProgressBar /* Safari and Chrome */
-{
-  0%   {width: 0%;}
-  25%  {width: 22%;}
-  50%  {width: 55%;}
-  75%  {width: 83%;}
-  100% {width:100%;}
+@-webkit-keyframes horizontalProgressBar /* Safari and Chrome */ {
+  0% {
+    width: 0%;
+  }
+  25% {
+    width: 22%;
+  }
+  50% {
+    width: 55%;
+  }
+  75% {
+    width: 83%;
+  }
+  100% {
+    width: 100%;
+  }
 }

@@ -1,53 +1,103 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import { NavLink } from 'redux-first-router-link'
+/** @jsx h */
+import { h } from 'preact'
+import { connect } from 'preact-redux'
 import hero from '../_data/hero'
 import links from '../_data/links'
-import {stargazersSelector} from '../redux/modules/git'
+import { stargazersSelector } from '../modules/git'
+import Link from './link'
 
 const Navigation = ({ stars, dark }) => (
-  <nav className={'navbar navbar-expand-md fixed-top ' + (dark ? 'navbar-dark' : 'navbar-light bg-white')} style={{
-    background: dark ? 'linear-gradient(rgba(0,0,0,0.7) 40%, transparent)' : ''
-  }}>
-    <NavLink className='navbar-brand' to='/'><img src={hero.logo} alt='Logo' width='30' height='30' /> Home</NavLink>
+  <nav
+    class={
+      'navbar navbar-expand-md fixed-top ' +
+      (dark ? 'navbar-dark' : 'navbar-light bg-white')
+    }
+    style={{
+      background: dark
+        ? 'linear-gradient(rgba(0,0,0,0.7) 40%, transparent)'
+        : ''
+    }}
+  >
+    <Link class='navbar-brand' routeName='home'>
+      <img src={hero.logo} alt='Logo' width='30' height='30' /> Home
+    </Link>
     <input type='checkbox' id='navbar-toggle-cbox' />
-    <label for='navbar-toggle-cbox' className='navbar-toggler' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
-      <span className='navbar-toggler-icon' />
+    <label
+      htmlFor='navbar-toggle-cbox'
+      class='navbar-toggler'
+      data-toggle='collapse'
+      data-target='#navbar'
+      aria-expanded='false'
+      aria-controls='navbar'
+    >
+      <span class='navbar-toggler-icon' />
     </label>
-    <div className='collapse navbar-collapse' id='navbar'>
-      <ul className='navbar-nav'>
-        <li className='nav-item'>
-          <NavLink className='nav-link' to='/features'><i className='fas fa-cogs' /> Features</NavLink>
+    <div class='collapse navbar-collapse' id='navbar'>
+      <ul class='navbar-nav'>
+        <li class='nav-item'>
+          <Link class='nav-link' routeName='features'>
+            <i class='fas fa-cogs' /> Features
+          </Link>
         </li>
-        <li className='nav-item'>
-          <NavLink className='nav-link' to='/blog'><i className='fas fa-newspaper' /> Blog</NavLink>
+        <li class='nav-item'>
+          <Link class='nav-link' routeName='blog'>
+            <i class='fas fa-newspaper' /> Blog
+          </Link>
         </li>
-        <li className='nav-item'>
-          <a className='nav-link' href='https://github.com/runelite/runelite/wiki'><i className='fas fa-file-alt' /> Wiki</a>
-        </li>
-        <li className='nav-item dropdown'>
-          <a className='nav-link dropdown-toggle' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-            <i className='fas fa-font' /> API
+        <li class='nav-item'>
+          <a class='nav-link' href='https://github.com/runelite/runelite/wiki'>
+            <i class='fas fa-file-alt' /> Wiki
           </a>
-          <div className='dropdown-menu' aria-labelledby='navbarDropdown'>
-            <a className='dropdown-item' href='https://static.runelite.net/api/runelite-api/'>RuneLite API</a>
-            <a className='dropdown-item' href='https://static.runelite.net/api/runelite-client/'>RuneLite Client API</a>
+        </li>
+        <li class='nav-item dropdown'>
+          <a
+            class='nav-link dropdown-toggle'
+            id='navbarDropdown'
+            role='button'
+            data-toggle='dropdown'
+            aria-haspopup='true'
+            aria-expanded='false'
+          >
+            <i class='fas fa-font' /> API
+          </a>
+          <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+            <a
+              class='dropdown-item'
+              href='https://static.runelite.net/api/runelite-api/'
+            >
+              RuneLite API
+            </a>
+            <a
+              class='dropdown-item'
+              href='https://static.runelite.net/api/runelite-client/'
+            >
+              RuneLite Client API
+            </a>
           </div>
         </li>
-        <li className='nav-item'>
-          <a className='nav-link' href={links.discord}><i className='fab fa-discord' /> Discord</a>
+        <li class='nav-item'>
+          <a class='nav-link' href={links.discord}>
+            <i class='fab fa-discord' /> Discord
+          </a>
         </li>
       </ul>
-      <ul className='navbar-nav ml-auto'>
-        <li className='nav-item'>
-          <a className='nav-link' href={links.patreon}><i className='fab fa-patreon' /> Become a patron</a>
+      <ul class='navbar-nav ml-auto'>
+        <li class='nav-item'>
+          <a class='nav-link' href={links.patreon}>
+            <i class='fab fa-patreon' /> Become a patron
+          </a>
         </li>
-        <li className='nav-item'>
-          <a className='nav-link' href='https://github.com/runelite'><i className='fab fa-github' /> GitHub</a>
+        <li class='nav-item'>
+          <a class='nav-link' href='https://github.com/runelite'>
+            <i class='fab fa-github' /> GitHub
+          </a>
         </li>
-        <li className='nav-item'>
-          <a className='nav-link' href='https://github.com/runelite/runelite/stargazers'>
-            <i className='fas fa-star' /> {stars} Stargazers
+        <li class='nav-item'>
+          <a
+            class='nav-link'
+            href='https://github.com/runelite/runelite/stargazers'
+          >
+            <i class='fas fa-star' /> {stars} Stargazers
           </a>
         </li>
       </ul>
@@ -55,9 +105,7 @@ const Navigation = ({ stars, dark }) => (
   </nav>
 )
 
-export default connect(
-  (state, props) => ({
-    stars: stargazersSelector(state, props),
-    ...state.navigation
-  })
-)(Navigation)
+export default connect((state, props) => ({
+  stars: stargazersSelector(state, props),
+  ...state.navigation
+}))(Navigation)

@@ -1,10 +1,11 @@
-import React from 'react'
+/** @jsx h */
 import platform from 'platform'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 import * as R from 'ramda'
+import { bindActionCreators } from 'redux'
+import { changeStyle } from '../modules/navigation'
 import Commit from './commit'
-import {changeStyle} from '../redux/modules/navigation'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
 
 function isOsCorrect (osName) {
   if (!platform.os.family) {
@@ -25,7 +26,7 @@ function isOsCorrect (osName) {
   return osName === family
 }
 
-class Hero extends React.Component {
+class Hero extends Component {
   constructor (props) {
     super(props)
     this.updateBackground = this.updateBackground.bind(this)
@@ -51,7 +52,8 @@ class Hero extends React.Component {
     const jumboBottom = jumbo.offsetTop + jumbo.offsetHeight
     const navbar = document.getElementsByClassName('navbar')[0]
     const fromTop = jumboBottom - navbar.offsetHeight
-    const stop = window.scrollY || window.pageYOffset || document.body.scrollTop
+    const stop =
+      window.scrollY || window.pageYOffset || document.body.scrollTop
     this.props.changeStyle(stop <= fromTop)
   }
 
@@ -99,19 +101,25 @@ class Hero extends React.Component {
 
     let regularButtons = R.filter(button => !button.dropdown)(buttons)
     const dropdownButtons = R.filter(button => button.dropdown)(buttons)
-    const defaultDropdownItem = R.find(button => button.os === 'all')(dropdownButtons)
-    const mainDropdownItem = R.find(button => isOsCorrect(button.os))(dropdownButtons) || defaultDropdownItem
+    const defaultDropdownItem = R.find(button => button.os === 'all')(
+      dropdownButtons
+    )
+    const mainDropdownItem =
+      R.find(button => isOsCorrect(button.os))(dropdownButtons) ||
+      defaultDropdownItem
 
     if (defaultDropdownItem !== mainDropdownItem) {
       regularButtons = R.prepend(defaultDropdownItem)(regularButtons)
     }
 
     return (
-      <div className='jumbotron jumbotron-fluid' style={style} id='jumbo'>
-        <div style={{
-          display: 'table-cell',
-          verticalAlign: 'bottom'
-        }}>
+      <div class='jumbotron jumbotron-fluid' style={style} id='jumbo'>
+        <div
+          style={{
+            display: 'table-cell',
+            verticalAlign: 'bottom'
+          }}
+        >
           <style>
             {`
             .navbar-dark .navbar-nav .nav-link {
@@ -120,40 +128,61 @@ class Hero extends React.Component {
             }
             `}
           </style>
-          <div style={{maxWidth: '1000px', padding: 25, paddingLeft: 50}}>
-            <h1 className='display-2'>
-              {title}
-            </h1>
-            <p className='lead'>{description}</p>
-            <p className='lead'>
-              <div className='btn-group dropdown'>
-                <a type='button' className={'btn btn-' + mainDropdownItem.color} href={mainDropdownItem.link}>
-                  <i className={mainDropdownItem.icon} /> {mainDropdownItem.text}
+          <div style={{ maxWidth: '1000px', padding: 25, paddingLeft: 50 }}>
+            <h1 class='display-2'>{title}</h1>
+            <p class='lead'>{description}</p>
+            <p class='lead'>
+              <div class='btn-group dropdown'>
+                <a
+                  type='button'
+                  class={'btn btn-' + mainDropdownItem.color}
+                  href={mainDropdownItem.link}
+                  native
+                >
+                  <i class={mainDropdownItem.icon} /> {mainDropdownItem.text}
                 </a>
-                <button type='button' className={'btn dropdown-toggle dropdown-toggle-split btn-' + mainDropdownItem.color} data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                  <span className='sr-only'>Toggle Dropdown</span>
+                <button
+                  type='button'
+                  class={
+                    'btn dropdown-toggle dropdown-toggle-split btn-' +
+                    mainDropdownItem.color
+                  }
+                  data-toggle='dropdown'
+                  aria-haspopup='true'
+                  aria-expanded='false'
+                >
+                  <span class='sr-only'>Toggle Dropdown</span>
                 </button>
-                <div className='dropdown-menu' style={{ textShadow: 'none' }}>
-                  {dropdownButtons.map(({link, icon, text}) => (
-                    <a className='dropdown-item' href={link}>
-                      <i className={icon} /> {text}
+                <div class='dropdown-menu' style={{ textShadow: 'none' }}>
+                  {dropdownButtons.map(({ link, icon, text }) => (
+                    <a class='dropdown-item' href={link} native>
+                      <i class={icon} /> {text}
                     </a>
                   ))}
                 </div>
               </div>
-              {regularButtons.map(({link, color, icon, text}) => (
+              {regularButtons.map(({ link, color, icon, text }) => (
                 <span key={link}>
                   {' '}
-                  <a type='button' className={'btn btn-' + color} href={link}>
-                    <i className={icon} /> {text}
+                  <a
+                    type='button'
+                    class={'btn btn-' + color}
+                    href={link}
+                    native
+                  >
+                    <i class={icon} /> {text}
                   </a>
-                  <br style={{ marginBottom: 10 }} className='d-md-none' />
+                  <br style={{ marginBottom: 10 }} class='d-md-none' />
                 </span>
               ))}
             </p>
-            <div className='small'>
+            <div class='small'>
               <Commit {...commit} />
-              <b>Latest release:</b> <a href='#news' style={{color: 'cyan'}}>{release || 'unknown'}</a><br />
+              <b>Latest release:</b>{' '}
+              <a href='#news' style={{ color: 'cyan' }}>
+                {release || 'unknown'}
+              </a>
+              <br />
               <b>Players online:</b> {playing || 'unknown'}
             </div>
           </div>
@@ -164,6 +193,6 @@ class Hero extends React.Component {
 }
 
 export default connect(
-  (state) => state,
-  (dispatch) => bindActionCreators({ changeStyle }, dispatch)
+  state => state,
+  dispatch => bindActionCreators({ changeStyle }, dispatch)
 )(Hero)
