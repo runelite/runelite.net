@@ -55,7 +55,7 @@
     "standard": "^12.0.1"
   },
   "scripts": {
-    "fix": "prettier --single-quote --trailing-comma none --write {*,src/**/*}.{js,json,css,md} && standard --fix",
+    "fix": "prettier --single-quote --trailing-comma none --write {*,public/*,src/**/*}.{js,json,css,md} && standard --fix",
     "lint": "standard",
     "gen": "node generate-feed.js",
     "render": "react-snap",
