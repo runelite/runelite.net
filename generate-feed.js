@@ -1,7 +1,7 @@
-const jstoxml = require('jstoxml')
 const fs = require('fs')
 const path = require('path')
-const MarkdownIt = require('markdown-it')
+const jstoxml = require('jstoxml')
+const markdownIt = require('markdown-it')
 const frontmatter = require('front-matter')
 const hero = require('./src/_data/hero')
 
@@ -9,7 +9,7 @@ const postsFolder = path.join('src', '_posts')
 const now = new Date()
 
 // Prepare markdown renderer to be xhtml-compatible
-const md = MarkdownIt({
+const md = markdownIt({
   html: true,
   linkify: true,
   typographer: true,
@@ -17,8 +17,8 @@ const md = MarkdownIt({
 })
 
 // Escape html
-const escapeHtml = (unsafe) => {
-  return unsafe.replace(/[&<"']/g, (m) => {
+const escapeHtml = unsafe => {
+  return unsafe.replace(/[&<"']/g, m => {
     switch (m) {
       case '&':
         return '&amp;'
@@ -33,32 +33,37 @@ const escapeHtml = (unsafe) => {
 }
 
 // Read each file in posts folder and convert it to json-formatted meta tags
-const posts = fs.readdirSync(postsFolder)
+const posts = fs
+  .readdirSync(postsFolder)
   .map(fileName => {
-    // setup path to file
+    // Setup path to file
     const filePath = path.join(postsFolder, fileName)
 
-    // read the content of the file
+    // Read the content of the file
     const fileContent = fs.readFileSync(filePath, 'utf-8')
 
-    // extract front-matter context
+    // Extract front-matter context
     const frontMatterContext = frontmatter(fileContent)
 
-    // remove cd and extension
+    // Remove cd and extension
     fileName = fileName.match(/([\w\d-.]+)\.md/)[1]
 
-    // extract year and path
-    const tokenizedFilename = fileName.match(/^(\d{4}-\d{2}-\d{2})-(\d{2}-\d{2})(.*)/)
+    // Extract year and path
+    const tokenizedFilename = fileName.match(
+      /^(\d{4}-\d{2}-\d{2})-(\d{2}-\d{2})(.*)/
+    )
 
-    // validation
-    if (!tokenizedFilename &&
+    // Validation
+    if (
+      !tokenizedFilename &&
       !tokenizedFilename[1] &&
       !tokenizedFilename[2] &&
-      !tokenizedFilename[3]) {
+      !tokenizedFilename[3]
+    ) {
       throw new Error('no ^YYYY-MM-DD-HH-mm date in blog filename')
     }
 
-    // extract date
+    // Extract date
     const date = tokenizedFilename[1]
     const time = tokenizedFilename[2]
     const name = tokenizedFilename[3]
@@ -66,28 +71,31 @@ const posts = fs.readdirSync(postsFolder)
     const dateTime = date + '-' + time
     const dateArray = dateTime.split('-')
 
-    // parse date
-    const dateObject = new Date(Date.UTC(
-      // Year
-      parseInt(dateArray[0]),
-      // Month
-      parseInt(dateArray[1]) - 1,
-      // Day
-      parseInt(dateArray[2]),
-      // Hour
-      parseInt(dateArray[3]),
-      // Minute
-      parseInt(dateArray[4])))
+    // Parse date
+    const dateObject = new Date(
+      Date.UTC(
+        // Year
+        parseInt(dateArray[0], 10),
+        // Month
+        parseInt(dateArray[1], 10) - 1,
+        // Day
+        parseInt(dateArray[2], 10),
+        // Hour
+        parseInt(dateArray[3], 10),
+        // Minute
+        parseInt(dateArray[4], 10)
+      )
+    )
 
-    // extract metadata
+    // Extract metadata
     const title = escapeHtml(frontMatterContext.attributes.title)
     const description = escapeHtml(frontMatterContext.attributes.description)
     const author = escapeHtml(frontMatterContext.attributes.author)
 
-    // create required metadata
+    // Create required metadata
     const link = `${hero.url}/blog/show/${pathString}`
 
-    // build content from markdown
+    // Build content from markdown
     const content = md.render(frontMatterContext.body)
 
     return {
@@ -139,41 +147,45 @@ const posts = fs.readdirSync(postsFolder)
   .reverse()
 
 // Build the Atom XML from JSON
-const xml = jstoxml.toXML({
-  _name: 'feed',
-  _attrs: {
-    xmlns: 'http://www.w3.org/2005/Atom'
+const xml = jstoxml.toXML(
+  {
+    _name: 'feed',
+    _attrs: {
+      xmlns: 'http://www.w3.org/2005/Atom'
+    },
+    _content: [
+      {
+        title: hero.title
+      },
+      {
+        subtitle: hero.description
+      },
+      {
+        link: {
+          _attrs: {
+            href: hero.url
+          }
+        }
+      },
+      {
+        link: {
+          _attrs: {
+            href:
+              'https://raw.githubusercontent.com/runelite/runelite.net/gh-pages/atom.xml',
+            rel: 'self'
+          }
+        }
+      },
+      {
+        id: hero.url + '/'
+      },
+      {
+        updated: now.toISOString()
+      }
+    ].concat(posts)
   },
-  _content: [
-    {
-      title: hero.title
-    },
-    {
-      subtitle: hero.description
-    },
-    {
-      link: {
-        _attrs: {
-          href: hero.url
-        }
-      }
-    },
-    {
-      link: {
-        _attrs: {
-          href: 'https://raw.githubusercontent.com/runelite/runelite.net/gh-pages/atom.xml',
-          rel: 'self'
-        }
-      }
-    },
-    {
-      id: hero.url + '/'
-    },
-    {
-      updated: now.toISOString()
-    }
-  ].concat(posts)
-}, {header: true, indent: '  '})
+  { header: true, indent: '  ' }
+)
 
 // Write feed to build folder
 fs.writeFileSync(path.join('build', 'atom.xml'), xml)

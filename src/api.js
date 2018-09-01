@@ -1,6 +1,6 @@
 import * as R from 'ramda'
 
-export default (base) => {
+export default base => {
   /**
    * Fetch data, using proper JSON headers and base
    *

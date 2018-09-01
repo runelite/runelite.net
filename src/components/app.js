@@ -1,29 +1,28 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
+/** @jsx h */
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { h } from 'preact'
+import { connect } from 'preact-redux'
+import { createRouteNodeSelector } from 'redux-router5'
 import './app.css'
-import React from 'react'
-import { connect } from 'react-redux'
-import universal from 'react-universal-component'
 import Navigation from './navigation'
-import Footer from './footer'
 
-const App = ({ component, payload, loading }) => {
-  const UniversalComponent = universal(() => import(`../containers/${component}`))
+const App = ({ route, loading }) => {
+  const Route = require(`../routes/${route.name}`).default
 
   return (
     <div style={{ height: '100%' }}>
-      <div className='animated loader fixed-top' style={{ display: loading ? 'block' : 'none' }} />
+      <div
+        class='animated loader fixed-top'
+        style={{ display: loading ? 'block' : 'none' }}
+      />
       <Navigation />
-      <UniversalComponent {...payload}>
-        <Footer />
-      </UniversalComponent>
+      <Route {...route.params} />
     </div>
   )
 }
 
-export default connect(
-  (state, props) => ({
-    ...props,
-    ...state.app
-  })
-)(App)
+export default connect(state => ({
+  ...state.app,
+  ...createRouteNodeSelector('')(state)
+}))(App)

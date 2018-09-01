@@ -1,10 +1,12 @@
 const path = require('path')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const rewirePreact = require('react-app-rewire-preact')
+const rewireEslint = require('react-app-rewire-eslint')
 
-/* config-overrides.js */
+/* Config-overrides.js */
 module.exports = function override (config, env) {
   config = rewirePreact(config, env)
+  config = rewireEslint(config, env)
 
   config.plugins.push(
     new PrerenderSPAPlugin({

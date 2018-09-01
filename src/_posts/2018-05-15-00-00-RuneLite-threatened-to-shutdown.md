@@ -23,7 +23,7 @@ clients were banned. However, I do have an issue with shutting down the entire
 client while OSBuddy is allowed to operate.
 
 While I agree that RuneLite does threaten the integrity of the game, what
-threatens it even more is that I have to *buy* OSBuddy in order to gain the same
+threatens it even more is that I have to _buy_ OSBuddy in order to gain the same
 competitive advantages of other players in game. RuneLite exists to try and
 level the playing field as to who can develop on the client, of which I think it
 has done well.
