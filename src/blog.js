@@ -12,7 +12,10 @@ const blog = Object.keys(posts)
     }
 
     // Update filename
-    fileName = fileName.substr(1).replace(/__/g, '.').replace(/_/g, '-')
+    fileName = fileName
+      .substr(1)
+      .replace(/__/g, '.')
+      .replace(/_/g, '-')
 
     // Extract date and path
     const tokenizedFilename = fileName.match(

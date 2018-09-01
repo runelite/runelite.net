@@ -25,7 +25,7 @@ actions.
 
 ### Creating blog posts
 
-To create blog post, navigate to [_posts](src/_posts) directory. Here, create
+To create blog post, navigate to [\_posts](src/_posts) directory. Here, create
 file with format (where the time is UTC timezone)
 
 ```
@@ -41,7 +41,7 @@ consist of:
 + description: 'My Post description'
 + author: 'Me'
 + ---
-+ 
++
 + ... rest of markdown content
 ```
 
