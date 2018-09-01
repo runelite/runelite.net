@@ -8,6 +8,7 @@ const NotFound = () => (
   <div
     style={{
       backgroundImage: 'url(/img/cat.jpg)',
+      backgroundSize: 'cover',
       display: 'table',
       width: '100%',
       height: '100%',
