@@ -9,7 +9,7 @@ import Meta from '../components/meta'
 const BlogShow = ({ id }) => {
   const { date, title, description, author, __content } = blog.get(id) || {
     title: 'Blog post not found',
-    date: '',
+    date: new Date(),
     description: '',
     __content: ''
   }

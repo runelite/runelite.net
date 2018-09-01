@@ -13,7 +13,7 @@ const Blog = () => (
     <h1>Blog</h1>
     <hr />
     <ul class='list-group'>
-      {[...blog.keys()].map(id => {
+      {Array.from(blog.keys()).map(id => {
         const { date, title, description, author } = blog.get(id)
 
         return (

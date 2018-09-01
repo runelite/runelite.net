@@ -14,7 +14,7 @@ export const createRoute = (name, path, fns) => ({
 })
 
 export default routes => store =>
-  createRouter(routes, { defaultRoute: 'home' })
+  createRouter(routes, { allowNotFound: true })
     .setDependency('store', store)
     .useMiddleware(routerMiddleware(routes))
     .usePlugin(

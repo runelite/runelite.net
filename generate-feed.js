@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const jstoxml = require('jstoxml')
 const markdownIt = require('markdown-it')
-const frontmatter = require('front-matter')
+const fm = require('front-matter')
 const hero = require('./src/_data/hero')
 
 const postsFolder = path.join('src', '_posts')
@@ -43,7 +43,7 @@ const posts = fs
     const fileContent = fs.readFileSync(filePath, 'utf-8')
 
     // Extract front-matter context
-    const frontMatterContext = frontmatter(fileContent)
+    const frontMatterContext = fm(fileContent)
 
     // Remove cd and extension
     fileName = fileName.match(/([\w\d-.]+)\.md/)[1]
@@ -188,4 +188,4 @@ const xml = jstoxml.toXML(
 )
 
 // Write feed to build folder
-fs.writeFileSync(path.join('build', 'atom.xml'), xml)
+fs.writeFileSync(path.join('public', 'atom.xml'), xml)
