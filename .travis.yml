@@ -8,7 +8,7 @@ cache:
 # Build website
 script:
   - npm run build
-  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run render; fi
+  - npm run render && git checkout master public/404.html
 # Deploy master to gh-pages branch
 deploy:
   edge:

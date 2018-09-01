@@ -38,10 +38,17 @@ function md (options = {}) {
 }
 
 const rename = (name, id) => {
-  return name || '_' + path.basename(id, path.extname(id))
-    .replace(/-/g, '_')
-    .replace(/\./g, '__')
-    .replace(/[-+*/:;.'"`?!&~|<>^%#=@[\]{}()\s\\]+([a-z]|$)/g, (match, c) => c.toUpperCase())
+  return (
+    name ||
+    '_' +
+      path
+        .basename(id, path.extname(id))
+        .replace(/-/g, '_')
+        .replace(/\./g, '__')
+        .replace(/[-+*/:;.'"`?!&~|<>^%#=@[\]{}()\s\\]+([a-z]|$)/g, (match, c) =>
+          c.toUpperCase()
+        )
+  )
 }
 
 export default {
@@ -53,7 +60,9 @@ export default {
   },
   plugins: [
     replace({
-      'process.env.NODE_ENV': JSON.stringify(prod ? 'production' : 'development')
+      'process.env.NODE_ENV': JSON.stringify(
+        prod ? 'production' : 'development'
+      )
     }),
     resolve({ browser: true }),
     md(),
@@ -68,14 +77,17 @@ export default {
     babel({
       runtimeHelpers: true,
       exclude: 'node_modules/**',
-      presets: [['@babel/preset-env', {
-        loose: true,
-        modules: false,
-        useBuiltIns: 'entry'
-      }]],
-      plugins: [
-        ['transform-react-jsx', { pragma: 'h' }]
-      ]
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            loose: true,
+            modules: false,
+            useBuiltIns: 'entry'
+          }
+        ]
+      ],
+      plugins: [['transform-react-jsx', { pragma: 'h' }]]
     }),
     commonjs(),
     globals(),
@@ -83,10 +95,11 @@ export default {
     prod && gzip(),
     prod && filesize(),
     dev && livereload('public'),
-    dev && serve({
-      contentBase: ['public'],
-      historyApiFallback: true,
-      port: 3000
-    })
+    dev &&
+      serve({
+        contentBase: ['public'],
+        historyApiFallback: true,
+        port: 3000
+      })
   ]
 }
