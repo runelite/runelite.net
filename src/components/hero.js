@@ -2,7 +2,7 @@
 import platform from 'platform'
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import * as R from 'ramda'
+import { filter, find, prepend } from 'ramda'
 import { bindActionCreators } from 'redux'
 import { changeStyle } from '../modules/navigation'
 import Commit from './commit'
@@ -99,17 +99,17 @@ class Hero extends Component {
       backgroundSize: 'cover'
     }
 
-    let regularButtons = R.filter(button => !button.dropdown)(buttons)
-    const dropdownButtons = R.filter(button => button.dropdown)(buttons)
-    const defaultDropdownItem = R.find(button => button.os === 'all')(
+    let regularButtons = filter(button => !button.dropdown)(buttons)
+    const dropdownButtons = filter(button => button.dropdown)(buttons)
+    const defaultDropdownItem = find(button => button.os === 'all')(
       dropdownButtons
     )
     const mainDropdownItem =
-      R.find(button => isOsCorrect(button.os))(dropdownButtons) ||
+      find(button => isOsCorrect(button.os))(dropdownButtons) ||
       defaultDropdownItem
 
     if (defaultDropdownItem !== mainDropdownItem) {
-      regularButtons = R.prepend(defaultDropdownItem)(regularButtons)
+      regularButtons = prepend(defaultDropdownItem)(regularButtons)
     }
 
     return (

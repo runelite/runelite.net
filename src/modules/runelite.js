@@ -1,5 +1,5 @@
 import moment from 'moment'
-import * as R from 'ramda'
+import { uniq, concat, forEachObjIndexed } from 'ramda'
 import { createAction, handleActions } from 'redux-actions'
 import { createRoutine } from 'redux-routines'
 import { createSelector } from 'reselect'
@@ -28,7 +28,7 @@ export default handleActions(
     }),
     [getXpRoutine.SUCCESS]: (state, { payload }) => ({
       ...state,
-      xp: R.uniq(R.concat(state.xp, [payload]))
+      xp: uniq(concat(state.xp, [payload]))
     }),
     [getXpRangeRoutine.REQUEST]: (state, { payload }) => ({
       ...state,
@@ -237,8 +237,8 @@ export const collectedSkillsSelector = createSelector(
     const startEntry = xp[0]
     const endEntry = xp[xp.length - 1]
     const collector = {}
-    R.forEachObjIndexed(calculateRanksAndExp(collector), startEntry)
-    R.forEachObjIndexed(calculateRanksAndExp(collector), endEntry)
+    forEachObjIndexed(calculateRanksAndExp(collector), startEntry)
+    forEachObjIndexed(calculateRanksAndExp(collector), endEntry)
     return collector
   }
 )

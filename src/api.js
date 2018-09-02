@@ -1,4 +1,4 @@
-import * as R from 'ramda'
+import { contains } from 'ramda'
 
 export default base => {
   /**
@@ -24,7 +24,7 @@ export default base => {
     }
 
     const headers = response.headers.get('Content-Type')
-    const isJson = headers && R.contains('json', headers)
+    const isJson = headers && contains('json', headers)
     response = isJson ? await response.json() : await response.text()
 
     if (response.error) {
