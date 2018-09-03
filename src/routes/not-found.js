@@ -1,8 +1,8 @@
 /** @jsx h */
 import { h } from 'preact'
 import hero from '../_data/hero'
-import Link from '../components/link'
 import Meta from '../components/meta'
+import { Link } from 'preact-router'
 
 const NotFound = () => (
   <div
@@ -32,8 +32,8 @@ const NotFound = () => (
       >
         <h1>404</h1>
         <p class='lead'>
-          Sorry, page was not found Click <Link routeName='home'>here</Link> to
-          return to home page.
+          Sorry, page was not found Click <Link href='/'>here</Link> to return
+          to home page.
         </p>
       </div>
     </div>

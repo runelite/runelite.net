@@ -4,7 +4,7 @@ import { connect } from 'preact-redux'
 import hero from '../_data/hero'
 import links from '../_data/links'
 import { stargazersSelector } from '../modules/git'
-import Link from './link'
+import { Link } from 'preact-router'
 
 const Navigation = ({ stars, dark }) => (
   <nav
@@ -18,7 +18,7 @@ const Navigation = ({ stars, dark }) => (
         : ''
     }}
   >
-    <Link class='navbar-brand' routeName='home'>
+    <Link class='navbar-brand' activeClassName='active' href='/'>
       <img src={hero.logo} alt='Logo' width='30' height='30' /> Home
     </Link>
     <input type='checkbox' id='navbar-toggle-cbox' />
@@ -35,12 +35,12 @@ const Navigation = ({ stars, dark }) => (
     <div class='collapse navbar-collapse' id='navbar'>
       <ul class='navbar-nav'>
         <li class='nav-item'>
-          <Link class='nav-link' routeName='features'>
+          <Link class='nav-link' activeClassName='active' href='/features'>
             <i class='fas fa-cogs' /> Features
           </Link>
         </li>
         <li class='nav-item'>
-          <Link class='nav-link' routeName='blog'>
+          <Link class='nav-link' activeClassName='active' href='/blog'>
             <i class='fas fa-newspaper' /> Blog
           </Link>
         </li>

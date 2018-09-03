@@ -6,15 +6,16 @@ import Layout from '../components/layout'
 import {
   allRanksSelector,
   allXpSelector,
-  nameSelector,
   skillRankSelector,
   skillXpSelector,
   ranksSelector,
-  skillSelector
+  getXpRange
 } from '../modules/runelite'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
-import Link from '../components/link'
+import { bindActionCreators } from 'redux'
+import { Link } from 'preact-router'
+import moment from 'moment'
 
 Chart.defaults.global.animation = false
 Chart.defaults.global.tooltips.callbacks.label = tooltipItem =>
@@ -41,6 +42,25 @@ const reverseGraphOptions = {
   ...straightLineGraphOption
 }
 
+function isNumeric (value) {
+  return !isNaN(value - parseFloat(value))
+}
+
+function parseDate (date, from) {
+  if (date === 'now') {
+    date = new Date()
+  } else if (!isNumeric(date)) {
+    const parsed = date.match(/(\d+)(\w+)/)
+    date = moment(from)
+      .subtract(parsed[1], parsed[2])
+      .toDate()
+  } else {
+    date = new Date(parseInt(date, 10))
+  }
+
+  return date
+}
+
 const capitalizeFirstLetter = string =>
   string.charAt(0).toUpperCase() + string.slice(1)
 const numberWithCommas = x =>
@@ -61,17 +81,46 @@ const safeDate = date => date || new Date()
 class XpShow extends Component {
   constructor (props) {
     super(props)
+    this.destroyCharts.bind(this)
 
     this.state = {
       skillRank: null,
       skillXp: null,
       allRanks: null,
-      allXp: null
+      allXp: null,
+      startDate: new Date(),
+      endDate: new Date()
     }
   }
 
-  componentWillReceiveProps ({ skillRank, skillXp, allRanks, allXp }) {
-    this.componentWillUnmount()
+  destroyCharts () {
+    if (this.state.skillRank) {
+      this.state.skillRank.destroy()
+    }
+
+    if (this.state.skillXp) {
+      this.state.skillXp.destroy()
+    }
+
+    if (this.state.allRanks) {
+      this.state.allRanks.destroy()
+    }
+
+    if (this.state.allXp) {
+      this.state.allXp.destroy()
+    }
+  }
+
+  componentWillReceiveProps ({
+    skillRank,
+    skillXp,
+    allRanks,
+    allXp,
+    start,
+    end
+  }) {
+    this.destroyCharts()
+
     this.setState({
       skillRank: new Chart('skill-rank', {
         type: 'line',
@@ -94,63 +143,57 @@ class XpShow extends Component {
     })
   }
 
-  componentWillUnmount () {
-    if (this.state.skillRank) {
-      this.state.skillRank.destroy()
-    }
+  componentDidMount () {
+    const startDate = safeDate(parseDate(this.props.start, new Date()))
+    const endDate = safeDate(parseDate(this.props.end, startDate))
 
-    if (this.state.skillXp) {
-      this.state.skillXp.destroy()
-    }
+    this.setState({
+      startDate,
+      endDate
+    })
 
-    if (this.state.allRanks) {
-      this.state.allRanks.destroy()
-    }
-
-    if (this.state.allXp) {
-      this.state.allXp.destroy()
-    }
+    this.props.getXpRange({
+      skill: this.props.skill,
+      name: this.props.name,
+      start: startDate,
+      end: endDate
+    })
   }
 
-  render ({ startDate, endDate, playerName, playerSkill, ranks }) {
+  componentWillUnmount () {
+    this.destroyCharts()
+  }
+
+  render ({ name, skill, ranks }) {
     return (
       <div style={{ height: 'inherit' }}>
         <Layout fullWidth>
           <Meta title={`Experience Tracker - ${hero.title}`} />
           <h1>
-            {playerName} /{' '}
+            {name} /{' '}
             <small class='text-muted'>
-              {playerSkill} /{' '}
-              {safeDate(startDate)
-                .toDateString()
-                .toLowerCase()}{' '}
-              /{' '}
-              {safeDate(endDate)
-                .toDateString()
-                .toLowerCase()}
+              {skill} / {this.state.startDate.toDateString().toLowerCase()} /{' '}
+              {this.state.endDate.toDateString().toLowerCase()}
             </small>
           </h1>
           <hr />
           <div class='row'>
             <div class='col-md-3 col-sm-4 col-xs-12'>
               <ul class='list-group'>
-                {ranks.map(({ skill, rank, xp }) => (
+                {ranks.map(({ skill: playerSkill, rank, xp }) => (
                   <Link
                     class={
                       'list-group-item list-group-item-action' +
                       (skill === playerSkill ? ' active' : '')
                     }
-                    key={skill}
-                    routeName='xp-show'
-                    routeParams={{
-                      skill,
-                      name: playerName,
-                      start: safeDate(startDate).getTime(),
-                      end: safeDate(endDate).getTime()
-                    }}
+                    key={playerSkill}
+                    href={`/xp/show/${playerSkill}/${name}/${this.state.startDate.getTime()}/${this.state.endDate.getTime()}`}
                   >
-                    <img alt={skill} src={`/img/skillicons/${skill}.png`} />{' '}
-                    {capitalizeFirstLetter(skill)}
+                    <img
+                      alt={playerSkill}
+                      src={`/img/skillicons/${playerSkill}.png`}
+                    />{' '}
+                    {capitalizeFirstLetter(playerSkill)}
                     <br />
                     {createValueBadge(rank, 'ranks')}{' '}
                     {createValueBadge(xp, 'xp')}
@@ -171,15 +214,13 @@ class XpShow extends Component {
   }
 }
 
-export default connect((state, props) => ({
-  startDate: state.runelite.start,
-  endDate: state.runelite.end,
-  playerName: nameSelector(state, props) || props.name,
-  playerSkill: skillSelector(state, props) || props.skill,
-  ranks: ranksSelector(state, props),
-  skillRank: skillRankSelector(state, props),
-  skillXp: skillXpSelector(state, props),
-  allRanks: allRanksSelector(state, props),
-  allXp: allXpSelector(state, props),
-  xpRange: state.runelite
-}))(XpShow)
+export default connect(
+  (state, props) => ({
+    ranks: ranksSelector(state, props),
+    skillRank: skillRankSelector(state, props),
+    skillXp: skillXpSelector(state, props),
+    allRanks: allRanksSelector(state, props),
+    allXp: allXpSelector(state, props)
+  }),
+  dispatch => bindActionCreators({ getXpRange }, dispatch)
+)(XpShow)

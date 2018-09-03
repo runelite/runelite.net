@@ -1,6 +1,7 @@
 /** @jsx h */
 import 'babel-polyfill'
 import { h, render } from 'preact'
+import { Provider } from 'preact-redux'
 import { config, dom, library } from '@fortawesome/fontawesome-svg-core'
 import {
   faApple,
@@ -19,20 +20,14 @@ import {
   faStar
 } from '@fortawesome/free-solid-svg-icons'
 import App from './components/app'
-import configureRouter from './router'
 import configureStore from './store'
-import Provider from './components/provider'
-import routes from './routes'
 
 // Create redux store
 const store = configureStore()
 
-// Create router
-const router = configureRouter(routes)(store)
-
 // Create application
 const Main = () => (
-  <Provider store={store} router={router}>
+  <Provider store={store}>
     <App />
   </Provider>
 )
@@ -46,4 +41,4 @@ dom.watch()
 
 // Show website contents
 const root = document.getElementById('root')
-router.start(() => render(<Main />, root, root.firstElementChild))
+render(<Main />, root, root.firstElementChild)
