@@ -41,11 +41,7 @@ export default handleActions(
   },
   {
     sessionCount: 0,
-    xp: [],
-    skill: 'overall',
-    name: '',
-    start: new Date(),
-    end: new Date()
+    xp: []
   }
 )
 
@@ -84,44 +80,23 @@ export const getSessionCount = createAction(
 export const getXpRange = createAction(
   getXpRangeRoutine.TRIGGER,
   ({ skill, name, start, end }) => async dispatch => {
-    function isNumeric (value) {
-      return !isNaN(value - parseFloat(value))
-    }
-
-    function parseDate (date, from) {
-      if (date === 'now') {
-        date = new Date()
-      } else if (!isNumeric(date)) {
-        const parsed = date.match(/(\d+)(\w+)/)
-        date = moment(from)
-          .subtract(parsed[1], parsed[2])
-          .toDate()
-      } else {
-        date = new Date(parseInt(date, 10))
-      }
-
-      return date
-    }
-
-    dispatch(startLoading())
-    const endDate = parseDate(end, new Date())
-    const startDate = parseDate(start, endDate)
-
     dispatch(
       getXpRangeRoutine.request({
-        start: startDate,
-        end: endDate,
+        start,
+        end,
         name,
         skill
       })
     )
 
     const version = await getLatestVersion(dispatch)
-    const dayXps = []
+
+    dispatch(startLoading())
+    const xp = []
 
     for (
-      let momDate = moment(startDate);
-      momDate.diff(endDate) <= 0;
+      let momDate = moment(start);
+      momDate.diff(end) <= 0;
       momDate.add(1, 'days')
     ) {
       const date = momDate.toDate()
@@ -140,20 +115,11 @@ export const getXpRange = createAction(
       }
 
       dispatch(getXpRoutine.success(formattedResponse))
-      dayXps.push(formattedResponse)
+      xp.push(formattedResponse)
     }
 
-    const formattedResponse = {
-      name,
-      skill,
-      start: startDate,
-      end: endDate,
-      xp: dayXps
-    }
-
-    dispatch(getXpRangeRoutine.success(formattedResponse))
+    dispatch(getXpRangeRoutine.success({ xp }))
     dispatch(stopLoading())
-    return formattedResponse
   }
 )
 
@@ -217,8 +183,8 @@ const inverseRank = rankCollector => {
 export const sessionCountSelector = state => state.runelite.sessionCount
 export const xpSelector = state =>
   state.runelite.xp.filter(xpEntry => Boolean(xpEntry))
-export const nameSelector = state => state.runelite.name
-export const skillSelector = state => state.runelite.skill
+export const nameSelector = (state, props) => props.name
+export const skillSelector = (state, props) => props.skill
 
 export const skillDatesSelector = createSelector(xpSelector, xp =>
   xp.map(xpEntry => xpEntry.date.toDateString())

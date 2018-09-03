@@ -4,8 +4,8 @@ import ago from 's-ago'
 import Layout from '../components/layout'
 import blog from '../blog'
 import hero from '../_data/hero'
-import Link from '../components/link'
 import Meta from '../components/meta'
+import { Link } from 'preact-router'
 
 const Blog = () => (
   <Layout>
@@ -20,8 +20,8 @@ const Blog = () => (
           <Link
             key={id}
             class='list-group-item list-group-item-action flex-column align-items-start'
-            routeName='blog-show'
-            routeParams={{ id }}
+            activeClassName='active'
+            href={`/blog/show/${id}`}
           >
             <div class='d-flex w-100 justify-content-between'>
               <h5 class='mb-1'>{title || id}</h5>

@@ -46,7 +46,7 @@ pre {
   position: fixed;
   top: 0;
   width: 0%;
-  z-index: 9999;
+  z-index: 9999 !important;
 }
 
 @keyframes horizontalProgressBar {

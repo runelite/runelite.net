@@ -1,6 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import logger from 'redux-logger'
-import { router5Reducer } from 'redux-router5'
 import thunkMiddleware from './middleware/thunk-middleware'
 import rootReducer from './modules'
 
@@ -18,7 +17,7 @@ export default () => {
 
   // Create our store from rootReducer and initial state
   return createStore(
-    combineReducers({ ...rootReducer, router: router5Reducer }),
+    combineReducers(rootReducer),
     applyMiddleware(...middlewares)
   )
 }
