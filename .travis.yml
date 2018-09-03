@@ -1,14 +1,12 @@
 language: node_js
 node_js:
-  - "9"
+- "9"
 # Cache node_modules between builds
 cache:
   directories:
-    - "node_modules"
+  - "node_modules"
 # Build website
-script:
-  - npm run build
-  - npm run render && git checkout master public/404.html
+script: npm run build
 # Deploy master to gh-pages branch
 deploy:
   edge:
@@ -16,7 +14,7 @@ deploy:
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-  local-dir: public
+  local-dir: build
   target-branch: gh-pages
   verbose: true
   on:

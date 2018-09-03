@@ -4,7 +4,7 @@ import { connect } from 'preact-redux'
 import Feature from '../components/feature'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
-import { getLatest } from '../blog'
+import { latest } from '../blog'
 import {
   getCommits,
   getReleases,
@@ -19,6 +19,7 @@ import { getSessionCount, sessionCountSelector } from '../modules/runelite'
 import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
 import { Link } from 'preact-router'
+import Async from '../components/async'
 
 class Home extends Component {
   componentDidMount () {
@@ -65,9 +66,15 @@ class Home extends Component {
             </Link>
           </h1>
           <hr />
-          <div
-            class='markdown-body'
-            dangerouslySetInnerHTML={{ __html: getLatest().__content }}
+          <Async
+            getComponent={() =>
+              latest().then(({ body }) => (
+                <div
+                  class='markdown-body'
+                  dangerouslySetInnerHTML={{ __html: body }}
+                />
+              ))
+            }
           />
         </Layout>
       </div>

@@ -1,41 +1,41 @@
 /** @jsx h */
+import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { h } from 'preact'
 import { connect } from 'preact-redux'
+import Router from 'preact-router'
 import './app.css'
 import Navigation from './navigation'
-import Router from 'preact-router'
-import Home from '../routes/home'
-import Blog from '../routes/blog'
-import BlogShow from '../routes/blog-show'
-import Features from '../routes/features'
-import XpShow from '../routes/xp-show'
-import LoggedIn from '../routes/logged-in'
-import NotFound from '../routes/not-found'
 import links from '../_data/links'
 import Redirect from './redirect'
-
-const handleChange = e => {
-  if (e.url === '/discord') {
-  }
-}
+import Loader from './loader'
+import Async from './async'
 
 const App = ({ loading }) => (
   <div style={{ height: '100%' }}>
-    <div
-      class='fixed-top animated loader'
-      style={{ display: loading ? 'block' : 'none' }}
-    />
+    <Loader loading={loading} />
     <Navigation />
-    <Router onChange={handleChange}>
-      <Home path='/' />
-      <Blog path='/blog' />
-      <BlogShow path='/blog/show/:id' />
-      <Features path='/features' />
-      <XpShow path='/xp/show/:skill/:name/:start/:end' />
-      <LoggedIn path='/logged-in' />
+    <Router>
       <Redirect path='/discord' to={links.discord} />
-      <NotFound default />
+      <Async path='/' getComponent={() => import('../routes/home')} />
+      <Async path='/blog' getComponent={() => import('../routes/blog')} />
+      <Async
+        path='/blog/show/:id'
+        getComponent={() => import('../routes/blog-show')}
+      />
+      <Async
+        path='/features'
+        getComponent={() => import('../routes/features')}
+      />
+      <Async
+        path='/xp/show/:skill/:name/:start/:end'
+        getComponent={() => import('../routes/xp-show')}
+      />
+      <Async
+        path='/logged-in'
+        getComponent={() => import('../routes/logged-in')}
+      />
+      <Async default getComponent={() => import('../routes/not-found')} />
     </Router>
   </div>
 )

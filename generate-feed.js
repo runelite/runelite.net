@@ -101,7 +101,7 @@ const posts = fs
     return {
       entry: [
         {
-          id: link
+          id: fileName
         },
         {
           link: {
@@ -188,4 +188,4 @@ const xml = jstoxml.toXML(
 )
 
 // Write feed to build folder
-fs.writeFileSync(path.join('public', 'atom.xml'), xml)
+fs.writeFileSync(path.join('build', 'atom.xml'), xml)

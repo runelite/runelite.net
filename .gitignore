@@ -59,7 +59,5 @@ typings/
 
 # build results
 build/
-public/atom.xml
-public/vendor/
 
 .idea/

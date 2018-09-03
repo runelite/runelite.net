@@ -1,0 +1,7 @@
+#navbar-check-box {
+  display: none;
+}
+
+#navbar-check-box:checked ~ .collapse {
+  display: block;
+}
