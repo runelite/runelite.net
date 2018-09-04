@@ -15,14 +15,16 @@ module.exports = function override (config, env) {
     posts.map(p => '/blog/show/' + p.replace('.md', ''))
   )
 
-  config.plugins.push(
-    new PrerenderSPAPlugin({
-      // Required - The path to the webpack-outputted app to prerender.
-      staticDir: path.join(__dirname, 'build'),
-      // Required - Routes to render.
-      routes
-    })
-  )
+  if (!process.env.NOW) {
+    config.plugins.push(
+      new PrerenderSPAPlugin({
+        // Required - The path to the webpack-outputted app to prerender.
+        staticDir: path.join(__dirname, 'build'),
+        // Required - Routes to render.
+        routes
+      })
+    )
+  }
 
   config.plugins.push(
     new SitemapPlugin(hero.url, routes.map(path => ({ path })), {
