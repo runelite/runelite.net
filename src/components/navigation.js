@@ -1,6 +1,7 @@
 /** @jsx h */
 import { h } from 'preact'
 import { connect } from 'preact-redux'
+import './navigation.css'
 import hero from '../_data/hero'
 import links from '../_data/links'
 import { stargazersSelector } from '../modules/git'
@@ -21,9 +22,9 @@ const Navigation = ({ stars, dark }) => (
     <Link class='navbar-brand' activeClassName='active' href='/'>
       <img src={hero.logo} alt='Logo' width='30' height='30' /> Home
     </Link>
-    <input type='checkbox' id='navbar-toggle-cbox' />
+    <input type='checkbox' id='navbar-check-box' />
     <label
-      htmlFor='navbar-toggle-cbox'
+      htmlFor='navbar-check-box'
       class='navbar-toggler'
       data-toggle='collapse'
       data-target='#navbar'

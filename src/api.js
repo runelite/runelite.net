@@ -8,7 +8,7 @@ export default base => {
    * @param {object} options fetch options
    * @return {Promise}
    */
-  async function fetch (url, options) {
+  async function fetchFunc (url, options) {
     const correctedOptions = options || {}
 
     if (options.body) {
@@ -34,5 +34,5 @@ export default base => {
     return response
   }
 
-  return fetch
+  return fetchFunc
 }

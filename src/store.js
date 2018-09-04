@@ -1,5 +1,4 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
-import logger from 'redux-logger'
 import thunkMiddleware from './middleware/thunk-middleware'
 import rootReducer from './modules'
 
@@ -12,7 +11,7 @@ export default () => {
 
   // Add logger
   if (process.env.NODE_ENV === 'development') {
-    middlewares.push(logger)
+    middlewares.push(require('redux-logger').default)
   }
 
   // Create our store from rootReducer and initial state
