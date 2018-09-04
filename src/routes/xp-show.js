@@ -1,7 +1,6 @@
 /** @jsx h */
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import Chart from '../../node_modules/chart.js/src/chart'
 import Layout from '../components/layout'
 import {
   allRanksSelector,
@@ -16,6 +15,7 @@ import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
 import { Link } from 'preact-router'
 import moment from 'moment'
+import Chart from 'chart.js'
 
 Chart.defaults.global.animation = false
 Chart.defaults.global.tooltips.callbacks.label = tooltipItem =>
