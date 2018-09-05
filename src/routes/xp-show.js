@@ -14,7 +14,7 @@ import hero from '../_data/hero'
 import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
 import { Link } from 'preact-router'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import Chart from 'chart.js'
 
 Chart.defaults.global.animation = false
@@ -51,7 +51,7 @@ function parseDate (date, from) {
     date = new Date()
   } else if (!isNumeric(date)) {
     const parsed = date.match(/(\d+)(\w+)/)
-    date = moment(from)
+    date = dayjs(from)
       .subtract(parsed[1], parsed[2])
       .toDate()
   } else {
