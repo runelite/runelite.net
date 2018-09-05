@@ -10,7 +10,7 @@ import { Link } from 'preact-router'
 const Navigation = ({ stars, dark }) => (
   <nav
     class={
-      'navbar navbar-expand-md fixed-top ' +
+      'navbar navbar-expand-lg fixed-top ' +
       (dark ? 'navbar-dark' : 'navbar-light bg-white')
     }
     style={{
