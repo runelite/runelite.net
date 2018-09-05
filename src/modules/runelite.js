@@ -129,7 +129,6 @@ const skillNames = Object.keys(skills)
 const capitalizedSkills = Object.keys(skills).map(skill =>
   capitalizeFirstLetter(skill)
 )
-const skillColors = Object.keys(skills).map(key => skills[key])
 const calculateOverallXp = xpEntry =>
   skillNames
     .map(skill => xpEntry[skill + '_xp'] || 0)
@@ -224,16 +223,6 @@ export const ranksSelector = createSelector(
       }))
       .sort()
 
-    ranks.unshift({
-      skill: 'overall',
-      ...(collectedSkills.overall
-        ? inverseRank(collectedSkills.overall)
-        : {
-          xp: 0,
-          rank: 0
-        })
-    })
-
     return ranks
   }
 )
@@ -244,14 +233,7 @@ export const skillRankSelector = createSelector(
   xpWithOverallSelector,
   (skill, dates, xp) => ({
     labels: dates,
-    datasets: [
-      {
-        label: `${capitalizeFirstLetter(skill)} rank`,
-        backgroundColor: 'yellow',
-        fill: false,
-        data: xp.map(xpEntry => xpEntry[skill + '_rank'])
-      }
-    ]
+    series: [xp.map(xpEntry => xpEntry[skill + '_rank'])]
   })
 )
 
@@ -261,14 +243,7 @@ export const skillXpSelector = createSelector(
   xpWithOverallSelector,
   (skill, dates, xp) => ({
     labels: dates,
-    datasets: [
-      {
-        label: `${capitalizeFirstLetter(skill)} XP`,
-        backgroundColor: 'green',
-        fill: false,
-        data: xp.map(xpEntry => xpEntry[skill + '_xp'])
-      }
-    ]
+    series: [xp.map(xpEntry => xpEntry[skill + '_xp'])]
   })
 )
 
@@ -276,14 +251,11 @@ export const allXpSelector = createSelector(
   collectedSkillsSelector,
   collectedXp => ({
     labels: capitalizedSkills,
-    datasets: [
-      {
-        label: 'Experience gained',
-        backgroundColor: skillColors,
-        data: skillNames.map(
-          skill => (collectedXp[skill] ? collectedXp[skill].xp : 0)
-        )
-      }
+    series: [
+      skillNames.map(skill => ({
+        meta: skill,
+        value: collectedXp[skill] ? collectedXp[skill].xp : 0
+      }))
     ]
   })
 )
@@ -292,14 +264,11 @@ export const allRanksSelector = createSelector(
   collectedSkillsSelector,
   collectedXp => ({
     labels: capitalizedSkills,
-    datasets: [
-      {
-        label: 'Ranks gained',
-        backgroundColor: skillColors,
-        data: skillNames.map(
-          skill => (collectedXp[skill] ? collectedXp[skill].rank : 0)
-        )
-      }
+    series: [
+      skillNames.map(skill => ({
+        meta: skill,
+        value: collectedXp[skill] ? collectedXp[skill].rank : 0
+      }))
     ]
   })
 )

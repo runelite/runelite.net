@@ -1,6 +1,13 @@
 /** @jsx h */
+import 'chartist/dist/chartist.min.css'
+import 'chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css'
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
+import { Link } from 'preact-router'
+import { bindActionCreators } from 'redux'
+import dayjs from 'dayjs'
+import Chartist from 'chartist'
+import 'chartist-plugin-tooltips'
 import Layout from '../components/layout'
 import {
   allRanksSelector,
@@ -11,11 +18,8 @@ import {
   getXpRange
 } from '../modules/runelite'
 import hero from '../_data/hero'
+import skills from '../_data/skills'
 import Meta from '../components/meta'
-import { bindActionCreators } from 'redux'
-import { Link } from 'preact-router'
-import dayjs from 'dayjs'
-import Chart from 'chart.js'
 
 function isNumeric (value) {
   return !isNaN(value - parseFloat(value))
@@ -67,78 +71,80 @@ class XpShow extends Component {
     }
   }
 
-  componentWillReceiveProps ({ skillRank, skillXp, allRanks, allXp }) {
-    const skillRankChart = this.state.skillRank
-    if (skillRankChart) {
-      skillRankChart.data = skillRank
-      skillRankChart.update()
-    }
-
-    const skillXpChart = this.state.skillXp
-    if (skillXpChart) {
-      skillXpChart.data = skillXp
-      skillXpChart.update()
-    }
-
-    const allRanksChart = this.state.allRanks
-    if (allRanksChart) {
-      allRanksChart.data = allRanks
-      allRanksChart.update()
-    }
-
-    const allXpChart = this.state.allXp
-    if (allXpChart) {
-      allXpChart.data = allXp
-      allXpChart.update()
-    }
-  }
-
   componentDidMount () {
     const startDate = safeDate(parseDate(this.props.start, new Date()))
     const endDate = safeDate(parseDate(this.props.end, startDate))
 
-    Chart.defaults.global.animation.duration = 200
-    Chart.defaults.global.tooltips.callbacks.label = tooltipItem =>
-      numberWithCommas(tooltipItem.yLabel.toString())
-
-    const straightLineGraphOption = {
-      elements: {
-        line: {
-          tension: 0
-        }
-      }
+    const options = {
+      lineSmooth: Chartist.Interpolation.none(),
+      axisX: {
+        showLabel: false
+      },
+      chartPadding: {
+        top: 30,
+        right: 50,
+        left: 50
+      },
+      plugins: [
+        Chartist.plugins.tooltip({
+          anchorToPoint: true,
+          appendToBody: true
+        })
+      ]
     }
 
-    const reverseGraphOptions = {
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              reverse: true
-            }
-          }
-        ]
+    const invertAxis = {
+      axisY: {
+        labelInterpolationFnc: value => -value
       },
-      ...straightLineGraphOption
+      plugins: [
+        Chartist.plugins.tooltip({
+          anchorToPoint: true,
+          appendToBody: true,
+          transformTooltipTextFnc: value => -value
+        })
+      ]
+    }
+
+    const invertValue = context => {
+      context.data.series = context.data.series.map(series =>
+        series.map(value => -value)
+      )
+    }
+
+    const skillColor = context => {
+      if (
+        context.type === 'line' ||
+        context.type === 'bar' ||
+        context.type === 'point'
+      ) {
+        context.element.attr({
+          style: `stroke: ${
+            skills[context.meta || this.props.skill.toLowerCase()]
+          }`
+        })
+      }
     }
 
     this.setState({
       startDate,
       endDate,
-      skillRank: new Chart.Line('skill-rank', {
-        data: {},
-        options: reverseGraphOptions
-      }),
-      skillXp: new Chart.Line('skill-xp', {
-        data: {},
-        options: straightLineGraphOption
-      }),
-      allRanks: new Chart.Bar('all-ranks', {
-        data: {}
-      }),
-      allXp: new Chart.Bar('all-xp', {
-        data: {}
-      })
+      skillRank: new Chartist.Line(
+        '#skill-rank',
+        {},
+        { ...options, ...invertAxis }
+      )
+        .on('data', invertValue)
+        .on('draw', skillColor),
+      skillXp: new Chartist.Line('#skill-xp', {}, options).on(
+        'draw',
+        skillColor
+      ),
+      allRanks: new Chartist.Bar('#all-ranks', {}, options).on(
+        'draw',
+        skillColor
+      ),
+      allXp: new Chartist.Bar('#all-xp', {}, options).on('draw', skillColor)
     })
 
     this.props.getXpRange({
@@ -149,21 +155,43 @@ class XpShow extends Component {
     })
   }
 
+  componentWillReceiveProps ({ skillRank, skillXp, allRanks, allXp }) {
+    const skillRankChart = this.state.skillRank
+    if (skillRankChart) {
+      skillRankChart.update(skillRank)
+    }
+
+    const skillXpChart = this.state.skillXp
+    if (skillXpChart) {
+      skillXpChart.update(skillXp)
+    }
+
+    const allRanksChart = this.state.allRanks
+    if (allRanksChart) {
+      allRanksChart.update(allRanks)
+    }
+
+    const allXpChart = this.state.allXp
+    if (allXpChart) {
+      allXpChart.update(allXp)
+    }
+  }
+
   componentWillUnmount () {
     if (this.state.skillRank) {
-      this.state.skillRank.destroy()
+      this.state.skillRank.detach()
     }
 
     if (this.state.skillXp) {
-      this.state.skillXp.destroy()
+      this.state.skillXp.detach()
     }
 
     if (this.state.allRanks) {
-      this.state.allRanks.destroy()
+      this.state.allRanks.detach()
     }
 
     if (this.state.allXp) {
-      this.state.allXp.destroy()
+      this.state.allXp.detach()
     }
   }
 
@@ -175,13 +203,13 @@ class XpShow extends Component {
           <h1>
             {name} /{' '}
             <small class='text-muted'>
-              {skill} / {this.state.startDate.toDateString().toLowerCase()} /{' '}
-              {this.state.endDate.toDateString().toLowerCase()}
+              {skill} / {this.state.startDate.toDateString().toLowerCase()}{' '}
+              / {this.state.endDate.toDateString().toLowerCase()}
             </small>
           </h1>
           <hr />
           <div class='row'>
-            <div class='col-md-3 col-sm-4 col-xs-12'>
+            <div class='col-xl-3 col-md-4 col-sm-12 col-xs-12'>
               <ul class='list-group'>
                 {ranks.map(({ skill: playerSkill, rank, xp }) => (
                   <Link
@@ -196,19 +224,30 @@ class XpShow extends Component {
                       alt={playerSkill}
                       src={`/img/skillicons/${playerSkill}.png`}
                     />{' '}
-                    {capitalizeFirstLetter(playerSkill)}
-                    <br />
-                    {createValueBadge(rank, 'ranks')}{' '}
-                    {createValueBadge(xp, 'xp')}
+                    <span class='d-md-none d-lg-inline'>{capitalizeFirstLetter(playerSkill)}</span>
+                    <span class='float-right'>
+                      {createValueBadge(rank, '')}{' '}
+                      {createValueBadge(xp, 'xp')}
+                    </span>
                   </Link>
                 ))}
               </ul>
             </div>
-            <div class='col-md-9 col-sm-8 col-xs-12'>
-              <canvas id='skill-rank' />
-              <canvas id='skill-xp' />
-              <canvas id='all-xp' />
-              <canvas id='all-ranks' />
+            <div class='col-xl-9 col-md-8 col-sm-12 col-xs-12'>
+              <h5>Experience gained</h5>
+              <div id='all-xp' class='ct-chart' style={{ height: 200 }} />
+              <h5>Ranks gained</h5>
+              <div id='all-ranks' class='ct-chart' style={{ height: 200 }} />
+              <div class='row'>
+                <div class='col-md-6'>
+                  <h5>{capitalizeFirstLetter(skill)} ranks</h5>
+                  <div id='skill-rank' class='ct-chart ct-square' />
+                </div>
+                <div class='col-md-6'>
+                  <h5>{capitalizeFirstLetter(skill)} experience</h5>
+                  <div id='skill-xp' class='ct-chart ct-square' />
+                </div>
+              </div>
             </div>
           </div>
         </Layout>
