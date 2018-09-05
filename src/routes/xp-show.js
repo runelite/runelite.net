@@ -17,31 +17,6 @@ import { Link } from 'preact-router'
 import dayjs from 'dayjs'
 import Chart from 'chart.js'
 
-Chart.defaults.global.animation = false
-Chart.defaults.global.tooltips.callbacks.label = tooltipItem =>
-  numberWithCommas(tooltipItem.yLabel.toString())
-
-const straightLineGraphOption = {
-  elements: {
-    line: {
-      tension: 0
-    }
-  }
-}
-
-const reverseGraphOptions = {
-  scales: {
-    yAxes: [
-      {
-        ticks: {
-          reverse: true
-        }
-      }
-    ]
-  },
-  ...straightLineGraphOption
-}
-
 function isNumeric (value) {
   return !isNaN(value - parseFloat(value))
 }
@@ -81,7 +56,6 @@ const safeDate = date => date || new Date()
 class XpShow extends Component {
   constructor (props) {
     super(props)
-    this.destroyCharts.bind(this)
 
     this.state = {
       skillRank: null,
@@ -93,7 +67,89 @@ class XpShow extends Component {
     }
   }
 
-  destroyCharts () {
+  componentWillReceiveProps ({ skillRank, skillXp, allRanks, allXp }) {
+    const skillRankChart = this.state.skillRank
+    if (skillRankChart) {
+      skillRankChart.data = skillRank
+      skillRankChart.update()
+    }
+
+    const skillXpChart = this.state.skillXp
+    if (skillXpChart) {
+      skillXpChart.data = skillXp
+      skillXpChart.update()
+    }
+
+    const allRanksChart = this.state.allRanks
+    if (allRanksChart) {
+      allRanksChart.data = allRanks
+      allRanksChart.update()
+    }
+
+    const allXpChart = this.state.allXp
+    if (allXpChart) {
+      allXpChart.data = allXp
+      allXpChart.update()
+    }
+  }
+
+  componentDidMount () {
+    const startDate = safeDate(parseDate(this.props.start, new Date()))
+    const endDate = safeDate(parseDate(this.props.end, startDate))
+
+    Chart.defaults.global.animation.duration = 200
+    Chart.defaults.global.tooltips.callbacks.label = tooltipItem =>
+      numberWithCommas(tooltipItem.yLabel.toString())
+
+    const straightLineGraphOption = {
+      elements: {
+        line: {
+          tension: 0
+        }
+      }
+    }
+
+    const reverseGraphOptions = {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              reverse: true
+            }
+          }
+        ]
+      },
+      ...straightLineGraphOption
+    }
+
+    this.setState({
+      startDate,
+      endDate,
+      skillRank: new Chart.Line('skill-rank', {
+        data: {},
+        options: reverseGraphOptions
+      }),
+      skillXp: new Chart.Line('skill-xp', {
+        data: {},
+        options: straightLineGraphOption
+      }),
+      allRanks: new Chart.Bar('all-ranks', {
+        data: {}
+      }),
+      allXp: new Chart.Bar('all-xp', {
+        data: {}
+      })
+    })
+
+    this.props.getXpRange({
+      skill: this.props.skill,
+      name: this.props.name,
+      start: startDate,
+      end: endDate
+    })
+  }
+
+  componentWillUnmount () {
     if (this.state.skillRank) {
       this.state.skillRank.destroy()
     }
@@ -109,59 +165,6 @@ class XpShow extends Component {
     if (this.state.allXp) {
       this.state.allXp.destroy()
     }
-  }
-
-  componentWillReceiveProps ({
-    skillRank,
-    skillXp,
-    allRanks,
-    allXp,
-    start,
-    end
-  }) {
-    this.destroyCharts()
-
-    this.setState({
-      skillRank: new Chart('skill-rank', {
-        type: 'line',
-        data: skillRank,
-        options: reverseGraphOptions
-      }),
-      skillXp: new Chart('skill-xp', {
-        type: 'line',
-        data: skillXp,
-        options: straightLineGraphOption
-      }),
-      allRanks: new Chart('all-ranks', {
-        type: 'bar',
-        data: allRanks
-      }),
-      allXp: new Chart('all-xp', {
-        type: 'bar',
-        data: allXp
-      })
-    })
-  }
-
-  componentDidMount () {
-    const startDate = safeDate(parseDate(this.props.start, new Date()))
-    const endDate = safeDate(parseDate(this.props.end, startDate))
-
-    this.setState({
-      startDate,
-      endDate
-    })
-
-    this.props.getXpRange({
-      skill: this.props.skill,
-      name: this.props.name,
-      start: startDate,
-      end: endDate
-    })
-  }
-
-  componentWillUnmount () {
-    this.destroyCharts()
   }
 
   render ({ name, skill, ranks }) {
