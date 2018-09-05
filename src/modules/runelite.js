@@ -1,4 +1,4 @@
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { uniq, concat, forEachObjIndexed } from 'ramda'
 import { createAction, handleActions } from 'redux-actions'
 import { createRoutine } from 'redux-routines'
@@ -95,9 +95,9 @@ export const getXpRange = createAction(
     const xp = []
 
     for (
-      let momDate = moment(start);
-      momDate.diff(end) <= 0;
-      momDate.add(1, 'days')
+      let momDate = dayjs(start);
+      momDate.diff(end, 'day') <= 0;
+      momDate = momDate.add(1, 'day')
     ) {
       const date = momDate.toDate()
       const dateString = date.toISOString()
