@@ -81,6 +81,11 @@ const Navigation = ({ stars, dark }) => (
             <i class='fab fa-discord' /> Discord
           </a>
         </li>
+        <li class='nav-item'>
+          <a class='nav-link' href={links.twitter}>
+            <i class='fab fa-twitter' /> Twitter
+          </a>
+        </li>
       </ul>
       <ul class='navbar-nav ml-auto'>
         <li class='nav-item'>
