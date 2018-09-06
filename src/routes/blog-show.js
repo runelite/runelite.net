@@ -17,6 +17,7 @@ const BlogShow = ({ id }) => (
             <Meta
               title={`${title} - ${hero.title}`}
               description={description}
+              author={author}
             />
             <h1>{title}</h1>
             <p class='text-muted'>
