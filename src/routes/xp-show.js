@@ -203,8 +203,8 @@ class XpShow extends Component {
           <h1>
             {name} /{' '}
             <small class='text-muted'>
-              {skill} / {this.state.startDate.toDateString().toLowerCase()}{' '}
-              / {this.state.endDate.toDateString().toLowerCase()}
+              {skill} / {this.state.startDate.toDateString().toLowerCase()} /{' '}
+              {this.state.endDate.toDateString().toLowerCase()}
             </small>
           </h1>
           <hr />
@@ -224,10 +224,11 @@ class XpShow extends Component {
                       alt={playerSkill}
                       src={`/img/skillicons/${playerSkill}.png`}
                     />{' '}
-                    <span class='d-md-none d-lg-inline'>{capitalizeFirstLetter(playerSkill)}</span>
+                    <span class='d-md-none d-lg-inline'>
+                      {capitalizeFirstLetter(playerSkill)}
+                    </span>
                     <span class='float-right'>
-                      {createValueBadge(rank, '')}{' '}
-                      {createValueBadge(xp, 'xp')}
+                      {createValueBadge(rank, '')} {createValueBadge(xp, 'xp')}
                     </span>
                   </Link>
                 ))}
