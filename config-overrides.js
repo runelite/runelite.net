@@ -5,6 +5,7 @@ const SitemapPlugin = require('sitemap-webpack-plugin').default
 const rewirePreact = require('react-app-rewire-preact')
 const rewireEslint = require('react-app-rewire-eslint')
 const hero = require('./src/_data/hero')
+const parseBlog = require('./src/parse-blog')
 
 module.exports = function override (config, env) {
   config = rewirePreact(config, env)
@@ -12,7 +13,7 @@ module.exports = function override (config, env) {
 
   const posts = fs.readdirSync(path.join('src', '_posts'))
   const routes = ['/', '/features', '/blog'].concat(
-    posts.map(p => '/blog/show/' + p.replace('.md', ''))
+    posts.map(fileName => '/blog/show/' + parseBlog(fileName).id)
   )
 
   if (!process.env.NOW) {

@@ -4,6 +4,7 @@ const jstoxml = require('jstoxml')
 const markdownIt = require('markdown-it')
 const fm = require('front-matter')
 const hero = require('./src/_data/hero')
+const parseBlog = require('./src/parse-blog')
 
 const postsFolder = path.join('src', '_posts')
 const now = new Date()
@@ -45,63 +46,26 @@ const posts = fs
     // Extract front-matter context
     const frontMatterContext = fm(fileContent)
 
-    // Remove cd and extension
-    fileName = fileName.match(/([\w\d-.]+)\.md/)[1]
+    // Parse blog metadata
+    const parsed = parseBlog(fileName)
+    const date = parsed.date
 
-    // Extract year and path
-    const tokenizedFilename = fileName.match(
-      /^(\d{4}-\d{2}-\d{2})-(\d{2}-\d{2})(.*)/
-    )
-
-    // Validation
-    if (
-      !tokenizedFilename &&
-      !tokenizedFilename[1] &&
-      !tokenizedFilename[2] &&
-      !tokenizedFilename[3]
-    ) {
-      throw new Error('no ^YYYY-MM-DD-HH-mm date in blog filename')
-    }
-
-    // Extract date
-    const date = tokenizedFilename[1]
-    const time = tokenizedFilename[2]
-    const name = tokenizedFilename[3]
-    const pathString = date + name
-    const dateTime = date + '-' + time
-    const dateArray = dateTime.split('-')
-
-    // Parse date
-    const dateObject = new Date(
-      Date.UTC(
-        // Year
-        parseInt(dateArray[0], 10),
-        // Month
-        parseInt(dateArray[1], 10) - 1,
-        // Day
-        parseInt(dateArray[2], 10),
-        // Hour
-        parseInt(dateArray[3], 10),
-        // Minute
-        parseInt(dateArray[4], 10)
-      )
-    )
-
-    // Extract metadata
+    // Extract front-matter metadata
     const title = escapeHtml(frontMatterContext.attributes.title)
     const description = escapeHtml(frontMatterContext.attributes.description)
     const author = escapeHtml(frontMatterContext.attributes.author)
+    const body = frontMatterContext.body
 
     // Create required metadata
-    const link = `${hero.url}/blog/show/${pathString}`
+    const link = `${hero.url}/blog/show/${parsed.id}`
 
     // Build content from markdown
-    const content = md.render(frontMatterContext.body)
+    const content = md.render(body)
 
     return {
       entry: [
         {
-          id: pathString
+          id: parsed.id
         },
         {
           link: {
@@ -117,7 +81,7 @@ const posts = fs
           summary: description
         },
         {
-          updated: dateObject.toISOString()
+          updated: date.toISOString()
         },
         {
           author: {
