@@ -1,0 +1,22 @@
+.jumbotron {
+  background-blend-mode: darken;
+  transition: background-image 3s;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  display: table;
+  width: 100%;
+  margin: 0;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.jumbotron-cell {
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+.jumbotron-body {
+  max-width: 1000px;
+  padding: 25px 25px 25px 50px;
+}

@@ -13,13 +13,7 @@ const Commit = ({ url, message, author, date }) =>
       <a href={author.url ? author.url : url} style={{ color: 'cyan' }}>
         {author.avatar ? (
           <span>
-            <img
-              src={author.avatar}
-              width='30'
-              height='30'
-              alt='Avatar'
-              class='rounded'
-            />{' '}
+            <img src={author.avatar} alt='Avatar' class='rounded icon' />{' '}
           </span>
         ) : (
           <noscript />

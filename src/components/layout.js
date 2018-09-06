@@ -1,18 +1,15 @@
 /** @jsx h */
 import { h } from 'preact'
+import './layout.css'
 import Footer from './footer'
 
 const Layout = ({ children, fullWidth }) => (
   <div
     class='container'
     id='layout'
-    style={{
-      paddingTop: 60,
-      paddingBottom: 15,
-      maxWidth: fullWidth ? '100%' : ''
-    }}
+    style={{ maxWidth: fullWidth ? '100%' : '' }}
   >
-    {children || <noscript />}
+    {children}
     <Footer />
   </div>
 )

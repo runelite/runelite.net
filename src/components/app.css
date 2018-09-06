@@ -15,3 +15,8 @@ pre {
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
+.icon {
+  width: 30px;
+  height: 30px;
+}

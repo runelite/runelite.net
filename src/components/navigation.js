@@ -13,24 +13,12 @@ const Navigation = ({ stars, dark }) => (
       'navbar navbar-expand-lg fixed-top ' +
       (dark ? 'navbar-dark' : 'navbar-light bg-white')
     }
-    style={{
-      background: dark
-        ? 'linear-gradient(rgba(0,0,0,0.7) 40%, transparent)'
-        : ''
-    }}
   >
     <Link class='navbar-brand' activeClassName='active' href='/'>
-      <img src={hero.logo} alt='Logo' width='30' height='30' /> Home
+      <img src={hero.logo} class='icon' alt='Logo' /> Home
     </Link>
     <input type='checkbox' id='navbar-check-box' />
-    <label
-      htmlFor='navbar-check-box'
-      class='navbar-toggler'
-      data-toggle='collapse'
-      data-target='#navbar'
-      aria-expanded='false'
-      aria-controls='navbar'
-    >
+    <label for='navbar-check-box' class='navbar-toggler'>
       <span class='navbar-toggler-icon' />
     </label>
     <div class='collapse navbar-collapse' id='navbar'>
@@ -51,14 +39,7 @@ const Navigation = ({ stars, dark }) => (
           </a>
         </li>
         <li class='nav-item dropdown'>
-          <a
-            class='nav-link dropdown-toggle'
-            id='navbarDropdown'
-            role='button'
-            data-toggle='dropdown'
-            aria-haspopup='true'
-            aria-expanded='false'
-          >
+          <a class='nav-link dropdown-toggle' id='navbarDropdown'>
             <i class='fas fa-font' /> API
           </a>
           <div class='dropdown-menu' aria-labelledby='navbarDropdown'>

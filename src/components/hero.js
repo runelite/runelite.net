@@ -4,6 +4,7 @@ import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import { filter, find, prepend } from 'ramda'
 import { bindActionCreators } from 'redux'
+import './hero.css'
 import { changeStyle } from '../modules/navigation'
 import Commit from './commit'
 
@@ -85,20 +86,6 @@ class Hero extends Component {
   }
 
   render ({ title, description, buttons, release, commit, playing }) {
-    const style = {
-      backgroundBlendMode: 'darken',
-      transition: 'background-image 3s',
-      color: 'white',
-      textShadow: '1px 1px 2px black',
-      display: 'table',
-      width: '100%',
-      margin: 0,
-      height: '100%',
-      background: 'rgba(0,0,0,0.4) no-repeat center center fixed',
-      backgroundImage: `url(${this.state.image})`,
-      backgroundSize: 'cover'
-    }
-
     let regularButtons = filter(button => !button.dropdown)(buttons)
     const dropdownButtons = filter(button => button.dropdown)(buttons)
     const defaultDropdownItem = find(button => button.os === 'all')(
@@ -113,22 +100,13 @@ class Hero extends Component {
     }
 
     return (
-      <div class='jumbotron jumbotron-fluid' style={style} id='jumbo'>
-        <div
-          style={{
-            display: 'table-cell',
-            verticalAlign: 'bottom'
-          }}
-        >
-          <style>
-            {`
-            .navbar-dark .navbar-nav .nav-link {
-              color: white;
-              text-shadow: black 1px 1px 2px;
-            }
-            `}
-          </style>
-          <div style={{ maxWidth: '1000px', padding: 25, paddingLeft: 50 }}>
+      <div
+        class='jumbotron jumbotron-fluid'
+        style={{ backgroundImage: `url(${this.state.image})` }}
+        id='jumbo'
+      >
+        <div class='jumbotron-cell'>
+          <div class='jumbotron-body'>
             <h1 class='display-2'>{title}</h1>
             <p class='lead'>{description}</p>
             <p class='lead'>
@@ -137,7 +115,6 @@ class Hero extends Component {
                   type='button'
                   class={'btn btn-' + mainDropdownItem.color}
                   href={mainDropdownItem.link}
-                  native
                 >
                   <i class={mainDropdownItem.icon} /> {mainDropdownItem.text}
                 </a>
@@ -147,9 +124,6 @@ class Hero extends Component {
                     'btn dropdown-toggle dropdown-toggle-split btn-' +
                     mainDropdownItem.color
                   }
-                  data-toggle='dropdown'
-                  aria-haspopup='true'
-                  aria-expanded='false'
                 >
                   <span class='sr-only'>Toggle Dropdown</span>
                 </button>
@@ -164,12 +138,7 @@ class Hero extends Component {
               {regularButtons.map(({ link, color, icon, text }) => (
                 <span key={link}>
                   {' '}
-                  <a
-                    type='button'
-                    class={'btn btn-' + color}
-                    href={link}
-                    native
-                  >
+                  <a type='button' class={'btn btn-' + color} href={link}>
                     <i class={icon} /> {text}
                   </a>
                   <br style={{ marginBottom: 10 }} class='d-md-none' />
