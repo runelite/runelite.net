@@ -61,7 +61,7 @@ class Home extends Component {
           </div>
           <h1 id='news'>
             Latest news{' '}
-            <Link routeName='blog' style={{ fontSize: 18 }}>
+            <Link href='/blog' style={{ fontSize: 18 }}>
               See all news...
             </Link>
           </h1>
