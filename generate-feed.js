@@ -101,7 +101,7 @@ const posts = fs
     return {
       entry: [
         {
-          id: fileName
+          id: pathString
         },
         {
           link: {
