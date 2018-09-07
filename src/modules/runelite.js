@@ -210,21 +210,16 @@ export const collectedSkillsSelector = createSelector(
 
 export const ranksSelector = createSelector(
   collectedSkillsSelector,
-  collectedSkills => {
-    const ranks = skillNames
-      .map(name => ({
-        skill: name,
-        ...(collectedSkills[name]
-          ? inverseRank(collectedSkills[name])
-          : {
-            xp: 0,
-            rank: 0
-          })
-      }))
-      .sort()
-
-    return ranks
-  }
+  collectedSkills =>
+    skillNames.map(name => ({
+      skill: name,
+      ...(collectedSkills[name]
+        ? inverseRank(collectedSkills[name])
+        : {
+          xp: 0,
+          rank: 0
+        })
+    }))
 )
 
 export const skillRankSelector = createSelector(
@@ -233,7 +228,12 @@ export const skillRankSelector = createSelector(
   xpWithOverallSelector,
   (skill, dates, xp) => ({
     labels: dates,
-    series: [xp.map(xpEntry => xpEntry[skill + '_rank'])]
+    series: [
+      xp.map(xpEntry => ({
+        meta: xpEntry.date.toDateString(),
+        value: xpEntry[skill + '_rank']
+      }))
+    ]
   })
 )
 
@@ -243,7 +243,12 @@ export const skillXpSelector = createSelector(
   xpWithOverallSelector,
   (skill, dates, xp) => ({
     labels: dates,
-    series: [xp.map(xpEntry => xpEntry[skill + '_xp'])]
+    series: [
+      xp.map(xpEntry => ({
+        meta: xpEntry.date.toDateString(),
+        value: xpEntry[skill + '_xp']
+      }))
+    ]
   })
 )
 
