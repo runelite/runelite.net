@@ -155,43 +155,17 @@ class XpShow extends Component {
   }
 
   componentWillReceiveProps ({ skillRank, skillXp, allRanks, allXp }) {
-    const skillRankChart = this.state.skillRank
-    if (skillRankChart) {
-      skillRankChart.update(skillRank)
-    }
-
-    const skillXpChart = this.state.skillXp
-    if (skillXpChart) {
-      skillXpChart.update(skillXp)
-    }
-
-    const allRanksChart = this.state.allRanks
-    if (allRanksChart) {
-      allRanksChart.update(allRanks)
-    }
-
-    const allXpChart = this.state.allXp
-    if (allXpChart) {
-      allXpChart.update(allXp)
-    }
+    this.state.skillRank.update(skillRank)
+    this.state.skillXp.update(skillXp)
+    this.state.allRanks.update(allRanks)
+    this.state.allXp.update(allXp)
   }
 
   componentWillUnmount () {
-    if (this.state.skillRank) {
-      this.state.skillRank.detach()
-    }
-
-    if (this.state.skillXp) {
-      this.state.skillXp.detach()
-    }
-
-    if (this.state.allRanks) {
-      this.state.allRanks.detach()
-    }
-
-    if (this.state.allXp) {
-      this.state.allXp.detach()
-    }
+    this.state.skillRank.detach()
+    this.state.skillXp.detach()
+    this.state.allRanks.detach()
+    this.state.allXp.detach()
   }
 
   render ({ name, skill, ranks }) {
