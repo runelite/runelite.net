@@ -1,6 +1,5 @@
 /** @jsx h */
 import 'chartist/dist/chartist.min.css'
-import 'chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css'
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import { Link } from 'preact-router'
@@ -8,6 +7,7 @@ import { bindActionCreators } from 'redux'
 import dayjs from 'dayjs'
 import Chartist from 'chartist'
 import 'chartist-plugin-tooltips'
+import './xp-show.css'
 import Layout from '../components/layout'
 import {
   allRanksSelector,
@@ -108,7 +108,7 @@ class XpShow extends Component {
 
     const invertValue = context => {
       context.data.series = context.data.series.map(series =>
-        series.map(value => -value)
+        series.map(s => ({ ...s, value: -s.value }))
       )
     }
 
@@ -119,9 +119,8 @@ class XpShow extends Component {
         context.type === 'point'
       ) {
         context.element.attr({
-          style: `stroke: ${
-            skills[context.meta || this.props.skill.toLowerCase()]
-          }`
+          style: `stroke: ${skills[context.meta] ||
+            skills[this.props.skill.toLowerCase()]}`
         })
       }
     }
@@ -235,20 +234,14 @@ class XpShow extends Component {
               </ul>
             </div>
             <div class='col-xl-9 col-md-8 col-sm-12 col-xs-12'>
+              <h5>{capitalizeFirstLetter(skill)} ranks</h5>
+              <div id='skill-rank' class='ct-chart' style={{ height: 400 }} />
+              <h5>{capitalizeFirstLetter(skill)} experience</h5>
+              <div id='skill-xp' class='ct-chart' style={{ height: 400 }} />
               <h5>Experience gained</h5>
               <div id='all-xp' class='ct-chart' style={{ height: 200 }} />
               <h5>Ranks gained</h5>
               <div id='all-ranks' class='ct-chart' style={{ height: 200 }} />
-              <div class='row'>
-                <div class='col-md-6'>
-                  <h5>{capitalizeFirstLetter(skill)} ranks</h5>
-                  <div id='skill-rank' class='ct-chart ct-square' />
-                </div>
-                <div class='col-md-6'>
-                  <h5>{capitalizeFirstLetter(skill)} experience</h5>
-                  <div id='skill-xp' class='ct-chart ct-square' />
-                </div>
-              </div>
             </div>
           </div>
         </Layout>
