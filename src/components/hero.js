@@ -4,7 +4,6 @@ import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import { filter, find, prepend } from 'ramda'
 import { bindActionCreators } from 'redux'
-import './hero.css'
 import { changeStyle } from '../modules/navigation'
 import Commit from './commit'
 
