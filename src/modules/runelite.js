@@ -210,21 +210,16 @@ export const collectedSkillsSelector = createSelector(
 
 export const ranksSelector = createSelector(
   collectedSkillsSelector,
-  collectedSkills => {
-    const ranks = skillNames
-      .map(name => ({
-        skill: name,
-        ...(collectedSkills[name]
-          ? inverseRank(collectedSkills[name])
-          : {
-            xp: 0,
-            rank: 0
-          })
-      }))
-      .sort()
-
-    return ranks
-  }
+  collectedSkills =>
+    skillNames.map(name => ({
+      skill: name,
+      ...(collectedSkills[name]
+        ? inverseRank(collectedSkills[name])
+        : {
+          xp: 0,
+          rank: 0
+        })
+    }))
 )
 
 export const skillRankSelector = createSelector(

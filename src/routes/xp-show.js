@@ -223,23 +223,31 @@ class XpShow extends Component {
                     src={`/img/skillicons/${playerSkill}.png`}
                   />{' '}
                   <span class='d-md-none d-lg-inline'>
-                      {capitalizeFirstLetter(playerSkill)}
-                    </span>
+                    {capitalizeFirstLetter(playerSkill)}
+                  </span>
                   <span class='float-right'>
-                      {createValueBadge(rank, '')} {createValueBadge(xp, 'xp')}
-                    </span>
+                    {createValueBadge(rank, '')} {createValueBadge(xp, 'xp')}
+                  </span>
                 </Link>
               ))}
             </ul>
           </div>
           <div class='col-xl-9 col-md-8 col-sm-12 col-xs-12'>
-            <h5><small>Total experience gained</small></h5>
+            <h5>
+              <small>Total experience gained</small>
+            </h5>
             <div id='all-xp' class='ct-chart' style={{ height: 175 }} />
-            <h5><small>Total ranks gained</small></h5>
+            <h5>
+              <small>Total ranks gained</small>
+            </h5>
             <div id='all-ranks' class='ct-chart' style={{ height: 175 }} />
-            <h5><small>{capitalizeFirstLetter(skill)} ranks</small></h5>
+            <h5>
+              <small>{capitalizeFirstLetter(skill)} ranks</small>
+            </h5>
             <div id='skill-rank' class='ct-chart' style={{ height: 375 }} />
-            <h5><small>{capitalizeFirstLetter(skill)} experience</small></h5>
+            <h5>
+              <small>{capitalizeFirstLetter(skill)} experience</small>
+            </h5>
             <div id='skill-xp' class='ct-chart' style={{ height: 375 }} />
           </div>
         </div>
