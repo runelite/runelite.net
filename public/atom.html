@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <!--
+      This is HTML template for atom.xml RSS feed. It needs to be saved as HTML due to create-react-app limitation what
+      is treating XML files as media, and .ejs files too
+    -->
+    <title><%= htmlWebpackPlugin.options.feed.title %></title>
+    <subtitle><%= htmlWebpackPlugin.options.feed.subtitle %></subtitle>
+    <link href="<%= htmlWebpackPlugin.options.feed.url %>"/>
+    <link href="<%= htmlWebpackPlugin.options.feed.url %>/atom.xml" rel="self"/>
+    <id><%= htmlWebpackPlugin.options.feed.url %>/</id>
+    <updated><%= new Date().toISOString() %></updated>
+    <% htmlWebpackPlugin.options.feed.entries.forEach(function(entry) { %>
+    <entry>
+        <id><%= entry.url %></id>
+        <link href="<%= entry.url %>"/>
+        <title><%= entry.title %></title>
+        <summary><%= entry.summary %></summary>
+        <updated><%= entry.updated %></updated>
+        <author>
+            <name><%= entry.author %></name>
+        </author>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <%= entry.content %>
+            </div>
+        </content>
+    </entry>
+    <% }); %>
+</feed>

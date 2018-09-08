@@ -25,8 +25,6 @@
   "devDependencies": {
     "babel-eslint": "^9.0.0",
     "front-matter": "^2.3.0",
-    "jstoxml": "^1.4.3",
-    "markdown-it": "^8.4.2",
     "markdown-with-front-matter-loader": "^0.1.0",
     "null-loader": "^0.1.1",
     "prerender-spa-plugin": "^3.3.0",
@@ -44,7 +42,7 @@
     "fix": "prettier --single-quote --trailing-comma none --write {*,public/*,src/**/*}.{js,json,css,md} && standard  --parser babel-eslint --fix",
     "test": "standard --parser babel-eslint && CI=true react-app-rewired test",
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build && node generate-feed.js",
+    "build": "react-app-rewired build",
     "now-start": "serve -s ./build"
   },
   "standard": {
