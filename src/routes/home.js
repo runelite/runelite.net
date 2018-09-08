@@ -24,9 +24,8 @@ import Async from '../components/async'
 class Home extends Component {
   componentDidMount () {
     this.props.getCommits()
-    this.props.getReleases()
+    this.props.getReleases().then(() => this.props.getSessionCount())
     this.props.getRepository()
-    this.props.getSessionCount()
   }
 
   render ({ commit, release, stars, sessionCount }) {

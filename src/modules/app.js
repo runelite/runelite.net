@@ -1,13 +1,17 @@
-import { createAction, handleActions } from 'redux-actions'
+import { createActions, handleActions } from 'redux-actions'
 
-// Reducer
+export const { startLoading, stopLoading } = createActions(
+  'START_LOADING',
+  'STOP_LOADING'
+)
+
 export default handleActions(
   {
-    START_LOADING: state => ({
+    [startLoading]: state => ({
       ...state,
       loading: true
     }),
-    STOP_LOADING: state => ({
+    [stopLoading]: state => ({
       ...state,
       loading: false
     })
@@ -16,6 +20,3 @@ export default handleActions(
     loading: false
   }
 )
-
-export const startLoading = createAction('START_LOADING')
-export const stopLoading = createAction('STOP_LOADING')

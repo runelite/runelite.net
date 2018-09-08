@@ -1,8 +1,10 @@
-import { createAction, handleActions } from 'redux-actions'
+import { createActions, handleActions } from 'redux-actions'
+
+export const { changeStyle } = createActions('CHANGE_STYLE')
 
 export default handleActions(
   {
-    CHANGE_STYLE: (state, { payload }) => ({
+    [changeStyle]: (state, { payload }) => ({
       ...state,
       dark: payload
     })
@@ -11,5 +13,3 @@ export default handleActions(
     dark: false
   }
 )
-
-export const changeStyle = createAction('CHANGE_STYLE', dark => dark)

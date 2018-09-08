@@ -9,6 +9,7 @@ import Chartist from 'chartist'
 import 'chartist-plugin-tooltips'
 import './xp-show.css'
 import Layout from '../components/layout'
+import { getReleases } from '../modules/git'
 import {
   allRanksSelector,
   allXpSelector,
@@ -146,12 +147,14 @@ class XpShow extends Component {
       allXp: new Chartist.Bar('#all-xp', {}, options).on('draw', skillColor)
     })
 
-    this.props.getXpRange({
-      skill: this.props.skill,
-      name: this.props.name,
-      start: startDate,
-      end: endDate
-    })
+    this.props.getReleases().then(() =>
+      this.props.getXpRange({
+        skill: this.props.skill,
+        name: this.props.name,
+        start: startDate,
+        end: endDate
+      })
+    )
   }
 
   componentWillReceiveProps ({ skillRank, skillXp, allRanks, allXp }) {
@@ -238,5 +241,5 @@ export default connect(
     allRanks: allRanksSelector(state, props),
     allXp: allXpSelector(state, props)
   }),
-  dispatch => bindActionCreators({ getXpRange }, dispatch)
+  dispatch => bindActionCreators({ getReleases, getXpRange }, dispatch)
 )(XpShow)

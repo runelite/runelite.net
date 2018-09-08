@@ -1,40 +1,97 @@
 import dayjs from 'dayjs'
 import { uniq, concat, forEachObjIndexed } from 'ramda'
-import { createAction, handleActions } from 'redux-actions'
-import { createRoutine } from 'redux-routines'
+import { createActions, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
 import skills from '../_data/skills'
 import api from '../api'
 import { startLoading, stopLoading } from './app'
-import { getReleases } from './git'
+import { latestReleaseSelector } from './git'
 
 const runeliteApi = api('https://api.runelite.net/')
 
 // Actions
-export const getXpRoutine = createRoutine('react-ui/runelite/GET_XP')
-export const getXpRangeRoutine = createRoutine(
-  'react-ui/runelite/GET_XP_RANGE'
-)
-export const getSessionCountRoutine = createRoutine(
-  'react-ui/runelite/GET_SESSION_COUNT'
+export const {
+  getSessionCount,
+  getXpRange,
+  setSessionCount,
+  setXp,
+  setXpRange
+} = createActions(
+  {
+    GET_SESSION_COUNT: () => async (dispatch, getState) => {
+      dispatch(startLoading())
+
+      const version = latestReleaseSelector(getState()).name
+
+      const response = await runeliteApi(`runelite-${version}/session/count`, {
+        method: 'GET'
+      })
+
+      dispatch(setSessionCount(response))
+      dispatch(stopLoading())
+      return response
+    },
+    GET_XP_RANGE: ({ skill, name, start, end }) => async (
+      dispatch,
+      getState
+    ) => {
+      dispatch(startLoading())
+      dispatch(
+        setXpRange({
+          start,
+          end,
+          name,
+          skill
+        })
+      )
+
+      const version = latestReleaseSelector(getState()).name
+      const xp = []
+
+      for (
+        let momDate = dayjs(start);
+        momDate.diff(end, 'day') <= 0;
+        momDate = momDate.add(1, 'day')
+      ) {
+        const date = momDate.toDate()
+        const dateString = date.toISOString()
+
+        const dayResponse = await runeliteApi(
+          `runelite-${version}/xp/get?username=${name}&time=${dateString}`,
+          {
+            method: 'GET'
+          }
+        )
+
+        const formattedResponse = {
+          date,
+          ...dayResponse
+        }
+
+        dispatch(setXp(formattedResponse))
+        xp.push(formattedResponse)
+      }
+
+      dispatch(stopLoading())
+    }
+  },
+  'SET_SESSION_COUNT',
+  'SET_XP',
+  'SET_XP_RANGE'
 )
 
 // Reducer
 export default handleActions(
   {
-    [getSessionCountRoutine.SUCCESS]: (state, { payload }) => ({
+    [setSessionCount]: (state, { payload }) => ({
       ...state,
       sessionCount: payload
     }),
-    [getXpRoutine.SUCCESS]: (state, { payload }) => ({
+    [setXp]: (state, { payload }) => ({
       ...state,
       xp: uniq(concat(state.xp, [payload]))
     }),
-    [getXpRangeRoutine.REQUEST]: (state, { payload }) => ({
-      ...state,
-      ...payload
-    }),
-    [getXpRangeRoutine.SUCCESS]: (state, { payload }) => ({
+    [setXpRange]: (state, { payload }) => ({
       ...state,
       ...payload
     })
@@ -42,84 +99,6 @@ export default handleActions(
   {
     sessionCount: 0,
     xp: []
-  }
-)
-
-const getLatestVersion = async dispatch => {
-  const releases = await dispatch(getReleases())
-
-  if (releases.length === 0) {
-    return
-  }
-
-  const release = releases[0]
-
-  return release.name.substr(
-    release.name.lastIndexOf('-') + 1,
-    release.name.length
-  )
-}
-
-// Action creators
-export const getSessionCount = createAction(
-  getSessionCountRoutine.TRIGGER,
-  () => async dispatch => {
-    dispatch(startLoading())
-    const version = await getLatestVersion(dispatch)
-
-    const response = await runeliteApi(`runelite-${version}/session/count`, {
-      method: 'GET'
-    })
-
-    dispatch(getSessionCountRoutine.success(response))
-    dispatch(stopLoading())
-    return response
-  }
-)
-
-export const getXpRange = createAction(
-  getXpRangeRoutine.TRIGGER,
-  ({ skill, name, start, end }) => async dispatch => {
-    dispatch(
-      getXpRangeRoutine.request({
-        start,
-        end,
-        name,
-        skill
-      })
-    )
-
-    const version = await getLatestVersion(dispatch)
-
-    dispatch(startLoading())
-    const xp = []
-
-    for (
-      let momDate = dayjs(start);
-      momDate.diff(end, 'day') <= 0;
-      momDate = momDate.add(1, 'day')
-    ) {
-      const date = momDate.toDate()
-      const dateString = date.toISOString()
-
-      const dayResponse = await runeliteApi(
-        `runelite-${version}/xp/get?username=${name}&time=${dateString}`,
-        {
-          method: 'GET'
-        }
-      )
-
-      const formattedResponse = {
-        date,
-        ...dayResponse
-      }
-
-      dispatch(getXpRoutine.success(formattedResponse))
-      xp.push(formattedResponse)
-    }
-
-    dispatch(getXpRangeRoutine.success({ xp }))
-    dispatch(stopLoading())
   }
 )
 
