@@ -65,6 +65,10 @@ module.exports = function override (config, env) {
   config = rewirePreact(config, env)
   config = rewireEslint(config, env)
 
+  if (process.env.NODE_ENV !== 'production') {
+    return config
+  }
+
   const posts = fs.readdirSync(path.join('src', '_posts'))
   const routes = ['/', '/features', '/blog'].concat(
     posts.map(fileName => '/blog/show/' + parseBlog(fileName).id)

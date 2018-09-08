@@ -1,5 +1,4 @@
-import { createAction, handleActions } from 'redux-actions'
-import { createRoutine } from 'redux-routines'
+import { createActions, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
 import git from '../_data/git'
 import api from '../api'
@@ -8,24 +7,65 @@ import { startLoading, stopLoading } from './app'
 const githubApi = api('https://api.github.com/')
 
 // Actions
-export const getCommitsRoutine = createRoutine('react-ui/git/GET_COMMITS')
-export const getReleasesRoutine = createRoutine('react-ui/git/GET_RELEASES')
-export const getRepositoryRoutine = createRoutine(
-  'react-ui/git/GET_REPOSITORY'
+export const {
+  getCommits,
+  getReleases,
+  getRepository,
+  setCommits,
+  setReleases,
+  setRepository
+} = createActions(
+  {
+    GET_COMMITS: () => async dispatch => {
+      dispatch(startLoading())
+      const response = await githubApi(
+        `repos/${git.user}/${git.repository}/commits`,
+        { method: 'GET' }
+      )
+
+      dispatch(setCommits(response))
+      dispatch(stopLoading())
+      return response
+    },
+    GET_REPOSITORY: () => async dispatch => {
+      dispatch(startLoading())
+      const response = await githubApi(`repos/${git.user}/${git.repository}`, {
+        method: 'GET'
+      })
+
+      dispatch(setRepository(response))
+      dispatch(stopLoading())
+      return response
+    },
+    GET_RELEASES: () => async dispatch => {
+      dispatch(startLoading())
+      const response = await githubApi(
+        `repos/${git.user}/${git.repository}/tags`,
+        { method: 'GET' }
+      )
+
+      dispatch(setReleases(response))
+      dispatch(stopLoading())
+      return response
+    }
+  },
+  'SET_COMMITS',
+  'SET_RELEASES',
+  'SET_REPOSITORY'
 )
 
 // Reducer
 export default handleActions(
   {
-    [getCommitsRoutine.SUCCESS]: (state, { payload }) => ({
+    [setCommits]: (state, { payload }) => ({
       ...state,
       commits: payload
     }),
-    [getReleasesRoutine.SUCCESS]: (state, { payload }) => ({
+    [setReleases]: (state, { payload }) => ({
       ...state,
       releases: payload
     }),
-    [getRepositoryRoutine.SUCCESS]: (state, { payload }) => ({
+    [setRepository]: (state, { payload }) => ({
       ...state,
       repository: payload
     })
@@ -34,51 +74,6 @@ export default handleActions(
     commits: [],
     releases: [],
     repository: {}
-  }
-)
-
-// Action creators
-export const getCommits = createAction(
-  getCommitsRoutine.TRIGGER,
-  () => async dispatch => {
-    dispatch(startLoading())
-    const response = await githubApi(
-      `repos/${git.user}/${git.repository}/commits`,
-      { method: 'GET' }
-    )
-
-    dispatch(getCommitsRoutine.success(response))
-    dispatch(stopLoading())
-    return response
-  }
-)
-
-export const getReleases = createAction(
-  getReleasesRoutine.TRIGGER,
-  () => async dispatch => {
-    dispatch(startLoading())
-    const response = await githubApi(
-      `repos/${git.user}/${git.repository}/tags`,
-      { method: 'GET' }
-    )
-
-    dispatch(getReleasesRoutine.success(response))
-    dispatch(stopLoading())
-    return response
-  }
-)
-
-export const getRepository = createAction(
-  getRepositoryRoutine.TRIGGER,
-  () => async dispatch => {
-    dispatch(startLoading())
-    const response = await githubApi(`repos/${git.user}/${git.repository}`, {
-      method: 'GET'
-    })
-
-    dispatch(getRepositoryRoutine.success(response))
-    dispatch(stopLoading())
-    return response
   }
 )
 
