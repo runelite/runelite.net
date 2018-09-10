@@ -7,11 +7,11 @@ import links from '../_data/links'
 import { stargazersSelector } from '../modules/git'
 import { Link } from 'preact-router'
 
-const Navigation = ({ stars, dark }) => (
+const Navigation = ({ stars, navbarDark }) => (
   <nav
     class={
       'navbar navbar-expand-lg fixed-top ' +
-      (dark ? 'navbar-dark' : 'navbar-light bg-white')
+      (navbarDark ? 'navbar-dark' : 'navbar-light bg-white')
     }
   >
     <Link class='navbar-brand' activeClassName='active' href='/'>
@@ -94,5 +94,5 @@ const Navigation = ({ stars, dark }) => (
 
 export default connect((state, props) => ({
   stars: stargazersSelector(state, props),
-  ...state.navigation
+  ...state.app
 }))(Navigation)

@@ -4,7 +4,7 @@ import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import { filter, find, prepend } from 'ramda'
 import { bindActionCreators } from 'redux'
-import { changeStyle } from '../modules/navigation'
+import { makeNavbarDark, makeNavbarDefault } from '../modules/app'
 import Commit from './commit'
 
 function isOsCorrect (osName) {
@@ -54,7 +54,16 @@ class Hero extends Component {
     const fromTop = jumboBottom - navbar.offsetHeight
     const stop =
       window.scrollY || window.pageYOffset || document.body.scrollTop
-    this.props.changeStyle(stop <= fromTop)
+
+    if (this.props.navbarDark) {
+      if (stop > fromTop) {
+        this.props.makeNavbarDefault()
+      }
+    } else {
+      if (stop <= fromTop) {
+        this.props.makeNavbarDark()
+      }
+    }
   }
 
   componentDidMount () {
@@ -161,6 +170,9 @@ class Hero extends Component {
 }
 
 export default connect(
-  state => state,
-  dispatch => bindActionCreators({ changeStyle }, dispatch)
+  state => ({
+    navbarDark: state.app.navbarDark
+  }),
+  dispatch =>
+    bindActionCreators({ makeNavbarDark, makeNavbarDefault }, dispatch)
 )(Hero)
