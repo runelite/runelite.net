@@ -12,11 +12,12 @@ import links from '../_data/links'
 import Redirect from './redirect'
 import Loader from './loader'
 import Async from './async'
+import { stargazersSelector } from '../modules/git'
 
-const App = ({ loading }) => (
+const App = ({ loading, stars, navbarDark }) => (
   <div style={{ height: '100%' }}>
-    <Loader loading={loading} />
-    <Navigation />
+    <Loader loading={loading > 0} />
+    <Navigation dark={navbarDark} stars={stars} />
     <Router>
       <Redirect path='/discord' to={links.discord} />
       <Async path='/' getComponent={() => import('../routes/home')} />
@@ -42,4 +43,7 @@ const App = ({ loading }) => (
   </div>
 )
 
-export default connect(state => state.app)(App)
+export default connect(state => ({
+  stars: stargazersSelector(state),
+  ...state.app
+}))(App)

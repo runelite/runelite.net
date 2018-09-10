@@ -5,7 +5,7 @@ import './loader.css'
 const Loader = ({ loading }) => (
   <div
     class='fixed-top animated loader'
-    style={{ display: loading > 0 ? 'block' : 'none' }}
+    style={{ display: loading ? 'block' : 'none' }}
   />
 )
 

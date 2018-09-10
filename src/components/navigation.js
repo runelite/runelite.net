@@ -1,17 +1,15 @@
 /** @jsx h */
 import { h } from 'preact'
-import { connect } from 'preact-redux'
 import './navigation.css'
 import hero from '../_data/hero'
 import links from '../_data/links'
-import { stargazersSelector } from '../modules/git'
 import { Link } from 'preact-router'
 
-const Navigation = ({ stars, navbarDark }) => (
+const Navigation = ({ stars, dark }) => (
   <nav
     class={
       'navbar navbar-expand-lg fixed-top ' +
-      (navbarDark ? 'navbar-dark' : 'navbar-light bg-white')
+      (dark ? 'navbar-dark' : 'navbar-light bg-white')
     }
   >
     <Link class='navbar-brand' activeClassName='active' href='/'>
@@ -92,7 +90,4 @@ const Navigation = ({ stars, navbarDark }) => (
   </nav>
 )
 
-export default connect((state, props) => ({
-  stars: stargazersSelector(state, props),
-  ...state.app
-}))(Navigation)
+export default Navigation

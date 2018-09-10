@@ -87,7 +87,7 @@ class Hero extends Component {
     clearInterval(this.state.interval)
 
     // Reset navigation bar
-    this.props.changeStyle(false)
+    this.props.makeNavbarDefault()
 
     // Remove scroll listener
     document.removeEventListener('scroll', this.handleScroll)
