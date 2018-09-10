@@ -72,7 +72,7 @@ class Hero extends Component {
 
     // Add background updater
     this.setState({
-      internal: setInterval(() => this.updateBackground(this.state.index), 8000)
+      interval: setInterval(() => this.updateBackground(this.state.index), 8000)
     })
 
     // Change navigation bar to fit hero
