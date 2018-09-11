@@ -1,4 +1,3 @@
-/** @jsx h */
 import { h } from 'preact'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
@@ -31,8 +30,8 @@ const NotFound = () => (
         }}
       >
         <h1>404</h1>
-        <p class='lead'>
-          Sorry, page was not found Click <Link href='/'>here</Link> to return
+        <p class="lead">
+          Sorry, page was not found Click <Link href="/">here</Link> to return
           to home page.
         </p>
       </div>

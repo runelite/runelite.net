@@ -1,4 +1,3 @@
-/** @jsx h */
 import { Component, h } from 'preact'
 import { connect } from 'preact-redux'
 import Feature from '../components/feature'
@@ -22,13 +21,13 @@ import { Link } from 'preact-router'
 import Async from '../components/async'
 
 class Home extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.getCommits()
     this.props.getReleases().then(() => this.props.getSessionCount())
     this.props.getRepository()
   }
 
-  render ({ commit, release, stars, sessionCount }) {
+  render({ commit, release, stars, sessionCount }) {
     return (
       <div style={{ height: 'inherit' }}>
         <Meta
@@ -45,12 +44,12 @@ class Home extends Component {
         <Layout>
           <h1>
             Features{' '}
-            <Link href='/features' style={{ fontSize: 18 }}>
+            <Link href="/features" style={{ fontSize: 18 }}>
               See all features...
             </Link>
           </h1>
           <hr />
-          <div class='row'>
+          <div class="row">
             {features
               .filter(feature => feature.home)
               .map(({ image, title }) => ({ image, title }))
@@ -58,9 +57,9 @@ class Home extends Component {
                 <Feature key={feature.title} {...feature} />
               ))}
           </div>
-          <h1 id='news'>
+          <h1 id="news">
             Latest news{' '}
-            <Link href='/blog' style={{ fontSize: 18 }}>
+            <Link href="/blog" style={{ fontSize: 18 }}>
               See all news...
             </Link>
           </h1>
@@ -69,7 +68,7 @@ class Home extends Component {
             getComponent={() =>
               latest().then(({ body }) => (
                 <div
-                  class='markdown-body'
+                  class="markdown-body"
                   dangerouslySetInnerHTML={{ __html: body }}
                 />
               ))

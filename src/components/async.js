@@ -1,15 +1,14 @@
-/** @jsx h */
 import { h, Component } from 'preact'
 
 class Async extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       componentData: null
     }
   }
 
-  loadComponent () {
+  loadComponent() {
     const componentData = this.props.getComponent()
 
     // In case returned value was a promise
@@ -28,11 +27,11 @@ class Async extends Component {
     }
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.loadComponent()
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.path && this.props.path !== nextProps.path) {
       this.setState(
         {
@@ -45,7 +44,7 @@ class Async extends Component {
     }
   }
 
-  render () {
+  render() {
     if (this.state.componentData) {
       if (this.props.path) {
         return h(this.state.componentData, this.props)

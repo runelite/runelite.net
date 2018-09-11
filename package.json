@@ -22,32 +22,32 @@
     "s-ago": "^2.0.1"
   },
   "devDependencies": {
-    "babel-eslint": "^9.0.0",
     "front-matter": "^2.3.0",
+    "husky": "^1.0.0-rc.13",
     "markdown-with-front-matter-loader": "^0.1.0",
     "null-loader": "^0.1.1",
     "prerender-spa-plugin": "^3.3.0",
     "prettier": "^1.14.2",
+    "pretty-quick": "^1.6.0",
     "react-app-rewire-eslint": "^0.2.3",
     "react-app-rewire-preact": "^1.0.1",
     "react-app-rewired": "^1.5.2",
     "react-scripts": "^1.1.5",
     "redux-logger": "^3.0.6",
     "serve": "^10.0.0",
-    "sitemap-webpack-plugin": "^0.5.1",
-    "standard": "^12.0.1"
+    "sitemap-webpack-plugin": "^0.5.1"
   },
   "scripts": {
-    "fix": "prettier --single-quote --trailing-comma none --write {*,public/*,src/**/*}.{js,json,css,md} && standard  --parser babel-eslint --fix",
-    "test": "standard --parser babel-eslint && CI=true react-app-rewired test",
+    "fix": "eslint --fix src && prettier --write {*,public/*,src/**,src/**/*}.{js,json,css,md}",
+    "test": "react-app-rewired test",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "now-start": "serve -s ./build"
   },
-  "standard": {
-    "env": [
-      "jest"
-    ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "browserslist": {
     "development": [

@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const { injectBabelPlugin } = require('react-app-rewired')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const SitemapPlugin = require('sitemap-webpack-plugin').default
@@ -61,9 +62,13 @@ const feedMapper = fileName => {
   }
 }
 
-module.exports = function override (config, env) {
+module.exports = function override(config, env) {
   config = rewirePreact(config, env)
   config = rewireEslint(config, env)
+  config = injectBabelPlugin(
+    ['babel-plugin-transform-react-jsx', { pragma: 'h', useBuiltIns: true }],
+    config
+  )
 
   if (process.env.NODE_ENV !== 'production') {
     return config

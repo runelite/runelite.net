@@ -1,4 +1,3 @@
-/** @jsx h */
 import platform from 'platform'
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
@@ -7,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import { makeNavbarDark, makeNavbarDefault } from '../modules/app'
 import Commit from './commit'
 
-function isOsCorrect (osName) {
+function isOsCorrect(osName) {
   if (!platform.os.family) {
     return false
   }
@@ -27,7 +26,7 @@ function isOsCorrect (osName) {
 }
 
 class Hero extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.updateBackground = this.updateBackground.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
@@ -39,7 +38,7 @@ class Hero extends Component {
     }
   }
 
-  updateBackground (index) {
+  updateBackground(index) {
     this.setState({
       ...this.state,
       image: this.props.images[index],
@@ -47,13 +46,12 @@ class Hero extends Component {
     })
   }
 
-  handleScroll () {
+  handleScroll() {
     const jumbo = document.getElementById('jumbo')
     const jumboBottom = jumbo.offsetTop + jumbo.offsetHeight
     const navbar = document.getElementsByClassName('navbar')[0]
     const fromTop = jumboBottom - navbar.offsetHeight
-    const stop =
-      window.scrollY || window.pageYOffset || document.body.scrollTop
+    const stop = window.scrollY || window.pageYOffset || document.body.scrollTop
 
     if (this.props.navbarDark) {
       if (stop > fromTop) {
@@ -66,7 +64,7 @@ class Hero extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     // Update background
     this.updateBackground(0)
 
@@ -82,7 +80,7 @@ class Hero extends Component {
     document.addEventListener('scroll', this.handleScroll)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     // Remove background updater
     clearInterval(this.state.interval)
 
@@ -93,7 +91,7 @@ class Hero extends Component {
     document.removeEventListener('scroll', this.handleScroll)
   }
 
-  render ({ title, description, buttons, release, commit, playing }) {
+  render({ title, description, buttons, release, commit, playing }) {
     let regularButtons = filter(button => !button.dropdown)(buttons)
     const dropdownButtons = filter(button => button.dropdown)(buttons)
     const defaultDropdownItem = find(button => button.os === 'all')(
@@ -109,35 +107,35 @@ class Hero extends Component {
 
     return (
       <div
-        class='jumbotron jumbotron-fluid'
+        class="jumbotron jumbotron-fluid"
         style={{ backgroundImage: `url(${this.state.image})` }}
-        id='jumbo'
+        id="jumbo"
       >
-        <div class='jumbotron-cell'>
-          <div class='jumbotron-body'>
-            <h1 class='display-2'>{title}</h1>
-            <p class='lead'>{description}</p>
-            <p class='lead'>
-              <div class='btn-group dropdown'>
+        <div class="jumbotron-cell">
+          <div class="jumbotron-body">
+            <h1 class="display-2">{title}</h1>
+            <p class="lead">{description}</p>
+            <p class="lead">
+              <div class="btn-group dropdown">
                 <a
-                  type='button'
+                  type="button"
                   class={'btn btn-' + mainDropdownItem.color}
                   href={mainDropdownItem.link}
                 >
                   <i class={mainDropdownItem.icon} /> {mainDropdownItem.text}
                 </a>
                 <button
-                  type='button'
+                  type="button"
                   class={
                     'btn dropdown-toggle dropdown-toggle-split btn-' +
                     mainDropdownItem.color
                   }
                 >
-                  <span class='sr-only'>Toggle Dropdown</span>
+                  <span class="sr-only">Toggle Dropdown</span>
                 </button>
-                <div class='dropdown-menu' style={{ textShadow: 'none' }}>
+                <div class="dropdown-menu" style={{ textShadow: 'none' }}>
                   {dropdownButtons.map(({ link, icon, text }) => (
-                    <a class='dropdown-item' href={link} native>
+                    <a class="dropdown-item" href={link} native>
                       <i class={icon} /> {text}
                     </a>
                   ))}
@@ -146,17 +144,17 @@ class Hero extends Component {
               {regularButtons.map(({ link, color, icon, text }) => (
                 <span key={link}>
                   {' '}
-                  <a type='button' class={'btn btn-' + color} href={link}>
+                  <a type="button" class={'btn btn-' + color} href={link}>
                     <i class={icon} /> {text}
                   </a>
-                  <br style={{ marginBottom: 10 }} class='d-md-none' />
+                  <br style={{ marginBottom: 10 }} class="d-md-none" />
                 </span>
               ))}
             </p>
-            <div class='small'>
+            <div class="small">
               <Commit {...commit} />
               <b>Latest release:</b>{' '}
-              <a href='#news' style={{ color: 'cyan' }}>
+              <a href="#news" style={{ color: 'cyan' }}>
                 {release || 'unknown'}
               </a>
               <br />

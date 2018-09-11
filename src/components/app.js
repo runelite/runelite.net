@@ -1,4 +1,3 @@
-/** @jsx h */
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { h } from 'preact'
@@ -19,23 +18,23 @@ const App = ({ loading, stars, navbarDark }) => (
     <Loader loading={loading > 0} />
     <Navigation dark={navbarDark} stars={stars} />
     <Router>
-      <Redirect path='/discord' to={links.discord} />
-      <Async path='/' getComponent={() => import('../routes/home')} />
-      <Async path='/blog' getComponent={() => import('../routes/blog')} />
+      <Redirect path="/discord" to={links.discord} />
+      <Async path="/" getComponent={() => import('../routes/home')} />
+      <Async path="/blog" getComponent={() => import('../routes/blog')} />
       <Async
-        path='/blog/show/:id'
+        path="/blog/show/:id"
         getComponent={() => import('../routes/blog-show')}
       />
       <Async
-        path='/features'
+        path="/features"
         getComponent={() => import('../routes/features')}
       />
       <Async
-        path='/xp/show/:skill/:name/:start/:end'
+        path="/xp/show/:skill/:name/:start/:end"
         getComponent={() => import('../routes/xp-show')}
       />
       <Async
-        path='/logged-in'
+        path="/logged-in"
         getComponent={() => import('../routes/logged-in')}
       />
       <Async default getComponent={() => import('../routes/not-found')} />

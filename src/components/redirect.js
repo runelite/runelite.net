@@ -1,12 +1,11 @@
-/** @jsx h */
 import { Component } from 'preact'
 
 export default class Redirect extends Component {
-  componentWillMount () {
+  componentWillMount() {
     window.location.replace(this.props.to)
   }
 
-  render () {
+  render() {
     return null
   }
 }

@@ -1,11 +1,9 @@
-module.exports = (file) => {
+module.exports = file => {
   // Remove cd and extension
   file = file.match(/([\w\d-.]+)\.md/)[1]
 
   // Extract year and path
-  const tokenizedFilename = file.match(
-    /^(\d{4}-\d{2}-\d{2})-(\d{2}-\d{2})(.*)/
-  )
+  const tokenizedFilename = file.match(/^(\d{4}-\d{2}-\d{2})-(\d{2}-\d{2})(.*)/)
 
   // Validation
   if (
