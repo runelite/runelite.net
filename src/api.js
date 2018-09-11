@@ -8,7 +8,7 @@ export default base => {
    * @param {object} options fetch options
    * @return {Promise}
    */
-  async function fetchFunc (url, options) {
+  async function fetchFunc(url, options) {
     const correctedOptions = options || {}
 
     if (options.body) {

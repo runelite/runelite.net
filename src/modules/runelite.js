@@ -132,23 +132,23 @@ const calculateRanksAndExp = collector => (value, key) => {
   if (isRank) {
     collector[curKey] = curObj
       ? {
-        ...curObj,
-        rank: value - curObj.rank
-      }
+          ...curObj,
+          rank: value - curObj.rank
+        }
       : {
-        xp: 0,
-        rank: value
-      }
+          xp: 0,
+          rank: value
+        }
   } else {
     collector[curKey] = curObj
       ? {
-        ...curObj,
-        xp: value - curObj.xp
-      }
+          ...curObj,
+          xp: value - curObj.xp
+        }
       : {
-        xp: value,
-        rank: 0
-      }
+          xp: value,
+          rank: 0
+        }
   }
 }
 
@@ -195,9 +195,9 @@ export const ranksSelector = createSelector(
       ...(collectedSkills[name]
         ? inverseRank(collectedSkills[name])
         : {
-          xp: 0,
-          rank: 0
-        })
+            xp: 0,
+            rank: 0
+          })
     }))
 )
 

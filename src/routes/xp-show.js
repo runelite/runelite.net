@@ -1,4 +1,3 @@
-/** @jsx h */
 import 'chartist/dist/chartist.min.css'
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
@@ -22,11 +21,11 @@ import hero from '../_data/hero'
 import skills from '../_data/skills'
 import Meta from '../components/meta'
 
-function isNumeric (value) {
+function isNumeric(value) {
   return !isNaN(value - parseFloat(value))
 }
 
-function parseDate (date, from) {
+function parseDate(date, from) {
   if (date === 'now') {
     date = new Date()
   } else if (!isNumeric(date)) {
@@ -43,15 +42,14 @@ function parseDate (date, from) {
 
 const capitalizeFirstLetter = string =>
   string.charAt(0).toUpperCase() + string.slice(1)
-const numberWithCommas = x =>
-  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+const numberWithCommas = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 const createValueBadge = (value, suffix) =>
   value >= 0 ? (
-    <span class='badge badge-success'>
+    <span class="badge badge-success">
       +{numberWithCommas(value)} {suffix}
     </span>
   ) : (
-    <span class='badge badge-danger'>
+    <span class="badge badge-danger">
       {numberWithCommas(value)} {suffix}
     </span>
   )
@@ -59,7 +57,7 @@ const createValueBadge = (value, suffix) =>
 const safeDate = date => date || new Date()
 
 class XpShow extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -72,7 +70,7 @@ class XpShow extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const startDate = safeDate(parseDate(this.props.start, new Date()))
     const endDate = safeDate(parseDate(this.props.end, startDate))
 
@@ -157,35 +155,35 @@ class XpShow extends Component {
     )
   }
 
-  componentWillReceiveProps ({ skillRank, skillXp, allRanks, allXp }) {
+  componentWillReceiveProps({ skillRank, skillXp, allRanks, allXp }) {
     this.state.skillRank.update(skillRank)
     this.state.skillXp.update(skillXp)
     this.state.allRanks.update(allRanks)
     this.state.allXp.update(allXp)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.state.skillRank.detach()
     this.state.skillXp.detach()
     this.state.allRanks.detach()
     this.state.allXp.detach()
   }
 
-  render ({ name, skill, ranks }) {
+  render({ name, skill, ranks }) {
     return (
       <Layout>
         <Meta title={`Experience Tracker - ${hero.title}`} />
         <h1>
           {name} /{' '}
-          <small class='text-muted'>
+          <small class="text-muted">
             {skill} / {this.state.startDate.toDateString().toLowerCase()} /{' '}
             {this.state.endDate.toDateString().toLowerCase()}
           </small>
         </h1>
         <hr />
-        <div class='row'>
-          <div class='col-xl-3 col-md-4 col-sm-12 col-xs-12'>
-            <ul class='list-group'>
+        <div class="row">
+          <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
+            <ul class="list-group">
               {ranks.map(({ skill: playerSkill, rank, xp }) => (
                 <Link
                   class={
@@ -199,33 +197,33 @@ class XpShow extends Component {
                     alt={playerSkill}
                     src={`/img/skillicons/${playerSkill}.png`}
                   />{' '}
-                  <span class='d-md-none d-lg-inline'>
+                  <span class="d-md-none d-lg-inline">
                     {capitalizeFirstLetter(playerSkill)}
                   </span>
-                  <span class='float-right'>
+                  <span class="float-right">
                     {createValueBadge(rank, '')} {createValueBadge(xp, 'xp')}
                   </span>
                 </Link>
               ))}
             </ul>
           </div>
-          <div class='col-xl-9 col-md-8 col-sm-12 col-xs-12'>
+          <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
             <h5>
               <small>Total experience gained</small>
             </h5>
-            <div id='all-xp' class='ct-chart' style={{ height: 175 }} />
+            <div id="all-xp" class="ct-chart" style={{ height: 175 }} />
             <h5>
               <small>Total ranks gained</small>
             </h5>
-            <div id='all-ranks' class='ct-chart' style={{ height: 175 }} />
+            <div id="all-ranks" class="ct-chart" style={{ height: 175 }} />
             <h5>
               <small>{capitalizeFirstLetter(skill)} ranks</small>
             </h5>
-            <div id='skill-rank' class='ct-chart' style={{ height: 375 }} />
+            <div id="skill-rank" class="ct-chart" style={{ height: 375 }} />
             <h5>
               <small>{capitalizeFirstLetter(skill)} experience</small>
             </h5>
-            <div id='skill-xp' class='ct-chart' style={{ height: 375 }} />
+            <div id="skill-xp" class="ct-chart" style={{ height: 375 }} />
           </div>
         </div>
       </Layout>

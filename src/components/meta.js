@@ -1,7 +1,7 @@
 import { Component } from 'preact'
 
 class Meta extends Component {
-  componentDidMount () {
+  componentDidMount() {
     const { title, description, author } = this.props
     document.querySelector('title').text = title || ''
     document
@@ -12,7 +12,7 @@ class Meta extends Component {
       .setAttribute('content', author || '')
   }
 
-  render () {
+  render() {
     return null
   }
 }

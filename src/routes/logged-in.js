@@ -1,4 +1,3 @@
-/** @jsx h */
 import { h } from 'preact'
 import Layout from '../components/layout'
 import hero from '../_data/hero'

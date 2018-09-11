@@ -1,4 +1,3 @@
-/** @jsx h */
 import { h } from 'preact'
 import ago from 's-ago'
 import Layout from '../components/layout'
@@ -20,12 +19,12 @@ const BlogShow = ({ id }) => (
               author={author}
             />
             <h1>{title}</h1>
-            <p class='text-muted'>
+            <p class="text-muted">
               {ago(date)} by {author}
             </p>
             <hr />
             <div
-              class='markdown-body'
+              class="markdown-body"
               dangerouslySetInnerHTML={{ __html: body }}
             />
           </Layout>

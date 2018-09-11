@@ -1,4 +1,3 @@
-/** @jsx h */
 import { h } from 'preact'
 import ago from 's-ago'
 
@@ -13,14 +12,14 @@ const Commit = ({ url, message, author, date }) =>
       <a href={author.url ? author.url : url} style={{ color: 'cyan' }}>
         {author.avatar ? (
           <span>
-            <img src={author.avatar} alt='Avatar' class='rounded icon' />{' '}
+            <img src={author.avatar} alt="Avatar" class="rounded icon" />{' '}
           </span>
         ) : (
           <noscript />
         )}
         {author.name}
       </a>{' '}
-      <span class='text-muted'>{ago(date)}</span>
+      <span class="text-muted">{ago(date)}</span>
     </div>
   ) : (
     <noscript />
