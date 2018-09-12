@@ -75,8 +75,15 @@ module.exports = function override(config, env) {
   }
 
   const posts = fs.readdirSync(path.join('src', '_posts'))
-  const routes = ['/', '/features', '/blog'].concat(
-    posts.map(fileName => '/blog/show/' + parseBlog(fileName).id)
+  const routes = ['/', '/features', '/blog'].map(path => ({ path })).concat(
+    posts.map(fileName => {
+      // Parse blog metadata
+      const { id, date } = parseBlog(fileName)
+      return {
+        path: '/blog/show/' + id,
+        lastMod: date.toISOString().slice(0, 10)
+      }
+    })
   )
 
   if (!process.env.NOW) {
@@ -85,13 +92,13 @@ module.exports = function override(config, env) {
         // Required - The path to the webpack-outputted app to prerender.
         staticDir: path.join(__dirname, 'build'),
         // Required - Routes to render.
-        routes
+        routes: routes.map(({ path }) => path)
       })
     )
   }
 
   config.plugins.push(
-    new SitemapPlugin(hero.url, routes.map(path => ({ path })), {
+    new SitemapPlugin(hero.url, routes, {
       lastMod: true,
       changeFreq: 'weekly'
     })
