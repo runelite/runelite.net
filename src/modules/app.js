@@ -4,12 +4,14 @@ export const {
   startLoading,
   stopLoading,
   makeNavbarDark,
-  makeNavbarDefault
+  makeNavbarDefault,
+  nextHeroImage
 } = createActions(
   'START_LOADING',
   'STOP_LOADING',
   'MAKE_NAVBAR_DARK',
-  'MAKE_NAVBAR_DEFAULT'
+  'MAKE_NAVBAR_DEFAULT',
+  'NEXT_HERO_IMAGE'
 )
 
 export default handleActions(
@@ -29,10 +31,15 @@ export default handleActions(
     [makeNavbarDefault]: state => ({
       ...state,
       navbarDark: false
+    }),
+    [nextHeroImage]: (state, { payload }) => ({
+      ...state,
+      heroImage: (state.heroImage + 1) % payload
     })
   },
   {
     loading: 0,
-    navbarDark: false
+    navbarDark: false,
+    heroImage: 0
   }
 )

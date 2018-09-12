@@ -3,7 +3,11 @@ import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import { filter, find, prepend } from 'ramda'
 import { bindActionCreators } from 'redux'
-import { makeNavbarDark, makeNavbarDefault } from '../modules/app'
+import {
+  makeNavbarDark,
+  makeNavbarDefault,
+  nextHeroImage
+} from '../modules/app'
 import Commit from './commit'
 
 function isOsCorrect(osName) {
@@ -28,22 +32,11 @@ function isOsCorrect(osName) {
 class Hero extends Component {
   constructor(props) {
     super(props)
-    this.updateBackground = this.updateBackground.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
 
     this.state = {
-      index: 0,
-      image: this.props.images[0],
       interval: 0
     }
-  }
-
-  updateBackground(index) {
-    this.setState({
-      ...this.state,
-      image: this.props.images[index],
-      index: (index + 1) % this.props.images.length
-    })
   }
 
   handleScroll() {
@@ -65,12 +58,12 @@ class Hero extends Component {
   }
 
   componentDidMount() {
-    // Update background
-    this.updateBackground(0)
-
     // Add background updater
     this.setState({
-      interval: setInterval(() => this.updateBackground(this.state.index), 8000)
+      interval: setInterval(
+        () => this.props.nextHeroImage(this.props.images.length),
+        8000
+      )
     })
 
     // Change navigation bar to fit hero
@@ -91,7 +84,7 @@ class Hero extends Component {
     document.removeEventListener('scroll', this.handleScroll)
   }
 
-  render({ title, description, buttons, release, commit, playing }) {
+  render({ title, description, buttons, release, commit, playing, heroImage }) {
     let regularButtons = filter(button => !button.dropdown)(buttons)
     const dropdownButtons = filter(button => button.dropdown)(buttons)
     const defaultDropdownItem = find(button => button.os === 'all')(
@@ -108,7 +101,7 @@ class Hero extends Component {
     return (
       <div
         class="jumbotron jumbotron-fluid"
-        style={{ backgroundImage: `url(${this.state.image})` }}
+        style={{ backgroundImage: `url(${this.props.images[heroImage]})` }}
         id="jumbo"
       >
         <div class="jumbotron-cell">
@@ -169,8 +162,12 @@ class Hero extends Component {
 
 export default connect(
   state => ({
-    navbarDark: state.app.navbarDark
+    navbarDark: state.app.navbarDark,
+    heroImage: state.app.heroImage
   }),
   dispatch =>
-    bindActionCreators({ makeNavbarDark, makeNavbarDefault }, dispatch)
+    bindActionCreators(
+      { makeNavbarDark, makeNavbarDefault, nextHeroImage },
+      dispatch
+    )
 )(Hero)
