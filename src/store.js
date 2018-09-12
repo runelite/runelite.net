@@ -1,4 +1,6 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 import thunkMiddleware from './middleware/thunk-middleware'
 import rootReducer from './modules'
 
@@ -14,9 +16,27 @@ export default () => {
     middlewares.push(require('redux-logger').default)
   }
 
-  // Create our store from rootReducer and initial state
-  return createStore(
-    combineReducers(rootReducer),
-    applyMiddleware(...middlewares)
+  // Create reducer
+  const reducer = combineReducers(rootReducer)
+
+  // Enable persisted reducer
+  const persistedReducer = persistReducer(
+    {
+      key: 'root',
+      storage,
+      debug: process.env.NODE_ENV === 'development'
+    },
+    reducer
   )
+
+  // Create our store from rootReducer and initial state
+  const store = createStore(persistedReducer, applyMiddleware(...middlewares))
+
+  // Persist store
+  const persistor = persistStore(store)
+
+  return {
+    store,
+    persistor
+  }
 }

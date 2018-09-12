@@ -4,7 +4,7 @@ import App from './components/app'
 import configureStore from './store'
 
 // Create redux store
-const store = configureStore()
+const { store } = configureStore()
 
 // Create application
 const Main = () => (
