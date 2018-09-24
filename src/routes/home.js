@@ -19,6 +19,7 @@ import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
 import { Link } from 'preact-router'
 import Async from '../components/async'
+import './home.css'
 
 class Home extends Component {
   componentDidMount() {
@@ -41,19 +42,22 @@ class Home extends Component {
           commit={commit}
           playing={sessionCount}
         />
-        <Layout>
-          <h1>
-            Features{' '}
-            <Link href="/features" style={{ fontSize: 18 }}>
-              See all features...
+        <div class="home-section-container">
+          <div class="home-section container">
+            <h1>
+              Features{' '}
+              <Link href="/features" class="home-section-link float-right">
+                See all features
             </Link>
-          </h1>
-          <hr />
-          <div class="row">
-            {features.filter(feature => feature.home).map(feature => (
-              <Feature key={feature.title} {...feature} />
-            ))}
+            </h1>
+            <div class="row">
+              {features.filter(feature => feature.home).map(feature => (
+                <Feature key={feature.title} {...feature} />
+              ))}
+            </div>
           </div>
+        </div>
+        <Layout>
           <h1 id="news">
             Latest news{' '}
             <Link href="/blog" style={{ fontSize: 18 }}>
