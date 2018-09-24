@@ -50,12 +50,9 @@ class Home extends Component {
           </h1>
           <hr />
           <div class="row">
-            {features
-              .filter(feature => feature.home)
-              .map(({ image, title }) => ({ image, title }))
-              .map(feature => (
-                <Feature key={feature.title} {...feature} />
-              ))}
+            {features.filter(feature => feature.home).map(feature => (
+              <Feature key={feature.title} {...feature} />
+            ))}
           </div>
           <h1 id="news">
             Latest news{' '}
