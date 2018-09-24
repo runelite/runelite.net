@@ -67,7 +67,8 @@ export default [
     title: 'XP globes',
     description:
       'Displays skill globes when you gain XP, with more detailed stats on hover.',
-    link: 'https://github.com/runelite/runelite/wiki/XP-Globes'
+    link: 'https://github.com/runelite/runelite/wiki/XP-Globes',
+    home: true
   },
   {
     image: '/img/features/idle.png',
@@ -113,7 +114,8 @@ export default [
     title: 'Chat commands',
     description:
       'Allows easy lookup of !level(s) and !price(s) from the chat box.',
-    link: 'https://github.com/runelite/runelite/wiki/Chat-Commands'
+    link: 'https://github.com/runelite/runelite/wiki/Chat-Commands',
+    home: true
   },
   {
     image: '/img/features/clanchat.png',
@@ -210,7 +212,8 @@ export default [
     title: 'Raid scouter',
     description:
       'Displays the current layout of raids and tracks the raid duration.',
-    link: 'https://github.com/runelite/runelite/wiki/Chambers-of-Xeric'
+    link: 'https://github.com/runelite/runelite/wiki/Chambers-of-Xeric',
+    home: true
   },
   {
     image: '/img/features/blastfurnace.png',
@@ -275,7 +278,8 @@ export default [
     image: '/img/features/menuswap.png',
     title: 'Menu entry swapping',
     description: 'Swaps the left-click actions of certain objects.',
-    link: 'https://github.com/runelite/runelite/wiki/Menu-Entry-Swapper'
+    link: 'https://github.com/runelite/runelite/wiki/Menu-Entry-Swapper',
+    home: true
   },
   {
     image: '/img/features/bankeval.png',
