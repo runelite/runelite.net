@@ -44,11 +44,11 @@ class Home extends Component {
         />
         <div class="home-section-container">
           <div class="home-section container">
-            <h1>
+            <h1 class="dark-title">
               Features{' '}
               <Link href="/features" class="home-section-link float-right">
                 See all features
-            </Link>
+              </Link>
             </h1>
             <div class="row">
               {features.filter(feature => feature.home).map(feature => (
@@ -58,13 +58,14 @@ class Home extends Component {
           </div>
         </div>
         <Layout>
-          <h1 id="news">
+          <h1 id="news" style={{ margin: '0px' }}>
             Latest news{' '}
-            <Link href="/blog" style={{ fontSize: 18 }}>
-              See all news...
+            <Link href="/blog" class="home-section-link float-right">
+              See all news
             </Link>
           </h1>
           <hr />
+          <br />
           <Async
             getComponent={() =>
               latest().then(({ body }) => (
