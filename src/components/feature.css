@@ -1,0 +1,23 @@
+.feature {
+  background: transparent;
+  border: none;
+  margin-bottom: 30px;
+}
+
+.feature .card-body {
+  padding: 10px 0px;
+}
+
+.feature .card-title {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.feature .card-title a {
+  color: inherit;
+}
+
+.feature .card-text {
+  color: #a5a5a5;
+  font-size: 10pt;
+}

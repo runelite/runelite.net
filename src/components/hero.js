@@ -8,6 +8,7 @@ import {
   makeNavbarDefault,
   nextHeroImage
 } from '../modules/app'
+import links from '../_data/links'
 import Commit from './commit'
 
 function isOsCorrect(osName) {
@@ -101,21 +102,26 @@ class Hero extends Component {
     return (
       <div
         class="jumbotron jumbotron-fluid"
-        style={{ backgroundImage: `url(${this.props.images[heroImage]})` }}
+        style={{
+          backgroundImage: `url(${
+            this.props.images[heroImage]
+          }), radial-gradient(transparent, rgba(0,0,0,.4), black)`
+        }}
         id="jumbo"
       >
         <div class="jumbotron-cell">
           <div class="jumbotron-body">
-            <h1 class="display-2">{title}</h1>
-            <p class="lead">{description}</p>
-            <p class="lead">
+            <p class="lead" id="description">
+              {description}
+            </p>
+            <p class="lead" id="download">
               <div class="btn-group dropdown">
                 <a
                   type="button"
-                  class={'btn btn-' + mainDropdownItem.color}
+                  class={'btn btn-lg'}
                   href={mainDropdownItem.link}
                 >
-                  <i class={mainDropdownItem.icon} /> {mainDropdownItem.text}
+                  Download
                 </a>
                 <button
                   type="button"
@@ -134,25 +140,39 @@ class Hero extends Component {
                   ))}
                 </div>
               </div>
-              {regularButtons.map(({ link, color, icon, text }) => (
-                <span key={link}>
-                  {' '}
-                  <a type="button" class={'btn btn-' + color} href={link}>
-                    <i class={icon} /> {text}
-                  </a>
-                  <br style={{ marginBottom: 10 }} class="d-md-none" />
-                </span>
-              ))}
             </p>
-            <div class="small">
-              <Commit {...commit} />
-              <b>Latest release:</b>{' '}
-              <a href="#news" style={{ color: 'cyan' }}>
-                {release || 'unknown'}
+            <p class="lead" id="version">
+              Version {release || 'unknown'}
+            </p>
+          </div>
+          <div id="social-links">
+            <div class="social-link">
+              <a href={links.github}>
+                <img src="img/social/github_icon.png" />
               </a>
-              <br />
-              <b>Players online:</b> {playing || 'unknown'}
             </div>
+            <div class="social-link">
+              <a href={links.discord}>
+                <img src="img/social/discord_icon.png" />
+              </a>
+            </div>
+            <div class="social-link">
+              <a href={links.patreon}>
+                <img src="img/social/patreon_icon.png" />
+              </a>
+            </div>
+            <div class="social-link">
+              <a href={links.twitter}>
+                <img src="img/social/twitter_icon.png" />
+              </a>
+            </div>
+          </div>
+          <div class="small">
+            <Commit {...commit} />
+            <div style="color: #e6a32e; line-height: 10px;margin-top: 10px;">
+              Players online:
+            </div>{' '}
+            {playing || 'unknown'}
           </div>
         </div>
       </div>

@@ -1,0 +1,34 @@
+.home-layout {
+  padding: 0px !important;
+  overflow-x: hidden;
+}
+
+.home-section-container {
+  background: #171717;
+  padding: 50px 0px;
+}
+
+.home-section {
+  margin: auto;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 30pt;
+  margin-bottom: 35px;
+}
+
+.dark-title {
+  color: white;
+}
+
+.home-section-link {
+  font-size: 12pt;
+  margin-top: 25px;
+  color: #e79915;
+}
+
+.home-section-link:hover {
+  text-decoration: none;
+  color: #f6c26a;
+}
