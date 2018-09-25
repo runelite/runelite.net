@@ -62,3 +62,39 @@
   bottom: 0;
   left: 0;
 }
+
+#social-links {
+  margin-left: 20px;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#social-links a img {
+  border-radius: 100px;
+  border: 2px solid white;
+}
+
+.social-link {
+  margin-bottom: 10px;
+}
+
+.social-link:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 540px) {
+  #social-links{
+    position: relative;
+    margin: 0px;
+    text-align: center;
+    padding-top: 50px;
+  }
+  .social-link {
+    display: inline-block;
+    margin: 8px;
+  }
+}

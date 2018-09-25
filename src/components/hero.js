@@ -8,6 +8,7 @@ import {
   makeNavbarDefault,
   nextHeroImage
 } from '../modules/app'
+import links from '../_data/links'
 import Commit from './commit'
 
 function isOsCorrect(osName) {
@@ -144,6 +145,28 @@ class Hero extends Component {
             <p class="lead" id="version">
               Version {release || 'unknown'}
             </p>
+          </div>
+          <div id="social-links">
+            <div class="social-link">
+              <a href={links.github}>
+                <img src="img/social/github_icon.png" />
+              </a>
+            </div>
+            <div class="social-link">
+              <a href={links.discord}>
+                <img src="img/social/discord_icon.png" />
+              </a>
+            </div>
+            <div class="social-link">
+              <a href={links.patreon}>
+                <img src="img/social/patreon_icon.png" />
+              </a>
+            </div>
+            <div class="social-link">
+              <a href={links.twitter}>
+                <img src="img/social/twitter_icon.png" />
+              </a>
+            </div>
           </div>
           <div class="small">
             <Commit {...commit} />
