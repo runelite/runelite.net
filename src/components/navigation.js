@@ -13,32 +13,32 @@ const Navigation = ({ stars, dark }) => (
   >
     <Link class="navbar-brand" activeClassName="active" href="/">
       <img src={hero.logo} class="icon" alt="RuneLite" /> Home
-    </Link>
+      </Link>
     <input type="checkbox" id="navbar-check-box" />
     <label for="navbar-check-box" class="navbar-toggler">
       <span class="navbar-toggler-icon" />
     </label>
     <div class="collapse navbar-collapse" id="navbar">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <Link class="nav-link" activeClassName="active" href="/features">
-            <i class="fas fa-cogs" /> Features
+            Features
           </Link>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/runelite">
+            GitHub
+          </a>
         </li>
         <li class="nav-item">
           <Link class="nav-link" activeClassName="active" href="/blog">
-            <i class="fas fa-newspaper" /> Blog
+            Blog
           </Link>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://github.com/runelite/runelite/wiki">
-            <i class="fas fa-file-alt" /> Wiki
-          </a>
         </li>
         <li class="nav-item dropdown">
           {/* eslint-disable-next-line */}
           <a class="nav-link dropdown-toggle" id="navbarDropdown">
-            <i class="fas fa-font" /> API
+            API
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a
@@ -86,11 +86,13 @@ const Navigation = ({ stars, dark }) => (
           </a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            href="https://github.com/runelite/runelite/stargazers"
-          >
-            <i class="fas fa-star" /> {stars} Stargazers
+          <a class="nav-link" href="https://github.com/runelite/runelite/wiki">
+            Wiki
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/" role="button" class="btn btn-primary btn-sm">
+            Download
           </a>
         </li>
       </ul>
