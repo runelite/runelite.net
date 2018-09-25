@@ -4,22 +4,17 @@ import ago from 's-ago'
 const Commit = ({ url, message, author, date }) =>
   url ? (
     <div>
-      <b>Latest commit:</b>{' '}
-      <a href={url} style={{ color: 'cyan' }}>
+      <div style="color: #e6a32e; line-height: 10px;">Latest commit:</div>{' '}
+      <a href={url} style={{ color: 'white' }}>
         {message}
       </a>{' '}
-      by{' '}
-      <a href={author.url ? author.url : url} style={{ color: 'cyan' }}>
-        {author.avatar ? (
-          <span>
-            <img src={author.avatar} alt="Avatar" class="rounded icon" />{' '}
-          </span>
-        ) : (
-          <noscript />
-        )}
-        {author.name}
-      </a>{' '}
-      <span class="text-muted">{ago(date)}</span>
+      <span style="color: gray">
+        | by{' '}
+        <a href={author.url ? author.url : url} style={{ color: 'gray' }}>
+          {author.name}
+        </a>{' '}
+      </span>
+      <span class="text-muted">| {ago(date)}</span>
     </div>
   ) : (
     <noscript />

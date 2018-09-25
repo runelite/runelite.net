@@ -8,14 +8,57 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.4) no-repeat center center fixed;
   background-size: cover;
+  padding: 0px;
 }
 
 .jumbotron-cell {
   display: table-cell;
-  vertical-align: bottom;
+  vertical-align: middle;
+  position: relative;
 }
 
 .jumbotron-body {
-  max-width: 1000px;
-  padding: 25px 25px 25px 50px;
+  text-align: center;
+  margin: auto;
+}
+
+#description {
+  margin: auto;
+  font-size: 30px;
+  max-width: 315px;
+  line-height: 35px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px #000;
+}
+
+#version {
+  font-size: 16px;
+  text-shadow: 2px 2px #000;
+}
+
+#download {
+  margin: 5px;
+}
+
+.jumbotron-body a[type='button'] {
+  background: #dc8a00;
+  border-radius: 5px;
+  color: white;
+}
+
+.jumbotron-body button {
+  background: #dc8a00;
+  border: none;
+  border-radius: 5px;
+}
+.jumbotron-body button:hover {
+  background: #f7aa2a;
+}
+
+.small {
+  margin: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
