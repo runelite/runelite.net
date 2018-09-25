@@ -8,36 +8,36 @@ const Navigation = ({ stars, dark }) => (
   <nav
     class={
       'navbar navbar-expand-lg fixed-top ' +
-      (dark ? 'navbar-dark' : 'navbar-light bg-white')
+      (dark ? 'navbar-transparent' : 'navbar-dark')
     }
   >
     <Link class="navbar-brand" activeClassName="active" href="/">
-      <img src={hero.logo} class="icon" alt="Logo" /> Home
+      <img src={hero.logo} class="icon" alt="Logo" />
     </Link>
     <input type="checkbox" id="navbar-check-box" />
     <label for="navbar-check-box" class="navbar-toggler">
       <span class="navbar-toggler-icon" />
     </label>
     <div class="collapse navbar-collapse" id="navbar">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <Link class="nav-link" activeClassName="active" href="/features">
-            <i class="fas fa-cogs" /> Features
+            Features
           </Link>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/runelite">
+            GitHub
+          </a>
         </li>
         <li class="nav-item">
           <Link class="nav-link" activeClassName="active" href="/blog">
-            <i class="fas fa-newspaper" /> Blog
+            Blog
           </Link>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://github.com/runelite/runelite/wiki">
-            <i class="fas fa-file-alt" /> Wiki
-          </a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown">
-            <i class="fas fa-font" /> API
+            API
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a
@@ -55,33 +55,13 @@ const Navigation = ({ stars, dark }) => (
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href={links.discord}>
-            <i class="fab fa-discord" /> Discord
+          <a class="nav-link" href="https://github.com/runelite/runelite/wiki">
+            Wiki
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href={links.twitter}>
-            <i class="fab fa-twitter" /> Twitter
-          </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href={links.patreon}>
-            <i class="fab fa-patreon" /> Become a patron
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://github.com/runelite">
-            <i class="fab fa-github" /> GitHub
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            href="https://github.com/runelite/runelite/stargazers"
-          >
-            <i class="fas fa-star" /> {stars} Stargazers
+          <a href="/" role="button" class="btn btn-primary btn-sm">
+            Download
           </a>
         </li>
       </ul>
