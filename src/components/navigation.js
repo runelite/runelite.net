@@ -1,7 +1,6 @@
 import { h } from 'preact'
 import './navigation.css'
 import hero from '../_data/hero'
-import links from '../_data/links'
 import { Link } from 'preact-router'
 
 const Navigation = ({ stars, dark }) => (
