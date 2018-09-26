@@ -46,7 +46,7 @@ class Async extends Component {
 
   render() {
     if (this.state.componentData) {
-      if (this.props.path) {
+      if (this.props.path || this.props.default) {
         return h(this.state.componentData, this.props)
       }
 
