@@ -8,6 +8,7 @@ const rewirePreact = require('react-app-rewire-preact')
 const rewireEslint = require('react-app-rewire-eslint')
 const marked = require('marked')
 const fm = require('front-matter')
+const libxmljs = require('libxmljs')
 const hero = require('./src/_data/hero')
 const parseBlog = require('./src/parse-blog')
 
@@ -51,6 +52,9 @@ const feedMapper = fileName => {
   const author = escapeHtml(frontMatterContext.attributes.author)
   const body = marked(frontMatterContext.body)
   const url = `${hero.url}/blog/show/${id}`
+
+  // Validate xml
+  libxmljs.parseXml('<div>' + body + '</div>')
 
   return {
     url,

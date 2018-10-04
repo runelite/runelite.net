@@ -24,6 +24,7 @@
   "devDependencies": {
     "front-matter": "^2.3.0",
     "husky": "^1.0.0-rc.13",
+    "libxmljs": "^0.19.5",
     "markdown-with-front-matter-loader": "^0.1.0",
     "null-loader": "^0.1.1",
     "prerender-spa-plugin": "^3.3.0",
