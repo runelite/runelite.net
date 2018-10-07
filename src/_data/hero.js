@@ -29,7 +29,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/1.6.0/RuneLite.dmg',
+        'https://github.com/runelite/launcher/releases/download/1.6.1/RuneLite.dmg',
       icon: 'fab fa-apple',
       text: 'Download for macOS',
       color: 'secondary',
@@ -38,7 +38,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/1.6.0/RuneLite.jar',
+        'https://github.com/runelite/launcher/releases/download/1.6.1/RuneLite.jar',
       icon: 'fas fa-coffee',
       text: 'Download for all platforms',
       color: 'success',
