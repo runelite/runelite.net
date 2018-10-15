@@ -1,0 +1,20 @@
+h1 {
+  margin-top: 50px;
+}
+
+.container {
+  max-width: 705px;
+}
+
+.card {
+  margin: 10px;
+}
+
+.card img {
+  padding: 10px;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
