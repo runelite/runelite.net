@@ -22,6 +22,7 @@ class TagShow extends Component {
         <Layout>
           <h1>
             <img
+              alt={''}
               src={`https://api.runelite.net/runelite-${
                 version.name
               }/cache/item/${icon}/image`}
@@ -32,7 +33,7 @@ class TagShow extends Component {
           <div class="row">
             <pre>{csv}</pre>
             {itemIds.map(id => {
-              const item = items.find(i => i.id == id) || {}
+              const item = items.find(i => i.id === parseInt(id, 10)) || {}
               const name = item.name || ''
               const nameSan = name.replace(' ', '_')
 
