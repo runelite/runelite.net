@@ -32,29 +32,32 @@ class TagShow extends Component {
           <hr />
           <div class="row">
             <pre>{csv}</pre>
-            {itemIds.map(id => {
-              const item = items.find(i => i.id === parseInt(id, 10)) || {}
-              const name = item.name || ''
-              const nameSan = name.replace(' ', '_')
+            {itemIds
+              .map(id => parseInt(id, 10))
+              .sort((a, b) => a - b)
+              .map(id => {
+                const item = items.find(i => i.id === id) || {}
+                const name = item.name || ''
+                const nameSan = name.replace(' ', '_')
 
-              return (
-                <div class="card">
-                  <a
-                    href={`https://oldschool.runescape.wiki/w/${nameSan}`}
-                    title={name}
-                  >
-                    <img
-                      class="card-img-top"
-                      alt={name}
+                return (
+                  <div class="card">
+                    <a
+                      href={`https://oldschool.runescape.wiki/w/${nameSan}`}
                       title={name}
-                      src={`https://api.runelite.net/runelite-${
-                        version.name
-                      }/cache/item/${id}/image`}
-                    />
-                  </a>
-                </div>
-              )
-            })}
+                    >
+                      <img
+                        class="card-img-top"
+                        alt={name}
+                        title={name}
+                        src={`https://api.runelite.net/runelite-${
+                          version.name
+                        }/cache/item/${id}/image`}
+                      />
+                    </a>
+                  </div>
+                )
+              })}
           </div>
         </Layout>
       </div>
