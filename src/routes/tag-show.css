@@ -15,6 +15,7 @@ h1 {
 }
 
 pre {
+  user-select: all;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
