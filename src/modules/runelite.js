@@ -46,7 +46,7 @@ export const {
       )
 
       const version = latestReleaseSelector(getState()).name
-      const xp = []
+      const results = []
 
       for (
         let momDate = dayjs(start);
@@ -56,23 +56,26 @@ export const {
         const date = momDate.toDate()
         const dateString = date.toISOString()
 
-        const dayResponse = await runeliteApi(
-          `runelite-${version}/xp/get?username=${name}&time=${dateString}`,
-          {
-            method: 'GET'
-          }
+        results.push(
+          runeliteApi(
+            `runelite-${version}/xp/get?username=${name}&time=${dateString}`,
+            {
+              method: 'GET'
+            }
+          ).then(dayResponse => {
+            const formattedResponse = {
+              date,
+              ...dayResponse
+            }
+
+            dispatch(setXp(formattedResponse))
+          })
         )
-
-        const formattedResponse = {
-          date,
-          ...dayResponse
-        }
-
-        dispatch(setXp(formattedResponse))
-        xp.push(formattedResponse)
       }
 
+      const result = await Promise.all(results)
       dispatch(stopLoading())
+      return result
     }
   },
   'SET_SESSION_COUNT',
