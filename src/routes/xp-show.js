@@ -53,6 +53,30 @@ const createValueBadge = (value, suffix) =>
 
 const safeDate = date => date || new Date()
 
+const chartOptions = {
+  chart: {
+    animation: false
+  },
+  title: {
+    text: null
+  },
+  xAxis: {
+    title: {
+      text: ''
+    },
+    labels: false,
+    minorTickLength: 0,
+    tickLength: 0
+  },
+  yAxis: {
+    title: null,
+    endOnTick: false
+  },
+  credits: {
+    enabled: false
+  }
+}
+
 class XpShow extends Component {
   constructor(props) {
     super(props)
@@ -75,23 +99,11 @@ class XpShow extends Component {
       startDate,
       endDate,
       skillRank: Highcharts.chart('skill-rank', {
-        title: {
-          text: ''
-        },
+        ...chartOptions,
         yAxis: {
-          title: null,
-          endOnTick: false
+          ...chartOptions.yAxis,
+          reversed: true
         },
-        credits: {
-          enabled: false
-        },
-        xAxis: {
-          title: {
-            text: ''
-          },
-          labels: false
-        },
-
         plotOptions: {
           line: {
             tooltip: {
@@ -104,22 +116,7 @@ class XpShow extends Component {
         series: [{ showInLegend: false }]
       }),
       skillXp: Highcharts.chart('skill-xp', {
-        title: {
-          text: ''
-        },
-        yAxis: {
-          title: null,
-          endOnTick: false
-        },
-        credits: {
-          enabled: false
-        },
-        xAxis: {
-          title: {
-            text: ''
-          },
-          labels: false
-        },
+        ...chartOptions,
 
         plotOptions: {
           line: {
@@ -133,25 +130,8 @@ class XpShow extends Component {
         series: [{ showInLegend: false }]
       }),
       allRanks: Highcharts.chart('all-ranks', {
-        chart: {
-          type: 'column'
-        },
-        title: {
-          text: null
-        },
-        xAxis: {
-          title: {
-            text: ''
-          },
-          labels: false
-        },
-        yAxis: {
-          title: null,
-          endOnTick: false
-        },
-        credits: {
-          enabled: false
-        },
+        ...chartOptions,
+
         series: [
           {
             type: 'column',
@@ -173,25 +153,7 @@ class XpShow extends Component {
         }
       }),
       allXp: Highcharts.chart('all-xp', {
-        chart: {
-          type: 'column'
-        },
-        title: {
-          text: null
-        },
-        xAxis: {
-          title: {
-            text: ''
-          },
-          labels: false
-        },
-        yAxis: {
-          title: null,
-          endOnTick: false
-        },
-        credits: {
-          enabled: false
-        },
+        ...chartOptions,
         series: [
           {
             type: 'column',
@@ -226,29 +188,48 @@ class XpShow extends Component {
   }
 
   componentWillReceiveProps({ skillRank, skillXp, allRanks, allXp }) {
-    // this.state.skillRank.update(skillRank)
-    // this.state.skillXp.update(skillXp)
-    // this.state.allRanks.update(allRanks)
-    // this.state.allXp.update(allXp)
-
     this.state.skillXp.update({
       xAxis: [{ categories: skillXp.labels }],
-      series: [{ data: skillXp.series[0].map(obj => obj.value) }]
+      series: [
+        {
+          data: skillXp.series[0].map(
+            obj => (obj.value === undefined ? 0 : obj.value)
+          )
+        }
+      ]
     })
 
     this.state.skillRank.update({
       xAxis: [{ categories: skillRank.labels }],
-      series: [{ data: skillRank.series[0].map(obj => obj.value) }]
+      series: [
+        {
+          data: skillRank.series[0].map(
+            obj => (obj.value === undefined ? 0 : obj.value)
+          )
+        }
+      ]
     })
 
     this.state.allRanks.update({
       xAxis: [{ categories: allRanks.labels }],
-      series: [{ data: allRanks.series[0].map(obj => obj.value) }]
+      series: [
+        {
+          data: allRanks.series[0].map(
+            obj => (obj.value === undefined ? 0 : obj.value)
+          )
+        }
+      ]
     })
 
     this.state.allXp.update({
       xAxis: [{ categories: allXp.labels }],
-      series: [{ data: allXp.series[0].map(obj => obj.value) }]
+      series: [
+        {
+          data: allXp.series[0].map(
+            obj => (obj.value === undefined ? 0 : obj.value)
+          )
+        }
+      ]
     })
   }
 
