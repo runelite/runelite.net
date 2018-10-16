@@ -1,15 +1,14 @@
-import 'chartist/dist/chartist.min.css'
+import Highcharts from 'highcharts'
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import { Link } from 'preact-router'
 import { bindActionCreators } from 'redux'
 import dayjs from 'dayjs'
-import Chartist from 'chartist'
-import 'chartist-plugin-tooltips'
 import './xp-show.css'
 import Layout from '../components/layout'
 import { getReleases } from '../modules/git'
 import {
+  skillSelector,
   allRanksSelector,
   allXpSelector,
   skillRankSelector,
@@ -19,6 +18,7 @@ import {
 } from '../modules/runelite'
 import hero from '../_data/hero'
 import skills from '../_data/skills'
+import { colors } from '../_data/skills'
 import Meta from '../components/meta'
 
 function isNumeric(value) {
@@ -56,11 +56,36 @@ const createValueBadge = (value, suffix) =>
 
 const safeDate = date => date || new Date()
 
+const chartOptions = {
+  chart: {
+    animation: false
+  },
+  title: {
+    text: null
+  },
+  xAxis: {
+    title: {
+      text: ''
+    },
+    labels: false,
+    minorTickLength: 0,
+    tickLength: 0
+  },
+  yAxis: {
+    title: null,
+    endOnTick: false
+  },
+  credits: {
+    enabled: false
+  }
+}
+
 class XpShow extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      skill: props.skill,
       skillRank: null,
       skillXp: null,
       allRanks: null,
@@ -74,75 +99,88 @@ class XpShow extends Component {
     const endDate = safeDate(parseDate(this.props.end, new Date()))
     const startDate = safeDate(parseDate(this.props.start, endDate))
 
-    const options = {
-      lineSmooth: Chartist.Interpolation.none(),
-      axisX: {
-        showLabel: false
-      },
-      chartPadding: {
-        top: 30,
-        right: 50,
-        left: 50
-      },
-      plugins: [
-        Chartist.plugins.tooltip({
-          anchorToPoint: true,
-          appendToBody: true
-        })
-      ]
-    }
-
-    const invertAxis = {
-      axisY: {
-        labelInterpolationFnc: value => -value
-      },
-      plugins: [
-        Chartist.plugins.tooltip({
-          anchorToPoint: true,
-          appendToBody: true,
-          transformTooltipTextFnc: value => -value
-        })
-      ]
-    }
-
-    const invertValue = context => {
-      context.data.series = context.data.series.map(series =>
-        series.map(s => ({ ...s, value: -s.value }))
-      )
-    }
-
-    const skillColor = context => {
-      if (
-        context.type === 'line' ||
-        context.type === 'bar' ||
-        context.type === 'point'
-      ) {
-        context.element.attr({
-          style: `stroke: ${skills[context.meta] ||
-            skills[this.props.skill.toLowerCase()]}`
-        })
-      }
-    }
-
     this.setState({
       startDate,
       endDate,
-      skillRank: new Chartist.Line(
-        '#skill-rank',
-        {},
-        { ...options, ...invertAxis }
-      )
-        .on('data', invertValue)
-        .on('draw', skillColor),
-      skillXp: new Chartist.Line('#skill-xp', {}, options).on(
-        'draw',
-        skillColor
-      ),
-      allRanks: new Chartist.Bar('#all-ranks', {}, options).on(
-        'draw',
-        skillColor
-      ),
-      allXp: new Chartist.Bar('#all-xp', {}, options).on('draw', skillColor)
+      skillRank: Highcharts.chart('skill-rank', {
+        ...chartOptions,
+        yAxis: {
+          ...chartOptions.yAxis,
+          reversed: true
+        },
+        plotOptions: {
+          line: {
+            tooltip: {
+              pointFormat:
+                '<span style="color:{point.color}">●</span> Rank: <b>{point.y}</b><br/>'
+            }
+          }
+        },
+
+        series: [{ showInLegend: false }]
+      }),
+      skillXp: Highcharts.chart('skill-xp', {
+        ...chartOptions,
+
+        plotOptions: {
+          line: {
+            tooltip: {
+              pointFormat:
+                '<span style="color:{point.color}">●</span> XP: <b>{point.y}</b><br/>'
+            }
+          }
+        },
+
+        series: [{ showInLegend: false }]
+      }),
+      allRanks: Highcharts.chart('all-ranks', {
+        ...chartOptions,
+
+        series: [
+          {
+            type: 'column',
+            colorByPoint: true,
+            showInLegend: false
+          }
+        ],
+        plotOptions: {
+          column: {
+            pointPadding: 0,
+            borderWidth: 0,
+            groupPadding: 0.01,
+            clip: false,
+            tooltip: {
+              pointFormat:
+                '<span style="color:{point.color}">●</span> Ranks: <b>{point.y}</b><br/>'
+            },
+            colors: colors
+          }
+        }
+      }),
+      allXp: Highcharts.chart('all-xp', {
+        ...chartOptions,
+        series: [
+          {
+            type: 'column',
+
+            colorByPoint: true,
+            showInLegend: false
+          }
+        ],
+        plotOptions: {
+          column: {
+            pointPadding: 0,
+            borderWidth: 0,
+            groupPadding: 0.01,
+            clip: false,
+            tooltip: {
+              pointFormat:
+                '<span style="color:{point.color}">●</span> XP: <b>{point.y}</b><br/>'
+            },
+            colors: colors
+          }
+        }
+      })
     })
 
     this.props.getReleases().then(() =>
@@ -155,11 +193,60 @@ class XpShow extends Component {
     )
   }
 
-  componentWillReceiveProps({ skillRank, skillXp, allRanks, allXp }) {
-    this.state.skillRank.update(skillRank)
-    this.state.skillXp.update(skillXp)
-    this.state.allRanks.update(allRanks)
-    this.state.allXp.update(allXp)
+  componentWillReceiveProps({ skill, skillRank, skillXp, allRanks, allXp }) {
+    this.state.skillXp.update({
+      xAxis: [{ categories: skillXp.labels }],
+      series: [
+        {
+          data: skillXp.series[0].map(
+            obj => (obj.value === undefined ? 0 : obj.value)
+          )
+        }
+      ],
+      plotOptions: {
+        series: {
+          color: skills[skill.toLowerCase()]
+        }
+      }
+    })
+
+    this.state.skillRank.update({
+      xAxis: [{ categories: skillRank.labels }],
+      series: [
+        {
+          data: skillRank.series[0].map(
+            obj => (obj.value === undefined ? 0 : obj.value)
+          )
+        }
+      ],
+      plotOptions: {
+        series: {
+          color: skills[skill.toLowerCase()]
+        }
+      }
+    })
+
+    this.state.allRanks.update({
+      xAxis: [{ categories: allRanks.labels }],
+      series: [
+        {
+          data: allRanks.series[0].map(
+            obj => (obj.value === undefined ? 0 : obj.value)
+          )
+        }
+      ]
+    })
+
+    this.state.allXp.update({
+      xAxis: [{ categories: allXp.labels }],
+      series: [
+        {
+          data: allXp.series[0].map(
+            obj => (obj.value === undefined ? 0 : obj.value)
+          )
+        }
+      ]
+    })
   }
 
   componentWillUnmount() {
@@ -233,6 +320,7 @@ class XpShow extends Component {
 
 export default connect(
   (state, props) => ({
+    skill: skillSelector(state, props),
     ranks: ranksSelector(state, props),
     skillRank: skillRankSelector(state, props),
     skillXp: skillXpSelector(state, props),
