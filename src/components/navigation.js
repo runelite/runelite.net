@@ -55,9 +55,9 @@ const Navigation = ({ stars, dark }) => (
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/tag">
+          <Link class="nav-link" activeClassName="active" href="/tag">
             <i class="fas fa-code" /> Tags
-          </a>
+          </Link>
         </li>
         <li class="nav-item">
           <a class="nav-link" href={links.discord}>
