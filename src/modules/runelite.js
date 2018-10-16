@@ -95,7 +95,19 @@ export const {
           }
         )
 
-        dispatch(setItemInfo(info))
+        const examine = await runeliteApi(
+          `runelite-${version}/examine/item/${item}`,
+          {
+            method: 'GET'
+          }
+        )
+
+        dispatch(
+          setItemInfo({
+            ...info,
+            examine
+          })
+        )
       }
 
       dispatch(stopLoading())

@@ -16,8 +16,8 @@ class Tag extends Component {
           <h5>
             Enter tag <br />
             <small class="text-muted">
-              Paste tag exported from RuneLite to clipboard in text area below
-              and click GO
+              Paste a tag exported from Runelite's Bank Tags plugin and click
+              'GO'
             </small>
           </h5>
           <hr />

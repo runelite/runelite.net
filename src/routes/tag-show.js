@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import { getReleases, latestReleaseSelector } from '../modules/git'
 import { getItemInfo } from '../modules/runelite'
 import { connect } from 'preact-redux'
+import '../components/tooltip.css'
 import './tag.css'
 
 class TagShow extends Component {
@@ -32,32 +33,33 @@ class TagShow extends Component {
           <hr />
           <div class="row">
             <pre>{csv}</pre>
-            {itemIds
-              .map(id => parseInt(id, 10))
-              .sort((a, b) => a - b)
-              .map(id => {
-                const item = items.find(i => i.id === id) || {}
-                const name = item.name || ''
-                const nameSan = name.replace(' ', '_')
+            {itemIds.map(id => {
+              const item = items.find(i => i.id === id) || {}
+              const name = item.name || ''
+              const examine = item.examine || ''
+              const nameSan = name.replace(' ', '_')
 
-                return (
-                  <div class="card">
-                    <a
-                      href={`https://oldschool.runescape.wiki/w/${nameSan}`}
-                      title={name}
-                    >
+              return (
+                <div class="card">
+                  <div class="tooltip-tag">
+                    <a href={`https://oldschool.runescape.wiki/w/${nameSan}`}>
                       <img
                         class="card-img-top"
                         alt={name}
-                        title={name}
                         src={`https://api.runelite.net/runelite-${
                           version.name
                         }/cache/item/${id}/image`}
                       />
                     </a>
+                    <div class="tooltip-tag-text">
+                      <b>{item.name || 'Loading...'}</b>
+                      <br />
+                      <small>{examine}</small>
+                    </div>
                   </div>
-                )
-              })}
+                </div>
+              )
+            })}
           </div>
         </Layout>
       </div>
@@ -67,9 +69,10 @@ class TagShow extends Component {
 
 export default connect(
   (state, { csv }) => {
-    const parts = csv.split(',')
+    let parts = csv.split(',')
     const name = parts.shift()
     const icon = parts.shift()
+    parts = parts.map(id => parseInt(id, 10)).sort((a, b) => a - b)
 
     return {
       name,
