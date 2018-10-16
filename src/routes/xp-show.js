@@ -71,8 +71,8 @@ class XpShow extends Component {
   }
 
   componentDidMount() {
-    const startDate = safeDate(parseDate(this.props.start, new Date()))
-    const endDate = safeDate(parseDate(this.props.end, startDate))
+    const endDate = safeDate(parseDate(this.props.end, new Date()))
+    const startDate = safeDate(parseDate(this.props.start, endDate))
 
     const options = {
       lineSmooth: Chartist.Interpolation.none(),
