@@ -17,7 +17,6 @@ export const {
   setSessionCount,
   setXp,
   setXpRange,
-  setItems,
   setItemInfo
 } = createActions(
   {
@@ -82,7 +81,6 @@ export const {
     },
     GET_ITEM_INFO: items => async (dispatch, getState) => {
       dispatch(startLoading())
-      dispatch(setItems())
 
       const version = latestReleaseSelector(getState()).name
 
@@ -116,7 +114,6 @@ export const {
   'SET_SESSION_COUNT',
   'SET_XP',
   'SET_XP_RANGE',
-  'SET_ITEMS',
   'SET_ITEM_INFO'
 )
 
@@ -134,10 +131,6 @@ export default handleActions(
     [setXpRange]: (state, { payload }) => ({
       ...state,
       ...payload
-    }),
-    [setItems]: state => ({
-      ...state,
-      items: []
     }),
     [setItemInfo]: (state, { payload }) => ({
       ...state,
