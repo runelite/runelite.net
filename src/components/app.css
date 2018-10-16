@@ -10,6 +10,8 @@ pre {
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .dropdown:hover .dropdown-menu {

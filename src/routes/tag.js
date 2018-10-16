@@ -12,7 +12,7 @@ class Tag extends Component {
     return (
       <div>
         <Meta title={`Select tag tab - ${hero.title}`} />
-        <Layout>
+        <Layout class="tag-container">
           <h5>
             Enter tag <br />
             <small class="text-muted">

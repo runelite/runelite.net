@@ -20,7 +20,7 @@ class TagShow extends Component {
     return (
       <div>
         <Meta title={`${name} tag tab - ${hero.title}`} />
-        <Layout>
+        <Layout class="tag-container">
           <h1>
             <img
               alt={''}
