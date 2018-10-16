@@ -8,6 +8,7 @@ import './xp-show.css'
 import Layout from '../components/layout'
 import { getReleases } from '../modules/git'
 import {
+  skillSelector,
   allRanksSelector,
   allXpSelector,
   skillRankSelector,
@@ -16,6 +17,8 @@ import {
   getXpRange
 } from '../modules/runelite'
 import hero from '../_data/hero'
+import skills from '../_data/skills'
+import { colors } from '../_data/skills'
 import Meta from '../components/meta'
 
 function isNumeric(value) {
@@ -82,6 +85,7 @@ class XpShow extends Component {
     super(props)
 
     this.state = {
+      skill: props.skill,
       skillRank: null,
       skillXp: null,
       allRanks: null,
@@ -148,7 +152,8 @@ class XpShow extends Component {
             tooltip: {
               pointFormat:
                 '<span style="color:{point.color}">●</span> Ranks: <b>{point.y}</b><br/>'
-            }
+            },
+            colors: colors
           }
         }
       }),
@@ -171,7 +176,8 @@ class XpShow extends Component {
             tooltip: {
               pointFormat:
                 '<span style="color:{point.color}">●</span> XP: <b>{point.y}</b><br/>'
-            }
+            },
+            colors: colors
           }
         }
       })
@@ -187,7 +193,7 @@ class XpShow extends Component {
     )
   }
 
-  componentWillReceiveProps({ skillRank, skillXp, allRanks, allXp }) {
+  componentWillReceiveProps({ skill, skillRank, skillXp, allRanks, allXp }) {
     this.state.skillXp.update({
       xAxis: [{ categories: skillXp.labels }],
       series: [
@@ -196,7 +202,12 @@ class XpShow extends Component {
             obj => (obj.value === undefined ? 0 : obj.value)
           )
         }
-      ]
+      ],
+      plotOptions: {
+        series: {
+          color: skills[skill.toLowerCase()]
+        }
+      }
     })
 
     this.state.skillRank.update({
@@ -207,7 +218,12 @@ class XpShow extends Component {
             obj => (obj.value === undefined ? 0 : obj.value)
           )
         }
-      ]
+      ],
+      plotOptions: {
+        series: {
+          color: skills[skill.toLowerCase()]
+        }
+      }
     })
 
     this.state.allRanks.update({
@@ -304,6 +320,7 @@ class XpShow extends Component {
 
 export default connect(
   (state, props) => ({
+    skill: skillSelector(state, props),
     ranks: ranksSelector(state, props),
     skillRank: skillRankSelector(state, props),
     skillXp: skillXpSelector(state, props),
