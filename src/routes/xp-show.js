@@ -16,7 +16,6 @@ import {
   getXpRange
 } from '../modules/runelite'
 import hero from '../_data/hero'
-import skills from '../_data/skills'
 import Meta from '../components/meta'
 
 function isNumeric(value) {
