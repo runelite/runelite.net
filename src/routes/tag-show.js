@@ -39,6 +39,10 @@ class TagShow extends Component {
               const examine = item.examine || ''
               const nameSan = name.replace(' ', '_')
 
+              if (!version.name) {
+                return <noscript />
+              }
+
               return (
                 <div class="card">
                   <div class="tooltip-tag">
