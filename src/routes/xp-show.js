@@ -72,25 +72,6 @@ class XpShow extends Component {
     const endDate = safeDate(parseDate(this.props.end, new Date()))
     const startDate = safeDate(parseDate(this.props.start, endDate))
 
-    const invertValue = context => {
-      context.data.series = context.data.series.map(series =>
-        series.map(s => ({ ...s, value: -s.value }))
-      )
-    }
-
-    const skillColor = context => {
-      if (
-        context.type === 'line' ||
-        context.type === 'bar' ||
-        context.type === 'point'
-      ) {
-        context.element.attr({
-          style: `stroke: ${skills[context.meta] ||
-            skills[this.props.skill.toLowerCase()]}`
-        })
-      }
-    }
-
     this.setState({
       startDate,
       endDate,
