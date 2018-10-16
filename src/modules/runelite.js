@@ -81,34 +81,28 @@ export const {
     },
     GET_ITEM_INFO: items => async (dispatch, getState) => {
       dispatch(startLoading())
-
       const version = latestReleaseSelector(getState()).name
-
-      for (let i in items) {
-        const item = items[i]
-        const info = await runeliteApi(
-          `runelite-${version}/cache/item/${item}`,
-          {
+      const result = await Promise.all(
+        items.map(item => {
+          return runeliteApi(`runelite-${version}/cache/item/${item}`, {
             method: 'GET'
-          }
-        )
-
-        const examine = await runeliteApi(
-          `runelite-${version}/examine/item/${item}`,
-          {
-            method: 'GET'
-          }
-        )
-
-        dispatch(
-          setItemInfo({
-            ...info,
-            examine
+          }).then(info => {
+            return runeliteApi(`runelite-${version}/examine/item/${item}`, {
+              method: 'GET'
+            }).then(examine => {
+              dispatch(
+                setItemInfo({
+                  ...info,
+                  examine
+                })
+              )
+            })
           })
-        )
-      }
+        })
+      )
 
       dispatch(stopLoading())
+      return result
     }
   },
   'SET_SESSION_COUNT',
