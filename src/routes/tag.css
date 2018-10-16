@@ -1,8 +1,5 @@
-h1 {
-  margin-top: 50px;
-}
-
 .container {
+  padding-top: 150px !important;
   max-width: 705px;
 }
 

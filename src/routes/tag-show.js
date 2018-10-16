@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import { getReleases, latestReleaseSelector } from '../modules/git'
 import { getItemInfo } from '../modules/runelite'
 import { connect } from 'preact-redux'
-import './tag-show.css'
+import './tag.css'
 
 class TagShow extends Component {
   componentDidMount() {
