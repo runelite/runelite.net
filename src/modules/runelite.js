@@ -163,7 +163,10 @@ const inverseRank = rankCollector => {
 // Selectors
 export const sessionCountSelector = state => state.runelite.sessionCount
 export const xpSelector = state =>
-  state.runelite.xp.filter(xpEntry => Boolean(xpEntry))
+  state.runelite.xp
+    .filter(xpEntry => Boolean(xpEntry))
+    .sort((a, b) => new Date(a.date) - new Date(b.date))
+
 export const nameSelector = (state, props) => props.name
 export const skillSelector = (state, props) => props.skill
 
