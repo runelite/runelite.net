@@ -105,14 +105,8 @@ export default handleActions(
   }
 )
 
-const capitalizeFirstLetter = string =>
-  string.charAt(0).toUpperCase() + string.slice(1)
-const skillNames = Object.keys(skills)
-const capitalizedSkills = Object.keys(skills).map(skill =>
-  capitalizeFirstLetter(skill)
-)
 const calculateOverallXp = xpEntry =>
-  skillNames
+  Object.keys(skills)
     .map(skill => xpEntry[skill + '_xp'] || 0)
     .reduce((a, b) => a + b, 0)
 
@@ -136,7 +130,7 @@ const calculateRanksAndExp = collector => (value, key) => {
     collector[curKey] = curObj
       ? {
           ...curObj,
-          rank: value - curObj.rank
+          rank: curObj.rank > 0 ? curObj.rank - value : value
         }
       : {
           xp: 0,
@@ -155,110 +149,22 @@ const calculateRanksAndExp = collector => (value, key) => {
   }
 }
 
-const inverseRank = rankCollector => {
-  rankCollector.rank = -rankCollector.rank
-  return rankCollector
-}
-
 // Selectors
 export const sessionCountSelector = state => state.runelite.sessionCount
 export const xpSelector = state =>
   state.runelite.xp
     .filter(xpEntry => Boolean(xpEntry))
     .sort((a, b) => new Date(a.date) - new Date(b.date))
-
-export const nameSelector = (state, props) => props.name
-export const skillSelector = (state, props) => props.skill
-
-export const skillDatesSelector = createSelector(xpSelector, xp =>
-  xp.map(xpEntry => xpEntry.date.toDateString())
-)
-
-export const xpWithOverallSelector = createSelector(xpSelector, xp =>
-  xp.map(xpEntry => ({
-    ...xpEntry,
-    overall_xp: calculateOverallXp(xpEntry)
-  }))
-)
-
-export const collectedSkillsSelector = createSelector(
-  xpWithOverallSelector,
-  xp => {
-    const startEntry = xp[0]
-    const endEntry = xp[xp.length - 1]
-    const collector = {}
-    forEachObjIndexed(calculateRanksAndExp(collector), startEntry)
-    forEachObjIndexed(calculateRanksAndExp(collector), endEntry)
-    return collector
-  }
-)
-
-export const ranksSelector = createSelector(
-  collectedSkillsSelector,
-  collectedSkills =>
-    skillNames.map(name => ({
-      skill: name,
-      ...(collectedSkills[name]
-        ? inverseRank(collectedSkills[name])
-        : {
-            xp: 0,
-            rank: 0
-          })
+    .map(xpEntry => ({
+      ...xpEntry,
+      overall_xp: calculateOverallXp(xpEntry)
     }))
-)
 
-export const skillRankSelector = createSelector(
-  skillSelector,
-  skillDatesSelector,
-  xpWithOverallSelector,
-  (skill, dates, xp) => ({
-    labels: dates,
-    series: [
-      xp.map(xpEntry => ({
-        meta: xpEntry.date.toDateString(),
-        value: xpEntry[skill + '_rank']
-      }))
-    ]
-  })
-)
-
-export const skillXpSelector = createSelector(
-  skillSelector,
-  skillDatesSelector,
-  xpWithOverallSelector,
-  (skill, dates, xp) => ({
-    labels: dates,
-    series: [
-      xp.map(xpEntry => ({
-        meta: xpEntry.date.toDateString(),
-        value: xpEntry[skill + '_xp']
-      }))
-    ]
-  })
-)
-
-export const allXpSelector = createSelector(
-  collectedSkillsSelector,
-  collectedXp => ({
-    labels: capitalizedSkills,
-    series: [
-      skillNames.map(skill => ({
-        meta: skill,
-        value: collectedXp[skill] ? collectedXp[skill].xp : 0
-      }))
-    ]
-  })
-)
-
-export const allRanksSelector = createSelector(
-  collectedSkillsSelector,
-  collectedXp => ({
-    labels: capitalizedSkills,
-    series: [
-      skillNames.map(skill => ({
-        meta: skill,
-        value: collectedXp[skill] ? collectedXp[skill].rank : 0
-      }))
-    ]
-  })
-)
+export const collectedXpSelector = createSelector(xpSelector, xp => {
+  const startEntry = xp[0]
+  const endEntry = xp[xp.length - 1]
+  const collector = {}
+  forEachObjIndexed(calculateRanksAndExp(collector), startEntry)
+  forEachObjIndexed(calculateRanksAndExp(collector), endEntry)
+  return collector
+})
