@@ -10,12 +10,9 @@ import './xp-show.css'
 import Layout from '../components/layout'
 import { getReleases } from '../modules/git'
 import {
-  allRanksSelector,
-  allXpSelector,
-  skillRankSelector,
-  skillXpSelector,
-  ranksSelector,
-  getXpRange
+  getXpRange,
+  xpSelector,
+  collectedXpSelector
 } from '../modules/runelite'
 import hero from '../_data/hero'
 import skills from '../_data/skills'
@@ -55,6 +52,13 @@ const createValueBadge = (value, suffix) =>
   )
 
 const safeDate = date => date || new Date()
+const skillNames = Object.keys(skills)
+const capitalizedSkills = skillNames.map(skill => capitalizeFirstLetter(skill))
+const flattenMap = map =>
+  Object.keys(map).map(key => ({
+    name: key,
+    ...map[key]
+  }))
 
 class XpShow extends Component {
   constructor(props) {
@@ -155,13 +159,6 @@ class XpShow extends Component {
     )
   }
 
-  componentWillReceiveProps({ skillRank, skillXp, allRanks, allXp }) {
-    this.state.skillRank.update(skillRank)
-    this.state.skillXp.update(skillXp)
-    this.state.allRanks.update(allRanks)
-    this.state.allXp.update(allXp)
-  }
-
   componentWillUnmount() {
     this.state.skillRank.detach()
     this.state.skillXp.detach()
@@ -169,7 +166,49 @@ class XpShow extends Component {
     this.state.allXp.detach()
   }
 
-  render({ name, skill, ranks }) {
+  render({ name, skill, xp, collectedXp }) {
+    if (this.state.skillXp) {
+      this.state.skillRank.update({
+        labels: xp.map(xpEntry => xpEntry.date.toDateString()),
+        series: [
+          xp.map(xpEntry => ({
+            meta: xpEntry.date.toDateString(),
+            value: xpEntry[this.props.skill + '_rank']
+          }))
+        ]
+      })
+
+      this.state.skillXp.update({
+        labels: xp.map(xpEntry => xpEntry.date.toDateString()),
+        series: [
+          xp.map(xpEntry => ({
+            meta: xpEntry.date.toDateString(),
+            value: xpEntry[this.props.skill + '_xp']
+          }))
+        ]
+      })
+
+      this.state.allRanks.update({
+        labels: capitalizedSkills,
+        series: [
+          skillNames.map(skill => ({
+            meta: skill,
+            value: collectedXp[skill] ? collectedXp[skill].rank : 0
+          }))
+        ]
+      })
+
+      this.state.allXp.update({
+        labels: capitalizedSkills,
+        series: [
+          skillNames.filter(skill => skill !== 'overall').map(skill => ({
+            meta: skill,
+            value: collectedXp[skill] ? collectedXp[skill].xp : 0
+          }))
+        ]
+      })
+    }
+
     return (
       <Layout>
         <Meta title={`Experience Tracker - ${hero.title}`} />
@@ -184,27 +223,32 @@ class XpShow extends Component {
         <div class="row">
           <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
             <ul class="list-group">
-              {ranks.map(({ skill: playerSkill, rank, xp }) => (
-                <Link
-                  class={
-                    'list-group-item list-group-item-action' +
-                    (skill === playerSkill ? ' active' : '')
-                  }
-                  key={playerSkill}
-                  href={`/xp/show/${playerSkill}/${name}/${this.state.startDate.getTime()}/${this.state.endDate.getTime()}`}
-                >
-                  <img
-                    alt={playerSkill}
-                    src={`/img/skillicons/${playerSkill}.png`}
-                  />{' '}
-                  <span class="d-md-none d-lg-inline">
-                    {capitalizeFirstLetter(playerSkill)}
-                  </span>
-                  <span class="float-right">
-                    {createValueBadge(rank, '')} {createValueBadge(xp, 'xp')}
-                  </span>
-                </Link>
-              ))}
+              {flattenMap(collectedXp)
+                .sort(
+                  (a, b) =>
+                    skillNames.indexOf(a.name) - skillNames.indexOf(b.name)
+                )
+                .map(({ name: playerSkill, rank, xp }) => (
+                  <Link
+                    class={
+                      'list-group-item list-group-item-action' +
+                      (skill === playerSkill ? ' active' : '')
+                    }
+                    key={playerSkill}
+                    href={`/xp/show/${playerSkill}/${name}/${this.state.startDate.getTime()}/${this.state.endDate.getTime()}`}
+                  >
+                    <img
+                      alt={playerSkill}
+                      src={`/img/skillicons/${playerSkill}.png`}
+                    />{' '}
+                    <span class="d-md-none d-lg-inline">
+                      {capitalizeFirstLetter(playerSkill)}
+                    </span>
+                    <span class="float-right">
+                      {createValueBadge(rank, '')} {createValueBadge(xp, 'xp')}
+                    </span>
+                  </Link>
+                ))}
             </ul>
           </div>
           <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
@@ -233,11 +277,8 @@ class XpShow extends Component {
 
 export default connect(
   (state, props) => ({
-    ranks: ranksSelector(state, props),
-    skillRank: skillRankSelector(state, props),
-    skillXp: skillXpSelector(state, props),
-    allRanks: allRanksSelector(state, props),
-    allXp: allXpSelector(state, props)
+    xp: xpSelector(state, props),
+    collectedXp: collectedXpSelector(state, props)
   }),
   dispatch => bindActionCreators({ getReleases, getXpRange }, dispatch)
 )(XpShow)
