@@ -1,4 +1,3 @@
-import 'chartist/dist/chartist.min.css'
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import { Link } from 'preact-router'
@@ -12,10 +11,9 @@ import {
   Line,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   ResponsiveContainer
-} from 'precharts'
+} from 'recharts'
 import Layout from '../components/layout'
 import { getReleases } from '../modules/git'
 import {
@@ -153,11 +151,10 @@ class XpShow extends Component {
                     value: collectedXp[skill] ? collectedXp[skill].xp : 0
                   }))}
               >
-                <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
-                <YAxis />
+                <YAxis hide />
                 <Tooltip />
-                <Bar dataKey="value" fill="#8884d8">
+                <Bar dataKey="value">
                   {skillNames
                     .filter(skill => skill !== 'overall')
                     .map(skill => (
@@ -177,11 +174,10 @@ class XpShow extends Component {
                   value: collectedXp[skill] ? collectedXp[skill].rank : 0
                 }))}
               >
-                <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
-                <YAxis />
+                <YAxis hide />
                 <Tooltip />
-                <Bar dataKey="value" fill="#8884d8">
+                <Bar dataKey="value">
                   {skillNames.map(skill => (
                     <Cell fill={skills[skill]} />
                   ))}
@@ -200,10 +196,9 @@ class XpShow extends Component {
                 }))}
               >
                 <XAxis dataKey="name" />
-                <YAxis />
-                <CartesianGrid strokeDasharray="3 3" />
+                <YAxis reversed hide />
                 <Tooltip />
-                <Line type="monotone" dataKey="value" stroke={skills[skill]} />
+                <Line connectNulls dataKey="value" stroke={skills[skill]} />
               </LineChart>
             </ResponsiveContainer>
 
@@ -218,10 +213,9 @@ class XpShow extends Component {
                 }))}
               >
                 <XAxis dataKey="name" />
-                <YAxis />
-                <CartesianGrid strokeDasharray="3 3" />
+                <YAxis hide />
                 <Tooltip />
-                <Line type="monotone" dataKey="value" stroke={skills[skill]} />
+                <Line connectNulls dataKey="value" stroke={skills[skill]} />
               </LineChart>
             </ResponsiveContainer>
           </div>
