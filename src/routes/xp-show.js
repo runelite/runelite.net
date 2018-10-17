@@ -4,9 +4,18 @@ import { connect } from 'preact-redux'
 import { Link } from 'preact-router'
 import { bindActionCreators } from 'redux'
 import dayjs from 'dayjs'
-import Chartist from 'chartist'
-import 'chartist-plugin-tooltips'
-import './xp-show.css'
+import {
+  Cell,
+  LineChart,
+  BarChart,
+  Bar,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer
+} from 'precharts'
 import Layout from '../components/layout'
 import { getReleases } from '../modules/git'
 import {
@@ -53,7 +62,6 @@ const createValueBadge = (value, suffix) =>
 
 const safeDate = date => date || new Date()
 const skillNames = Object.keys(skills)
-const capitalizedSkills = skillNames.map(skill => capitalizeFirstLetter(skill))
 const flattenMap = map =>
   Object.keys(map).map(key => ({
     name: key,
@@ -65,10 +73,6 @@ class XpShow extends Component {
     super(props)
 
     this.state = {
-      skillRank: null,
-      skillXp: null,
-      allRanks: null,
-      allXp: null,
       startDate: new Date(),
       endDate: new Date()
     }
@@ -78,75 +82,9 @@ class XpShow extends Component {
     const endDate = safeDate(parseDate(this.props.end, new Date()))
     const startDate = safeDate(parseDate(this.props.start, endDate))
 
-    const options = {
-      lineSmooth: Chartist.Interpolation.none(),
-      axisX: {
-        showLabel: false
-      },
-      chartPadding: {
-        top: 30,
-        right: 50,
-        left: 50
-      },
-      plugins: [
-        Chartist.plugins.tooltip({
-          anchorToPoint: true,
-          appendToBody: true
-        })
-      ]
-    }
-
-    const invertAxis = {
-      axisY: {
-        labelInterpolationFnc: value => -value
-      },
-      plugins: [
-        Chartist.plugins.tooltip({
-          anchorToPoint: true,
-          appendToBody: true,
-          transformTooltipTextFnc: value => -value
-        })
-      ]
-    }
-
-    const invertValue = context => {
-      context.data.series = context.data.series.map(series =>
-        series.map(s => ({ ...s, value: -s.value }))
-      )
-    }
-
-    const skillColor = context => {
-      if (
-        context.type === 'line' ||
-        context.type === 'bar' ||
-        context.type === 'point'
-      ) {
-        context.element.attr({
-          style: `stroke: ${skills[context.meta] ||
-            skills[this.props.skill.toLowerCase()]}`
-        })
-      }
-    }
-
     this.setState({
       startDate,
-      endDate,
-      skillRank: new Chartist.Line(
-        '#skill-rank',
-        {},
-        { ...options, ...invertAxis }
-      )
-        .on('data', invertValue)
-        .on('draw', skillColor),
-      skillXp: new Chartist.Line('#skill-xp', {}, options).on(
-        'draw',
-        skillColor
-      ),
-      allRanks: new Chartist.Bar('#all-ranks', {}, options).on(
-        'draw',
-        skillColor
-      ),
-      allXp: new Chartist.Bar('#all-xp', {}, options).on('draw', skillColor)
+      endDate
     })
 
     this.props.getReleases().then(() =>
@@ -159,56 +97,7 @@ class XpShow extends Component {
     )
   }
 
-  componentWillUnmount() {
-    this.state.skillRank.detach()
-    this.state.skillXp.detach()
-    this.state.allRanks.detach()
-    this.state.allXp.detach()
-  }
-
   render({ name, skill, xp, collectedXp }) {
-    if (this.state.skillXp) {
-      this.state.skillRank.update({
-        labels: xp.map(xpEntry => xpEntry.date.toDateString()),
-        series: [
-          xp.map(xpEntry => ({
-            meta: xpEntry.date.toDateString(),
-            value: xpEntry[this.props.skill + '_rank']
-          }))
-        ]
-      })
-
-      this.state.skillXp.update({
-        labels: xp.map(xpEntry => xpEntry.date.toDateString()),
-        series: [
-          xp.map(xpEntry => ({
-            meta: xpEntry.date.toDateString(),
-            value: xpEntry[this.props.skill + '_xp']
-          }))
-        ]
-      })
-
-      this.state.allRanks.update({
-        labels: capitalizedSkills,
-        series: [
-          skillNames.map(skill => ({
-            meta: skill,
-            value: collectedXp[skill] ? collectedXp[skill].rank : 0
-          }))
-        ]
-      })
-
-      this.state.allXp.update({
-        labels: capitalizedSkills,
-        series: [
-          skillNames.filter(skill => skill !== 'overall').map(skill => ({
-            meta: skill,
-            value: collectedXp[skill] ? collectedXp[skill].xp : 0
-          }))
-        ]
-      })
-    }
-
     return (
       <Layout>
         <Meta title={`Experience Tracker - ${hero.title}`} />
@@ -255,19 +144,86 @@ class XpShow extends Component {
             <h5>
               <small>Total experience gained</small>
             </h5>
-            <div id="all-xp" class="ct-chart" style={{ height: 175 }} />
+            <ResponsiveContainer height={300}>
+              <BarChart
+                data={skillNames
+                  .filter(skill => skill !== 'overall')
+                  .map(skill => ({
+                    name: capitalizeFirstLetter(skill),
+                    value: collectedXp[skill] ? collectedXp[skill].xp : 0
+                  }))}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="value" fill="#8884d8">
+                  {skillNames
+                    .filter(skill => skill !== 'overall')
+                    .map(skill => (
+                      <Cell fill={skills[skill]} />
+                    ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+
             <h5>
               <small>Total ranks gained</small>
             </h5>
-            <div id="all-ranks" class="ct-chart" style={{ height: 175 }} />
+            <ResponsiveContainer height={300}>
+              <BarChart
+                data={skillNames.map(skill => ({
+                  name: capitalizeFirstLetter(skill),
+                  value: collectedXp[skill] ? collectedXp[skill].rank : 0
+                }))}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="value" fill="#8884d8">
+                  {skillNames.map(skill => (
+                    <Cell fill={skills[skill]} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+
             <h5>
               <small>{capitalizeFirstLetter(skill)} ranks</small>
             </h5>
-            <div id="skill-rank" class="ct-chart" style={{ height: 375 }} />
+            <ResponsiveContainer height={300}>
+              <LineChart
+                data={xp.map(xpEntry => ({
+                  name: xpEntry.date.toDateString(),
+                  value: xpEntry[skill + '_rank']
+                }))}
+              >
+                <XAxis dataKey="name" />
+                <YAxis />
+                <CartesianGrid strokeDasharray="3 3" />
+                <Tooltip />
+                <Line type="monotone" dataKey="value" stroke={skills[skill]} />
+              </LineChart>
+            </ResponsiveContainer>
+
             <h5>
               <small>{capitalizeFirstLetter(skill)} experience</small>
             </h5>
-            <div id="skill-xp" class="ct-chart" style={{ height: 375 }} />
+            <ResponsiveContainer height={300}>
+              <LineChart
+                data={xp.map(xpEntry => ({
+                  name: xpEntry.date.toDateString(),
+                  value: xpEntry[skill + '_xp']
+                }))}
+              >
+                <XAxis dataKey="name" />
+                <YAxis />
+                <CartesianGrid strokeDasharray="3 3" />
+                <Tooltip />
+                <Line type="monotone" dataKey="value" stroke={skills[skill]} />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </Layout>
