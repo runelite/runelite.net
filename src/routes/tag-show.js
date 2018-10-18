@@ -9,6 +9,9 @@ import { connect } from 'preact-redux'
 import '../components/tooltip.css'
 import './tag.css'
 
+const formatIcon = icon =>
+  `https://raw.githubusercontent.com/Abextm/static.runelite.net/cache-code-2018-10-11-rev176/cache/item/icon/${icon}.png`
+
 class TagShow extends Component {
   componentDidMount() {
     this.props
@@ -22,13 +25,7 @@ class TagShow extends Component {
         <Meta title={`${name} tag tab - ${hero.title}`} />
         <Layout class="tag-container">
           <h1>
-            <img
-              alt={''}
-              src={`https://api.runelite.net/runelite-${
-                version.name
-              }/cache/item/${icon}/image`}
-            />{' '}
-            {name}
+            <img alt="" src={formatIcon(icon)} /> {name}
           </h1>
           <hr />
           <div class="row">
@@ -39,10 +36,6 @@ class TagShow extends Component {
               const examine = item.examine || ''
               const nameSan = name.replace(' ', '_')
 
-              if (!version.name) {
-                return <noscript />
-              }
-
               return (
                 <div class="card">
                   <div class="tooltip-tag">
@@ -50,9 +43,7 @@ class TagShow extends Component {
                       <img
                         class="card-img-top"
                         alt={name}
-                        src={`https://api.runelite.net/runelite-${
-                          version.name
-                        }/cache/item/${id}/image`}
+                        src={formatIcon(id)}
                       />
                     </a>
                     <div class="tooltip-tag-text">
