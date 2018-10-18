@@ -13,9 +13,11 @@ const runeliteApi = api('https://api.runelite.net/')
 export const {
   getSessionCount,
   getXpRange,
+  getItemInfo,
   setSessionCount,
   setXp,
-  setXpRange
+  setXpRange,
+  setItemInfo
 } = createActions(
   {
     GET_SESSION_COUNT: () => async (dispatch, getState) => {
@@ -76,11 +78,37 @@ export const {
       const result = await Promise.all(results)
       dispatch(stopLoading())
       return result
+    },
+    GET_ITEM_INFO: items => async (dispatch, getState) => {
+      dispatch(startLoading())
+      const version = latestReleaseSelector(getState()).name
+      const result = await Promise.all(
+        items.map(item => {
+          return runeliteApi(`runelite-${version}/cache/item/${item}`, {
+            method: 'GET'
+          }).then(info => {
+            return runeliteApi(`runelite-${version}/examine/item/${item}`, {
+              method: 'GET'
+            }).then(examine => {
+              dispatch(
+                setItemInfo({
+                  ...info,
+                  examine
+                })
+              )
+            })
+          })
+        })
+      )
+
+      dispatch(stopLoading())
+      return result
     }
   },
   'SET_SESSION_COUNT',
   'SET_XP',
-  'SET_XP_RANGE'
+  'SET_XP_RANGE',
+  'SET_ITEM_INFO'
 )
 
 // Reducer
@@ -97,11 +125,16 @@ export default handleActions(
     [setXpRange]: (state, { payload }) => ({
       ...state,
       ...payload
+    }),
+    [setItemInfo]: (state, { payload }) => ({
+      ...state,
+      items: uniq(concat(state.items, [payload]))
     })
   },
   {
     sessionCount: 0,
-    xp: []
+    xp: [],
+    items: []
   }
 )
 

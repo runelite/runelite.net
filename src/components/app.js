@@ -37,6 +37,11 @@ const App = ({ loading, stars, navbarDark }) => (
         path="/logged-in"
         getComponent={() => import('../routes/logged-in')}
       />
+      <Async path="/tag" getComponent={() => import('../routes/tag')} />
+      <Async
+        path="/tag/show/:csv"
+        getComponent={() => import('../routes/tag-show')}
+      />
       <Async default getComponent={() => import('../routes/not-found')} />
     </Router>
   </div>

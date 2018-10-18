@@ -1,0 +1,16 @@
+.tag-container {
+  padding-top: 150px !important;
+  max-width: 705px;
+}
+
+.tag-container .card {
+  margin: 10px;
+}
+
+.tag-container .card img {
+  padding: 10px;
+}
+
+.tag-container pre {
+  user-select: all;
+}
