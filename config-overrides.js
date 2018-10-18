@@ -79,16 +79,18 @@ module.exports = function override(config, env) {
   }
 
   const posts = fs.readdirSync(path.join('src', '_posts'))
-  const routes = ['/', '/features', '/blog'].map(path => ({ path })).concat(
-    posts.map(fileName => {
-      // Parse blog metadata
-      const { id, date } = parseBlog(fileName)
-      return {
-        path: '/blog/show/' + id,
-        lastMod: date.toISOString().slice(0, 10)
-      }
-    })
-  )
+  const routes = ['/', '/features', '/blog', '/tag']
+    .map(path => ({ path }))
+    .concat(
+      posts.map(fileName => {
+        // Parse blog metadata
+        const { id, date } = parseBlog(fileName)
+        return {
+          path: '/blog/show/' + id,
+          lastMod: date.toISOString().slice(0, 10)
+        }
+      })
+    )
 
   if (!process.env.NOW) {
     config.plugins.push(

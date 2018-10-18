@@ -8,6 +8,7 @@ import { startLoading, stopLoading } from './app'
 import { latestReleaseSelector } from './git'
 
 const runeliteApi = api('https://api.runelite.net/')
+const runeliteStaticApi = api('https://static.runelite.net/')
 
 // Actions
 export const {
@@ -82,23 +83,24 @@ export const {
     GET_ITEM_INFO: items => async (dispatch, getState) => {
       dispatch(startLoading())
       const version = latestReleaseSelector(getState()).name
+      const names = await runeliteStaticApi('cache/item/names.json', {
+        method: 'GET'
+      })
+
       const result = await Promise.all(
-        items.map(item => {
-          return runeliteApi(`runelite-${version}/cache/item/${item}`, {
+        items.map(item =>
+          runeliteApi(`runelite-${version}/examine/item/${item}`, {
             method: 'GET'
-          }).then(info => {
-            return runeliteApi(`runelite-${version}/examine/item/${item}`, {
-              method: 'GET'
-            }).then(examine => {
-              dispatch(
-                setItemInfo({
-                  ...info,
-                  examine
-                })
-              )
-            })
+          }).then(examine => {
+            dispatch(
+              setItemInfo({
+                id: item,
+                name: names[item],
+                examine
+              })
+            )
           })
-        })
+        )
       )
 
       dispatch(stopLoading())
