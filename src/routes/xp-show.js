@@ -190,13 +190,14 @@ class XpShow extends Component {
             </h5>
             <ResponsiveContainer height={300}>
               <LineChart
+                syncId="date"
                 data={xp.map(xpEntry => ({
                   name: xpEntry.date.toDateString(),
                   value: xpEntry[skill + '_rank']
                 }))}
               >
                 <XAxis dataKey="name" />
-                <YAxis reversed hide />
+                <YAxis domain={['dataMin', 'dataMax']} reversed hide />
                 <Tooltip />
                 <Line connectNulls dataKey="value" stroke={skills[skill]} />
               </LineChart>
@@ -207,13 +208,14 @@ class XpShow extends Component {
             </h5>
             <ResponsiveContainer height={300}>
               <LineChart
+                syncId="date"
                 data={xp.map(xpEntry => ({
                   name: xpEntry.date.toDateString(),
                   value: xpEntry[skill + '_xp']
                 }))}
               >
                 <XAxis dataKey="name" />
-                <YAxis hide />
+                <YAxis domain={['dataMin', 'dataMax']} hide />
                 <Tooltip />
                 <Line connectNulls dataKey="value" stroke={skills[skill]} />
               </LineChart>
