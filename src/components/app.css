@@ -6,6 +6,7 @@ body,
 
 pre {
   background: #f6f8fa;
+  width: 100%;
   padding: 16px;
   overflow: auto;
   font-size: 85%;
