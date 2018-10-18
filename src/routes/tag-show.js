@@ -10,7 +10,7 @@ import '../components/tooltip.css'
 import './tag.css'
 
 const formatIcon = icon =>
-  `https://raw.githubusercontent.com/Abextm/static.runelite.net/cache-code-2018-10-11-rev176/cache/item/icon/${icon}.png`
+  `https://static.runelite.net/cache/item/icon/${icon}.png`
 
 class TagShow extends Component {
   componentDidMount() {
