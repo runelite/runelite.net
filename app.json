@@ -1,7 +1,6 @@
 {
   "name": "runelite.net",
-  "scripts": {
-  },
+  "scripts": {},
   "env": {
     "NODE_ENV": "development"
   },
@@ -10,9 +9,7 @@
       "quantity": 1
     }
   },
-  "addons": [
-
-  ],
+  "addons": [],
   "buildpacks": [
     {
       "url": "heroku/nodejs"

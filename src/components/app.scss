@@ -1,0 +1,77 @@
+// Bootstrap color overrides are below:
+// For documentation visit: https://getbootstrap.com/docs/4.0/getting-started/theming/
+//
+//$body-bg: rgb(40, 40, 40);
+//$body-color: lightgray;
+//
+//// Orange is new blue
+//$blue: rgb(220, 138, 0);
+//
+//// Base colors
+//$black: $body-color;
+//$white: $body-bg;
+//
+//// Hover effects
+//$gray-100: rgb(77, 77, 77); // bg
+//
+//// Bunch of gray
+//$gray-200: $black;
+//$gray-300: $black;
+//$gray-400: $black;
+//$gray-500: $black;
+//$gray-600: $black;
+//$gray-700: $black;
+//$gray-800: $black;
+//$gray-900: $black;
+//
+//$light: $black;
+//$dark: $white;
+
+@import '~bootstrap/scss/bootstrap';
+
+html,
+body,
+#root {
+  height: 100% !important;
+}
+
+.card,
+.card-img-top,
+.list-group-item:first-child,
+.list-group-item:last-child,
+.btn,
+.form-control {
+  border-radius: 0;
+}
+
+.card {
+  height: 100%;
+}
+
+pre {
+  width: 100%;
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+.navbar,
+.list-group-item {
+  padding: 5px;
+}
+
+.navbar-brand {
+  margin: 0 5px;
+}

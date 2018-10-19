@@ -2,7 +2,6 @@
   background-blend-mode: darken;
   transition: background-image 3s;
   color: white;
-  text-shadow: 1px 1px 2px black;
   display: table;
   width: 100%;
   margin: 0;

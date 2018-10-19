@@ -70,7 +70,7 @@ module.exports = function override(config, env) {
   config = rewirePreact(config, env)
   config = rewireEslint(config, env)
   config = injectBabelPlugin(
-    ['babel-plugin-transform-react-jsx', { pragma: 'h', useBuiltIns: true }],
+    ['@babel/transform-react-jsx', { pragma: 'h', useBuiltIns: true }],
     config
   )
 
