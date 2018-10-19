@@ -92,7 +92,7 @@ module.exports = function override(config, env) {
       })
     )
 
-  if (!process.env.NOW) {
+  if (process.env.NODE_ENV !== 'development') {
     config.plugins.push(
       new PrerenderSPAPlugin({
         // Required - The path to the webpack-outputted app to prerender.
