@@ -59,26 +59,29 @@ const Navigation = ({ stars, dark }) => (
             <i class="fas fa-code" /> Tags
           </Link>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href={links.discord}>
-            <i class="fab fa-discord" /> Discord
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href={links.twitter}>
-            <i class="fab fa-twitter" /> Twitter
-          </a>
-        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href={links.patreon}>
-            <i class="fab fa-patreon" /> Become a patron
+          <a class="nav-link" href={links.discord} title="Discord">
+            <i class="fab fa-discord" />
+            <span class="d-lg-none"> Discord</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/runelite">
-            <i class="fab fa-github" /> GitHub
+          <a class="nav-link" href={links.twitter} title="Twitter">
+            <i class="fab fa-twitter" />
+            <span class="d-lg-none"> Twitter</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={links.github} title="GitHub">
+            <i class="fab fa-github" />
+            <span class="d-lg-none"> GitHub</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={links.patreon}>
+            <i class="fab fa-patreon" /> Become a patron
           </a>
         </li>
         <li class="nav-item">
