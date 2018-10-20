@@ -6,11 +6,11 @@
   display: block;
 }
 
-.navbar-dark {
+.navbar-gradient {
   background: linear-gradient(rgba(0, 0, 0, 0.7) 40%, transparent);
 }
 
-.navbar-dark .navbar-nav .nav-link {
+.navbar-gradient .navbar-nav .nav-link {
   color: white;
   text-shadow: black 1px 1px 2px;
 }

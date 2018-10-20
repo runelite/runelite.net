@@ -8,11 +8,11 @@ const Navigation = ({ stars, dark }) => (
   <nav
     class={
       'navbar navbar-expand-lg fixed-top ' +
-      (dark ? 'navbar-dark' : 'navbar-light bg-white')
+      (dark ? 'navbar-gradient navbar-dark' : 'navbar-light bg-white')
     }
   >
     <Link class="navbar-brand" activeClassName="active" href="/">
-      <img src={hero.logo} class="icon" alt="Logo" /> Home
+      <img src={hero.logo} class="icon" alt="RuneLite" /> Home
     </Link>
     <input type="checkbox" id="navbar-check-box" />
     <label for="navbar-check-box" class="navbar-toggler">
@@ -36,6 +36,7 @@ const Navigation = ({ stars, dark }) => (
           </a>
         </li>
         <li class="nav-item dropdown">
+          {/* eslint-disable-next-line */}
           <a class="nav-link dropdown-toggle" id="navbarDropdown">
             <i class="fas fa-font" /> API
           </a>

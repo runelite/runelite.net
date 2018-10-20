@@ -125,6 +125,7 @@ class XpShow extends Component {
                     href={`/xp/show/${playerSkill}/${name}/${this.state.startDate.getTime()}/${this.state.endDate.getTime()}`}
                   >
                     <img
+                      class="icon"
                       alt={playerSkill}
                       src={`/img/skillicons/${playerSkill}.png`}
                     />{' '}
