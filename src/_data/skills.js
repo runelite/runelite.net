@@ -1,5 +1,5 @@
 export default {
-  overall: 'rgb(0, 0, 0)',
+  overall: 'rgb(255, 255, 255)',
   agility: 'rgb(35, 37, 93)',
   attack: 'rgb(111, 31, 28)',
   construction: 'rgb(130, 119, 104)',

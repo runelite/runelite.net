@@ -8,7 +8,7 @@ const Navigation = ({ stars, dark }) => (
   <nav
     class={
       'navbar navbar-expand-lg fixed-top ' +
-      (dark ? 'navbar-gradient navbar-dark' : 'navbar-light bg-white')
+      (dark ? 'navbar-gradient navbar-dark' : 'navbar-dark bg-dark')
     }
   >
     <Link class="navbar-brand" activeClassName="active" href="/">

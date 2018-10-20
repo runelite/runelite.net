@@ -1,0 +1,15 @@
+.list-group-small,
+.list-group-small .list-group-item {
+  font-size: medium;
+  padding: 5px;
+}
+
+.list-group-small .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.list-group-small .badge {
+  font-size: x-small;
+  font-weight: normal;
+}

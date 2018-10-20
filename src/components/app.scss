@@ -1,55 +1,14 @@
-// Bootstrap color overrides are below:
+// Bootstrap color overrides are imported from below _variables.scss file
 // For documentation visit: https://getbootstrap.com/docs/4.0/getting-started/theming/
-//
-//$body-bg: rgb(40, 40, 40);
-//$body-color: lightgray;
-//
-//// Orange is new blue
-//$blue: rgb(220, 138, 0);
-//
-//// Base colors
-//$black: $body-color;
-//$white: $body-bg;
-//
-//// Hover effects
-//$gray-100: rgb(77, 77, 77); // bg
-//
-//// Bunch of gray
-//$gray-200: $black;
-//$gray-300: $black;
-//$gray-400: $black;
-//$gray-500: $black;
-//$gray-600: $black;
-//$gray-700: $black;
-//$gray-800: $black;
-//$gray-900: $black;
-//
-//$light: $black;
-//$dark: $white;
-
+// For online editor visit: https://bootstrap.build/app/v4.1.1/
+@import '_variables.scss';
 @import '~bootstrap/scss/bootstrap';
 
 html,
 body,
-#root {
-  height: 100% !important;
-}
-
-.markdown-body img {
-  max-width: 100%;
-}
-
-.card,
-.card-img-top,
-.list-group-item:first-child,
-.list-group-item:last-child,
-.btn,
-.form-control {
-  border-radius: 0;
-}
-
+#root,
 .card {
-  height: 100%;
+  height: 100% !important;
 }
 
 pre {
@@ -62,6 +21,10 @@ pre {
   word-wrap: break-word;
 }
 
+.markdown-body img {
+  max-width: 100%;
+}
+
 .dropdown:hover .dropdown-menu {
   display: block;
   margin-top: 0px;
@@ -72,11 +35,13 @@ pre {
   height: 30px;
 }
 
-.navbar,
-.list-group-item {
-  padding: 5px;
-}
-
-.navbar-brand {
-  margin: 0 5px;
+.recharts-tooltip-wrapper,
+.recharts-tooltip-cursor,
+.recharts-default-tooltip,
+.recharts-tooltip-item {
+  border: none !important;
+  background-color: $black !important;
+  color: $body-color !important;
+  stroke: $dark !important;
+  fill: $dark !important;
 }
