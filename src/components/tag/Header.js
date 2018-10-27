@@ -4,7 +4,7 @@ const TagHeader = () => (
   <h5>
     Enter tag <br />
     <small class="text-muted">
-      Paste a tag exported from Runelite's Bank Tags plugin and click 'GO'
+      {"Paste a tag exported from Runelite's Bank Tags plugin and click 'GO'"}
     </small>
   </h5>
 )
