@@ -6,6 +6,11 @@ Based on [redux-boot](https://github.com/deathbeam/redux-boot).
 
 ## Local development
 
+Requirements
+
+- Node - [Installing Node](https://nodejs.org/en/download/), requires vesrion `>= 8.12.0`
+- NPM: - [Installs with Node](https://docs.npmjs.com/getting-started/installing-node#install-npm--manage-npm-versions), requires version `>= 5.3.0`
+
 First, you need to install all dependencies, so run
 
 ```
