@@ -1,43 +1,40 @@
-import { Component, h } from 'preact'
-import Layout from '../components/layout'
-import hero from '../_data/hero'
-import Meta from '../components/meta'
+import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 import { bindActionCreators } from 'redux'
+
 import './tag.css'
 import { setActiveTag } from '../modules/tag'
-import { connect } from 'preact-redux'
+import { setMetaDetails } from '../utilities/meta-utils'
+import hero from '../_data/hero'
+import Layout from '../components/layout'
+import TagForm from '../components/tag/Form'
+import TagHeader from '../components/tag/Header'
 
 class Tag extends Component {
-  render({ activeTag, setActiveTag }) {
+  constructor(props) {
+    super(props)
+    setMetaDetails({ title: `Select tag tab - ${hero.title}` })
+  }
+
+  render({ setActiveTag, activeTag }) {
     return (
       <div>
-        <Meta title={`Select tag tab - ${hero.title}`} />
         <Layout class="tag-container">
-          <h5>
-            Enter tag <br />
-            <small class="text-muted">
-              Paste a tag exported from Runelite's Bank Tags plugin and click
-              'GO'
-            </small>
-          </h5>
+          <TagHeader />
           <hr />
-          <textarea
-            rows="5"
-            class="form-control"
-            onChange={event => setActiveTag(event.target.value)}
-          >
-            {activeTag}
-          </textarea>
-          <a class="btn btn-block btn-success" href={`/tag/show/${activeTag}`}>
-            Go
-          </a>
+          <TagForm setActiveTag={setActiveTag} activeTag={activeTag} />
         </Layout>
       </div>
     )
   }
 }
 
+const mapStateToProps = ({ tag }) => ({ activeTag: tag.activeTag })
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ setActiveTag }, dispatch)
+
+export { Tag }
 export default connect(
-  state => ({ activeTag: state.tag.activeTag }),
-  dispatch => bindActionCreators({ setActiveTag }, dispatch)
+  mapStateToProps,
+  mapDispatchToProps
 )(Tag)
