@@ -67,7 +67,7 @@ export default connect(
     let parts = csv.split(',')
     const name = parts.shift()
     const icon = parts.shift()
-    parts = parts.map(id => parseInt(id, 10)).sort((a, b) => a - b)
+    parts = parts.map(id => Math.abs(parseInt(id, 10))).sort((a, b) => a - b)
 
     return {
       name,
