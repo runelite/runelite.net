@@ -2,15 +2,16 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 import { h } from 'preact'
 import { connect } from 'preact-redux'
 import Router from 'preact-router'
+
 import './app.scss'
 import './hero.css'
 import './layout.css'
-import Navigation from './navigation'
-import links from '../_data/links'
-import Redirect from './redirect'
-import Loader from './loader'
-import Async from './async'
 import { stargazersSelector } from '../modules/git'
+import Async from './async'
+import links from '../_data/links'
+import Loader from './loader'
+import Navigation from './navigation'
+import Redirect from './redirect'
 
 const App = ({ loading, stars, navbarDark }) => (
   <div style={{ height: '100%' }}>
@@ -36,7 +37,7 @@ const App = ({ loading, stars, navbarDark }) => (
         path="/logged-in"
         getComponent={() => import('../routes/logged-in')}
       />
-      <Async path="/tag" getComponent={() => import('../routes/Tag')} />
+      <Async path="/tag" getComponent={() => import('../routes/tag')} />
       <Async
         path="/tag/show/:csv"
         getComponent={() => import('../routes/tag-show')}
@@ -46,7 +47,9 @@ const App = ({ loading, stars, navbarDark }) => (
   </div>
 )
 
-export default connect(state => ({
+const mapStateToProps = state => ({
   stars: stargazersSelector(state),
   ...state.app
-}))(App)
+})
+
+export default connect(mapStateToProps)(App)

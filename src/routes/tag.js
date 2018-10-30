@@ -7,12 +7,10 @@ import { setActiveTag } from '../modules/tag'
 import { setMetaDetails } from '../utilities/meta-utils'
 import hero from '../_data/hero'
 import Layout from '../components/layout'
-import TagForm from '../components/tag/Form'
-import TagHeader from '../components/tag/Header'
+import TagForm from '../components/tag/form'
 
 class Tag extends Component {
-  constructor(props) {
-    super(props)
+  componentDidUpdate() {
     setMetaDetails({ title: `Select tag tab - ${hero.title}` })
   }
 
@@ -20,7 +18,14 @@ class Tag extends Component {
     return (
       <div>
         <Layout class="tag-container">
-          <TagHeader />
+          <h5>
+            Enter tag <br />
+            <small class="text-muted">
+              {
+                "Paste a tag exported from Runelite's Bank Tags plugin and click 'GO'"
+              }
+            </small>
+          </h5>
           <hr />
           <TagForm setActiveTag={setActiveTag} activeTag={activeTag} />
         </Layout>
