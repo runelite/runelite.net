@@ -5,7 +5,6 @@ import blog from '../blog'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
 import Async from '../components/async'
-import './blog-show.css'
 
 const BlogShow = ({ id }) => (
   <Async

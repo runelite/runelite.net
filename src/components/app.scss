@@ -35,6 +35,10 @@ body,
   height: 100% !important;
 }
 
+.markdown-body img {
+  max-width: 100%;
+}
+
 .card,
 .card-img-top,
 .list-group-item:first-child,
