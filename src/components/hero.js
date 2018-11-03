@@ -112,16 +112,16 @@ class Hero extends Component {
       >
         <div class="jumbotron-cell">
           <div class="jumbotron-body">
+            <p id="title">
+              runelite
+              <span class="title-accent">.net</span>
+            </p>
             <p class="lead" id="description">
               {description}
             </p>
             <p class="lead" id="download">
               <div class="btn-group dropdown">
-                <a
-                  type="button"
-                  class={'btn btn-lg'}
-                  href={mainDropdownItem.link}
-                >
+                <a type="button" class={'btn'} href={mainDropdownItem.link}>
                   Download
                 </a>
                 <button

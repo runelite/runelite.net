@@ -57,26 +57,28 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <Layout>
-          <h1 id="news" style={{ margin: '0px' }}>
-            Latest news{' '}
-            <Link href="/blog" class="home-section-link float-right">
-              See all news
-            </Link>
-          </h1>
-          <hr />
-          <br />
-          <Async
-            getComponent={() =>
-              latest().then(({ body }) => (
-                <div
-                  class="markdown-body"
-                  dangerouslySetInnerHTML={{ __html: body }}
-                />
-              ))
-            }
-          />
-        </Layout>
+        <div id="news" class="home-section-container">
+          <div class="home-section container">
+            <h1 class="dark-title">
+              Latest news{' '}
+              <Link href="/blog" class="home-section-link float-right">
+                See all news
+              </Link>
+            </h1>
+            <hr />
+            <br />
+            <Async
+              getComponent={() =>
+                latest().then(({ body }) => (
+                  <div
+                    class="markdown-body dark-markdown"
+                    dangerouslySetInnerHTML={{ __html: body }}
+                  />
+                ))
+              }
+            />
+          </div>
+        </div>
       </div>
     )
   }

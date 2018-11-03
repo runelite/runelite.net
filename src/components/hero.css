@@ -22,11 +22,21 @@
   margin: auto;
 }
 
+.title-accent {
+  color: #dc8a00;
+}
+
+#title {
+  font-size: 50px;
+  text-shadow: 2px 2px #000;
+  margin: 0px;
+}
+
 #description {
   margin: auto;
-  font-size: 30px;
-  max-width: 315px;
-  line-height: 35px;
+  font-size: 18px;
+  max-width: 285px;
+  line-height: 25px;
   font-weight: 400;
   margin-bottom: 20px;
   text-shadow: 2px 2px #000;
@@ -87,7 +97,7 @@
 }
 
 @media screen and (max-width: 540px) {
-  #social-links{
+  #social-links {
     position: relative;
     margin: 0px;
     text-align: center;

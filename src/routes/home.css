@@ -30,5 +30,34 @@ h1 {
 
 .home-section-link:hover {
   text-decoration: none;
-  color: #f6c26a;
+  color: #f5b23e;
+}
+
+.dark-markdown {
+  color: white;
+}
+
+#news hr {
+  background: rgb(128, 128, 128);
+}
+
+#news h1 {
+  margin-bottom: 15px;
+}
+
+#news {
+  background: #222222;
+}
+
+#news a {
+  color: #e79915;
+}
+#news a:hover {
+  color: #f5b23e;
+}
+
+#news pre {
+  background: #141414;
+  color: rgb(160, 160, 160);
+  border-radius: 5px;
 }
