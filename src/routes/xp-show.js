@@ -1,7 +1,9 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import { Link } from 'preact-router'
 import { bindActionCreators } from 'redux'
+
+import SkillItem from '../components/xp-tracker/skill-item'
+
 import dayjs from 'dayjs'
 import {
   Cell,
@@ -46,17 +48,6 @@ function parseDate(date, from) {
 
 const capitalizeFirstLetter = string =>
   string.charAt(0).toUpperCase() + string.slice(1)
-const numberWithCommas = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-const createValueBadge = (value, suffix) =>
-  value >= 0 ? (
-    <span class="badge badge-success">
-      +{numberWithCommas(value)} {suffix}
-    </span>
-  ) : (
-    <span class="badge badge-danger">
-      {numberWithCommas(value)} {suffix}
-    </span>
-  )
 
 const safeDate = date => date || new Date()
 const skillNames = Object.keys(skills)
@@ -95,15 +86,15 @@ class XpShow extends Component {
     )
   }
 
-  render({ name, skill, xp, collectedXp }) {
+  render({ name, skill, xp, collectedXp }, { startDate, endDate }) {
     return (
       <Layout>
         <Meta title={`Experience Tracker - ${hero.title}`} />
         <h1>
           {name} /{' '}
           <small class="text-muted">
-            {skill} / {this.state.startDate.toDateString().toLowerCase()} /{' '}
-            {this.state.endDate.toDateString().toLowerCase()}
+            {skill} / {startDate.toDateString().toLowerCase()} /{' '}
+            {endDate.toDateString().toLowerCase()}
           </small>
         </h1>
         <hr />
@@ -115,27 +106,17 @@ class XpShow extends Component {
                   (a, b) =>
                     skillNames.indexOf(a.name) - skillNames.indexOf(b.name)
                 )
-                .map(({ name: playerSkill, rank, xp }) => (
-                  <Link
-                    class={
-                      'list-group-item list-group-item-action' +
-                      (skill === playerSkill ? ' active' : '')
-                    }
-                    key={playerSkill}
-                    href={`/xp/show/${playerSkill}/${name}/${this.state.startDate.getTime()}/${this.state.endDate.getTime()}`}
-                  >
-                    <img
-                      class="icon"
-                      alt={playerSkill}
-                      src={`/img/skillicons/${playerSkill}.png`}
-                    />{' '}
-                    <span class="d-md-none d-lg-inline">
-                      {capitalizeFirstLetter(playerSkill)}
-                    </span>
-                    <span class="float-right">
-                      {createValueBadge(rank, '')} {createValueBadge(xp, 'xp')}
-                    </span>
-                  </Link>
+                .map(({ name: playerSkill, rank, xp, lvl }) => (
+                  <SkillItem
+                    skill={playerSkill}
+                    currentSkill={skill}
+                    playerName={name}
+                    rank={rank}
+                    xp={xp}
+                    startDate={startDate}
+                    endDate={endDate}
+                    levelsGained={lvl}
+                  />
                 ))}
             </ul>
           </div>
@@ -161,6 +142,26 @@ class XpShow extends Component {
                     .map(skill => (
                       <Cell fill={skills[skill]} />
                     ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+            <h5>
+              <small>Levels gained</small>
+            </h5>
+            <ResponsiveContainer height={300}>
+              <BarChart
+                data={skillNames.map(skill => ({
+                  name: capitalizeFirstLetter(skill),
+                  value: collectedXp[skill] ? collectedXp[skill].lvl : 0
+                }))}
+              >
+                <XAxis dataKey="name" />
+                <YAxis hide />
+                <Tooltip />
+                <Bar dataKey="value">
+                  {skillNames.map(skill => (
+                    <Cell fill={skills[skill]} />
+                  ))}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>

@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { uniq, concat, forEachObjIndexed } from 'ramda'
+import { uniq, concat } from 'ramda'
 import { createActions, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
 import skills from '../_data/skills'
@@ -145,43 +145,63 @@ const calculateOverallXp = xpEntry =>
     .map(skill => xpEntry[skill + '_xp'] || 0)
     .reduce((a, b) => a + b, 0)
 
-const calculateRanksAndExp = collector => (value, key) => {
-  let curKey = key
-  let isRank = true
+const calcRankAndExp = (start = {}, end = {}) => {
+  const unWantedKeys = ['time', 'date']
 
-  if (key.indexOf('_rank') !== -1) {
-    curKey = key.replace('_rank', '')
-    isRank = true
-  } else if (key.indexOf('_xp') !== -1) {
-    curKey = key.replace('_xp', '')
-    isRank = false
-  } else {
-    return
-  }
+  const skillKeys = Object.keys(start).map(key => key.split('_')[0])
 
-  const curObj = collector[curKey]
+  const wantedKeys = [...new Set(skillKeys)]
 
-  if (isRank) {
-    collector[curKey] = curObj
-      ? {
-          ...curObj,
-          rank: curObj.rank > 0 ? curObj.rank - value : value
-        }
-      : {
-          xp: 0,
-          rank: value
-        }
-  } else {
-    collector[curKey] = curObj
-      ? {
-          ...curObj,
-          xp: value - curObj.xp
-        }
-      : {
-          xp: value,
-          rank: 0
-        }
-  }
+  const skillData = wantedKeys.reduce((acc, key) => {
+    if (unWantedKeys.includes(key)) return acc
+
+    const xpKey = `${key}_xp`
+    const rankKey = `${key}_rank`
+
+    const startXp = start[xpKey]
+    const endXp = end[xpKey]
+
+    const startLvl = getLevelByExp(startXp)
+    const endLvl = getLevelByExp(endXp)
+
+    acc[key] = {
+      xp: endXp - startXp,
+      rank: start[rankKey] - end[rankKey],
+      lvl: endLvl - startLvl
+    }
+
+    return acc
+  }, {})
+
+  const totalLevelsGained = Object.keys(skillData).reduce((acc, key) => {
+    if (key === 'overall') return acc
+    acc = acc + skillData[key]['lvl']
+    return acc
+  }, 0)
+
+  if (skillData['overall']) skillData['overall']['lvl'] = totalLevelsGained
+
+  return skillData
+}
+
+const expForLevel = level => {
+  return Math.floor(Math.floor(level + 300 * Math.pow(2, level / 7)) / 4)
+}
+const expForLevels = Array.from({ length: 126 }).reduce((acc, _, i) => {
+  const expForNextlevel = expForLevel(i + 1)
+
+  if (i === 0) return (acc = [...acc, expForNextlevel])
+
+  return (acc = [...acc, acc[i - 1] + expForNextlevel])
+}, [])
+
+const getLevelByExp = (exp = 0) => {
+  // The +2 offsets the 0 based index and that you start at level 1
+  return (
+    expForLevels.findIndex((_, index, list) => {
+      return exp >= list[index - 1] && exp <= list[index + 1]
+    }) + 2
+  )
 }
 
 // Selectors
@@ -195,11 +215,12 @@ export const xpSelector = state =>
       overall_xp: calculateOverallXp(xpEntry)
     }))
 
-export const collectedXpSelector = createSelector(xpSelector, xp => {
-  const startEntry = xp[0]
-  const endEntry = xp[xp.length - 1]
-  const collector = {}
-  forEachObjIndexed(calculateRanksAndExp(collector), startEntry)
-  forEachObjIndexed(calculateRanksAndExp(collector), endEntry)
-  return collector
-})
+export const collectedXpSelector = createSelector(
+  xpSelector,
+  xp => {
+    const startEntry = xp[0]
+    const endEntry = xp[xp.length - 1]
+
+    return calcRankAndExp(startEntry, endEntry)
+  }
+)
