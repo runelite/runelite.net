@@ -84,19 +84,16 @@ pre {
 .skill-item {
   display: flex;
   align-items: center;
-  flex-direction: column;
   flex-wrap: wrap;
 
   .skill-badges {
     display: flex;
     align-items: center;
-    justify-content: space-around;
   }
   .skill-name {
     padding: 4px;
   }
   .skill-badge {
     margin: 2px;
-    position: relative;
   }
 }

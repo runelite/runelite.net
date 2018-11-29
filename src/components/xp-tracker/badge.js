@@ -11,13 +11,14 @@ export default class Badge extends Component {
     return formattedValue >= 0 ? `+${formattedValue}` : formattedValue
   }
 
-  render({ value, suffix = '' }) {
+  render({ value, levelsGained, suffix = '' }) {
     return (
       <div
         class={`badge badge-${value >= 0 ? 'success' : 'danger'} skill-badge `}
       >
         {this.formatValue()}
         {suffix}
+        {levelsGained > 0 && ` (+${levelsGained})`}
       </div>
     )
   }

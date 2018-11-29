@@ -146,27 +146,6 @@ class XpShow extends Component {
               </BarChart>
             </ResponsiveContainer>
             <h5>
-              <small>Levels gained</small>
-            </h5>
-            <ResponsiveContainer height={300}>
-              <BarChart
-                data={skillNames.map(skill => ({
-                  name: capitalizeFirstLetter(skill),
-                  value: collectedXp[skill] ? collectedXp[skill].lvl : 0
-                }))}
-              >
-                <XAxis dataKey="name" />
-                <YAxis hide />
-                <Tooltip />
-                <Bar dataKey="value">
-                  {skillNames.map(skill => (
-                    <Cell fill={skills[skill]} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-
-            <h5>
               <small>Total ranks gained</small>
             </h5>
             <ResponsiveContainer height={300}>

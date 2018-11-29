@@ -10,8 +10,7 @@ export default function SkillGains({
   return (
     <div class="skill-badges">
       <Badge value={ranksGained} />
-      <Badge value={xpGained} suffix="xp" />
-      <Badge value={levelsGained} suffix="lvls" />
+      <Badge value={xpGained} suffix="xp" levelsGained={levelsGained} />
     </div>
   )
 }
