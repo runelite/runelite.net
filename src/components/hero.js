@@ -3,6 +3,7 @@ import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import { filter, find, prepend } from 'ramda'
 import { bindActionCreators } from 'redux'
+import { getChristmasImage } from '../season'
 import {
   makeNavbarDark,
   makeNavbarDefault,
@@ -102,7 +103,11 @@ class Hero extends Component {
     return (
       <div
         class="jumbotron jumbotron-fluid"
-        style={{ backgroundImage: `url(${this.props.images[heroImage]})` }}
+        style={{
+          backgroundImage: `url(${getChristmasImage(
+            this.props.images[heroImage]
+          )})`
+        }}
         id="jumbo"
       >
         <div class="jumbotron-cell">

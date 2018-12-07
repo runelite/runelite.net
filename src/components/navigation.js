@@ -3,6 +3,7 @@ import './navigation.css'
 import hero from '../_data/hero'
 import links from '../_data/links'
 import { Link } from 'preact-router'
+import { getChristmasImage } from '../season'
 
 const Navigation = ({ stars, dark }) => (
   <nav
@@ -12,7 +13,8 @@ const Navigation = ({ stars, dark }) => (
     }
   >
     <Link class="navbar-brand" activeClassName="active" href="/">
-      <img src={hero.logo} class="icon" alt="RuneLite" /> Home
+      <img src={getChristmasImage(hero.logo)} class="icon" alt="RuneLite" />{' '}
+      Home
     </Link>
     <input type="checkbox" id="navbar-check-box" />
     <label for="navbar-check-box" class="navbar-toggler">
