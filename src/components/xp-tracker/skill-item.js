@@ -6,20 +6,20 @@ import SkillGains from './skill-gains'
 const capitalizeFirstLetter = string =>
   string.charAt(0).toUpperCase() + string.slice(1)
 
-export default function SkillItem({
+export default ({
   skill,
-  currentSkill,
   playerName,
   levelsGained,
   rank,
   xp,
   startDate,
-  endDate
-}) {
+  endDate,
+  isActive
+}) => {
   return (
     <Link
       class={`list-group-item list-group-item-action skill-item ${
-        currentSkill === skill ? 'active' : ''
+        isActive ? 'active' : ''
       }`}
       key={skill}
       href={`/xp/show/${skill}/${playerName}/${startDate.getTime()}/${endDate.getTime()}`}

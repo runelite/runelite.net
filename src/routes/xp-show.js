@@ -109,7 +109,7 @@ class XpShow extends Component {
                 .map(({ name: playerSkill, rank, xp, lvl }) => (
                   <SkillItem
                     skill={playerSkill}
-                    currentSkill={skill}
+                    isActive={playerSkill === skill}
                     playerName={name}
                     rank={rank}
                     xp={xp}

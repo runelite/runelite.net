@@ -1,25 +1,19 @@
-import { h, Component } from 'preact'
+import { h } from 'preact'
 
-export default class Badge extends Component {
-  formatValue() {
-    const { value } = this.props
+const formatValue = value => {
+  const formattedValue = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
-    const formattedValue = value
-      .toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return formattedValue >= 0 ? `+${formattedValue}` : formattedValue
+}
 
-    return formattedValue >= 0 ? `+${formattedValue}` : formattedValue
-  }
-
-  render({ value, levelsGained, suffix = '' }) {
-    return (
-      <div
-        class={`badge badge-${value >= 0 ? 'success' : 'danger'} skill-badge `}
-      >
-        {this.formatValue()}
-        {suffix}
-        {levelsGained > 0 && ` (+${levelsGained})`}
-      </div>
-    )
-  }
+export default ({ value, levelsGained, suffix = '' }) => {
+  return (
+    <div
+      class={`badge badge-${value >= 0 ? 'success' : 'danger'} skill-badge `}
+    >
+      {formatValue(value)}
+      {suffix}
+      {levelsGained > 0 && ` (+${levelsGained})`}
+    </div>
+  )
 }
