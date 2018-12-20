@@ -11,8 +11,6 @@ script:
   - npm run build
 # Deploy master to gh-pages branch
 deploy:
-  edge:
-    branch: v1.8.47
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
