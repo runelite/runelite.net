@@ -24,9 +24,7 @@ export const {
     GET_SESSION_COUNT: () => async (dispatch, getState) => {
       dispatch(startLoading())
 
-      const version = latestReleaseSelector(getState()).name
-
-      const response = await runeliteApi(`runelite-${version}/session/count`, {
+      const response = await runeliteApi(`session/count`, {
         method: 'GET'
       })
 
