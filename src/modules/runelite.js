@@ -87,17 +87,22 @@ export const {
 
       const result = await Promise.all(
         items.map(item =>
-          runeliteApi(`runelite-${version}/examine/item/${item}`, {
+          runeliteApi(`runelite-${version}/cache/item/${item}`, {
             method: 'GET'
-          }).then(examine => {
-            dispatch(
-              setItemInfo({
-                id: item,
-                name: names[item],
-                examine
-              })
+          }).then(info =>
+            runeliteApi(`runelite-${version}/examine/item/${item}`, {
+              method: 'GET'
+            }).then(examine =>
+              dispatch(
+                setItemInfo({
+                  ...info,
+                  id: item,
+                  name: names[item],
+                  examine
+                })
+              )
             )
-          })
+          )
         )
       )
 
