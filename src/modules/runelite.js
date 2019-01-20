@@ -80,24 +80,19 @@ export const {
     },
     GET_ITEM_INFO: items => async (dispatch, getState) => {
       dispatch(startLoading())
-      const version = latestReleaseSelector(getState()).name
       const names = await runeliteStaticApi('cache/item/names.json', {
         method: 'GET'
       })
 
       const result = await Promise.all(
         items.map(item =>
-          runeliteApi(`runelite-${version}/examine/item/${item}`, {
-            method: 'GET'
-          }).then(examine => {
-            dispatch(
-              setItemInfo({
-                id: item,
-                name: names[item],
-                examine
-              })
-            )
-          })
+          dispatch(
+            setItemInfo({
+              id: item,
+              name: names[item],
+              examine: ''
+            })
+          )
         )
       )
 
