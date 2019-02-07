@@ -2,7 +2,6 @@ import { Component, h } from 'preact'
 import Layout from '../components/layout'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
-import PreSelect from '../components/pre-select'
 
 class GitHubAuthCode extends Component {
   render({ code }) {
@@ -14,7 +13,7 @@ class GitHubAuthCode extends Component {
           <hr />
           <div>
             To complete authentication, send:
-            <PreSelect>!ghauth {code}</PreSelect>
+            <pre class="pre-select">!ghauth {code}</pre>
             In a Direct Message to the RuneLite Discord bot.
           </div>
         </Layout>
