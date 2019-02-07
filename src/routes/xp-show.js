@@ -24,6 +24,7 @@ import {
 import hero from '../_data/hero'
 import skills from '../_data/skills'
 import Meta from '../components/meta'
+import './xp-show.css'
 
 function isNumeric(value) {
   return !isNaN(value - parseFloat(value))
@@ -109,7 +110,7 @@ class XpShow extends Component {
         <hr />
         <div class="row">
           <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
-            <ul class="list-group">
+            <ul class="list-group list-group-small">
               {flattenMap(collectedXp)
                 .sort(
                   (a, b) =>
