@@ -36,6 +36,10 @@ const App = ({ loading, stars, navbarDark }) => (
         path="/logged-in"
         getComponent={() => import('../routes/logged-in')}
       />
+      <Async
+        path="/gh-auth-code"
+        getComponent={() => import('../routes/gh-auth-code')}
+      />
       <Async path="/tag" getComponent={() => import('../routes/tag')} />
       <Async
         path="/tag/show/:csv"
