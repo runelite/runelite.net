@@ -10,7 +10,3 @@
 .tag-container .card img {
   padding: 10px;
 }
-
-.tag-container pre {
-  user-select: all;
-}

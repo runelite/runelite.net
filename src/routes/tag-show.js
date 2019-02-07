@@ -8,6 +8,7 @@ import { getItemInfo } from '../modules/runelite'
 import { connect } from 'preact-redux'
 import '../components/tooltip.css'
 import './tag.css'
+import PreSelect from '../components/pre-select'
 
 const formatIcon = icon =>
   `https://static.runelite.net/cache/item/icon/${icon}.png`
@@ -29,7 +30,7 @@ class TagShow extends Component {
           </h1>
           <hr />
           <div class="row">
-            <pre>{csv}</pre>
+            <PreSelect>{csv}</PreSelect>
             {itemIds.map(id => {
               const item = items.find(i => i.id === id) || {}
               const name = item.name || ''
