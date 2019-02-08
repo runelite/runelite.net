@@ -16,11 +16,7 @@ import {
 } from 'recharts'
 import Layout from '../components/layout'
 import { getReleases } from '../modules/git'
-import {
-  getXpRange,
-  xpSelector,
-  collectedXpSelector
-} from '../modules/runelite'
+import { getXpRange, xpSelector, collectedXpSelector } from '../modules/xp'
 import hero from '../_data/hero'
 import skills from '../_data/skills'
 import Meta from '../components/meta'

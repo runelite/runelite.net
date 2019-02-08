@@ -4,7 +4,7 @@ import hero from '../_data/hero'
 import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
 import { getReleases, latestReleaseSelector } from '../modules/git'
-import { getItemInfo } from '../modules/runelite'
+import { getItemInfo } from '../modules/item'
 import { connect } from 'preact-redux'
 import '../components/tooltip.css'
 import './tag.css'
@@ -73,7 +73,7 @@ export default connect(
       name,
       icon,
       itemIds: parts,
-      items: state.runelite.items || [],
+      items: state.item || [],
       version: latestReleaseSelector(state)
     }
   },
