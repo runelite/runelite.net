@@ -22,8 +22,10 @@
     "recharts": "^1.4.2",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
+    "redux-persist": "^5.10.0",
     "reselect": "^4.0.0",
-    "s-ago": "^2.0.1"
+    "s-ago": "^2.0.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "customize-cra": "^0.2.11",
