@@ -82,28 +82,31 @@ const commitsSelector = state => state.git.commits
 const releasesSelector = state => state.git.releases
 const repositorySelector = state => state.git.repository
 
-export const latestCommitSelector = createSelector(commitsSelector, commits => {
-  const realCommits = commits.filter(commit => commit.parents.length <= 1)
+export const latestCommitSelector = createSelector(
+  commitsSelector,
+  commits => {
+    const realCommits = commits.filter(commit => commit.parents.length <= 1)
 
-  if (realCommits.length > 0) {
-    const commit = realCommits[0]
-    return {
-      url: commit.html_url,
-      message:
-        commit.commit.message.length >= 50
-          ? commit.commit.message.substr(0, 50) + '...'
-          : commit.commit.message,
-      date: new Date(commit.commit.committer.date),
-      author: {
-        name: commit.commit.author.name,
-        url: commit.author ? commit.author.html_url : null,
-        avatar: commit.author ? commit.author.avatar_url : null
+    if (realCommits.length > 0) {
+      const commit = realCommits[0]
+      return {
+        url: commit.html_url,
+        message:
+          commit.commit.message.length >= 50
+            ? commit.commit.message.substr(0, 50) + '...'
+            : commit.commit.message,
+        date: new Date(commit.commit.committer.date),
+        author: {
+          name: commit.commit.author.name,
+          url: commit.author ? commit.author.html_url : null,
+          avatar: commit.author ? commit.author.avatar_url : null
+        }
       }
     }
-  }
 
-  return {}
-})
+    return {}
+  }
+)
 
 export const latestReleaseSelector = createSelector(
   releasesSelector,

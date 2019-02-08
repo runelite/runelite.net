@@ -1,11 +1,16 @@
+const {
+  override,
+  addWebpackAlias,
+  useBabelRc,
+  useEslintRc
+} = require('customize-cra')
+
 const fs = require('fs')
 const path = require('path')
 const { injectBabelPlugin } = require('react-app-rewired')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const SitemapPlugin = require('sitemap-webpack-plugin').default
-const rewirePreact = require('react-app-rewire-preact')
-const rewireEslint = require('react-app-rewire-eslint')
 const marked = require('marked')
 const fm = require('front-matter')
 const libxmljs = require('libxmljs')
@@ -66,14 +71,7 @@ const feedMapper = fileName => {
   }
 }
 
-module.exports = function override(config, env) {
-  config = rewirePreact(config, env)
-  config = rewireEslint(config, env)
-  config = injectBabelPlugin(
-    ['@babel/transform-react-jsx', { pragma: 'h', useBuiltIns: true }],
-    config
-  )
-
+const addSitePlugins = () => config => {
   if (process.env.NODE_ENV !== 'production') {
     return config
   }
@@ -127,3 +125,14 @@ module.exports = function override(config, env) {
 
   return config
 }
+
+module.exports = override(
+  useBabelRc(),
+  useEslintRc(),
+  addWebpackAlias({
+    react: 'preact-compat',
+    'react-dom': 'preact-compat',
+    'mobx-react': 'mobx-preact'
+  }),
+  addSitePlugins()
+)
