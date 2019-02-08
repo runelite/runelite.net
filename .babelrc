@@ -1,0 +1,6 @@
+{
+  "presets": ["react-app"],
+  "plugins": [
+    ["@babel/transform-react-jsx", { "pragma": "h", "useBuiltIns": true }]
+  ]
+}
