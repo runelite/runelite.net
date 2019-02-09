@@ -33,10 +33,10 @@ const buildSlayerTask = config => {
 
 class Home extends Component {
   componentDidMount() {
-    this.props.getReleases().then(() => this.props.getConfig())
+    this.props.getReleases().then(() => this.props.fetchConfig())
   }
 
-  render({ config }) {
+  render({ config, selectedAccount }) {
     return <div>{buildSlayerTask(config)}</div>
   }
 }
