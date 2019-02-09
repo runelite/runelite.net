@@ -7,7 +7,6 @@ const {
 
 const fs = require('fs')
 const path = require('path')
-const { injectBabelPlugin } = require('react-app-rewired')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const SitemapPlugin = require('sitemap-webpack-plugin').default
