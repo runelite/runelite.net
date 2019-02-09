@@ -44,7 +44,7 @@
     "sitemap-webpack-plugin": "^0.6.0"
   },
   "scripts": {
-    "fix": "eslint --fix src && prettier --write {*,public/*,src/**,src/**/*}.{js,json,css,scss,md}",
+    "fix": "eslint --fix src && prettier --write {*,public/*,src/**,src/**/*,src/**/**/*}.{js,json,css,scss,md}",
     "test": "react-app-rewired test",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build"

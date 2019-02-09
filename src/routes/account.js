@@ -8,6 +8,9 @@ import Meta from '../components/meta'
 import { isLoggedIn, logout } from '../modules/session'
 import Redirect from '../components/redirect'
 import { find, propEq } from 'ramda'
+import LootTracker from '../components/account/LootTracker'
+import { getLoot } from '../modules/loot'
+import { getReleases } from '../modules/git'
 
 const Home = ({ logout }) => (
   <button class="btn btn-danger" onClick={logout}>
@@ -32,7 +35,7 @@ const menu = [
     tag: 'loot-tracker',
     label: 'Loot Tracker',
     icon: 'fa-fw fas fa-file-invoice-dollar',
-    component: () => <noscript />
+    component: LootTracker
   },
   {
     tag: 'farming-tracker',
@@ -59,7 +62,7 @@ const menuItems = currentMenu =>
 const menuBody = currentMenu => find(propEq('tag', currentMenu), menu).component
 
 class Account extends Component {
-  render({ menu, username, loggedIn, logout }) {
+  render({ menu, loggedIn, ...props }) {
     if (!loggedIn) {
       return <Redirect to="/" />
     }
@@ -74,7 +77,7 @@ class Account extends Component {
             <ul class="list-group list-group-small">{menuItems(menu)}</ul>
           </div>
           <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
-            <MenuBody logout={logout} />
+            <MenuBody {...props} />
           </div>
         </div>
       </Layout>
@@ -85,7 +88,8 @@ class Account extends Component {
 export default connect(
   state => ({
     loggedIn: isLoggedIn(state),
-    ...state.session
+    ...state.session,
+    loot: state.loot
   }),
-  dispatch => bindActionCreators({ logout }, dispatch)
+  dispatch => bindActionCreators({ logout, getReleases, getLoot }, dispatch)
 )(Account)
