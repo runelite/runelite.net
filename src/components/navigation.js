@@ -5,7 +5,7 @@ import links from '../_data/links'
 import { Link } from 'preact-router'
 import { getChristmasImage } from '../season'
 
-const Navigation = ({ stars, dark, login, logout, loggedIn, username }) => (
+const Navigation = ({ stars, dark, login, loggedIn, username }) => (
   <nav
     class={
       'navbar navbar-expand-lg fixed-top ' +
@@ -97,13 +97,19 @@ const Navigation = ({ stars, dark, login, logout, loggedIn, username }) => (
         </li>
         <li class="nav-item">
           {loggedIn ? (
-            <a class="nav-link" href="#root" onClick={logout}>
-              <i class="fas fa-user" /> {username} (logout)
+            <a class="nav-link" href="/account/home">
+              <i class="fas fa-user" /> {username}
             </a>
           ) : (
-            <a class="nav-link" href="#root" onClick={login}>
-              <i class="fas fa-user" /> Login
-            </a>
+            <form class="form-inline">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                onClick={login}
+              >
+                <i class="fas fa-user" /> Login
+              </button>
+            </form>
           )}
         </li>
       </ul>

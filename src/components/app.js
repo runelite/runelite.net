@@ -12,8 +12,8 @@ import Redirect from './redirect'
 import Loader from './loader'
 import Async from './async'
 import { getStargazers } from '../modules/git'
+import { isLoggedIn, login } from '../modules/session'
 import NotFound from './not-found'
-import { isLoggedIn, login, logout } from '../modules/session'
 
 const App = ({
   loading,
@@ -64,6 +64,10 @@ const App = ({
         path="/tag/show/:csv"
         getComponent={() => import('../routes/tag-show')}
       />
+      <Async
+        path="/account/:menu"
+        getComponent={() => import('../routes/account')}
+      />
       <NotFound default />
     </Router>
   </div>
@@ -76,5 +80,5 @@ export default connect(
     ...state.app,
     ...state.session
   }),
-  dispatch => bindActionCreators({ login, logout }, dispatch)
+  dispatch => bindActionCreators({ login }, dispatch)
 )(App)
