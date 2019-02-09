@@ -11,12 +11,8 @@ import { find, propEq } from 'ramda'
 import LootTracker from '../components/account/LootTracker'
 import { getLoot } from '../modules/loot'
 import { getReleases } from '../modules/git'
-
-const Home = ({ logout }) => (
-  <button class="btn btn-danger" onClick={logout}>
-    Logout
-  </button>
-)
+import Home from '../components/account/Home'
+import { getConfig } from '../modules/config'
 
 const menu = [
   {
@@ -62,7 +58,7 @@ const menuItems = currentMenu =>
 const menuBody = currentMenu => find(propEq('tag', currentMenu), menu).component
 
 class Account extends Component {
-  render({ menu, loggedIn, ...props }) {
+  render({ menu, loggedIn, logout, ...props }) {
     if (!loggedIn) {
       return <Redirect to="/" />
     }
@@ -74,7 +70,23 @@ class Account extends Component {
         <Meta title={`Account - ${hero.title}`} />
         <div class="row">
           <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
-            <ul class="list-group list-group-small">{menuItems(menu)}</ul>
+            <ul class="list-group list-group-small">
+              {menuItems(menu)}
+
+              <li
+                class="list-group-item disabled"
+                style={{ borderLeft: 'none', borderRight: 'none' }}
+              >
+                <br />
+              </li>
+              <a
+                href="#root"
+                class="list-group-item list-group-item-action list-group-item-danger"
+                onClick={logout}
+              >
+                <i class="fas fa-fw fa-power-off" /> Logout
+              </a>
+            </ul>
           </div>
           <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
             <MenuBody {...props} />
@@ -89,7 +101,9 @@ export default connect(
   state => ({
     loggedIn: isLoggedIn(state),
     ...state.session,
-    loot: state.loot
+    loot: state.loot,
+    config: state.config
   }),
-  dispatch => bindActionCreators({ logout, getReleases, getLoot }, dispatch)
+  dispatch =>
+    bindActionCreators({ logout, getReleases, getConfig, getLoot }, dispatch)
 )(Account)

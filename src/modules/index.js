@@ -1,4 +1,5 @@
 import appReducer from './app'
+import configReducer from './config'
 import gitReducer from './git'
 import itemReducer from './item'
 import lootReducer from './loot'
@@ -10,6 +11,7 @@ import xpReducer from './xp'
 // Combine all redux reducers into one root reducer
 export default {
   app: appReducer,
+  config: configReducer,
   git: gitReducer,
   item: itemReducer,
   loot: lootReducer,
