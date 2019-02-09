@@ -24,9 +24,8 @@ npm start
 ```
 
 from console. Your app should be now running on `http://localhost:3000` and you
-will be able to see it from your web browser. To debug Redux actions, navigate
-to `http://remotedev.io/local/` and you will be able to see all your Redux
-actions.
+will be able to see it from your web browser. To debug Redux actions, simply check
+your web console.
 
 ### Creating blog posts
 
