@@ -20,7 +20,6 @@ import { fetchXp, getXp, getCollectedXp } from '../modules/xp'
 import hero from '../_data/hero'
 import skills from '../_data/skills'
 import Meta from '../components/meta'
-import './xp-show.css'
 import prepare from '../components/prepare'
 
 const isNumeric = value => !isNaN(value - parseFloat(value))
