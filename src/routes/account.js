@@ -12,7 +12,13 @@ import LootTracker from '../components/account/LootTracker'
 import { getLoot } from '../modules/loot'
 import { getReleases } from '../modules/git'
 import Home from '../components/account/Home'
-import { changeAccount, fetchConfig, getAccounts } from '../modules/config'
+import {
+  changeAccount,
+  fetchConfig,
+  getAccounts,
+  getKillCounts,
+  getSlayerTask
+} from '../modules/config'
 
 const menu = [
   {
@@ -112,7 +118,9 @@ export default connect(
     ...state.session,
     ...state.config,
     loot: state.loot,
-    accounts: getAccounts(state)
+    accounts: getAccounts(state),
+    slayerTask: getSlayerTask(state),
+    killCounts: getKillCounts(state)
   }),
   dispatch =>
     bindActionCreators(

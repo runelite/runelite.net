@@ -63,6 +63,7 @@ export default handleActions(
 )
 
 export const getConfig = state => state.config.config
+export const getSelectedAccount = state => state.config.selectedAccount
 
 export const getAccounts = createSelector(
   getConfig,
@@ -82,5 +83,61 @@ export const getAccounts = createSelector(
     }
 
     return [...names]
+  }
+)
+
+export const getSlayerTask = createSelector(
+  getConfig,
+  config => {
+    if (!config['slayer.taskName']) {
+      return {
+        hasTask: false
+      }
+    }
+
+    return {
+      hasTask: true,
+      name: config['slayer.taskName'],
+      location: config['slayer.taskLocation'],
+      start: config['slayer.initialAmount'],
+      remaining: config['slayer.amount'],
+      streak: config['slayer.streak'],
+      points: config['slayer.points']
+    }
+  }
+)
+
+export const getKillCounts = createSelector(
+  getConfig,
+  getSelectedAccount,
+  (config, selectedAccount) => {
+    const prefix = 'killcount.'
+    const kcs = []
+
+    if (!selectedAccount) {
+      return kcs
+    }
+
+    console.log('Getting KCs for ' + selectedAccount)
+
+    for (let [key, value] of Object.entries(config)) {
+      if (!key.startsWith(prefix)) {
+        continue
+      }
+
+      key = key.replace(prefix, '')
+
+      if (!key.startsWith(selectedAccount)) {
+        continue
+      }
+
+      key = key.replace(selectedAccount + '.', '')
+      kcs.push({
+        name: key,
+        count: value
+      })
+    }
+
+    return kcs
   }
 )

@@ -1,7 +1,7 @@
 import { Component, h } from 'preact'
 
-const buildSlayerTask = config => {
-  if (!config['slayer.taskName']) {
+const buildSlayerTask = slayerTask => {
+  if (!slayerTask.hasTask) {
     return <noscript />
   }
 
@@ -12,21 +12,43 @@ const buildSlayerTask = config => {
       </div>
       <div class="card-body">
         <h5 class="card-title">
-          {config['slayer.taskName']}
+          {slayerTask.name}
           <small>
-            {!!config['slayer.taskLocation']
-              ? ' in ' + config['slayer.taskLocation']
-              : ''}
+            {slayerTask.location ? ' in ' + slayerTask.location : ''}
           </small>
         </h5>
         <p class="card-text">
-          Start: {config['slayer.initialAmount']}, Remaining:{' '}
-          {config['slayer.amount']}
+          Start: {slayerTask.start}, Remaining: {slayerTask.remaining}
         </p>
         <p class="card-text">
-          Streak: {config['slayer.streak']}, Points: {config['slayer.points']}
+          Streak: {slayerTask.streak}, Points: {slayerTask.points}
         </p>
       </div>
+    </div>
+  )
+}
+
+const buildKillCounters = killCounts => {
+  if (killCounts.length === 0) {
+    return <noscript />
+  }
+
+  return (
+    <div class="card">
+      <div class="card-header">
+        <img class="icon" alt="" src="/img/skillicons/attack.png" /> Kill
+        Counters
+      </div>
+      <ul class="list-group">
+        {killCounts.map(e => (
+          <li class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{e.name}</h5>
+              <small>{e.count}</small>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
@@ -36,8 +58,14 @@ class Home extends Component {
     this.props.getReleases().then(() => this.props.fetchConfig())
   }
 
-  render({ config, selectedAccount }) {
-    return <div>{buildSlayerTask(config)}</div>
+  render({ slayerTask, killCounts }) {
+    return (
+      <div>
+        {buildSlayerTask(slayerTask)}
+        <br />
+        {buildKillCounters(killCounts)}
+      </div>
+    )
   }
 }
 
