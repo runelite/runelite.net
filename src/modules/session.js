@@ -21,7 +21,10 @@ export const {
 
       const version = latestReleaseSelector(getState()).name
       const localUuid = getState().session.uuid
-      const loadingPane = window.open('https://runelite.net/loading', '_blank')
+      const getUrl = window.location
+      const baseUrl = getUrl.protocol + '//' + getUrl.host + '/'
+
+      const loadingPane = window.open(baseUrl + 'loading', '_blank')
 
       const authResponse = await runeliteApi(
         `runelite-${version}/account/login?uuid=${localUuid}`,

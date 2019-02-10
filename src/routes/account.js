@@ -64,8 +64,7 @@ const menuItems = currentMenu =>
 const menuBody = currentMenu => find(propEq('tag', currentMenu), menu).component
 
 const accountMenu = (account, selectedAccount, changeAccount) => (
-  <a
-    href="#root"
+  <button
     class={
       'list-group-item list-group-item-action' +
       (selectedAccount === account ? ' active' : '')
@@ -73,7 +72,7 @@ const accountMenu = (account, selectedAccount, changeAccount) => (
     onClick={() => changeAccount(account)}
   >
     <i class="fas fa-fw fa-user" /> {account}
-  </a>
+  </button>
 )
 
 class Account extends Component {
@@ -94,13 +93,12 @@ class Account extends Component {
               {accounts.map(a =>
                 accountMenu(a, props.selectedAccount, changeAccount)
               )}
-              <a
-                href="#root"
+              <button
                 class="list-group-item list-group-item-action list-group-item-danger"
                 onClick={logout}
               >
                 <i class="fas fa-fw fa-power-off" /> Logout
-              </a>
+              </button>
             </ul>
           </div>
           <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
