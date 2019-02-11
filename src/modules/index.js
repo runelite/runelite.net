@@ -5,7 +5,7 @@ import geReducer from './ge'
 import gitReducer from './git'
 import itemReducer from './item'
 import lootReducer from './loot'
-import runeliteReducer from './runelite'
+import sessionReducer from './session'
 import tagReducer from './tag'
 import xpReducer from './xp'
 
@@ -18,7 +18,7 @@ export default {
   git: gitReducer,
   item: itemReducer,
   loot: lootReducer,
-  runelite: runeliteReducer,
+  session: sessionReducer,
   tag: tagReducer,
   xp: xpReducer
 }

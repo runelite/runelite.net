@@ -14,7 +14,7 @@ import {
 } from '../modules/git'
 import hero from '../_data/hero'
 import features from '../_data/features'
-import { fetchSessionCount, getSessionCount } from '../modules/runelite'
+import { fetchSessionCount, getSessionCount } from '../modules/session'
 import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
 import { Link } from 'preact-router'
