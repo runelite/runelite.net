@@ -10,7 +10,7 @@ import links from '../_data/links'
 import Redirect from './redirect'
 import Loader from './loader'
 import Async from './async'
-import { stargazersSelector } from '../modules/git'
+import { getStargazers } from '../modules/git'
 
 const App = ({ loading, stars, navbarDark }) => (
   <div style={{ height: '100%' }}>
@@ -51,6 +51,6 @@ const App = ({ loading, stars, navbarDark }) => (
 )
 
 export default connect(state => ({
-  stars: stargazersSelector(state),
+  stars: getStargazers(state),
   ...state.app
 }))(App)

@@ -4,9 +4,9 @@ import api from '../api'
 const runeliteApi = api('https://api.runelite.net/')
 
 // Actions
-export const { getSessionCount, setSessionCount } = createActions(
+export const { fetchSessionCount, setSessionCount } = createActions(
   {
-    GET_SESSION_COUNT: () => async dispatch => {
+    FETCH_SESSION_COUNT: () => async dispatch => {
       const response = await runeliteApi(`session/count`, {
         method: 'GET'
       })
@@ -32,4 +32,4 @@ export default handleActions(
 )
 
 // Selectors
-export const sessionCountSelector = state => state.runelite.sessionCount
+export const getSessionCount = state => state.runelite.sessionCount

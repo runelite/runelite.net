@@ -7,15 +7,15 @@ const githubApi = api('https://api.github.com/')
 
 // Actions
 export const {
-  getCommits,
-  getReleases,
-  getRepository,
+  fetchCommits,
+  fetchRepository,
+  fetchReleases,
   setCommits,
   setReleases,
   setRepository
 } = createActions(
   {
-    GET_COMMITS: () => async dispatch => {
+    FETCH_COMMITS: () => async dispatch => {
       const response = await githubApi(
         `repos/${git.user}/${git.repository}/commits`,
         { method: 'GET' }
@@ -24,7 +24,7 @@ export const {
       dispatch(setCommits(response))
       return response
     },
-    GET_REPOSITORY: () => async dispatch => {
+    FETCH_REPOSITORY: () => async dispatch => {
       const response = await githubApi(`repos/${git.user}/${git.repository}`, {
         method: 'GET'
       })
@@ -32,7 +32,7 @@ export const {
       dispatch(setRepository(response))
       return response
     },
-    GET_RELEASES: () => async dispatch => {
+    FETCH_RELEASES: () => async dispatch => {
       const response = await githubApi(
         `repos/${git.user}/${git.repository}/tags`,
         { method: 'GET' }
@@ -71,12 +71,12 @@ export default handleActions(
 )
 
 // Selectors
-const commitsSelector = state => state.git.commits
-const releasesSelector = state => state.git.releases
-const repositorySelector = state => state.git.repository
+const getCommits = state => state.git.commits
+const getReleases = state => state.git.releases
+const getRepository = state => state.git.repository
 
-export const latestCommitSelector = createSelector(
-  commitsSelector,
+export const getLatestCommit = createSelector(
+  getCommits,
   commits => {
     const realCommits = commits.filter(commit => commit.parents.length <= 1)
 
@@ -101,8 +101,8 @@ export const latestCommitSelector = createSelector(
   }
 )
 
-export const latestReleaseSelector = createSelector(
-  releasesSelector,
+export const getLatestRelease = createSelector(
+  getReleases,
   releases => {
     if (releases.length > 0) {
       const release = releases[0]
@@ -118,7 +118,7 @@ export const latestReleaseSelector = createSelector(
   }
 )
 
-export const stargazersSelector = createSelector(
-  repositorySelector,
+export const getStargazers = createSelector(
+  getRepository,
   repository => repository.stargazers_count
 )

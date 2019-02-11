@@ -3,8 +3,8 @@ import Layout from '../components/layout'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
-import { getReleases, latestReleaseSelector } from '../modules/git'
-import { getItemInfo } from '../modules/item'
+import { fetchReleases, getLatestRelease } from '../modules/git'
+import { fetchItemInfo } from '../modules/item'
 import { connect } from 'preact-redux'
 import '../components/tooltip.css'
 import './tag.css'
@@ -15,8 +15,8 @@ const formatIcon = icon =>
 class TagShow extends Component {
   componentDidMount() {
     this.props
-      .getReleases()
-      .then(() => this.props.getItemInfo(this.props.itemIds))
+      .fetchReleases()
+      .then(() => this.props.fetchItemInfo(this.props.itemIds))
   }
 
   render({ name, icon, itemIds, items, version, csv }) {
@@ -74,8 +74,8 @@ export default connect(
       icon,
       itemIds: parts,
       items: state.item || [],
-      version: latestReleaseSelector(state)
+      version: getLatestRelease(state)
     }
   },
-  dispatch => bindActionCreators({ getReleases, getItemInfo }, dispatch)
+  dispatch => bindActionCreators({ fetchReleases, fetchItemInfo }, dispatch)
 )(TagShow)

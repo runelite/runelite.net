@@ -5,16 +5,16 @@ import Layout from '../components/layout'
 import Hero from '../components/hero'
 import { latest } from '../blog'
 import {
-  getCommits,
-  getReleases,
-  getRepository,
-  latestCommitSelector,
-  latestReleaseSelector,
-  stargazersSelector
+  fetchCommits,
+  fetchReleases,
+  fetchRepository,
+  getLatestCommit,
+  getLatestRelease,
+  getStargazers
 } from '../modules/git'
 import hero from '../_data/hero'
 import features from '../_data/features'
-import { getSessionCount, sessionCountSelector } from '../modules/runelite'
+import { fetchSessionCount, getSessionCount } from '../modules/runelite'
 import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
 import { Link } from 'preact-router'
@@ -22,9 +22,9 @@ import Async from '../components/async'
 
 class Home extends Component {
   componentDidMount() {
-    this.props.getCommits()
-    this.props.getReleases().then(() => this.props.getSessionCount())
-    this.props.getRepository()
+    this.props.fetchCommits()
+    this.props.fetchReleases().then(() => this.props.fetchSessionCount())
+    this.props.fetchRepository()
   }
 
   render({ commit, release, stars, sessionCount }) {
@@ -81,18 +81,18 @@ class Home extends Component {
 
 export default connect(
   (state, props) => ({
-    commit: latestCommitSelector(state, props),
-    release: latestReleaseSelector(state, props),
-    stars: stargazersSelector(state, props),
-    sessionCount: sessionCountSelector(state, props)
+    commit: getLatestCommit(state, props),
+    release: getLatestRelease(state, props),
+    stars: getStargazers(state, props),
+    sessionCount: getSessionCount(state, props)
   }),
   dispatch =>
     bindActionCreators(
       {
-        getCommits,
-        getReleases,
-        getRepository,
-        getSessionCount
+        fetchCommits,
+        fetchReleases,
+        fetchRepository,
+        fetchSessionCount
       },
       dispatch
     )
