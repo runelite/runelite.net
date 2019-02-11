@@ -30,14 +30,14 @@ const formatIcon = (type, id) => {
 }
 
 const buildDrop = drop => (
-  <div class="card">
+  <div class="card" style={{ border: 'none' }}>
     <span
       style={{
         position: 'absolute',
-        left: 0,
-        top: 0,
-        color: 'black',
-        textShadow: '0 0 2px white',
+        left: 4,
+        top: -2,
+        color: 'yellow',
+        textShadow: 'black 1px 1px',
         fontSize: 'small'
       }}
     >
@@ -55,16 +55,22 @@ const buildDrop = drop => (
 )
 
 const buildLootRecord = record => (
-  <div class="card mb-4">
-    <div class="card-header">
-      <img class="icon" alt="" src={formatIcon(record.type, record.eventId)} />{' '}
-      {record.eventId}
-    </div>
-    <div
-      class="card-body pt-0 pb-0"
-      style={{ paddingLeft: '15px', border: 'none' }}
-    >
-      <div class="row">{record.drops.map(buildDrop)}</div>
+  <div class="col-lg-4 mb-4">
+    <div class="card">
+      <div class="card-header p-1">
+        <img
+          class="icon"
+          alt=""
+          src={formatIcon(record.type, record.eventId)}
+        />{' '}
+        {record.eventId}
+      </div>
+      <div
+        class="card-body pt-0 pb-0"
+        style={{ paddingLeft: '15px', border: 'none' }}
+      >
+        <div class="row">{record.drops.map(buildDrop)}</div>
+      </div>
     </div>
   </div>
 )
@@ -75,7 +81,7 @@ class LootTracker extends Component {
   }
 
   render({ loot }) {
-    return <div>{loot.map(buildLootRecord)}</div>
+    return <div class="row">{loot.map(buildLootRecord)}</div>
   }
 }
 

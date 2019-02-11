@@ -7,7 +7,7 @@ const buildSlayerTask = slayerTask => {
 
   return (
     <div class="card">
-      <div class="card-header">
+      <div class="card-header p-1">
         <img class="icon" alt="" src="/img/skillicons/slayer.png" /> Slayer Task
       </div>
       <div class="card-body">
@@ -35,7 +35,7 @@ const buildKillCounters = killCounts => {
 
   return (
     <div class="card">
-      <div class="card-header">
+      <div class="card-header p-1">
         <img class="icon" alt="" src="/img/skillicons/attack.png" /> Kill
         Counters
       </div>
