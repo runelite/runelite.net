@@ -4,6 +4,7 @@ import api from '../api'
 import { getLatestRelease } from './git'
 
 const runeliteApi = api('https://api.runelite.net/')
+const runeliteStaticApi = api('https://static.runelite.net/')
 
 // Actions
 export const { fetchLoot, setLoot, setLootRange } = createActions(
@@ -12,11 +13,24 @@ export const { fetchLoot, setLoot, setLootRange } = createActions(
       const version = getLatestRelease(getState()).name
       const uuid = getState().account.uuid
 
-      const result = await runeliteApi(`runelite-${version}/loottracker`, {
+      const names = await runeliteStaticApi('cache/item/names.json', {
+        method: 'GET'
+      })
+
+      const loot = await runeliteApi(`runelite-${version}/loottracker`, {
         method: 'GET',
         headers: {
           'RUNELITE-AUTH': uuid
         }
+      })
+
+      const result = loot.map(entry => {
+        entry.drops = entry.drops.map(drop => {
+          drop.name = names[drop.id]
+          return drop
+        })
+
+        return entry
       })
 
       dispatch(setLootRange(result))

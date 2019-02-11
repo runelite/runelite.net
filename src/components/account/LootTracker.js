@@ -1,19 +1,72 @@
 import { Component, h } from 'preact'
+import '../tooltip.css'
+
+const getRlIcon = id =>
+  `https://static.runelite.net/cache/item/icon/${parseInt(id, 10)}.png`
+
+const formatIcon = (type, id) => {
+  switch (type) {
+    case 'NPC':
+      return getRlIcon(526) // Bones
+    case 'PLAYER':
+      return '/img/skillicons/slayer.png'
+    case 'EVENT':
+      switch (id) {
+        case 'Barrows':
+          return getRlIcon(19630) // Barrows teleport
+        case 'Chambers of Xeric':
+          return getRlIcon(20851) // Olmlet
+        case 'Theatre of Blood':
+          return getRlIcon(22473) // Lil'Zik
+        default:
+          if (id.startsWith('Clue Scroll')) {
+            return getRlIcon(2677) // Easy Clue image
+          }
+      }
+      break
+    default:
+      return ''
+  }
+}
 
 const buildDrop = drop => (
-  <div class="col">
-    {drop.id} - {drop.qty}
+  <div class="card">
+    <span
+      style={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        color: 'black',
+        textShadow: '0 0 2px white',
+        fontSize: 'small'
+      }}
+    >
+      {drop.qty}
+    </span>
+    <div class="tooltip-tag">
+      <a href={`https://oldschool.runescape.wiki/w/${drop.name}`}>
+        <img class="card-img-top p-1" alt={drop.id} src={getRlIcon(drop.id)} />
+      </a>
+      <div class="tooltip-tag-text">
+        <b>{drop.name || 'Loading...'}</b>
+      </div>
+    </div>
   </div>
 )
 
 const buildLootRecord = record => (
-  <li class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{record.eventId}</h5>
-      <small>{record.type}</small>
+  <div class="card mb-4">
+    <div class="card-header">
+      <img class="icon" alt="" src={formatIcon(record.type, record.eventId)} />{' '}
+      {record.eventId}
     </div>
-    <div class="mb-1 row">{record.drops.map(buildDrop)}</div>
-  </li>
+    <div
+      class="card-body pt-0 pb-0"
+      style={{ paddingLeft: '15px', border: 'none' }}
+    >
+      <div class="row">{record.drops.map(buildDrop)}</div>
+    </div>
+  </div>
 )
 
 class LootTracker extends Component {
@@ -22,7 +75,7 @@ class LootTracker extends Component {
   }
 
   render({ loot }) {
-    return <ul class="list-group">{loot.map(buildLootRecord)}</ul>
+    return <div>{loot.map(buildLootRecord)}</div>
   }
 }
 
