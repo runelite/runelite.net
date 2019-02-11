@@ -36,6 +36,17 @@ export const { fetchConfig, setConfig, changeAccount } = createActions(
       }
 
       dispatch(setConfig(config))
+      const state = getState()
+      const selectedAccount = getSelectedAccount(state)
+
+      if (!selectedAccount) {
+        const accounts = getAccounts(state)
+
+        if (accounts.length > 0) {
+          dispatch(changeAccount(accounts[0]))
+        }
+      }
+
       dispatch(stopLoading())
       return config
     }
