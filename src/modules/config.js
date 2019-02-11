@@ -1,8 +1,7 @@
 import { createActions, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
 import api from '../api'
-import { startLoading, stopLoading } from './app'
-import { latestReleaseSelector } from './git'
+import { getLatestRelease } from './git'
 
 const runeliteApi = api('https://api.runelite.net/')
 const configNameFilters = [
@@ -17,9 +16,7 @@ const configNameFilters = [
 export const { fetchConfig, setConfig, changeAccount } = createActions(
   {
     FETCH_CONFIG: () => async (dispatch, getState) => {
-      dispatch(startLoading())
-
-      const version = latestReleaseSelector(getState()).name
+      const version = getLatestRelease(getState()).name
       const uuid = getState().session.uuid
 
       const result = await runeliteApi(`runelite-${version}/config`, {
@@ -47,7 +44,6 @@ export const { fetchConfig, setConfig, changeAccount } = createActions(
         }
       }
 
-      dispatch(stopLoading())
       return config
     }
   },

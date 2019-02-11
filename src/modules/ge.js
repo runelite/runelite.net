@@ -1,8 +1,7 @@
 import { uniq, concat } from 'ramda'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
-import { startLoading, stopLoading } from './app'
-import { latestReleaseSelector } from './git'
+import { getLatestRelease } from './git'
 
 const runeliteApi = api('https://api.runelite.net/')
 const runeliteStaticApi = api('https://static.runelite.net/')
@@ -11,9 +10,7 @@ const runeliteStaticApi = api('https://static.runelite.net/')
 export const { fetchGe, setGe, setGeRange } = createActions(
   {
     FETCH_GE: () => async (dispatch, getState) => {
-      dispatch(startLoading())
-
-      const version = latestReleaseSelector(getState()).name
+      const version = getLatestRelease(getState()).name
       const uuid = getState().session.uuid
 
       const result = await runeliteApi(`runelite-${version}/ge`, {
@@ -34,7 +31,6 @@ export const { fetchGe, setGe, setGeRange } = createActions(
       }
 
       dispatch(setGeRange(result))
-      dispatch(stopLoading())
       return result
     }
   },

@@ -1,8 +1,7 @@
 import uuid from 'uuid/v4'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
-import { startLoading, stopLoading } from './app'
-import { latestReleaseSelector } from './git'
+import { getLatestRelease } from './git'
 
 const runeliteWs = 'wss://api.runelite.net/ws'
 const runeliteApi = api('https://api.runelite.net/')
@@ -17,9 +16,7 @@ export const {
 } = createActions(
   {
     LOGIN: () => async (dispatch, getState) => {
-      dispatch(startLoading())
-
-      const version = latestReleaseSelector(getState()).name
+      const version = getLatestRelease(getState()).name
       const localUuid = getState().session.uuid
       const getUrl = window.location
       const baseUrl = getUrl.protocol + '//' + getUrl.host + '/'
@@ -72,37 +69,25 @@ export const {
         ws.onerror = msg => reject(msg)
       })
 
-      const response = await sessionPromise
-      dispatch(stopLoading())
-      return response
+      return await sessionPromise
     },
     LOGOUT: () => async (dispatch, getState) => {
-      dispatch(startLoading())
-
-      const version = latestReleaseSelector(getState()).name
+      const version = getLatestRelease(getState()).name
       const localUuid = getState().session.uuid
 
       try {
-        const authResponse = await runeliteApi(
-          `runelite-${version}/account/logout`,
-          {
-            method: 'GET',
-            headers: {
-              'RUNELITE-AUTH': localUuid
-            }
+        return await runeliteApi(`runelite-${version}/account/logout`, {
+          method: 'GET',
+          headers: {
+            'RUNELITE-AUTH': localUuid
           }
-        )
-
-        return authResponse
+        })
       } finally {
         dispatch(resetSession())
-        dispatch(stopLoading())
       }
     },
     SESSION_CHECK: () => async (dispatch, getState) => {
-      dispatch(startLoading())
-
-      const version = latestReleaseSelector(getState()).name
+      const version = getLatestRelease(getState()).name
       const localUuid = getState().session.uuid
 
       try {
@@ -114,8 +99,6 @@ export const {
         })
       } catch (e) {
         dispatch(resetSession())
-      } finally {
-        dispatch(stopLoading())
       }
     }
   },

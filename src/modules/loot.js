@@ -1,8 +1,7 @@
 import { uniq, concat } from 'ramda'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
-import { startLoading, stopLoading } from './app'
-import { latestReleaseSelector } from './git'
+import { getLatestRelease } from './git'
 
 const runeliteApi = api('https://api.runelite.net/')
 
@@ -10,9 +9,7 @@ const runeliteApi = api('https://api.runelite.net/')
 export const { fetchLoot, setLoot, setLootRange } = createActions(
   {
     FETCH_LOOT: () => async (dispatch, getState) => {
-      dispatch(startLoading())
-
-      const version = latestReleaseSelector(getState()).name
+      const version = getLatestRelease(getState()).name
       const uuid = getState().session.uuid
 
       const result = await runeliteApi(`runelite-${version}/loottracker`, {
@@ -23,7 +20,6 @@ export const { fetchLoot, setLoot, setLootRange } = createActions(
       })
 
       dispatch(setLootRange(result))
-      dispatch(stopLoading())
       return result
     }
   },
