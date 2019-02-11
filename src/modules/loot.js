@@ -10,7 +10,7 @@ export const { fetchLoot, setLoot, setLootRange } = createActions(
   {
     FETCH_LOOT: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState()).name
-      const uuid = getState().session.uuid
+      const uuid = getState().account.uuid
 
       const result = await runeliteApi(`runelite-${version}/loottracker`, {
         method: 'GET',

@@ -17,7 +17,7 @@ export const { fetchConfig, setConfig, changeAccount } = createActions(
   {
     FETCH_CONFIG: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState()).name
-      const uuid = getState().session.uuid
+      const uuid = getState().account.uuid
 
       const result = await runeliteApi(`runelite-${version}/config`, {
         method: 'GET',

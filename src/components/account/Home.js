@@ -53,7 +53,7 @@ const buildKillCounters = killCounts => {
 
 class Home extends Component {
   componentDidMount() {
-    this.props.getReleases().then(() => this.props.fetchConfig())
+    this.props.fetchReleases().then(() => this.props.fetchConfig())
   }
 
   render({ slayerTask, killCounts }) {

@@ -48,7 +48,7 @@ const buildRecord = record => (
 
 class GrandExchange extends Component {
   componentDidMount() {
-    this.props.getReleases().then(() => this.props.fetchGe())
+    this.props.fetchReleases().then(() => this.props.fetchGe())
   }
 
   render({ ge }) {

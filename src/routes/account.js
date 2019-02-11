@@ -5,12 +5,12 @@ import { bindActionCreators } from 'redux'
 import Layout from '../components/layout'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
-import { isLoggedIn, logout } from '../modules/session'
+import { isLoggedIn, logout } from '../modules/account'
 import Redirect from '../components/redirect'
 import { find, propEq } from 'ramda'
 import LootTracker from '../components/account/LootTracker'
 import { fetchLoot } from '../modules/loot'
-import { getReleases } from '../modules/git'
+import { fetchReleases } from '../modules/git'
 import Home from '../components/account/Home'
 import {
   changeAccount,
@@ -125,7 +125,7 @@ export default connect(
   }),
   dispatch =>
     bindActionCreators(
-      { logout, getReleases, fetchConfig, changeAccount, fetchLoot, fetchGe },
+      { logout, fetchReleases, fetchConfig, changeAccount, fetchLoot, fetchGe },
       dispatch
     )
 )(Account)

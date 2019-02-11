@@ -11,7 +11,7 @@ export const { fetchGe, setGe, setGeRange } = createActions(
   {
     FETCH_GE: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState()).name
-      const uuid = getState().session.uuid
+      const uuid = getState().account.uuid
 
       const result = await runeliteApi(`runelite-${version}/ge`, {
         method: 'GET',

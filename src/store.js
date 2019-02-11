@@ -25,10 +25,10 @@ export default () => {
   // Enable persisted reducer
   const persistedReducer = persistReducer(
     {
-      key: 'session',
+      key: 'account',
       storage,
       debug: isDebug,
-      whitelist: ['session']
+      whitelist: ['account']
     },
     reducer
   )

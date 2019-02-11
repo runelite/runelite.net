@@ -17,7 +17,7 @@ export const {
   {
     LOGIN: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState()).name
-      const localUuid = getState().session.uuid
+      const localUuid = getState().account.uuid
       const getUrl = window.location
       const baseUrl = getUrl.protocol + '//' + getUrl.host + '/'
 
@@ -73,7 +73,7 @@ export const {
     },
     LOGOUT: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState()).name
-      const localUuid = getState().session.uuid
+      const localUuid = getState().account.uuid
 
       try {
         return await runeliteApi(`runelite-${version}/account/logout`, {
@@ -88,7 +88,7 @@ export const {
     },
     SESSION_CHECK: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState()).name
-      const localUuid = getState().session.uuid
+      const localUuid = getState().account.uuid
 
       try {
         return await runeliteApi(`runelite-${version}/account/session-check`, {
@@ -125,4 +125,4 @@ export default handleActions(
   }
 )
 
-export const isLoggedIn = state => !!state.session.username
+export const isLoggedIn = state => !!state.account.username
