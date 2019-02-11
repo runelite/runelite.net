@@ -41,6 +41,11 @@ pre {
   height: 30px;
 }
 
+.img-thumbnail {
+  padding: 0;
+  margin-right: 5px;
+}
+
 .recharts-tooltip-wrapper,
 .recharts-tooltip-cursor,
 .recharts-default-tooltip,
@@ -53,6 +58,9 @@ pre {
 .list-group-small,
 .list-group-small .list-group-item {
   font-size: medium;
+}
+
+.list-group-small .list-group-item {
   padding: 5px;
 }
 
@@ -64,4 +72,24 @@ pre {
 .list-group-small .badge {
   font-size: x-small;
   font-weight: normal;
+}
+
+.triangle-topleft-red {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 20px solid red;
+  border-right: 20px solid transparent;
+}
+
+.triangle-topleft-green {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 20px solid green;
+  border-right: 20px solid transparent;
 }

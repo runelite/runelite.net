@@ -9,7 +9,7 @@ import { isLoggedIn, logout } from '../modules/session'
 import Redirect from '../components/redirect'
 import { find, propEq } from 'ramda'
 import LootTracker from '../components/account/LootTracker'
-import { getLoot } from '../modules/loot'
+import { fetchLoot } from '../modules/loot'
 import { getReleases } from '../modules/git'
 import Home from '../components/account/Home'
 import {
@@ -19,6 +19,8 @@ import {
   getKillCounts,
   getSlayerTask
 } from '../modules/config'
+import { fetchGe } from '../modules/ge'
+import GrandExchange from '../components/account/GrandExchange'
 
 const menu = [
   {
@@ -31,7 +33,7 @@ const menu = [
     tag: 'grand-exchange',
     label: 'Grand Exchange',
     icon: 'fa-fw fas fa-balance-scale',
-    component: () => <noscript />
+    component: GrandExchange
   },
   {
     tag: 'loot-tracker',
@@ -89,6 +91,7 @@ class Account extends Component {
         <div class="row">
           <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
             <ul class="list-group list-group-small">{menuItems(menu)}</ul>
+            <br />
             <ul class="list-group list-group-small">
               {accounts.map(a =>
                 accountMenu(a, props.selectedAccount, changeAccount)
@@ -100,6 +103,7 @@ class Account extends Component {
                 <i class="fas fa-fw fa-power-off" /> Logout
               </button>
             </ul>
+            <br />
           </div>
           <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
             <MenuBody {...props} />
@@ -116,13 +120,14 @@ export default connect(
     ...state.session,
     ...state.config,
     loot: state.loot,
+    ge: state.ge,
     accounts: getAccounts(state),
     slayerTask: getSlayerTask(state),
     killCounts: getKillCounts(state)
   }),
   dispatch =>
     bindActionCreators(
-      { logout, getReleases, fetchConfig, changeAccount, getLoot },
+      { logout, getReleases, fetchConfig, changeAccount, fetchLoot, fetchGe },
       dispatch
     )
 )(Account)

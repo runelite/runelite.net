@@ -1,5 +1,6 @@
 import appReducer from './app'
 import configReducer from './config'
+import geReducer from './ge'
 import gitReducer from './git'
 import itemReducer from './item'
 import lootReducer from './loot'
@@ -12,6 +13,7 @@ import xpReducer from './xp'
 export default {
   app: appReducer,
   config: configReducer,
+  ge: geReducer,
   git: gitReducer,
   item: itemReducer,
   loot: lootReducer,

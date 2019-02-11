@@ -7,24 +7,24 @@ import { latestReleaseSelector } from './git'
 const runeliteApi = api('https://api.runelite.net/')
 
 // Actions
-export const { getLoot, setLoot, setLootRange } = createActions(
+export const { fetchLoot, setLoot, setLootRange } = createActions(
   {
-    GET_LOOT: () => async (dispatch, getState) => {
+    FETCH_LOOT: () => async (dispatch, getState) => {
       dispatch(startLoading())
 
       const version = latestReleaseSelector(getState()).name
       const uuid = getState().session.uuid
 
-      const loot = await runeliteApi(`runelite-${version}/loottracker`, {
+      const result = await runeliteApi(`runelite-${version}/loottracker`, {
         method: 'GET',
         headers: {
           'RUNELITE-AUTH': uuid
         }
       })
 
-      dispatch(setLootRange(loot))
+      dispatch(setLootRange(result))
       dispatch(stopLoading())
-      return loot
+      return result
     }
   },
   'SET_LOOT',

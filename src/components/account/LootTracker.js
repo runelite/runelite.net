@@ -18,7 +18,7 @@ const buildLootRecord = record => (
 
 class LootTracker extends Component {
   componentDidMount() {
-    this.props.getReleases().then(() => this.props.getLoot())
+    this.props.getReleases().then(() => this.props.fetchLoot())
   }
 
   render({ loot }) {
