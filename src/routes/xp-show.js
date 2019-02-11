@@ -15,8 +15,8 @@ import {
   ResponsiveContainer
 } from 'recharts'
 import Layout from '../components/layout'
-import { getReleases } from '../modules/git'
-import { getXpRange, xpSelector, collectedXpSelector } from '../modules/xp'
+import { fetchReleases } from '../modules/git'
+import { fetchXp, getXp, getCollectedXp } from '../modules/xp'
 import hero from '../_data/hero'
 import skills from '../_data/skills'
 import Meta from '../components/meta'
@@ -82,8 +82,8 @@ class XpShow extends Component {
       endDate
     })
 
-    this.props.getReleases().then(() =>
-      this.props.getXpRange({
+    this.props.fetchReleases().then(() =>
+      this.props.fetchXp({
         skill: this.props.skill,
         name: this.props.name,
         start: startDate,
@@ -227,8 +227,8 @@ class XpShow extends Component {
 
 export default connect(
   (state, props) => ({
-    xp: xpSelector(state, props),
-    collectedXp: collectedXpSelector(state, props)
+    xp: getXp(state, props),
+    collectedXp: getCollectedXp(state, props)
   }),
-  dispatch => bindActionCreators({ getReleases, getXpRange }, dispatch)
+  dispatch => bindActionCreators({ fetchReleases, fetchXp }, dispatch)
 )(XpShow)

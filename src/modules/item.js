@@ -1,18 +1,16 @@
 import { uniq, concat } from 'ramda'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
-import { startLoading, stopLoading } from './app'
-import { latestReleaseSelector } from './git'
+import { getLatestRelease } from './git'
 
 const runeliteApi = api('https://api.runelite.net/')
 const runeliteStaticApi = api('https://static.runelite.net/')
 
 // Actions
-export const { getItemInfo, setItemInfo } = createActions(
+export const { fetchItemInfo, setItemInfo } = createActions(
   {
-    GET_ITEM_INFO: items => async (dispatch, getState) => {
-      dispatch(startLoading())
-      const version = latestReleaseSelector(getState()).name
+    FETCH_ITEM_INFO: items => async (dispatch, getState) => {
+      const version = getLatestRelease(getState()).name
       const names = await runeliteStaticApi('cache/item/names.json', {
         method: 'GET'
       })
@@ -33,7 +31,6 @@ export const { getItemInfo, setItemInfo } = createActions(
         )
       )
 
-      dispatch(stopLoading())
       return result
     }
   },

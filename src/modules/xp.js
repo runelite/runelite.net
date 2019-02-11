@@ -1,25 +1,20 @@
 import dayjs from 'dayjs'
-import { uniq, concat, forEachObjIndexed } from 'ramda'
+import { concat, forEachObjIndexed, uniq } from 'ramda'
 import { createActions, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
 import skills from '../_data/skills'
 import api from '../api'
-import { startLoading, stopLoading } from './app'
-import { latestReleaseSelector } from './git'
+import { getLatestRelease } from './git'
 
 const runeliteApi = api('https://api.runelite.net/')
 
 // Actions
-export const { getXpRange, setXp, setXpRange } = createActions(
+export const { fetchXp, setXp, setXpRange } = createActions(
   {
-    GET_XP_RANGE: ({ skill, name, start, end }) => async (
-      dispatch,
-      getState
-    ) => {
-      dispatch(startLoading())
+    FETCH_XP: ({ skill, name, start, end }) => async (dispatch, getState) => {
       dispatch(setXpRange([]))
 
-      const version = latestReleaseSelector(getState()).name
+      const version = getLatestRelease(getState()).name
       const results = []
 
       for (
@@ -47,9 +42,7 @@ export const { getXpRange, setXp, setXpRange } = createActions(
         )
       }
 
-      const result = await Promise.all(results)
-      dispatch(stopLoading())
-      return result
+      return await Promise.all(results)
     }
   },
   'SET_XP',
@@ -110,7 +103,7 @@ const calculateRanksAndExp = collector => (value, key) => {
 }
 
 // Selectors
-export const xpSelector = state =>
+export const getXp = state =>
   state.xp
     .filter(xpEntry => Boolean(xpEntry))
     .sort((a, b) => new Date(a.date) - new Date(b.date))
@@ -119,8 +112,8 @@ export const xpSelector = state =>
       overall_xp: calculateOverallXp(xpEntry)
     }))
 
-export const collectedXpSelector = createSelector(
-  xpSelector,
+export const getCollectedXp = createSelector(
+  getXp,
   xp => {
     const collector = {}
     if (xp.length === 0) {

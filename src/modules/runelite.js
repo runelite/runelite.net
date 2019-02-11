@@ -1,21 +1,17 @@
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
-import { startLoading, stopLoading } from './app'
 
 const runeliteApi = api('https://api.runelite.net/')
 
 // Actions
-export const { getSessionCount, setSessionCount } = createActions(
+export const { fetchSessionCount, setSessionCount } = createActions(
   {
-    GET_SESSION_COUNT: () => async dispatch => {
-      dispatch(startLoading())
-
+    FETCH_SESSION_COUNT: () => async dispatch => {
       const response = await runeliteApi(`session/count`, {
         method: 'GET'
       })
 
       dispatch(setSessionCount(response))
-      dispatch(stopLoading())
       return response
     }
   },
@@ -36,4 +32,4 @@ export default handleActions(
 )
 
 // Selectors
-export const sessionCountSelector = state => state.runelite.sessionCount
+export const getSessionCount = state => state.runelite.sessionCount
