@@ -2,7 +2,6 @@ import { createActions, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
 import git from '../_data/git'
 import api from '../api'
-import { startLoading, stopLoading } from './app'
 
 const githubApi = api('https://api.github.com/')
 
@@ -17,35 +16,29 @@ export const {
 } = createActions(
   {
     GET_COMMITS: () => async dispatch => {
-      dispatch(startLoading())
       const response = await githubApi(
         `repos/${git.user}/${git.repository}/commits`,
         { method: 'GET' }
       )
 
       dispatch(setCommits(response))
-      dispatch(stopLoading())
       return response
     },
     GET_REPOSITORY: () => async dispatch => {
-      dispatch(startLoading())
       const response = await githubApi(`repos/${git.user}/${git.repository}`, {
         method: 'GET'
       })
 
       dispatch(setRepository(response))
-      dispatch(stopLoading())
       return response
     },
     GET_RELEASES: () => async dispatch => {
-      dispatch(startLoading())
       const response = await githubApi(
         `repos/${git.user}/${git.repository}/tags`,
         { method: 'GET' }
       )
 
       dispatch(setReleases(response))
-      dispatch(stopLoading())
       return response
     }
   },

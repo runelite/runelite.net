@@ -1,10 +1,9 @@
 import dayjs from 'dayjs'
-import { uniq, concat, forEachObjIndexed } from 'ramda'
+import { concat, forEachObjIndexed, uniq } from 'ramda'
 import { createActions, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
 import skills from '../_data/skills'
 import api from '../api'
-import { startLoading, stopLoading } from './app'
 import { latestReleaseSelector } from './git'
 
 const runeliteApi = api('https://api.runelite.net/')
@@ -16,7 +15,6 @@ export const { getXpRange, setXp, setXpRange } = createActions(
       dispatch,
       getState
     ) => {
-      dispatch(startLoading())
       dispatch(setXpRange([]))
 
       const version = latestReleaseSelector(getState()).name
@@ -47,9 +45,7 @@ export const { getXpRange, setXp, setXpRange } = createActions(
         )
       }
 
-      const result = await Promise.all(results)
-      dispatch(stopLoading())
-      return result
+      return await Promise.all(results)
     }
   },
   'SET_XP',
