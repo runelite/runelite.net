@@ -7,30 +7,6 @@ import { latestReleaseSelector } from './git'
 const runeliteApi = api('https://api.runelite.net/')
 const runeliteStaticApi = api('https://static.runelite.net/')
 
-const dataMock = [
-  {
-    itemId: 1155,
-    buy: true,
-    quantity: 50,
-    price: 2000,
-    time: 1549902657
-  },
-  {
-    itemId: 1155,
-    buy: false,
-    quantity: 50,
-    price: 2000,
-    time: 1549902657
-  },
-  {
-    itemId: 1155,
-    buy: false,
-    quantity: 50,
-    price: 2000,
-    time: 1549902657
-  }
-]
-
 // Actions
 export const { fetchGe, setGe, setGeRange } = createActions(
   {
@@ -40,14 +16,12 @@ export const { fetchGe, setGe, setGeRange } = createActions(
       const version = latestReleaseSelector(getState()).name
       const uuid = getState().session.uuid
 
-      // const result = await runeliteApi(`runelite-${version}/ge`, {
-      //     method: 'GET',
-      //     headers: {
-      //         'RUNELITE-AUTH': uuid
-      //     }
-      // })
-
-      const result = dataMock
+      const result = await runeliteApi(`runelite-${version}/ge`, {
+        method: 'GET',
+        headers: {
+          'RUNELITE-AUTH': uuid
+        }
+      })
 
       // Assign names to items
       const names = await runeliteStaticApi('cache/item/names.json', {
