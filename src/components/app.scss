@@ -73,23 +73,3 @@ pre {
   font-size: x-small;
   font-weight: normal;
 }
-
-.triangle-topleft-red {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-top: 20px solid red;
-  border-right: 20px solid transparent;
-}
-
-.triangle-topleft-green {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-top: 20px solid green;
-  border-right: 20px solid transparent;
-}

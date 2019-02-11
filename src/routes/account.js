@@ -90,9 +90,8 @@ class Account extends Component {
         <Meta title={`Account - ${hero.title}`} />
         <div class="row">
           <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
-            <ul class="list-group list-group-small">{menuItems(menu)}</ul>
-            <br />
-            <ul class="list-group list-group-small">
+            <ul class="list-group list-group-small mb-4">{menuItems(menu)}</ul>
+            <ul class="list-group list-group-small mb-4">
               {accounts.map(a =>
                 accountMenu(a, props.selectedAccount, changeAccount)
               )}
@@ -103,7 +102,6 @@ class Account extends Component {
                 <i class="fas fa-fw fa-power-off" /> Logout
               </button>
             </ul>
-            <br />
           </div>
           <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
             <MenuBody {...props} />

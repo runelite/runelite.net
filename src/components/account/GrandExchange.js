@@ -5,6 +5,12 @@ const formatIcon = id =>
   `https://services.runescape.com/m=itemdb_oldschool/obj_big.gif?id=${id}`
 const formatGePage = id =>
   `http://services.runescape.com/m=itemdb_oldschool/viewitem?obj=${id}`
+const formatBadge = buy =>
+  buy ? (
+    <span class="badge badge-danger badge-pill">Bought</span>
+  ) : (
+    <span class="badge badge-success badge-pill">Sold</span>
+  )
 
 const buildRecord = record => (
   <a
@@ -12,9 +18,9 @@ const buildRecord = record => (
     class="list-group-item list-group-item-action flex-column align-items-start"
   >
     <div class="d-flex w-100">
-      <div
-        class={record.buy ? 'triangle-topleft-red' : 'triangle-topleft-green'}
-      />
+      <div style={{ position: 'absolute', bottom: 5, right: 5 }}>
+        {formatBadge(record.buy)}
+      </div>
       <div class="d-block">
         <img
           alt={record.name}
@@ -25,7 +31,7 @@ const buildRecord = record => (
       </div>
       <div>
         <h5>
-          {record.quantity}x {record.name}
+          <b>{record.quantity}</b>x {record.name}
         </h5>
         <p class="mb-0">
           <b>{record.buy ? 'Bought' : 'Sold'}</b> for{' '}
@@ -33,7 +39,9 @@ const buildRecord = record => (
           gp/ea)
         </p>
       </div>
-      <small class="ml-auto">{ago(record.date)}</small>
+      <div class="ml-auto">
+        <small class="d-block">{ago(record.date)}</small>
+      </div>
     </div>
   </a>
 )
