@@ -61,7 +61,7 @@ const menuItems = currentMenu =>
     <Link
       class={
         'list-group-item list-group-item-action' +
-        (currentMenu === m.tag ? ' active' : '')
+        (currentMenu.tag === m.tag ? ' active' : '')
       }
       key={m.tag}
       href={`/account/${m.tag}`}
@@ -70,10 +70,9 @@ const menuItems = currentMenu =>
     </Link>
   ))
 
-const menuBody = currentMenu => find(propEq('tag', currentMenu), menu).component
+const menuBody = currentMenu => currentMenu.component
 const menuExport = (currentMenu, props) => {
-  const current = find(propEq('tag', currentMenu), menu)
-  const currentSelector = current.data
+  const currentSelector = currentMenu.data
   const dataJson = currentSelector(props)
   const data =
     'data:application/json;charset=utf-8,' +
@@ -81,10 +80,10 @@ const menuExport = (currentMenu, props) => {
   return (
     <a
       class="list-group-item list-group-item-primary"
-      download={current.tag + '.json'}
+      download={currentMenu.tag + '.json'}
       href={data}
     >
-      <i class="fas fa-fw fa-download" /> Export {current.label}
+      <i class="fas fa-fw fa-download" /> Export {currentMenu.label}
     </a>
   )
 }
@@ -102,21 +101,22 @@ const accountMenu = (account, selectedAccount, changeAccount) => (
 )
 
 class Account extends Component {
-  render({ menu, accounts, changeAccount, loggedIn, logout, ...props }) {
+  render({ tag, accounts, changeAccount, loggedIn, logout, ...props }) {
     if (!loggedIn) {
       return <Redirect to="/" />
     }
 
-    const MenuBody = menuBody(menu)
+    const currentMenu = find(propEq('tag', tag), menu)
+    const MenuBody = menuBody(currentMenu)
 
     return (
       <Layout>
-        <Meta title={`Account - ${hero.title}`} />
+        <Meta title={`${currentMenu.label} - Account - ${hero.title}`} />
         <div class="row">
           <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
             <ul class="list-group list-group-small mb-4">
-              {menuItems(menu)}
-              {menuExport(menu, props)}
+              {menuItems(currentMenu)}
+              {menuExport(currentMenu, props)}
             </ul>
             <ul class="list-group list-group-small mb-4">
               {accounts.map(a =>
@@ -140,7 +140,8 @@ class Account extends Component {
 }
 
 export default connect(
-  state => ({
+  (state, props) => ({
+    ...props,
     loggedIn: isLoggedIn(state),
     ...state.session,
     ...state.config,

@@ -65,7 +65,7 @@ const App = ({
         getComponent={() => import('../routes/tag-show')}
       />
       <Async
-        path="/account/:menu"
+        path="/account/:tag"
         getComponent={() => import('../routes/account')}
       />
       <NotFound default />
