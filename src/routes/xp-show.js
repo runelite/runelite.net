@@ -21,6 +21,7 @@ import hero from '../_data/hero'
 import skills from '../_data/skills'
 import Meta from '../components/meta'
 import prepare from '../components/prepare'
+import { numberWithCommas } from '../util'
 
 const isNumeric = value => !isNaN(value - parseFloat(value))
 
@@ -41,7 +42,6 @@ const parseDate = (date, fromDate) => {
 
 const capitalizeFirstLetter = string =>
   string.charAt(0).toUpperCase() + string.slice(1)
-const numberWithCommas = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 const createValueBadge = (value, suffix) =>
   value >= 0 ? (
     <span class="badge badge-success">

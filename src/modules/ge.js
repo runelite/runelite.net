@@ -27,7 +27,8 @@ export const { fetchGe, setGe, setGeRange } = createActions(
 
       for (let item of result) {
         item.name = names[item['itemId']]
-        item.date = new Date(parseInt(item.time, 10))
+        item.date = new Date(0)
+        item.date.setUTCSeconds(item.time.epochSecond)
       }
 
       dispatch(setGeRange(result))

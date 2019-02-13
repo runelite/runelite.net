@@ -7,3 +7,6 @@ export const getBaseUrl = () => {
   const getUrl = window.location
   return getUrl.protocol + '//' + getUrl.host
 }
+
+export const numberWithCommas = x =>
+  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')

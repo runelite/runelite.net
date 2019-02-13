@@ -81,7 +81,7 @@ class LootTracker extends Component {
   }
 
   render({ loot }) {
-    return <div class="row">{loot.map(buildLootRecord)}</div>
+    return <div class="row">{loot.reverse().map(buildLootRecord)}</div>
   }
 }
 

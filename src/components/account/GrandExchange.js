@@ -1,5 +1,6 @@
 import { Component, h } from 'preact'
 import ago from 's-ago'
+import { numberWithCommas } from '../../util'
 
 const formatIcon = id =>
   `https://services.runescape.com/m=itemdb_oldschool/obj_big.gif?id=${id}`
@@ -35,8 +36,8 @@ const buildRecord = record => (
         </h5>
         <p class="mb-0">
           <b>{record.buy ? 'Bought' : 'Sold'}</b> for{' '}
-          <b>{record.price * record.quantity}</b> gp (<b>{record.price}</b>{' '}
-          gp/ea)
+          <b>{numberWithCommas(record.price * record.quantity)}</b> gp (
+          <b>{numberWithCommas(record.price)}</b> gp/ea)
         </p>
       </div>
       <div class="ml-auto">
@@ -52,7 +53,11 @@ class GrandExchange extends Component {
   }
 
   render({ ge }) {
-    return <ul class="list-group list-group-small">{ge.map(buildRecord)}</ul>
+    return (
+      <ul class="list-group list-group-small">
+        {ge.sort((a, b) => b.date - a.date).map(buildRecord)}
+      </ul>
+    )
   }
 }
 
