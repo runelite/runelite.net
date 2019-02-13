@@ -27,25 +27,32 @@ const menu = [
     tag: 'home',
     label: 'Home',
     icon: 'fa-fw fas fa-home',
-    component: Home
+    component: Home,
+    data: props => ({
+      task: props.slayerTask,
+      kc: props.killCounts
+    })
   },
   {
     tag: 'grand-exchange',
     label: 'Grand Exchange',
     icon: 'fa-fw fas fa-balance-scale',
-    component: GrandExchange
+    component: GrandExchange,
+    data: props => props.ge
   },
   {
     tag: 'loot-tracker',
     label: 'Loot Tracker',
     icon: 'fa-fw fas fa-file-invoice-dollar',
-    component: LootTracker
+    component: LootTracker,
+    data: props => props.loot
   },
   {
     tag: 'farming-tracker',
     label: 'Farming Tracker',
     icon: 'fa-fw fas fa-tree',
-    component: () => <noscript />
+    component: () => <noscript />,
+    data: () => ({})
   }
 ]
 
@@ -64,6 +71,23 @@ const menuItems = currentMenu =>
   ))
 
 const menuBody = currentMenu => find(propEq('tag', currentMenu), menu).component
+const menuExport = (currentMenu, props) => {
+  const current = find(propEq('tag', currentMenu), menu)
+  const currentSelector = current.data
+  const dataJson = currentSelector(props)
+  const data =
+    'data:application/json;charset=utf-8,' +
+    encodeURIComponent(JSON.stringify(dataJson))
+  return (
+    <a
+      class="list-group-item list-group-item-primary"
+      download={current.tag + '.json'}
+      href={data}
+    >
+      <i class="fas fa-fw fa-download" /> Export {current.label}
+    </a>
+  )
+}
 
 const accountMenu = (account, selectedAccount, changeAccount) => (
   <button
@@ -90,7 +114,10 @@ class Account extends Component {
         <Meta title={`Account - ${hero.title}`} />
         <div class="row">
           <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
-            <ul class="list-group list-group-small mb-4">{menuItems(menu)}</ul>
+            <ul class="list-group list-group-small mb-4">
+              {menuItems(menu)}
+              {menuExport(menu, props)}
+            </ul>
             <ul class="list-group list-group-small mb-4">
               {accounts.map(a =>
                 accountMenu(a, props.selectedAccount, changeAccount)
