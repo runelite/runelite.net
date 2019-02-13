@@ -7,7 +7,7 @@ const runeliteApi = api('https://api.runelite.net/')
 const runeliteStaticApi = api('https://static.runelite.net/')
 
 // Actions
-export const { fetchLoot, setLoot, setLootRange, resetLoot } = createActions(
+export const { fetchLoot, setLoot, setLootRange } = createActions(
   {
     FETCH_LOOT: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState()).name
@@ -17,15 +17,10 @@ export const { fetchLoot, setLoot, setLootRange, resetLoot } = createActions(
         method: 'GET'
       })
 
-      dispatch(resetLoot())
-
       const chunkSize = 500
       let offset = 0
 
       while (true) {
-        console.warn(
-          `Fetching loot with start=${offset} and count=${chunkSize}`
-        )
         const newLoot = await runeliteApi(
           `runelite-${version}/loottracker?count=${chunkSize}&start=${offset}`,
           {
@@ -52,8 +47,6 @@ export const { fetchLoot, setLoot, setLootRange, resetLoot } = createActions(
         }
 
         offset += length
-        console.warn(`Fetched ${length} loot and moved to offset ${offset}`)
-
         dispatch(setLootRange(result))
 
         if (length !== chunkSize) {
@@ -65,16 +58,14 @@ export const { fetchLoot, setLoot, setLootRange, resetLoot } = createActions(
     }
   },
   'SET_LOOT',
-  'SET_LOOT_RANGE',
-  'RESET_LOOT'
+  'SET_LOOT_RANGE'
 )
 
 // Reducer
 export default handleActions(
   {
-    [setLoot]: (state, { payload }) => uniq(concat(state, [payload])),
-    [setLootRange]: (state, { payload }) => state.concat(payload),
-    [resetLoot]: () => []
+    [setLoot]: (state, { payload }) => uniq(concat(state, payload)),
+    [setLootRange]: (state, { payload }) => payload
   },
   []
 )

@@ -125,8 +125,6 @@ export const getKillCounts = createSelector(
       return kcs
     }
 
-    console.log('Getting KCs for ' + selectedAccount)
-
     for (let [key, value] of Object.entries(config)) {
       if (!key.startsWith(prefix)) {
         continue
