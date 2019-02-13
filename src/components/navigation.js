@@ -102,11 +102,7 @@ const Navigation = ({ stars, dark, login, loggedIn, username }) => (
             </a>
           ) : (
             <form class="form-inline">
-              <button
-                class="btn btn-outline-primary"
-                type="button"
-                onClick={login}
-              >
+              <button class="btn btn-primary" type="button" onClick={login}>
                 <i class="fas fa-user" /> Login
               </button>
             </form>
