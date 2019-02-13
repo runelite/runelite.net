@@ -23,6 +23,9 @@ export const { fetchLoot, setLoot, setLootRange, resetLoot } = createActions(
       let offset = 0
 
       while (true) {
+        console.warn(
+          `Fetching loot with start=${offset} and count=${chunkSize}`
+        )
         const newLoot = await runeliteApi(
           `runelite-${version}/loottracker?count=${chunkSize}&start=${offset}`,
           {
@@ -42,8 +45,14 @@ export const { fetchLoot, setLoot, setLootRange, resetLoot } = createActions(
           return entry
         })
 
-        const length = result.length
+        let length = 0
+
+        for (let entry of result) {
+          length += entry.drops.length
+        }
+
         offset += length
+        console.warn(`Fetched ${length} loot and moved to offset ${offset}`)
 
         dispatch(setLootRange(result))
 
