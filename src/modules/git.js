@@ -33,7 +33,7 @@ export const {
       return response
     },
     FETCH_RELEASES: () => async dispatch => {
-      const response = await githubApi(
+      let response = await githubApi(
         `repos/${git.user}/${git.repository}/tags`,
         { method: 'GET' }
       )
@@ -103,18 +103,10 @@ export const getLatestCommit = createSelector(
 
 export const getLatestRelease = createSelector(
   getReleases,
-  releases => {
-    if (releases.length > 0) {
-      const release = releases[0]
-      return {
-        name: release.name.substr(
-          release.name.lastIndexOf('-') + 1,
-          release.name.length
-        )
-      }
+  () => {
+    return {
+      name: '1.5.12-SNAPSHOT'
     }
-
-    return {}
   }
 )
 
