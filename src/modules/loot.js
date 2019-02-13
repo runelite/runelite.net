@@ -7,7 +7,7 @@ const runeliteApi = api('https://api.runelite.net/')
 const runeliteStaticApi = api('https://static.runelite.net/')
 
 // Actions
-export const { fetchLoot, setLoot, setLootRange } = createActions(
+export const { fetchLoot, setLoot, setLootRange, resetLoot } = createActions(
   {
     FETCH_LOOT: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState()).name
@@ -17,35 +17,55 @@ export const { fetchLoot, setLoot, setLootRange } = createActions(
         method: 'GET'
       })
 
-      const loot = await runeliteApi(`runelite-${version}/loottracker`, {
-        method: 'GET',
-        headers: {
-          'RUNELITE-AUTH': uuid
-        }
-      })
+      dispatch(resetLoot())
 
-      const result = loot.map(entry => {
-        entry.drops = entry.drops.map(drop => {
-          drop.name = names[drop.id]
-          return drop
+      const chunkSize = 500
+      let offset = 0
+
+      while (true) {
+        const newLoot = await runeliteApi(
+          `runelite-${version}/loottracker?count=${chunkSize}&start=${offset}`,
+          {
+            method: 'GET',
+            headers: {
+              'RUNELITE-AUTH': uuid
+            }
+          }
+        )
+
+        const result = newLoot.map(entry => {
+          entry.drops = entry.drops.map(drop => {
+            drop.name = names[drop.id]
+            return drop
+          })
+
+          return entry
         })
 
-        return entry
-      })
+        const length = result.length
+        offset += length
 
-      dispatch(setLootRange(result))
-      return result
+        dispatch(setLootRange(result))
+
+        if (length !== chunkSize) {
+          break
+        }
+      }
+
+      return offset
     }
   },
   'SET_LOOT',
-  'SET_LOOT_RANGE'
+  'SET_LOOT_RANGE',
+  'RESET_LOOT'
 )
 
 // Reducer
 export default handleActions(
   {
     [setLoot]: (state, { payload }) => uniq(concat(state, [payload])),
-    [setLootRange]: (state, { payload }) => payload
+    [setLootRange]: (state, { payload }) => state.concat(payload),
+    [resetLoot]: () => []
   },
   []
 )
