@@ -16,7 +16,7 @@ function isOsCorrect(osName) {
     return false
   }
 
-  // const arch = platform.os.architecture
+  const arch = platform.os.architecture
   const family = platform.os.family.toLowerCase()
 
   if (family.indexOf('os x') !== -1 || family.indexOf('mac') !== -1) {
@@ -26,6 +26,10 @@ function isOsCorrect(osName) {
   if (family.indexOf('win') !== -1) {
     // return osName === (arch === 64 ? 'Windows64' : 'Windows32')
     return osName === 'Windows32'
+  }
+
+  if (family.indexOf('linux') !== -1) {
+    return osName === (arch === 64 ? 'Linux64' : 'Linux32')
   }
 
   return osName === family
