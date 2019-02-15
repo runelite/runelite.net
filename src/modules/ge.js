@@ -13,26 +13,42 @@ export const { fetchGe, setGe, setGeRange } = createActions(
       const version = getLatestRelease(getState()).name
       const uuid = getState().account.uuid
 
-      const result = await runeliteApi(`runelite-${version}/ge`, {
-        method: 'GET',
-        headers: {
-          'RUNELITE-AUTH': uuid
-        }
-      })
-
       // Assign names to items
       const names = await runeliteStaticApi('cache/item/names.json', {
         method: 'GET'
       })
 
-      for (let item of result) {
-        item.name = names[item['itemId']]
-        item.date = new Date(0)
-        item.date.setUTCSeconds(item.time.epochSecond)
+      const chunkSize = 500
+      let offset = 0
+
+      while (true) {
+        const newEntries = await runeliteApi(
+          `runelite-${version}/ge?limit=${chunkSize}&offset=${offset}`,
+          {
+            method: 'GET',
+            headers: {
+              'RUNELITE-AUTH': uuid
+            }
+          }
+        )
+
+        const result = newEntries.map(entry => {
+          entry.name = names[entry.itemId]
+          entry.date = new Date(0)
+          entry.date.setUTCSeconds(entry.time.epochSecond)
+          return entry
+        })
+
+        const length = result.length
+        offset += length
+        dispatch(setGe(result))
+
+        if (length !== chunkSize) {
+          break
+        }
       }
 
-      dispatch(setGeRange(result))
-      return result
+      return offset
     }
   },
   'SET_GE',
@@ -42,7 +58,7 @@ export const { fetchGe, setGe, setGeRange } = createActions(
 // Reducer
 export default handleActions(
   {
-    [setGe]: (state, { payload }) => uniq(concat(state, [payload])),
+    [setGe]: (state, { payload }) => uniq(concat(state, payload)),
     [setGeRange]: (state, { payload }) => payload
   },
   []

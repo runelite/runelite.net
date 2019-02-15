@@ -81,7 +81,11 @@ class LootTracker extends Component {
   }
 
   render({ loot }) {
-    return <div class="row">{loot.map(buildLootRecord)}</div>
+    return (
+      <div class="row">
+        {loot.sort((a, b) => b.date - a.date).map(buildLootRecord)}
+      </div>
+    )
   }
 }
 

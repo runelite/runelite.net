@@ -32,6 +32,9 @@ export const { fetchLoot, setLoot, setLootRange } = createActions(
         )
 
         const result = newLoot.map(entry => {
+          entry.date = new Date(0)
+          entry.date.setUTCSeconds(entry.time.epochSecond)
+
           entry.drops = entry.drops.map(drop => {
             drop.name = names[drop.id]
             return drop
@@ -47,7 +50,7 @@ export const { fetchLoot, setLoot, setLootRange } = createActions(
         }
 
         offset += length
-        dispatch(setLootRange(result))
+        dispatch(setLoot(result))
 
         if (length !== chunkSize) {
           break
