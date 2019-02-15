@@ -12,7 +12,7 @@ module.exports = {
     {
       link:
         'https://github.com/runelite/launcher/releases/download/1.6.0/RuneLiteSetup32.exe',
-      icon: 'fab fa-windows',
+      icon: 'fab fa-fw fa-windows',
       text: 'Download for Windows (32 bit)',
       color: 'primary',
       dropdown: true,
@@ -21,7 +21,7 @@ module.exports = {
     {
       link:
         'https://github.com/runelite/launcher/releases/download/1.6.0/RuneLiteSetup.exe',
-      icon: 'fab fa-windows',
+      icon: 'fab fa-fw fa-windows',
       text: 'Download for Windows (64 bit)',
       color: 'primary',
       dropdown: true,
@@ -30,7 +30,7 @@ module.exports = {
     {
       link:
         'https://github.com/runelite/launcher/releases/download/1.6.2/RuneLite.dmg',
-      icon: 'fab fa-apple',
+      icon: 'fab fa-fw fa-apple',
       text: 'Download for macOS',
       color: 'secondary',
       dropdown: true,
@@ -39,7 +39,7 @@ module.exports = {
     {
       link:
         'https://github.com/runelite/launcher/releases/download/1.6.2/RuneLite.AppImage',
-      icon: 'fab fa-linux',
+      icon: 'fab fa-fw fa-linux',
       text: 'Download for Linux (64 bit)',
       color: 'info',
       dropdown: true,
@@ -48,7 +48,7 @@ module.exports = {
     {
       link:
         'https://github.com/runelite/launcher/releases/download/1.6.2/RuneLite.jar',
-      icon: 'fas fa-coffee',
+      icon: 'fas fa-fw fa-coffee',
       text: 'Download for all platforms',
       color: 'success',
       dropdown: true,
@@ -56,7 +56,7 @@ module.exports = {
     },
     {
       link: 'https://github.com/runelite/',
-      icon: 'fab fa-github',
+      icon: 'fab fa-fw fa-github',
       text: 'View on GitHub',
       color: 'info'
     }
