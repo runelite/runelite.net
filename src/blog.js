@@ -26,5 +26,20 @@ const blog = require
     return memo.set(parsed.id, resolver)
   }, new Map())
 
-export const latest = blog.values().next().value
+export const latest = async () => {
+  const values = blog.values()
+
+  for (let value of values) {
+    const post = await value()
+
+    if (post.hasOwnProperty('skip') && post.skip) {
+      continue
+    }
+
+    return post
+  }
+
+  return {}
+}
+
 export default blog

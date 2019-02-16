@@ -8,7 +8,7 @@ Based on [redux-boot](https://github.com/deathbeam/redux-boot).
 
 Requirements
 
-- Node - [Installing Node](https://nodejs.org/en/download/), requires vesrion `>= 8.12.0`
+- Node - [Installing Node](https://nodejs.org/en/download/), requires version `>= 8.12.0`
 - NPM: - [Installs with Node](https://docs.npmjs.com/getting-started/installing-node#install-npm--manage-npm-versions), requires version `>= 5.3.0`
 
 First, you need to install all dependencies, so run
@@ -47,6 +47,19 @@ consist of:
 + ---
 +
 + ... rest of markdown content
+```
+
+If you do not want to display your post on home page just add `skip` metadata:
+
+```diff
+  ---
+  title: 'My Post Title'
+  description: 'My Post description'
+  author: 'Me'
++ skip: true
+  ---
+
+  ... rest of markdown content
 ```
 
 Now save it and create PR to master branch on this repo.
