@@ -121,14 +121,12 @@ class Hero extends Component {
             <p class="lead">
               <div class="btn-group dropdown">
                 <a
-                  type="button"
                   class={'btn btn-' + mainDropdownItem.color}
                   href={mainDropdownItem.link}
                 >
                   <i class={mainDropdownItem.icon} /> {mainDropdownItem.text}
                 </a>
                 <button
-                  type="button"
                   class={
                     'btn dropdown-toggle dropdown-toggle-split btn-' +
                     mainDropdownItem.color
@@ -147,7 +145,7 @@ class Hero extends Component {
               {regularButtons.map(({ link, color, icon, text }) => (
                 <span key={link}>
                   {' '}
-                  <a type="button" class={'btn btn-' + color} href={link}>
+                  <a class={'btn btn-' + color} href={link}>
                     <i class={icon} /> {text}
                   </a>
                   <br style={{ marginBottom: 10 }} class="d-md-none" />
