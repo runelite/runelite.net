@@ -7,7 +7,7 @@ import rootReducer from './modules'
 /**
  * Configure react store
  */
-export default () => {
+export default callback => {
   // Check if we are in debug mode
   const isDebug = process.env.NODE_ENV === 'development'
 
@@ -37,7 +37,7 @@ export default () => {
   const store = createStore(persistedReducer, applyMiddleware(...middlewares))
 
   // Persist store
-  const persistor = persistStore(store)
+  const persistor = persistStore(store, null, () => callback(store))
 
   return {
     store,

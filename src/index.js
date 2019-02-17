@@ -5,11 +5,14 @@ import configureStore from './store'
 import { sessionCheck } from './modules/account'
 import { fetchReleases } from './modules/git'
 
-// Create redux store
-const { store } = configureStore()
-
 // Check session and get API version
-store.dispatch(fetchReleases()).then(() => store.dispatch(sessionCheck()))
+const callback = async store => {
+  await store.dispatch(fetchReleases())
+  await store.dispatch(sessionCheck())
+}
+
+// Create redux store
+const { store } = configureStore(callback)
 
 // Create application
 const Main = () => (
