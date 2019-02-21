@@ -72,6 +72,38 @@ const createDateRange = (start, end) => {
   }
 }
 
+const RotatedXAxisTick = ({ x, y, payload }) => {
+  return (
+    <g transform={`translate(${x - 12}, ${y + 5})`}>
+      <text
+        x={0}
+        y={0}
+        dy={16}
+        textAnchor="end"
+        fill="#666"
+        transform="rotate(-90)"
+      >
+        {payload.value}
+      </text>
+    </g>
+  )
+}
+
+const CustomToolTip = ({ active, payload, label, description }) => {
+  if (active && label) {
+    return (
+      <div style={{ padding: 10 }}>
+        <div>{label}</div>
+        <div>
+          {description}: {numberWithCommas(payload[0].value)}
+        </div>
+      </div>
+    )
+  }
+
+  return null
+}
+
 const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
   const { startDate, endDate } = createDateRange(start, end)
   return (
@@ -123,22 +155,26 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
           </h5>
           <ResponsiveContainer height={300}>
             <BarChart
-              data={skillNames
-                .filter(skill => skill !== 'overall')
-                .map(skill => ({
-                  name: capitalizeFirstLetter(skill),
-                  value: collectedXp[skill] ? collectedXp[skill].xp : 0
-                }))}
-            >
-              <XAxis dataKey="name" />
-              <YAxis hide />
-              <Tooltip />
-              <Bar dataKey="value">
-                {skillNames
+              margin={{ bottom: 100 }}
+              data={[
+                { value: 0 },
+                ...skillNames
                   .filter(skill => skill !== 'overall')
-                  .map(skill => (
-                    <Cell fill={skills[skill]} />
-                  ))}
+                  .map(skill => ({
+                    name: capitalizeFirstLetter(skill),
+                    value: collectedXp[skill] ? collectedXp[skill].xp : 0
+                  }))
+              ]}
+            >
+              <XAxis dataKey="name" interval={0} tick={RotatedXAxisTick} />
+              <YAxis hide />
+              <Tooltip
+                content={<CustomToolTip description={'Experience gained'} />}
+              />
+              <Bar dataKey="value">
+                {skillNames.map(skill => (
+                  <Cell fill={skills[skill]} />
+                ))}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
@@ -148,14 +184,17 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
           </h5>
           <ResponsiveContainer height={300}>
             <BarChart
+              margin={{ bottom: 100 }}
               data={skillNames.map(skill => ({
                 name: capitalizeFirstLetter(skill),
                 value: collectedXp[skill] ? collectedXp[skill].rank : 0
               }))}
             >
-              <XAxis dataKey="name" />
+              <XAxis dataKey="name" interval={0} tick={RotatedXAxisTick} />
               <YAxis hide />
-              <Tooltip />
+              <Tooltip
+                content={<CustomToolTip description={'Ranks gained'} />}
+              />
               <Bar dataKey="value">
                 {skillNames.map(skill => (
                   <Cell fill={skills[skill]} />
@@ -177,7 +216,13 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
             >
               <XAxis dataKey="name" />
               <YAxis domain={['dataMin', 'dataMax']} reversed hide />
-              <Tooltip />
+              <Tooltip
+                content={
+                  <CustomToolTip
+                    description={capitalizeFirstLetter(skill) + ' rank'}
+                  />
+                }
+              />
               <Line connectNulls dataKey="value" stroke={skills[skill]} />
             </LineChart>
           </ResponsiveContainer>
@@ -195,7 +240,13 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
             >
               <XAxis dataKey="name" />
               <YAxis domain={['dataMin', 'dataMax']} hide />
-              <Tooltip />
+              <Tooltip
+                content={
+                  <CustomToolTip
+                    description={capitalizeFirstLetter(skill) + ' rank'}
+                  />
+                }
+              />
               <Line connectNulls dataKey="value" stroke={skills[skill]} />
             </LineChart>
           </ResponsiveContainer>
