@@ -12,8 +12,8 @@ const blog = require
     const resolver = () => {
       const mapper = md => {
         return {
-          date: parsed.date,
           body: md.__content,
+          ...parsed,
           ...md
         }
       }

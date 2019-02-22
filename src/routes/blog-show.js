@@ -5,13 +5,15 @@ import blog from '../blog'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
 import Async from '../components/async'
+import { DisqusThread } from '../components/disqus-thread'
+import { getBaseUrl } from '../util'
 
 const BlogShow = ({ id }) => (
   <Async
     getComponent={() =>
       blog
         .get(id)()
-        .then(({ date, title, description, author, body }) => (
+        .then(({ id, date, title, description, author, body }) => (
           <Layout>
             <Meta
               title={`${title} - ${hero.title}`}
@@ -26,6 +28,14 @@ const BlogShow = ({ id }) => (
             <div
               class="markdown-body"
               dangerouslySetInnerHTML={{ __html: body }}
+            />
+            <DisqusThread
+              shortname="runelite"
+              config={{
+                url: getBaseUrl() + '/blog/show/' + id,
+                identifier: id,
+                title
+              }}
             />
           </Layout>
         ))
