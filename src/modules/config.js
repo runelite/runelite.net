@@ -79,14 +79,20 @@ export const getAccounts = createSelector(
 
     for (let key in config) {
       const matches = configNameFilters.map(r => key.match(r)).filter(m => !!m)
-      const match = matches.shift().filter(m => m.length > 0)
+      const matchesFound = matches.shift()
+
+      if (!matchesFound) {
+        continue
+      }
+
+      const match = matchesFound.filter(m => m.length > 0)
 
       if (!match || match.length !== 4) {
         continue
       }
 
       const username = match[2]
-      names.add(username)
+      names.add(username.toLowerCase())
     }
 
     return [...names]
