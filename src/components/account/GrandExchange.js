@@ -1,6 +1,15 @@
 import { Component, h } from 'preact'
 import ago from 's-ago'
 import { numberWithCommas } from '../../util'
+import { connect } from 'preact-redux'
+import {
+  fetchGe,
+  getFilteredGe,
+  getGeFilter,
+  setGeFilter
+} from '../../modules/ge'
+import { bindActionCreators } from 'redux'
+import { fetchReleases } from '../../modules/git'
 
 const formatIcon = id =>
   `https://services.runescape.com/m=itemdb_oldschool/obj_big.gif?id=${id}`
@@ -84,4 +93,19 @@ class GrandExchange extends Component {
   }
 }
 
-export default GrandExchange
+export default connect(
+  (state, props) => ({
+    ...props,
+    ge: getFilteredGe(state),
+    geFilter: getGeFilter(state)
+  }),
+  dispatch =>
+    bindActionCreators(
+      {
+        fetchReleases,
+        fetchGe,
+        setGeFilter
+      },
+      dispatch
+    )
+)(GrandExchange)

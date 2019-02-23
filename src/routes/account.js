@@ -9,30 +9,11 @@ import { isLoggedIn, logout } from '../modules/account'
 import Redirect from '../components/redirect'
 import { find, propEq } from 'ramda'
 import LootTracker from '../components/account/LootTracker'
-import {
-  fetchLoot,
-  getGroupedLoot,
-  getLoot,
-  getLootFilter,
-  setLootFilter
-} from '../modules/loot'
-import { fetchReleases } from '../modules/git'
 import Home from '../components/account/Home'
-import {
-  changeAccount,
-  fetchConfig,
-  getAccounts,
-  getBossLog,
-  getSlayerTask
-} from '../modules/config'
-import {
-  fetchGe,
-  getFilteredGe,
-  getGe,
-  getGeFilter,
-  setGeFilter
-} from '../modules/ge'
+import { changeAccount, getAccounts } from '../modules/config'
 import GrandExchange from '../components/account/GrandExchange'
+import { getGe } from '../modules/ge'
+import { getLoot } from '../modules/loot'
 
 const menu = [
   {
@@ -167,29 +148,15 @@ export default connect(
   (state, props) => ({
     ...props,
     loggedIn: isLoggedIn(state),
-    ...state.session,
-    ...state.config,
-    rawLoot: getLoot(state),
-    loot: getGroupedLoot(state),
-    lootFilter: getLootFilter(state),
-    rawGe: getGe(state),
-    ge: getFilteredGe(state),
-    geFilter: getGeFilter(state),
     accounts: getAccounts(state),
-    slayerTask: getSlayerTask(state),
-    bossLog: getBossLog(state)
+    rawGe: getGe(state),
+    rawLoot: getLoot(state)
   }),
   dispatch =>
     bindActionCreators(
       {
         logout,
-        fetchReleases,
-        fetchConfig,
-        changeAccount,
-        fetchLoot,
-        fetchGe,
-        setLootFilter,
-        setGeFilter
+        changeAccount
       },
       dispatch
     )

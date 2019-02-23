@@ -1,6 +1,10 @@
 import { Component, h } from 'preact'
 import '@gouch/to-title-case'
 import { toMMSS } from '../../util'
+import { bindActionCreators } from 'redux'
+import { fetchConfig, getBossLog, getSlayerTask } from '../../modules/config'
+import { connect } from 'preact-redux'
+import { fetchReleases } from '../../modules/git'
 
 const buildSlayerTask = slayerTask => {
   if (!slayerTask.hasTask) {
@@ -80,4 +84,18 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default connect(
+  (state, props) => ({
+    ...props,
+    slayerTask: getSlayerTask(state),
+    bossLog: getBossLog(state)
+  }),
+  dispatch =>
+    bindActionCreators(
+      {
+        fetchReleases,
+        fetchConfig
+      },
+      dispatch
+    )
+)(Home)

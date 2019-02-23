@@ -1,6 +1,15 @@
 import { Component, h } from 'preact'
 import '../tooltip.css'
 import './loot-tracker.css'
+import { connect } from 'preact-redux'
+import {
+  fetchLoot,
+  getGroupedLoot,
+  getLootFilter,
+  setLootFilter
+} from '../../modules/loot'
+import { fetchReleases } from '../../modules/git'
+import { bindActionCreators } from 'redux'
 
 const getRlIcon = id => `https://static.runelite.net/cache/item/icon/${id}.png`
 const buldWikiUrl = id =>
@@ -127,4 +136,19 @@ class LootTracker extends Component {
   }
 }
 
-export default LootTracker
+export default connect(
+  (state, props) => ({
+    ...props,
+    loot: getGroupedLoot(state),
+    lootFilter: getLootFilter(state)
+  }),
+  dispatch =>
+    bindActionCreators(
+      {
+        fetchReleases,
+        fetchLoot,
+        setLootFilter
+      },
+      dispatch
+    )
+)(LootTracker)
