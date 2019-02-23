@@ -46,13 +46,6 @@ const menu = [
     icon: 'fa-fw fas fa-file-invoice-dollar',
     component: LootTracker,
     data: props => props.loot
-  },
-  {
-    tag: 'farming-tracker',
-    label: 'Farming Tracker',
-    icon: 'fa-fw fas fa-tree',
-    component: () => <noscript />,
-    data: () => ({})
   }
 ]
 

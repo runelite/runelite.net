@@ -21,7 +21,7 @@ export const {
       const localUuid = getState().account.uuid
       const baseUrl = getBaseUrl()
 
-      const loadingPane = window.open(baseUrl + 'loading', '_blank')
+      const loadingPane = window.open(baseUrl + '/loading', '_blank')
 
       const authResponse = await runeliteApi(
         `runelite-${version}/account/login?uuid=${localUuid}`,
