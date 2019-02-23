@@ -21,7 +21,7 @@ import hero from '../_data/hero'
 import skills from '../_data/skills'
 import Meta from '../components/meta'
 import prepare from '../components/prepare'
-import { numberWithCommas } from '../util'
+import { flattenMap, numberWithCommas } from '../util'
 
 const isNumeric = value => !isNaN(value - parseFloat(value))
 
@@ -55,11 +55,6 @@ const createValueBadge = (value, suffix) =>
 
 const safeDate = date => date || new Date()
 const skillNames = Object.keys(skills)
-const flattenMap = map =>
-  Object.keys(map).map(key => ({
-    name: key,
-    ...map[key]
-  }))
 
 const createDateRange = (start, end) => {
   const endDate = safeDate(parseDate(end, new Date()))

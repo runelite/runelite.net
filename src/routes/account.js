@@ -9,7 +9,7 @@ import { isLoggedIn, logout } from '../modules/account'
 import Redirect from '../components/redirect'
 import { find, propEq } from 'ramda'
 import LootTracker from '../components/account/LootTracker'
-import { fetchLoot } from '../modules/loot'
+import { fetchLoot, getGroupedLoot } from '../modules/loot'
 import { fetchReleases } from '../modules/git'
 import Home from '../components/account/Home'
 import {
@@ -145,7 +145,7 @@ export default connect(
     loggedIn: isLoggedIn(state),
     ...state.session,
     ...state.config,
-    loot: state.loot,
+    loot: getGroupedLoot(state),
     ge: state.ge,
     accounts: getAccounts(state),
     slayerTask: getSlayerTask(state),

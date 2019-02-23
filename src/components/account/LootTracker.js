@@ -4,33 +4,8 @@ import '../tooltip.css'
 const getRlIcon = id =>
   `https://static.runelite.net/cache/item/icon/${parseInt(id, 10)}.png`
 
-const formatIcon = (type, id) => {
-  switch (type) {
-    case 'NPC':
-      return getRlIcon(526) // Bones
-    case 'PLAYER':
-      return '/img/skillicons/slayer.png'
-    case 'EVENT':
-      switch (id) {
-        case 'Barrows':
-          return getRlIcon(19630) // Barrows teleport
-        case 'Chambers of Xeric':
-          return getRlIcon(20851) // Olmlet
-        case 'Theatre of Blood':
-          return getRlIcon(22473) // Lil'Zik
-        default:
-          if (id.startsWith('Clue Scroll')) {
-            return getRlIcon(2677) // Easy Clue image
-          }
-      }
-      break
-    default:
-      return ''
-  }
-}
-
 const buildDrop = drop => (
-  <div class="card" style={{ border: 'none' }}>
+  <div style={{ border: 'none', position: 'relative' }}>
     <span
       style={{
         position: 'absolute',
@@ -45,7 +20,12 @@ const buildDrop = drop => (
     </span>
     <div class="tooltip-tag">
       <a href={`https://oldschool.runescape.wiki/w/${drop.name}`}>
-        <img class="card-img-top p-1" alt={drop.id} src={getRlIcon(drop.id)} />
+        <img
+          class="card-img-top"
+          style={{ padding: 2 }}
+          alt={drop.id}
+          src={getRlIcon(drop.id)}
+        />
       </a>
       <div class="tooltip-tag-text">
         <b>{drop.name || 'Loading...'}</b>
@@ -55,21 +35,17 @@ const buildDrop = drop => (
 )
 
 const buildLootRecord = record => (
-  <div class="col-lg-4 mb-4">
-    <div class="card">
-      <div class="card-header p-1">
-        <img
-          class="icon"
-          alt=""
-          src={formatIcon(record.type, record.eventId)}
-        />{' '}
-        {record.eventId}
-      </div>
+  <div class="card">
+    <div class="card-header">
+      {record.name}
+      <span class="small float-right">x{record.count}</span>
+    </div>
+    <div class="card-body pt-0 pb-0" style={{ border: 'none' }}>
       <div
-        class="card-body pt-0 pb-0"
-        style={{ paddingLeft: '15px', border: 'none' }}
+        class="row"
+        style={{ marginLeft: -10, paddingTop: 5, paddingBottom: 5 }}
       >
-        <div class="row">{record.drops.map(buildDrop)}</div>
+        {record.drops.map(buildDrop)}
       </div>
     </div>
   </div>
@@ -81,11 +57,7 @@ class LootTracker extends Component {
   }
 
   render({ loot }) {
-    return (
-      <div class="row">
-        {loot.sort((a, b) => b.date - a.date).map(buildLootRecord)}
-      </div>
-    )
+    return <div class="card-columns">{loot.map(buildLootRecord)}</div>
   }
 }
 

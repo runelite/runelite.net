@@ -35,7 +35,7 @@ export const { fetchGe, setGe, setGeRange } = createActions(
         const result = newEntries.map(entry => {
           entry.name = names[entry.itemId]
           entry.date = new Date(0)
-          entry.date.setUTCSeconds(entry.time.epochSecond)
+          entry.date.setUTCSeconds(entry.time.seconds)
           return entry
         })
 

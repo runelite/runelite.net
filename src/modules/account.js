@@ -2,6 +2,7 @@ import uuid from 'uuid/v4'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
 import { getLatestRelease } from './git'
+import { getBaseUrl } from '../util'
 
 const runeliteWs = 'wss://api.runelite.net/ws'
 const runeliteApi = api('https://api.runelite.net/')
@@ -18,8 +19,7 @@ export const {
     LOGIN: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState()).name
       const localUuid = getState().account.uuid
-      const getUrl = window.location
-      const baseUrl = getUrl.protocol + '//' + getUrl.host + '/'
+      const baseUrl = getBaseUrl()
 
       const loadingPane = window.open(baseUrl + 'loading', '_blank')
 
