@@ -19,7 +19,7 @@ export const { fetchLoot, setLoot, setLootRange } = createActions(
         method: 'GET'
       })
 
-      const chunkSize = 500
+      const chunkSize = 2000
       let offset = 0
 
       while (true) {
