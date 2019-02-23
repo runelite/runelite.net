@@ -1,5 +1,6 @@
 .record-body {
   border: none;
+  background: #e6e6e6;
 }
 
 .drop-row {
@@ -17,9 +18,11 @@
   position: absolute;
   left: 4px;
   top: -4px;
-  color: black;
-  text-shadow: white 1px 1px;
+  color: yellow;
   font-size: small;
+  text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
+    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+  -webkit-font-smoothing: antialiased;
 }
 
 .drop-wrapper .card-img-top {

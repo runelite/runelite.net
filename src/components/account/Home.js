@@ -1,4 +1,5 @@
 import { Component, h } from 'preact'
+import '@gouch/to-title-case'
 
 const buildSlayerTask = slayerTask => {
   if (!slayerTask.hasTask) {
@@ -12,7 +13,7 @@ const buildSlayerTask = slayerTask => {
       </div>
       <div class="card-body">
         <h5 class="card-title">
-          {slayerTask.name}
+          {slayerTask.name.toTitleCase()}
           <small>
             {slayerTask.location ? ' in ' + slayerTask.location : ''}
           </small>
@@ -42,7 +43,7 @@ const buildKillCounters = killCounts => {
       <ul class="list-group">
         {killCounts.map(e => (
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            {e.name}
+            {e.name.toTitleCase()}
             <span class="badge badge-primary badge-pill">{e.count}</span>
           </li>
         ))}

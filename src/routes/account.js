@@ -127,8 +127,12 @@ class Account extends Component {
               {menuExport(currentMenu, props)}
             </ul>
             <ul class="list-group list-group-small mb-4">
-              {accounts.map(a =>
-                accountMenu(a, props.selectedAccount, changeAccount)
+              {currentMenu.tag === 'home' ? (
+                accounts.map(a =>
+                  accountMenu(a, props.selectedAccount, changeAccount)
+                )
+              ) : (
+                <noscript />
               )}
               <button
                 class="list-group-item list-group-item-action list-group-item-danger"

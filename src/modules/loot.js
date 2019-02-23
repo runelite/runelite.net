@@ -116,7 +116,7 @@ export const getGroupedLoot = createSelector(
       }
 
       const newEntry = {
-        drops: entry.drops,
+        drops: mergeDrops(entry.drops, []),
         type: entry.type,
         count: 1
       }
