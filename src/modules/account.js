@@ -3,6 +3,7 @@ import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
 import { getLatestRelease } from './git'
 import { getBaseUrl } from '../util'
+import { route } from 'preact-router'
 
 const runeliteWs = 'wss://api.runelite.net/ws'
 const runeliteApi = api('https://api.runelite.net/')
@@ -69,7 +70,9 @@ export const {
         ws.onerror = msg => reject(msg)
       })
 
-      return await sessionPromise
+      const response = await sessionPromise
+      route('/account/home')
+      return response
     },
     LOGOUT: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState()).name
