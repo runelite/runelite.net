@@ -3,6 +3,8 @@ import '../tooltip.css'
 import './loot-tracker.css'
 
 const getRlIcon = id => `https://static.runelite.net/cache/item/icon/${id}.png`
+const buldWikiUrl = id =>
+  `https://oldschool.runescape.wiki/w/Special:Lookup?type=item&id=${id}`
 
 const glyphMap = {
   '1': { x: 0, y: 0, w: 5 },
@@ -63,7 +65,7 @@ const buildDrop = drop => (
   <div class="drop-wrapper">
     {buildQuantity(drop.qty)}
     <div class="tooltip-tag">
-      <a href={`https://oldschool.runescape.wiki/w/${drop.name}`}>
+      <a href={buldWikiUrl(drop.id)}>
         <img
           class="card-img-top rs-icon"
           alt={drop.id}
