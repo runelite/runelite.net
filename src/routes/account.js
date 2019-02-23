@@ -9,7 +9,7 @@ import { isLoggedIn, logout } from '../modules/account'
 import Redirect from '../components/redirect'
 import { find, propEq } from 'ramda'
 import LootTracker from '../components/account/LootTracker'
-import { fetchLoot, getGroupedLoot } from '../modules/loot'
+import { fetchLoot, getGroupedLoot, getLoot } from '../modules/loot'
 import { fetchReleases } from '../modules/git'
 import Home from '../components/account/Home'
 import {
@@ -38,14 +38,29 @@ const menu = [
     label: 'Grand Exchange',
     icon: 'fa-fw fas fa-balance-scale',
     component: GrandExchange,
-    data: props => props.ge
+    data: props =>
+      props.ge.map(ge => ({
+        buy: ge.buy,
+        itemId: ge.itemId,
+        quantity: ge.quantity,
+        price: ge.prixe,
+        time: ge.time
+      }))
   },
   {
     tag: 'loot-tracker',
     label: 'Loot Tracker',
     icon: 'fa-fw fas fa-file-invoice-dollar',
     component: LootTracker,
-    data: props => props.loot
+    data: props =>
+      props.rawLoot.map(entry => ({
+        eventId: entry.eventId,
+        type: entry.type,
+        drops: entry.drops.map(drop => ({
+          id: drop.id,
+          qty: drop.qty
+        }))
+      }))
   }
 ]
 
@@ -138,6 +153,7 @@ export default connect(
     loggedIn: isLoggedIn(state),
     ...state.session,
     ...state.config,
+    rawLoot: getLoot(state),
     loot: getGroupedLoot(state),
     ge: state.ge,
     accounts: getAccounts(state),
