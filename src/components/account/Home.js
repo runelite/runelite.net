@@ -1,5 +1,6 @@
 import { Component, h } from 'preact'
 import '@gouch/to-title-case'
+import { toMMSS } from '../../util'
 
 const buildSlayerTask = slayerTask => {
   if (!slayerTask.hasTask) {
@@ -48,7 +49,9 @@ const buildBossLog = bossLog => {
               {e.pb ? (
                 <span>
                   Personal best:{' '}
-                  <span class="badge badge-info badge-pill">{e.pb}s</span>
+                  <span class="badge badge-info badge-pill">
+                    {toMMSS(e.pb)}
+                  </span>
                 </span>
               ) : (
                 <noscript />
