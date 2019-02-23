@@ -1,4 +1,4 @@
-import { Component, h } from 'preact'
+import { h } from 'preact'
 import ago from 's-ago'
 import { numberWithCommas } from '../../util'
 import { connect } from 'preact-redux'
@@ -10,8 +10,9 @@ import {
 } from '../../modules/ge'
 import { bindActionCreators } from 'redux'
 import { fetchReleases } from '../../modules/git'
+import prepare from '../../components/prepare'
 
-const formatIcon = id =>
+const formatGeIcon = id =>
   `https://services.runescape.com/m=itemdb_oldschool/obj_big.gif?id=${id}`
 const formatGePage = id =>
   `http://services.runescape.com/m=itemdb_oldschool/viewitem?obj=${id}`
@@ -36,7 +37,7 @@ const buildRecord = record => (
           alt={record.name}
           class="img-fluid"
           style={{ height: 60, width: 60 }}
-          src={formatIcon(record.itemId)}
+          src={formatGeIcon(record.itemId)}
         />
       </div>
       <div>
@@ -56,56 +57,55 @@ const buildRecord = record => (
   </a>
 )
 
-class GrandExchange extends Component {
-  componentDidMount() {
-    this.props.fetchReleases().then(() => this.props.fetchGe())
-    this.handleChange = this.handleChange.bind(this)
-  }
+const handleChange = (event, setGeFilter) =>
+  setGeFilter({
+    name: event.target.value
+  })
 
-  handleChange(event) {
-    this.props.setGeFilter({
-      name: event.target.value
-    })
-  }
-
-  render({ ge, geFilter, setGeFilter }) {
-    return (
-      <div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <i class="fas fa-search" />
-            </span>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Search..."
-            value={geFilter.name}
-            onInput={this.handleChange}
-          />
-        </div>
-        <ul class="list-group list-group-small">
-          {ge.sort((a, b) => b.date - a.date).map(buildRecord)}
-        </ul>
+const GrandExchange = ({ ge, geFilter, setGeFilter }) => (
+  <div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <i class="fas fa-search" />
+        </span>
       </div>
-    )
-  }
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search..."
+        value={geFilter.name}
+        onInput={e => handleChange(e, setGeFilter)}
+      />
+    </div>
+    <ul class="list-group list-group-small">
+      {ge.sort((a, b) => b.date - a.date).map(buildRecord)}
+    </ul>
+  </div>
+)
+
+const mapStateToProps = (state, props) => ({
+  ...props,
+  ge: getFilteredGe(state),
+  geFilter: getGeFilter(state)
+})
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchReleases,
+      fetchGe,
+      setGeFilter
+    },
+    dispatch
+  )
+
+const prepareComponentData = async ({ fetchReleases, fetchGe }) => {
+  await fetchReleases()
+  await fetchGe()
 }
 
 export default connect(
-  (state, props) => ({
-    ...props,
-    ge: getFilteredGe(state),
-    geFilter: getGeFilter(state)
-  }),
-  dispatch =>
-    bindActionCreators(
-      {
-        fetchReleases,
-        fetchGe,
-        setGeFilter
-      },
-      dispatch
-    )
-)(GrandExchange)
+  mapStateToProps,
+  mapDispatchToProps
+)(prepare(prepareComponentData)(GrandExchange))

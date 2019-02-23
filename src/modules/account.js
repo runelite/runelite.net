@@ -128,4 +128,5 @@ export default handleActions(
   }
 )
 
+// Selectors
 export const isLoggedIn = state => !!state.account.username

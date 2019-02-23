@@ -1,10 +1,11 @@
-import { Component, h } from 'preact'
+import { h } from 'preact'
 import '@gouch/to-title-case'
 import { toMMSS } from '../../util'
 import { bindActionCreators } from 'redux'
 import { fetchConfig, getBossLog, getSlayerTask } from '../../modules/config'
 import { connect } from 'preact-redux'
 import { fetchReleases } from '../../modules/git'
+import prepare from '../../components/prepare'
 
 const buildSlayerTask = slayerTask => {
   if (!slayerTask.hasTask) {
@@ -68,34 +69,35 @@ const buildBossLog = bossLog => {
   )
 }
 
-class Home extends Component {
-  componentDidMount() {
-    this.props.fetchReleases().then(() => this.props.fetchConfig())
-  }
+const Home = ({ slayerTask, bossLog }) => (
+  <div>
+    {buildSlayerTask(slayerTask)}
+    <br />
+    {buildBossLog(bossLog)}
+  </div>
+)
 
-  render({ slayerTask, bossLog }) {
-    return (
-      <div>
-        {buildSlayerTask(slayerTask)}
-        <br />
-        {buildBossLog(bossLog)}
-      </div>
-    )
-  }
+const mapStateToProps = (state, props) => ({
+  ...props,
+  slayerTask: getSlayerTask(state),
+  bossLog: getBossLog(state)
+})
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchReleases,
+      fetchConfig
+    },
+    dispatch
+  )
+
+const prepareComponentData = async ({ fetchReleases, fetchConfig }) => {
+  await fetchReleases()
+  await fetchConfig()
 }
 
 export default connect(
-  (state, props) => ({
-    ...props,
-    slayerTask: getSlayerTask(state),
-    bossLog: getBossLog(state)
-  }),
-  dispatch =>
-    bindActionCreators(
-      {
-        fetchReleases,
-        fetchConfig
-      },
-      dispatch
-    )
-)(Home)
+  mapStateToProps,
+  mapDispatchToProps
+)(prepare(prepareComponentData)(Home))

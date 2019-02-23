@@ -70,6 +70,7 @@ export default handleActions(
   }
 )
 
+// Selectors
 export const getConfig = state => state.config.config
 export const getSelectedAccount = state => state.config.selectedAccount
 

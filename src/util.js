@@ -8,9 +8,11 @@ export const getBaseUrl = () => {
   return getUrl.protocol + '//' + getUrl.host
 }
 
+// Format number with commas
 export const numberWithCommas = x =>
   x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
+// Flatten map to list of objects
 export const flattenMap = map => {
   if (map instanceof Map) {
     return [...map.keys()].map(key => ({
@@ -25,6 +27,7 @@ export const flattenMap = map => {
   }))
 }
 
+// Convert number to MM:SS representation
 export const toMMSS = s => {
   const minutes = Math.floor(s / 60)
   const seconds = s % 60

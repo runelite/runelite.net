@@ -1,4 +1,4 @@
-import { Component, h } from 'preact'
+import { h } from 'preact'
 import '../../components/tooltip.css'
 import './loot-tracker.css'
 import { connect } from 'preact-redux'
@@ -10,6 +10,7 @@ import {
 } from '../../modules/loot'
 import { fetchReleases } from '../../modules/git'
 import { bindActionCreators } from 'redux'
+import prepare from '../../components/prepare'
 
 const getRlIcon = id => `https://static.runelite.net/cache/item/icon/${id}.png`
 const buldWikiUrl = id =>
@@ -100,55 +101,54 @@ const buildLootRecord = record => (
   </div>
 )
 
-class LootTracker extends Component {
-  componentDidMount() {
-    this.props.fetchReleases().then(() => this.props.fetchLoot())
-    this.handleChange = this.handleChange.bind(this)
-  }
+const handleChange = (event, setLootFilter) =>
+  setLootFilter({
+    name: event.target.value
+  })
 
-  handleChange(event) {
-    this.props.setLootFilter({
-      name: event.target.value
-    })
-  }
-
-  render({ loot, lootFilter, setLootFilter }) {
-    return (
-      <div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <i class="fas fa-search" />
-            </span>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Search..."
-            value={lootFilter.name}
-            onInput={this.handleChange}
-          />
-        </div>
-
-        <div class="card-columns">{loot.map(buildLootRecord)}</div>
+const LootTracker = ({ loot, lootFilter, setLootFilter }) => (
+  <div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <i class="fas fa-search" />
+        </span>
       </div>
-    )
-  }
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search..."
+        value={lootFilter.name}
+        onInput={e => handleChange(e, setLootFilter)}
+      />
+    </div>
+
+    <div class="card-columns">{loot.map(buildLootRecord)}</div>
+  </div>
+)
+
+const mapStateToProps = (state, props) => ({
+  ...props,
+  loot: getGroupedLoot(state),
+  lootFilter: getLootFilter(state)
+})
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchReleases,
+      fetchLoot,
+      setLootFilter
+    },
+    dispatch
+  )
+
+const prepareComponentData = async ({ fetchReleases, fetchLoot }) => {
+  await fetchReleases()
+  await fetchLoot()
 }
 
 export default connect(
-  (state, props) => ({
-    ...props,
-    loot: getGroupedLoot(state),
-    lootFilter: getLootFilter(state)
-  }),
-  dispatch =>
-    bindActionCreators(
-      {
-        fetchReleases,
-        fetchLoot,
-        setLootFilter
-      },
-      dispatch
-    )
-)(LootTracker)
+  mapStateToProps,
+  mapDispatchToProps
+)(prepare(prepareComponentData)(LootTracker))
