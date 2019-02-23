@@ -16,7 +16,7 @@ import {
   changeAccount,
   fetchConfig,
   getAccounts,
-  getKillCounts,
+  getBossLog,
   getSlayerTask
 } from '../modules/config'
 import { fetchGe } from '../modules/ge'
@@ -30,7 +30,7 @@ const menu = [
     component: Home,
     data: props => ({
       task: props.slayerTask,
-      kc: props.killCounts
+      bossLog: props.bossLog
     })
   },
   {
@@ -162,7 +162,7 @@ export default connect(
     ge: state.ge,
     accounts: getAccounts(state),
     slayerTask: getSlayerTask(state),
-    killCounts: getKillCounts(state)
+    bossLog: getBossLog(state)
   }),
   dispatch =>
     bindActionCreators(

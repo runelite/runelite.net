@@ -2,6 +2,7 @@ import { createActions, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
 import api from '../api'
 import { getLatestRelease } from './git'
+import { flattenMap } from '../util'
 
 const runeliteApi = api('https://api.runelite.net/')
 const configNameFilters = [
@@ -120,35 +121,52 @@ export const getSlayerTask = createSelector(
   }
 )
 
-export const getKillCounts = createSelector(
+export const getBossLog = createSelector(
   getConfig,
   getSelectedAccount,
   (config, selectedAccount) => {
-    const prefix = 'killcount.'
-    const kcs = []
+    const kcPrefix = 'killcount.'
+    const pbPrefix = 'personalbest.'
+    const data = new Map()
 
     if (!selectedAccount) {
-      return kcs
+      return flattenMap(data)
     }
 
     for (let [key, value] of Object.entries(config)) {
-      if (!key.startsWith(prefix)) {
-        continue
+      if (key.startsWith(kcPrefix)) {
+        key = key.replace(kcPrefix, '')
+
+        if (!key.startsWith(selectedAccount)) {
+          continue
+        }
+
+        key = key.replace(selectedAccount + '.', '')
+
+        if (data.has(key)) {
+          const existing = data.get(key)
+          existing.kc = value
+        } else {
+          data.set(key, { kc: value })
+        }
+      } else if (key.startsWith(pbPrefix)) {
+        key = key.replace(pbPrefix, '')
+
+        if (!key.startsWith(selectedAccount)) {
+          continue
+        }
+
+        key = key.replace(selectedAccount + '.', '')
+
+        if (data.has(key)) {
+          const existing = data.get(key)
+          existing.pb = value
+        } else {
+          data.set(key, { pb: value })
+        }
       }
-
-      key = key.replace(prefix, '')
-
-      if (!key.startsWith(selectedAccount)) {
-        continue
-      }
-
-      key = key.replace(selectedAccount + '.', '')
-      kcs.push({
-        name: key,
-        count: value
-      })
     }
 
-    return kcs
+    return flattenMap(data)
   }
 )

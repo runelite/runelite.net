@@ -29,22 +29,31 @@ const buildSlayerTask = slayerTask => {
   )
 }
 
-const buildKillCounters = killCounts => {
-  if (killCounts.length === 0) {
+const buildBossLog = bossLog => {
+  if (bossLog.length === 0) {
     return <noscript />
   }
 
   return (
     <div class="card">
       <div class="card-header p-1">
-        <img class="icon" alt="" src="/img/skillicons/attack.png" /> Kill
-        Counters
+        <img class="icon" alt="" src="/img/skillicons/attack.png" /> Boss Log
       </div>
       <ul class="list-group">
-        {killCounts.map(e => (
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            {e.name.toTitleCase()}
-            <span class="badge badge-primary badge-pill">{e.count}</span>
+        {bossLog.map(e => (
+          <li class="list-group-item">
+            {e.name.toTitleCase()}{' '}
+            <div class="float-right">
+              Kills: <span class="badge badge-primary badge-pill">{e.kc}</span>{' '}
+              {e.pb ? (
+                <span>
+                  Personal best:{' '}
+                  <span class="badge badge-info badge-pill">{e.pb}s</span>
+                </span>
+              ) : (
+                <noscript />
+              )}
+            </div>
           </li>
         ))}
       </ul>
@@ -57,12 +66,12 @@ class Home extends Component {
     this.props.fetchReleases().then(() => this.props.fetchConfig())
   }
 
-  render({ slayerTask, killCounts }) {
+  render({ slayerTask, bossLog }) {
     return (
       <div>
         {buildSlayerTask(slayerTask)}
         <br />
-        {buildKillCounters(killCounts)}
+        {buildBossLog(bossLog)}
       </div>
     )
   }
