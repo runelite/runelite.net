@@ -100,19 +100,23 @@ export default handleActions(
 )
 
 // Selectors
-export const getLoot = state =>
-  state.loot.data
-    .filter(
-      l =>
-        !state.loot.filter.name ||
-        l.eventId
-          .toLowerCase()
-          .indexOf(state.loot.filter.name.toLowerCase()) !== -1
-    )
-    .sort((a, b) => b.date - a.date)
+export const getLoot = state => state.loot.data
+export const getLootFilter = state => state.loot.filter
+export const getFilteredLoot = createSelector(
+  getLoot,
+  getLootFilter,
+  (data, filter) =>
+    data
+      .filter(
+        l =>
+          !filter.name ||
+          l.eventId.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1
+      )
+      .sort((a, b) => b.date - a.date)
+)
 
 export const getGroupedLoot = createSelector(
-  getLoot,
+  getFilteredLoot,
   loot => {
     const groupedLoot = new Map()
 

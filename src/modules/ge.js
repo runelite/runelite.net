@@ -2,6 +2,7 @@ import { uniq, concat } from 'ramda'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
 import { getLatestRelease } from './git'
+import { createSelector } from 'reselect'
 
 const runeliteApi = api('https://api.runelite.net/')
 const runeliteStaticApi = api('https://static.runelite.net/')
@@ -84,11 +85,18 @@ export default handleActions(
 )
 
 // Selectors
-export const getGe = state =>
-  state.ge.data
-    .filter(
-      l =>
-        !state.ge.filter.name ||
-        l.name.toLowerCase().indexOf(state.ge.filter.name.toLowerCase()) !== -1
-    )
-    .sort((a, b) => b.date - a.date)
+export const getGe = state => state.ge.data
+export const getGeFilter = state => state.ge.filter
+
+export const getFilteredGe = createSelector(
+  getGe,
+  getGeFilter,
+  (data, filter) =>
+    data
+      .filter(
+        l =>
+          !filter.name ||
+          l.name.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1
+      )
+      .sort((a, b) => b.date - a.date)
+)

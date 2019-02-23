@@ -13,6 +13,7 @@ import {
   fetchLoot,
   getGroupedLoot,
   getLoot,
+  getLootFilter,
   setLootFilter
 } from '../modules/loot'
 import { fetchReleases } from '../modules/git'
@@ -24,7 +25,13 @@ import {
   getBossLog,
   getSlayerTask
 } from '../modules/config'
-import { fetchGe, getGe, setGeFilter } from '../modules/ge'
+import {
+  fetchGe,
+  getFilteredGe,
+  getGe,
+  getGeFilter,
+  setGeFilter
+} from '../modules/ge'
 import GrandExchange from '../components/account/GrandExchange'
 
 const menu = [
@@ -44,11 +51,11 @@ const menu = [
     icon: 'fa-fw fas fa-balance-scale',
     component: GrandExchange,
     data: props =>
-      props.ge.map(ge => ({
+      props.rawGe.map(ge => ({
         buy: ge.buy,
         itemId: ge.itemId,
         quantity: ge.quantity,
-        price: ge.prixe,
+        price: ge.price,
         time: ge.time
       }))
   },
@@ -164,12 +171,13 @@ export default connect(
     ...state.config,
     rawLoot: getLoot(state),
     loot: getGroupedLoot(state),
-    ge: getGe(state),
-    geFilter: state.ge.filter,
+    lootFilter: getLootFilter(state),
+    rawGe: getGe(state),
+    ge: getFilteredGe(state),
+    geFilter: getGeFilter(state),
     accounts: getAccounts(state),
     slayerTask: getSlayerTask(state),
-    bossLog: getBossLog(state),
-    lootFilter: state.loot.filter
+    bossLog: getBossLog(state)
   }),
   dispatch =>
     bindActionCreators(
