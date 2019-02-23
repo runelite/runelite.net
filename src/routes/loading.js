@@ -9,7 +9,7 @@ const Loading = () => (
     <Layout>
       <h1>Loading...</h1>
       <hr />
-      <div>Please wait until you will be redirected.</div>
+      <div>Please wait while you are redirected.</div>
     </Layout>
   </div>
 )
