@@ -16,9 +16,9 @@
 .drop-quantity {
   position: absolute;
   left: 4px;
-  top: -2px;
-  color: yellow;
-  text-shadow: black 1px 1px;
+  top: -4px;
+  color: black;
+  text-shadow: white 1px 1px;
   font-size: small;
 }
 
