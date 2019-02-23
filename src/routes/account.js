@@ -8,12 +8,12 @@ import Meta from '../components/meta'
 import { isLoggedIn, logout } from '../modules/account'
 import Redirect from '../components/redirect'
 import { find, propEq } from 'ramda'
-import LootTracker from '../components/account/LootTracker'
-import Home from '../components/account/Home'
 import { changeAccount, getAccounts } from '../modules/config'
-import GrandExchange from '../components/account/GrandExchange'
 import { getGe } from '../modules/ge'
 import { getLoot } from '../modules/loot'
+import Home from './account/home'
+import GrandExchange from './account/grand-exchange'
+import LootTracker from './account/loot-tracker'
 
 const menu = [
   {

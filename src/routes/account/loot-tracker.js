@@ -1,5 +1,5 @@
 import { Component, h } from 'preact'
-import '../tooltip.css'
+import '../../components/tooltip.css'
 import './loot-tracker.css'
 import { connect } from 'preact-redux'
 import {
