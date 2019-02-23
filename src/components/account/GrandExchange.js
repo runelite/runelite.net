@@ -62,7 +62,7 @@ class GrandExchange extends Component {
   render({ ge, geFilter, setGeFilter }) {
     return (
       <div>
-        <div class="input-group mb-3" style={{ width: '100%' }}>
+        <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">
               <i class="fas fa-search" />
@@ -73,7 +73,7 @@ class GrandExchange extends Component {
             class="form-control"
             placeholder="Search..."
             value={geFilter.name}
-            onChange={this.handleChange}
+            onInput={this.handleChange}
           />
         </div>
         <ul class="list-group list-group-small">

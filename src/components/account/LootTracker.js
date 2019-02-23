@@ -106,7 +106,7 @@ class LootTracker extends Component {
   render({ loot, lootFilter, setLootFilter }) {
     return (
       <div>
-        <div class="input-group mb-3" style={{ width: '100%' }}>
+        <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">
               <i class="fas fa-search" />
@@ -117,7 +117,7 @@ class LootTracker extends Component {
             class="form-control"
             placeholder="Search..."
             value={lootFilter.name}
-            onChange={this.handleChange}
+            onInput={this.handleChange}
           />
         </div>
 
