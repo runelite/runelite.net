@@ -9,7 +9,12 @@ const runeliteApi = api('https://api.runelite.net/')
 const runeliteStaticApi = api('https://static.runelite.net/')
 
 // Actions
-export const { fetchLoot, setLoot, setLootRange } = createActions(
+export const {
+  fetchLoot,
+  setLoot,
+  setLootRange,
+  setLootFilter
+} = createActions(
   {
     FETCH_LOOT: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState()).name
@@ -63,20 +68,49 @@ export const { fetchLoot, setLoot, setLootRange } = createActions(
     }
   },
   'SET_LOOT',
-  'SET_LOOT_RANGE'
+  'SET_LOOT_RANGE',
+  'SET_LOOT_FILTER'
 )
 
 // Reducer
 export default handleActions(
   {
-    [setLoot]: (state, { payload }) => uniq(concat(state, payload)),
-    [setLootRange]: (state, { payload }) => payload
+    [setLoot]: (state, { payload }) => ({
+      ...state,
+      data: uniq(concat(state.data, payload))
+    }),
+    [setLootRange]: (state, { payload }) => ({
+      ...state,
+      data: payload
+    }),
+    [setLootFilter]: (state, { payload }) => ({
+      ...state,
+      filter: {
+        ...state.filter,
+        ...payload
+      }
+    })
   },
-  []
+  {
+    filter: {
+      name: ''
+    },
+    data: []
+  }
 )
 
 // Selectors
-export const getLoot = state => state.loot.sort((a, b) => b.date - a.date)
+export const getLoot = state =>
+  state.loot.data
+    .filter(
+      l =>
+        !state.loot.filter.name ||
+        l.eventId
+          .toLowerCase()
+          .indexOf(state.loot.filter.name.toLowerCase()) !== -1
+    )
+    .sort((a, b) => b.date - a.date)
+
 export const getGroupedLoot = createSelector(
   getLoot,
   loot => {

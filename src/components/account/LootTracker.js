@@ -92,10 +92,36 @@ const buildLootRecord = record => (
 class LootTracker extends Component {
   componentDidMount() {
     this.props.fetchReleases().then(() => this.props.fetchLoot())
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  render({ loot }) {
-    return <div class="card-columns">{loot.map(buildLootRecord)}</div>
+  handleChange(event) {
+    this.props.setLootFilter({
+      name: event.target.value
+    })
+  }
+
+  render({ loot, lootFilter, setLootFilter }) {
+    return (
+      <div>
+        <div class="input-group mb-3" style={{ width: '100%' }}>
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fas fa-search" />
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            value={lootFilter.name}
+            onChange={this.handleChange}
+          />
+        </div>
+
+        <div class="card-columns">{loot.map(buildLootRecord)}</div>
+      </div>
+    )
   }
 }
 

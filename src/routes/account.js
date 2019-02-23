@@ -9,7 +9,12 @@ import { isLoggedIn, logout } from '../modules/account'
 import Redirect from '../components/redirect'
 import { find, propEq } from 'ramda'
 import LootTracker from '../components/account/LootTracker'
-import { fetchLoot, getGroupedLoot, getLoot } from '../modules/loot'
+import {
+  fetchLoot,
+  getGroupedLoot,
+  getLoot,
+  setLootFilter
+} from '../modules/loot'
 import { fetchReleases } from '../modules/git'
 import Home from '../components/account/Home'
 import {
@@ -162,11 +167,20 @@ export default connect(
     ge: state.ge,
     accounts: getAccounts(state),
     slayerTask: getSlayerTask(state),
-    bossLog: getBossLog(state)
+    bossLog: getBossLog(state),
+    lootFilter: state.loot.filter
   }),
   dispatch =>
     bindActionCreators(
-      { logout, fetchReleases, fetchConfig, changeAccount, fetchLoot, fetchGe },
+      {
+        logout,
+        fetchReleases,
+        fetchConfig,
+        changeAccount,
+        fetchLoot,
+        fetchGe,
+        setLootFilter
+      },
       dispatch
     )
 )(Account)
