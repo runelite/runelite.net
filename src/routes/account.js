@@ -24,7 +24,7 @@ import {
   getBossLog,
   getSlayerTask
 } from '../modules/config'
-import { fetchGe } from '../modules/ge'
+import { fetchGe, getGe, setGeFilter } from '../modules/ge'
 import GrandExchange from '../components/account/GrandExchange'
 
 const menu = [
@@ -164,7 +164,8 @@ export default connect(
     ...state.config,
     rawLoot: getLoot(state),
     loot: getGroupedLoot(state),
-    ge: state.ge,
+    ge: getGe(state),
+    geFilter: state.ge.filter,
     accounts: getAccounts(state),
     slayerTask: getSlayerTask(state),
     bossLog: getBossLog(state),
@@ -179,7 +180,8 @@ export default connect(
         changeAccount,
         fetchLoot,
         fetchGe,
-        setLootFilter
+        setLootFilter,
+        setGeFilter
       },
       dispatch
     )

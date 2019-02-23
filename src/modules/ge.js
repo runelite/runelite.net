@@ -7,7 +7,7 @@ const runeliteApi = api('https://api.runelite.net/')
 const runeliteStaticApi = api('https://static.runelite.net/')
 
 // Actions
-export const { fetchGe, setGe, setGeRange } = createActions(
+export const { fetchGe, setGe, setGeRange, setGeFilter } = createActions(
   {
     FETCH_GE: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState()).name
@@ -52,14 +52,43 @@ export const { fetchGe, setGe, setGeRange } = createActions(
     }
   },
   'SET_GE',
-  'SET_GE_RANGE'
+  'SET_GE_RANGE',
+  'SET_GE_FILTER'
 )
 
 // Reducer
 export default handleActions(
   {
-    [setGe]: (state, { payload }) => uniq(concat(state, payload)),
-    [setGeRange]: (state, { payload }) => payload
+    [setGe]: (state, { payload }) => ({
+      ...state,
+      data: uniq(concat(state.data, payload))
+    }),
+    [setGeRange]: (state, { payload }) => ({
+      ...state,
+      data: payload
+    }),
+    [setGeFilter]: (state, { payload }) => ({
+      ...state,
+      filter: {
+        ...state.filter,
+        ...payload
+      }
+    })
   },
-  []
+  {
+    filter: {
+      name: ''
+    },
+    data: []
+  }
 )
+
+// Selectors
+export const getGe = state =>
+  state.ge.data
+    .filter(
+      l =>
+        !state.ge.filter.name ||
+        l.name.toLowerCase().indexOf(state.ge.filter.name.toLowerCase()) !== -1
+    )
+    .sort((a, b) => b.date - a.date)

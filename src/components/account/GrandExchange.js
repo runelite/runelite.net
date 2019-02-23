@@ -50,13 +50,36 @@ const buildRecord = record => (
 class GrandExchange extends Component {
   componentDidMount() {
     this.props.fetchReleases().then(() => this.props.fetchGe())
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  render({ ge }) {
+  handleChange(event) {
+    this.props.setGeFilter({
+      name: event.target.value
+    })
+  }
+
+  render({ ge, geFilter, setGeFilter }) {
     return (
-      <ul class="list-group list-group-small">
-        {ge.sort((a, b) => b.date - a.date).map(buildRecord)}
-      </ul>
+      <div>
+        <div class="input-group mb-3" style={{ width: '100%' }}>
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fas fa-search" />
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            value={geFilter.name}
+            onChange={this.handleChange}
+          />
+        </div>
+        <ul class="list-group list-group-small">
+          {ge.sort((a, b) => b.date - a.date).map(buildRecord)}
+        </ul>
+      </div>
     )
   }
 }
