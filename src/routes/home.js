@@ -9,8 +9,7 @@ import {
   fetchReleases,
   fetchRepository,
   getLatestCommit,
-  getLatestRelease,
-  getStargazers
+  getLatestRelease
 } from '../modules/git'
 import hero from '../_data/hero'
 import features from '../_data/features'
@@ -21,7 +20,7 @@ import { Link } from 'preact-router'
 import Async from '../components/async'
 import prepare from '../components/prepare'
 
-const Home = ({ commit, release, stars, sessionCount }) => (
+const Home = ({ commit, release, sessionCount }) => (
   <div style={{ height: 'inherit' }}>
     <Meta
       title={`${hero.title} - Open Source Old School RuneScape Client`}
@@ -30,7 +29,6 @@ const Home = ({ commit, release, stars, sessionCount }) => (
     <Hero
       {...hero}
       release={release.name}
-      stars={stars}
       commit={commit}
       playing={sessionCount}
     />
@@ -73,7 +71,6 @@ const Home = ({ commit, release, stars, sessionCount }) => (
 const mapStateToProps = (state, props) => ({
   commit: getLatestCommit(state, props),
   release: getLatestRelease(state, props),
-  stars: getStargazers(state, props),
   sessionCount: getSessionCount(state, props)
 })
 
@@ -95,7 +92,6 @@ const prepareComponentData = async ({
   fetchSessionCount
 }) => {
   fetchCommits()
-  fetchRepository()
   await fetchReleases()
   await fetchSessionCount()
 }

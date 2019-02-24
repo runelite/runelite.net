@@ -3,10 +3,11 @@ import { Provider } from 'preact-redux'
 import App from './components/app'
 import configureStore from './store'
 import { sessionCheck } from './modules/account'
-import { fetchReleases } from './modules/git'
+import { fetchReleases, fetchRepository } from './modules/git'
 
 // Check session and get API version
 const callback = async store => {
+  store.dispatch(fetchRepository())
   await store.dispatch(fetchReleases())
   await store.dispatch(sessionCheck())
 }
