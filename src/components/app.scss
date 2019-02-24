@@ -41,11 +41,6 @@ pre {
   height: 30px;
 }
 
-.img-thumbnail {
-  padding: 0;
-  margin-right: 5px;
-}
-
 .recharts-tooltip-wrapper,
 .recharts-tooltip-cursor,
 .recharts-default-tooltip,
@@ -62,9 +57,10 @@ pre {
 
 .card-header,
 .list-group-small .list-group-item {
-  padding: 5px;
+  padding: map-get($spacers, 1);
 }
 
+.icon-small,
 .list-group-small .icon {
   width: 20px;
   height: 20px;

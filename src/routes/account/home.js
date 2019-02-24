@@ -13,9 +13,10 @@ const buildSlayerTask = slayerTask => {
   }
 
   return (
-    <div class="card">
-      <div class="card-header p-1">
-        <img class="icon" alt="" src="/img/skillicons/slayer.png" /> Slayer Task
+    <div class="card mb-3">
+      <div class="card-header">
+        <img class="icon-small" alt="" src="/img/skillicons/slayer.png" />{' '}
+        Slayer Task
       </div>
       <div class="card-body">
         <h5 class="card-title">
@@ -41,11 +42,12 @@ const buildBossLog = bossLog => {
   }
 
   return (
-    <div class="card">
-      <div class="card-header p-1">
-        <img class="icon" alt="" src="/img/skillicons/attack.png" /> Boss Log
+    <div class="card border-0">
+      <div class="card-header border">
+        <img class="icon-small" alt="" src="/img/skillicons/attack.png" /> Boss
+        Log
       </div>
-      <ul class="list-group">
+      <ul class="list-group list-group-small">
         {bossLog.map(e => (
           <li class="list-group-item">
             {e.name.toTitleCase()}{' '}
@@ -72,7 +74,6 @@ const buildBossLog = bossLog => {
 const Home = ({ slayerTask, bossLog }) => (
   <div>
     {buildSlayerTask(slayerTask)}
-    <br />
     {buildBossLog(bossLog)}
   </div>
 )
