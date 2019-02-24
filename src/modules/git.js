@@ -32,7 +32,12 @@ export const {
       dispatch(setRepository(response))
       return response
     },
-    FETCH_RELEASES: () => async dispatch => {
+    FETCH_RELEASES: () => async (dispatch, getState) => {
+      const state = getState()
+      if (state.git.releases.length > 0) {
+        return state.git.releases
+      }
+
       const response = await githubApi(
         `repos/${git.user}/${git.repository}/tags`,
         { method: 'GET' }
