@@ -1,7 +1,7 @@
 module.exports = {
   title: 'RuneLite',
   url: 'https://runelite.net',
-  logo: '/img/logo.png',
+  logo: '/img/runelite_logo_transparent.png',
   description: `
     RuneLite is a free, open-source and super fast client for Old School
     RuneScape. You can download the RuneLite launcher for various platforms below

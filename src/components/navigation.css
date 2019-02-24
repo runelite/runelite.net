@@ -7,12 +7,52 @@
 }
 
 .navbar-gradient {
-  background: linear-gradient(rgba(0, 0, 0, 0.7) 40%, transparent);
+  height: 55px;
+  background: #1e1e1e;
 }
 
 .navbar-gradient .navbar-nav .nav-link {
   color: white;
-  text-shadow: black 1px 1px 2px;
+  font-family: 'Roboto medium';
+  font-size: 13px;
+  margin: 8px;
+}
+
+.navbar-gradient .navbar-nav .nav-icon {
+  color: white;
+  font-size: 13px;
+  margin: 8px 0px;
+}
+
+.navbar-gradient .navbar-nav button {
+  font-family: 'Roboto medium';
+  font-size: 13px;
+  padding: 4px 10px;
+  background: #434343;
+  border: none;
+  margin-top: 11px;
+  margin-left: 20px;
+}
+
+.navbar-gradient .navbar-nav button:hover {
+  background: #595959;
+}
+
+.navbar-gradient .navbar-nav .dropdown-menu {
+  background: #1e1e1e;
+  font-size: 13px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.navbar-gradient .navbar-nav .dropdown-menu .dropdown-item {
+  color: white;
+  padding: 10px;
+}
+
+.navbar-gradient .navbar-nav .dropdown-menu .dropdown-item:hover {
+  color: gray;
+  background: inherit;
 }
 
 .navbar-light {
