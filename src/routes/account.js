@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h } from 'preact'
 import { connect } from 'preact-redux'
 import { Link } from 'preact-router'
 import { bindActionCreators } from 'redux'
@@ -101,63 +101,72 @@ const accountMenu = (account, selectedAccount, changeAccount) => (
   </button>
 )
 
-class Account extends Component {
-  render({ tag, accounts, changeAccount, loggedIn, logout, ...props }) {
-    if (!loggedIn) {
-      return <Redirect to="/" />
-    }
-
-    const currentMenu = find(propEq('tag', tag), menu)
-    const MenuBody = menuBody(currentMenu)
-
-    return (
-      <Layout>
-        <Meta title={`${currentMenu.label} - Account - ${hero.title}`} />
-        <div class="row">
-          <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
-            <ul class="list-group list-group-small mb-4">
-              {menuItems(currentMenu)}
-              {menuExport(currentMenu, props)}
-            </ul>
-            <ul class="list-group list-group-small mb-4">
-              {currentMenu.tag === 'home' ? (
-                accounts.map(a =>
-                  accountMenu(a, props.selectedAccount, changeAccount)
-                )
-              ) : (
-                <noscript />
-              )}
-              <button
-                class="list-group-item list-group-item-action list-group-item-danger"
-                onClick={logout}
-              >
-                <i class="fas fa-fw fa-power-off" /> Logout
-              </button>
-            </ul>
-          </div>
-          <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
-            <MenuBody {...props} />
-          </div>
-        </div>
-      </Layout>
-    )
+const Account = ({
+  tag,
+  accounts,
+  changeAccount,
+  loggedIn,
+  logout,
+  ...props
+}) => {
+  if (!loggedIn) {
+    return <Redirect to="/" />
   }
+
+  const currentMenu = find(propEq('tag', tag), menu)
+  const MenuBody = menuBody(currentMenu)
+
+  return (
+    <Layout>
+      <Meta title={`${currentMenu.label} - Account - ${hero.title}`} />
+      <div class="row">
+        <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
+          <ul class="list-group list-group-small mb-4">
+            {menuItems(currentMenu)}
+            {menuExport(currentMenu, props)}
+          </ul>
+          <ul class="list-group list-group-small mb-4">
+            {currentMenu.tag === 'home' ? (
+              accounts.map(a =>
+                accountMenu(a, props.selectedAccount, changeAccount)
+              )
+            ) : (
+              <noscript />
+            )}
+            <button
+              class="list-group-item list-group-item-action list-group-item-danger"
+              onClick={logout}
+            >
+              <i class="fas fa-fw fa-power-off" /> Logout
+            </button>
+          </ul>
+        </div>
+        <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
+          <MenuBody {...props} />
+        </div>
+      </div>
+    </Layout>
+  )
 }
 
+const mapStateToProps = (state, props) => ({
+  ...props,
+  loggedIn: isLoggedIn(state),
+  accounts: getAccounts(state),
+  rawGe: getGe(state),
+  rawLoot: getLoot(state)
+})
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      logout,
+      changeAccount
+    },
+    dispatch
+  )
+
 export default connect(
-  (state, props) => ({
-    ...props,
-    loggedIn: isLoggedIn(state),
-    accounts: getAccounts(state),
-    rawGe: getGe(state),
-    rawLoot: getLoot(state)
-  }),
-  dispatch =>
-    bindActionCreators(
-      {
-        logout,
-        changeAccount
-      },
-      dispatch
-    )
+  mapStateToProps,
+  mapDispatchToProps
 )(Account)
