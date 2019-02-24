@@ -8,7 +8,12 @@ import Meta from '../components/meta'
 import { isLoggedIn, logout } from '../modules/account'
 import Redirect from '../components/redirect'
 import { find, propEq } from 'ramda'
-import { changeAccount, getAccounts } from '../modules/config'
+import {
+  changeAccount,
+  getAccounts,
+  getBossLog,
+  getSlayerTask
+} from '../modules/config'
 import { getGe } from '../modules/ge'
 import { getLoot } from '../modules/loot'
 import Home from './account/home'
@@ -21,9 +26,9 @@ const menu = [
     label: 'Home',
     icon: 'fa-fw fas fa-home',
     component: Home,
-    data: props => ({
-      task: props.slayerTask,
-      bossLog: props.bossLog
+    data: ({ slayerTask, bossLog }) => ({
+      slayerTask,
+      bossLog
     })
   },
   {
@@ -31,8 +36,8 @@ const menu = [
     label: 'Grand Exchange',
     icon: 'fa-fw fas fa-balance-scale',
     component: GrandExchange,
-    data: props =>
-      props.rawGe.map(ge => ({
+    data: ({ rawGe }) =>
+      rawGe.map(ge => ({
         buy: ge.buy,
         itemId: ge.itemId,
         quantity: ge.quantity,
@@ -45,8 +50,8 @@ const menu = [
     label: 'Loot Tracker',
     icon: 'fa-fw fas fa-file-invoice-dollar',
     component: LootTracker,
-    data: props =>
-      props.rawLoot.map(entry => ({
+    data: ({ rawLoot }) =>
+      rawLoot.map(entry => ({
         eventId: entry.eventId,
         type: entry.type,
         drops: entry.drops.map(drop => ({
@@ -153,6 +158,8 @@ const mapStateToProps = (state, props) => ({
   ...props,
   loggedIn: isLoggedIn(state),
   accounts: getAccounts(state),
+  slayerTask: getSlayerTask(state),
+  bossLog: getBossLog(state),
   rawGe: getGe(state),
   rawLoot: getLoot(state)
 })
