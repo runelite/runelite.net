@@ -2,3 +2,7 @@
   padding-top: 75px;
   padding-bottom: 15px;
 }
+
+.container {
+  max-width: 960px;
+}

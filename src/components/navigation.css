@@ -6,25 +6,24 @@
   display: block;
 }
 
-.navbar-gradient {
+nav {
   height: 55px;
   background: #1e1e1e;
 }
 
-.navbar-gradient .navbar-nav .nav-link {
-  color: white;
+.navbar-nav .nav-link {
   font-family: 'Roboto medium';
   font-size: 13px;
   margin: 8px;
+  color: white !important;
 }
 
-.navbar-gradient .navbar-nav .nav-icon {
-  color: white;
+.navbar-nav .nav-icon {
   font-size: 13px;
   margin: 8px 0px;
 }
 
-.navbar-gradient .navbar-nav button {
+.navbar-nav button {
   font-family: 'Roboto medium';
   font-size: 13px;
   padding: 4px 10px;
@@ -34,27 +33,59 @@
   margin-left: 20px;
 }
 
-.navbar-gradient .navbar-nav button:hover {
+.navbar-nav button:hover {
   background: #595959;
 }
 
-.navbar-gradient .navbar-nav .dropdown-menu {
+.navbar-nav .dropdown-menu {
   background: #1e1e1e;
   font-size: 13px;
   margin: 0px;
   padding: 0px;
 }
 
-.navbar-gradient .navbar-nav .dropdown-menu .dropdown-item {
+.navbar-nav .dropdown-menu .dropdown-item {
   color: white;
   padding: 10px;
 }
 
-.navbar-gradient .navbar-nav .dropdown-menu .dropdown-item:hover {
+.navbar-nav .dropdown-menu .dropdown-item:hover {
   color: gray;
   background: inherit;
 }
 
 .navbar-light {
   border-bottom: 1px solid lightgray;
+}
+
+@media (max-width: 960px) {
+  #navbar {
+    position: absolute;
+    top: 55px;
+    left: 0px;
+    width: 100%;
+    background: #1e1e1e;
+  }
+
+  .navbar-brand img {
+    margin-bottom: 10px;
+  }
+
+  #navbar .nav-item {
+    border-top: 1px solid #3a3a3a;
+    padding-left: 10px;
+  }
+
+  #navbar .nav-item a i {
+    display: none;
+  }
+
+  #navbar .nav-item a span {
+    margin-left: 7px;
+  }
+
+  #navbar .nav-item button {
+    margin-bottom: 12px;
+    margin-left: 5px;
+  }
 }

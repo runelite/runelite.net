@@ -5,13 +5,8 @@ import links from '../_data/links'
 import { Link } from 'preact-router'
 import { getChristmasImage } from '../season'
 
-const Navigation = ({ stars, dark, login, loggedIn, username }) => (
-  <nav
-    class={
-      'navbar navbar-expand-lg fixed-top ' +
-      (dark ? 'navbar-gradient navbar-dark' : 'navbar-light bg-white')
-    }
-  >
+const Navigation = ({ stars, dark, login, loggedIn, username  }) => (
+  <nav class={'navbar navbar-expand-lg fixed-top navbar-dark'}>
     <Link class="navbar-brand" activeClassName="active" href="/">
       <img src={getChristmasImage(hero.logo)} class="icon" alt="RuneLite" />{' '}
     </Link>
