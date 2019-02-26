@@ -23,6 +23,7 @@ export const {
       const baseUrl = getBaseUrl()
 
       const loadingPane = window.open(baseUrl + '/loading', '_blank')
+      loadingPane.focus()
 
       const authResponse = await runeliteApi(
         `runelite-${version}/account/login?uuid=${localUuid}`,
