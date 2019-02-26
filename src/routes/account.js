@@ -12,6 +12,7 @@ import {
   changeAccount,
   getAccounts,
   getBossLog,
+  getSelectedAccount,
   getSlayerTask
 } from '../modules/config'
 import { getGe } from '../modules/ge'
@@ -158,6 +159,7 @@ const mapStateToProps = (state, props) => ({
   ...props,
   loggedIn: isLoggedIn(state),
   accounts: getAccounts(state),
+  selectedAccount: getSelectedAccount(state),
   slayerTask: getSlayerTask(state),
   bossLog: getBossLog(state),
   rawGe: getGe(state),
