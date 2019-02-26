@@ -11,6 +11,7 @@
   "jsnext:main": "./src/index.js",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.7.1",
+    "@gouch/to-title-case": "^2.2.1",
     "bootstrap": "^4.2.1",
     "dayjs": "^1.8.5",
     "platform": "^1.3.5",
@@ -22,8 +23,10 @@
     "recharts": "^1.4.2",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
+    "redux-persist": "^5.10.0",
     "reselect": "^4.0.0",
-    "s-ago": "^2.0.1"
+    "s-ago": "^2.0.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "customize-cra": "^0.2.11",
@@ -42,7 +45,7 @@
     "sitemap-webpack-plugin": "^0.6.0"
   },
   "scripts": {
-    "fix": "eslint --fix src && prettier --write {*,public/*,src/**,src/**/*}.{js,json,css,scss,md}",
+    "fix": "eslint --fix src && prettier --write {*,public/*,src/**,src/**/*,src/**/**/*}.{js,json,css,scss,md}",
     "test": "react-app-rewired test",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build"
