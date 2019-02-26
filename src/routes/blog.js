@@ -19,7 +19,7 @@ const Blog = () => (
           getComponent={() =>
             blog
               .get(id)()
-              .then(({ date, title, description, author }) => (
+              .then(({ id, date, title, description, author }) => (
                 <Link
                   key={id}
                   class="list-group-item list-group-item-action flex-column align-items-start"
