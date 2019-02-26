@@ -31,8 +31,8 @@ const NotFound = () => (
       >
         <h1>404</h1>
         <p class="lead">
-          Sorry, page was not found Click <Link href="/">here</Link> to return
-          to home page.
+          Page not found. Click <Link href="/">here</Link> to return to home
+          page.
         </p>
       </div>
     </div>
