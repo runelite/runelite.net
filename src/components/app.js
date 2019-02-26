@@ -11,6 +11,7 @@ import Redirect from './redirect'
 import Loader from './loader'
 import Async from './async'
 import { getStargazers } from '../modules/git'
+import NotFound from './not-found'
 
 const App = ({ loading, stars, navbarDark }) => (
   <div style={{ height: '100%' }}>
@@ -45,7 +46,7 @@ const App = ({ loading, stars, navbarDark }) => (
         path="/tag/show/:csv"
         getComponent={() => import('../routes/tag-show')}
       />
-      <Async default getComponent={() => import('../routes/not-found')} />
+      <NotFound default />
     </Router>
   </div>
 )

@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import hero from '../_data/hero'
-import Meta from '../components/meta'
+import Meta from './meta'
 import { Link } from 'preact-router'
 
 const NotFound = () => (

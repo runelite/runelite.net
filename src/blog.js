@@ -26,6 +26,16 @@ const blog = require
     return memo.set(parsed.id, resolver)
   }, new Map())
 
+export const getBlog = id => {
+  const post = blog.get(id)
+
+  if (post) {
+    return post()
+  }
+
+  return Promise.resolve({})
+}
+
 export const latest = async () => {
   const values = blog.values()
 
