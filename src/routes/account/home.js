@@ -18,19 +18,26 @@ const buildSlayerTask = slayerTask => {
         <img class="icon-small" alt="" src="/img/skillicons/slayer.png" />{' '}
         Slayer Task
       </div>
-      <div class="card-body">
-        <h5 class="card-title">
-          {slayerTask.name.toTitleCase()}
-          <small>
-            {slayerTask.location ? ' in ' + slayerTask.location : ''}
-          </small>
-        </h5>
-        <p class="card-text">
-          Start: {slayerTask.start}, Remaining: {slayerTask.remaining}
-        </p>
-        <p class="card-text">
-          Streak: {slayerTask.streak}, Points: {slayerTask.points}
-        </p>
+      <div class="card-body d-flex w-100">
+        <div class="d-block">
+          <h5 class="card-title">
+            {slayerTask.name.toTitleCase()}{' '}
+            <span class="badge badge-info">
+              {slayerTask.start - slayerTask.remaining}/{slayerTask.start}
+            </span>
+          </h5>
+          {slayerTask.location ? (
+            <h6 class="card-subtitle text-muted">in {slayerTask.location}</h6>
+          ) : (
+            <noscript />
+          )}
+        </div>
+
+        <div class="ml-auto text-right">
+          Streak: <span class="badge badge-secondary">{slayerTask.streak}</span>
+          <br />
+          Points: <span class="badge badge-secondary">{slayerTask.points}</span>
+        </div>
       </div>
     </div>
   )
