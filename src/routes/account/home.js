@@ -42,7 +42,7 @@ const nameToItemId = name => {
     case 'dagannoth supreme':
       return 12643
     case 'deranged archaeologist':
-      return 21567
+      return 21566
     case 'general graardor':
       return 12650
     case 'giant mole':
