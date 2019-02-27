@@ -20,6 +20,7 @@ import { getLoot } from '../modules/loot'
 import Home from './account/home'
 import GrandExchange from './account/grand-exchange'
 import LootTracker from './account/loot-tracker'
+import NotFound from '../components/not-found'
 
 const menu = [
   {
@@ -120,6 +121,11 @@ const Account = ({
   }
 
   const currentMenu = find(propEq('tag', tag), menu)
+
+  if (!currentMenu) {
+    return <NotFound />
+  }
+
   const MenuBody = menuBody(currentMenu)
 
   return (

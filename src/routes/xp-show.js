@@ -23,6 +23,7 @@ import skills from '../_data/skills'
 import Meta from '../components/meta'
 import prepare from '../components/prepare'
 import { flattenMap, numberWithCommas } from '../util'
+import NotFound from '../components/not-found'
 
 const isNumeric = value => !isNaN(value - parseFloat(value))
 
@@ -66,6 +67,12 @@ const createDateRange = (start, end) => {
 }
 
 const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
+  skill = skill.toLowerCase()
+
+  if (!skillNames.includes(skill)) {
+    return <NotFound />
+  }
+
   const { startDate, endDate } = createDateRange(start, end)
   return (
     <Layout>
@@ -217,7 +224,7 @@ const prepareComponentData = async ({
   const { startDate, endDate } = createDateRange(start, end)
   await fetchReleases()
   await fetchXp({
-    skill,
+    skill: skill.toLowerCase(),
     name,
     start: startDate,
     end: endDate
