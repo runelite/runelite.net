@@ -7,6 +7,9 @@ import Meta from '../components/meta'
 import Async from '../components/async'
 import NotFound from '../components/not-found'
 
+const InnerHTMLHelper = ({ tagName, html }) =>
+  h(tagName, { dangerouslySetInnerHTML: { __html: html } })
+
 const buildPost = ({ date, title, description, author, body }) => {
   if (!body) {
     return <NotFound />
@@ -24,7 +27,9 @@ const buildPost = ({ date, title, description, author, body }) => {
         {ago(date)} by {author}
       </p>
       <hr />
-      <div class="markdown-body" dangerouslySetInnerHTML={{ __html: body }} />
+      <div class="markdown-body">
+        <InnerHTMLHelper tagName="div" html={body} />
+      </div>
     </Layout>
   )
 }
