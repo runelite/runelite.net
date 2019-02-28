@@ -1,0 +1,21 @@
+.card {
+  border: none;
+  background: none;
+  margin-top: 50px;
+}
+
+.card-body {
+  padding: 0px;
+  margin-top: 20px;
+  font-size: 15px;
+  color: #a8a8a8;
+}
+
+.card-title {
+  color: white;
+  font-size: 18px;
+}
+
+.card-title a {
+  color: inherit;
+}

@@ -76,20 +76,23 @@ const Home = ({ commit, release, sessionCount }) => (
         </div>
       </section>
 
-      <h1>
-        Features{' '}
-        <Link href="/features" style={{ fontSize: 18 }}>
-          See all features...
-        </Link>
-      </h1>
-      <hr />
-      <div class="row">
-        {features
-          .filter(feature => feature.home)
-          .map(feature => (
-            <Feature key={feature.title} {...feature} />
-          ))}
-      </div>
+      <section id="features">
+        <div class="content-section">
+          <h1>FEATURES</h1>
+          <Link href="/features" style="color: inherit">
+            <h4>SHOW ALL FEATURES</h4>
+          </Link>
+
+          <div class="row">
+            {features
+              .filter(feature => feature.home)
+              .map(feature => (
+                <Feature key={feature.title} {...feature} />
+              ))}
+          </div>
+        </div>
+      </section>
+
       <h1 id="news">
         Latest news{' '}
         <Link href="/blog" style={{ fontSize: 18 }}>
