@@ -12,7 +12,7 @@ nav {
 }
 
 .navbar-nav .nav-link {
-  font-family: 'Roboto medium';
+  font-family: Lato;
   font-size: 13px;
   margin: 8px;
   color: white !important;
@@ -28,7 +28,7 @@ nav {
 }
 
 .navbar-nav button {
-  font-family: 'Roboto medium';
+  font-family: Lato;
   font-size: 13px;
   padding: 4px 10px;
   background: #434343;

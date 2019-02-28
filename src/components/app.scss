@@ -5,6 +5,11 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~lato-font/scss/_public-api';
 
+@font-face {
+  font-family: Lato;
+  src: url(~lato-font/fonts/lato-normal/lato-normal.woff);
+}
+
 html,
 body,
 #root,
