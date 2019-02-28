@@ -34,10 +34,35 @@
   padding: 20px;
 }
 
-#blog h1 {
+#blog h1,
+#blog-list h1 {
   border-bottom: 1px solid #dc8a00;
   padding-bottom: 10px;
   display: inline-block;
   width: auto;
-  font-size: 24px;
+  font-size: 30px;
+}
+
+#blog-list .content-section {
+  color: white;
+  padding: 60px 0px !important;
+  overflow: hidden;
+}
+
+#blog-list ul {
+  margin-top: 40px;
+}
+
+#blog-list .list-group-item {
+  margin-bottom: 15px;
+  background: #141414;
+  border-radius: 5px;
+}
+
+#blog-list .list-group-item:hover {
+  background: #101010;
+}
+
+#blog-list h5 {
+  color: white;
 }
