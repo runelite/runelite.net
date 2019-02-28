@@ -35,13 +35,14 @@ const Home = ({ commit, release, sessionCount }) => (
       playing={sessionCount}
     />
     <Layout>
-      <Hero
-        {...hero}
-        release={release.name}
-        stars={stars}
-        commit={commit}
-        playing={sessionCount}
-      />
+      <section id="intro">
+        <Hero
+          {...hero}
+          release={release.name}
+          commit={commit}
+          playing={sessionCount}
+        />
+      </section>
 
       <section id="about">
         <div class="content-section">
@@ -49,7 +50,7 @@ const Home = ({ commit, release, sessionCount }) => (
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/l2vUWMyQ594"
+              src={hero.video_url}
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
@@ -58,15 +59,7 @@ const Home = ({ commit, release, sessionCount }) => (
 
           <div class="info">
             <h1>WHAT IS RUNELITE</h1>
-            <p style="white-space: pre-line">
-              Curabitur pretium ut risus non eleifend. Vestibulum ante ipsum
-              primis in faucibus orci luctus et ultrices posuere cubilia Curae.
-              {'\n'}
-              {'\n'}
-              In hac habitasse platea dictumst. Duis diam metus, semper dictum
-              urna in, finibus feugiat ligula. Donec lacinia nec erat vel
-              tempor. Proin euismod nunc quis diam maximus malesuada.
-            </p>
+            <p style="white-space: pre-line">{hero.about}</p>
             <a href={links.github} title="GitHub">
               <i class="fab fa-github" />
             </a>

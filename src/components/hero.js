@@ -9,6 +9,7 @@ import {
   makeNavbarDefault,
   nextHeroImage
 } from '../modules/app'
+import links from '../_data/links'
 import Commit from './commit'
 
 function isOsCorrect(osName) {
@@ -132,25 +133,29 @@ class Hero extends Component {
       >
         <div class="jumbotron-cell">
           <div class="jumbotron-body">
-            <h1 class="display-2">{title}</h1>
-            <p class="lead">{description}</p>
-            <p class="lead">
-              <div class="btn-group dropdown">
+            <div class="jumbotron-header">
+              <h1>
+                RUNELITE<span>.NET</span>
+              </h1>
+              <p>{description}</p>
+
+              <a id="contribute" class="btn" href={links.github}>
+                Contribute
+              </a>
+
+              <div id="download" class="dropdown show">
                 <a
-                  class={'btn btn-' + mainDropdownItem.color}
-                  href={mainDropdownItem.link}
+                  class="btn btn-secondary dropdown-toggle"
+                  role="button"
+                  id="dropdownMenuLink"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
-                  <i class={mainDropdownItem.icon} /> {mainDropdownItem.text}
+                  Download
                 </a>
-                <button
-                  class={
-                    'btn dropdown-toggle dropdown-toggle-split btn-' +
-                    mainDropdownItem.color
-                  }
-                >
-                  <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu" style={{ textShadow: 'none' }}>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   {dropdownButtons.map(({ link, icon, text }) => (
                     <a class="dropdown-item" href={link} native>
                       <i class={icon} /> {text}
@@ -158,24 +163,16 @@ class Hero extends Component {
                   ))}
                 </div>
               </div>
-              {regularButtons.map(({ link, color, icon, text }) => (
-                <span key={link}>
-                  {' '}
-                  <a class={'btn btn-' + color} href={link}>
-                    <i class={icon} /> {text}
-                  </a>
-                  <br style={{ marginBottom: 10 }} class="d-md-none" />
-                </span>
-              ))}
-            </p>
+            </div>
+
             <div class="small">
+              <h6>Players online:</h6>
+              {playing || 'unknown'}
+
+              <h6>Latest release:</h6>
+              <a href="#news">{release || 'unknown'}</a>
+
               <Commit {...commit} />
-              <b>Latest release:</b>{' '}
-              <a href="#news" style={{ color: 'cyan' }}>
-                {release || 'unknown'}
-              </a>
-              <br />
-              <b>Players online:</b> {playing || 'unknown'}
             </div>
           </div>
         </div>

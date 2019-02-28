@@ -5,17 +5,112 @@
   display: table;
   width: 100%;
   margin: 0;
-  height: 100%;
+  height: calc(100vh - 55px);
   background: rgba(0, 0, 0, 0.4) no-repeat center center fixed;
   background-size: cover;
+  padding-bottom: 0px;
 }
 
 .jumbotron-cell {
   display: table-cell;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .jumbotron-body {
-  max-width: 1000px;
-  padding: 25px 25px 25px 50px;
+  margin: auto;
+  padding: 50px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.jumbotron-header {
+  max-width: 300px;
+  width: auto;
+  margin-bottom: 50px;
+}
+
+#intro h1 {
+  font-family: cocogoose;
+  margin-left: -5px;
+  text-shadow: 1px 1px black;
+}
+
+#intro h1 span {
+  color: #dc8a00;
+}
+
+#intro p {
+  max-width: 300px;
+  font-size: 17px;
+  text-shadow: 1px 1px black;
+}
+
+#intro #contribute {
+  width: calc(50% - 10px);
+  border-radius: 5px;
+  border: 1px solid white;
+  background: none;
+  color: white;
+  font-weight: 500;
+}
+
+#intro #contribute:hover {
+  opacity: 0.7;
+}
+
+#intro #download {
+  float: right;
+  width: calc(50% - 10px);
+  margin-right: 5px;
+}
+
+#intro #download .dropdown-toggle {
+  color: white;
+  border-radius: 5px;
+  background: #dc8a00;
+  border-color: #a56a06;
+  margin: 0px;
+  width: 100%;
+}
+
+#intro #download .dropdown-toggle::after {
+  margin-left: 10px;
+}
+
+#intro .small h6 {
+  margin: 0px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #dc8a00;
+  margin-top: 10px;
+}
+
+#intro .small {
+  text-shadow: 1px 1px black;
+}
+
+#intro .small a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (max-width: 400px) {
+  .jumbotron-header {
+    max-width: 100%;
+    width: auto;
+    padding: 0px;
+  }
+
+  .jumbotron-body {
+    padding: 20px;
+  }
+
+  #intro #contribute,
+  #intro #download .dropdown-toggle {
+    font-size: 14px;
+  }
+
+  #intro h1 {
+    font-size: 32px;
+  }
 }

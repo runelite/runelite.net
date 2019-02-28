@@ -9,7 +9,6 @@
 
 #about .content-section {
   background: #232323;
-  min-height: 500px;
   color: white;
   padding: 100px 0px;
 }
@@ -39,6 +38,9 @@
 #about .info p {
   margin-top: 20px;
   font-size: 16px;
+  color: #cccccc;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 #about .info i {
