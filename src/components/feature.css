@@ -19,3 +19,19 @@
 .card-title a {
   color: inherit;
 }
+
+#features .content-section {
+  background: #232323;
+  color: white;
+  padding: 60px 0px;
+  overflow: hidden;
+}
+
+#features .content-section h1 {
+  border-bottom: 1px solid #dc8a00;
+  padding-bottom: 10px;
+  display: inline-block;
+  width: auto;
+  font-size: 30px;
+  color: white;
+}
