@@ -15,7 +15,7 @@
 #about .content-section {
   background: #232323;
   color: white;
-  padding: 120px 0px;
+  padding: 100px 0px;
   overflow: hidden;
 }
 
@@ -78,7 +78,47 @@
 #features .content-section {
   background: #141414;
   color: white;
-  padding: 120px 0px;
+  padding: 100px 0px;
+}
+
+#news {
+  background: #232323;
+}
+
+#news .content-section {
+  background: #232323;
+  color: white;
+  padding: 100px 0px;
+  overflow: hidden;
+}
+
+.news-page {
+  margin-top: 50px;
+}
+
+.news-page a {
+  color: #dc8a00;
+}
+
+.news-page ul {
+  list-style: none; /* Remove default bullets */
+}
+
+.news-page li::before {
+  content: '\2022';
+  color: #dc8a00;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.news-page pre {
+  background: #141414 !important;
+  border-radius: 10px;
+  color: gray;
+  margin: 0px;
+  padding: 20px;
 }
 
 @media (max-width: 768px) {

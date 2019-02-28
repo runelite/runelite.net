@@ -93,23 +93,25 @@ const Home = ({ commit, release, sessionCount }) => (
         </div>
       </section>
 
-      <h1 id="news">
-        Latest news{' '}
-        <Link href="/blog" style={{ fontSize: 18 }}>
-          See all news...
-        </Link>
-      </h1>
-      <hr />
-      <Async
-        getComponent={() =>
-          latest().then(({ body }) => (
-            <div
-              class="markdown-body"
-              dangerouslySetInnerHTML={{ __html: body }}
-            />
-          ))
-        }
-      />
+      <section id="news">
+        <div class="content-section">
+          <h1 id="news">LATEST NEWS</h1>
+          <Link href="/blog" style="color: inherit">
+            <h4>SHOW ALL NEWS</h4>
+          </Link>
+
+          <Async
+            getComponent={() =>
+              latest().then(({ body }) => (
+                <div
+                  class="markdown-body news-page"
+                  dangerouslySetInnerHTML={{ __html: body }}
+                />
+              ))
+            }
+          />
+        </div>
+      </section>
     </Layout>
   </div>
 )
