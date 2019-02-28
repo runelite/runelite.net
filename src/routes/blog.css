@@ -1,0 +1,43 @@
+#blog .content-section {
+  background: #232323;
+  color: white;
+  padding: 100px 0px;
+  overflow: hidden;
+}
+
+.news-page {
+  margin-top: 50px;
+}
+
+.news-page a {
+  color: #dc8a00;
+}
+
+.news-page ul {
+  list-style: none; /* Remove default bullets */
+}
+
+.news-page li::before {
+  content: '\2022';
+  color: #dc8a00;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.news-page pre {
+  background: #141414 !important;
+  border-radius: 10px;
+  color: gray;
+  margin: 0px;
+  padding: 20px;
+}
+
+#blog h1 {
+  border-bottom: 1px solid #dc8a00;
+  padding-bottom: 10px;
+  display: inline-block;
+  width: auto;
+  font-size: 24px;
+}

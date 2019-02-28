@@ -1,5 +1,6 @@
 import { h } from 'preact'
 import './home.css'
+import './blog.css'
 import { connect } from 'preact-redux'
 import Feature from '../components/feature'
 import Layout from '../components/layout'

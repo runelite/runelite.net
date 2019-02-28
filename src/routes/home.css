@@ -1,11 +1,6 @@
 @font-face {
-  font-family: cocogoose;
-  src: url(/public/fonts/Cocogoose\Pro-trial.ttf);
-}
-
-@font-face {
-  font-family: cocogoose light;
-  src: url(/public/fonts/Cocogoose\Pro\Light-trial.ttf);
+  font-family: lato;
+  src: url(/public/fonts/Lato-Regular.ttf);
 }
 
 #about {
@@ -36,7 +31,8 @@
   padding-bottom: 10px;
   display: inline-block;
   width: auto;
-  font-family: cocogoose;
+  font-family: lato;
+  font-weight: 700;
   font-size: 24px;
 }
 
@@ -45,7 +41,7 @@
   padding-bottom: 10px;
   margin-top: -5px;
   width: auto;
-  font-family: cocogoose light;
+  font-family: lato;
   font-size: 12px;
   float: right;
   vertical-align: bottom;
@@ -89,35 +85,6 @@
   color: white;
   padding: 100px 0px;
   overflow: hidden;
-}
-
-.news-page {
-  margin-top: 50px;
-}
-
-.news-page a {
-  color: #dc8a00;
-}
-
-.news-page ul {
-  list-style: none; /* Remove default bullets */
-}
-
-.news-page li::before {
-  content: '\2022';
-  color: #dc8a00;
-  font-weight: bold;
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
-}
-
-.news-page pre {
-  background: #141414 !important;
-  border-radius: 10px;
-  color: gray;
-  margin: 0px;
-  padding: 20px;
 }
 
 @media (max-width: 768px) {

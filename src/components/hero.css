@@ -30,7 +30,8 @@
 }
 
 #intro h1 {
-  font-family: cocogoose;
+  font-family: lato;
+  font-weight: 700;
   margin-left: -5px;
   text-shadow: 1px 1px black;
 }
