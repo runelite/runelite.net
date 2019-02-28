@@ -1,3 +1,20 @@
+body {
+  background: #232323;
+}
+
+footer {
+  color: #adadad;
+}
+
+footer a {
+  color: #dc8a00;
+}
+
+footer a:hover {
+  color: #eebb63;
+  text-decoration: none;
+}
+
 #layout {
   padding-top: 55px;
   padding-bottom: 15px;
