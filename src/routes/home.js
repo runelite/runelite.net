@@ -28,12 +28,6 @@ const Home = ({ commit, release, sessionCount }) => (
       title={`${hero.title} - Open Source Old School RuneScape Client`}
       description={hero.description}
     />
-    <Hero
-      {...hero}
-      release={release.name}
-      commit={commit}
-      playing={sessionCount}
-    />
     <Layout>
       <section id="intro">
         <Hero

@@ -18,6 +18,10 @@ nav {
   color: white !important;
 }
 
+.navbar-nav .nav-link:hover {
+  color: gray !important;
+}
+
 .navbar-nav .nav-icon {
   font-size: 13px;
   margin: 8px 0px;
@@ -33,6 +37,20 @@ nav {
   margin-left: 20px;
 }
 
+.navbar-nav button:active {
+  background: #1c1c1c !important;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none;
+}
+
+.navbar-nav button:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none;
+}
+
+/* onClick={login}*/
 .navbar-nav button:hover {
   background: #595959;
 }
