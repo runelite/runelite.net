@@ -149,17 +149,18 @@ const buildBossLog = bossLog => {
             />
             {e.name.toTitleCase()}{' '}
             <div class="float-right">
-              Kills: <span class="badge badge-primary badge-pill">{e.kc}</span>{' '}
               {e.pb ? (
                 <span>
                   Personal best:{' '}
                   <span class="badge badge-info badge-pill">
+                    {' '}
                     {toMMSS(e.pb)}
-                  </span>
+                  </span>{' '}
                 </span>
               ) : (
                 <noscript />
               )}
+              Kills: <span class="badge badge-primary badge-pill">{e.kc}</span>{' '}
             </div>
           </li>
         ))}
