@@ -14,14 +14,16 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts'
+import '@gouch/to-title-case'
 import Layout from '../components/layout'
 import { fetchReleases } from '../modules/git'
 import { fetchXp, getXp, getCollectedXp } from '../modules/xp'
 import hero from '../_data/hero'
 import skills from '../_data/skills'
 import Meta from '../components/meta'
-import './xp-show.css'
 import prepare from '../components/prepare'
+import { flattenMap, numberWithCommas } from '../util'
+import NotFound from '../components/not-found'
 
 const isNumeric = value => !isNaN(value - parseFloat(value))
 
@@ -40,9 +42,6 @@ const parseDate = (date, fromDate) => {
   return date
 }
 
-const capitalizeFirstLetter = string =>
-  string.charAt(0).toUpperCase() + string.slice(1)
-const numberWithCommas = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 const createValueBadge = (value, suffix) =>
   value >= 0 ? (
     <span class="badge badge-success">
@@ -56,11 +55,6 @@ const createValueBadge = (value, suffix) =>
 
 const safeDate = date => date || new Date()
 const skillNames = Object.keys(skills)
-const flattenMap = map =>
-  Object.keys(map).map(key => ({
-    name: key,
-    ...map[key]
-  }))
 
 const createDateRange = (start, end) => {
   const endDate = safeDate(parseDate(end, new Date()))
@@ -105,6 +99,12 @@ const CustomToolTip = ({ active, payload, label, description }) => {
 }
 
 const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
+  skill = skill.toLowerCase()
+
+  if (!skillNames.includes(skill)) {
+    return <NotFound />
+  }
+
   const { startDate, endDate } = createDateRange(start, end)
   return (
     <Layout>
@@ -140,7 +140,7 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
                     src={`/img/skillicons/${playerSkill}.png`}
                   />{' '}
                   <span class="d-md-none d-lg-inline">
-                    {capitalizeFirstLetter(playerSkill)}
+                    {playerSkill.toTitleCase()}
                   </span>
                   <span class="float-right">
                     {createValueBadge(rank, '')} {createValueBadge(xp, 'xp')}
@@ -155,16 +155,12 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
           </h5>
           <ResponsiveContainer height={300}>
             <BarChart
-              margin={{ bottom: 100 }}
-              data={[
-                { value: 0 },
-                ...skillNames
-                  .filter(skill => skill !== 'overall')
-                  .map(skill => ({
-                    name: capitalizeFirstLetter(skill),
-                    value: collectedXp[skill] ? collectedXp[skill].xp : 0
-                  }))
-              ]}
+              data={skillNames
+                .filter(skill => skill !== 'overall')
+                .map(skill => ({
+                  name: skill.toTitleCase(),
+                  value: collectedXp[skill] ? collectedXp[skill].xp : 0
+                }))}
             >
               <XAxis dataKey="name" interval={0} tick={RotatedXAxisTick} />
               <YAxis hide />
@@ -186,7 +182,7 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
             <BarChart
               margin={{ bottom: 100 }}
               data={skillNames.map(skill => ({
-                name: capitalizeFirstLetter(skill),
+                name: skill.toTitleCase(),
                 value: collectedXp[skill] ? collectedXp[skill].rank : 0
               }))}
             >
@@ -204,7 +200,7 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
           </ResponsiveContainer>
 
           <h5>
-            <small>{capitalizeFirstLetter(skill)} ranks</small>
+            <small>{skill.toTitleCase()} ranks</small>
           </h5>
           <ResponsiveContainer height={300}>
             <LineChart
@@ -218,9 +214,7 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
               <YAxis domain={['dataMin', 'dataMax']} reversed hide />
               <Tooltip
                 content={
-                  <CustomToolTip
-                    description={capitalizeFirstLetter(skill) + ' rank'}
-                  />
+                  <CustomToolTip description={skill.toTitleCase() + ' rank'} />
                 }
               />
               <Line connectNulls dataKey="value" stroke={skills[skill]} />
@@ -228,7 +222,7 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
           </ResponsiveContainer>
 
           <h5>
-            <small>{capitalizeFirstLetter(skill)} experience</small>
+            <small>{skill.toTitleCase()} experience</small>
           </h5>
           <ResponsiveContainer height={300}>
             <LineChart
@@ -242,9 +236,7 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
               <YAxis domain={['dataMin', 'dataMax']} hide />
               <Tooltip
                 content={
-                  <CustomToolTip
-                    description={capitalizeFirstLetter(skill) + ' rank'}
-                  />
+                  <CustomToolTip description={skill.toTitleCase() + ' rank'} />
                 }
               />
               <Line connectNulls dataKey="value" stroke={skills[skill]} />
@@ -275,7 +267,7 @@ const prepareComponentData = async ({
   const { startDate, endDate } = createDateRange(start, end)
   await fetchReleases()
   await fetchXp({
-    skill,
+    skill: skill.toLowerCase(),
     name,
     start: startDate,
     end: endDate

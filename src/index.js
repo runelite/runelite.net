@@ -2,9 +2,18 @@ import { h, render } from 'preact'
 import { Provider } from 'preact-redux'
 import App from './components/app'
 import configureStore from './store'
+import { sessionCheck } from './modules/account'
+import { fetchReleases, fetchRepository } from './modules/git'
+
+// Check session and get API version
+const callback = async store => {
+  store.dispatch(fetchRepository())
+  await store.dispatch(fetchReleases())
+  await store.dispatch(sessionCheck())
+}
 
 // Create redux store
-const store = configureStore()
+const { store } = configureStore(callback)
 
 // Create application
 const Main = () => (

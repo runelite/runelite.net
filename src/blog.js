@@ -12,6 +12,7 @@ const blog = require
     const resolver = () => {
       const mapper = md => {
         return {
+          id: parsed.id,
           date: parsed.date,
           body: md.__content,
           ...md
@@ -23,8 +24,18 @@ const blog = require
       }.md`).then(mapper)
     }
 
-    return memo.set(parsed.id, resolver)
+    return memo.set(parsed.id.toLowerCase(), resolver)
   }, new Map())
+
+export const getBlog = id => {
+  const post = blog.get(id.toLowerCase())
+
+  if (post) {
+    return post()
+  }
+
+  return Promise.resolve({})
+}
 
 export const latest = async () => {
   const values = blog.values()

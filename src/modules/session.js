@@ -32,4 +32,4 @@ export default handleActions(
 )
 
 // Selectors
-export const getSessionCount = state => state.runelite.sessionCount
+export const getSessionCount = state => state.session.sessionCount
