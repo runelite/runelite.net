@@ -42,6 +42,7 @@ const Home = ({ commit, release, sessionCount }) => (
         <div class="content-section">
           <div class="video">
             <iframe
+              title="RuneLite Demo Video"
               width="100%"
               height="100%"
               src={hero.video_url}
@@ -53,7 +54,7 @@ const Home = ({ commit, release, sessionCount }) => (
 
           <div class="info">
             <h1>WHAT IS RUNELITE</h1>
-            <p style="white-space: pre-line">{hero.about}</p>
+            <p style={{ whiteSpace: 'pre-line' }}>{hero.about}</p>
             <a href={links.github} title="GitHub">
               <i class="fab fa-github" />
             </a>
@@ -73,7 +74,7 @@ const Home = ({ commit, release, sessionCount }) => (
       <section id="features">
         <div class="content-section">
           <h1>FEATURES</h1>
-          <Link href="/features" style="color: inherit">
+          <Link href="/features" style={{ color: 'inherit' }}>
             <h4>SHOW ALL FEATURES</h4>
           </Link>
 
@@ -90,7 +91,7 @@ const Home = ({ commit, release, sessionCount }) => (
       <section id="news">
         <div class="content-section">
           <h1 id="news">LATEST NEWS</h1>
-          <Link href="/blog" style="color: inherit">
+          <Link href="/blog" style={{ color: 'inherit' }}>
             <h4>SHOW ALL NEWS</h4>
           </Link>
 
