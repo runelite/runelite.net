@@ -63,7 +63,7 @@ export default [
     link: 'https://github.com/runelite/runelite/wiki/Fishing'
   },
   {
-    image: '/img/features/globes.png',
+    image: '/img/features/xpglobes.png',
     title: 'XP globes',
     description:
       'Displays skill globes when you gain XP, with more detailed stats on hover.',
@@ -77,7 +77,7 @@ export default [
     link: 'https://github.com/runelite/runelite/wiki/Idle-Notifier'
   },
   {
-    image: '/img/features/teamcape.png',
+    image: '/img/features/teamcapes.png',
     title: 'Team cape overlay',
     description: 'Displays team cape wearer counts.',
     link: 'https://github.com/runelite/runelite/wiki/Team-Capes'
@@ -112,7 +112,7 @@ export default [
     image: '/img/features/chatcommands.png',
     title: 'Chat commands',
     description:
-      'Allows easy lookup of !level(s) and !price(s) from the chat box.',
+      'Allows easy lookup of !level(s), !price(s), !kc(s), and !pb(s) from the chat box.',
     link: 'https://github.com/runelite/runelite/wiki/Chat-Commands'
   },
   {
@@ -128,6 +128,13 @@ export default [
       "Integrates with Discord's Rich Presence to display what you're doing in the game.",
     link: 'https://github.com/runelite/runelite/wiki/Discord',
     home: true
+  },
+  {
+    image: '/img/features/discordparty.png',
+    title: 'Discord Party',
+    description:
+      "Integrates with Discord's party feature to display party members discord name, hp, prayer points, and map location",
+    link: 'https://github.com/runelite/runelite/wiki/Discord'
   },
   {
     image: '/img/features/itemstats.png',
@@ -259,10 +266,9 @@ export default [
   },
   {
     image: '/img/features/stretchedfixed.png',
-    title: 'Stretched fixed mode',
-    description:
-      'Stretches the game to the size of your window while in fixed mode.',
-    link: 'https://github.com/runelite/runelite/wiki/Stretched-Fixed-Mode'
+    title: 'Stretched mode',
+    description: 'Stretches the game to the size of your window.',
+    link: 'https://github.com/runelite/runelite/wiki/Stretched-Mode'
   },
   {
     image: '/img/features/regen.png',
@@ -344,6 +350,13 @@ export default [
     home: true
   },
   {
+    image: '/img/features/tagtabs.png',
+    title: 'Bank Tag Tabs',
+    description:
+      'A tab on the left side of the bank to auto search the assigned tag when clicked.',
+    link: 'https://github.com/runelite/runelite/wiki/Bank-Tags'
+  },
+  {
     image: '/img/features/farmingtracker.png',
     title: 'Farming Tracker',
     description: 'Displays current farming patches and approximate completion.',
@@ -396,5 +409,45 @@ export default [
     title: 'Birdhouse Timers',
     description: 'Displays birdhouses and approximate completion.',
     link: 'https://github.com/runelite/runelite/wiki/Farming-Tracker'
+  },
+  {
+    image: '/img/features/gpu.png',
+    title: 'GPU',
+    description:
+      'lets your gpu render the game which allows for a longer draw distance.',
+    link: 'https://github.com/runelite/runelite/wiki/GPU'
+  },
+  {
+    image: '/img/features/mta.png',
+    title: 'Mage Training Arena',
+    description: 'Overlays to assist in each of the MTA rooms.',
+    link: 'https://github.com/runelite/runelite/wiki/Mage-Training-Arena'
+  },
+  {
+    image: '/img/features/xptracker.png',
+    title: 'XP Tracker',
+    description:
+      'Side panel displaying xp data for each skill you have trained.',
+    link: 'https://github.com/runelite/runelite/wiki/XP-Tracker'
+  },
+  {
+    image: '/img/features/chatcolor.png',
+    title: 'Chat Color',
+    description:
+      'Configures chat colors for each type of message in transparent and non transparent chat.',
+    link: 'https://github.com/runelite/runelite/wiki/Chat-Color'
+  },
+  {
+    image: '/img/features/statusbars.png',
+    title: 'Status Bars',
+    description: 'Shows health and prayer bars next to the inventory.',
+    link: 'https://github.com/runelite/runelite/wiki/Status-Bars'
+  },
+  {
+    image: '/img/features/loottracker.png',
+    title: 'Loot Tracker',
+    description:
+      'Shows kill count and drops with prices from monsters you kill.',
+    link: 'https://github.com/runelite/runelite/wiki/Loot-Tracker'
   }
 ]
