@@ -203,8 +203,7 @@ export default [
     image: '/img/features/puzzlebox.png',
     title: 'Puzzle box solver',
     description: 'Shows you where to click to solve puzzle boxes.',
-    link: 'https://github.com/runelite/runelite/wiki/Puzzle-Solver',
-    home: true
+    link: 'https://github.com/runelite/runelite/wiki/Puzzle-Solver'
   },
   {
     image: '/img/features/roguesden.png',
@@ -448,6 +447,7 @@ export default [
     title: 'Loot Tracker',
     description:
       'Shows kill count and drops with prices from monsters you kill.',
-    link: 'https://github.com/runelite/runelite/wiki/Loot-Tracker'
+    link: 'https://github.com/runelite/runelite/wiki/Loot-Tracker',
+    home: true
   }
 ]
