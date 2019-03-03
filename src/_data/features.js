@@ -345,8 +345,7 @@ export default [
     image: '/img/features/banktags.png',
     title: 'Bank tags',
     description: 'Allows you to set searchable tags on items for your bank.',
-    link: 'https://github.com/runelite/runelite/wiki/Bank-Tags',
-    home: true
+    link: 'https://github.com/runelite/runelite/wiki/Bank-Tags'
   },
   {
     image: '/img/features/tagtabs.png',
@@ -414,7 +413,8 @@ export default [
     title: 'GPU',
     description:
       'lets your gpu render the game which allows for a longer draw distance.',
-    link: 'https://github.com/runelite/runelite/wiki/GPU'
+    link: 'https://github.com/runelite/runelite/wiki/GPU',
+    home: true
   },
   {
     image: '/img/features/mta.png',
