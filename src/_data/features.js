@@ -127,16 +127,9 @@ export default [
     image: '/img/features/discord.png',
     title: 'Discord integration',
     description:
-      "Integrates with Discord's Rich Presence to display what you're doing in the game.",
+      "Integrates with Discord's Rich Presence to display what you're doing in the game and allows to form in-game parties",
     link: 'https://github.com/runelite/runelite/wiki/Discord',
     home: true
-  },
-  {
-    image: '/img/features/discordparty.png',
-    title: 'Discord Party',
-    description:
-      "Integrates with Discord's party feature to display party members discord name, hp, prayer points, and map location",
-    link: 'https://github.com/runelite/runelite/wiki/Discord'
   },
   {
     image: '/img/features/cannon.png',
@@ -311,6 +304,13 @@ export default [
     title: 'NPC tagging',
     description: 'Tags and keeps track of an NPC.',
     link: 'https://github.com/runelite/runelite/wiki/NPC-Indicators'
+  },
+  {
+    image: '/img/features/discordparty.png',
+    title: 'Party',
+    description:
+      "Integrates with Discord's party feature to display party members discord name, hp, prayer points, and map location",
+    link: 'https://github.com/runelite/runelite/wiki/Party'
   },
   {
     image: '/img/features/playerindicators.png',
