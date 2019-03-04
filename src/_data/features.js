@@ -160,7 +160,7 @@ export default [
     image: '/img/features/gpu.png',
     title: 'GPU',
     description:
-      'Renders game using your GPU, what provides better FPS, increased draw distance, enhanced scaling and anti-aliasing.',
+      'Renders game using your GPU, which provides better FPS, increased draw distance, enhanced scaling and anti-aliasing.',
     link: 'https://github.com/runelite/runelite/wiki/GPU',
     home: true
   },
