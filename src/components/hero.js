@@ -1,7 +1,7 @@
 import platform from 'platform'
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import { filter, find, prepend } from 'ramda'
+import { filter, find } from 'ramda'
 import { bindActionCreators } from 'redux'
 import { getChristmasImage } from '../season'
 import {
@@ -108,7 +108,6 @@ class Hero extends Component {
   }
 
   render({ title, description, buttons, release, commit, playing, heroImage }) {
-    let regularButtons = filter(button => !button.dropdown)(buttons)
     const dropdownButtons = filter(button => button.dropdown)(buttons)
     const defaultDropdownItem = find(button => button.os === 'all')(
       dropdownButtons
@@ -116,10 +115,6 @@ class Hero extends Component {
     const mainDropdownItem =
       find(button => isOsCorrect(button.os))(dropdownButtons) ||
       defaultDropdownItem
-
-    if (defaultDropdownItem !== mainDropdownItem) {
-      regularButtons = prepend(defaultDropdownItem)(regularButtons)
-    }
 
     return (
       <div
@@ -143,24 +138,30 @@ class Hero extends Component {
                 Contribute
               </a>
 
-              <div id="download" class="dropdown show">
-                <a
-                  class="btn btn-secondary dropdown-toggle"
-                  role="button"
-                  id="dropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Download
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  {dropdownButtons.map(({ link, icon, text }) => (
-                    <a class="dropdown-item" href={link} native>
-                      <i class={icon} /> {text}
-                    </a>
-                  ))}
+              <div id="download">
+                <div class="btn-group dropdown">
+                  <a
+                    id="direct-download-btn"
+                    class={'btn btn-' + mainDropdownItem.color}
+                    href={mainDropdownItem.link}
+                  >
+                    Download
+                  </a>
+                  <button
+                    class={
+                      'btn dropdown-toggle dropdown-toggle-split btn-' +
+                      mainDropdownItem.color
+                    }
+                  >
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu" style={{ textShadow: 'none' }}>
+                    {dropdownButtons.map(({ link, icon, text }) => (
+                      <a class="dropdown-item" href={link} native>
+                        <i class={icon} /> {text}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

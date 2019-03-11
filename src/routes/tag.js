@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux'
 import './tag.css'
 import { setActiveTag } from '../modules/tag'
 import { connect } from 'preact-redux'
-import { linkSync } from 'fs'
 
 const Tag = ({ activeTag, setActiveTag }) => (
   <div>

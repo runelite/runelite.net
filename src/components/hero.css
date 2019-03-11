@@ -67,15 +67,33 @@
 
 #intro #download .dropdown-toggle {
   color: white;
-  border-radius: 5px;
-  background: #dc8a00;
-  border-color: #a56a06;
-  margin: 0px;
-  width: 100%;
 }
 
-#intro #download .dropdown-toggle::after {
-  margin-left: 10px;
+#intro #download .btn {
+  border-color: #dc8a00;
+}
+
+#intro #download .btn:focus {
+  box-shadow: none !important;
+}
+
+#intro #download #direct-download-btn {
+  background: #dc8a00 !important;
+  border-top-left-radius: 5px !important;
+  border-bottom-left-radius: 5px !important;
+  font-weight: 600;
+  text-shadow: 1px 1px #ad7008;
+}
+
+#intro #download button {
+  background: #dc8a00 !important;
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  border-left: 1px solid #ad7008 !important;
+}
+
+#intro #download #direct-download-btn:focus {
+  opacity: 0.9;
 }
 
 #intro .small h6 {
