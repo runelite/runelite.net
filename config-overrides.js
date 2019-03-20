@@ -9,6 +9,7 @@ const fs = require('fs')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 const SitemapPlugin = require('sitemap-webpack-plugin').default
 const marked = require('marked')
 const fm = require('front-matter')
@@ -89,16 +90,19 @@ const addSitePlugins = () => config => {
       })
     )
 
-  if (process.env.NODE_ENV !== 'development') {
-    config.plugins.push(
-      new PrerenderSPAPlugin({
-        // Required - The path to the webpack-outputted app to prerender.
-        staticDir: path.join(__dirname, 'build'),
-        // Required - Routes to render.
-        routes: routes.map(({ path }) => path)
+  config.plugins.push(
+    new PrerenderSPAPlugin({
+      // Required - The path to the webpack-outputted app to prerender.
+      staticDir: path.join(__dirname, 'build'),
+      // Required - Routes to render.
+      routes: routes.map(({ path }) => path),
+      // Make prerendering more stable
+      renderer: new Renderer({
+        maxConcurrentRoutes: 1,
+        renderAfterTime: 1000
       })
-    )
-  }
+    })
+  )
 
   config.plugins.push(
     new SitemapPlugin(hero.url, routes, {
