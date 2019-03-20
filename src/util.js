@@ -35,3 +35,9 @@ export const toMMSS = s => {
   const secondsStr = String(seconds).padStart(2, '0')
   return minutesStr + ':' + secondsStr
 }
+
+export const wikiURLForItem = ({ id, name }) => {
+  // This should canonicalize the name, but the website doesn't have that information as of writing
+  // It only really matters if there are noted items with ambiguous names, so I don't think it matters here
+  return `https://oldschool.runescape.wiki/w/Special:Lookup?type=item&id=${id}&name=${encodeURIComponent(name)}&utm_source=runelite.net`
+}

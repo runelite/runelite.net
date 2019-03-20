@@ -9,6 +9,7 @@ import { connect } from 'preact-redux'
 import '../components/tooltip.css'
 import './tag.css'
 import prepare from '../components/prepare'
+import { wikiURLForItem } from '../util'
 
 const formatIcon = icon =>
   `https://static.runelite.net/cache/item/icon/${icon}.png`
@@ -27,12 +28,11 @@ const TagShow = ({ name, icon, itemIds, items, version, csv }) => (
           const item = items.find(i => i.id === id) || {}
           const name = item.name || ''
           const examine = item.examine || ''
-          const nameSan = name.replace(' ', '_')
 
           return (
             <div class="card">
               <div class="tooltip-tag">
-                <a href={`https://oldschool.runescape.wiki/w/${nameSan}`}>
+                <a href={wikiURLForItem(item)}>
                   <img class="card-img-top" alt={name} src={formatIcon(id)} />
                 </a>
                 <div class="tooltip-tag-text">
