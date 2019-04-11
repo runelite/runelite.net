@@ -45,6 +45,12 @@ const Navigation = ({ stars, dark, login, loggedIn, username }) => (
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a
               class="dropdown-item"
+              href="https://static.runelite.net/api/http-service/"
+            >
+              RuneLite HTTP API
+            </a>
+            <a
+              class="dropdown-item"
               href="https://static.runelite.net/api/runelite-api/"
             >
               RuneLite API
