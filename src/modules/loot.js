@@ -1,4 +1,3 @@
-import { uniq, concat } from 'ramda'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
 import { getLatestRelease } from './git'
@@ -17,6 +16,8 @@ export const {
 } = createActions(
   {
     FETCH_LOOT: () => async (dispatch, getState) => {
+      dispatch(setLootRange([]))
+
       const version = getLatestRelease(getState()).name
       const uuid = getState().account.uuid
 
@@ -77,7 +78,7 @@ export default handleActions(
   {
     [setLoot]: (state, { payload }) => ({
       ...state,
-      data: uniq(concat(state.data, payload))
+      data: state.data.concat(payload)
     }),
     [setLootRange]: (state, { payload }) => ({
       ...state,
