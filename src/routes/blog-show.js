@@ -24,7 +24,7 @@ const buildPost = ({ date, title, description, author, body }) => {
       />
       <h1>{title}</h1>
       <p class="text-muted">
-        {ago(date)} by {author}
+        <span title={date}>{ago(date)}</span> by {author}
       </p>
       <hr />
       <div class="markdown-body">
