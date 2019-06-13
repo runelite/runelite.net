@@ -66,10 +66,18 @@ class Hero extends Component {
   componentDidMount() {
     // Add background updater
     this.setState({
-      interval: setInterval(
-        () => this.props.nextHeroImage(this.props.images.length),
-        8000
-      )
+      interval: setInterval(() => {
+        const numImages = this.props.images.length
+        const nextImageId = (this.props.heroImage + 1) % numImages
+        const img = new Image()
+        img.src = getChristmasImage(this.props.images[nextImageId])
+        img.onload = () => {
+          this.props.nextHeroImage(numImages)
+        }
+        this.setState({
+          loadingHeroImg: img
+        })
+      }, 8000)
     })
 
     // Change navigation bar to fit hero
@@ -82,6 +90,7 @@ class Hero extends Component {
   componentWillUnmount() {
     // Remove background updater
     clearInterval(this.state.interval)
+    if (this.state.loadingHeroImg) delete this.state.loadingHeroImg.onload
 
     // Reset navigation bar
     this.props.makeNavbarDefault()
