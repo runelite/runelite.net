@@ -71,9 +71,7 @@ class Hero extends Component {
         const nextImageId = (this.props.heroImage + 1) % numImages
         const img = new Image()
         img.src = getChristmasImage(this.props.images[nextImageId])
-        img.onload = () => {
-          this.props.nextHeroImage(numImages)
-        }
+        img.onload = () => this.props.nextHeroImage(numImages)
         this.setState({
           loadingHeroImg: img
         })
@@ -90,7 +88,11 @@ class Hero extends Component {
   componentWillUnmount() {
     // Remove background updater
     clearInterval(this.state.interval)
-    if (this.state.loadingHeroImg) delete this.state.loadingHeroImg.onload
+    // onload will do some react lifecycle stuff. remove so that
+    // component is not modified after its been removed from the DOM
+    if (this.state.loadingHeroImg) {
+      delete this.state.loadingHeroImg.onload
+    }
 
     // Reset navigation bar
     this.props.makeNavbarDefault()
