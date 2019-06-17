@@ -73,6 +73,7 @@ class Hero extends Component {
         const img = new Image()
         img.src = getChristmasImage(images[nextImageId])
         img.onload = () => nextHeroImage(numImages)
+
         this.setState({
           loadingHeroImg: img
         })
@@ -91,6 +92,7 @@ class Hero extends Component {
 
     // Remove background updater
     clearInterval(interval)
+
     // onload will do some react lifecycle stuff. remove so that
     // component is not modified after its been removed from the DOM
     if (loadingHeroImg) {
