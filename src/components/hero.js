@@ -66,10 +66,18 @@ class Hero extends Component {
   componentDidMount() {
     // Add background updater
     this.setState({
-      interval: setInterval(
-        () => this.props.nextHeroImage(this.props.images.length),
-        8000
-      )
+      interval: setInterval(() => {
+        const { images, heroImage, nextHeroImage } = this.props
+        const numImages = images.length
+        const nextImageId = (heroImage + 1) % numImages
+        const img = new Image()
+        img.src = getChristmasImage(images[nextImageId])
+        img.onload = () => nextHeroImage(numImages)
+
+        this.setState({
+          loadingHeroImg: img
+        })
+      }, 8000)
     })
 
     // Change navigation bar to fit hero
@@ -80,8 +88,16 @@ class Hero extends Component {
   }
 
   componentWillUnmount() {
+    const { interval, loadingHeroImg } = this.state
+
     // Remove background updater
-    clearInterval(this.state.interval)
+    clearInterval(interval)
+
+    // onload will do some react lifecycle stuff. remove so that
+    // component is not modified after its been removed from the DOM
+    if (loadingHeroImg) {
+      delete loadingHeroImg.onload
+    }
 
     // Reset navigation bar
     this.props.makeNavbarDefault()
