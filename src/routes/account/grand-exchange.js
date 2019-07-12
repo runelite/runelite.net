@@ -18,12 +18,6 @@ const formatGeIcon = id =>
   `https://services.runescape.com/m=itemdb_oldschool/obj_big.gif?id=${id}`
 const formatGePage = id =>
   `http://services.runescape.com/m=itemdb_oldschool/viewitem?obj=${id}`
-const formatBadge = buy =>
-  buy ? (
-    <span class="badge badge-danger badge-pill">Bought</span>
-  ) : (
-    <span class="badge badge-success badge-pill">Sold</span>
-  )
 
 const buildRecord = record => (
   <a
@@ -42,6 +36,7 @@ const buildRecord = record => (
           {record.name} x {record.quantity}
         </h5>
         <p class="mb-0">
+          <img src={`/img/ge_${record.buy ? 'bought' : 'sold'}.png`} alt="" />
           <span>{record.buy ? 'Bought' : 'Sold'}</span> for{' '}
           <span>{numberWithCommas(record.price * record.quantity)}</span> gp (
           <span>{numberWithCommas(record.price)}</span> gp/ea)
