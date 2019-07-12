@@ -89,10 +89,10 @@ const buildDrop = drop => (
 )
 
 const buildLootRecord = record => (
-  <div class="card">
+  <div class="card loot-card">
     <div class="card-header">
       {record.name}
-      <span class="small float-right">x{record.count}</span>
+      <span class="small float-right">x {record.count}</span>
     </div>
     <div class="card-body pt-0 pb-0 record-body">
       <div class="row drop-row">{record.drops.map(buildDrop)}</div>
@@ -107,7 +107,7 @@ const handleChange = (event, setLootFilter) =>
 
 const LootTracker = ({ loot, lootFilter, setLootFilter }) => (
   <div>
-    <div class="input-group mb-3">
+    <div class="search input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">
           <i class="fas fa-search" />
