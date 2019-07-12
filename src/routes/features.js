@@ -9,7 +9,7 @@ const Features = () => (
   <Layout>
     <Meta title={`Features - ${hero.title}`} />
 
-    <section id="features">
+    <section id="features" style={{ background: '#141414' }}>
       <div class="content-section">
         <h1>Features</h1>
         <div class="row">

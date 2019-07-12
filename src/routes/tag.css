@@ -17,12 +17,14 @@
   width: auto;
   font-family: cocogoose;
   font-size: 24px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   color: white;
+  border: none !important;
 }
 
 .tag-container small {
   font-size: 17px;
+  display: block;
 }
 
 .tag-container textarea {
@@ -46,12 +48,12 @@
   border-radius: 5px;
 }
 
-.tag-container .card .tooltip-tag-text{
+.tag-container .card .tooltip-tag-text {
   border-radius: 5px;
   width: 200px;
 }
 
-.tag-container .card .tooltip-tag-text small{
-    font-size: 12px !important;
-    color: gray;
+.tag-container .card .tooltip-tag-text small {
+  font-size: 12px !important;
+  color: gray;
 }

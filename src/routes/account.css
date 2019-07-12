@@ -1,0 +1,123 @@
+.account-container {
+  padding: 100px 0px;
+  font-family: Lato;
+}
+
+#account .list-group a,
+#account .list-group button {
+  background: #171717;
+  color: #b8b8b8;
+  padding: 10px 15px !important;
+  border: none;
+  margin-bottom: 2px;
+  font-size: 14px !important;
+}
+
+#account .list-group a i,
+#account .list-group button i {
+  margin-right: 10px;
+}
+
+#account .list-group a:hover,
+#account .list-group button:hover {
+  background: #171717;
+  text-decoration: none;
+  color: white;
+}
+
+#account .list-group button:active,
+#account .list-group button:focus {
+  outline: none;
+}
+
+#account .list-group .active {
+  background: #171717;
+  border-left: 2px solid #dc8a00;
+  color: white;
+}
+
+#account-export {
+  margin-top: 20px;
+  color: white !important;
+}
+
+#account .list-title {
+  color: white;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: gray;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+#account .card {
+  background: #171717;
+  border: none;
+}
+
+#account .card-header {
+  background: #171717;
+  padding: 10px;
+  color: white;
+  border: none;
+  border-bottom: 1px solid #232323;
+  font-size: 14px;
+}
+
+#account .card-body {
+  color: white;
+}
+
+#account .badge {
+  background: #4f4f4f;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 10px;
+  vertical-align: top;
+  margin-top: 3px;
+  min-width: 50px;
+}
+
+#account #kc .list-group-item {
+  color: white;
+  background: #171717;
+  border: none;
+  padding: 10px 20px;
+  border-bottom: 2px solid #232323 !important;
+  font-size: 14px;
+}
+
+#account #kc div {
+  vertical-align: top;
+  line-height: 30px;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+#account #kc label {
+  margin-bottom: 0px;
+  margin-right: 5px;
+}
+
+#account #kc .badge {
+  vertical-align: top;
+  margin-top: 6px;
+}
+
+#account #kc .list-group-item img {
+  margin-right: 15px !important;
+}
+
+@media (max-width: 1100px) {
+  #account #kc div {
+    width: 100%;
+    margin: 0px;
+    margin-left: 5px;
+    font-size: 12px;
+  }
+
+  #account #kc div label {
+    min-width: 80px;
+  }
+}
