@@ -46,6 +46,11 @@
   image-rendering: crisp-edges;
 }
 
+.loot-card .card-header {
+  padding: 10px 10px 6px 10px !important;
+  margin: 0px !important;
+}
+
 .loot-card .small {
   color: #a8a8a8;
 }

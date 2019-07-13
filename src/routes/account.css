@@ -64,8 +64,18 @@
   font-size: 14px;
 }
 
+#account .card {
+  margin-top: 0px !important;
+}
+
+#account .card-title {
+  font-size: 18px !important;
+}
+
 #account .card-body {
   color: white;
+  padding: 20px;
+  margin-top: 0px;
 }
 
 #account .badge {
