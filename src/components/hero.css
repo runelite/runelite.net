@@ -6,7 +6,7 @@
   width: 100%;
   margin: 0;
   height: calc(100vh - 55px);
-  background: rgba(0, 0, 0, 0.4) no-repeat center center fixed;
+  background: rgba(0, 0, 0, 0.2) no-repeat center center fixed;
   background-size: cover;
   padding-bottom: 0px;
 }
@@ -48,7 +48,6 @@
 
 #intro #contribute {
   width: calc(50% - 10px);
-  border-radius: 5px;
   border: 1px solid white;
   background: none;
   color: white;
@@ -79,16 +78,12 @@
 
 #intro #download #direct-download-btn {
   background: #dc8a00 !important;
-  border-top-left-radius: 5px !important;
-  border-bottom-left-radius: 5px !important;
   font-weight: 600;
   text-shadow: 1px 1px #ad7008;
 }
 
 #intro #download button {
   background: #dc8a00 !important;
-  border-top-right-radius: 5px !important;
-  border-bottom-right-radius: 5px !important;
   border-left: 1px solid #ad7008 !important;
 }
 

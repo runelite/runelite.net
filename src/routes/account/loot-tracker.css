@@ -1,16 +1,21 @@
 .record-body {
   border: none;
+  padding: 0px !important;
 }
 
 .drop-row {
-  margin-left: -10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 0px;
+  margin: 0px;
+  width: calc(100% + 1px);
 }
 
 .drop-wrapper {
   border: none;
   position: relative;
+  border-bottom: 1px solid #232323 !important;
+  border-right: 1px solid #232323 !important;
+  width: 20%;
+  padding: 2px;
 }
 
 .drop-wrapper .rs-item-quantity {

@@ -130,6 +130,8 @@ const Account = ({
 
   const MenuBody = menuBody(currentMenu)
 
+  const accountsTitle = accounts.length < 2 ? 'Account' : 'Accounts'
+
   return (
     <Layout>
       <Meta title={`${currentMenu.label} - Account - ${hero.title}`} />
@@ -142,7 +144,7 @@ const Account = ({
                 {menuExport(currentMenu, props)}
               </ul>
 
-              <p className="list-title">Accounts</p>
+              <p className="list-title">{accountsTitle}</p>
               <ul class="list-group list-group-small mb-4">
                 {currentMenu.tag === 'home' ? (
                   accounts.map(a =>
