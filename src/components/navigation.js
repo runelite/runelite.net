@@ -63,7 +63,7 @@ const Navigation = ({ stars, dark, login, loggedIn, username }) => (
           </Link>
         </li>
       </ul>
-      <ul class="navbar-nav ml-auto">
+      <ul class="right-nav navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href={links.patreon}>
             Become a patron

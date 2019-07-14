@@ -60,7 +60,7 @@
 
 #intro #download {
   float: right;
-  width: calc(50% - 10px);
+  max-width: calc(50% - 20px);
   margin-right: 5px;
 }
 
@@ -80,6 +80,7 @@
   background: #dc8a00 !important;
   font-weight: 600;
   text-shadow: 1px 1px #ad7008;
+  width: 100% !important;
 }
 
 #intro #download button {
@@ -106,6 +107,49 @@
 #intro .small a {
   text-decoration: none;
   color: inherit;
+}
+
+@media (min-width: 2000px) {
+  .jumbotron-body {
+    max-width: 80%;
+  }
+}
+
+/* Large displays */
+@media (min-width: 2600px) {
+  #intro h1 {
+    font-size: calc(20px + 1.6vw);
+  }
+
+  #intro p {
+    max-width: 14vw;
+    font-size: 0.8vw;
+    margin-top: 0.8vw;
+  }
+
+  .jumbotron-header {
+    max-width: 14vw;
+  }
+
+  #intro .btn {
+    margin-top: 1vw;
+    font-size: 0.8vw;
+    line-height: 1.6vw;
+  }
+
+  #intro #download #direct-download-btn {
+    padding: 0px 1vw;
+  }
+
+  #intro .small {
+    margin-top: 2vw;
+  }
+
+  #intro .small,
+  #intro .small a,
+  #intro .small h6 {
+    font-size: 0.6vw;
+  }
 }
 
 @media (max-width: 400px) {

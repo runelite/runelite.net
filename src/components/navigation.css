@@ -9,6 +9,7 @@
 nav {
   height: 55px;
   background: #1e1e1e;
+  position: relative;
 }
 
 .navbar-nav .nav-link {
@@ -19,7 +20,7 @@ nav {
 }
 
 .navbar-nav .nav-link:hover {
-  color: gray !important;
+  color: #dc8a00 !important;
 }
 
 .navbar-nav .nav-icon {
@@ -28,13 +29,20 @@ nav {
 }
 
 .navbar-nav button {
+  position: absolute;
   font-family: Lato;
   font-size: 13px;
   padding: 4px 10px;
   background: #434343;
   border: none;
-  margin-top: 11px;
-  margin-left: 20px;
+  right: 20px;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.right-nav {
+  margin-right: 70px;
 }
 
 .navbar-nav button:active {
@@ -50,9 +58,8 @@ nav {
   box-shadow: none;
 }
 
-/* onClick={login}*/
 .navbar-nav button:hover {
-  background: #595959;
+  background: #dc8a00;
 }
 
 .navbar-nav .dropdown-menu {
@@ -68,7 +75,7 @@ nav {
 }
 
 .navbar-nav .dropdown-menu .dropdown-item:hover {
-  color: gray;
+  color: #dc8a00;
   background: inherit;
 }
 
@@ -76,6 +83,39 @@ nav {
   border-bottom: 1px solid lightgray;
 }
 
+/* Large displays */
+@media (min-width: 2600px) {
+  nav {
+    height: 2.5vw;
+  }
+
+  nav img {
+    max-width: 1.5vw !important;
+    max-height: 1.5vw !important;
+    width: 1.5vw !important;
+    height: 1.5vw !important;
+    margin-left: 0.5vw;
+  }
+
+  .navbar-nav .nav-link,
+  .navbar-nav .dropdown-menu,
+  .navbar-nav .nav-icon {
+    font-size: 0.6vw;
+    margin: 0.4vw;
+  }
+
+  .navbar-nav button {
+    font-size: 0.6vw;
+    padding: 0.3vw 0.6vw;
+    margin-right: 0.5vw;
+  }
+
+  .right-nav {
+    margin-right: 4vw;
+  }
+}
+
+/* Mobile */
 @media (max-width: 960px) {
   #navbar {
     position: absolute;
