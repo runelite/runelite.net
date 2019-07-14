@@ -1,0 +1,43 @@
+#xp-tracker .content-section {
+  background: #232323;
+  color: white;
+  padding: 100px 0px;
+  overflow: hidden;
+  font-family: Lato;
+}
+
+#xp-tracker h3 {
+  font-size: 24px;
+}
+
+#xp-tracker .skills-list a {
+  background: #171717;
+  padding: 10px;
+  font-size: 14px;
+  color: white;
+  margin-bottom: 2px;
+}
+
+#xp-tracker .skills-list a:hover {
+  color: gray;
+}
+
+#xp-tracker .skills-list .active {
+  border: none;
+  border-left: 2px solid #dc8a00;
+}
+
+#xp-tracker .skills-list a .icon {
+  margin-right: 8px;
+}
+
+#xp-tracker .skills-list a .badge {
+  font-size: 12px;
+  text-shadow: 1px 1px #053b0e;
+  border-radius: 5px;
+}
+
+#xp-tracker .recharts-responsive-container {
+  background: #171717;
+  margin-bottom: 40px;
+}
