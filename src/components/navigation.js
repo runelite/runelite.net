@@ -5,24 +5,46 @@ import links from '../_data/links'
 import { Link } from 'preact-router'
 import { getChristmasImage } from '../season'
 
+function toggleMenu() {
+  const nav = document.getElementsByClassName('navbar-collapse')[0]
+  const curDisplay = nav.style.display
+  const isHidden = curDisplay === 'none' || curDisplay === ''
+  nav.style.display = isHidden ? 'block' : 'none'
+}
+
 const Navigation = ({ stars, dark, login, loggedIn, username }) => (
   <nav class={'navbar navbar-expand-lg fixed-top navbar-dark'}>
-    <Link class="navbar-brand" activeClassName="active" href="/">
+    <Link
+      onClick={toggleMenu}
+      class="navbar-brand"
+      activeClassName="active"
+      href="/"
+    >
       <img src={getChristmasImage(hero.logo)} class="icon" alt="RuneLite" />{' '}
     </Link>
     <input type="checkbox" id="navbar-check-box" />
     <label for="navbar-check-box" class="navbar-toggler">
-      <span class="navbar-toggler-icon" />
+      <span class="navbar-toggler-icon" onClick={toggleMenu} />
     </label>
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <Link class="nav-link" activeClassName="active" href="/features">
+          <Link
+            onClick={toggleMenu}
+            class="nav-link"
+            activeClassName="active"
+            href="/features"
+          >
             Features
           </Link>
         </li>
         <li class="nav-item">
-          <Link class="nav-link" activeClassName="active" href="/blog">
+          <Link
+            onClick={toggleMenu}
+            class="nav-link"
+            activeClassName="active"
+            href="/blog"
+          >
             Blog
           </Link>
         </li>
@@ -58,12 +80,17 @@ const Navigation = ({ stars, dark, login, loggedIn, username }) => (
           </div>
         </li>
         <li class="nav-item">
-          <Link class="nav-link" activeClassName="active" href="/tag">
+          <Link
+            onClick={toggleMenu}
+            class="nav-link"
+            activeClassName="active"
+            href="/tag"
+          >
             Tags
           </Link>
         </li>
       </ul>
-      <ul class="right-nav navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href={links.patreon}>
             Become a patron
@@ -87,7 +114,7 @@ const Navigation = ({ stars, dark, login, loggedIn, username }) => (
             <span class="d-lg-none"> GitHub</span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onClick={toggleMenu}>
           {loggedIn ? (
             <a class="nav-link" href="/account/home">
               <i class="fas fa-user fa-fw" /> {username}

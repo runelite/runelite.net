@@ -32,7 +32,7 @@
 #intro h1 {
   font-family: Lato;
   font-weight: 700;
-  margin-left: -5px;
+  margin-left: -3px;
   text-shadow: 1px 1px black;
 }
 
@@ -52,6 +52,8 @@
   background: none;
   color: white;
   font-weight: 500;
+
+  height: 38px;
 }
 
 #intro #contribute:hover {

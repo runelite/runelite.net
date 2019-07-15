@@ -1,0 +1,12 @@
+#logged-in .content-section {
+  padding: 100px 0px;
+  font-family: Lato;
+}
+
+#logged-in .content-section h1 {
+  color: white;
+}
+
+#logged-in .content-section p {
+  color: rgb(190, 190, 190);
+}
