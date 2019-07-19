@@ -14,7 +14,7 @@ nav {
 
 .navbar-nav .nav-link {
   font-family: Lato;
-  font-size: 13px;
+  font-size: 0.8em;
   margin: 8px;
   color: white !important;
   vertical-align: bottom;
@@ -25,13 +25,13 @@ nav {
 }
 
 .navbar-nav .nav-icon {
-  font-size: 13px;
+  font-size: 0.8em;
   margin: 8px 5px;
 }
 
 .navbar-nav button {
   font-family: Lato;
-  font-size: 13px;
+  font-size: 0.8em;
   padding: 4px 10px;
   background: #434343;
   border: none;
@@ -61,7 +61,7 @@ nav {
 
 .navbar-nav .dropdown-menu {
   background: #1e1e1e;
-  font-size: 13px;
+  font-size: 0.8em;
   margin: 0px;
   padding: 0px;
 }
@@ -80,36 +80,36 @@ nav {
   border-bottom: 1px solid lightgray;
 }
 
-/* Large displays */
-@media (min-width: 2600px) {
-  nav {
-    height: 2.5vw;
-    min-height: 55px;
-  }
-
-  nav img {
-    max-width: 1.5vw !important;
-    max-height: 1.5vw !important;
-    width: 1.5vw !important;
-    height: 1.5vw !important;
-    margin-left: 0.5vw;
-  }
-
+/* 1080p Large displays */
+@media (min-width: 1200px) {
   .navbar-nav .nav-link,
-  .navbar-nav .dropdown-menu,
-  .navbar-nav .nav-icon {
-    font-size: 0.6vw;
-    margin: 0.4vw;
-  }
-
-  .navbar-nav button {
-    font-size: 0.6vw;
-    padding: 0.3vw 0.6vw;
-    margin-right: 0.5vw;
+  .navbar-nav .nav-icon,
+  .navbar-nav button,
+  .navbar-nav .dropdown-menu {
+    font-size: 0.8em;
   }
 }
 
-/* Mobile */
+/* 1440p Large displays */
+@media (min-width: 2500px) {
+  .navbar-nav .nav-link,
+  .navbar-nav .nav-icon,
+  .navbar-nav button,
+  .navbar-nav .dropdown-menu {
+    font-size: 1em;
+  }
+}
+
+/* 4k Large displays */
+@media (min-width: 3800px) {
+  .navbar-nav .nav-link,
+  .navbar-nav .nav-icon,
+  .navbar-nav button,
+  .navbar-nav .dropdown-menu {
+    font-size: 1.2em;
+  }
+}
+
 @media (max-width: 960px) {
   #navbar {
     position: absolute;

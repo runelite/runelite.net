@@ -53,7 +53,7 @@
   color: white;
   font-weight: 500;
 
-  height: 38px;
+  min-height: 38px;
 }
 
 #intro #contribute:hover {
@@ -118,7 +118,7 @@
 }
 
 /* Large displays */
-@media (min-width: 2600px) {
+@media (min-width: 2500px) {
   #intro h1 {
     font-size: calc(20px + 1.6vw);
   }
@@ -133,14 +133,20 @@
     max-width: 14vw;
   }
 
-  #intro .btn {
+  #intro #contribute {
     margin-top: 1vw;
-    font-size: 0.8vw;
-    line-height: 1.6vw;
+    font-size: 0.7vw;
+    padding: 0.3em 1em;
   }
 
-  #intro #download #direct-download-btn {
-    padding: 0px 1vw;
+  #intro #download {
+    margin-top: 1vw;
+    width: calc(50% - 30px);
+  }
+
+  #intro #direct-download-btn {
+    font-size: 0.7vw;
+    padding: 0.3em 1.2em;
   }
 
   #intro .small {
