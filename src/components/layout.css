@@ -38,3 +38,19 @@ footer a:hover {
   width: 80%;
   max-width: 1000px;
 }
+
+footer hr {
+  background: #404040;
+}
+
+@media (max-width: 900px) {
+  footer {
+    text-align: center;
+  }
+
+  footer .float-right {
+    display: block;
+    margin-top: 15px;
+    width: 100%;
+  }
+}

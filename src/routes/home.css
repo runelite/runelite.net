@@ -61,6 +61,10 @@
   color: inherit;
 }
 
+#about .info a:hover {
+  opacity: 0.3;
+}
+
 #features {
   background: #141414;
 }
