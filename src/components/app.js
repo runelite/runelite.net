@@ -1,6 +1,6 @@
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import { h } from 'preact'
-import { connect } from 'preact-redux'
+import { connect } from 'react-redux'
 import Router from 'preact-router'
 import { bindActionCreators } from 'redux'
 import './app.scss'

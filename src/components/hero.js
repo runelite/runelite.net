@@ -1,6 +1,6 @@
 import platform from 'platform'
 import { h, Component } from 'preact'
-import { connect } from 'preact-redux'
+import { connect } from 'react-redux'
 import { filter, find } from 'ramda'
 import { bindActionCreators } from 'redux'
 import { getChristmasImage } from '../season'

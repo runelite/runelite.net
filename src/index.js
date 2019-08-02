@@ -1,5 +1,5 @@
 import { h, render } from 'preact'
-import { Provider } from 'preact-redux'
+import { Provider } from 'react-redux'
 import App from './components/app'
 import configureStore from './store'
 import { sessionCheck } from './modules/account'
@@ -24,4 +24,4 @@ const Main = () => (
 
 // Show website contents
 const root = document.getElementById('root')
-render(<Main />, root, root.firstElementChild)
+render(<Main />, root)

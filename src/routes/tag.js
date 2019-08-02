@@ -5,7 +5,7 @@ import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
 import './tag.css'
 import { setActiveTag } from '../modules/tag'
-import { connect } from 'preact-redux'
+import { connect } from 'react-redux'
 
 const Tag = ({ activeTag, setActiveTag }) => (
   <div>
