@@ -16,6 +16,7 @@ const fm = require('front-matter')
 const libxmljs = require('libxmljs')
 const hero = require('./src/_data/hero')
 const parseBlog = require('./src/parse-blog')
+const redirectConfig = require('./redirect')
 
 // Escape html
 const escapeHtml = unsafe => {
@@ -125,6 +126,22 @@ const addSitePlugins = () => config => {
       xhtml: false
     })
   )
+
+  for (let key in redirectConfig.links) {
+    const link = redirectConfig.links[key]
+
+    config.plugins.push(
+      new HtmlWebpackPlugin({
+        redirect: {
+          url: link
+        },
+        template: 'redirect.html',
+        filename: redirectConfig.prefix + '/' + key + '/index.html',
+        inject: false,
+        xhtml: false
+      })
+    )
+  }
 
   return config
 }
