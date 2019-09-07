@@ -82,9 +82,11 @@ const menuBody = currentMenu => currentMenu.component
 const menuExport = (currentMenu, props) => {
   const currentSelector = currentMenu.data
   const dataJson = currentSelector(props)
-  const data =
-    'data:application/json;charset=utf-8,' +
-    encodeURIComponent(JSON.stringify(dataJson))
+  const data = URL.createObjectURL(
+    new Blob([JSON.stringify(dataJson)], {
+      type: 'application/octet-stream'
+    })
+  )
   return (
     <a
       class="list-group-item list-group-item-primary"
