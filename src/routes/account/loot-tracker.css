@@ -26,6 +26,7 @@
 
 .drop-wrapper .card-img-top {
   padding: 2px;
+  width: auto;
 }
 
 .rs-item-quantity-number {

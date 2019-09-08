@@ -53,6 +53,7 @@
 .tag-container .card .tooltip-tag-text {
   border-radius: 5px;
   width: 200px;
+  margin-left: -100px !important;
 }
 
 .tag-container .card .tooltip-tag-text small {

@@ -1,0 +1,26 @@
+.gh-auth-container {
+  padding: 100px 0px !important;
+  max-width: 675px !important;
+}
+
+.gh-auth-container hr {
+  background: #434343;
+}
+
+.gh-auth-container h1 {
+  width: auto;
+  font-family: Lato;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 0px;
+  color: white;
+  border: none !important;
+}
+
+.gh-auth-container pre {
+  margin: 0;
+  width: 100%;
+  background: #141414 !important;
+  color: gray;
+  border-radius: 5px;
+}

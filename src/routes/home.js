@@ -4,7 +4,6 @@ import './blog.css'
 import { connect } from 'preact-redux'
 import Feature from '../components/feature'
 import Layout from '../components/layout'
-import links from '../_data/links'
 import Hero from '../components/hero'
 import { latest } from '../blog'
 import {
@@ -37,39 +36,6 @@ const Home = ({ commit, release, sessionCount }) => (
           commit={commit}
           playing={sessionCount}
         />
-      </section>
-
-      <section id="about">
-        <div class="content-section">
-          <div class="video">
-            <iframe
-              title="RuneLite Demo Video"
-              width="100%"
-              height="100%"
-              src={hero.video_url}
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            />
-          </div>
-
-          <div class="info">
-            <h1>WHAT IS RUNELITE</h1>
-            <p style={{ whiteSpace: 'pre-line' }}>{hero.about}</p>
-            <a href={links.github} title="GitHub">
-              <i class="fab fa-github" />
-            </a>
-            <a href={links.discord} title="Discord">
-              <i class="fab fa-discord" />
-            </a>
-            <a href={links.twitter} title="Twitter">
-              <i class="fab fa-twitter" />
-            </a>
-            <a href={links.patreon} title="Patreon">
-              <i class="fab fa-patreon" />
-            </a>
-          </div>
-        </div>
       </section>
 
       <section id="features">
