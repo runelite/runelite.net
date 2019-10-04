@@ -1,6 +1,16 @@
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+
 .account-container {
-  padding: 100px 0px;
+  padding: 80px 0px;
   font-family: Lato;
+}
+
+@include media-breakpoint-down(md) {
+  .account-container {
+    padding: 20px 0px;
+  }
 }
 
 #account .list-group a,

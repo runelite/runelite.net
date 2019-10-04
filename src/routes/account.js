@@ -21,7 +21,7 @@ import Home from './account/home'
 import GrandExchange from './account/grand-exchange'
 import LootTracker from './account/loot-tracker'
 import NotFound from '../components/not-found'
-import './account.css'
+import './account.scss'
 
 const menu = [
   {
