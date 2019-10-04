@@ -1,3 +1,7 @@
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+
 .card {
   border: none;
   background: none;
@@ -25,6 +29,12 @@
   color: white;
   padding: 60px 0px;
   overflow: hidden;
+}
+
+@include media-breakpoint-down(md) {
+  #features .content-section {
+    padding: 20px 0px;
+  }
 }
 
 #features .content-section h1 {
