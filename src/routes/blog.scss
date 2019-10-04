@@ -1,3 +1,7 @@
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+
 #blog .content-section {
   background: #232323;
   color: white;
@@ -47,6 +51,12 @@
   color: white;
   padding: 60px 0px !important;
   overflow: hidden;
+}
+
+@include media-breakpoint-down(md) {
+  #blog-list .content-section {
+    padding: 30px 0px !important;
+  }
 }
 
 #blog-list ul {

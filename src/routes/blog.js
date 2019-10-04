@@ -6,7 +6,7 @@ import hero from '../_data/hero'
 import Meta from '../components/meta'
 import { Link } from 'preact-router'
 import Async from '../components/async'
-import './blog.css'
+import './blog.scss'
 
 const Blog = () => (
   <Layout>

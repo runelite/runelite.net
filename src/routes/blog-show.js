@@ -6,7 +6,7 @@ import hero from '../_data/hero'
 import Meta from '../components/meta'
 import Async from '../components/async'
 import NotFound from '../components/not-found'
-import './blog.css'
+import './blog.scss'
 
 const InnerHTMLHelper = ({ tagName, html }) =>
   h(tagName, { dangerouslySetInnerHTML: { __html: html } })
