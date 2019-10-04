@@ -1,0 +1,22 @@
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+
+#logged-in .content-section {
+  padding: 100px 0px;
+  font-family: Lato;
+}
+
+@include media-breakpoint-down(md) {
+  #logged-in .content-section {
+    padding: 20px 0px;
+  }
+}
+
+#logged-in .content-section h1 {
+  color: white;
+}
+
+#logged-in .content-section p {
+  color: rgb(190, 190, 190);
+}
