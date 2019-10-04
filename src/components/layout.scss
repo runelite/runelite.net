@@ -1,3 +1,7 @@
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+
 body {
   background: #232323;
 }
@@ -37,6 +41,12 @@ footer a:hover {
   margin: auto;
   width: 80%;
   max-width: 1000px;
+}
+
+@include media-breakpoint-down(md) {
+  .container section .content-section {
+    width: 90%;
+  }
 }
 
 footer hr {
