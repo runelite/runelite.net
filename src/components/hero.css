@@ -72,7 +72,8 @@
 
 #intro .dropdown-menu {
   padding: 0;
-  margin: 0;
+  margin: 0px;
+  border: 1px 0px 0px 0px solid transparent;
 }
 
 #intro .dropdown-item {
@@ -81,6 +82,12 @@
 
 #intro .dropdown-item:hover {
   color: #dc8a00;
+  background-color: #dc8a001a;
+}
+
+#intro .dropdown-item:active {
+  background: #dc8a00;
+  color: white;
 }
 
 #intro #download .btn {
