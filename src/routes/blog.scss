@@ -9,6 +9,12 @@
   overflow: hidden;
 }
 
+@include media-breakpoint-down(md) {
+  #blog .content-section {
+    padding: 20px 0px;
+  }
+}
+
 .news-page {
   margin-top: 50px;
 }
