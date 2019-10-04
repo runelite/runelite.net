@@ -24,7 +24,7 @@ import Meta from '../components/meta'
 import prepare from '../components/prepare'
 import { flattenMap, numberWithCommas } from '../util'
 import NotFound from '../components/not-found'
-import './xp-show.css'
+import './xp-show.scss'
 
 const isNumeric = value => !isNaN(value - parseFloat(value))
 

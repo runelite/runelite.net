@@ -1,6 +1,16 @@
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+
 .gh-auth-container {
-  padding: 100px 0px !important;
+  padding: 100px 0px;
   max-width: 675px !important;
+}
+
+@include media-breakpoint-down(md) {
+  .gh-auth-container {
+    padding: 20px 0px;
+  }
 }
 
 .gh-auth-container hr {

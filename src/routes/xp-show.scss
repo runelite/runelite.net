@@ -1,9 +1,19 @@
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+
 #xp-tracker .content-section {
   background: #232323;
   color: white;
   padding: 100px 0px;
   overflow: hidden;
   font-family: Lato;
+}
+
+@include media-breakpoint-down(md) {
+  #xp-tracker .content-section {
+    padding: 20px 0px;
+  }
 }
 
 #xp-tracker h3 {

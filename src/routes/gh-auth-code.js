@@ -2,7 +2,7 @@ import { h } from 'preact'
 import Layout from '../components/layout'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
-import './gh-auth-code.css'
+import './gh-auth-code.scss'
 
 const GitHubAuthCode = ({ code }) => (
   <div>

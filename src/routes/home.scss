@@ -1,3 +1,7 @@
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+
 #about {
   background: #232323;
 }
@@ -84,6 +88,13 @@
   color: white;
   padding: 100px 0px;
   overflow: hidden;
+}
+
+@include media-breakpoint-down(md) {
+  #news .content-section.homepage,
+  #features .content-section.homepage {
+    padding: 40px 0px;
+  }
 }
 
 @media (max-width: 768px) {

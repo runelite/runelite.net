@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import './home.css'
+import './home.scss'
 import './blog.scss'
 import { connect } from 'preact-redux'
 import Feature from '../components/feature'
@@ -39,7 +39,7 @@ const Home = ({ commit, release, sessionCount }) => (
       </section>
 
       <section id="features">
-        <div class="content-section">
+        <div class="content-section homepage">
           <h1>FEATURES</h1>
           <Link href="/features" style={{ color: 'inherit' }}>
             <h4>SHOW ALL FEATURES</h4>
@@ -56,7 +56,7 @@ const Home = ({ commit, release, sessionCount }) => (
       </section>
 
       <section id="news">
-        <div class="content-section">
+        <div class="content-section homepage">
           <h1 id="news">LATEST NEWS</h1>
           <Link href="/blog" style={{ color: 'inherit' }}>
             <h4>SHOW ALL NEWS</h4>
