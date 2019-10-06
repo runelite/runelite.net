@@ -144,7 +144,9 @@ const Account = ({
                 {menuExport(currentMenu, props)}
               </ul>
 
-              <p className="list-title">{accountsTitle}</p>
+              {currentMenu.tag === 'home' && (
+                <p className="list-title">{accountsTitle}</p>
+              )}
               <ul class="list-group list-group-small mb-4">
                 {currentMenu.tag === 'home' ? (
                   accounts.map(a =>
