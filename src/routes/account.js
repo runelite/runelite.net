@@ -129,8 +129,8 @@ const Account = ({
   }
 
   const MenuBody = menuBody(currentMenu)
-
-  const accountsTitle = accounts.length < 2 ? 'Account' : 'Accounts'
+  const accountsTitle =
+    accounts.length > 1 && currentMenu.tag === 'home' ? 'Accounts' : 'Account'
 
   return (
     <Layout>
@@ -144,9 +144,7 @@ const Account = ({
                 {menuExport(currentMenu, props)}
               </ul>
 
-              {currentMenu.tag === 'home' && (
-                <p className="list-title">{accountsTitle}</p>
-              )}
+              <p className="list-title">{accountsTitle}</p>
               <ul class="list-group list-group-small mb-4">
                 {currentMenu.tag === 'home' ? (
                   accounts.map(a =>
