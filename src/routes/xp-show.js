@@ -74,6 +74,59 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
   }
 
   const { startDate, endDate } = createDateRange(start, end)
+
+  const renderTotalCharts = () => {
+    return (
+      <div>
+        <h5>
+          <small>Total experience gained</small>
+        </h5>
+        <ResponsiveContainer height={300}>
+          <BarChart
+            data={skillNames
+              .filter(skill => skill !== 'overall')
+              .map(skill => ({
+                name: skill.toTitleCase(),
+                value: collectedXp[skill] ? collectedXp[skill].xp : 0
+              }))}
+          >
+            <XAxis dataKey="name" />
+            <YAxis hide />
+            <Tooltip />
+            <Bar dataKey="value">
+              {skillNames
+                .filter(skill => skill !== 'overall')
+                .map(skill => (
+                  <Cell fill={skills[skill]} />
+                ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+
+        <h5>
+          <small>Total ranks gained</small>
+        </h5>
+        <ResponsiveContainer height={300}>
+          <BarChart
+            data={skillNames.map(skill => ({
+              name: skill.toTitleCase(),
+              value: collectedXp[skill] ? collectedXp[skill].rank : 0
+            }))}
+          >
+            <XAxis dataKey="name" />
+            <YAxis hide />
+            <Tooltip />
+            <Bar dataKey="value">
+              {skillNames.map(skill => (
+                <Cell fill={skills[skill]} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    )
+  }
+
   return (
     <Layout>
       <Meta title={`Experience Tracker - ${hero.title}`} />
@@ -118,51 +171,7 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
           </ul>
         </div>
         <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
-          <h5>
-            <small>Total experience gained</small>
-          </h5>
-          <ResponsiveContainer height={300}>
-            <BarChart
-              data={skillNames
-                .filter(skill => skill !== 'overall')
-                .map(skill => ({
-                  name: skill.toTitleCase(),
-                  value: collectedXp[skill] ? collectedXp[skill].xp : 0
-                }))}
-            >
-              <XAxis dataKey="name" />
-              <YAxis hide />
-              <Tooltip />
-              <Bar dataKey="value">
-                {skillNames
-                  .filter(skill => skill !== 'overall')
-                  .map(skill => (
-                    <Cell fill={skills[skill]} />
-                  ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-
-          <h5>
-            <small>Total ranks gained</small>
-          </h5>
-          <ResponsiveContainer height={300}>
-            <BarChart
-              data={skillNames.map(skill => ({
-                name: skill.toTitleCase(),
-                value: collectedXp[skill] ? collectedXp[skill].rank : 0
-              }))}
-            >
-              <XAxis dataKey="name" />
-              <YAxis hide />
-              <Tooltip />
-              <Bar dataKey="value">
-                {skillNames.map(skill => (
-                  <Cell fill={skills[skill]} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          {skill === 'overall' && renderTotalCharts()}
 
           <h5>
             <small>{skill.toTitleCase()} ranks</small>
