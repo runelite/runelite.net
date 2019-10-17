@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h, Fragment } from 'preact'
 import { connect } from 'react-redux'
 import { Link } from 'preact-router'
 import { bindActionCreators } from 'redux'
@@ -67,6 +67,56 @@ const createDateRange = (start, end) => {
   }
 }
 
+const OverallXp = ({ skill, skillNames, collectedXp }) =>
+  skill === 'overall' && (
+    <Fragment>
+      <h5>
+        <small>Total experience gained</small>
+      </h5>
+      <ResponsiveContainer height={300}>
+        <BarChart
+          data={skillNames
+            .filter(skill => skill !== 'overall')
+            .map(skill => ({
+              name: skill.toTitleCase(),
+              value: collectedXp[skill] ? collectedXp[skill].xp : 0
+            }))}
+        >
+          <XAxis dataKey="name" />
+          <YAxis hide />
+          <Tooltip />
+          <Bar dataKey="value">
+            {skillNames
+              .filter(skill => skill !== 'overall')
+              .map(skill => (
+                <Cell fill={skills[skill]} />
+              ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+      <h5>
+        <small>Total ranks gained</small>
+      </h5>
+      <ResponsiveContainer height={300}>
+        <BarChart
+          data={skillNames.map(skill => ({
+            name: skill.toTitleCase(),
+            value: collectedXp[skill] ? collectedXp[skill].rank : 0
+          }))}
+        >
+          <XAxis dataKey="name" />
+          <YAxis hide />
+          <Tooltip />
+          <Bar dataKey="value">
+            {skillNames.map(skill => (
+              <Cell fill={skills[skill]} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </Fragment>
+  )
+
 const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
   skill = skill.toLowerCase()
 
@@ -122,52 +172,11 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
               </ul>
             </div>
             <div class="col-xl-8 col-md-8 col-sm-12 col-xs-12">
-              <h5>
-                <small>Total experience gained</small>
-              </h5>
-              <ResponsiveContainer height={300}>
-                <BarChart
-                  data={skillNames
-                    .filter(skill => skill !== 'overall')
-                    .map(skill => ({
-                      name: skill.toTitleCase(),
-                      value: collectedXp[skill] ? collectedXp[skill].xp : 0
-                    }))}
-                >
-                  <XAxis dataKey="name" />
-                  <YAxis hide />
-                  <Tooltip />
-                  <Bar dataKey="value">
-                    {skillNames
-                      .filter(skill => skill !== 'overall')
-                      .map(skill => (
-                        <Cell fill={skills[skill]} />
-                      ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-
-              <h5>
-                <small>Total ranks gained</small>
-              </h5>
-              <ResponsiveContainer height={300}>
-                <BarChart
-                  data={skillNames.map(skill => ({
-                    name: skill.toTitleCase(),
-                    value: collectedXp[skill] ? collectedXp[skill].rank : 0
-                  }))}
-                >
-                  <XAxis dataKey="name" />
-                  <YAxis hide />
-                  <Tooltip />
-                  <Bar dataKey="value">
-                    {skillNames.map(skill => (
-                      <Cell fill={skills[skill]} />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-
+              <OverallXp
+                skill={skill}
+                skillNames={skillNames}
+                collectedXp={collectedXp}
+              />
               <h5>
                 <small>{skill.toTitleCase()} ranks</small>
               </h5>
