@@ -150,9 +150,8 @@ module.exports = override(
   useBabelRc(),
   useEslintRc(),
   addWebpackAlias({
-    react: 'preact-compat',
-    'react-dom': 'preact-compat',
-    'mobx-react': 'mobx-preact'
+    react: 'preact/compat',
+    'react-dom': 'preact/compat'
   }),
   addSitePlugins()
 )

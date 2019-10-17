@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import '../../components/tooltip.css'
 import './loot-tracker.css'
-import { connect } from 'preact-redux'
+import { connect } from 'react-redux'
 import {
   fetchLoot,
   getGroupedLoot,

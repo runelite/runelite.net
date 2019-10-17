@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import ago from 's-ago'
 import { numberWithCommas } from '../../util'
-import { connect } from 'preact-redux'
+import { connect } from 'react-redux'
 import {
   fetchGe,
   getFilteredGe,

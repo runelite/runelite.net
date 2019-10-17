@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import './home.scss'
 import './blog.scss'
-import { connect } from 'preact-redux'
+import { connect } from 'react-redux'
 import Feature from '../components/feature'
 import Layout from '../components/layout'
 import Hero from '../components/hero'

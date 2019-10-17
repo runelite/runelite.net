@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { connect } from 'preact-redux'
+import { connect } from 'react-redux'
 import { Link } from 'preact-router'
 import { bindActionCreators } from 'redux'
 import Layout from '../components/layout'
