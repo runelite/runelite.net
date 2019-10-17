@@ -4,17 +4,22 @@ import Feature from '../components/feature'
 import features from '../_data/features'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
+import './features.css'
 
 const Features = () => (
   <Layout>
     <Meta title={`Features - ${hero.title}`} />
-    <h1>Features</h1>
-    <hr />
-    <div class="row">
-      {features.map(feature => (
-        <Feature key={feature.title} {...feature} />
-      ))}
-    </div>
+
+    <section id="features">
+      <div class="content-section">
+        <h1>Features</h1>
+        <div class="row">
+          {features.map(feature => (
+            <Feature key={feature.title} {...feature} />
+          ))}
+        </div>
+      </div>
+    </section>
   </Layout>
 )
 

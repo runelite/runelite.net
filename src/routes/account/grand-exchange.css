@@ -1,0 +1,32 @@
+.ge-records .ge-item-img {
+  max-width: 45px;
+  max-height: 45px;
+}
+
+.ge-records .ge-record-info {
+  margin-left: 10px;
+  margin-top: 4px;
+}
+
+.ge-records .ge-record-info img {
+  margin-top: -4px;
+  margin-right: 4px;
+  margin-left: -2px;
+}
+
+.ge-records .list-group-item h5 {
+  font-size: 16px;
+  margin: 0px;
+  color: white;
+}
+
+.ge-records .list-group-item p {
+  margin-top: 5px;
+  font-size: 12px;
+  color: gray;
+}
+
+.ge-record-timestamp {
+  line-height: 45px;
+  font-size: 16px !important;
+}

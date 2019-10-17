@@ -1,0 +1,18 @@
+.search .input-group-text {
+  background: #171717;
+  border: none;
+}
+
+.search input {
+  background: #171717;
+  margin-bottom: 50px;
+  border: none;
+  color: white !important;
+}
+
+.search input:active,
+.search input:focus {
+  background: #171717;
+  outline: none;
+  box-shadow: none;
+}

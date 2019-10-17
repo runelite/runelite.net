@@ -1,8 +1,15 @@
 // Bootstrap color overrides are imported from below _variables.scss file
 // For documentation visit: https://getbootstrap.com/docs/4.0/getting-started/theming/
 // For online editor visit: https://bootstrap.build/app/v4.1.1/
-@import '_variables.scss';
+
 @import '~bootstrap/scss/bootstrap';
+@import '_variables.scss';
+@import '~lato-font/scss/_public-api';
+
+@font-face {
+  font-family: Lato;
+  src: url(~lato-font/fonts/lato-normal/lato-normal.woff);
+}
 
 html,
 body,

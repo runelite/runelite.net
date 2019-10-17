@@ -1,0 +1,66 @@
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+
+body {
+  background: #232323;
+}
+
+footer {
+  color: #adadad;
+}
+
+footer a {
+  color: #dc8a00;
+}
+
+footer a:hover {
+  color: #eebb63;
+  text-decoration: none;
+}
+
+#layout {
+  padding-top: 55px;
+  padding-bottom: 15px;
+}
+
+.container {
+  max-width: 100%;
+  padding: 0px;
+  margin: 0px;
+  top: 0px;
+  overflow: hidden;
+}
+
+.container section {
+  max-width: 100%;
+  margin: auto;
+}
+
+.container section .content-section {
+  margin: auto;
+  width: 80%;
+  max-width: 1000px;
+}
+
+@include media-breakpoint-down(md) {
+  .container section .content-section {
+    width: 85%;
+  }
+}
+
+footer hr {
+  background: #404040;
+}
+
+@media (max-width: 900px) {
+  footer {
+    text-align: center;
+  }
+
+  footer .float-right {
+    display: block;
+    margin-top: 15px;
+    width: 100%;
+  }
+}

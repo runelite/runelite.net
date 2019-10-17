@@ -1,16 +1,21 @@
 .record-body {
   border: none;
+  padding: 0px !important;
 }
 
 .drop-row {
-  margin-left: -10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 0px;
+  margin: 0px;
+  width: calc(100% + 1px);
 }
 
 .drop-wrapper {
   border: none;
   position: relative;
+  border-bottom: 1px solid #232323 !important;
+  border-right: 1px solid #232323 !important;
+  width: 20%;
+  padding: 2px;
 }
 
 .drop-wrapper .rs-item-quantity {
@@ -21,6 +26,7 @@
 
 .drop-wrapper .card-img-top {
   padding: 2px;
+  width: auto;
 }
 
 .rs-item-quantity-number {
@@ -44,4 +50,13 @@
   image-rendering: -webkit-optimize-contrast;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+}
+
+.loot-card .card-header {
+  padding: 10px 10px 6px 10px !important;
+  margin: 0px !important;
+}
+
+.loot-card .small {
+  color: #a8a8a8;
 }

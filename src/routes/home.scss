@@ -1,0 +1,131 @@
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+
+#about {
+  background: #232323;
+}
+
+#about .content-section {
+  background: #232323;
+  color: white;
+  padding: 100px 0px;
+  overflow: hidden;
+}
+
+#about .video {
+  display: inline-block;
+  width: 450px;
+  height: 250px;
+}
+
+#about .info {
+  width: calc(100% - 500px);
+  min-height: 200px;
+  float: right;
+}
+
+.content-section h1 {
+  border-bottom: 1px solid #dc8a00;
+  padding-bottom: 10px;
+  display: inline-block;
+  width: auto;
+  font-family: Lato;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.content-section h4 {
+  border-bottom: 1px solid #dc8a00;
+  padding-bottom: 10px;
+  margin-top: -5px;
+  width: auto;
+  font-family: Lato;
+  font-size: 12px;
+  float: right;
+  vertical-align: bottom;
+  margin-top: 8px;
+}
+
+#about .info p {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #cccccc;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+#about .info i {
+  margin-top: 10px;
+  margin-right: 30px;
+}
+
+#about .info a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#about .info a:hover {
+  opacity: 0.3;
+}
+
+#features {
+  background: #141414;
+}
+
+#features .content-section {
+  background: #141414;
+  color: white;
+  padding: 100px 0px;
+}
+
+#news {
+  background: #232323;
+}
+
+#news .content-section {
+  background: #232323;
+  color: white;
+  padding: 100px 0px;
+  overflow: hidden;
+}
+
+@include media-breakpoint-down(md) {
+  #news .content-section.homepage,
+  #features .content-section.homepage {
+    padding: 40px 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  #about .video {
+    margin: auto;
+    width: 90%;
+    height: 50vw;
+    display: block;
+  }
+
+  #about .content-section {
+    padding: 50px 0px;
+  }
+
+  #about .info {
+    margin: auto;
+    width: 90%;
+    margin-top: 50px;
+    display: block;
+    float: none;
+  }
+}
+
+@media (max-width: 488px) {
+  .content-section h1 {
+    font-size: 18px;
+  }
+  .content-section h4 {
+    font-size: 10px;
+    border-bottom: none;
+    padding: 0px;
+    margin-top: 10px;
+  }
+}

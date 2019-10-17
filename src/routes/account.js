@@ -21,6 +21,7 @@ import Home from './account/home'
 import GrandExchange from './account/grand-exchange'
 import LootTracker from './account/loot-tracker'
 import NotFound from '../components/not-found'
+import './account.scss'
 
 const menu = [
   {
@@ -89,6 +90,7 @@ const menuExport = (currentMenu, props) => {
   )
   return (
     <a
+      id="account-export"
       class="list-group-item list-group-item-primary"
       download={currentMenu.tag + '.json'}
       href={data}
@@ -129,36 +131,44 @@ const Account = ({
   }
 
   const MenuBody = menuBody(currentMenu)
+  const accountsTitle =
+    accounts.length > 1 && currentMenu.tag === 'home' ? 'Accounts' : 'Account'
 
   return (
     <Layout>
       <Meta title={`${currentMenu.label} - Account - ${hero.title}`} />
-      <div class="row">
-        <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
-          <ul class="list-group list-group-small mb-4">
-            {menuItems(currentMenu)}
-            {menuExport(currentMenu, props)}
-          </ul>
-          <ul class="list-group list-group-small mb-4">
-            {currentMenu.tag === 'home' ? (
-              accounts.map(a =>
-                accountMenu(a, props.selectedAccount, changeAccount)
-              )
-            ) : (
-              <noscript />
-            )}
-            <button
-              class="list-group-item list-group-item-action list-group-item-danger"
-              onClick={logout}
-            >
-              <i class="fas fa-fw fa-power-off" /> Logout
-            </button>
-          </ul>
+      <section id="account">
+        <div class="content-section account-container">
+          <div class="row">
+            <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
+              <ul class="list-group list-group-small mb-4">
+                {menuItems(currentMenu)}
+                {menuExport(currentMenu, props)}
+              </ul>
+
+              <p className="list-title">{accountsTitle}</p>
+              <ul class="list-group list-group-small mb-4">
+                {currentMenu.tag === 'home' ? (
+                  accounts.map(a =>
+                    accountMenu(a, props.selectedAccount, changeAccount)
+                  )
+                ) : (
+                  <noscript />
+                )}
+                <button
+                  class="list-group-item list-group-item-action list-group-item-danger"
+                  onClick={logout}
+                >
+                  <i class="fas fa-fw fa-power-off" /> Logout
+                </button>
+              </ul>
+            </div>
+            <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
+              <MenuBody {...props} />
+            </div>
+          </div>
         </div>
-        <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
-          <MenuBody {...props} />
-        </div>
-      </div>
+      </section>
     </Layout>
   )
 }

@@ -1,0 +1,47 @@
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '~bootstrap/scss/mixins/_breakpoints.scss';
+
+.card {
+  border: none;
+  background: none;
+  margin-top: 50px;
+}
+
+.card-body {
+  padding: 0px;
+  margin-top: 20px;
+  font-size: 15px;
+  color: #a8a8a8;
+}
+
+.card-title {
+  color: white;
+  font-size: 18px;
+}
+
+.card-title a {
+  color: inherit;
+}
+
+#features .content-section {
+  background: #141414;
+  color: white;
+  padding: 60px 0px;
+  overflow: hidden;
+}
+
+@include media-breakpoint-down(md) {
+  #features .content-section {
+    padding: 20px 0px;
+  }
+}
+
+#features .content-section h1 {
+  border-bottom: 1px solid #dc8a00;
+  padding-bottom: 10px;
+  display: inline-block;
+  width: auto;
+  font-size: 30px;
+  color: white;
+}

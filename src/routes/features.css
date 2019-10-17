@@ -1,0 +1,7 @@
+#features {
+  background: #232323;
+}
+
+#features .content-section {
+  background: inherit;
+}

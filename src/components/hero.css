@@ -5,17 +5,199 @@
   display: table;
   width: 100%;
   margin: 0;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4) no-repeat center center fixed;
+  height: calc(100vh - 55px);
+  background: rgba(0, 0, 0, 0.2) no-repeat center center fixed;
   background-size: cover;
+  padding-bottom: 0px;
 }
 
 .jumbotron-cell {
   display: table-cell;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .jumbotron-body {
-  max-width: 1000px;
-  padding: 25px 25px 25px 50px;
+  margin: auto;
+  padding: 50px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.jumbotron-header {
+  max-width: 300px;
+  width: auto;
+  margin-bottom: 50px;
+}
+
+#intro h1 {
+  font-family: Lato;
+  font-weight: 700;
+  margin-left: -3px;
+  text-shadow: 1px 1px black;
+}
+
+#intro h1 span {
+  color: #dc8a00;
+}
+
+#intro p {
+  max-width: 300px;
+  font-size: 17px;
+  text-shadow: 1px 1px black;
+}
+
+#intro #contribute {
+  width: calc(50% - 10px);
+  border: 1px solid white;
+  background: none;
+  color: white;
+  font-weight: 500;
+
+  min-height: 38px;
+}
+
+#intro #contribute:hover {
+  opacity: 0.7;
+}
+
+#intro #download {
+  float: right;
+  max-width: calc(50% - 20px);
+  margin-right: 5px;
+}
+
+#intro #download .dropdown-toggle {
+  color: white;
+}
+
+#intro .dropdown-menu {
+  padding: 0;
+  margin: 0px;
+  border: 0;
+  border-top: 1px solid transparent;
+}
+
+#intro .dropdown-item {
+  padding: 0.35rem 0.8rem;
+}
+
+#intro .dropdown-item:hover {
+  color: #dc8a00;
+  background-color: #dc8a001a;
+}
+
+#intro .dropdown-item:active {
+  background: #dc8a00;
+  color: white;
+}
+
+#intro #download .btn {
+  border-color: #dc8a00;
+}
+
+#intro #download .btn:focus {
+  box-shadow: none !important;
+}
+
+#intro #download #direct-download-btn {
+  background: #dc8a00 !important;
+  font-weight: 600;
+  text-shadow: 1px 1px #ad7008;
+  width: 100% !important;
+}
+
+#intro #download button {
+  background: #dc8a00 !important;
+  border-left: 1px solid #ad7008 !important;
+}
+
+#intro #download #direct-download-btn:focus {
+  opacity: 0.9;
+}
+
+#intro .small h6 {
+  margin: 0px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #dc8a00;
+  margin-top: 10px;
+}
+
+#intro .small {
+  text-shadow: 1px 1px black;
+}
+
+#intro .small a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (min-width: 2000px) {
+  .jumbotron-body {
+    max-width: 80%;
+  }
+}
+
+/* Large displays */
+@media (min-width: 2500px) {
+  #intro h1 {
+    font-size: calc(20px + 1.6vw);
+  }
+
+  #intro p {
+    max-width: 14vw;
+    font-size: 0.8vw;
+    margin-top: 0.8vw;
+  }
+
+  .jumbotron-header {
+    max-width: 14vw;
+  }
+
+  #intro #contribute {
+    margin-top: 1vw;
+    font-size: 0.7vw;
+    padding: 0.3em 1em;
+  }
+
+  #intro #download {
+    margin-top: 1vw;
+    width: calc(50% - 30px);
+  }
+
+  #intro #direct-download-btn {
+    font-size: 0.7vw;
+    padding: 0.3em 1.2em;
+  }
+
+  #intro .small {
+    margin-top: 2vw;
+  }
+
+  #intro .small,
+  #intro .small a,
+  #intro .small h6 {
+    font-size: 0.6vw;
+  }
+}
+
+@media (max-width: 400px) {
+  .jumbotron-header {
+    max-width: 100%;
+    width: auto;
+    padding: 0px;
+  }
+
+  .jumbotron-body {
+    padding: 20px;
+  }
+
+  #intro #contribute,
+  #intro #download .dropdown-toggle {
+    font-size: 14px;
+  }
+
+  #intro h1 {
+    font-size: 32px;
+  }
 }

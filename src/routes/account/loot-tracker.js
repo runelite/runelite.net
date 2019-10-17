@@ -12,6 +12,7 @@ import { fetchReleases } from '../../modules/git'
 import { bindActionCreators } from 'redux'
 import prepare from '../../components/prepare'
 import { wikiURLForItem } from '../../util'
+import SearchBar from '../../components/search-bar'
 
 const getRlIcon = id => `https://static.runelite.net/cache/item/icon/${id}.png`
 
@@ -89,10 +90,10 @@ const buildDrop = drop => (
 )
 
 const buildLootRecord = record => (
-  <div class="card">
+  <div class="card loot-card">
     <div class="card-header">
       {record.name}
-      <span class="small float-right">x{record.count}</span>
+      <span class="small float-right">x {record.count}</span>
     </div>
     <div class="card-body pt-0 pb-0 record-body">
       <div class="row drop-row">{record.drops.map(buildDrop)}</div>
@@ -107,21 +108,10 @@ const handleChange = (event, setLootFilter) =>
 
 const LootTracker = ({ loot, lootFilter, setLootFilter }) => (
   <div>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">
-          <i class="fas fa-search" />
-        </span>
-      </div>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Search..."
-        value={lootFilter.name}
-        onInput={e => handleChange(e, setLootFilter)}
-      />
-    </div>
-
+    <SearchBar
+      value={lootFilter.name}
+      onInput={e => handleChange(e, setLootFilter)}
+    />
     <div class="card-columns">{loot.map(buildLootRecord)}</div>
   </div>
 )

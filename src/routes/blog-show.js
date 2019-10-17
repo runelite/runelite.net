@@ -6,6 +6,7 @@ import hero from '../_data/hero'
 import Meta from '../components/meta'
 import Async from '../components/async'
 import NotFound from '../components/not-found'
+import './blog.scss'
 
 const InnerHTMLHelper = ({ tagName, html }) =>
   h(tagName, { dangerouslySetInnerHTML: { __html: html } })
@@ -22,14 +23,18 @@ const buildPost = ({ date, title, description, author, body }) => {
         description={description}
         author={author}
       />
-      <h1>{title}</h1>
-      <p class="text-muted">
-        <span title={date}>{ago(date)}</span> by {author}
-      </p>
-      <hr />
-      <div class="markdown-body">
-        <InnerHTMLHelper tagName="div" html={body} />
-      </div>
+      <section id="blog">
+        <div class="content-section">
+          <h1>{title}</h1>
+          <p class="text-muted">
+            <span title={date}>{ago(date)}</span> by {author}
+          </p>
+
+          <div class="markdown-body news-page">
+            <InnerHTMLHelper tagName="div" html={body} />
+          </div>
+        </div>
+      </section>
     </Layout>
   )
 }

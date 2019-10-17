@@ -1,4 +1,5 @@
 import { h } from 'preact'
+import './feature.scss'
 
 const Feature = ({ image, title, description, link }) => (
   <div

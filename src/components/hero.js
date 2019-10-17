@@ -1,7 +1,7 @@
 import platform from 'platform'
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import { filter, find, prepend } from 'ramda'
+import { filter, find } from 'ramda'
 import { bindActionCreators } from 'redux'
 import { getChristmasImage } from '../season'
 import {
@@ -9,6 +9,7 @@ import {
   makeNavbarDefault,
   nextHeroImage
 } from '../modules/app'
+import links from '../_data/links'
 import Commit from './commit'
 
 function isOsCorrect(osName) {
@@ -107,7 +108,6 @@ class Hero extends Component {
   }
 
   render({ title, description, buttons, release, commit, playing, heroImage }) {
-    let regularButtons = filter(button => !button.dropdown)(buttons)
     const dropdownButtons = filter(button => button.dropdown)(buttons)
     const defaultDropdownItem = find(button => button.os === 'all')(
       dropdownButtons
@@ -115,10 +115,6 @@ class Hero extends Component {
     const mainDropdownItem =
       find(button => isOsCorrect(button.os))(dropdownButtons) ||
       defaultDropdownItem
-
-    if (defaultDropdownItem !== mainDropdownItem) {
-      regularButtons = prepend(defaultDropdownItem)(regularButtons)
-    }
 
     return (
       <div
@@ -132,50 +128,52 @@ class Hero extends Component {
       >
         <div class="jumbotron-cell">
           <div class="jumbotron-body">
-            <h1 class="display-2">{title}</h1>
-            <p class="lead">{description}</p>
-            <p class="lead">
-              <div class="btn-group dropdown">
-                <a
-                  class={'btn btn-' + mainDropdownItem.color}
-                  href={mainDropdownItem.link}
-                >
-                  <i class={mainDropdownItem.icon} /> {mainDropdownItem.text}
-                </a>
-                <button
-                  class={
-                    'btn dropdown-toggle dropdown-toggle-split btn-' +
-                    mainDropdownItem.color
-                  }
-                >
-                  <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu" style={{ textShadow: 'none' }}>
-                  {dropdownButtons.map(({ link, icon, text }) => (
-                    <a class="dropdown-item" href={link} native>
-                      <i class={icon} /> {text}
-                    </a>
-                  ))}
+            <div class="jumbotron-header">
+              <h1>
+                RUNELITE<span>.NET</span>
+              </h1>
+              <p>{description}</p>
+
+              <a id="contribute" class="btn" href={links.github}>
+                Contribute
+              </a>
+
+              <div id="download">
+                <div class="btn-group dropdown">
+                  <a
+                    id="direct-download-btn"
+                    class={'btn btn-' + mainDropdownItem.color}
+                    href={mainDropdownItem.link}
+                  >
+                    Download
+                  </a>
+                  <button
+                    class={
+                      'btn dropdown-toggle dropdown-toggle-split btn-' +
+                      mainDropdownItem.color
+                    }
+                  >
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu" style={{ textShadow: 'none' }}>
+                    {dropdownButtons.map(({ link, icon, text }) => (
+                      <a class="dropdown-item" href={link} native>
+                        <i class={icon} /> {text}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
-              {regularButtons.map(({ link, color, icon, text }) => (
-                <span key={link}>
-                  {' '}
-                  <a class={'btn btn-' + color} href={link}>
-                    <i class={icon} /> {text}
-                  </a>
-                  <br style={{ marginBottom: 10 }} class="d-md-none" />
-                </span>
-              ))}
-            </p>
+            </div>
+
             <div class="small">
+              <h6>Players online:</h6>
+              {playing || 'unknown'}
+
+              <h6>Latest release:</h6>
+              <a href="#news">{release || 'unknown'}</a>
+
               <Commit {...commit} />
-              <b>Latest release:</b>{' '}
-              <a href="#news" style={{ color: 'cyan' }}>
-                {release || 'unknown'}
-              </a>
-              <br />
-              <b>Players online:</b> {playing || 'unknown'}
             </div>
           </div>
         </div>

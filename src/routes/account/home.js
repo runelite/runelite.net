@@ -97,10 +97,7 @@ const buildSlayerTask = slayerTask => {
 
   return (
     <div class="card mb-3">
-      <div class="card-header">
-        <img class="icon-small" alt="" src="/img/skillicons/slayer.png" />{' '}
-        Slayer Task
-      </div>
+      <div class="card-header">Slayer Task</div>
       <div class="card-body d-flex w-100">
         <div class="d-block">
           <h5 class="card-title">
@@ -132,12 +129,9 @@ const buildBossLog = bossLog => {
   }
 
   return (
-    <div class="card border-0">
-      <div class="card-header border">
-        <img class="icon-small" alt="" src="/img/skillicons/attack.png" /> Boss
-        Log
-      </div>
-      <ul class="list-group">
+    <div class="card">
+      <div class="card-header">Boss Log</div>
+      <ul id="kc" class="list-group">
         {bossLog.map(e => (
           <li class="list-group-item">
             <img
@@ -147,20 +141,22 @@ const buildBossLog = bossLog => {
               )}.png`}
               alt=""
             />
-            {e.name.toTitleCase()}{' '}
+            {e.name.toTitleCase()}
             <div class="float-right">
               {e.pb ? (
-                <span>
-                  Personal best:{' '}
+                <div>
+                  <label>Personal best:</label>
                   <span class="badge badge-info badge-pill">
-                    {' '}
                     {toMMSS(e.pb)}
-                  </span>{' '}
-                </span>
+                  </span>
+                </div>
               ) : (
                 <noscript />
               )}
-              Kills: <span class="badge badge-primary badge-pill">{e.kc}</span>{' '}
+              <div>
+                <label>Kills:</label>
+                <span class="badge badge-primary badge-pill">{e.kc}</span>
+              </div>
             </div>
           </li>
         ))}

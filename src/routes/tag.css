@@ -1,12 +1,62 @@
 .tag-container {
-  padding-top: 150px !important;
-  max-width: 705px;
+  padding: 100px 0px !important;
+  max-width: 675px !important;
 }
 
 .tag-container .card {
   margin: 10px;
+  border-radius: 5px;
+  background: #141414;
 }
 
 .tag-container .card img {
   padding: 10px;
+}
+
+.tag-container h1 {
+  width: auto;
+  font-family: Lato;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 0px;
+  color: white;
+  border: none !important;
+}
+
+.tag-container small {
+  font-size: 17px;
+  display: block;
+  font-family: Lato;
+}
+
+.tag-container textarea {
+  background: #141414;
+  border-color: #141414;
+}
+
+.tag-container textarea:focus {
+  background: #141414;
+  border-color: #535353;
+  box-shadow: none;
+}
+
+.tag-container hr {
+  background: #434343;
+}
+
+.tag-container pre {
+  background: #141414 !important;
+  color: gray;
+  border-radius: 5px;
+}
+
+.tag-container .card .tooltip-tag-text {
+  border-radius: 5px;
+  width: 200px;
+  margin-left: -100px !important;
+}
+
+.tag-container .card .tooltip-tag-text small {
+  font-size: 12px !important;
+  color: gray;
 }
