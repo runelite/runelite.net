@@ -13,6 +13,7 @@ import prepare from '../../components/prepare'
 import { wikiURLForItem } from '../../util'
 import SearchBar from '../../components/search-bar'
 import { fetchBootstrap } from '../../modules/bootstrap'
+import { fetchPrices } from '../../modules/prices'
 
 const getRlIcon = id => `https://static.runelite.net/cache/item/icon/${id}.png`
 
@@ -42,7 +43,7 @@ const glyphMap = {
 
 const quantityNums = ['', 'K', 'M']
 
-const buildQuantity = num => {
+const numToQuantity = num => {
   let l = 0
   while (num > 9999) {
     num /= 1000
@@ -51,7 +52,11 @@ const buildQuantity = num => {
 
   const si = quantityNums[l]
   const str = ~~num + si
+  return [str, si]
+}
 
+const buildQuantity = num => {
+  let [str, si] = numToQuantity(num)
   return (
     <span class={`rs-item-quantity rs-item-quantity-${si || 'none'}`}>
       {[...str]
@@ -89,11 +94,18 @@ const buildDrop = drop => (
   </div>
 )
 
+const formatPrice = price => {
+  let [str] = numToQuantity(price)
+  return str
+}
+
 const buildLootRecord = record => (
   <div class="card loot-card">
     <div class="card-header">
       {record.name}
-      <span class="small float-right">x {record.count}</span>
+      <span class="small float-right">
+        x {record.count} ({formatPrice(record.price)}gp)
+      </span>
     </div>
     <div class="card-body pt-0 pb-0 record-body">
       <div class="row drop-row">{record.drops.map(buildDrop)}</div>
@@ -126,14 +138,16 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchBootstrap,
+      fetchPrices,
       fetchLoot,
       setLootFilter
     },
     dispatch
   )
 
-const prepareComponentData = async ({ fetchBootstrap, fetchLoot }) => {
+const prepareComponentData = async ({ fetchBootstrap, fetchPrices, fetchLoot }) => {
   await fetchBootstrap()
+  await fetchPrices()
   await fetchLoot()
 }
 
