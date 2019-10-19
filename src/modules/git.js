@@ -78,7 +78,6 @@ export default handleActions(
 // Selectors
 const getCommits = state => state.git.commits
 const getReleases = state => state.git.releases
-const getRepository = state => state.git.repository
 
 export const getLatestCommit = createSelector(
   getCommits,
@@ -121,9 +120,4 @@ export const getLatestRelease = createSelector(
 
     return {}
   }
-)
-
-export const getStargazers = createSelector(
-  getRepository,
-  repository => repository.stargazers_count
 )

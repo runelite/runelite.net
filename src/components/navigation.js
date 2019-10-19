@@ -12,7 +12,7 @@ function toggleMenu() {
   nav.style.display = isHidden ? 'block' : 'none'
 }
 
-const Navigation = ({ stars, dark, login, loggedIn, username }) => (
+const Navigation = ({ dark, login, loggedIn, username }) => (
   <nav class={'navbar navbar-expand-lg fixed-top navbar-dark'}>
     <Link
       onClick={toggleMenu}
