@@ -7,8 +7,6 @@ import './app.scss'
 import './hero.css'
 import './layout.scss'
 import Navigation from './navigation'
-import links from '../_data/links'
-import Redirect from './redirect'
 import Loader from './loader'
 import Async from './async'
 import { getStargazers } from '../modules/git'
@@ -35,7 +33,6 @@ const App = ({
       username={username}
     />
     <Router>
-      <Redirect path="/discord" to={links.discord} />
       <Async path="/" getComponent={() => import('../routes/home')} />
       <Async path="/blog" getComponent={() => import('../routes/blog')} />
       <Async

@@ -127,8 +127,12 @@ const addSitePlugins = () => config => {
     })
   )
 
-  for (let key in redirectConfig.links) {
-    const link = redirectConfig.links[key]
+  for (let key in redirectConfig) {
+    if (!redirectConfig.hasOwnProperty(key)) {
+      continue
+    }
+
+    const link = redirectConfig[key]
 
     config.plugins.push(
       new HtmlWebpackPlugin({
@@ -136,7 +140,7 @@ const addSitePlugins = () => config => {
           url: link
         },
         template: 'redirect.html',
-        filename: redirectConfig.prefix + '/' + key + '/index.html',
+        filename: key + '/index.html',
         inject: false,
         xhtml: false
       })
