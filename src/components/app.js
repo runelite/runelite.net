@@ -11,24 +11,14 @@ import links from '../_data/links'
 import Redirect from './redirect'
 import Loader from './loader'
 import Async from './async'
-import { getStargazers } from '../modules/git'
 import NotFound from './not-found'
 import { isLoggedIn, login } from '../modules/account'
 
-const App = ({
-  loading,
-  stars,
-  navbarDark,
-  login,
-  logout,
-  loggedIn,
-  username
-}) => (
+const App = ({ loading, navbarDark, login, logout, loggedIn, username }) => (
   <div style={{ height: '100%' }}>
     <Loader loading={loading > 0} />
     <Navigation
       dark={navbarDark}
-      stars={stars}
       login={login}
       logout={logout}
       loggedIn={loggedIn}
@@ -75,7 +65,6 @@ const App = ({
 
 export default connect(
   state => ({
-    stars: getStargazers(state),
     loggedIn: isLoggedIn(state),
     ...state.app,
     ...state.account
