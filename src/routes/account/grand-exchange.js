@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h, Fragment } from 'preact'
 import ago from 's-ago'
 import { numberWithCommas } from '../../util'
 import { connect } from 'react-redux'
@@ -57,7 +57,7 @@ const handleChange = (event, setGeFilter) =>
   })
 
 const GrandExchange = ({ ge, geFilter, setGeFilter }) => (
-  <div>
+  <Fragment>
     <SearchBar
       value={geFilter.name}
       onInput={e => handleChange(e, setGeFilter)}
@@ -65,7 +65,7 @@ const GrandExchange = ({ ge, geFilter, setGeFilter }) => (
     <ul class="ge-records list-group list-group-small">
       {ge.sort((a, b) => b.date - a.date).map(buildRecord)}
     </ul>
-  </div>
+  </Fragment>
 )
 
 const mapStateToProps = (state, props) => ({

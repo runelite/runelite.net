@@ -127,9 +127,10 @@ const XpShow = ({ name, skill, xp, collectedXp, start, end }) => {
   const { startDate, endDate } = createDateRange(start, end)
   return (
     <Layout>
+      <Meta title={`Experience Tracker - ${hero.title}`} />
+
       <section id="xp-tracker">
         <div class="content-section">
-          <Meta title={`Experience Tracker - ${hero.title}`} />
           <h3>
             {name} /{' '}
             <small class="text-muted">

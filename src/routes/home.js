@@ -23,59 +23,58 @@ import Async from '../components/async'
 import prepare from '../components/prepare'
 
 const Home = ({ commit, release, sessionCount }) => (
-  <div style={{ height: 'inherit' }}>
+  <Layout>
     <Meta
       title={`${hero.title} - Open Source Old School RuneScape Client`}
       description={hero.description}
     />
-    <Layout>
-      <section id="intro">
-        <Hero
-          {...hero}
-          release={release.name}
-          commit={commit}
-          playing={sessionCount}
+
+    <section id="intro">
+      <Hero
+        {...hero}
+        release={release.name}
+        commit={commit}
+        playing={sessionCount}
+      />
+    </section>
+
+    <section id="features">
+      <div class="content-section homepage">
+        <h1>FEATURES</h1>
+        <Link href="/features" style={{ color: 'inherit' }}>
+          <h4>SHOW ALL FEATURES</h4>
+        </Link>
+
+        <div class="row">
+          {features
+            .filter(feature => feature.home)
+            .map(feature => (
+              <Feature key={feature.title} {...feature} />
+            ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="content-section homepage">
+        <h1 id="news">LATEST NEWS</h1>
+        <Link href="/blog" style={{ color: 'inherit' }}>
+          <h4>SHOW ALL NEWS</h4>
+        </Link>
+
+        <Async
+          getComponent={() =>
+            latest().then(({ body }) => (
+              <div
+                class="markdown-body news-page"
+                dangerouslySetInnerHTML={{ __html: body }}
+              />
+            ))
+          }
         />
-      </section>
-
-      <section id="features">
-        <div class="content-section homepage">
-          <h1>FEATURES</h1>
-          <Link href="/features" style={{ color: 'inherit' }}>
-            <h4>SHOW ALL FEATURES</h4>
-          </Link>
-
-          <div class="row">
-            {features
-              .filter(feature => feature.home)
-              .map(feature => (
-                <Feature key={feature.title} {...feature} />
-              ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="news">
-        <div class="content-section homepage">
-          <h1 id="news">LATEST NEWS</h1>
-          <Link href="/blog" style={{ color: 'inherit' }}>
-            <h4>SHOW ALL NEWS</h4>
-          </Link>
-
-          <Async
-            getComponent={() =>
-              latest().then(({ body }) => (
-                <div
-                  class="markdown-body news-page"
-                  dangerouslySetInnerHTML={{ __html: body }}
-                />
-              ))
-            }
-          />
-        </div>
-      </section>
-    </Layout>
-  </div>
+      </div>
+    </section>
+  </Layout>
 )
 
 const mapStateToProps = (state, props) => ({

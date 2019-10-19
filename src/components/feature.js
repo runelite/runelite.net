@@ -2,10 +2,7 @@ import { h } from 'preact'
 import './feature.scss'
 
 const Feature = ({ image, title, description, link }) => (
-  <div
-    class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12"
-    style={{ marginBottom: 15 }}
-  >
+  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-2">
     <div class="card">
       <img class="card-img-top" alt={title} src={image} />
       <div class="card-body">

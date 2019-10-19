@@ -5,18 +5,17 @@ import Meta from '../components/meta'
 import './loading.scss'
 
 const Loading = () => (
-  <div>
+  <Layout>
     <Meta title={`Loading - ${hero.title}`} />
-    <Layout>
-      <section id="loading">
-        <div class="content-section">
-          <h1>Loading...</h1>
-          <hr />
-          <p>Please wait while you are redirected.</p>
-        </div>
-      </section>
-    </Layout>
-  </div>
+
+    <section id="loading">
+      <div class="content-section">
+        <h1>Loading...</h1>
+        <hr />
+        <p>Please wait while you are redirected.</p>
+      </div>
+    </section>
+  </Layout>
 )
 
 export default Loading

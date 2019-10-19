@@ -15,47 +15,41 @@ const formatIcon = icon =>
   `https://static.runelite.net/cache/item/icon/${icon}.png`
 
 const TagShow = ({ name, icon, itemIds, items, version, csv }) => (
-  <div>
+  <Layout>
     <Meta title={`${name} tag tab - ${hero.title}`} />
-    <Layout>
-      <section id="tags">
-        <div class="content-section tag-container">
-          <h1>
-            <img alt="" src={formatIcon(icon)} /> {name}
-          </h1>
-          <hr />
+    <section id="tags">
+      <div class="content-section tag-container">
+        <h1>
+          <img alt="" src={formatIcon(icon)} /> {name}
+        </h1>
+        <hr />
 
-          <div class="row">
-            <pre class="pre-select">{csv}</pre>
-            {itemIds.map(id => {
-              const item = items.find(i => i.id === id) || {}
-              const name = item.name || ''
-              const examine = item.examine || ''
+        <div class="row">
+          <pre class="pre-select">{csv}</pre>
+          {itemIds.map(id => {
+            const item = items.find(i => i.id === id) || {}
+            const name = item.name || ''
+            const examine = item.examine || ''
 
-              return (
-                <div class="card">
-                  <div class="tooltip-tag">
-                    <a href={wikiURLForItem(item)}>
-                      <img
-                        class="card-img-top"
-                        alt={name}
-                        src={formatIcon(id)}
-                      />
-                    </a>
-                    <div class="tooltip-tag-text">
-                      <b>{item.name || 'Loading...'}</b>
-                      <br />
-                      <small>{examine}</small>
-                    </div>
+            return (
+              <div class="card">
+                <div class="tooltip-tag">
+                  <a href={wikiURLForItem(item)}>
+                    <img class="card-img-top" alt={name} src={formatIcon(id)} />
+                  </a>
+                  <div class="tooltip-tag-text">
+                    <b>{item.name || 'Loading...'}</b>
+                    <br />
+                    <small>{examine}</small>
                   </div>
                 </div>
-              )
-            })}
-          </div>
+              </div>
+            )
+          })}
         </div>
-      </section>
-    </Layout>
-  </div>
+      </div>
+    </section>
+  </Layout>
 )
 
 const mapStateToProps = (state, { csv }) => {

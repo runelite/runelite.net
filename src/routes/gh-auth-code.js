@@ -5,22 +5,21 @@ import Meta from '../components/meta'
 import './gh-auth-code.scss'
 
 const GitHubAuthCode = ({ code }) => (
-  <div>
+  <Layout>
     <Meta title={`GitHub-Discord Connection - ${hero.title}`} />
-    <Layout>
-      <section id="gh-auth">
-        <div class="content-section gh-auth-container">
-          <h1>Almost there...</h1>
-          <hr />
-          <div>
-            To complete authentication, send:
-            <pre class="pre-select">!ghauth {code}</pre>
-            In a Direct Message to the RuneLite Discord bot.
-          </div>{' '}
-        </div>
-      </section>
-    </Layout>
-  </div>
+
+    <section id="gh-auth">
+      <div class="content-section gh-auth-container">
+        <h1>Almost there...</h1>
+        <hr />
+        <div>
+          To complete authentication, send:
+          <pre class="pre-select">!ghauth {code}</pre>
+          In a Direct Message to the RuneLite Discord bot.
+        </div>{' '}
+      </div>
+    </section>
+  </Layout>
 )
 
 export default GitHubAuthCode
