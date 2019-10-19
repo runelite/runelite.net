@@ -1,7 +1,7 @@
 import { uniq, concat } from 'ramda'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
-import { getLatestRelease } from './git'
+import { getLatestRelease } from './bootstrap'
 import { createSelector } from 'reselect'
 
 const runeliteApi = api('https://api.runelite.net/')
@@ -11,7 +11,7 @@ const runeliteStaticApi = api('https://static.runelite.net/')
 export const { fetchGe, setGe, setGeRange, setGeFilter } = createActions(
   {
     FETCH_GE: () => async (dispatch, getState) => {
-      const version = getLatestRelease(getState()).name
+      const version = getLatestRelease(getState())
       const uuid = getState().account.uuid
 
       // Assign names to items

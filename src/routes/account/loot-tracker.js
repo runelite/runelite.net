@@ -8,7 +8,6 @@ import {
   getLootFilter,
   setLootFilter
 } from '../../modules/loot'
-import { fetchReleases } from '../../modules/git'
 import { bindActionCreators } from 'redux'
 import prepare from '../../components/prepare'
 import { wikiURLForItem } from '../../util'
@@ -125,15 +124,13 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchReleases,
       fetchLoot,
       setLootFilter
     },
     dispatch
   )
 
-const prepareComponentData = async ({ fetchReleases, fetchLoot }) => {
-  await fetchReleases()
+const prepareComponentData = async ({ fetchLoot }) => {
   await fetchLoot()
 }
 

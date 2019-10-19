@@ -9,7 +9,6 @@ import {
   setGeFilter
 } from '../../modules/ge'
 import { bindActionCreators } from 'redux'
-import { fetchReleases } from '../../modules/git'
 import prepare from '../../components/prepare'
 import SearchBar from '../../components/search-bar'
 import './grand-exchange.css'
@@ -77,15 +76,13 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchReleases,
       fetchGe,
       setGeFilter
     },
     dispatch
   )
 
-const prepareComponentData = async ({ fetchReleases, fetchGe }) => {
-  await fetchReleases()
+const prepareComponentData = async ({ fetchGe }) => {
   await fetchGe()
 }
 

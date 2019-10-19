@@ -4,7 +4,6 @@ import { toMMSS } from '../../util'
 import { bindActionCreators } from 'redux'
 import { fetchConfig, getBossLog, getSlayerTask } from '../../modules/config'
 import { connect } from 'react-redux'
-import { fetchReleases } from '../../modules/git'
 import prepare from '../../components/prepare'
 
 const nameToItemId = name => {
@@ -181,14 +180,12 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchReleases,
       fetchConfig
     },
     dispatch
   )
 
-const prepareComponentData = async ({ fetchReleases, fetchConfig }) => {
-  await fetchReleases()
+const prepareComponentData = async ({ fetchConfig }) => {
   await fetchConfig()
 }
 

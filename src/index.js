@@ -3,12 +3,11 @@ import { Provider } from 'react-redux'
 import App from './components/app'
 import configureStore from './store'
 import { sessionCheck } from './modules/account'
-import { fetchReleases, fetchRepository } from './modules/git'
+import { fetchBootstrap } from './modules/bootstrap'
 
 // Check session and get API version
 const callback = async store => {
-  store.dispatch(fetchRepository())
-  await store.dispatch(fetchReleases())
+  await store.dispatch(fetchBootstrap())
   await store.dispatch(sessionCheck())
 }
 

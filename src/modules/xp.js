@@ -4,7 +4,7 @@ import { createActions, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
 import skills from '../_data/skills'
 import api from '../api'
-import { getLatestRelease } from './git'
+import { getLatestRelease } from './bootstrap'
 
 const runeliteApi = api('https://api.runelite.net/')
 
@@ -14,7 +14,7 @@ export const { fetchXp, setXp, setXpRange } = createActions(
     FETCH_XP: ({ skill, name, start, end }) => async (dispatch, getState) => {
       dispatch(setXpRange([]))
 
-      const version = getLatestRelease(getState()).name
+      const version = getLatestRelease(getState())
       const results = []
 
       for (

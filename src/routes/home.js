@@ -6,13 +6,7 @@ import Feature from '../components/feature'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import { latest } from '../blog'
-import {
-  fetchCommits,
-  fetchReleases,
-  fetchRepository,
-  getLatestCommit,
-  getLatestRelease
-} from '../modules/git'
+import { fetchCommits, getLatestCommit } from '../modules/git'
 import hero from '../_data/hero'
 import features from '../_data/features'
 import { fetchSessionCount, getSessionCount } from '../modules/session'
@@ -21,6 +15,7 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'preact-router'
 import Async from '../components/async'
 import prepare from '../components/prepare'
+import { getLatestRelease } from '../modules/bootstrap'
 
 const Home = ({ commit, release, sessionCount }) => (
   <Layout>
@@ -32,7 +27,7 @@ const Home = ({ commit, release, sessionCount }) => (
     <section id="intro">
       <Hero
         {...hero}
-        release={release.name}
+        release={release}
         commit={commit}
         playing={sessionCount}
       />
@@ -87,21 +82,13 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchCommits,
-      fetchReleases,
-      fetchRepository,
       fetchSessionCount
     },
     dispatch
   )
 
-const prepareComponentData = async ({
-  fetchCommits,
-  fetchRepository,
-  fetchReleases,
-  fetchSessionCount
-}) => {
+const prepareComponentData = async ({ fetchCommits, fetchSessionCount }) => {
   fetchCommits()
-  await fetchReleases()
   await fetchSessionCount()
 }
 

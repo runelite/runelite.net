@@ -9,7 +9,6 @@ const githubApi = api('https://api.github.com/')
 export const {
   fetchCommits,
   fetchRepository,
-  fetchReleases,
   setCommits,
   setReleases,
   setRepository
@@ -110,14 +109,12 @@ export const getLatestRelease = createSelector(
   releases => {
     if (releases.length > 0) {
       const release = releases[0]
-      return {
-        name: release.name.substr(
-          release.name.lastIndexOf('-') + 1,
-          release.name.length
-        )
-      }
+      return release.name.substr(
+        release.name.lastIndexOf('-') + 1,
+        release.name.length
+      )
     }
 
-    return {}
+    return ''
   }
 )
