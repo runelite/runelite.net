@@ -8,32 +8,30 @@ import { setActiveTag } from '../modules/tag'
 import { connect } from 'react-redux'
 
 const Tag = ({ activeTag, setActiveTag }) => (
-  <div>
+  <Layout>
     <Meta title={`Select tag tab - ${hero.title}`} />
-    <Layout>
-      <section id="tags">
-        <div class="content-section tag-container">
-          <h1>Enter tag</h1>
-          <small class="text-muted">
-            Paste a tag exported from Runelite's Bank Tags plugin and click 'GO'
-          </small>
+    <section id="tags">
+      <div class="content-section tag-container">
+        <h1>Enter tag</h1>
+        <small class="text-muted">
+          Paste a tag exported from Runelite's Bank Tags plugin and click 'GO'
+        </small>
 
-          <hr />
-          <textarea
-            rows="5"
-            class="form-control"
-            placeholder="Enter your tags here"
-            onChange={event => setActiveTag(event.target.value)}
-          >
-            {activeTag}
-          </textarea>
-          <a class="btn btn-block btn-success" href={`/tag/show/${activeTag}`}>
-            Go
-          </a>
-        </div>
-      </section>
-    </Layout>
-  </div>
+        <hr />
+        <textarea
+          rows="5"
+          class="form-control"
+          placeholder="Enter your tags here"
+          onChange={event => setActiveTag(event.target.value)}
+        >
+          {activeTag}
+        </textarea>
+        <a class="btn btn-block btn-success" href={`/tag/show/${activeTag}`}>
+          Go
+        </a>
+      </div>
+    </section>
+  </Layout>
 )
 
 const mapStateToProps = state => ({ activeTag: state.tag.activeTag })

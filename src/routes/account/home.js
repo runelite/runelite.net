@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h, Fragment } from 'preact'
 import '@gouch/to-title-case'
 import { toMMSS } from '../../util'
 import { bindActionCreators } from 'redux'
@@ -166,10 +166,10 @@ const buildBossLog = bossLog => {
 }
 
 const Home = ({ slayerTask, bossLog }) => (
-  <div>
+  <Fragment>
     {buildSlayerTask(slayerTask)}
     {buildBossLog(bossLog)}
-  </div>
+  </Fragment>
 )
 
 const mapStateToProps = (state, props) => ({

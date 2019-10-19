@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h, Fragment } from 'preact'
 import '../../components/tooltip.css'
 import './loot-tracker.css'
 import { connect } from 'react-redux'
@@ -107,13 +107,13 @@ const handleChange = (event, setLootFilter) =>
   })
 
 const LootTracker = ({ loot, lootFilter, setLootFilter }) => (
-  <div>
+  <Fragment>
     <SearchBar
       value={lootFilter.name}
       onInput={e => handleChange(e, setLootFilter)}
     />
     <div class="card-columns">{loot.map(buildLootRecord)}</div>
-  </div>
+  </Fragment>
 )
 
 const mapStateToProps = (state, props) => ({
