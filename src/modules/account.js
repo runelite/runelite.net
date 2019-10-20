@@ -1,7 +1,7 @@
 import uuid from 'uuid/v4'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
-import { getLatestRelease } from './git'
+import { getLatestRelease } from './bootstrap'
 import { getBaseUrl } from '../util'
 import { route } from 'preact-router'
 
@@ -18,7 +18,7 @@ export const {
 } = createActions(
   {
     LOGIN: () => async (dispatch, getState) => {
-      const version = getLatestRelease(getState()).name
+      const version = getLatestRelease(getState())
       const localUuid = getState().account.uuid
       const baseUrl = getBaseUrl()
 
@@ -76,7 +76,7 @@ export const {
       return response
     },
     LOGOUT: () => async (dispatch, getState) => {
-      const version = getLatestRelease(getState()).name
+      const version = getLatestRelease(getState())
       const localUuid = getState().account.uuid
 
       try {
@@ -91,7 +91,7 @@ export const {
       }
     },
     SESSION_CHECK: () => async (dispatch, getState) => {
-      const version = getLatestRelease(getState()).name
+      const version = getLatestRelease(getState())
       const localUuid = getState().account.uuid
 
       try {

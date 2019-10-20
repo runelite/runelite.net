@@ -1,5 +1,6 @@
 import accountReducer from './account'
 import appReducer from './app'
+import bootstrapReducer from './bootstrap'
 import configReducer from './config'
 import geReducer from './ge'
 import gitReducer from './git'
@@ -13,6 +14,7 @@ import xpReducer from './xp'
 export default {
   account: accountReducer,
   app: appReducer,
+  bootstrap: bootstrapReducer,
   config: configReducer,
   ge: geReducer,
   git: gitReducer,

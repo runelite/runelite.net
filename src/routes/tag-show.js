@@ -3,13 +3,13 @@ import Layout from '../components/layout'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
-import { fetchReleases, getLatestRelease } from '../modules/git'
 import { fetchItemInfo } from '../modules/item'
 import { connect } from 'react-redux'
 import '../components/tooltip.css'
 import './tag.css'
 import prepare from '../components/prepare'
 import { wikiURLForItem } from '../util'
+import { getLatestRelease } from '../modules/bootstrap'
 
 const formatIcon = icon =>
   `https://static.runelite.net/cache/item/icon/${icon}.png`
@@ -68,14 +68,9 @@ const mapStateToProps = (state, { csv }) => {
 }
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ fetchReleases, fetchItemInfo }, dispatch)
+  bindActionCreators({ fetchItemInfo }, dispatch)
 
-const prepareComponentData = async ({
-  fetchReleases,
-  fetchItemInfo,
-  itemIds
-}) => {
-  await fetchReleases()
+const prepareComponentData = async ({ fetchItemInfo, itemIds }) => {
   await fetchItemInfo(itemIds)
 }
 

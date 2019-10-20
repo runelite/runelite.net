@@ -16,7 +16,6 @@ import {
 } from 'recharts'
 import '@gouch/to-title-case'
 import Layout from '../components/layout'
-import { fetchReleases } from '../modules/git'
 import { fetchXp, getXp, getCollectedXp } from '../modules/xp'
 import hero from '../_data/hero'
 import skills from '../_data/skills'
@@ -226,19 +225,10 @@ const mapStateToProps = (state, props) => ({
   collectedXp: getCollectedXp(state, props)
 })
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ fetchReleases, fetchXp }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchXp }, dispatch)
 
-const prepareComponentData = async ({
-  fetchReleases,
-  fetchXp,
-  skill,
-  name,
-  start,
-  end
-}) => {
+const prepareComponentData = async ({ fetchXp, skill, name, start, end }) => {
   const { startDate, endDate } = createDateRange(start, end)
-  await fetchReleases()
   await fetchXp({
     skill: skill.toLowerCase(),
     name,

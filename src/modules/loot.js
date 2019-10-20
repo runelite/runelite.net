@@ -1,6 +1,6 @@
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
-import { getLatestRelease } from './git'
+import { getLatestRelease } from './bootstrap'
 import { createSelector } from 'reselect'
 import { flattenMap } from '../util'
 
@@ -18,7 +18,7 @@ export const {
     FETCH_LOOT: () => async (dispatch, getState) => {
       dispatch(setLootRange([]))
 
-      const version = getLatestRelease(getState()).name
+      const version = getLatestRelease(getState())
       const uuid = getState().account.uuid
 
       const names = await runeliteStaticApi('cache/item/names.json', {
