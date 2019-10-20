@@ -1,5 +1,6 @@
 import { h, render } from 'preact'
 import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
 import App from './components/app'
 import configureStore from './store'
 import { sessionCheck } from './modules/account'
@@ -12,12 +13,14 @@ const callback = async store => {
 }
 
 // Create redux store
-const { store } = configureStore(callback)
+const { store, persistor } = configureStore(callback)
 
 // Create application
 const Main = () => (
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>
 )
 
