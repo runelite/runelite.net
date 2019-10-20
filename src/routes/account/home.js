@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { fetchConfig, getBossLog, getSlayerTask } from '../../modules/config'
 import { connect } from 'react-redux'
 import prepare from '../../components/prepare'
+import { fetchBootstrap } from '../../modules/bootstrap'
 
 const nameToItemId = name => {
   switch (name.toLowerCase()) {
@@ -180,12 +181,14 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      fetchBootstrap,
       fetchConfig
     },
     dispatch
   )
 
-const prepareComponentData = async ({ fetchConfig }) => {
+const prepareComponentData = async ({ fetchBootstrap, fetchConfig }) => {
+  await fetchBootstrap()
   await fetchConfig()
 }
 

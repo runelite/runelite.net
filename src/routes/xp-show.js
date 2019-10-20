@@ -24,6 +24,7 @@ import prepare from '../components/prepare'
 import { flattenMap, numberWithCommas } from '../util'
 import NotFound from '../components/not-found'
 import './xp-show.scss'
+import { fetchBootstrap } from '../modules/bootstrap'
 
 const isNumeric = value => !isNaN(value - parseFloat(value))
 
@@ -225,10 +226,19 @@ const mapStateToProps = (state, props) => ({
   collectedXp: getCollectedXp(state, props)
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchXp }, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ fetchBootstrap, fetchXp }, dispatch)
 
-const prepareComponentData = async ({ fetchXp, skill, name, start, end }) => {
+const prepareComponentData = async ({
+  fetchBootstrap,
+  fetchXp,
+  skill,
+  name,
+  start,
+  end
+}) => {
   const { startDate, endDate } = createDateRange(start, end)
+  await fetchBootstrap()
   await fetchXp({
     skill: skill.toLowerCase(),
     name,

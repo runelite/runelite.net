@@ -9,7 +9,7 @@ import '../components/tooltip.css'
 import './tag.css'
 import prepare from '../components/prepare'
 import { wikiURLForItem } from '../util'
-import { getLatestRelease } from '../modules/bootstrap'
+import { fetchBootstrap, getLatestRelease } from '../modules/bootstrap'
 
 const formatIcon = icon =>
   `https://static.runelite.net/cache/item/icon/${icon}.png`
@@ -68,9 +68,14 @@ const mapStateToProps = (state, { csv }) => {
 }
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ fetchItemInfo }, dispatch)
+  bindActionCreators({ fetchBootstrap, fetchItemInfo }, dispatch)
 
-const prepareComponentData = async ({ fetchItemInfo, itemIds }) => {
+const prepareComponentData = async ({
+  fetchBootstrap,
+  fetchItemInfo,
+  itemIds
+}) => {
+  await fetchBootstrap()
   await fetchItemInfo(itemIds)
 }
 

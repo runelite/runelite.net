@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux'
 import prepare from '../../components/prepare'
 import SearchBar from '../../components/search-bar'
 import './grand-exchange.css'
+import { fetchBootstrap } from '../../modules/bootstrap'
 
 const formatGeIcon = id =>
   `https://services.runescape.com/m=itemdb_oldschool/obj_big.gif?id=${id}`
@@ -76,13 +77,15 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      fetchBootstrap,
       fetchGe,
       setGeFilter
     },
     dispatch
   )
 
-const prepareComponentData = async ({ fetchGe }) => {
+const prepareComponentData = async ({ fetchBootstrap, fetchGe }) => {
+  await fetchBootstrap()
   await fetchGe()
 }
 
