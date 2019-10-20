@@ -9,6 +9,7 @@ const githubApi = api('https://api.github.com/')
 export const {
   fetchCommits,
   fetchRepository,
+  fetchReleases,
   setCommits,
   setReleases,
   setRepository
