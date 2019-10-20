@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux'
 import prepare from '../../components/prepare'
 import { wikiURLForItem } from '../../util'
 import SearchBar from '../../components/search-bar'
+import { fetchBootstrap } from '../../modules/bootstrap'
 
 const getRlIcon = id => `https://static.runelite.net/cache/item/icon/${id}.png`
 
@@ -124,13 +125,15 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      fetchBootstrap,
       fetchLoot,
       setLootFilter
     },
     dispatch
   )
 
-const prepareComponentData = async ({ fetchLoot }) => {
+const prepareComponentData = async ({ fetchBootstrap, fetchLoot }) => {
+  await fetchBootstrap()
   await fetchLoot()
 }
 
