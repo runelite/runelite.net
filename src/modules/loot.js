@@ -3,6 +3,7 @@ import api from '../api'
 import { getLatestRelease } from './bootstrap'
 import { createSelector } from 'reselect'
 import { flattenMap } from '../util'
+import { getPrices } from './prices'
 
 const runeliteApi = api('https://api.runelite.net/')
 const runeliteStaticApi = api('https://static.runelite.net/')
@@ -118,7 +119,8 @@ export const getFilteredLoot = createSelector(
 
 export const getGroupedLoot = createSelector(
   getFilteredLoot,
-  loot => {
+  getPrices,
+  (loot, prices) => {
     const groupedLoot = new Map()
 
     const mergeDrops = (existingDrops, newDrops) => {
@@ -144,6 +146,17 @@ export const getGroupedLoot = createSelector(
       return groupedItems
     }
 
+    const getPrice = drops => {
+      let total = 0
+      for (let drop of drops) {
+        const price = prices[drop.id]
+        if (!isNaN(price)) {
+          total += price * drop.qty
+        }
+      }
+      return total
+    }
+
     for (let entry of loot) {
       const key = entry.eventId
 
@@ -151,13 +164,15 @@ export const getGroupedLoot = createSelector(
         const existing = groupedLoot.get(key)
         existing.count += 1
         existing.drops = mergeDrops(existing.drops, entry.drops)
+        existing.price += getPrice(entry.drops)
         continue
       }
 
       const newEntry = {
         drops: mergeDrops(entry.drops, []),
         type: entry.type,
-        count: 1
+        count: 1,
+        price: getPrice(entry.drops)
       }
 
       groupedLoot.set(key, newEntry)
