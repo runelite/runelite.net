@@ -97,7 +97,7 @@ const Navigation = ({ dark, login, loggedIn, username }) => (
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-icon" href={links.discord} title="Discord">
+          <a class="nav-link nav-icon" href="/discord" title="Discord">
             <i class="fab fa-discord" />
             <span class="d-lg-none"> Discord</span>
           </a>
