@@ -53,8 +53,7 @@ export default [
   {
     image: '/img/features/barrows.png',
     title: 'Barrows',
-    description:
-      'Displays minimap information for the tunnel and marks the location of brothers.',
+    description: 'Marks the location of brothers and shows puzzle answers',
     link: 'https://github.com/runelite/runelite/wiki/Barrows-Brothers'
   },
   {
@@ -330,12 +329,6 @@ export default [
     title: 'Prayer Bar',
     description: 'Displays a prayer bar underneath your hitpoints bar.',
     link: 'https://github.com/runelite/runelite/wiki/Prayer'
-  },
-  {
-    image: '/img/features/prayerorder.png',
-    title: 'Prayer reordering',
-    description: 'Allows you to drag-and-drop prayers in your prayer book.',
-    link: 'https://github.com/runelite/runelite/wiki/Reorder-Prayers'
   },
   {
     image: '/img/features/puzzlebox.png',
