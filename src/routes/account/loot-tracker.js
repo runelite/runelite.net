@@ -145,7 +145,11 @@ const mapDispatchToProps = dispatch =>
     dispatch
   )
 
-const prepareComponentData = async ({ fetchBootstrap, fetchPrices, fetchLoot }) => {
+const prepareComponentData = async ({
+  fetchBootstrap,
+  fetchPrices,
+  fetchLoot
+}) => {
   await fetchBootstrap()
   await fetchPrices()
   await fetchLoot()

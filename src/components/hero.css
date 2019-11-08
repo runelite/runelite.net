@@ -6,9 +6,23 @@
   width: 100%;
   margin: 0;
   height: calc(100vh - 55px);
-  background: rgba(0, 0, 0, 0.2) no-repeat center center fixed;
+  background: rgba(0, 0, 0, 0.2);
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
   background-size: cover;
-  padding-bottom: 0px;
+  padding-bottom: 0;
+}
+
+@media screen and (max-device-width: 1024px) {
+  .jumbotron {
+    background-attachment: scroll;
+  }
 }
 
 .jumbotron-cell {
