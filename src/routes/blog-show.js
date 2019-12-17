@@ -12,6 +12,9 @@ const InnerHTMLHelper = ({ tagName, html }) =>
   h(tagName, { dangerouslySetInnerHTML: { __html: html } })
 
 const buildPost = ({ date, title, description, author, body }) => {
+  // The blog uses the current scroll position when going into a post.
+  // Reset it to top by hand.
+  window.scrollTo(0, 0)
   if (!body) {
     return <NotFound />
   }
