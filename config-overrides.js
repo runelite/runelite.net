@@ -122,6 +122,7 @@ const addSitePlugins = () => config => {
       },
       template: 'public/atom.html',
       filename: 'atom.xml',
+      minify: false,
       inject: false,
       xhtml: false
     })
