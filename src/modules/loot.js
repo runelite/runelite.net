@@ -42,7 +42,7 @@ export const {
 
         const result = newLoot.map(entry => {
           entry.date = new Date(0)
-          entry.date.setUTCSeconds(entry.time.seconds)
+          entry.date.setUTCSeconds(entry.last_time.seconds)
 
           entry.drops = entry.drops.map(drop => {
             drop.name = names[drop.id]
@@ -162,7 +162,7 @@ export const getGroupedLoot = createSelector(
 
       if (groupedLoot.has(key)) {
         const existing = groupedLoot.get(key)
-        existing.count += 1
+        existing.count += entry.amount
         existing.drops = mergeDrops(existing.drops, entry.drops)
         existing.price += getPrice(entry.drops)
         continue
@@ -171,7 +171,7 @@ export const getGroupedLoot = createSelector(
       const newEntry = {
         drops: mergeDrops(entry.drops, []),
         type: entry.type,
-        count: 1,
+        count: entry.amount,
         price: getPrice(entry.drops)
       }
 
