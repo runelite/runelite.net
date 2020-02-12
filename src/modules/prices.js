@@ -16,6 +16,9 @@ export const { fetchPrices, setPrices } = createActions(
 
       const priceMap = {}
 
+      priceMap[995] = 1 // Coins
+      priceMap[13204] = 1000 // Platinum token
+
       for (const item of prices) {
         priceMap[item.id] = item.price
       }
