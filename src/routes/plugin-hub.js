@@ -6,6 +6,7 @@ import Layout from '../components/layout'
 import ExternalPlugin from '../components/external-plugin'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
+import { fetchBootstrap } from '../modules/bootstrap'
 import { fetchExternalPlugins } from '../modules/plugin-hub'
 import './plugin-hub.css'
 
@@ -53,12 +54,17 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      fetchBootstrap,
       fetchExternalPlugins
     },
     dispatch
   )
 
-const prepareComponentData = async ({ fetchExternalPlugins }) => {
+const prepareComponentData = async ({
+  fetchBootstrap,
+  fetchExternalPlugins
+}) => {
+  await fetchBootstrap()
   await fetchExternalPlugins()
 }
 
