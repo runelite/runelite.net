@@ -34,6 +34,10 @@ const App = ({ loading, navbarDark, login, logout, loggedIn, username }) => (
         getComponent={() => import('../routes/features')}
       />
       <Async
+        path="/plugin-hub"
+        getComponent={() => import('../routes/plugin-hub')}
+      />
+      <Async
         path="/xp/show/:skill/:name/:start/:end"
         getComponent={() => import('../routes/xp-show')}
       />
