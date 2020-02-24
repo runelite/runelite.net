@@ -33,7 +33,7 @@ const Home = ({ commit, release, sessionCount }) => (
       />
     </section>
 
-    <section id="features">
+    <section id="features-home">
       <div class="content-section homepage">
         <h1>FEATURES</h1>
         <Link href="/features" style={{ color: 'inherit' }}>
@@ -44,7 +44,11 @@ const Home = ({ commit, release, sessionCount }) => (
           {features
             .filter(feature => feature.home)
             .map(feature => (
-              <Feature key={feature.title} {...feature} />
+              <Feature
+                key={feature.title}
+                linkAlt="View on Wiki"
+                {...feature}
+              />
             ))}
         </div>
       </div>

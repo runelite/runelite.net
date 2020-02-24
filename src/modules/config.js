@@ -74,53 +74,47 @@ export default handleActions(
 export const getConfig = state => state.config.config
 export const getSelectedAccount = state => state.config.selectedAccount
 
-export const getAccounts = createSelector(
-  getConfig,
-  config => {
-    const names = new Set()
+export const getAccounts = createSelector(getConfig, config => {
+  const names = new Set()
 
-    for (let key in config) {
-      const matches = configNameFilters.map(r => key.match(r)).filter(m => !!m)
-      const matchesFound = matches.shift()
+  for (let key in config) {
+    const matches = configNameFilters.map(r => key.match(r)).filter(m => !!m)
+    const matchesFound = matches.shift()
 
-      if (!matchesFound) {
-        continue
-      }
-
-      const match = matchesFound.filter(m => m.length > 0)
-
-      if (!match || match.length !== 4) {
-        continue
-      }
-
-      const username = match[2]
-      names.add(username.toLowerCase())
+    if (!matchesFound) {
+      continue
     }
 
-    return [...names]
+    const match = matchesFound.filter(m => m.length > 0)
+
+    if (!match || match.length !== 4) {
+      continue
+    }
+
+    const username = match[2]
+    names.add(username.toLowerCase())
   }
-)
 
-export const getSlayerTask = createSelector(
-  getConfig,
-  config => {
-    if (!config['slayer.taskName']) {
-      return {
-        hasTask: false
-      }
-    }
+  return [...names]
+})
 
+export const getSlayerTask = createSelector(getConfig, config => {
+  if (!config['slayer.taskName']) {
     return {
-      hasTask: true,
-      name: config['slayer.taskName'],
-      location: config['slayer.taskLocation'],
-      start: config['slayer.initialAmount'],
-      remaining: config['slayer.amount'],
-      streak: config['slayer.streak'],
-      points: config['slayer.points']
+      hasTask: false
     }
   }
-)
+
+  return {
+    hasTask: true,
+    name: config['slayer.taskName'],
+    location: config['slayer.taskLocation'],
+    start: config['slayer.initialAmount'],
+    remaining: config['slayer.amount'],
+    streak: config['slayer.streak'],
+    points: config['slayer.points']
+  }
+})
 
 export const getBossLog = createSelector(
   getConfig,

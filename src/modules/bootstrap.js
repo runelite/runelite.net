@@ -28,13 +28,10 @@ export default handleActions(
 // Selectors
 const getBootstrap = state => state.bootstrap
 
-export const getLatestRelease = createSelector(
-  getBootstrap,
-  bootstrap => {
-    if ('client' in bootstrap) {
-      return bootstrap['client']['version']
-    }
-
-    return ''
+export const getLatestRelease = createSelector(getBootstrap, bootstrap => {
+  if ('client' in bootstrap) {
+    return bootstrap['client']['version']
   }
-)
+
+  return ''
+})

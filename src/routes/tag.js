@@ -38,7 +38,4 @@ const mapStateToProps = state => ({ activeTag: state.tag.activeTag })
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ setActiveTag }, dispatch)
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Tag)
+export default connect(mapStateToProps, mapDispatchToProps)(Tag)

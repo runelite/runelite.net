@@ -4,7 +4,6 @@ import Feature from '../components/feature'
 import features from '../_data/features'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
-import './features.css'
 
 const Features = () => (
   <Layout>
@@ -15,7 +14,7 @@ const Features = () => (
         <h1>Features</h1>
         <div class="row">
           {features.map(feature => (
-            <Feature key={feature.title} {...feature} />
+            <Feature key={feature.title} linkAlt="View on Wiki" {...feature} />
           ))}
         </div>
       </div>
