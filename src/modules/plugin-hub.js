@@ -3,7 +3,7 @@ import { getLatestRelease } from './bootstrap'
 import api from '../api'
 
 const pluginHubUrl = 'https://repo.runelite.net/plugins/'
-const pluginHubApi = api('https://repo.runelite.net/plugins/')
+const pluginHubApi = api(pluginHubUrl)
 
 // Actions
 export const { fetchExternalPlugins, setExternalPlugins } = createActions(
@@ -15,24 +15,24 @@ export const { fetchExternalPlugins, setExternalPlugins } = createActions(
         { method: 'GET' },
         true
       )
-      const buffer = await response.arrayBuffer()
-      const signatureSize = new DataView(buffer).getUint32(0)
+
+      const signatureSize = new DataView(response).getUint32(0)
+
       // Removes the signature, and it's 4byte header, then converts the result into a string
       const jsonStr = String.fromCharCode.apply(
         null,
-        new Uint8Array(buffer.slice(signatureSize + 4))
+        new Uint8Array(response.slice(signatureSize + 4))
       )
 
       const pluginManifest = JSON.parse(jsonStr)
       const plugins = pluginManifest.map(p => {
         if (p.hasIcon) {
           p.imageUrl = `${pluginHubUrl}${version}/${p.internalName}/${p.commit}.png`
-        } else {
-          p.imageUrl = '/img/plugin-hub/missingicon.png'
         }
 
         return p
       })
+
       dispatch(setExternalPlugins(plugins))
       return plugins
     }

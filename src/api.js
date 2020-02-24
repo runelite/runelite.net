@@ -24,13 +24,13 @@ export default base => {
       throw new Error(response.statusText)
     }
 
-    if (returnRaw) {
-      return response
-    }
-
     const headers = response.headers.get('Content-Type')
     const isJson = headers && contains('json', headers)
-    response = isJson ? await response.json() : await response.text()
+    response = returnRaw
+      ? await response.arrayBuffer()
+      : isJson
+      ? await response.json()
+      : await response.text()
 
     if (response.error) {
       throw new Error(response.statusText)

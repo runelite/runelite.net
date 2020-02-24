@@ -8,7 +8,6 @@ import hero from '../_data/hero'
 import Meta from '../components/meta'
 import { fetchBootstrap } from '../modules/bootstrap'
 import { fetchExternalPlugins, getExternalPlugins } from '../modules/plugin-hub'
-import './plugin-hub.css'
 
 const PluginHub = ({ externalPlugins }) => (
   <Layout>
@@ -27,17 +26,13 @@ const PluginHub = ({ externalPlugins }) => (
         <p>
           For more information about the Plugin Hub and how to install these
           plugins read the{' '}
-          <a
-            href="https://github.com/runelite/runelite/wiki/Information-about-the-Plugin-Hub"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
+          <a href="https://github.com/runelite/runelite/wiki/Information-about-the-Plugin-Hub">
             guide on our wiki
           </a>
         </p>
         <div class="row">
           {externalPlugins.map(plugin => (
-            <ExternalPlugin key={plugin.displayName} {...plugin} />
+            <ExternalPlugin key={plugin.internalName} {...plugin} />
           ))}
         </div>
       </div>

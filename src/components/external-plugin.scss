@@ -27,28 +27,6 @@
   overflow: hidden;
 }
 
-#externalPlugins .content-section {
-  background: #141414;
-  color: white;
-  padding: 60px 0px;
-  overflow: hidden;
-}
-
-@include media-breakpoint-down(md) {
-  #externalPlugins .content-section {
-    padding: 20px 0px;
-  }
-}
-
-#externalPlugins .content-section h1 {
-  border-bottom: 1px solid #dc8a00;
-  padding-bottom: 10px;
-  display: inline-block;
-  width: auto;
-  font-size: 30px;
-  color: white;
-}
-
 .img-container {
   display: inline-flex;
   align-items: center;
