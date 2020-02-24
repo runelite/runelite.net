@@ -79,43 +79,37 @@ export default handleActions(
 const getCommits = state => state.git.commits
 const getReleases = state => state.git.releases
 
-export const getLatestCommit = createSelector(
-  getCommits,
-  commits => {
-    const realCommits = commits.filter(commit => commit.parents.length <= 1)
+export const getLatestCommit = createSelector(getCommits, commits => {
+  const realCommits = commits.filter(commit => commit.parents.length <= 1)
 
-    if (realCommits.length > 0) {
-      const commit = realCommits[0]
-      return {
-        url: commit.html_url,
-        message:
-          commit.commit.message.length >= 50
-            ? commit.commit.message.substr(0, 50) + '...'
-            : commit.commit.message,
-        date: new Date(commit.commit.committer.date),
-        author: {
-          name: commit.commit.author.name,
-          url: commit.author ? commit.author.html_url : null,
-          avatar: commit.author ? commit.author.avatar_url : null
-        }
+  if (realCommits.length > 0) {
+    const commit = realCommits[0]
+    return {
+      url: commit.html_url,
+      message:
+        commit.commit.message.length >= 50
+          ? commit.commit.message.substr(0, 50) + '...'
+          : commit.commit.message,
+      date: new Date(commit.commit.committer.date),
+      author: {
+        name: commit.commit.author.name,
+        url: commit.author ? commit.author.html_url : null,
+        avatar: commit.author ? commit.author.avatar_url : null
       }
     }
-
-    return {}
   }
-)
 
-export const getLatestRelease = createSelector(
-  getReleases,
-  releases => {
-    if (releases.length > 0) {
-      const release = releases[0]
-      return release.name.substr(
-        release.name.lastIndexOf('-') + 1,
-        release.name.length
-      )
-    }
+  return {}
+})
 
-    return ''
+export const getLatestRelease = createSelector(getReleases, releases => {
+  if (releases.length > 0) {
+    const release = releases[0]
+    return release.name.substr(
+      release.name.lastIndexOf('-') + 1,
+      release.name.length
+    )
   }
-)
+
+  return ''
+})

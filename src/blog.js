@@ -19,9 +19,9 @@ const blog = require
         }
       }
 
-      return import(`!markdown-with-front-matter-loader!./_posts/${
-        parsed.file
-      }.md`).then(mapper)
+      return import(
+        `!markdown-with-front-matter-loader!./_posts/${parsed.file}.md`
+      ).then(mapper)
     }
 
     return memo.set(parsed.id.toLowerCase(), resolver)

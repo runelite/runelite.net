@@ -112,18 +112,15 @@ export const getXp = state =>
       overall_xp: calculateOverallXp(xpEntry)
     }))
 
-export const getCollectedXp = createSelector(
-  getXp,
-  xp => {
-    const collector = {}
-    if (xp.length === 0) {
-      return collector
-    }
-
-    const startEntry = xp[0]
-    const endEntry = xp[xp.length - 1]
-    forEachObjIndexed(calculateRanksAndExp(collector), startEntry)
-    forEachObjIndexed(calculateRanksAndExp(collector), endEntry)
+export const getCollectedXp = createSelector(getXp, xp => {
+  const collector = {}
+  if (xp.length === 0) {
     return collector
   }
-)
+
+  const startEntry = xp[0]
+  const endEntry = xp[xp.length - 1]
+  forEachObjIndexed(calculateRanksAndExp(collector), startEntry)
+  forEachObjIndexed(calculateRanksAndExp(collector), endEntry)
+  return collector
+})
