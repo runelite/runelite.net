@@ -44,7 +44,11 @@ const Home = ({ commit, release, sessionCount }) => (
           {features
             .filter(feature => feature.home)
             .map(feature => (
-              <Feature key={feature.title} {...feature} />
+              <Feature
+                key={feature.title}
+                linkAlt="View on Wiki"
+                {...feature}
+              />
             ))}
         </div>
       </div>

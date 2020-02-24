@@ -14,7 +14,7 @@ const Features = () => (
         <h1>Features</h1>
         <div class="row">
           {features.map(feature => (
-            <Feature key={feature.title} {...feature} />
+            <Feature key={feature.title} linkAlt="View on Wiki" {...feature} />
           ))}
         </div>
       </div>
