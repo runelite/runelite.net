@@ -25,28 +25,6 @@
   float: right;
 }
 
-.content-section h1 {
-  border-bottom: 1px solid #dc8a00;
-  padding-bottom: 10px;
-  display: inline-block;
-  width: auto;
-  font-family: Lato;
-  font-weight: 700;
-  font-size: 24px;
-}
-
-.content-section h4 {
-  border-bottom: 1px solid #dc8a00;
-  padding-bottom: 10px;
-  margin-top: -5px;
-  width: auto;
-  font-family: Lato;
-  font-size: 12px;
-  float: right;
-  vertical-align: bottom;
-  margin-top: 8px;
-}
-
 #about .info p {
   margin-top: 20px;
   font-size: 16px;
@@ -69,11 +47,11 @@
   opacity: 0.3;
 }
 
-#features {
+#features-home {
   background: #141414;
 }
 
-#features .content-section {
+#features-home .content-section {
   background: #141414;
   color: white;
   padding: 100px 0px;
@@ -92,7 +70,7 @@
 
 @include media-breakpoint-down(md) {
   #news .content-section.homepage,
-  #features .content-section.homepage {
+  #features-home .content-section.homepage {
     padding: 40px 0px;
   }
 }

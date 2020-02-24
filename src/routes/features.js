@@ -4,7 +4,6 @@ import Feature from '../components/feature'
 import features from '../_data/features'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
-import './features.css'
 
 const Features = () => (
   <Layout>
