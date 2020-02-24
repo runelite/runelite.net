@@ -7,7 +7,7 @@ import ExternalPlugin from '../components/external-plugin'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
 import { fetchBootstrap } from '../modules/bootstrap'
-import { fetchExternalPlugins } from '../modules/plugin-hub'
+import { fetchExternalPlugins, getExternalPlugins } from '../modules/plugin-hub'
 import './plugin-hub.css'
 
 const PluginHub = ({ externalPlugins }) => (
@@ -45,7 +45,6 @@ const PluginHub = ({ externalPlugins }) => (
   </Layout>
 )
 
-const getExternalPlugins = state => state.externalPlugins
 const mapStateToProps = (state, props) => ({
   ...props,
   externalPlugins: getExternalPlugins(state)

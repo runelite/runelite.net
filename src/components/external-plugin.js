@@ -12,11 +12,9 @@ const ExternalPlugin = ({
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">
-          {imageUrl ? (
-            <div class="img-container">
-              <img class="card-img-top" alt="" src={imageUrl} />
-            </div>
-          ) : null}
+          <div class="img-container">
+            <img class="card-img-top" alt="" src={imageUrl} />
+          </div>
           {support ? (
             <a
               href={support}
@@ -33,7 +31,13 @@ const ExternalPlugin = ({
         <h6 class="card-subtitle mb-2 text-muted">
           Made by <b>{author}</b>
         </h6>
-        <p class="card-text" innerText={description}></p>
+        {/* Removes any tags from the description that are used for formatting inside the client, excluding br tags */}
+        <p
+          class="card-text"
+          innerText={description
+            .replace(/<br\/?>/g, '\n')
+            .replace(/<[^>]+>/g, '')}
+        ></p>
       </div>
     </div>
   </div>

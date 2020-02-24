@@ -1,21 +1,20 @@
-import { uniq, concat } from 'ramda'
 import { createActions, handleActions } from 'redux-actions'
 import { getLatestRelease } from './bootstrap'
+import api from '../api'
 
 const pluginHubUrl = 'https://repo.runelite.net/plugins/'
+const pluginHubApi = api('https://repo.runelite.net/plugins/')
 
 // Actions
 export const { fetchExternalPlugins, setExternalPlugins } = createActions(
   {
     FETCH_EXTERNAL_PLUGINS: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState())
-      const response = await window.fetch(
-        `${pluginHubUrl}${version}/manifest.js`,
-        { method: 'GET' }
+      const response = await pluginHubApi(
+        `${version}/manifest.js`,
+        { method: 'GET' },
+        true
       )
-      if (!response.ok) {
-        throw new Error(response.statusText)
-      }
       const buffer = await response.arrayBuffer()
       const signatureSize = new DataView(buffer).getUint32(0)
       // Removes the signature, and it's 4byte header, then converts the result into a string
@@ -31,10 +30,7 @@ export const { fetchExternalPlugins, setExternalPlugins } = createActions(
         } else {
           p.imageUrl = '/img/plugin-hub/missingicon.png'
         }
-        // Remove any tags from the description that are used for formatting inside the client
-        p.description = p.description
-          .replace(/<br\/?>/g, '\n')
-          .replace(/<[^>]+>/g, '')
+
         return p
       })
       dispatch(setExternalPlugins(plugins))
@@ -47,7 +43,10 @@ export const { fetchExternalPlugins, setExternalPlugins } = createActions(
 // Reducer
 export default handleActions(
   {
-    [setExternalPlugins]: (state, { payload }) => uniq(concat(state, payload))
+    [setExternalPlugins]: (state, { payload }) => payload
   },
   []
 )
+
+// Selectors
+export const getExternalPlugins = state => state.externalPlugins

@@ -6,9 +6,10 @@ export default base => {
    *
    * @param {string} url url
    * @param {object} options fetch options
+   * @param {boolean} returnRaw should it return the raw response object
    * @return {Promise}
    */
-  async function fetchFunc(url, options) {
+  async function fetchFunc(url, options, returnRaw) {
     const correctedOptions = options || {}
 
     if (options.body) {
@@ -21,6 +22,10 @@ export default base => {
 
     if (!response.ok) {
       throw new Error(response.statusText)
+    }
+
+    if (returnRaw) {
+      return response
     }
 
     const headers = response.headers.get('Content-Type')
