@@ -89,6 +89,16 @@ const Navigation = ({ dark, login, loggedIn, username }) => (
             Tags
           </Link>
         </li>
+        <li class="nav-item">
+          <Link
+            onClick={toggleMenu}
+            class="nav-link"
+            activeClassName="active"
+            href="/plugin-hub"
+          >
+            Plugin Hub
+          </Link>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">

@@ -10,6 +10,7 @@ import sessionReducer from './session'
 import tagReducer from './tag'
 import xpReducer from './xp'
 import pricesReducer from './prices'
+import externalPluginsReducer from './plugin-hub'
 
 // Combine all redux reducers into one root reducer
 export default {
@@ -17,6 +18,7 @@ export default {
   app: appReducer,
   bootstrap: bootstrapReducer,
   config: configReducer,
+  externalPlugins: externalPluginsReducer,
   ge: geReducer,
   git: gitReducer,
   item: itemReducer,
