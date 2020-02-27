@@ -9,7 +9,12 @@ import { latest } from '../blog'
 import { fetchCommits, getLatestCommit } from '../modules/git'
 import hero from '../_data/hero'
 import features from '../_data/features'
-import { fetchSessionCount, getSessionCount } from '../modules/session'
+import {
+  fetchSessionCount,
+  fetchLoggedInCount,
+  getSessionCount,
+  getLoggedInCount
+} from '../modules/session'
 import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
 import { Link } from 'preact-router'
@@ -17,7 +22,7 @@ import Async from '../components/async'
 import prepare from '../components/prepare'
 import { getLatestRelease } from '../modules/bootstrap'
 
-const Home = ({ commit, release, sessionCount }) => (
+const Home = ({ commit, release, sessionCount, loggedInCount }) => (
   <Layout>
     <Meta
       title={`${hero.title} - Open Source Old School RuneScape Client`}
@@ -30,6 +35,7 @@ const Home = ({ commit, release, sessionCount }) => (
         release={release}
         commit={commit}
         playing={sessionCount}
+        loggedIn={loggedInCount}
       />
     </section>
 
@@ -79,21 +85,28 @@ const Home = ({ commit, release, sessionCount }) => (
 const mapStateToProps = (state, props) => ({
   commit: getLatestCommit(state, props),
   release: getLatestRelease(state, props),
-  sessionCount: getSessionCount(state, props)
+  sessionCount: getSessionCount(state, props),
+  loggedInCount: getLoggedInCount(state, props)
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchCommits,
-      fetchSessionCount
+      fetchSessionCount,
+      fetchLoggedInCount
     },
     dispatch
   )
 
-const prepareComponentData = async ({ fetchCommits, fetchSessionCount }) => {
+const prepareComponentData = async ({
+  fetchCommits,
+  fetchSessionCount,
+  fetchLoggedInCount
+}) => {
   fetchCommits()
   await fetchSessionCount()
+  await fetchLoggedInCount()
 }
 
 export default connect(
