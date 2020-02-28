@@ -112,7 +112,11 @@ export const getFilteredLoot = createSelector(
       .filter(
         l =>
           !filter.name ||
-          l.eventId.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1
+          l.eventId.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1 ||
+          l.drops.filter(
+            drop =>
+              drop.name.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1
+          ).length >= 1
       )
       .sort((a, b) => b.date - a.date)
 )
