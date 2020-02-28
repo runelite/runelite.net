@@ -9,6 +9,7 @@ import {
   makeNavbarDefault,
   nextHeroImage
 } from '../modules/app'
+import { numberWithCommas } from '../util'
 import links from '../_data/links'
 import Commit from './commit'
 
@@ -107,7 +108,16 @@ class Hero extends Component {
     document.removeEventListener('scroll', this.handleScroll)
   }
 
-  render({ title, description, buttons, release, commit, playing, heroImage }) {
+  render({
+    title,
+    description,
+    buttons,
+    release,
+    commit,
+    playing,
+    loggedIn,
+    heroImage
+  }) {
     const dropdownButtons = filter(button => button.dropdown)(buttons)
     const defaultDropdownItem = find(button => button.os === 'all')(
       dropdownButtons
@@ -167,12 +177,11 @@ class Hero extends Component {
             </div>
 
             <div class="small">
-              <h6>Players online:</h6>
-              {playing || 'unknown'}
-
+              <h6>Players:</h6>
+              {numberWithCommas(playing) || 'unknown'} online (
+              {numberWithCommas(loggedIn) || 'unknown'} in game)
               <h6>Latest release:</h6>
               <a href="#news">{release || 'unknown'}</a>
-
               <Commit {...commit} />
             </div>
           </div>

@@ -6,10 +6,10 @@ export default base => {
    *
    * @param {string} url url
    * @param {object} options fetch options
-   * @param {boolean} returnRaw should it return the raw response object
+   * @param {boolean} returnRaw should it return the raw array buffer
    * @return {Promise}
    */
-  async function fetchFunc(url, options, returnRaw) {
+  async function fetchFunc(url, options, returnRaw = false) {
     const correctedOptions = options || {}
 
     if (options.body) {
