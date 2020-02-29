@@ -7,7 +7,10 @@ import ExternalPlugin from '../components/external-plugin'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
 import { fetchBootstrap } from '../modules/bootstrap'
-import { fetchExternalPlugins, getExternalPlugins } from '../modules/plugin-hub'
+import {
+  fetchExternalPlugins,
+  getSortedExternalPlugins
+} from '../modules/plugin-hub'
 
 const PluginHub = ({ externalPlugins }) => (
   <Layout>
@@ -42,7 +45,7 @@ const PluginHub = ({ externalPlugins }) => (
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  externalPlugins: getExternalPlugins(state)
+  externalPlugins: getSortedExternalPlugins(state)
 })
 
 const mapDispatchToProps = dispatch =>
