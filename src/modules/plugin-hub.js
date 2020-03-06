@@ -8,7 +8,11 @@ const pluginHubUrl = 'https://repo.runelite.net/plugins/'
 const pluginHubApi = api(pluginHubUrl)
 
 // Actions
-export const { fetchExternalPlugins, setExternalPlugins } = createActions(
+export const {
+  fetchExternalPlugins,
+  setExternalPlugins,
+  setPluginFilter
+} = createActions(
   {
     FETCH_EXTERNAL_PLUGINS: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState())
@@ -39,20 +43,49 @@ export const { fetchExternalPlugins, setExternalPlugins } = createActions(
       return plugins
     }
   },
-  'SET_EXTERNAL_PLUGINS'
+  'SET_EXTERNAL_PLUGINS',
+  'SET_PLUGIN_FILTER'
 )
 
 // Reducer
 export default handleActions(
   {
-    [setExternalPlugins]: (state, { payload }) => payload
+    [setExternalPlugins]: (state, { payload }) => ({
+      ...state,
+      data: payload
+    }),
+    [setPluginFilter]: (state, { payload }) => ({
+      ...state,
+      filter: {
+        ...state.filter,
+        ...payload
+      }
+    })
   },
-  []
+  {
+    filter: {
+      name: ''
+    },
+    data: []
+  }
 )
 
 // Selectors
-export const getExternalPlugins = state => state.externalPlugins
-export const getSortedExternalPlugins = createSelector(
+export const getExternalPlugins = state => state.externalPlugins.data
+export const getPluginFilter = state => state.externalPlugins.filter
+
+export const getFilteredExternalPlugins = createSelector(
   getExternalPlugins,
+  getPluginFilter,
+  (externalPlugins, filter) =>
+    externalPlugins.filter(
+      p =>
+        !filter.name ||
+        p.displayName.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1
+    )
+)
+
+export const getSortedExternalPlugins = createSelector(
+  getFilteredExternalPlugins,
   externalPlugins => sortBy(prop('displayName'), externalPlugins)
 )

@@ -9,10 +9,18 @@ import Meta from '../components/meta'
 import { fetchBootstrap } from '../modules/bootstrap'
 import {
   fetchExternalPlugins,
-  getSortedExternalPlugins
+  getPluginFilter,
+  getSortedExternalPlugins,
+  setPluginFilter
 } from '../modules/plugin-hub'
+import SearchBar from '../components/search-bar'
 
-const PluginHub = ({ externalPlugins }) => (
+const handleChange = (event, setPluginFilter) =>
+  setPluginFilter({
+    name: event.target.value
+  })
+
+const PluginHub = ({ externalPlugins, pluginFilter, setPluginFilter }) => (
   <Layout>
     <Meta title={`Plugin Hub - ${hero.title}`} />
 
@@ -33,6 +41,10 @@ const PluginHub = ({ externalPlugins }) => (
             guide on our wiki
           </a>
         </p>
+        <SearchBar
+          value={pluginFilter.name}
+          onInput={e => handleChange(e, setPluginFilter)}
+        />
         <div class="row">
           {externalPlugins.map(plugin => (
             <ExternalPlugin key={plugin.internalName} {...plugin} />
@@ -45,14 +57,16 @@ const PluginHub = ({ externalPlugins }) => (
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  externalPlugins: getSortedExternalPlugins(state)
+  externalPlugins: getSortedExternalPlugins(state),
+  pluginFilter: getPluginFilter(state)
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchBootstrap,
-      fetchExternalPlugins
+      fetchExternalPlugins,
+      setPluginFilter
     },
     dispatch
   )
