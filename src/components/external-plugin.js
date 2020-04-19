@@ -6,7 +6,8 @@ const ExternalPlugin = ({
   author,
   description,
   support,
-  imageUrl
+  imageUrl,
+  installed
 }) => (
   <div class="col-md-4 col-sm-6 col-xs-12 mb-2">
     <div class="card">
@@ -31,7 +32,8 @@ const ExternalPlugin = ({
               </a>
             ) : (
               displayName
-            )}
+            )}{' '}
+            {installed && <span class="badge badge-success">installed</span>}
           </h5>
           <h6 class="card-subtitle mb-2 text-muted">
             <b>{author}</b>

@@ -20,6 +20,10 @@ export const { fetchConfig, setConfig, changeAccount } = createActions(
       const version = getLatestRelease(getState())
       const uuid = getState().account.uuid
 
+      if (!uuid) {
+        return {}
+      }
+
       const result = await runeliteApi(`runelite-${version}/config`, {
         method: 'GET',
         headers: {
@@ -165,3 +169,11 @@ export const getBossLog = createSelector(
     return flattenMap(data)
   }
 )
+
+export const getExternalPlugins = createSelector(getConfig, config => {
+  if (!config['runelite.externalPlugins']) {
+    return []
+  }
+
+  return config['runelite.externalPlugins'].split(',')
+})

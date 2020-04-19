@@ -2,6 +2,7 @@ import { createActions, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
 import { prop, sortBy } from 'ramda'
 import { getLatestRelease } from './bootstrap'
+import { getExternalPlugins as getConfigExternalPlugins } from './config'
 import api from '../api'
 
 const pluginHubUrl = 'https://repo.runelite.net/plugins/'
@@ -74,8 +75,19 @@ export default handleActions(
 export const getExternalPlugins = state => state.externalPlugins.data
 export const getPluginFilter = state => state.externalPlugins.filter
 
-export const getFilteredExternalPlugins = createSelector(
+export const getExternalPluginsWithState = createSelector(
   getExternalPlugins,
+  getConfigExternalPlugins,
+  (externalPlugins, configExternal) => {
+    return externalPlugins.map(p => {
+      p.installed = configExternal.indexOf(p.internalName) >= 0
+      return p
+    })
+  }
+)
+
+export const getFilteredExternalPlugins = createSelector(
+  getExternalPluginsWithState,
   getPluginFilter,
   (externalPlugins, filter) =>
     externalPlugins.filter(
