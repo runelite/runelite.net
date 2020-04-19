@@ -14,6 +14,7 @@ import {
   setPluginFilter
 } from '../modules/plugin-hub'
 import SearchBar from '../components/search-bar'
+import { fetchConfig } from '../modules/config'
 
 const handleChange = (event, setPluginFilter) =>
   setPluginFilter({
@@ -65,6 +66,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchBootstrap,
+      fetchConfig,
       fetchExternalPlugins,
       setPluginFilter
     },
@@ -73,9 +75,11 @@ const mapDispatchToProps = dispatch =>
 
 const prepareComponentData = async ({
   fetchBootstrap,
+  fetchConfig,
   fetchExternalPlugins
 }) => {
   await fetchBootstrap()
+  await fetchConfig()
   await fetchExternalPlugins()
 }
 
