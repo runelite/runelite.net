@@ -6,7 +6,10 @@ function wrapAsync(dispatch, getState, action) {
 
   if (result instanceof Promise) {
     return result
-      .then(() => dispatch(stopLoading()))
+      .then(r => {
+        dispatch(stopLoading())
+        return r
+      })
       .catch(() => dispatch(stopLoading()))
   }
 

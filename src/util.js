@@ -43,3 +43,6 @@ export const wikiURLForItem = ({ id, name }) => {
     name
   )}&utm_source=runelite.net`
 }
+
+export const formatIcon = icon =>
+  `https://static.runelite.net/cache/item/icon/${icon}.png`
