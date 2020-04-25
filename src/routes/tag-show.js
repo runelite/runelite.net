@@ -8,13 +8,10 @@ import { connect } from 'react-redux'
 import '../components/tooltip.css'
 import './tag.css'
 import prepare from '../components/prepare'
-import { wikiURLForItem } from '../util'
+import { formatIcon, wikiURLForItem } from '../util'
 import { fetchBootstrap, getLatestRelease } from '../modules/bootstrap'
 
-const formatIcon = icon =>
-  `https://static.runelite.net/cache/item/icon/${icon}.png`
-
-const TagShow = ({ name, icon, itemIds, items, version, csv }) => (
+const TagShow = ({ name, icon, itemIds, items, csv }) => (
   <Layout>
     <Meta title={`${name} tag tab - ${hero.title}`} />
     <section id="tags">
@@ -24,7 +21,7 @@ const TagShow = ({ name, icon, itemIds, items, version, csv }) => (
         </h1>
         <hr />
 
-        <div class="row">
+        <div class="row m-0">
           <pre class="pre-select">{csv}</pre>
           {itemIds.map(id => {
             const item = items.find(i => i.id === id) || {}

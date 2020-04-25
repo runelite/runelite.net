@@ -13,7 +13,8 @@ import {
   getAccounts,
   getBossLog,
   getSelectedAccount,
-  getSlayerTask
+  getSlayerTask,
+  getTags
 } from '../modules/config'
 import { getGe } from '../modules/ge'
 import { getLoot } from '../modules/loot'
@@ -22,6 +23,7 @@ import GrandExchange from './account/grand-exchange'
 import LootTracker from './account/loot-tracker'
 import NotFound from '../components/not-found'
 import './account.scss'
+import Tags from './account/tags'
 
 const menu = [
   {
@@ -29,6 +31,7 @@ const menu = [
     label: 'Home',
     icon: 'fa-fw fas fa-home',
     component: Home,
+    showAccounts: true,
     data: ({ slayerTask, bossLog }) => ({
       slayerTask,
       bossLog
@@ -62,6 +65,14 @@ const menu = [
           qty: drop.qty
         }))
       }))
+  },
+  {
+    tag: 'tags',
+    label: 'Tags',
+    icon: 'fa-fw fas fa-code',
+    component: Tags,
+    showAccounts: true,
+    data: ({ rawTags }) => rawTags
   }
 ]
 
@@ -132,7 +143,7 @@ const Account = ({
 
   const MenuBody = menuBody(currentMenu)
   const accountsTitle =
-    accounts.length > 1 && currentMenu.tag === 'home' ? 'Accounts' : 'Account'
+    accounts.length > 1 && currentMenu.showAccounts ? 'Accounts' : 'Account'
 
   return (
     <Layout>
@@ -148,7 +159,7 @@ const Account = ({
 
               <p className="list-title">{accountsTitle}</p>
               <ul class="list-group list-group-small mb-4">
-                {currentMenu.tag === 'home' ? (
+                {currentMenu.showAccounts ? (
                   accounts.map(a =>
                     accountMenu(a, props.selectedAccount, changeAccount)
                   )
@@ -181,7 +192,8 @@ const mapStateToProps = (state, props) => ({
   slayerTask: getSlayerTask(state),
   bossLog: getBossLog(state),
   rawGe: getGe(state),
-  rawLoot: getLoot(state)
+  rawLoot: getLoot(state),
+  rawTags: getTags(state)
 })
 
 const mapDispatchToProps = dispatch =>

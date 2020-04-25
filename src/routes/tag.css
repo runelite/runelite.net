@@ -1,6 +1,6 @@
 .tag-container {
-  padding: 100px 0px !important;
-  max-width: 675px !important;
+  padding: 100px 0px;
+  max-width: 675px;
 }
 
 .tag-container .card {
