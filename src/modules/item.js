@@ -1,4 +1,4 @@
-import { uniq, concat } from 'ramda'
+import { uniqBy, prop } from 'ramda'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
 import { getLatestRelease } from './bootstrap'
@@ -64,7 +64,8 @@ export const {
 export default handleActions(
   {
     [setItems]: (state, { payload }) => payload,
-    [setItemInfo]: (state, { payload }) => uniq(concat(state, [payload]))
+    [setItemInfo]: (state, { payload }) =>
+      uniqBy(prop('id'), state.concat(payload))
   },
   []
 )
