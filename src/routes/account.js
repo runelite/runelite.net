@@ -71,7 +71,6 @@ const menu = [
     label: 'Tags',
     icon: 'fa-fw fas fa-code',
     component: Tags,
-    showAccounts: true,
     data: ({ rawTags }) => rawTags
   }
 ]

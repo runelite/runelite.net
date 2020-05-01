@@ -179,66 +179,51 @@ export const getExternalPlugins = createSelector(getConfig, config => {
   return config['runelite.externalPlugins'].split(',')
 })
 
-export const getTags = createSelector(
-  getConfig,
-  getItems,
-  getSelectedAccount,
-  (config, items, selectedAccount) => {
-    const bankTagsPrefix = 'banktags.'
-    const itemPrefix = 'item_' // item id
-    const iconPrefix = 'icon_' // tag name
-    const data = new Map()
+export const getTags = createSelector(getConfig, getItems, (config, items) => {
+  const bankTagsPrefix = 'banktags.'
+  const itemPrefix = 'item_' // item id
+  const iconPrefix = 'icon_' // tag name
+  const data = new Map()
 
-    if (!selectedAccount) {
-      return flattenMap(data)
+  function checkData(data, t) {
+    if (!data.has(t)) {
+      data.set(t, {
+        items: [],
+        icon: -1
+      })
     }
-
-    function checkData(data, t) {
-      if (!data.has(t)) {
-        data.set(t, {
-          items: [],
-          icon: -1
-        })
-      }
-    }
-
-    for (let [key, value] of Object.entries(config)) {
-      if (!key.startsWith(bankTagsPrefix)) {
-        continue
-      }
-
-      key = key.replace(bankTagsPrefix, '')
-
-      if (!key.startsWith(selectedAccount)) {
-        continue
-      }
-
-      key = key.replace(selectedAccount + '.', '')
-
-      if (key.startsWith(itemPrefix)) {
-        const item = key.replace(itemPrefix, '')
-        const tags = value.split(',')
-
-        tags.forEach(t => {
-          t = t.trim()
-          checkData(data, t)
-
-          const itemId = parseInt(item)
-          const itemData = items.find(i => i.id === itemId)
-          const itemName = itemData && itemData.name
-
-          data.get(t).items.push({
-            id: itemId,
-            name: itemName
-          })
-        })
-      } else if (key.startsWith(iconPrefix)) {
-        const tag = key.replace(iconPrefix, '')
-        checkData(data, tag)
-        data.get(tag).icon = parseInt(value)
-      }
-    }
-
-    return flattenMap(data)
   }
-)
+
+  for (let [key, value] of Object.entries(config)) {
+    if (!key.startsWith(bankTagsPrefix)) {
+      continue
+    }
+
+    key = key.replace(bankTagsPrefix, '')
+
+    if (key.startsWith(itemPrefix)) {
+      const item = key.replace(itemPrefix, '')
+      const tags = value.split(',')
+
+      tags.forEach(t => {
+        t = t.trim()
+        checkData(data, t)
+
+        const itemId = parseInt(item)
+        const itemData = items.find(i => i.id === itemId)
+        const itemName = itemData && itemData.name
+
+        data.get(t).items.push({
+          id: itemId,
+          name: itemName
+        })
+      })
+    } else if (key.startsWith(iconPrefix)) {
+      const tag = key.replace(iconPrefix, '')
+      checkData(data, tag)
+      data.get(tag).icon = parseInt(value)
+    }
+  }
+
+  return flattenMap(data)
+})
