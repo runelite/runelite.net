@@ -209,7 +209,7 @@ export const getTags = createSelector(getConfig, getItems, (config, items) => {
         t = t.trim()
         checkData(data, t)
 
-        const itemId = parseInt(item)
+        const itemId = Math.abs(parseInt(item))
         const itemData = items.find(i => i.id === itemId)
         const itemName = itemData && itemData.name
 
