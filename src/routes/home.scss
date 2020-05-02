@@ -2,23 +2,6 @@
 @import '~bootstrap/scss/_variables.scss';
 @import '~bootstrap/scss/mixins/_breakpoints.scss';
 
-#about {
-  background: #232323;
-}
-
-#about .content-section {
-  background: #232323;
-  color: white;
-  padding: 100px 0px;
-  overflow: hidden;
-}
-
-#about .video {
-  display: inline-block;
-  width: 450px;
-  height: 250px;
-}
-
 #about .info {
   width: calc(100% - 500px);
   min-height: 200px;
@@ -47,25 +30,18 @@
   opacity: 0.3;
 }
 
+.content-section {
+  background: none;
+}
+
 #features-home {
   background: #141414;
 }
 
-#features-home .content-section {
-  background: #141414;
-  color: white;
-  padding: 100px 0px;
-}
-
-#news {
+#about,
+#news,
+#footer {
   background: #232323;
-}
-
-#news .content-section {
-  background: #232323;
-  color: white;
-  padding: 100px 0px;
-  overflow: hidden;
 }
 
 @include media-breakpoint-down(md) {
@@ -76,13 +52,6 @@
 }
 
 @media (max-width: 768px) {
-  #about .video {
-    margin: auto;
-    width: 90%;
-    height: 50vw;
-    display: block;
-  }
-
   #about .content-section {
     padding: 50px 0px;
   }

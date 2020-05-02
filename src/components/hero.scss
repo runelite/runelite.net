@@ -1,27 +1,32 @@
 .jumbotron {
-  background-blend-mode: darken;
-  transition: background-image 3s;
   color: white;
   display: table;
   width: 100%;
   margin: 0;
   height: calc(100vh - 55px);
-  background: rgba(0, 0, 0, 0.2);
-  background-position-x: center;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  -ms-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  background-size: cover;
   padding-bottom: 0;
-}
+  background: none;
 
-@media screen and (max-device-width: 1024px) {
-  .jumbotron {
-    background-attachment: scroll;
+  &::before {
+    background: rgba(0, 0, 0, 0.2) var(--jumbotron-background) no-repeat fixed
+      center center;
+    background-size: cover;
+    transition: background-image 3s;
+
+    will-change: transform;
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    z-index: -1;
+  }
+
+  @media screen and (max-device-width: 1024px) {
+    &::before {
+      background-attachment: scroll;
+    }
   }
 }
 

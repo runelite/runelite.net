@@ -2,7 +2,7 @@ import { h } from 'preact'
 import { getBaseUrl } from '../util'
 
 const Footer = () => (
-  <section>
+  <section id="footer">
     <div class="content-section">
       <footer>
         <hr />

@@ -130,7 +130,7 @@ class Hero extends Component {
       <div
         class="jumbotron jumbotron-fluid"
         style={{
-          backgroundImage: `url(${getChristmasImage(
+          '--jumbotron-background': `url(${getChristmasImage(
             this.props.images[heroImage]
           )})`
         }}
