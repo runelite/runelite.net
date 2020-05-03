@@ -1,4 +1,4 @@
-import uuid from 'uuid/v4'
+import * as uuid from 'uuid'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
 import { getLatestRelease } from './bootstrap'
@@ -14,7 +14,7 @@ export const {
   logout,
   sessionCheck,
   setSession,
-  resetSession
+  resetSession,
 } = createActions(
   {
     LOGIN: () => async (dispatch, getState) => {
@@ -28,7 +28,7 @@ export const {
       const authResponse = await runeliteApi(
         `runelite-${version}/account/login?uuid=${localUuid}`,
         {
-          method: 'GET'
+          method: 'GET',
         }
       )
 
@@ -42,14 +42,14 @@ export const {
             JSON.stringify({
               type: 'Handshake',
               _party: false,
-              session: uuid
+              session: uuid,
             })
           )
 
           loadingPane.location.href = authResponse.oauthUrl
         }
 
-        ws.onmessage = event => {
+        ws.onmessage = (event) => {
           const msg = JSON.parse(event.data)
 
           if (msg.type !== 'LoginResponse') {
@@ -58,7 +58,7 @@ export const {
 
           const session = {
             ...msg,
-            uuid
+            uuid,
           }
 
           dispatch(setSession(session))
@@ -67,8 +67,8 @@ export const {
           ws.close()
         }
 
-        ws.onclose = msg => reject(msg)
-        ws.onerror = msg => reject(msg)
+        ws.onclose = (msg) => reject(msg)
+        ws.onerror = (msg) => reject(msg)
       })
 
       const response = await sessionPromise
@@ -83,8 +83,8 @@ export const {
         return await runeliteApi(`runelite-${version}/account/logout`, {
           method: 'GET',
           headers: {
-            'RUNELITE-AUTH': localUuid
-          }
+            'RUNELITE-AUTH': localUuid,
+          },
         })
       } finally {
         dispatch(resetSession())
@@ -98,13 +98,13 @@ export const {
         return await runeliteApi(`runelite-${version}/account/session-check`, {
           method: 'GET',
           headers: {
-            'RUNELITE-AUTH': localUuid
-          }
+            'RUNELITE-AUTH': localUuid,
+          },
         })
       } catch (e) {
         dispatch(resetSession())
       }
-    }
+    },
   },
   'SET_SESSION',
   'RESET_SESSION'
@@ -115,19 +115,19 @@ export default handleActions(
   {
     [setSession]: (state, { payload }) => ({
       ...state,
-      ...payload
+      ...payload,
     }),
-    [resetSession]: state => ({
+    [resetSession]: (state) => ({
       ...state,
-      uuid: uuid(),
-      username: ''
-    })
+      uuid: uuid.v4(),
+      username: '',
+    }),
   },
   {
-    uuid: uuid(),
-    username: ''
+    uuid: uuid.v4(),
+    username: '',
   }
 )
 
 // Selectors
-export const isLoggedIn = state => !!state.account.username
+export const isLoggedIn = (state) => !!state.account.username
