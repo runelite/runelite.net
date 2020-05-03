@@ -13,7 +13,6 @@ nav {
 }
 
 .navbar-nav .nav-link {
-  font-family: Lato;
   font-size: 0.8em;
   margin: 8px;
   color: white !important;
@@ -30,14 +29,11 @@ nav {
 }
 
 .navbar-nav button {
-  font-family: Lato;
   font-size: 0.8em;
   padding: 4px 10px;
   background: #434343;
   border: none;
-  margin: 10px;
-  margin-right: 0px;
-  margin-left: 20px;
+  margin: 10px 0 10px 20px;
   vertical-align: bottom;
   height: 31px;
 }
@@ -62,8 +58,8 @@ nav {
 .navbar-nav .dropdown-menu {
   background: #1e1e1e;
   font-size: 0.8em;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-nav .dropdown-menu .dropdown-item {
@@ -82,7 +78,7 @@ nav {
 
 .navbar-toggler {
   border: none;
-  padding: 0px;
+  padding: 0;
 }
 
 /* 1080p Large displays */
@@ -123,7 +119,7 @@ nav {
   #navbar {
     position: absolute;
     top: 55px;
-    left: 0px;
+    left: 0;
     width: 100%;
     background: #1e1e1e;
   }
@@ -157,8 +153,8 @@ nav {
 
   .navbar-nav button {
     position: relative;
-    right: 0px;
-    padding: 0px;
+    right: 0;
+    padding: 0;
     margin: 10px;
     top: 2px;
     -ms-transform: none;

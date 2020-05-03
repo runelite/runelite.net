@@ -9,8 +9,8 @@ import { fetchItems } from '../../modules/item'
 import { formatIcon, wikiURLForItem } from '../../util'
 import '../tag.css'
 
-const buildTag = tag => {
-  const csv = [tag.name, tag.icon].concat(tag.items.map(i => i.id)).join(',')
+const buildTag = (tag) => {
+  const csv = [tag.name, tag.icon].concat(tag.items.map((i) => i.id)).join(',')
 
   return (
     <div
@@ -20,17 +20,16 @@ const buildTag = tag => {
         padding: 0,
         paddingBottom: 15,
         maxWidth: 'initial',
-        width: '100%'
+        width: '100%',
       }}
     >
       <h1>
         <img alt="" src={formatIcon(tag.icon)} /> {tag.name}
       </h1>
-      <hr />
 
-      <div class="row m-0">
-        <pre class="pre-select">{csv}</pre>
-        {tag.items.map(item => {
+      <pre class="pre-select">{csv}</pre>
+      <div class="row justify-content-center">
+        {tag.items.map((item) => {
           const name = item.name || ''
           const id = item.id
 
@@ -57,15 +56,15 @@ const Tags = ({ tags }) => <Fragment>{tags.map(buildTag)}</Fragment>
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  tags: getTags(state)
+  tags: getTags(state),
 })
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       fetchBootstrap,
       fetchConfig,
-      fetchItems
+      fetchItems,
     },
     dispatch
   )
@@ -73,7 +72,7 @@ const mapDispatchToProps = dispatch =>
 const prepareComponentData = async ({
   fetchBootstrap,
   fetchConfig,
-  fetchItems
+  fetchItems,
 }) => {
   await fetchBootstrap()
   await fetchConfig()

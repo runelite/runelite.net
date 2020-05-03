@@ -13,22 +13,6 @@
   padding: 10px;
 }
 
-.tag-container h1 {
-  width: auto;
-  font-family: Lato;
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 0px;
-  color: white;
-  border: none !important;
-}
-
-.tag-container small {
-  font-size: 17px;
-  display: block;
-  font-family: Lato;
-}
-
 .tag-container textarea {
   background: #141414;
   border-color: #141414;
@@ -42,12 +26,6 @@
 
 .tag-container hr {
   background: #434343;
-}
-
-.tag-container pre {
-  background: #141414 !important;
-  color: gray;
-  border-radius: 5px;
 }
 
 .tag-container .card .tooltip-tag-text {

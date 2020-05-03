@@ -2,16 +2,8 @@
 @import '~bootstrap/scss/_variables.scss';
 @import '~bootstrap/scss/mixins/_breakpoints.scss';
 
-.news-page {
-  margin-top: 50px;
-}
-
-.news-page a {
-  color: #dc8a00;
-}
-
 .news-page ul {
-  list-style: none; /* Remove default bullets */
+  list-style: none;
 }
 
 .news-page li::before {
@@ -23,22 +15,10 @@
   margin-left: -1em;
 }
 
-.news-page pre {
-  background: #141414 !important;
-  border-radius: 10px;
-  color: gray;
-  margin: 0px;
-  padding: 20px;
-}
-
 @include media-breakpoint-down(md) {
   #blog-list .content-section {
-    padding: 30px 0px !important;
+    padding: 30px 0;
   }
-}
-
-#blog-list ul {
-  margin-top: 40px;
 }
 
 #blog-list .list-group-item {

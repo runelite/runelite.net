@@ -47,19 +47,18 @@
 @include media-breakpoint-down(md) {
   #news .content-section.homepage,
   #features-home .content-section.homepage {
-    padding: 40px 0px;
+    padding: 40px 0;
   }
 }
 
 @media (max-width: 768px) {
   #about .content-section {
-    padding: 50px 0px;
+    padding: 50px 0;
   }
 
   #about .info {
-    margin: auto;
     width: 90%;
-    margin-top: 50px;
+    margin: 50px auto auto;
     display: block;
     float: none;
   }
@@ -72,7 +71,7 @@
   .content-section h4 {
     font-size: 10px;
     border-bottom: none;
-    padding: 0px;
+    padding: 0;
     margin-top: 10px;
   }
 }

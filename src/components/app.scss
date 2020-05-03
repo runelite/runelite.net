@@ -2,8 +2,8 @@
 // For documentation visit: https://getbootstrap.com/docs/4.0/getting-started/theming/
 // For online editor visit: https://bootstrap.build/app/v4.1.1/
 
-@import '~bootstrap/scss/bootstrap';
 @import '_variables.scss';
+@import '~bootstrap/scss/bootstrap';
 @import '~lato-font/scss/_public-api';
 
 @font-face {
@@ -18,15 +18,16 @@ body,
 }
 
 pre {
-  background-color: $light !important;
+  background-color: #141414;
   width: 100%;
-  padding: 16px;
-  margin: 10px;
-  overflow: auto;
+  margin: 10px 0;
+  padding: 20px;
   font-size: 85%;
   line-height: 1.45;
   white-space: pre-wrap;
   word-wrap: break-word;
+  border-radius: 5px;
+  color: gray;
 }
 
 .pre-select {
@@ -75,39 +76,4 @@ pre {
 .list-group-small .badge {
   font-size: x-small;
   font-weight: normal;
-}
-
-.content-section h1 {
-  border-bottom: 1px solid #dc8a00;
-  padding-bottom: 10px;
-  display: inline-block;
-  width: auto;
-  font-family: Lato;
-  font-weight: 700;
-  font-size: 24px;
-}
-
-.content-section h4 {
-  border-bottom: 1px solid #dc8a00;
-  padding-bottom: 10px;
-  margin-top: -5px;
-  width: auto;
-  font-family: Lato;
-  font-size: 12px;
-  float: right;
-  vertical-align: bottom;
-  margin-top: 8px;
-}
-
-.content-section {
-  background: #232323;
-  color: white;
-  padding: 100px 0px;
-  overflow: hidden;
-}
-
-@include media-breakpoint-down(md) {
-  .content-section {
-    padding: 20px 0px;
-  }
 }

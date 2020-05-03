@@ -16,15 +16,15 @@ const TagShow = ({ name, icon, itemIds, items, csv }) => (
     <Meta title={`${name} tag tab - ${hero.title}`} />
     <section id="tags">
       <div class="content-section tag-container">
-        <h1>
+        <h1 class="page-header">
           <img alt="" src={formatIcon(icon)} /> {name}
         </h1>
-        <hr />
 
-        <div class="row m-0">
-          <pre class="pre-select">{csv}</pre>
-          {itemIds.map(id => {
-            const item = items.find(i => i.id === id) || {}
+        <pre class="pre-select">{csv}</pre>
+
+        <div class="row justify-content-center">
+          {itemIds.map((id) => {
+            const item = items.find((i) => i.id === id) || {}
             const name = item.name || ''
             const examine = item.examine || ''
 
@@ -53,24 +53,24 @@ const mapStateToProps = (state, { csv }) => {
   let parts = csv.split(',')
   const name = parts.shift()
   const icon = parts.shift()
-  parts = parts.map(id => Math.abs(parseInt(id, 10))).sort((a, b) => a - b)
+  parts = parts.map((id) => Math.abs(parseInt(id, 10))).sort((a, b) => a - b)
 
   return {
     name,
     icon,
     itemIds: parts,
     items: state.item || [],
-    version: getLatestRelease(state)
+    version: getLatestRelease(state),
   }
 }
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ fetchBootstrap, fetchItemInfo }, dispatch)
 
 const prepareComponentData = async ({
   fetchBootstrap,
   fetchItemInfo,
-  itemIds
+  itemIds,
 }) => {
   await fetchBootstrap()
   await fetchItemInfo(itemIds)

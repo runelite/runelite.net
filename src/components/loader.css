@@ -19,13 +19,13 @@
   left: 0;
   position: fixed;
   top: 0;
-  width: 0%;
+  width: 0;
   z-index: 9999 !important;
 }
 
 @keyframes horizontalProgressBar {
   0% {
-    width: 0%;
+    width: 0;
   }
   25% {
     width: 22%;
@@ -43,7 +43,7 @@
 
 @-webkit-keyframes horizontalProgressBar /* Safari and Chrome */ {
   0% {
-    width: 0%;
+    width: 0;
   }
   25% {
     width: 22%;

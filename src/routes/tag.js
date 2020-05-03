@@ -12,17 +12,18 @@ const Tag = ({ activeTag, setActiveTag }) => (
     <Meta title={`Select tag tab - ${hero.title}`} />
     <section id="tags">
       <div class="content-section tag-container">
-        <h1>Enter tag</h1>
-        <small class="text-muted">
-          Paste a tag exported from Runelite's Bank Tags plugin and click 'GO'
-        </small>
+        <div class="page-header">
+          <h1>Enter tag</h1>
+          <p class="text-muted">
+            Paste a tag exported from Runelite's Bank Tags plugin and click 'GO'
+          </p>
+        </div>
 
-        <hr />
         <textarea
           rows="5"
           class="form-control"
           placeholder="Enter your tags here"
-          onChange={event => setActiveTag(event.target.value)}
+          onChange={(event) => setActiveTag(event.target.value)}
         >
           {activeTag}
         </textarea>
@@ -34,8 +35,8 @@ const Tag = ({ activeTag, setActiveTag }) => (
   </Layout>
 )
 
-const mapStateToProps = state => ({ activeTag: state.tag.activeTag })
-const mapDispatchToProps = dispatch =>
+const mapStateToProps = (state) => ({ activeTag: state.tag.activeTag })
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ setActiveTag }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tag)
