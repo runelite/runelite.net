@@ -16,7 +16,7 @@ const Blog = () => (
       <div class="content-section">
         <h1 class="page-header">Blog</h1>
         <ul class="list-group">
-          {Array.from(blog.keys()).map((id) => (
+          {Array.from(blog.keys()).map(id => (
             <Async
               key={id}
               getComponent={() =>

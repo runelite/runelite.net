@@ -23,8 +23,8 @@ const TagShow = ({ name, icon, itemIds, items, csv }) => (
         <pre class="pre-select">{csv}</pre>
 
         <div class="row justify-content-center">
-          {itemIds.map((id) => {
-            const item = items.find((i) => i.id === id) || {}
+          {itemIds.map(id => {
+            const item = items.find(i => i.id === id) || {}
             const name = item.name || ''
             const examine = item.examine || ''
 
@@ -53,24 +53,24 @@ const mapStateToProps = (state, { csv }) => {
   let parts = csv.split(',')
   const name = parts.shift()
   const icon = parts.shift()
-  parts = parts.map((id) => Math.abs(parseInt(id, 10))).sort((a, b) => a - b)
+  parts = parts.map(id => Math.abs(parseInt(id, 10))).sort((a, b) => a - b)
 
   return {
     name,
     icon,
     itemIds: parts,
     items: state.item || [],
-    version: getLatestRelease(state),
+    version: getLatestRelease(state)
   }
 }
 
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = dispatch =>
   bindActionCreators({ fetchBootstrap, fetchItemInfo }, dispatch)
 
 const prepareComponentData = async ({
   fetchBootstrap,
   fetchItemInfo,
-  itemIds,
+  itemIds
 }) => {
   await fetchBootstrap()
   await fetchItemInfo(itemIds)

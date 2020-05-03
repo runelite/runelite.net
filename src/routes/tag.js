@@ -23,7 +23,7 @@ const Tag = ({ activeTag, setActiveTag }) => (
           rows="5"
           class="form-control"
           placeholder="Enter your tags here"
-          onChange={(event) => setActiveTag(event.target.value)}
+          onChange={event => setActiveTag(event.target.value)}
         >
           {activeTag}
         </textarea>
@@ -35,8 +35,8 @@ const Tag = ({ activeTag, setActiveTag }) => (
   </Layout>
 )
 
-const mapStateToProps = (state) => ({ activeTag: state.tag.activeTag })
-const mapDispatchToProps = (dispatch) =>
+const mapStateToProps = state => ({ activeTag: state.tag.activeTag })
+const mapDispatchToProps = dispatch =>
   bindActionCreators({ setActiveTag }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tag)

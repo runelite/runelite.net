@@ -11,14 +11,14 @@ import {
   fetchExternalPlugins,
   getPluginFilter,
   getSortedExternalPlugins,
-  setPluginFilter,
+  setPluginFilter
 } from '../modules/plugin-hub'
 import SearchBar from '../components/search-bar'
 import { fetchConfig } from '../modules/config'
 
 const handleChange = (event, setPluginFilter) =>
   setPluginFilter({
-    name: event.target.value,
+    name: event.target.value
   })
 
 const PluginHub = ({ externalPlugins, pluginFilter, setPluginFilter }) => (
@@ -44,10 +44,10 @@ const PluginHub = ({ externalPlugins, pluginFilter, setPluginFilter }) => (
         </p>
         <SearchBar
           value={pluginFilter.name}
-          onInput={(e) => handleChange(e, setPluginFilter)}
+          onInput={e => handleChange(e, setPluginFilter)}
         />
         <div class="row">
-          {externalPlugins.map((plugin) => (
+          {externalPlugins.map(plugin => (
             <ExternalPlugin key={plugin.internalName} {...plugin} />
           ))}
         </div>
@@ -59,16 +59,16 @@ const PluginHub = ({ externalPlugins, pluginFilter, setPluginFilter }) => (
 const mapStateToProps = (state, props) => ({
   ...props,
   externalPlugins: getSortedExternalPlugins(state),
-  pluginFilter: getPluginFilter(state),
+  pluginFilter: getPluginFilter(state)
 })
 
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchBootstrap,
       fetchConfig,
       fetchExternalPlugins,
-      setPluginFilter,
+      setPluginFilter
     },
     dispatch
   )
@@ -76,7 +76,7 @@ const mapDispatchToProps = (dispatch) =>
 const prepareComponentData = async ({
   fetchBootstrap,
   fetchConfig,
-  fetchExternalPlugins,
+  fetchExternalPlugins
 }) => {
   await fetchBootstrap()
   await fetchConfig()
