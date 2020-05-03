@@ -10,7 +10,10 @@ function wrapAsync(dispatch, getState, action) {
         dispatch(stopLoading())
         return r
       })
-      .catch(() => dispatch(stopLoading()))
+      .catch(e => {
+        dispatch(stopLoading())
+        return e
+      })
   }
 
   dispatch(stopLoading())

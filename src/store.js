@@ -1,5 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistStore, persistReducer, createTransform } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import thunkMiddleware from './middleware/thunk-middleware'
 import rootReducer from './modules'
@@ -25,10 +25,22 @@ export default callback => {
   // Enable persisted reducer
   const persistedReducer = persistReducer(
     {
-      key: 'account',
+      key: 'runelite',
       storage,
       debug: isDebug,
-      whitelist: ['account']
+      whitelist: ['account', 'git'],
+      // Transform dates back into JS Dates on rehydrate
+      // (see: https://github.com/rt2zz/redux-persist/issues/82)
+      transforms: [
+        createTransform(JSON.stringify, toRehydrate =>
+          JSON.parse(toRehydrate, (key, value) =>
+            typeof value === 'string' &&
+            value.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)
+              ? new Date(value)
+              : value
+          )
+        )
+      ]
     },
     reducer
   )

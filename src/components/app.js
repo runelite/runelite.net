@@ -33,6 +33,7 @@ const App = ({ loading, navbarDark, login, logout, loggedIn, username }) => (
         path="/features"
         getComponent={() => import('../routes/features')}
       />
+      <Async path="/pulse" getComponent={() => import('../routes/pulse')} />
       <Async
         path="/plugin-hub"
         getComponent={() => import('../routes/plugin-hub')}
