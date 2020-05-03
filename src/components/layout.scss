@@ -19,15 +19,31 @@ footer a:hover {
   text-decoration: none;
 }
 
+footer hr {
+  background: #404040;
+}
+
+@media (max-width: 900px) {
+  footer {
+    text-align: center;
+  }
+
+  footer .float-right {
+    display: block;
+    margin-top: 15px;
+    width: 100%;
+  }
+}
+
 #layout {
   padding-top: 55px;
 }
 
 .container {
   max-width: 100%;
-  padding: 0px;
-  margin: 0px;
-  top: 0px;
+  padding: 0;
+  margin: 0;
+  top: 0;
   overflow: hidden;
 }
 
@@ -48,18 +64,38 @@ footer a:hover {
   }
 }
 
-footer hr {
-  background: #404040;
+.page-header {
+  margin-bottom: 40px;
 }
 
-@media (max-width: 900px) {
-  footer {
-    text-align: center;
-  }
+.content-section h1 {
+  border-bottom: 1px solid #dc8a00;
+  padding-bottom: 10px;
+  display: inline-block;
+  width: auto;
+  font-weight: 700;
+  font-size: 24px;
+}
 
-  footer .float-right {
-    display: block;
-    margin-top: 15px;
-    width: 100%;
+.content-section h4 {
+  border-bottom: 1px solid #dc8a00;
+  padding-bottom: 10px;
+  width: auto;
+  font-size: 12px;
+  float: right;
+  vertical-align: bottom;
+  margin-top: 8px;
+}
+
+.content-section {
+  background: #232323;
+  color: white;
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+@include media-breakpoint-down(md) {
+  .content-section {
+    padding: 20px 0;
   }
 }

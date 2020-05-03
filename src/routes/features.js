@@ -11,7 +11,7 @@ const Features = () => (
 
     <section id="features">
       <div class="content-section">
-        <h1>Features</h1>
+        <h1 class="page-header">Features</h1>
         <div class="row">
           {features.map(feature => (
             <Feature key={feature.title} linkAlt="View on Wiki" {...feature} />

@@ -33,9 +33,7 @@ const parseDate = (date, fromDate) => {
     date = new Date()
   } else if (!isNumeric(date)) {
     const parsed = date.match(/(\d+)(\w+)/)
-    date = dayjs(fromDate)
-      .subtract(parsed[1], parsed[2])
-      .toDate()
+    date = dayjs(fromDate).subtract(parsed[1], parsed[2]).toDate()
   } else {
     date = new Date(parseInt(date, 10))
   }

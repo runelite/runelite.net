@@ -49,7 +49,6 @@
 }
 
 #intro h1 {
-  font-family: Lato;
   font-weight: 700;
   margin-left: -3px;
   text-shadow: 1px 1px black;
@@ -91,7 +90,7 @@
 
 #intro .dropdown-menu {
   padding: 0;
-  margin: 0px;
+  margin: 0;
   border: 0;
   border-top: 1px solid transparent;
 }
@@ -135,11 +134,10 @@
 }
 
 #intro .small h6 {
-  margin: 0px;
   font-size: 12px;
   font-weight: 700;
   color: #dc8a00;
-  margin-top: 10px;
+  margin: 10px 0 0;
 }
 
 #intro .small {
@@ -204,7 +202,7 @@
   .jumbotron-header {
     max-width: 100%;
     width: auto;
-    padding: 0px;
+    padding: 0;
   }
 
   .jumbotron-body {

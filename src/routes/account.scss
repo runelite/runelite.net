@@ -3,13 +3,12 @@
 @import '~bootstrap/scss/mixins/_breakpoints.scss';
 
 .account-container {
-  padding: 80px 0px;
-  font-family: Lato;
+  padding: 80px 0;
 }
 
 @include media-breakpoint-down(md) {
   .account-container {
-    padding: 20px 0px;
+    padding: 20px 0;
   }
 }
 
@@ -17,10 +16,10 @@
 #account .list-group button {
   background: #171717;
   color: #b8b8b8;
-  padding: 10px 15px !important;
+  padding: 10px 15px;
   border: none;
   margin-bottom: 2px;
-  font-size: 14px !important;
+  font-size: 14px;
 }
 
 #account .list-group a i,
@@ -48,7 +47,7 @@
 
 #account-export {
   margin-top: 20px;
-  color: white !important;
+  color: white;
 }
 
 #account .list-title {
@@ -75,17 +74,17 @@
 }
 
 #account .card {
-  margin-top: 0px !important;
+  margin-top: 0;
 }
 
 #account .card-title {
-  font-size: 18px !important;
+  font-size: 18px;
 }
 
 #account .card-body {
   color: white;
   padding: 20px;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 #account .badge {
@@ -104,7 +103,7 @@
   background: #171717;
   border: none;
   padding: 10px 20px;
-  border-bottom: 2px solid #232323 !important;
+  border-bottom: 2px solid #232323;
   font-size: 14px;
 }
 
@@ -116,7 +115,7 @@
 }
 
 #account #kc label {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   margin-right: 5px;
 }
 
@@ -126,14 +125,13 @@
 }
 
 #account #kc .list-group-item img {
-  margin-right: 15px !important;
+  margin-right: 15px;
 }
 
 @media (max-width: 1100px) {
   #account #kc div {
     width: 100%;
-    margin: 0px;
-    margin-left: 5px;
+    margin: 0 0 0 5px;
     font-size: 12px;
   }
 

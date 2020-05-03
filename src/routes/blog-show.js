@@ -25,10 +25,12 @@ const buildPost = ({ date, title, description, author, body }) => {
       />
       <section id="blog">
         <div class="content-section">
-          <h1>{title}</h1>
-          <p class="text-muted">
-            <span title={date}>{ago(date)}</span> by {author}
-          </p>
+          <div class="page-header">
+            <h1>{title}</h1>
+            <p class="text-muted">
+              <span title={date}>{ago(date)}</span> by {author}
+            </p>
+          </div>
 
           <div class="markdown-body news-page">
             <InnerHTMLHelper tagName="div" html={body} />

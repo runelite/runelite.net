@@ -27,7 +27,7 @@ const PluginHub = ({ externalPlugins, pluginFilter, setPluginFilter }) => (
 
     <section id="externalPlugins">
       <div class="content-section">
-        <h1>Plugin Hub</h1>
+        <h1 class="page-header">Plugin Hub</h1>
         <p>
           The Plugin Hub is a repository of plugins that are created and
           maintained by members of the community who are not officially

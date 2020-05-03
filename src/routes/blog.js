@@ -14,7 +14,7 @@ const Blog = () => (
 
     <section id="blog-list">
       <div class="content-section">
-        <h1>Blog</h1>
+        <h1 class="page-header">Blog</h1>
         <ul class="list-group">
           {Array.from(blog.keys()).map(id => (
             <Async

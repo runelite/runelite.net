@@ -1,4 +1,4 @@
-import uuid from 'uuid/v4'
+import * as uuid from 'uuid'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
 import { getLatestRelease } from './bootstrap'
@@ -119,12 +119,12 @@ export default handleActions(
     }),
     [resetSession]: state => ({
       ...state,
-      uuid: uuid(),
+      uuid: uuid.v4(),
       username: ''
     })
   },
   {
-    uuid: uuid(),
+    uuid: uuid.v4(),
     username: ''
   }
 )

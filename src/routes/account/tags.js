@@ -26,10 +26,9 @@ const buildTag = tag => {
       <h1>
         <img alt="" src={formatIcon(tag.icon)} /> {tag.name}
       </h1>
-      <hr />
 
-      <div class="row m-0">
-        <pre class="pre-select">{csv}</pre>
+      <pre class="pre-select">{csv}</pre>
+      <div class="row justify-content-center">
         {tag.items.map(item => {
           const name = item.name || ''
           const id = item.id
