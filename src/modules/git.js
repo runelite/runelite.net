@@ -1,5 +1,6 @@
 import { createActions, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
+import { getLatestRelease as getLatestBootstrapRelease } from './bootstrap'
 import git from '../_data/git'
 import api from '../api'
 
@@ -8,48 +9,201 @@ const githubApi = api('https://api.github.com/')
 // Actions
 export const {
   fetchCommits,
-  fetchRepository,
   fetchReleases,
+  fetchPulls,
+  fetchIssues,
   setCommits,
   setReleases,
-  setRepository
+  setPulls,
+  setDetails,
+  setIssues
 } = createActions(
   {
-    FETCH_COMMITS: () => async dispatch => {
+    FETCH_COMMITS: () => async (dispatch, getState) => {
+      const version = getLatestBootstrapRelease(getState())
+
       const response = await githubApi(
-        `repos/${git.user}/${git.repository}/commits`,
-        { method: 'GET' }
+        `repos/${git.user}/${git.repository}/compare/${git.repository}:runelite-parent-${version}...${git.repository}:master`,
+        {
+          method: 'GET'
+        }
       )
 
-      dispatch(setCommits(response))
-      return response
-    },
-    FETCH_REPOSITORY: () => async dispatch => {
-      const response = await githubApi(`repos/${git.user}/${git.repository}`, {
-        method: 'GET'
-      })
+      const commits = response.commits
+        .filter(
+          commit => !commit.commit.message.startsWith('Merge pull request #')
+        )
+        .map(commit => {
+          const message = commit.commit.message
+          const split = message.split('\n')
+          const title = split.shift()
+          const body = split.join('\n')
 
-      dispatch(setRepository(response))
-      return response
-    },
-    FETCH_RELEASES: () => async (dispatch, getState) => {
-      const state = getState()
-      if (state.git.releases.length > 0) {
-        return state.git.releases
+          return {
+            title,
+            body,
+            url: commit.html_url,
+            date: new Date(commit.commit.committer.date),
+            author: {
+              name: commit.commit.author ? commit.commit.author.name : '',
+              url: commit.author ? commit.author.html_url : null,
+              avatar: commit.author ? commit.author.avatar_url : null
+            }
+          }
+        })
+        .reverse()
+
+      if (commits.length === 0) {
+        return commits
       }
 
-      const response = await githubApi(
-        `repos/${git.user}/${git.repository}/tags`,
-        { method: 'GET' }
+      const details = response.files.reduce(
+        (a, b) => {
+          return {
+            additions: a.additions + b.additions,
+            deletions: a.deletions + b.deletions,
+            changes: a.changes + b.changes
+          }
+        },
+        {
+          additions: 0,
+          deletions: 0,
+          changes: 0
+        }
       )
 
-      dispatch(setReleases(response))
-      return response
+      details.files = response.files.length
+      details.authors = new Set(commits.map(commit => commit.author.name)).size
+      details.commits = commits.length
+
+      dispatch(setDetails(details))
+      dispatch(setCommits(commits))
+      return commits
+    },
+    FETCH_RELEASES: () => async dispatch => {
+      const response = await githubApi(
+        `repos/${git.user}/${git.repository}/tags`,
+        {
+          method: 'GET'
+        }
+      )
+
+      const latest = response[0]
+      const commitId = latest.commit.sha
+
+      const commit = await githubApi(
+        `repos/${git.user}/${git.repository}/commits/${commitId}`,
+        {
+          method: 'GET'
+        }
+      )
+
+      latest['date'] = new Date(commit.commit.committer.date)
+
+      const releases = response.map(release => {
+        const name = release.name.substr(
+          release.name.lastIndexOf('-') + 1,
+          release.name.length
+        )
+
+        return {
+          name,
+          date: release.date,
+          url: release.html_url
+        }
+      })
+
+      if (releases.length === 0) {
+        return releases
+      }
+
+      dispatch(setReleases(releases))
+      return releases
+    },
+    FETCH_PULLS: () => async (dispatch, getState) => {
+      const release = getLatestRelease(getState())
+
+      const response = await Promise.all(
+        [...Array(5).keys()].map(page =>
+          githubApi(
+            `repos/${git.user}/${git.repository}/pulls?page=${
+              page + 1
+            }&state=all&sort=updated&direction=desc&since=${release.date.toISOString()}`,
+            {
+              method: 'GET'
+            }
+          )
+        )
+      )
+
+      const pulls = response.flat().map(pull => {
+        return {
+          url: pull.html_url,
+          title: pull.title,
+          draft: pull.draft,
+          mergedAt: pull.merged_at ? new Date(pull.merged_at) : null,
+          createdAt: pull.created_at ? new Date(pull.created_at) : null,
+          closedAt: pull.closed_at ? new Date(pull.closed_at) : null,
+          labels: pull.labels.map(label => ({
+            name: label.name,
+            color: label.color
+          }))
+        }
+      })
+
+      if (pulls.length === 0) {
+        return pulls
+      }
+
+      dispatch(setPulls(pulls))
+      return pulls
+    },
+    FETCH_ISSUES: () => async (dispatch, getState) => {
+      const release = getLatestRelease(getState())
+
+      const response = await Promise.all(
+        [...Array(5).keys()].map(page =>
+          githubApi(
+            `repos/${git.user}/${git.repository}/issues?page=${
+              page + 1
+            }&state=all&sort=updated&direction=desc&since=${release.date.toISOString()}`,
+            {
+              method: 'GET'
+            }
+          )
+        )
+      )
+
+      const issues = response
+        .flat()
+        .filter(issue => !issue.pull_request)
+        .map(issue => {
+          return {
+            url: issue.html_url,
+            title: issue.title,
+            draft: issue.draft,
+            createdAt: issue.created_at ? new Date(issue.created_at) : null,
+            closedAt: issue.closed_at ? new Date(issue.closed_at) : null,
+            labels: issue.labels.map(label => ({
+              name: label.name,
+              color: label.color
+            }))
+          }
+        })
+
+      if (issues.length === 0) {
+        return issues
+      }
+
+      dispatch(setIssues(issues))
+      return issues
     }
   },
   'SET_COMMITS',
   'SET_RELEASES',
-  'SET_REPOSITORY'
+  'SET_PULLS',
+  'SET_DETAILS',
+  'SET_ISSUES'
 )
 
 // Reducer
@@ -63,40 +217,45 @@ export default handleActions(
       ...state,
       releases: payload
     }),
-    [setRepository]: (state, { payload }) => ({
+    [setPulls]: (state, { payload }) => ({
       ...state,
-      repository: payload
+      pulls: payload
+    }),
+    [setDetails]: (state, { payload }) => ({
+      ...state,
+      details: payload
+    }),
+    [setIssues]: (state, { payload }) => ({
+      ...state,
+      issues: payload
     })
   },
   {
     commits: [],
+    pulls: [],
     releases: [],
-    repository: {}
+    issues: [],
+    details: {
+      additions: 0,
+      deletions: 0,
+      changes: 0,
+      authors: 0,
+      commits: 0,
+      files: 0
+    }
   }
 )
 
 // Selectors
-const getCommits = state => state.git.commits
+const getPulls = state => state.git.pulls
 const getReleases = state => state.git.releases
+const getIssues = state => state.git.issues
+export const getCommits = state => state.git.commits
+export const getDetails = state => state.git.details
 
 export const getLatestCommit = createSelector(getCommits, commits => {
-  const realCommits = commits.filter(commit => commit.parents.length <= 1)
-
-  if (realCommits.length > 0) {
-    const commit = realCommits[0]
-    return {
-      url: commit.html_url,
-      message:
-        commit.commit.message.length >= 50
-          ? commit.commit.message.substr(0, 50) + '...'
-          : commit.commit.message,
-      date: new Date(commit.commit.committer.date),
-      author: {
-        name: commit.commit.author.name,
-        url: commit.author ? commit.author.html_url : null,
-        avatar: commit.author ? commit.author.avatar_url : null
-      }
-    }
+  if (commits.length > 0) {
+    return commits[0]
   }
 
   return {}
@@ -104,12 +263,65 @@ export const getLatestCommit = createSelector(getCommits, commits => {
 
 export const getLatestRelease = createSelector(getReleases, releases => {
   if (releases.length > 0) {
-    const release = releases[0]
-    return release.name.substr(
-      release.name.lastIndexOf('-') + 1,
-      release.name.length
-    )
+    return releases[0]
   }
 
-  return ''
+  return {}
 })
+
+export const getMergedPullsSinceLastRelease = createSelector(
+  getLatestRelease,
+  getPulls,
+  (release, pulls) => {
+    return pulls
+      ? pulls
+          .filter(pull => pull.mergedAt && pull.mergedAt >= release.date)
+          .sort((a, b) => b.mergedAt - a.mergedAt)
+      : []
+  }
+)
+
+export const getOpenedPullsSinceLastRelease = createSelector(
+  getLatestRelease,
+  getPulls,
+  (release, pulls) => {
+    return pulls
+      ? pulls
+          .filter(
+            pull =>
+              !pull.mergedAt && !pull.closedAt && pull.createdAt >= release.date
+          )
+          .sort((a, b) => b.createdAt - a.createdAt)
+      : []
+  }
+)
+
+export const getClosedIssues = createSelector(
+  getLatestRelease,
+  getIssues,
+  (release, issues) => {
+    return issues
+      ? issues
+          .filter(issue => issue.closedAt && issue.closedAt >= release.date)
+          .filter(
+            issue =>
+              !issue.labels.some(
+                label => label.name === 'invalid' || label.name === 'duplicate'
+              )
+          )
+          .sort((a, b) => b.closedAt - a.closedAt)
+      : []
+  }
+)
+
+export const getOpenedIssues = createSelector(
+  getLatestRelease,
+  getIssues,
+  (release, issues) => {
+    return issues
+      ? issues
+          .filter(issue => !issue.closedAt && issue.createdAt >= release.date)
+          .sort((a, b) => b.createdAt - a.createdAt)
+      : []
+  }
+)

@@ -49,6 +49,16 @@ const Navigation = ({ dark, login, loggedIn, username }) => (
           </Link>
         </li>
         <li class="nav-item">
+          <Link
+            onClick={toggleMenu}
+            class="nav-link"
+            activeClassName="active"
+            href="/pulse"
+          >
+            Pulse
+          </Link>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="https://github.com/runelite/runelite/wiki">
             Wiki
           </a>
