@@ -104,14 +104,16 @@ const Pulse = ({
 
           <div
             class="progress page-header"
-            title="Open issues and pull requests"
+            title={`${
+              openedIssues.length + openedPulls.length
+            } open issues and pull requests`}
             style={{
               backgroundColor: typeMap.open
             }}
           >
             <div
               class="progress-bar"
-              title="Merged pull requests"
+              title={`${mergedPulls.length} merged pull requests`}
               style={{
                 width:
                   (mergedPulls.length /
@@ -126,7 +128,7 @@ const Pulse = ({
             />
             <div
               class="progress-bar"
-              title="Closed issues"
+              title={`${closedIssues.length} closed issues`}
               style={{
                 width:
                   (closedIssues.length /
