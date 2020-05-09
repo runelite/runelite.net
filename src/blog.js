@@ -9,12 +9,16 @@ const blog = require
     // Parse blog metadata
     const parsed = parseBlog(fileName)
 
+    // Fix links
+    const regex = /<a\s+href="([^"]+)"\s*>/g
+    const replace = '<a href="$1" native>'
+
     const resolver = () => {
       const mapper = md => {
         return {
           id: parsed.id,
           date: parsed.date,
-          body: md.__content,
+          body: md.__content.replace(regex, replace),
           ...md
         }
       }
