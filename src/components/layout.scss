@@ -91,7 +91,7 @@ footer hr {
   background: #232323;
   color: white;
   padding: 100px 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 @include media-breakpoint-down(md) {
