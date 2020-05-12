@@ -1,4 +1,3 @@
-/* Tooltip text */
 .tooltip-tag .tooltip-tag-text {
   padding: 5px;
   visibility: hidden;
@@ -10,15 +9,13 @@
   line-height: normal;
   font-size: smaller;
 
-  /* Position the tooltip text - see examples below! */
-  bottom: 100%;
+  bottom: 110%;
   left: 50%;
-  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  margin-left: -50%;
   position: absolute;
-  z-index: 1;
+  z-index: 1000;
 }
 
-/* Show the tooltip text when you mouse over the tooltip container */
 .tooltip-tag:hover .tooltip-tag-text {
   visibility: visible;
 }
