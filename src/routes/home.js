@@ -20,7 +20,7 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'preact-router'
 import Async from '../components/async'
 import prepare from '../components/prepare'
-import { getLatestRelease } from '../modules/bootstrap'
+import { fetchBootstrap, getLatestRelease } from '../modules/bootstrap'
 
 const Home = ({ commit, release, sessionCount, loggedInCount }) => (
   <Layout>
@@ -92,6 +92,7 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      fetchBootstrap,
       fetchCommits,
       fetchSessionCount,
       fetchLoggedInCount
@@ -100,13 +101,15 @@ const mapDispatchToProps = dispatch =>
   )
 
 const prepareComponentData = async ({
+  fetchBootstrap,
   fetchCommits,
   fetchSessionCount,
   fetchLoggedInCount
 }) => {
+  await fetchBootstrap()
   fetchCommits()
-  await fetchSessionCount()
-  await fetchLoggedInCount()
+  fetchSessionCount()
+  fetchLoggedInCount()
 }
 
 export default connect(
