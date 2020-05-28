@@ -11,7 +11,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 const SitemapPlugin = require('sitemap-webpack-plugin').default
-const marked = require('marked')
+const md = require('markdown-it')
 const fm = require('front-matter')
 const libxmljs = require('libxmljs')
 const hero = require('./src/_data/hero')
@@ -48,15 +48,16 @@ const feedMapper = fileName => {
   const { id, date } = parseBlog(fileName)
 
   // Make marked generate valid XHTML
-  marked.setOptions({
-    xhtml: true
+  const mdParser = md({
+    html: true,
+    xhtmlOut: true
   })
 
   // Extract metadata
   const title = escapeHtml(frontMatterContext.attributes.title)
   const description = escapeHtml(frontMatterContext.attributes.description)
   const author = escapeHtml(frontMatterContext.attributes.author)
-  const body = marked(frontMatterContext.body)
+  const body = mdParser.render(frontMatterContext.body)
   const url = `${hero.url}/blog/show/${id}`
 
   // Validate xml

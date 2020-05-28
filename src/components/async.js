@@ -50,8 +50,7 @@ class Async extends Component {
         return h(this.state.componentData, this.props)
       }
 
-      const ComponentAsync = () => this.state.componentData
-      return <ComponentAsync {...this.props} />
+      return this.state.componentData
     } else {
       return <span>Loading....</span>
     }
