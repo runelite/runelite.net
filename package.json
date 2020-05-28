@@ -29,11 +29,12 @@
   },
   "devDependencies": {
     "customize-cra": "0.9.1",
-    "front-matter": "3.1.0",
+    "front-matter": "^4.0.1",
+    "markdown-it": "^11.0.0",
+    "markdown-it-html5-media": "^0.6.0",
     "husky": "4.2.5",
     "lato-font": "^3.0.0",
     "libxmljs": "0.19.7",
-    "markdown-with-front-matter-loader": "0.1.0",
     "node-sass": "^4.14.0",
     "null-loader": "4.0.0",
     "prerender-spa-plugin": "3.4.0",
@@ -42,7 +43,8 @@
     "react-app-rewired": "2.1.6",
     "react-scripts": "3.4.1",
     "redux-logger": "3.0.6",
-    "sitemap-webpack-plugin": "0.7.1"
+    "sitemap-webpack-plugin": "0.7.1",
+    "loader-utils": "^0.2.9"
   },
   "scripts": {
     "fix": "eslint --fix src && prettier --write '{*,public/*,src/**,src/**/*,src/**/**/*}.{js,json,css,scss,md,html}'",
