@@ -18,12 +18,17 @@ module.exports = function (source) {
       'autoPlay=true muted=true loop=true playsInline=true preload="auto"'
   })
 
-  obj.body = parser.render(frontMatterContext.body, options)
+  const defaultRender =
+    parser.renderer.rules.link_open ||
+    ((tokens, idx, options, env, self) =>
+      self.renderToken(tokens, idx, options))
 
-  // Fix links
-  const regex = /<a\s+href="([^"]+)"\s*>/g
-  const replace = '<a href="$1" native>'
-  obj.body = obj.body.replace(regex, replace)
+  parser.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+    tokens[idx].attrPush(['native', ''])
+    return defaultRender(tokens, idx, options, env, self)
+  }
+
+  obj.body = parser.render(frontMatterContext.body, options)
 
   return 'module.exports = ' + JSON.stringify(obj)
 }
