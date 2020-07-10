@@ -92,7 +92,8 @@ export const getLootFilter = state => state.loot.filter
 export const getAnnotatedLoot = createSelector(
   getLoot,
   getItems,
-  (loot, items) =>
+  getPrices,
+  (loot, items, prices) =>
     loot.map(entry => {
       entry.date = new Date(0)
       entry.date.setUTCSeconds(entry.last_time.seconds)
@@ -100,7 +101,14 @@ export const getAnnotatedLoot = createSelector(
         const item = items.find(item => item.id === drop.id)
         drop.name = item && item.name
         const note = drop.name && items.find(item => item.id === drop.id - 1)
-        drop.unnoted = note && note.name === drop.name && note.id
+        const unnoted = note && note.name === drop.name && note.id
+
+        let price = prices[drop.id]
+        if (unnoted && (isNaN(price) || price <= 0)) {
+          price = prices[unnoted]
+        }
+
+        drop.price = price || 0
         return drop
       })
 
@@ -125,71 +133,58 @@ export const getFilteredLoot = createSelector(
       .sort((a, b) => b.date - a.date)
 )
 
-export const getGroupedLoot = createSelector(
-  getFilteredLoot,
-  getPrices,
-  (loot, prices) => {
-    const groupedLoot = new Map()
+export const getGroupedLoot = createSelector(getFilteredLoot, loot => {
+  const groupedLoot = new Map()
 
-    const mergeDrops = (existingDrops, newDrops) => {
-      const items = [...existingDrops].concat(newDrops)
-      const groupedItems = []
+  const mergeDrops = (existingDrops, newDrops) => {
+    const items = [...existingDrops].concat(newDrops)
+    const groupedItems = []
 
-      for (let item of items) {
-        let found = false
+    for (let item of items) {
+      let found = false
 
-        for (let groupedItem of groupedItems) {
-          if (item.id === groupedItem.id) {
-            groupedItem.qty += item.qty
-            found = true
-            break
-          }
-        }
-
-        if (!found) {
-          groupedItems.push({ ...item })
+      for (let groupedItem of groupedItems) {
+        if (item.id === groupedItem.id) {
+          groupedItem.qty += item.qty
+          found = true
+          break
         }
       }
 
-      return groupedItems
+      if (!found) {
+        groupedItems.push({ ...item })
+      }
     }
 
-    const getPrice = drops => {
-      let total = 0
-      for (let drop of drops) {
-        let price = prices[drop.id]
-        if (drop.unnoted && (isNaN(price) || price <= 0)) {
-          price = prices[drop.unnoted]
-        }
-        if (!isNaN(price)) {
-          total += price * drop.qty
-        }
-      }
-
-      return total
-    }
-
-    for (let entry of loot) {
-      const key = entry.eventId
-
-      if (groupedLoot.has(key)) {
-        const existing = groupedLoot.get(key)
-        existing.count += entry.amount
-        existing.drops = mergeDrops(existing.drops, entry.drops)
-        existing.price += getPrice(entry.drops)
-        continue
-      }
-
-      const newEntry = {
-        drops: mergeDrops(entry.drops, []),
-        type: entry.type,
-        count: entry.amount,
-        price: getPrice(entry.drops)
-      }
-
-      groupedLoot.set(key, newEntry)
-    }
-
-    return flattenMap(groupedLoot)
+    return groupedItems
   }
-)
+
+  const getPrice = drops =>
+    drops.reduce((acc, val) => acc + val.price * val.qty, 0)
+
+  for (let entry of loot) {
+    const key = entry.eventId
+
+    if (groupedLoot.has(key)) {
+      const existing = groupedLoot.get(key)
+      existing.count += entry.amount
+      existing.drops = mergeDrops(existing.drops, entry.drops)
+      existing.price += getPrice(entry.drops)
+      continue
+    }
+
+    const newEntry = {
+      drops: mergeDrops(entry.drops, []),
+      type: entry.type,
+      count: entry.amount,
+      price: getPrice(entry.drops)
+    }
+
+    groupedLoot.set(key, newEntry)
+  }
+
+  return flattenMap(groupedLoot).map(entry => {
+    entry.drops = entry.drops.sort((a, b) => b.price * b.qty - a.price * a.qty)
+    return entry
+  })
+})

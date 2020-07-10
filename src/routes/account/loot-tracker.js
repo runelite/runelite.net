@@ -59,21 +59,23 @@ const numToQuantity = num => {
 const buildQuantity = num => {
   let [str, si] = numToQuantity(num)
   return (
-    <span class={`rs-item-quantity rs-item-quantity-${si || 'none'}`}>
-      {[...str]
-        .map(g => glyphMap[g])
-        .filter(g => !!g)
-        .map(g => (
-          <span
-            class="rs-item-quantity-number"
-            style={{
-              width: g.w,
-              backgroundPositionX: -g.x,
-              backgroundPositionY: -g.y
-            }}
-          />
-        ))}
-    </span>
+    num > 1 && (
+      <span class={`rs-item-quantity rs-item-quantity-${si || 'none'}`}>
+        {[...str]
+          .map(g => glyphMap[g])
+          .filter(g => !!g)
+          .map(g => (
+            <span
+              class="rs-item-quantity-number"
+              style={{
+                width: g.w,
+                backgroundPositionX: -g.x,
+                backgroundPositionY: -g.y
+              }}
+            />
+          ))}
+      </span>
+    )
   )
 }
 
@@ -89,7 +91,11 @@ const buildDrop = drop => (
         />
       </a>
       <div class="tooltip-tag-text">
-        <b>{drop.name || 'Loading...'}</b>
+        <b>
+          {drop.name
+            ? `${drop.name} (${formatPrice(drop.price * drop.qty)}gp)`
+            : 'Loading...'}
+        </b>
       </div>
     </div>
   </div>
