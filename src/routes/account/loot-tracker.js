@@ -92,7 +92,7 @@ const buildDrop = drop => (
       </a>
       <div class="tooltip-tag-text">
         <b>{drop.name}</b>{' '}
-        <small>({formatPrice(drop.price * drop.qty)}gp)</small>
+        <small>({formatPrice(drop.price * drop.qty)} gp)</small>
       </div>
     </div>
   </div>
@@ -106,10 +106,8 @@ const formatPrice = price => {
 const buildLootRecord = record => (
   <div class="card loot-card">
     <div class="card-header">
-      {record.name}
-      <span class="small float-right">
-        x {record.count} ({formatPrice(record.price)}gp)
-      </span>
+      {record.name} <span class="small">x {record.count}</span>
+      <span class="small float-right">{formatPrice(record.price)} gp</span>
     </div>
     <div class="card-body pt-0 pb-0 record-body">
       <div class="row drop-row">{record.drops.map(buildDrop)}</div>
