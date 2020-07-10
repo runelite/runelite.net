@@ -7,6 +7,7 @@ import prepare from '../../components/prepare'
 import { fetchBootstrap } from '../../modules/bootstrap'
 import { fetchItems } from '../../modules/item'
 import { formatIcon, wikiURLForItem } from '../../util'
+import '../../components/tooltip.css'
 import '../tag.css'
 
 const buildTag = tag => {
