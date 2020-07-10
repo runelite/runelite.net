@@ -14,6 +14,7 @@ import { wikiURLForItem } from '../../util'
 import SearchBar from '../../components/search-bar'
 import { fetchBootstrap } from '../../modules/bootstrap'
 import { fetchPrices } from '../../modules/prices'
+import { fetchItems } from '../../modules/item'
 
 const getRlIcon = id => `https://static.runelite.net/cache/item/icon/${id}.png`
 
@@ -139,6 +140,7 @@ const mapDispatchToProps = dispatch =>
     {
       fetchBootstrap,
       fetchPrices,
+      fetchItems,
       fetchLoot,
       setLootFilter
     },
@@ -148,10 +150,12 @@ const mapDispatchToProps = dispatch =>
 const prepareComponentData = async ({
   fetchBootstrap,
   fetchPrices,
+  fetchItems,
   fetchLoot
 }) => {
   await fetchBootstrap()
   await fetchPrices()
+  await fetchItems()
   await fetchLoot()
 }
 

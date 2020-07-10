@@ -4,9 +4,9 @@ import { getLatestRelease } from './bootstrap'
 import { createSelector } from 'reselect'
 import { flattenMap } from '../util'
 import { getPrices } from './prices'
+import { getItems } from './item'
 
 const runeliteApi = api('https://api.runelite.net/')
-const runeliteStaticApi = api('https://static.runelite.net/')
 
 // Actions
 export const {
@@ -22,15 +22,11 @@ export const {
       const version = getLatestRelease(getState())
       const uuid = getState().account.uuid
 
-      const names = await runeliteStaticApi('cache/item/names.json', {
-        method: 'GET'
-      })
-
       const chunkSize = 2000
       let offset = 0
 
       while (true) {
-        const newLoot = await runeliteApi(
+        const result = await runeliteApi(
           `runelite-${version}/loottracker?count=${chunkSize}&start=${offset}`,
           {
             method: 'GET',
@@ -39,18 +35,6 @@ export const {
             }
           }
         )
-
-        const result = newLoot.map(entry => {
-          entry.date = new Date(0)
-          entry.date.setUTCSeconds(entry.last_time.seconds)
-
-          entry.drops = entry.drops.map(drop => {
-            drop.name = names[drop.id]
-            return drop
-          })
-
-          return entry
-        })
 
         let length = 0
 
@@ -104,8 +88,28 @@ export default handleActions(
 // Selectors
 export const getLoot = state => state.loot.data
 export const getLootFilter = state => state.loot.filter
-export const getFilteredLoot = createSelector(
+
+export const getAnnotatedLoot = createSelector(
   getLoot,
+  getItems,
+  (loot, items) =>
+    loot.map(entry => {
+      entry.date = new Date(0)
+      entry.date.setUTCSeconds(entry.last_time.seconds)
+      entry.drops = entry.drops.map(drop => {
+        const item = items.find(item => item.id === drop.id)
+        drop.name = item && item.name
+        const note = drop.name && items.find(item => item.id === drop.id - 1)
+        drop.unnoted = note && note.name === drop.name && note.id
+        return drop
+      })
+
+      return entry
+    })
+)
+
+export const getFilteredLoot = createSelector(
+  getAnnotatedLoot,
   getLootFilter,
   (data, filter) =>
     data
@@ -153,11 +157,15 @@ export const getGroupedLoot = createSelector(
     const getPrice = drops => {
       let total = 0
       for (let drop of drops) {
-        const price = prices[drop.id]
+        let price = prices[drop.id]
+        if (drop.unnoted && (isNaN(price) || price <= 0)) {
+          price = prices[drop.unnoted]
+        }
         if (!isNaN(price)) {
           total += price * drop.qty
         }
       }
+
       return total
     }
 
