@@ -1,19 +1,24 @@
 .tooltip-tag .tooltip-tag-text {
-  padding: 5px;
+  padding: 8px 5px;
   visibility: hidden;
-  width: 120px;
+  width: 200px;
   background-color: black;
   color: #fff;
   text-align: center;
-  border-radius: 0;
+  border-radius: 5px;
   line-height: normal;
   font-size: smaller;
 
   bottom: 110%;
   left: 50%;
-  margin-left: -50%;
+  margin-left: -100px !important;
   position: absolute;
   z-index: 1000;
+}
+
+.tooltip-tag-text small {
+  font-size: 12px !important;
+  color: gray;
 }
 
 .tooltip-tag:hover .tooltip-tag-text {
