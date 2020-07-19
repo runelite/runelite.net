@@ -1,6 +1,6 @@
 import { h, Fragment } from 'preact'
 import './home.scss'
-import './blog.scss'
+import './pulse.scss'
 import { connect } from 'react-redux'
 import Layout from '../components/layout'
 import {
