@@ -1,5 +1,4 @@
 import { h } from 'preact'
-import { useRef, useEffect } from 'preact/hooks'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import prepare from '../components/prepare'
