@@ -1,4 +1,5 @@
 import { h } from 'preact'
+import { useRef, useEffect } from 'preact/hooks'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import prepare from '../components/prepare'
@@ -21,40 +22,51 @@ const handleChange = (event, setPluginFilter) =>
     name: event.target.value
   })
 
-const PluginHub = ({ externalPlugins, pluginFilter, setPluginFilter }) => (
-  <Layout>
-    <Meta title={`Plugin Hub - ${hero.title}`} />
+const PluginHub = ({ externalPlugins, pluginFilter, setPluginFilter }) => {
+  const searchInputRef = useRef(null)
 
-    <section id="externalPlugins">
-      <div class="content-section">
-        <h1 class="page-header">Plugin Hub</h1>
-        <p>
-          The Plugin Hub is a repository of plugins that are created and
-          maintained by members of the community who are not officially
-          affiliated with RuneLite. These plugins are verified by RuneLite
-          Developers to ensure they comply with Jagex's 3rd party client rules
-          and are not malicious in some other way.
-        </p>
-        <p>
-          For more information about the Plugin Hub and how to install these
-          plugins read the{' '}
-          <a href="https://github.com/runelite/runelite/wiki/Information-about-the-Plugin-Hub">
-            guide on our wiki
-          </a>
-        </p>
-        <SearchBar
-          value={pluginFilter.name}
-          onInput={e => handleChange(e, setPluginFilter)}
-        />
-        <div class="row">
-          {externalPlugins.map(plugin => (
-            <ExternalPlugin key={plugin.internalName} {...plugin} />
-          ))}
+  useEffect(() => {
+    if (searchInputRef && searchInputRef.current) {
+      searchInputRef.current.focus()
+    }
+  }, [searchInputRef])
+
+  return (
+    <Layout>
+      <Meta title={`Plugin Hub - ${hero.title}`} />
+
+      <section id="externalPlugins">
+        <div class="content-section">
+          <h1 class="page-header">Plugin Hub</h1>
+          <p>
+            The Plugin Hub is a repository of plugins that are created and
+            maintained by members of the community who are not officially
+            affiliated with RuneLite. These plugins are verified by RuneLite
+            Developers to ensure they comply with Jagex's 3rd party client rules
+            and are not malicious in some other way.
+          </p>
+          <p>
+            For more information about the Plugin Hub and how to install these
+            plugins read the{' '}
+            <a href="https://github.com/runelite/runelite/wiki/Information-about-the-Plugin-Hub">
+              guide on our wiki
+            </a>
+          </p>
+          <SearchBar
+            value={pluginFilter.name}
+            onInput={e => handleChange(e, setPluginFilter)}
+            ref={searchInputRef}
+          />
+          <div class="row">
+            {externalPlugins.map(plugin => (
+              <ExternalPlugin key={plugin.internalName} {...plugin} />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  </Layout>
-)
+      </section>
+    </Layout>
+  )
+}
 
 const mapStateToProps = (state, props) => ({
   ...props,

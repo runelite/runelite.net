@@ -1,7 +1,8 @@
 import { h } from 'preact'
+import { forwardRef } from 'preact/compat'
 import './search-bar.css'
 
-const SearchBar = ({ value, onInput }) => (
+const SearchBar = forwardRef(({ value, onInput }, ref) => (
   <div class="search input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text">
@@ -9,6 +10,7 @@ const SearchBar = ({ value, onInput }) => (
       </span>
     </div>
     <input
+      ref={ref}
       type="text"
       class="form-control"
       placeholder="Search..."
@@ -16,6 +18,6 @@ const SearchBar = ({ value, onInput }) => (
       onInput={onInput}
     />
   </div>
-)
+))
 
 export default SearchBar
