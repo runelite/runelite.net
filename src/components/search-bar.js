@@ -9,7 +9,6 @@ const SearchBar = ({ value, onInput }) => (
       </span>
     </div>
     <input
-      ref={ref}
       type="text"
       class="form-control"
       placeholder="Search..."
