@@ -1,6 +1,5 @@
 import { createActions, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
-import { prop, sortBy } from 'ramda'
 import { getLatestRelease } from './bootstrap'
 import { getExternalPlugins as getConfigExternalPlugins } from './config'
 import api from '../api'
@@ -99,5 +98,8 @@ export const getFilteredExternalPlugins = createSelector(
 
 export const getSortedExternalPlugins = createSelector(
   getFilteredExternalPlugins,
-  externalPlugins => sortBy(prop('displayName'), externalPlugins)
+  externalPlugins =>
+    externalPlugins.sort(
+      (a, b) => b.displayName.toLowerCase() - a.displayName.toLowerCase()
+    )
 )
