@@ -14,6 +14,7 @@ const SearchBar = ({ value, onInput }) => (
       placeholder="Search..."
       value={value}
       onInput={onInput}
+      ref={input => input && input.focus()}
     />
   </div>
 )
