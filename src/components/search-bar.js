@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import './search-bar.css'
 
-const SearchBar = ({ value, onInput }, ref) => (
+const SearchBar = ({ value, onInput }) => (
   <div class="search input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text">
