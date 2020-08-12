@@ -45,7 +45,6 @@ const PluginHub = ({ externalPlugins, pluginFilter, setPluginFilter }) => (
         <SearchBar
           value={pluginFilter.name}
           onInput={e => handleChange(e, setPluginFilter)}
-          ref={input => input && input.focus()}
         />
         <div class="row">
           {externalPlugins.map(plugin => (
