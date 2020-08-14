@@ -28,7 +28,7 @@ const PluginHub = ({
   setPluginFilter
 }) => (
   <Layout>
-    <Meta title={`${author ? author + ' ' : ''}Plugin Hub - ${hero.title}$`} />
+    <Meta title={`${author ? author + ' ' : ''}Plugin Hub - ${hero.title}`} />
 
     <section id="externalPlugins">
       <div class="content-section">
