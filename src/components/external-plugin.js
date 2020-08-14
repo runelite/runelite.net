@@ -36,7 +36,7 @@ const ExternalPlugin = ({
             {installed && <span class="badge badge-success">installed</span>}
           </h5>
           <h6 class="card-subtitle mb-2 text-muted">
-            <b>{author}</b>
+            <a href={`/plugin-hub/${author}`}>{author}</a>
           </h6>
           <p class="card-text">
             {description.replace(/<br\/?>/g, '\n').replace(/<[^>]+>/g, '')}
