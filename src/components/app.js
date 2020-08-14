@@ -35,7 +35,7 @@ const App = ({ loading, navbarDark, login, logout, loggedIn, username }) => (
       />
       <Async path="/pulse" getComponent={() => import('../routes/pulse')} />
       <Async
-        path="/plugin-hub"
+        path="/plugin-hub/:author?"
         getComponent={() => import('../routes/plugin-hub')}
       />
       <Async

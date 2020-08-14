@@ -21,13 +21,18 @@ const handleChange = (event, setPluginFilter) =>
     name: event.target.value
   })
 
-const PluginHub = ({ externalPlugins, pluginFilter, setPluginFilter }) => (
+const PluginHub = ({
+  author,
+  externalPlugins,
+  pluginFilter,
+  setPluginFilter
+}) => (
   <Layout>
-    <Meta title={`Plugin Hub - ${hero.title}`} />
+    <Meta title={`${author ? author + ' ' : ''}Plugin Hub - ${hero.title}$`} />
 
     <section id="externalPlugins">
       <div class="content-section">
-        <h1 class="page-header">Plugin Hub</h1>
+        <h1 class="page-header">{author ? author + ' ' : ''}Plugin Hub</h1>
         <p>
           The Plugin Hub is a repository of plugins that are created and
           maintained by members of the community who are not officially
@@ -47,9 +52,11 @@ const PluginHub = ({ externalPlugins, pluginFilter, setPluginFilter }) => (
           onInput={e => handleChange(e, setPluginFilter)}
         />
         <div class="row">
-          {externalPlugins.map(plugin => (
-            <ExternalPlugin key={plugin.internalName} {...plugin} />
-          ))}
+          {externalPlugins
+            .filter(plugin => (author ? plugin.author === author : true))
+            .map(plugin => (
+              <ExternalPlugin key={plugin.internalName} {...plugin} />
+            ))}
         </div>
       </div>
     </section>
