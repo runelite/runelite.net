@@ -64,7 +64,6 @@ const Navigation = ({ dark, login, loggedIn, username }) => (
           </a>
         </li>
         <li class="nav-item dropdown">
-          {/* eslint-disable-next-line */}
           <a class="nav-link dropdown-toggle" id="navbarDropdown">
             API
           </a>
@@ -138,19 +137,38 @@ const Navigation = ({ dark, login, loggedIn, username }) => (
             <span class="d-lg-none"> GitHub</span>
           </a>
         </li>
-        <li class="nav-item" onClick={toggleMenu}>
-          {loggedIn ? (
+        {loggedIn ? (
+          <li class="nav-item" onClick={toggleMenu}>
             <a class="nav-link" href="/account/home">
               <i class="fas fa-user fa-fw" /> {username}
             </a>
-          ) : (
-            <form class="form-inline">
-              <button class="btn btn-primary" type="button" onClick={login}>
-                Login
-              </button>
-            </form>
-          )}
-        </li>
+          </li>
+        ) : (
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown">
+              Login
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-right"
+              aria-labelledby="navbarDropdown"
+            >
+              <a
+                class="dropdown-item"
+                type="button"
+                onClick={() => login('GOOGLE')}
+              >
+                <i class="fab fa-google" /> Login via Google
+              </a>
+              <a
+                class="dropdown-item"
+                type="button"
+                onClick={() => login('DISCORD')}
+              >
+                <i class="fab fa-discord" /> Login via Discord
+              </a>
+            </div>
+          </li>
+        )}
       </ul>
     </div>
   </nav>

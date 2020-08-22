@@ -17,7 +17,7 @@ export const {
   resetSession
 } = createActions(
   {
-    LOGIN: () => async (dispatch, getState) => {
+    LOGIN: provider => async (dispatch, getState) => {
       const version = getLatestRelease(getState())
       const localUuid = getState().account.uuid
       const baseUrl = getBaseUrl()
@@ -26,7 +26,7 @@ export const {
       loadingPane.focus()
 
       const authResponse = await runeliteApi(
-        `runelite-${version}/account/login?uuid=${localUuid}`,
+        `runelite-${version}/account/login?uuid=${localUuid}&provider=${provider}`,
         {
           method: 'GET'
         }
