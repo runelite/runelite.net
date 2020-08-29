@@ -1,3 +1,4 @@
+import './polyfills'
 import { h, render } from 'preact'
 import { Provider } from 'react-redux'
 import App from './components/app'
