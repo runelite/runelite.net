@@ -25,8 +25,7 @@ export const {
       const signatureSize = new DataView(response).getUint32(0)
 
       // Removes the signature, and it's 4byte header, then converts the result into a string
-      const jsonStr = String.fromCharCode.apply(
-        null,
+      const jsonStr = new TextDecoder('utf-8').decode(
         new Uint8Array(response.slice(signatureSize + 4))
       )
 
