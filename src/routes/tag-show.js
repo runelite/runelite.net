@@ -22,7 +22,7 @@ const TagShow = ({ name, icon, itemIds, items, csv }) => (
 
         <pre class="pre-select">{csv}</pre>
 
-        <div class="row justify-content-center">
+        <div class="row pl-2">
           {itemIds.map(id => {
             const item = items.find(i => i.id === id) || {}
             const name = item.name || ''
