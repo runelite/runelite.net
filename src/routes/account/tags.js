@@ -29,7 +29,7 @@ const buildTag = tag => {
       </h1>
 
       <pre class="pre-select">{csv}</pre>
-      <div class="row justify-content-center">
+      <div class="row pl-2">
         {tag.items.map(item => {
           const name = item.name || ''
           const id = item.id
