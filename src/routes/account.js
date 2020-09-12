@@ -24,6 +24,8 @@ import LootTracker from './account/loot-tracker'
 import NotFound from '../components/not-found'
 import './account.scss'
 import Tags from './account/tags'
+import TimeTracking from './account/time-tracking'
+import { getTimeTracking } from '../modules/time-tracking'
 
 const menu = [
   {
@@ -72,6 +74,13 @@ const menu = [
     icon: 'fa-fw fas fa-code',
     component: Tags,
     data: ({ rawTags }) => rawTags
+  },
+  {
+    tag: 'time-tracking',
+    label: 'Time Tracking',
+    icon: 'fa-fw fas fa-clock',
+    component: TimeTracking,
+    data: ({ rawTimeTracking }) => rawTimeTracking
   }
 ]
 
@@ -192,7 +201,8 @@ const mapStateToProps = (state, props) => ({
   bossLog: getBossLog(state),
   rawGe: getGe(state),
   rawLoot: getLoot(state),
-  rawTags: getTags(state)
+  rawTags: getTags(state),
+  rawTimeTracking: getTimeTracking(state)
 })
 
 const mapDispatchToProps = dispatch =>
