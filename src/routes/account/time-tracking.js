@@ -10,6 +10,7 @@ import '../tag.css'
 import { getTimeTracking } from '../../modules/time-tracking'
 import { formatIcon } from '../../util'
 import '../../components/tooltip.css'
+import './time-tracking.css'
 
 const buildProgress = ({
   minimumValue,
@@ -75,8 +76,24 @@ const buildTab = tab => (
   </div>
 )
 
+const buildTopTab = tab => (
+  <div class="card tooltip-tag">
+    <a href={'#' + tab.name}>
+      <img alt="" class="card-img-top" src={formatIcon(tab.icon)} />
+    </a>
+    <div class="tooltip-tag-text">
+      <b>{tab.name}</b>
+    </div>
+  </div>
+)
+
 const TimeTracking = ({ timeTracking }) => (
-  <Fragment>{timeTracking.map(buildTab)}</Fragment>
+  <Fragment>
+    <div class="row pl-2 pb-1 tracking-container">
+      {timeTracking.map(buildTopTab)}
+    </div>
+    {timeTracking.map(buildTab)}
+  </Fragment>
 )
 
 const mapStateToProps = (state, props) => ({
