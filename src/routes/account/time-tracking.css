@@ -1,0 +1,9 @@
+.tracking-container .card {
+  margin: 10px;
+  border-radius: 5px;
+  background: #141414;
+}
+
+.tracking-container .card img {
+  padding: 10px;
+}
