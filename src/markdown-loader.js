@@ -8,7 +8,13 @@ module.exports = function (source) {
     this.cacheable()
   }
 
-  const options = loaderUtils.parseQuery(this.query)
+  let options
+  try {
+    options = loaderUtils.parseQuery(this.query)
+  } catch (e) {
+    options = {}
+  }
+
   const frontMatterContext = fm(source)
   const obj = frontMatterContext.attributes
   const parser = md({

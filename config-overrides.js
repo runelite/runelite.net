@@ -13,7 +13,7 @@ const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 const SitemapPlugin = require('sitemap-webpack-plugin').default
 const md = require('markdown-it')
 const fm = require('front-matter')
-const libxmljs = require('libxmljs')
+const parser = require('fast-xml-parser')
 const hero = require('./src/_data/hero')
 const parseBlog = require('./src/parse-blog')
 const redirectConfig = require('./redirect')
@@ -61,7 +61,11 @@ const feedMapper = fileName => {
   const url = `${hero.url}/blog/show/${id}`
 
   // Validate xml
-  libxmljs.parseXml('<div>' + body + '</div>')
+  const result = parser.validate('<div>' + body + '</div>')
+
+  if (result !== true) {
+    throw result
+  }
 
   return {
     url,
