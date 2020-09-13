@@ -80,6 +80,7 @@ const menu = [
     label: 'Time Tracking',
     icon: 'fa-fw fas fa-clock',
     component: TimeTracking,
+    showAccounts: true,
     data: ({ rawTimeTracking }) => rawTimeTracking
   }
 ]
