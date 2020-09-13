@@ -144,7 +144,11 @@ export const getGroupedLoot = createSelector(getFilteredLoot, loot => {
       let found = false
 
       for (let groupedItem of groupedItems) {
-        if (item.id === groupedItem.id) {
+        if (
+          item.id === groupedItem.id ||
+          (item.name.startsWith('Clue scroll') &&
+            item.name === groupedItem.name)
+        ) {
           groupedItem.qty += item.qty
           found = true
           break
