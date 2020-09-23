@@ -15,6 +15,10 @@
   margin-left: -1em;
 }
 
+.news-page table {
+  margin-bottom: 1em;
+}
+
 @include media-breakpoint-down(md) {
   #blog-list .content-section {
     padding: 30px 0;
