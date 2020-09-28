@@ -35,7 +35,7 @@ export const { fetchConfig, setConfig, changeAccount } = createActions(
       const config = {}
       for (let i in result.config) {
         const kv = result.config[i]
-        config[kv.key] = kv.value
+        config[kv.key.toLowerCase()] = kv.value
       }
 
       dispatch(setConfig(config))
