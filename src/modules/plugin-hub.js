@@ -91,7 +91,9 @@ export const getFilteredExternalPlugins = createSelector(
     externalPlugins.filter(
       p =>
         !filter.name ||
-        p.displayName.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1
+        p.displayName.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1 ||
+        p.author.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1 ||
+        p.description.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1
     )
 )
 
