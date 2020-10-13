@@ -8,7 +8,6 @@ import itemReducer from './item'
 import lootReducer from './loot'
 import sessionReducer from './session'
 import tagReducer from './tag'
-import xpReducer from './xp'
 import pricesReducer from './prices'
 import externalPluginsReducer from './plugin-hub'
 
@@ -25,6 +24,5 @@ export default {
   loot: lootReducer,
   session: sessionReducer,
   tag: tagReducer,
-  xp: xpReducer,
   prices: pricesReducer
 }
