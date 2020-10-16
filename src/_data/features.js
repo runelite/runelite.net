@@ -101,7 +101,7 @@ export default [
     title: 'Clue scroll helper',
     description:
       'Gives answers to clue scroll riddles/anagrams/ciphers/cryptic clues.',
-    link: 'https://github.com/runelite/runelite/wiki/Clue-Scrolls'
+    link: 'https://github.com/runelite/runelite/wiki/Clue-Scroll'
   },
   {
     image: '/img/features/moveableoverlay.png',
