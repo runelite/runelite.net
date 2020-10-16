@@ -29,7 +29,7 @@ export default [
     title: 'Bank evaluator',
     description:
       "Displays your bank's total value based on GE and alch prices.",
-    link: 'https://github.com/runelite/runelite/wiki/Bank-Value'
+    link: 'https://github.com/runelite/runelite/wiki/Bank'
   },
   {
     image: '/img/features/banktags.png',
@@ -67,7 +67,7 @@ export default [
     image: '/img/features/birdhouses.png',
     title: 'Birdhouse Timers',
     description: 'Displays birdhouses and approximate completion.',
-    link: 'https://github.com/runelite/runelite/wiki/Farming-Tracker'
+    link: 'https://github.com/runelite/runelite/wiki/Time-Tracking'
   },
   {
     image: '/img/features/cannontiles.png',
@@ -107,7 +107,9 @@ export default [
     image: '/img/features/moveableoverlay.png',
     title: 'Custom overlay position',
     description:
-      'Allows you to move RuneLite overlays to any position on the screen.'
+      'Allows you to move RuneLite overlays to any position on the screen.',
+    link:
+      'https://github.com/runelite/runelite/wiki/General-Features#moving-overlays'
   },
   {
     image: '/img/features/daily.png',
@@ -115,12 +117,6 @@ export default [
     description:
       'Notifies you on login what daily tasks you are able to complete.',
     link: 'https://github.com/runelite/runelite/wiki/Daily-Task-Indicator'
-  },
-  {
-    image: '/img/features/deathlocation.png',
-    title: 'Death Indicator',
-    description: 'Displays your last death location and on which world.',
-    link: 'https://github.com/runelite/runelite/wiki/Death-Indicator'
   },
   {
     image: '/img/features/discord.png',
@@ -147,7 +143,7 @@ export default [
     image: '/img/features/farmingtracker.png',
     title: 'Farming Tracker',
     description: 'Displays current farming patches and approximate completion.',
-    link: 'https://github.com/runelite/runelite/wiki/Farming-Tracker'
+    link: 'https://github.com/runelite/runelite/wiki/Time-Tracking'
   },
   {
     image: '/img/features/fishing.png',
@@ -230,7 +226,7 @@ export default [
     image: '/img/features/jewellerycount.png',
     title: 'Jewellery charges',
     description: 'Displays the number of charges that your jewellery has.',
-    link: 'https://github.com/runelite/runelite/wiki/Jewellery-Count'
+    link: 'https://github.com/runelite/runelite/wiki/Item-Charges'
   },
   {
     image: '/img/features/lightboxsolver.png',
@@ -282,7 +278,7 @@ export default [
     image: '/img/features/mlm.png',
     title: 'Motherlode Mine',
     description: 'Marks veins and rock obstacles in the Motherlode Mine.',
-    link: 'https://github.com/runelite/runelite/wiki/Motherload-Mine'
+    link: 'https://github.com/runelite/runelite/wiki/Motherlode-Mine'
   },
   {
     image: '/img/features/newsfeed.png',
@@ -372,7 +368,8 @@ export default [
     image: '/img/features/shiftclick.png',
     title: 'Shift click configuration',
     description: 'Allows you to change/set shift click actions on items.',
-    link: 'https://github.com/runelite/runelite/wiki/Shift-Click-Configuration'
+    link:
+      'https://github.com/runelite/runelite/wiki/Menu-Entry-Swapper#customizable-shift-click'
   },
   {
     image: '/img/features/statusbars.png',
@@ -441,6 +438,6 @@ export default [
     image: '/img/features/zoom.png',
     title: 'Zoom unlimiter',
     description: 'Allows you to zoom past the default camera distance limits.',
-    link: 'https://github.com/runelite/runelite/wiki/Camera-Zoom'
+    link: 'https://github.com/runelite/runelite/wiki/Camera'
   }
 ]
