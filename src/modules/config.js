@@ -104,7 +104,7 @@ export const getAccounts = createSelector(getConfig, config => {
 })
 
 export const getSlayerTask = createSelector(getConfig, config => {
-  if (!config['slayer.taskName']) {
+  if (!config['slayer.taskname']) {
     return {
       hasTask: false
     }
@@ -112,9 +112,9 @@ export const getSlayerTask = createSelector(getConfig, config => {
 
   return {
     hasTask: true,
-    name: config['slayer.taskName'],
-    location: config['slayer.taskLocation'],
-    start: config['slayer.initialAmount'],
+    name: config['slayer.taskname'],
+    location: config['slayer.tasklocation'],
+    start: config['slayer.initialamount'],
     remaining: config['slayer.amount'],
     streak: config['slayer.streak'],
     points: config['slayer.points']
@@ -172,11 +172,11 @@ export const getBossLog = createSelector(
 )
 
 export const getExternalPlugins = createSelector(getConfig, config => {
-  if (!config['runelite.externalPlugins']) {
+  if (!config['runelite.externalplugins']) {
     return []
   }
 
-  return config['runelite.externalPlugins'].split(',')
+  return config['runelite.externalplugins'].split(',')
 })
 
 export const getTags = createSelector(getConfig, getItems, (config, items) => {
