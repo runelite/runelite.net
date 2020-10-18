@@ -1,5 +1,6 @@
 import { h } from 'preact'
 import './feature.scss'
+import { numberWithCommas } from '../util'
 
 const ExternalPlugin = ({
   displayName,
@@ -7,7 +8,8 @@ const ExternalPlugin = ({
   description,
   support,
   imageUrl,
-  installed
+  installed,
+  count
 }) => (
   <div class="col-md-4 col-sm-6 col-xs-12 mb-2">
     <div class="card">
@@ -32,12 +34,20 @@ const ExternalPlugin = ({
               </a>
             ) : (
               displayName
-            )}{' '}
-            {installed && <span class="badge badge-success">installed</span>}
+            )}
           </h5>
           <h6 class="card-subtitle mb-2 text-muted">
             <a href={`/plugin-hub/${author}`}>{author}</a>
           </h6>
+          {count > 0 && (
+            <p class="card-text">
+              <span class="badge badge-primary">
+                {numberWithCommas(count)}{' '}
+                {count > 1 ? 'active installs' : 'active install'}
+              </span>{' '}
+              {installed && <span class="badge badge-success">installed</span>}
+            </p>
+          )}
           <p class="card-text">
             {description.replace(/<br\/?>/g, '\n').replace(/<[^>]+>/g, '')}
           </p>

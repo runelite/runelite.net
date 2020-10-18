@@ -6,12 +6,16 @@ import api from '../api'
 
 const pluginHubUrl = 'https://repo.runelite.net/plugins/'
 const pluginHubApi = api(pluginHubUrl)
+const runeliteApi = api('https://api.runelite.net/')
 
 // Actions
 export const {
   fetchExternalPlugins,
+  fetchPluginHubStats,
   setExternalPlugins,
-  setPluginFilter
+  setPluginHubStats,
+  setPluginFilter,
+  setPluginSorting
 } = createActions(
   {
     FETCH_EXTERNAL_PLUGINS: () => async (dispatch, getState) => {
@@ -40,10 +44,21 @@ export const {
 
       dispatch(setExternalPlugins(plugins))
       return plugins
+    },
+    FETCH_PLUGIN_HUB_STATS: () => async (dispatch, getState) => {
+      const version = getLatestRelease(getState())
+      const response = await runeliteApi(`runelite-${version}/pluginhub`, {
+        method: 'GET'
+      })
+
+      dispatch(setPluginHubStats(response))
+      return response
     }
   },
   'SET_EXTERNAL_PLUGINS',
-  'SET_PLUGIN_FILTER'
+  'SET_PLUGIN_HUB_STATS',
+  'SET_PLUGIN_FILTER',
+  'SET_PLUGIN_SORTING'
 )
 
 // Reducer
@@ -53,32 +68,48 @@ export default handleActions(
       ...state,
       data: payload
     }),
+    [setPluginHubStats]: (state, { payload }) => ({
+      ...state,
+      stats: payload
+    }),
     [setPluginFilter]: (state, { payload }) => ({
       ...state,
       filter: {
         ...state.filter,
         ...payload
       }
+    }),
+    [setPluginSorting]: (state, { payload }) => ({
+      ...state,
+      sorting: payload
     })
   },
   {
     filter: {
       name: ''
     },
-    data: []
+    sorting: 'active installs',
+    data: [],
+    stats: {}
   }
 )
 
 // Selectors
 export const getExternalPlugins = state => state.externalPlugins.data
+export const getPluginHubStats = state => state.externalPlugins.stats
 export const getPluginFilter = state => state.externalPlugins.filter
+export const getPluginSorting = state => state.externalPlugins.sorting
 
 export const getExternalPluginsWithState = createSelector(
   getExternalPlugins,
+  getPluginHubStats,
   getConfigExternalPlugins,
-  (externalPlugins, configExternal) => {
+  (externalPlugins, pluginHubStats, configExternal) => {
     return externalPlugins.map(p => {
       p.installed = configExternal.includes(p.internalName)
+      p.count = pluginHubStats.hasOwnProperty(p.internalName)
+        ? pluginHubStats[p.internalName]
+        : 0
       return p
     })
   }
@@ -98,9 +129,19 @@ export const getFilteredExternalPlugins = createSelector(
 )
 
 export const getSortedExternalPlugins = createSelector(
+  getPluginSorting,
   getFilteredExternalPlugins,
-  externalPlugins =>
-    externalPlugins.sort(
-      (a, b) => b.displayName.toLowerCase() - a.displayName.toLowerCase()
+  (pluginSorting, externalPlugins) => {
+    externalPlugins = externalPlugins.sort((a, b) =>
+      a.displayName.toLowerCase().localeCompare(b.displayName.toLowerCase())
     )
+
+    switch (pluginSorting) {
+      case 'active installs':
+        return externalPlugins.sort((a, b) => b.count - a.count)
+      case 'name':
+      default:
+        return externalPlugins
+    }
+  }
 )
