@@ -47,6 +47,10 @@ video {
   max-width: 100%;
 }
 
+.dropdown-menu {
+  min-width: 100%;
+}
+
 .dropdown:hover .dropdown-menu {
   display: block;
   margin-top: 0;
@@ -104,4 +108,8 @@ video {
 .page-link:hover,
 .page-link:active {
   background: #101010 !important;
+}
+
+.btn.disabled {
+  cursor: default;
 }
