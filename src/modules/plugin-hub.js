@@ -78,7 +78,7 @@ export const getExternalPluginsWithState = createSelector(
   getConfigExternalPlugins,
   (externalPlugins, configExternal) => {
     return externalPlugins.map(p => {
-      p.installed = configExternal.indexOf(p.internalName) >= 0
+      p.installed = configExternal.includes(p.internalName)
       return p
     })
   }
