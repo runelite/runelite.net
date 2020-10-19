@@ -1,4 +1,3 @@
-import { uniq, concat } from 'ramda'
 import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
 import { getLatestRelease } from './bootstrap'
@@ -8,9 +7,16 @@ const runeliteApi = api('https://api.runelite.net/')
 const runeliteStaticApi = api('https://static.runelite.net/')
 
 // Actions
-export const { fetchGe, setGe, setGeRange, setGeFilter } = createActions(
+export const {
+  fetchGe,
+  setGe,
+  setGeRange,
+  setGeFilter,
+  setGePagination
+} = createActions(
   {
     FETCH_GE: () => async (dispatch, getState) => {
+      dispatch(setGeRange([]))
       const version = getLatestRelease(getState())
       const uuid = getState().account.uuid
 
@@ -54,7 +60,8 @@ export const { fetchGe, setGe, setGeRange, setGeFilter } = createActions(
   },
   'SET_GE',
   'SET_GE_RANGE',
-  'SET_GE_FILTER'
+  'SET_GE_FILTER',
+  'SET_GE_PAGINATION'
 )
 
 // Reducer
@@ -62,7 +69,7 @@ export default handleActions(
   {
     [setGe]: (state, { payload }) => ({
       ...state,
-      data: uniq(concat(state.data, payload))
+      data: state.data.concat(payload)
     }),
     [setGeRange]: (state, { payload }) => ({
       ...state,
@@ -74,11 +81,22 @@ export default handleActions(
         ...state.filter,
         ...payload
       }
+    }),
+    [setGePagination]: (state, { payload }) => ({
+      ...state,
+      pagination: {
+        ...state.pagination,
+        ...payload
+      }
     })
   },
   {
     filter: {
       name: ''
+    },
+    pagination: {
+      page: 1,
+      perPage: 100
     },
     data: []
   }
@@ -87,6 +105,7 @@ export default handleActions(
 // Selectors
 export const getGe = state => state.ge.data
 export const getGeFilter = state => state.ge.filter
+export const getGePagination = state => state.ge.pagination
 
 export const getFilteredGe = createSelector(
   getGe,
@@ -99,4 +118,20 @@ export const getFilteredGe = createSelector(
           l.name.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1
       )
       .sort((a, b) => b.date - a.date)
+)
+
+export const getPaginatedGe = createSelector(
+  getFilteredGe,
+  getGePagination,
+  (data, pagination) => {
+    const offset = (pagination.page - 1) * pagination.perPage
+    const limit = offset + pagination.perPage
+    return data.slice(offset, limit)
+  }
+)
+
+export const getPageCount = createSelector(
+  getFilteredGe,
+  getGePagination,
+  (data, pagination) => Math.ceil(data.length / pagination.perPage)
 )

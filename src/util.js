@@ -46,3 +46,15 @@ export const wikiURLForItem = ({ id, name }) => {
 
 export const formatIcon = icon =>
   `https://static.runelite.net/cache/item/icon/${icon}.png`
+
+export const range = (from, to, step = 1) => {
+  let i = from
+  const range = []
+
+  while (i <= to) {
+    range.push(i)
+    i += step
+  }
+
+  return range
+}
