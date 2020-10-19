@@ -85,6 +85,20 @@ const nameToItemId = name => {
       return 20693
     case 'zulrah':
       return 12921
+    case 'sarachnis':
+      return 23495 // sraracha
+    case 'herbiboar':
+      return 21509 // herbi
+    case 'zalcano':
+      return 23760 // smolcano
+    case 'gauntlet':
+      return 23757 // youngllef
+    case 'corrupted gauntlet':
+      return 23759 // corrupted youngllef
+    case 'mimic':
+      return 23184 // mimic casket
+    case 'ape atoll agility':
+      return 4033 // monkey
     default:
       return 4155 // Enchanted gem
   }
