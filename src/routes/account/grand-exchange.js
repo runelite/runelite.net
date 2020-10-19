@@ -4,15 +4,19 @@ import { numberWithCommas } from '../../util'
 import { connect } from 'react-redux'
 import {
   fetchGe,
-  getFilteredGe,
   getGeFilter,
-  setGeFilter
+  getGePagination,
+  getPageCount,
+  getPaginatedGe,
+  setGeFilter,
+  setGePagination
 } from '../../modules/ge'
 import { bindActionCreators } from 'redux'
 import prepare from '../../components/prepare'
 import SearchBar from '../../components/search-bar'
 import './grand-exchange.css'
 import { fetchBootstrap } from '../../modules/bootstrap'
+import Pagination from '../../components/pagination'
 
 const formatGeIcon = id =>
   `https://services.runescape.com/m=itemdb_oldschool/obj_big.gif?id=${id}`
@@ -56,7 +60,14 @@ const handleChange = (event, setGeFilter) =>
     name: event.target.value
   })
 
-const GrandExchange = ({ ge, geFilter, setGeFilter }) => (
+const GrandExchange = ({
+  ge,
+  geFilter,
+  gePagination,
+  pageCount,
+  setGeFilter,
+  setGePagination
+}) => (
   <Fragment>
     <SearchBar
       value={geFilter.name}
@@ -65,13 +76,26 @@ const GrandExchange = ({ ge, geFilter, setGeFilter }) => (
     <ul class="ge-records list-group list-group-small">
       {ge.sort((a, b) => b.date - a.date).map(buildRecord)}
     </ul>
+    <Pagination
+      currentPage={gePagination.page}
+      totalPages={pageCount}
+      pageNeighbours={6}
+      onClick={page =>
+        setGePagination({
+          page,
+          perPage: 100
+        })
+      }
+    />
   </Fragment>
 )
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  ge: getFilteredGe(state),
-  geFilter: getGeFilter(state)
+  ge: getPaginatedGe(state),
+  geFilter: getGeFilter(state),
+  gePagination: getGePagination(state),
+  pageCount: getPageCount(state)
 })
 
 const mapDispatchToProps = dispatch =>
@@ -79,7 +103,8 @@ const mapDispatchToProps = dispatch =>
     {
       fetchBootstrap,
       fetchGe,
-      setGeFilter
+      setGeFilter,
+      setGePagination
     },
     dispatch
   )

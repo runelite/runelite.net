@@ -11,7 +11,8 @@
   src: url(~lato-font/fonts/lato-normal/lato-normal.woff);
 }
 
-a {
+a,
+.page-link {
   color: #dc8a00;
 }
 
@@ -90,9 +91,17 @@ video {
   background: #141414 !important;
 }
 
+.page-link,
+.pagination {
+  background: #141414 !important;
+  border: none !important;
+}
+
 .list-group-item:hover,
 .list-group-item:active,
 .list-group-item-action:hover,
-.list-group-item-action:active {
+.list-group-item-action:active,
+.page-link:hover,
+.page-link:active {
   background: #101010 !important;
 }
