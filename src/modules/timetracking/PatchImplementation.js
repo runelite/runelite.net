@@ -29,6 +29,9 @@ export var PatchImplementation
   PatchImplementation[(PatchImplementation['GRAPES'] = 18)] = 'GRAPES'
   PatchImplementation[(PatchImplementation['CRYSTAL_TREE'] = 19)] =
     'CRYSTAL_TREE'
+  PatchImplementation[(PatchImplementation['COMPOST'] = 20)] = 'COMPOST'
+  PatchImplementation[(PatchImplementation['GIANT_COMPOST'] = 21)] =
+    'GIANT_COMPOST'
 })(PatchImplementation || (PatchImplementation = {}))
 /** @ignore */
 export class PatchImplementation_$WRAPPER {
@@ -136,6 +139,17 @@ PatchImplementation['__interfaces'] = [
     Produce[(Produce['REDWOOD'] = 72)] = 'REDWOOD'
     Produce[(Produce['HESPORI'] = 73)] = 'HESPORI'
     Produce[(Produce['CRYSTAL_TREE'] = 74)] = 'CRYSTAL_TREE'
+    Produce[(Produce['EMPTY_COMPOST_BIN'] = 75)] = 'EMPTY_COMPOST_BIN'
+    Produce[(Produce['COMPOST'] = 76)] = 'COMPOST'
+    Produce[(Produce['SUPERCOMPOST'] = 77)] = 'SUPERCOMPOST'
+    Produce[(Produce['ULTRACOMPOST'] = 78)] = 'ULTRACOMPOST'
+    Produce[(Produce['ROTTEN_TOMATO'] = 79)] = 'ROTTEN_TOMATO'
+    Produce[(Produce['EMPTY_GIANT_COMPOST_BIN'] = 80)] =
+      'EMPTY_GIANT_COMPOST_BIN'
+    Produce[(Produce['GIANT_COMPOST'] = 81)] = 'GIANT_COMPOST'
+    Produce[(Produce['GIANT_SUPERCOMPOST'] = 82)] = 'GIANT_SUPERCOMPOST'
+    Produce[(Produce['GIANT_ULTRACOMPOST'] = 83)] = 'GIANT_ULTRACOMPOST'
+    Produce[(Produce['GIANT_ROTTEN_TOMATO'] = 84)] = 'GIANT_ROTTEN_TOMATO'
   })(
     (Produce =
       PatchImplementation.Produce || (PatchImplementation.Produce = {}))
@@ -1219,6 +1233,126 @@ PatchImplementation['__interfaces'] = [
       ItemID.CRYSTAL_SHARDS,
       80,
       7
+    ),
+    new Produce_$WRAPPER(
+      75,
+      'EMPTY_COMPOST_BIN',
+      'Compost Bin',
+      'Compost Bin',
+      PatchImplementation.COMPOST,
+      ItemID.COMPOST_BIN,
+      0,
+      1,
+      0,
+      0
+    ),
+    new Produce_$WRAPPER(
+      76,
+      'COMPOST',
+      'Compost',
+      'Compost',
+      PatchImplementation.COMPOST,
+      ItemID.COMPOST,
+      40,
+      3,
+      0,
+      15
+    ),
+    new Produce_$WRAPPER(
+      77,
+      'SUPERCOMPOST',
+      'Supercompost',
+      'Supercompost',
+      PatchImplementation.COMPOST,
+      ItemID.SUPERCOMPOST,
+      40,
+      3,
+      0,
+      15
+    ),
+    new Produce_$WRAPPER(
+      78,
+      'ULTRACOMPOST',
+      'Ultracompost',
+      'Ultracompost',
+      PatchImplementation.COMPOST,
+      ItemID.ULTRACOMPOST,
+      0,
+      3,
+      0,
+      15
+    ),
+    new Produce_$WRAPPER(
+      79,
+      'ROTTEN_TOMATO',
+      'Rotten Tomato',
+      'Rotten Tomato',
+      PatchImplementation.COMPOST,
+      ItemID.ROTTEN_TOMATO,
+      40,
+      3,
+      0,
+      15
+    ),
+    new Produce_$WRAPPER(
+      80,
+      'EMPTY_GIANT_COMPOST_BIN',
+      'Giant Compost Bin',
+      'Giant Compost Bin',
+      PatchImplementation.COMPOST,
+      ItemID.COMPOST_BIN,
+      0,
+      1,
+      0,
+      0
+    ),
+    new Produce_$WRAPPER(
+      81,
+      'GIANT_COMPOST',
+      'Compost',
+      'Compost',
+      PatchImplementation.GIANT_COMPOST,
+      ItemID.COMPOST,
+      40,
+      3,
+      0,
+      30
+    ),
+    new Produce_$WRAPPER(
+      82,
+      'GIANT_SUPERCOMPOST',
+      'Supercompost',
+      'Supercompost',
+      PatchImplementation.GIANT_COMPOST,
+      ItemID.SUPERCOMPOST,
+      40,
+      3,
+      0,
+      30
+    ),
+    new Produce_$WRAPPER(
+      83,
+      'GIANT_ULTRACOMPOST',
+      'Ultracompost',
+      'Ultracompost',
+      PatchImplementation.GIANT_COMPOST,
+      ItemID.ULTRACOMPOST,
+      0,
+      3,
+      0,
+      30
+    ),
+    new Produce_$WRAPPER(
+      84,
+      'GIANT_ROTTEN_TOMATO',
+      'Rotten Tomato',
+      'Rotten Tomato',
+      PatchImplementation.GIANT_COMPOST,
+      ItemID.ROTTEN_TOMATO,
+      40,
+      3,
+      0,
+      30
     )
   ]
 })(PatchImplementation || (PatchImplementation = {}))
@@ -5173,6 +5307,268 @@ PatchImplementation['__interfaces'] = [
     }
   }
   PatchImplementation.PatchImplementation$19_$WRAPPER = PatchImplementation$19_$WRAPPER
+  /** @ignore */
+  class PatchImplementation$20_$WRAPPER extends PatchImplementation_$WRAPPER {
+    constructor(_$ordinal, _$name, tab, name) {
+      super(_$ordinal, _$name, tab, name)
+    }
+    /**
+     *
+     * @param {number} value
+     * @return {PatchState}
+     */
+    forVarbitValue(value) {
+      if (value === 0) {
+        return new PatchState(
+          PatchImplementation.Produce.EMPTY_COMPOST_BIN,
+          CropState.EMPTY,
+          0
+        )
+      }
+      if (value >= 1 && value <= 15) {
+        return new PatchState(
+          PatchImplementation.Produce.COMPOST,
+          CropState.FILLING,
+          value - 1
+        )
+      }
+      if (value >= 16 && value <= 30) {
+        return new PatchState(
+          PatchImplementation.Produce.COMPOST,
+          CropState.HARVESTABLE,
+          value - 16
+        )
+      }
+      if (value === 31 || value === 32) {
+        return new PatchState(
+          PatchImplementation.Produce.COMPOST,
+          CropState.GROWING,
+          value - 31
+        )
+      }
+      if (value >= 33 && value <= 47) {
+        return new PatchState(
+          PatchImplementation.Produce.SUPERCOMPOST,
+          CropState.FILLING,
+          value - 33
+        )
+      }
+      if (value >= 48 && value <= 62) {
+        return new PatchState(
+          PatchImplementation.Produce.SUPERCOMPOST,
+          CropState.HARVESTABLE,
+          value - 48
+        )
+      }
+      if (value === 94) {
+        return new PatchState(
+          PatchImplementation.Produce.COMPOST,
+          CropState.GROWING,
+          PatchImplementation.Produce['_$wrappers'][
+            PatchImplementation.Produce.COMPOST
+          ].getStages() - 1
+        )
+      }
+      if (value === 95 || value === 96) {
+        return new PatchState(
+          PatchImplementation.Produce.SUPERCOMPOST,
+          CropState.GROWING,
+          value - 95
+        )
+      }
+      if (value === 126) {
+        return new PatchState(
+          PatchImplementation.Produce.SUPERCOMPOST,
+          CropState.GROWING,
+          PatchImplementation.Produce['_$wrappers'][
+            PatchImplementation.Produce.SUPERCOMPOST
+          ].getStages() - 1
+        )
+      }
+      if (value >= 129 && value <= 143) {
+        return new PatchState(
+          PatchImplementation.Produce.ROTTEN_TOMATO,
+          CropState.FILLING,
+          value - 129
+        )
+      }
+      if (value >= 144 && value <= 158) {
+        return new PatchState(
+          PatchImplementation.Produce.ROTTEN_TOMATO,
+          CropState.HARVESTABLE,
+          value - 144
+        )
+      }
+      if (value >= 159 && value <= 160) {
+        return new PatchState(
+          PatchImplementation.Produce.ROTTEN_TOMATO,
+          CropState.GROWING,
+          value - 159
+        )
+      }
+      if (value >= 176 && value <= 190) {
+        return new PatchState(
+          PatchImplementation.Produce.ULTRACOMPOST,
+          CropState.HARVESTABLE,
+          value - 176
+        )
+      }
+      return null
+    }
+  }
+  PatchImplementation.PatchImplementation$20_$WRAPPER = PatchImplementation$20_$WRAPPER
+  /** @ignore */
+  class PatchImplementation$21_$WRAPPER extends PatchImplementation_$WRAPPER {
+    constructor(_$ordinal, _$name, tab, name) {
+      super(_$ordinal, _$name, tab, name)
+    }
+    /**
+     *
+     * @param {number} value
+     * @return {PatchState}
+     */
+    forVarbitValue(value) {
+      if (value === 0) {
+        return new PatchState(
+          PatchImplementation.Produce.EMPTY_GIANT_COMPOST_BIN,
+          CropState.EMPTY,
+          0
+        )
+      }
+      if (value >= 1 && value <= 15) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_COMPOST,
+          CropState.FILLING,
+          value - 1
+        )
+      }
+      if (value >= 16 && value <= 30) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_COMPOST,
+          CropState.HARVESTABLE,
+          value - 16
+        )
+      }
+      if (value >= 33 && value <= 47) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_SUPERCOMPOST,
+          CropState.FILLING,
+          value - 33
+        )
+      }
+      if (value >= 48 && value <= 62) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_SUPERCOMPOST,
+          CropState.HARVESTABLE,
+          value - 48
+        )
+      }
+      if (value >= 63 && value <= 77) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_COMPOST,
+          CropState.FILLING,
+          15 + value - 63
+        )
+      }
+      if (value >= 78 && value <= 92) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_COMPOST,
+          CropState.HARVESTABLE,
+          15 + value - 78
+        )
+      }
+      if (value === 93) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_COMPOST,
+          CropState.GROWING,
+          PatchImplementation.Produce['_$wrappers'][
+            PatchImplementation.Produce.GIANT_COMPOST
+          ].getStages() - 1
+        )
+      }
+      if (value >= 97 && value <= 99) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_SUPERCOMPOST,
+          CropState.GROWING,
+          value - 97
+        )
+      }
+      if (value >= 100 && value <= 114) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_SUPERCOMPOST,
+          CropState.HARVESTABLE,
+          15 + value - 100
+        )
+      }
+      if (value >= 127 && value <= 128) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_COMPOST,
+          CropState.GROWING,
+          value - 127
+        )
+      }
+      if (value >= 129 && value <= 143) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_ROTTEN_TOMATO,
+          CropState.FILLING,
+          value - 129
+        )
+      }
+      if (value >= 144 && value <= 158) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_ROTTEN_TOMATO,
+          CropState.HARVESTABLE,
+          value - 144
+        )
+      }
+      if (value >= 159 && value <= 160) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_ROTTEN_TOMATO,
+          CropState.GROWING,
+          value - 159
+        )
+      }
+      if (value >= 161 && value <= 175) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_SUPERCOMPOST,
+          CropState.FILLING,
+          15 + value - 161
+        )
+      }
+      if (value >= 176 && value <= 205) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_ULTRACOMPOST,
+          CropState.HARVESTABLE,
+          value - 176
+        )
+      }
+      if (value >= 207 && value <= 221) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_ROTTEN_TOMATO,
+          CropState.HARVESTABLE,
+          15 + value - 207
+        )
+      }
+      if (value === 222) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_ROTTEN_TOMATO,
+          CropState.GROWING,
+          PatchImplementation.Produce['_$wrappers'][
+            PatchImplementation.Produce.GIANT_ROTTEN_TOMATO
+          ].getStages() - 1
+        )
+      }
+      if (value >= 223 && value <= 237) {
+        return new PatchState(
+          PatchImplementation.Produce.GIANT_ROTTEN_TOMATO,
+          CropState.FILLING,
+          15 + value - 223
+        )
+      }
+      return null
+    }
+  }
+  PatchImplementation.PatchImplementation$21_$WRAPPER = PatchImplementation$21_$WRAPPER
 })(PatchImplementation || (PatchImplementation = {}))
 PatchImplementation['_$wrappers'] = [
   new PatchImplementation.PatchImplementation$0_$WRAPPER(
@@ -5294,5 +5690,17 @@ PatchImplementation['_$wrappers'] = [
     'CRYSTAL_TREE',
     Tab.FRUIT_TREE,
     'Crystal Tree'
+  ),
+  new PatchImplementation.PatchImplementation$20_$WRAPPER(
+    20,
+    'COMPOST',
+    Tab.SPECIAL,
+    'Compost Bin'
+  ),
+  new PatchImplementation.PatchImplementation$21_$WRAPPER(
+    21,
+    'GIANT_COMPOST',
+    Tab.SPECIAL,
+    'Giant Compost Bin'
   )
 ]

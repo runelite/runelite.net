@@ -1,5 +1,3 @@
-// @ts-nocheck
-/* eslint-disable */
 /**
  * Contains data about the state of a particular {@link BirdHouseSpace}, at a particular point in time.
  * @param {BirdHouseSpace} space

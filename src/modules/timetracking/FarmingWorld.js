@@ -38,7 +38,8 @@ export class FarmingWorld {
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
-        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB)
+        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB),
+        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.COMPOST)
       )
     )
     this.add(
@@ -72,7 +73,8 @@ export class FarmingWorld {
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
-        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB)
+        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB),
+        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.COMPOST)
       )
     )
     this.add(
@@ -145,7 +147,8 @@ export class FarmingWorld {
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
-        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB)
+        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB),
+        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.COMPOST)
       )
     )
     this.add(
@@ -225,7 +228,8 @@ export class FarmingWorld {
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
-        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB)
+        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB),
+        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.COMPOST)
       )
     )
     this.add(
@@ -356,7 +360,8 @@ export class FarmingWorld {
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
-        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB)
+        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB),
+        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.COMPOST)
       )
     )
     this.add(
@@ -468,6 +473,11 @@ export class FarmingWorld {
           Varbits.FARMING_4774,
           PatchImplementation.ALLOTMENT
         ),
+        new FarmingPatch(
+          '',
+          Varbits.FARMING_7912,
+          PatchImplementation.GIANT_COMPOST
+        ),
         new FarmingPatch('', Varbits.FARMING_7904, PatchImplementation.CACTUS),
         new FarmingPatch(
           '',
@@ -511,7 +521,8 @@ export class FarmingWorld {
           '',
           Varbits.FARMING_4775,
           PatchImplementation.CRYSTAL_TREE
-        )
+        ),
+        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.COMPOST)
       )
     )
   }

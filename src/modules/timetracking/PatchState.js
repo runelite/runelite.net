@@ -12,7 +12,8 @@ export class PatchState {
     this.stage = stage
   }
   getStages() {
-    return this.cropState === CropState.HARVESTABLE
+    return this.cropState === CropState.HARVESTABLE ||
+      this.cropState === CropState.FILLING
       ? PatchImplementation.Produce['_$wrappers'][
           this.produce
         ].getHarvestStages()
