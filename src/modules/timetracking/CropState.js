@@ -6,4 +6,6 @@ export var CropState
   CropState[(CropState['GROWING'] = 1)] = 'GROWING'
   CropState[(CropState['DISEASED'] = 2)] = 'DISEASED'
   CropState[(CropState['DEAD'] = 3)] = 'DEAD'
+  CropState[(CropState['EMPTY'] = 4)] = 'EMPTY'
+  CropState[(CropState['FILLING'] = 5)] = 'FILLING'
 })(CropState || (CropState = {}))

@@ -18,25 +18,26 @@ export var Varbits
   Varbits[(Varbits['FARMING_7909'] = 10)] = 'FARMING_7909'
   Varbits[(Varbits['FARMING_7910'] = 11)] = 'FARMING_7910'
   Varbits[(Varbits['FARMING_7911'] = 12)] = 'FARMING_7911'
+  Varbits[(Varbits['FARMING_7912'] = 13)] = 'FARMING_7912'
   /**
    * Transmog controllers for grapes
    */
-  Varbits[(Varbits['GRAPES_4953'] = 13)] = 'GRAPES_4953'
-  Varbits[(Varbits['GRAPES_4954'] = 14)] = 'GRAPES_4954'
-  Varbits[(Varbits['GRAPES_4955'] = 15)] = 'GRAPES_4955'
-  Varbits[(Varbits['GRAPES_4956'] = 16)] = 'GRAPES_4956'
-  Varbits[(Varbits['GRAPES_4957'] = 17)] = 'GRAPES_4957'
-  Varbits[(Varbits['GRAPES_4958'] = 18)] = 'GRAPES_4958'
-  Varbits[(Varbits['GRAPES_4959'] = 19)] = 'GRAPES_4959'
-  Varbits[(Varbits['GRAPES_4960'] = 20)] = 'GRAPES_4960'
-  Varbits[(Varbits['GRAPES_4961'] = 21)] = 'GRAPES_4961'
-  Varbits[(Varbits['GRAPES_4962'] = 22)] = 'GRAPES_4962'
-  Varbits[(Varbits['GRAPES_4963'] = 23)] = 'GRAPES_4963'
-  Varbits[(Varbits['GRAPES_4964'] = 24)] = 'GRAPES_4964'
+  Varbits[(Varbits['GRAPES_4953'] = 14)] = 'GRAPES_4953'
+  Varbits[(Varbits['GRAPES_4954'] = 15)] = 'GRAPES_4954'
+  Varbits[(Varbits['GRAPES_4955'] = 16)] = 'GRAPES_4955'
+  Varbits[(Varbits['GRAPES_4956'] = 17)] = 'GRAPES_4956'
+  Varbits[(Varbits['GRAPES_4957'] = 18)] = 'GRAPES_4957'
+  Varbits[(Varbits['GRAPES_4958'] = 19)] = 'GRAPES_4958'
+  Varbits[(Varbits['GRAPES_4959'] = 20)] = 'GRAPES_4959'
+  Varbits[(Varbits['GRAPES_4960'] = 21)] = 'GRAPES_4960'
+  Varbits[(Varbits['GRAPES_4961'] = 22)] = 'GRAPES_4961'
+  Varbits[(Varbits['GRAPES_4962'] = 23)] = 'GRAPES_4962'
+  Varbits[(Varbits['GRAPES_4963'] = 24)] = 'GRAPES_4963'
+  Varbits[(Varbits['GRAPES_4964'] = 25)] = 'GRAPES_4964'
   /**
    * Automatically weed farming patches
    */
-  Varbits[(Varbits['AUTOWEED'] = 25)] = 'AUTOWEED'
+  Varbits[(Varbits['AUTOWEED'] = 26)] = 'AUTOWEED'
 })(Varbits || (Varbits = {}))
 /** @ignore */
 export class Varbits_$WRAPPER {
@@ -72,17 +73,18 @@ Varbits['_$wrappers'] = [
   new Varbits_$WRAPPER(10, 'FARMING_7909', 7909),
   new Varbits_$WRAPPER(11, 'FARMING_7910', 7910),
   new Varbits_$WRAPPER(12, 'FARMING_7911', 7911),
-  new Varbits_$WRAPPER(13, 'GRAPES_4953', 4953),
-  new Varbits_$WRAPPER(14, 'GRAPES_4954', 4954),
-  new Varbits_$WRAPPER(15, 'GRAPES_4955', 4955),
-  new Varbits_$WRAPPER(16, 'GRAPES_4956', 4956),
-  new Varbits_$WRAPPER(17, 'GRAPES_4957', 4957),
-  new Varbits_$WRAPPER(18, 'GRAPES_4958', 4958),
-  new Varbits_$WRAPPER(19, 'GRAPES_4959', 4959),
-  new Varbits_$WRAPPER(20, 'GRAPES_4960', 4960),
-  new Varbits_$WRAPPER(21, 'GRAPES_4961', 4961),
-  new Varbits_$WRAPPER(22, 'GRAPES_4962', 4962),
-  new Varbits_$WRAPPER(23, 'GRAPES_4963', 4963),
-  new Varbits_$WRAPPER(24, 'GRAPES_4964', 4964),
-  new Varbits_$WRAPPER(25, 'AUTOWEED', 5557)
+  new Varbits_$WRAPPER(13, 'FARMING_7912', 7912),
+  new Varbits_$WRAPPER(14, 'GRAPES_4953', 4953),
+  new Varbits_$WRAPPER(15, 'GRAPES_4954', 4954),
+  new Varbits_$WRAPPER(16, 'GRAPES_4955', 4955),
+  new Varbits_$WRAPPER(17, 'GRAPES_4956', 4956),
+  new Varbits_$WRAPPER(18, 'GRAPES_4957', 4957),
+  new Varbits_$WRAPPER(19, 'GRAPES_4958', 4958),
+  new Varbits_$WRAPPER(20, 'GRAPES_4959', 4959),
+  new Varbits_$WRAPPER(21, 'GRAPES_4960', 4960),
+  new Varbits_$WRAPPER(22, 'GRAPES_4961', 4961),
+  new Varbits_$WRAPPER(23, 'GRAPES_4962', 4962),
+  new Varbits_$WRAPPER(24, 'GRAPES_4963', 4963),
+  new Varbits_$WRAPPER(25, 'GRAPES_4964', 4964),
+  new Varbits_$WRAPPER(26, 'AUTOWEED', 5557)
 ]

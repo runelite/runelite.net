@@ -58,7 +58,10 @@ const buildTracker = panel => (
         <img alt="" src={formatIcon(panel.icon)} />
       </div>
       <div class="w-100">
-        <h5 class="card-title">{panel.title}</h5>
+        <h5 class="card-title">
+          {panel.title + ' '}
+          {panel.subtitle && <small class="text-muted">{panel.subtitle}</small>}
+        </h5>
         <h6 class="card-subtitle mb-2 text-muted">{panel.estimateText}</h6>
         {buildProgress(panel.progress)}
       </div>

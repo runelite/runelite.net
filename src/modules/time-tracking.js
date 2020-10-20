@@ -46,7 +46,10 @@ function getCropStateColor(state) {
     case CropState.DEAD:
       return '#b81818'
     case CropState.DISEASED:
+    case CropState.FILLING:
       return '#E6961E'
+    case CropState.EMPTY:
+      return '#FF4D4D4D'
     case CropState.HARVESTABLE:
     case CropState.GROWING:
     default:
@@ -75,6 +78,7 @@ function getFormattedEstimate(remainingSeconds) {
 function preparePanel() {
   return {
     title: '',
+    subtitle: '',
     icon: 0,
     estimateText: '',
     tooltipText: '',
@@ -189,11 +193,20 @@ function buildFarmingData(tabEntries, username, getConfiguration) {
     for (let patch of tabList) {
       const panel = preparePanel()
       panel.icon = ItemID.WEEDS
+
       panel.title =
         patch.getRegion().getName() +
         (patch.getName() == null || patch.getName() === ''
           ? ''
           : ' (' + patch.getName() + ')')
+
+      const implementation =
+        PatchImplementation['_$wrappers'][patch.getImplementation()]
+
+      panel.subtitle =
+        implementation.getName() != null && implementation.getName() !== ''
+          ? implementation.getName()
+          : ''
 
       const prediction = farmingTracker.predictPatch(
         patch,
@@ -244,6 +257,12 @@ function buildFarmingData(tabEntries, username, getConfiguration) {
         case CropState.DEAD:
           panel.estimateText = 'Dead'
           break
+        case CropState.EMPTY:
+          panel.estimateText = 'Empty'
+          break
+        case CropState.FILLING:
+          panel.estimateText = 'Filling'
+          break
         default:
           console.warn('Unknown crop state!')
       }
@@ -268,6 +287,8 @@ function buildFarmingData(tabEntries, username, getConfiguration) {
       tabEntry.panels.push(panel)
     }
 
+    tabEntry.panels.sort((a, b) => a.title.localeCompare(b.title))
+    tabEntry.panels.sort((a, b) => a.subtitle.localeCompare(b.subtitle))
     tabEntries.push(tabEntry)
   }
 }

@@ -1,5 +1,3 @@
-// @ts-nocheck
-/* eslint-disable */
 export class FarmingPatch {
   constructor(name, varbit, implementation) {
     if (this.region === undefined) this.region = null

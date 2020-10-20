@@ -1,5 +1,3 @@
-// @ts-nocheck
-/* eslint-disable */
 export class PatchPrediction {
   constructor(produce, cropState, doneEstimate, stage, stages) {
     if (this.produce === undefined) this.produce = null
