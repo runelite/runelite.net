@@ -1,5 +1,3 @@
-import { contains } from 'ramda'
-
 export default base => {
   /**
    * Fetch data, using proper JSON headers and base
@@ -25,7 +23,7 @@ export default base => {
     }
 
     const headers = response.headers.get('Content-Type')
-    const isJson = headers && contains('json', headers)
+    const isJson = headers && headers.includes('json')
     response = returnRaw
       ? await response.arrayBuffer()
       : isJson

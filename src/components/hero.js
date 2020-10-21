@@ -1,7 +1,6 @@
 import platform from 'platform'
 import { h, Component } from 'preact'
 import { connect } from 'react-redux'
-import { filter, find } from 'ramda'
 import { bindActionCreators } from 'redux'
 import { getChristmasImage } from '../season'
 import {
@@ -118,12 +117,12 @@ class Hero extends Component {
     loggedIn,
     heroImage
   }) {
-    const dropdownButtons = filter(button => button.dropdown)(buttons)
-    const defaultDropdownItem = find(button => button.os === 'all')(
-      dropdownButtons
+    const dropdownButtons = buttons.filter(button => button.dropdown)
+    const defaultDropdownItem = dropdownButtons.find(
+      button => button.os === 'all'
     )
     const mainDropdownItem =
-      find(button => isOsCorrect(button.os))(dropdownButtons) ||
+      dropdownButtons.find(button => isOsCorrect(button.os)) ||
       defaultDropdownItem
 
     return (

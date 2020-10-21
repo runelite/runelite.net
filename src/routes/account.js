@@ -7,7 +7,6 @@ import hero from '../_data/hero'
 import Meta from '../components/meta'
 import { isLoggedIn, logout } from '../modules/account'
 import Redirect from '../components/redirect'
-import { find, propEq } from 'ramda'
 import {
   changeAccount,
   getAccounts,
@@ -144,7 +143,7 @@ const Account = ({
     return <Redirect to="/" />
   }
 
-  const currentMenu = find(propEq('tag', tag), menu)
+  const currentMenu = menu.find(m => m.tag === tag)
 
   if (!currentMenu) {
     return <NotFound />
