@@ -1,6 +1,4 @@
-# runelite.net
-
-[![Build Status](https://travis-ci.org/runelite/runelite.net.svg?branch=master)](https://travis-ci.org/runelite/runelite.net)
+# runelite.net ![CI](https://github.com/runelite/runelite.net/workflows/CI/badge.svg)
 
 Based on [redux-boot](https://github.com/deathbeam/redux-boot).
 

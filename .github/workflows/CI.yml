@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: CI
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
           persist-credentials: false
 
       - name: Install
-        run: npm install
+        run: npm ci
 
       - name: Test
         run: npm test
