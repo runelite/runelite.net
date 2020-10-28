@@ -46,7 +46,7 @@ export const {
       return plugins
     },
     FETCH_PLUGIN_HUB_STATS: () => async (dispatch, getState) => {
-      const version = '1.6.30-SNAPSHOT'
+      const version = getLatestRelease(getState())
       const response = await runeliteApi(`runelite-${version}/pluginhub`, {
         method: 'GET'
       })
