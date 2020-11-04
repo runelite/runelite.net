@@ -105,7 +105,12 @@ const PluginHub = ({
               <Choice
                 prefix="Sort by"
                 value={pluginSorting}
-                choices={['active installs', 'name']}
+                choices={[
+                  'active installs',
+                  'name',
+                  'time updated',
+                  'time added'
+                ]}
                 onClick={setPluginSorting}
               />
             </div>
