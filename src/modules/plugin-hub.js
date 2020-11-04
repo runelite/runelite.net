@@ -139,6 +139,10 @@ export const getSortedExternalPlugins = createSelector(
     switch (pluginSorting) {
       case 'active installs':
         return externalPlugins.sort((a, b) => b.count - a.count)
+      case 'time updated':
+        return externalPlugins.sort((a, b) => b.lastUpdatedAt - a.lastUpdatedAt)
+      case 'time added':
+        return externalPlugins.sort((a, b) => b.createdAt - a.createdAt)
       case 'name':
       default:
         return externalPlugins
