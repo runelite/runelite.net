@@ -9,13 +9,16 @@ import { connect } from 'react-redux'
 
 const Tag = ({ activeTag, setActiveTag }) => (
   <Layout>
-    <Meta title={`Select tag tab - ${hero.title}`} />
+    <Meta
+      title={`Select tag tab - ${hero.title}`}
+      description="Paste tag code exported from RuneLite Bank Tags plugin here"
+    />
     <section id="tags">
       <div class="content-section tag-container">
         <div class="page-header">
           <h1>Enter tag</h1>
           <p class="text-muted">
-            Paste a tag exported from Runelite's Bank Tags plugin and click 'GO'
+            Paste a tag exported from RuneLite Bank Tags plugin and click 'GO'
           </p>
         </div>
 
