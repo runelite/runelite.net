@@ -13,7 +13,7 @@ import { fetchBootstrap, getLatestRelease } from '../modules/bootstrap'
 
 const TagShow = ({ name, icon, itemIds, items, csv }) => (
   <Layout>
-    <Meta title={`${name} tag tab - ${hero.title}`} />
+    <Meta title={`${name} tag tab - ${hero.title}`} description={csv} />
     <section id="tags">
       <div class="content-section tag-container">
         <h1 class="page-header">

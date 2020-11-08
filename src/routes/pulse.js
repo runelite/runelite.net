@@ -85,7 +85,10 @@ const Pulse = ({
 }) =>
   release.date && (
     <Layout>
-      <Meta title={`Pulse - ${hero.title}`} />
+      <Meta
+        title={`Pulse - ${hero.title}`}
+        description="Activity since last release"
+      />
 
       <section id="pulse">
         <div

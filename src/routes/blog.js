@@ -10,7 +10,10 @@ import './blog.scss'
 
 const Blog = () => (
   <Layout>
-    <Meta title={`Blog - ${hero.title}`} />
+    <Meta
+      title={`Blog - ${hero.title}`}
+      description="Latest RuneLite news and updates"
+    />
 
     <section id="blog-list">
       <div class="content-section">

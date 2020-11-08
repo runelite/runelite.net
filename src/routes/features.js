@@ -7,7 +7,10 @@ import Meta from '../components/meta'
 
 const Features = () => (
   <Layout>
-    <Meta title={`Features - ${hero.title}`} />
+    <Meta
+      title={`Features - ${hero.title}`}
+      description="RuneLite plugins and features"
+    />
 
     <section id="features">
       <div class="content-section">
