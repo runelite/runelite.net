@@ -49,12 +49,6 @@ module.exports = {
       color: 'success',
       dropdown: true,
       os: 'all'
-    },
-    {
-      link: 'https://github.com/runelite/',
-      icon: 'fab fa-fw fa-github',
-      text: 'View on GitHub',
-      color: 'info'
     }
   ]
 }
