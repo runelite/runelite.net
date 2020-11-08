@@ -9,7 +9,10 @@ const ExternalPlugin = ({
   support,
   imageUrl,
   installed,
-  count
+  internalName,
+  count,
+  update,
+  showInstall
 }) => (
   <div class="col-md-4 col-sm-6 col-xs-12 mb-2">
     <div class="card">
@@ -45,7 +48,22 @@ const ExternalPlugin = ({
                 {numberWithCommas(count)}{' '}
                 {count > 1 ? 'active installs' : 'active install'}
               </span>{' '}
-              {installed && <span class="badge badge-success">installed</span>}
+              {showInstall &&
+                (installed ? (
+                  <button
+                    class="badge badge-danger btn"
+                    onClick={() => update(installed, internalName)}
+                  >
+                    uninstall
+                  </button>
+                ) : (
+                  <button
+                    class="badge badge-success btn"
+                    onClick={() => update(installed, internalName)}
+                  >
+                    install
+                  </button>
+                ))}
             </p>
           )}
           <p class="card-text">

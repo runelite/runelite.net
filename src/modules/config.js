@@ -15,7 +15,13 @@ const configNameFilters = [
 ]
 
 // Actions
-export const { fetchConfig, setConfig, changeAccount } = createActions(
+export const {
+  fetchConfig,
+  updateConfig,
+  setConfig,
+  addModifiedKey,
+  changeAccount
+} = createActions(
   {
     FETCH_CONFIG: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState())
@@ -51,9 +57,37 @@ export const { fetchConfig, setConfig, changeAccount } = createActions(
       }
 
       return config
+    },
+    UPDATE_CONFIG: (key, value) => async (dispatch, getState) => {
+      const version = getLatestRelease(getState())
+      const uuid = getState().account.uuid
+
+      if (!uuid) {
+        return {}
+      }
+
+      if (value.length > 0) {
+        await runeliteApi(`runelite-${version}/config/${key}`, {
+          method: 'PUT',
+          headers: {
+            'RUNELITE-AUTH': uuid
+          },
+          body: value
+        })
+      } else {
+        await runeliteApi(`runelite-${version}/config/${key}`, {
+          method: 'DELETE',
+          headers: {
+            'RUNELITE-AUTH': uuid
+          }
+        })
+      }
+
+      dispatch(addModifiedKey(key))
     }
   },
   'SET_CONFIG',
+  'ADD_MODIFIED_KEY',
   'CHANGE_ACCOUNT'
 )
 
@@ -67,10 +101,15 @@ export default handleActions(
     [changeAccount]: (state, { payload }) => ({
       ...state,
       selectedAccount: payload
+    }),
+    [addModifiedKey]: (state, { payload }) => ({
+      ...state,
+      modifiedKeys: [...new Set(state.modifiedKeys.concat([payload]))]
     })
   },
   {
     config: {},
+    modifiedKeys: [],
     selectedAccount: ''
   }
 )
@@ -78,6 +117,7 @@ export default handleActions(
 // Selectors
 export const getConfig = state => state.config.config
 export const getSelectedAccount = state => state.config.selectedAccount
+export const getModifiedKeys = state => state.config.modifiedKeys
 
 export const getAccounts = createSelector(getConfig, config => {
   const names = new Set()

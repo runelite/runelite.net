@@ -16,7 +16,12 @@ export default callback => {
 
   // Add logger
   if (isDebug) {
-    middlewares.push(require('redux-logger').default)
+    const { createLogger } = require('redux-logger')
+    middlewares.push(
+      createLogger({
+        diff: true
+      })
+    )
   }
 
   // Create reducer
