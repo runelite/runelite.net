@@ -60,8 +60,10 @@
 }
 
 #account .card {
+  margin-top: 0;
   background: #171717;
   border: none;
+  transform: translateZ(0);
 }
 
 #account .card-header {
@@ -71,10 +73,6 @@
   border: none;
   border-bottom: 1px solid #232323;
   font-size: 14px;
-}
-
-#account .card {
-  margin-top: 0;
 }
 
 #account .card-title {
