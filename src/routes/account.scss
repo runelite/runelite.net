@@ -64,6 +64,8 @@
   background: #171717;
   border: none;
   transform: translateZ(0);
+  position: relative;
+  z-index: 2;
 }
 
 #account .card-header {

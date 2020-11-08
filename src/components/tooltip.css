@@ -13,7 +13,6 @@
   left: 50%;
   margin-left: -100px !important;
   position: absolute;
-  z-index: 1000;
 }
 
 .tooltip-tag-text small {
