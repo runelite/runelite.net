@@ -48,6 +48,11 @@ const PluginHub = ({
   const pluginCount = externalPlugins.length
   const installedPluginCount = externalPlugins.filter(p => p.installed).length
   const totalCount = externalPlugins.reduce((a, b) => a + b.count, 0)
+  const sortChoices = ['active installs', 'name', 'time updated', 'time added']
+
+  if (installedPluginCount > 0) {
+    sortChoices.push('installed')
+  }
 
   return (
     <Layout>
@@ -105,12 +110,7 @@ const PluginHub = ({
               <Choice
                 prefix="Sort by"
                 value={pluginSorting}
-                choices={[
-                  'active installs',
-                  'name',
-                  'time updated',
-                  'time added'
-                ]}
+                choices={sortChoices}
                 onClick={setPluginSorting}
               />
             </div>
