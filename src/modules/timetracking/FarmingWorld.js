@@ -1,14 +1,12 @@
 // @ts-nocheck
 /* eslint-disable */
-import { FarmingRegion } from './FarmingRegion'
-import { FarmingPatch } from './FarmingPatch'
-import { Varbits } from './Varbits'
-import { PatchImplementation } from './PatchImplementation'
 export class FarmingWorld {
   constructor() {
-    /*private*/ this.regions = new Map()
-    /*private*/ this.tabs = new Map()
-    if (this.farmingGuildRegion === undefined) this.farmingGuildRegion = null
+    this.regions = new Map()
+    this.tabs = new Map()
+    if (this.farmingGuildRegion === undefined) {
+      this.farmingGuildRegion = null
+    }
     this.add(
       new FarmingRegion(
         'Al Kharid',
@@ -530,14 +528,14 @@ export class FarmingWorld {
     this.regions.set(r.getRegionID(), r)
     for (let i = 0; i < extraRegions.length; i++) {
       {
-        let er = extraRegions[i]
+        const er = extraRegions[i]
         this.regions.set(er, r)
       }
     }
     for (let i = 0; i < r.getPatches().length; i++) {
       {
-        let p = r.getPatches()[i]
-        let tab = PatchImplementation['_$wrappers'][
+        const p = r.getPatches()[i]
+        const tab = PatchImplementation['_$wrappers'][
           p.getImplementation()
         ].getTab()
         if (!this.tabs.has(tab)) {
@@ -558,3 +556,7 @@ export class FarmingWorld {
   }
 }
 FarmingWorld['__class'] = 'timetracking.FarmingWorld'
+import { PatchImplementation } from './PatchImplementation'
+import { Varbits } from './Varbits'
+import { FarmingPatch } from './FarmingPatch'
+import { FarmingRegion } from './FarmingRegion'

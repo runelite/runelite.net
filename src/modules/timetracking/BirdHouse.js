@@ -18,8 +18,12 @@ export class BirdHouse_$WRAPPER {
   constructor(_$ordinal, _$name, name, itemID) {
     this._$ordinal = _$ordinal
     this._$name = _$name
-    if (this.__name === undefined) this.__name = null
-    if (this.itemID === undefined) this.itemID = 0
+    if (this.__name === undefined) {
+      this.__name = null
+    }
+    if (this.itemID === undefined) {
+      this.itemID = 0
+    }
     this.__name = name
     this.itemID = itemID
   }
@@ -35,7 +39,7 @@ export class BirdHouse_$WRAPPER {
    * @return {BirdHouse}
    */
   static fromVarpValue(varp) {
-    let index = ((varp - 1) / 3) | 0
+    const index = ((varp - 1) / 3) | 0
     if (
       varp <= 0 ||
       index >=
@@ -67,42 +71,50 @@ export class BirdHouse_$WRAPPER {
   ordinal() {
     return this._$ordinal
   }
+  compareTo(other) {
+    return this._$ordinal - (isNaN(other) ? other._$ordinal : other)
+  }
 }
 BirdHouse['__class'] = 'timetracking.BirdHouse'
 BirdHouse['__interfaces'] = ['java.lang.Comparable', 'java.io.Serializable']
-BirdHouse['_$wrappers'] = [
-  new BirdHouse_$WRAPPER(0, 'NORMAL', 'Bird House', ItemID.BIRD_HOUSE),
-  new BirdHouse_$WRAPPER(1, 'OAK', 'Oak Bird House', ItemID.OAK_BIRD_HOUSE),
-  new BirdHouse_$WRAPPER(
+BirdHouse['_$wrappers'] = {
+  0: new BirdHouse_$WRAPPER(0, 'NORMAL', 'Bird House', ItemID.BIRD_HOUSE),
+  1: new BirdHouse_$WRAPPER(1, 'OAK', 'Oak Bird House', ItemID.OAK_BIRD_HOUSE),
+  2: new BirdHouse_$WRAPPER(
     2,
     'WILLOW',
     'Willow Bird House',
     ItemID.WILLOW_BIRD_HOUSE
   ),
-  new BirdHouse_$WRAPPER(3, 'TEAK', 'Teak Bird House', ItemID.TEAK_BIRD_HOUSE),
-  new BirdHouse_$WRAPPER(
+  3: new BirdHouse_$WRAPPER(
+    3,
+    'TEAK',
+    'Teak Bird House',
+    ItemID.TEAK_BIRD_HOUSE
+  ),
+  4: new BirdHouse_$WRAPPER(
     4,
     'MAPLE',
     'Maple Bird House',
     ItemID.MAPLE_BIRD_HOUSE
   ),
-  new BirdHouse_$WRAPPER(
+  5: new BirdHouse_$WRAPPER(
     5,
     'MAHOGANY',
     'Mahogany Bird House',
     ItemID.MAHOGANY_BIRD_HOUSE
   ),
-  new BirdHouse_$WRAPPER(6, 'YEW', 'Yew Bird House', ItemID.YEW_BIRD_HOUSE),
-  new BirdHouse_$WRAPPER(
+  6: new BirdHouse_$WRAPPER(6, 'YEW', 'Yew Bird House', ItemID.YEW_BIRD_HOUSE),
+  7: new BirdHouse_$WRAPPER(
     7,
     'MAGIC',
     'Magic Bird House',
     ItemID.MAGIC_BIRD_HOUSE
   ),
-  new BirdHouse_$WRAPPER(
+  8: new BirdHouse_$WRAPPER(
     8,
     'REDWOOD',
     'Redwood Bird House',
     ItemID.REDWOOD_BIRD_HOUSE
   )
-]
+}

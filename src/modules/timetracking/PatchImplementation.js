@@ -38,8 +38,12 @@ export class PatchImplementation_$WRAPPER {
   constructor(_$ordinal, _$name, tab, name) {
     this._$ordinal = _$ordinal
     this._$name = _$name
-    if (this.tab === undefined) this.tab = null
-    if (this.__name === undefined) this.__name = null
+    if (this.tab === undefined) {
+      this.tab = null
+    }
+    if (this.__name === undefined) {
+      this.__name = null
+    }
     this.tab = tab
     this.__name = name
   }
@@ -54,6 +58,9 @@ export class PatchImplementation_$WRAPPER {
   }
   ordinal() {
     return this._$ordinal
+  }
+  compareTo(other) {
+    return this._$ordinal - (isNaN(other) ? other._$ordinal : other)
   }
 }
 PatchImplementation['__class'] = 'timetracking.PatchImplementation'
@@ -182,34 +189,38 @@ PatchImplementation['__interfaces'] = [
         (typeof harvestStages === 'number' || harvestStages === null)
       ) {
         let __args = arguments
-        if (this.__name === undefined) this.__name = null
-        if (this.contractName === undefined) this.contractName = null
-        if (this.patchImplementation === undefined)
+        if (this.__name === undefined) {
+          this.__name = null
+        }
+        if (this.contractName === undefined) {
+          this.contractName = null
+        }
+        if (this.patchImplementation === undefined) {
           this.patchImplementation = null
-        if (this.itemID === undefined) this.itemID = 0
-        if (this.tickrate === undefined) this.tickrate = 0
-        if (this.stages === undefined) this.stages = 0
-        if (this.regrowTickrate === undefined) this.regrowTickrate = 0
-        if (this.harvestStages === undefined) this.harvestStages = 0
-        if (this.__name === undefined) this.__name = null
-        if (this.contractName === undefined) this.contractName = null
-        if (this.patchImplementation === undefined)
-          this.patchImplementation = null
-        if (this.itemID === undefined) this.itemID = 0
-        if (this.tickrate === undefined) this.tickrate = 0
-        if (this.stages === undefined) this.stages = 0
-        if (this.regrowTickrate === undefined) this.regrowTickrate = 0
-        if (this.harvestStages === undefined) this.harvestStages = 0
-        ;(() => {
-          this.__name = name
-          this.contractName = contractName
-          this.patchImplementation = patchImplementation
-          this.itemID = itemID
-          this.tickrate = tickrate
-          this.stages = stages
-          this.regrowTickrate = regrowTickrate
-          this.harvestStages = harvestStages
-        })()
+        }
+        if (this.itemID === undefined) {
+          this.itemID = 0
+        }
+        if (this.tickrate === undefined) {
+          this.tickrate = 0
+        }
+        if (this.stages === undefined) {
+          this.stages = 0
+        }
+        if (this.regrowTickrate === undefined) {
+          this.regrowTickrate = 0
+        }
+        if (this.harvestStages === undefined) {
+          this.harvestStages = 0
+        }
+        this.__name = name
+        this.contractName = contractName
+        this.patchImplementation = patchImplementation
+        this.itemID = itemID
+        this.tickrate = tickrate
+        this.stages = stages
+        this.regrowTickrate = regrowTickrate
+        this.harvestStages = harvestStages
       } else if (
         (typeof name === 'string' || name === null) &&
         (typeof contractName === 'string' || contractName === null) &&
@@ -226,34 +237,62 @@ PatchImplementation['__interfaces'] = [
           let __args = arguments
           let regrowTickrate = 0
           let harvestStages = 1
-          if (this.__name === undefined) this.__name = null
-          if (this.contractName === undefined) this.contractName = null
-          if (this.patchImplementation === undefined)
+          if (this.__name === undefined) {
+            this.__name = null
+          }
+          if (this.contractName === undefined) {
+            this.contractName = null
+          }
+          if (this.patchImplementation === undefined) {
             this.patchImplementation = null
-          if (this.itemID === undefined) this.itemID = 0
-          if (this.tickrate === undefined) this.tickrate = 0
-          if (this.stages === undefined) this.stages = 0
-          if (this.regrowTickrate === undefined) this.regrowTickrate = 0
-          if (this.harvestStages === undefined) this.harvestStages = 0
-          if (this.__name === undefined) this.__name = null
-          if (this.contractName === undefined) this.contractName = null
-          if (this.patchImplementation === undefined)
-            this.patchImplementation = null
-          if (this.itemID === undefined) this.itemID = 0
-          if (this.tickrate === undefined) this.tickrate = 0
-          if (this.stages === undefined) this.stages = 0
-          if (this.regrowTickrate === undefined) this.regrowTickrate = 0
-          if (this.harvestStages === undefined) this.harvestStages = 0
-          ;(() => {
-            this.__name = name
-            this.contractName = contractName
-            this.patchImplementation = patchImplementation
-            this.itemID = itemID
-            this.tickrate = tickrate
-            this.stages = stages
-            this.regrowTickrate = regrowTickrate
-            this.harvestStages = harvestStages
-          })()
+          }
+          if (this.itemID === undefined) {
+            this.itemID = 0
+          }
+          if (this.tickrate === undefined) {
+            this.tickrate = 0
+          }
+          if (this.stages === undefined) {
+            this.stages = 0
+          }
+          if (this.regrowTickrate === undefined) {
+            this.regrowTickrate = 0
+          }
+          if (this.harvestStages === undefined) {
+            this.harvestStages = 0
+          }
+          this.__name = name
+          this.contractName = contractName
+          this.patchImplementation = patchImplementation
+          this.itemID = itemID
+          this.tickrate = tickrate
+          this.stages = stages
+          this.regrowTickrate = regrowTickrate
+          this.harvestStages = harvestStages
+        }
+        if (this.__name === undefined) {
+          this.__name = null
+        }
+        if (this.contractName === undefined) {
+          this.contractName = null
+        }
+        if (this.patchImplementation === undefined) {
+          this.patchImplementation = null
+        }
+        if (this.itemID === undefined) {
+          this.itemID = 0
+        }
+        if (this.tickrate === undefined) {
+          this.tickrate = 0
+        }
+        if (this.stages === undefined) {
+          this.stages = 0
+        }
+        if (this.regrowTickrate === undefined) {
+          this.regrowTickrate = 0
+        }
+        if (this.harvestStages === undefined) {
+          this.harvestStages = 0
         }
       } else throw new Error('invalid overload')
     }
@@ -284,7 +323,7 @@ PatchImplementation['__interfaces'] = [
         i++
       ) {
         {
-          let produce = /* Enum.values */ (function () {
+          const produce = /* Enum.values */ (function () {
             let result = []
             for (let val in PatchImplementation.Produce) {
               if (!isNaN(val)) {
@@ -319,7 +358,7 @@ PatchImplementation['__interfaces'] = [
         i++
       ) {
         {
-          let produce = /* Enum.values */ (function () {
+          const produce = /* Enum.values */ (function () {
             let result = []
             for (let val in PatchImplementation.Produce) {
               if (!isNaN(val)) {
@@ -373,12 +412,15 @@ PatchImplementation['__interfaces'] = [
     ordinal() {
       return this._$ordinal
     }
+    compareTo(other) {
+      return this._$ordinal - (isNaN(other) ? other._$ordinal : other)
+    }
   }
   PatchImplementation.Produce_$WRAPPER = Produce_$WRAPPER
   Produce['__class'] = 'timetracking.PatchImplementation.Produce'
   Produce['__interfaces'] = ['java.lang.Comparable', 'java.io.Serializable']
-  Produce['_$wrappers'] = [
-    new Produce_$WRAPPER(
+  Produce['_$wrappers'] = {
+    0: new Produce_$WRAPPER(
       0,
       'WEEDS',
       'Weeds',
@@ -388,7 +430,7 @@ PatchImplementation['__interfaces'] = [
       5,
       4
     ),
-    new Produce_$WRAPPER(
+    1: new Produce_$WRAPPER(
       1,
       'SCARECROW',
       'Scarecrow',
@@ -398,7 +440,7 @@ PatchImplementation['__interfaces'] = [
       5,
       4
     ),
-    new Produce_$WRAPPER(
+    2: new Produce_$WRAPPER(
       2,
       'POTATO',
       'Potato',
@@ -410,7 +452,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    3: new Produce_$WRAPPER(
       3,
       'ONION',
       'Onion',
@@ -422,7 +464,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    4: new Produce_$WRAPPER(
       4,
       'CABBAGE',
       'Cabbage',
@@ -434,7 +476,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    5: new Produce_$WRAPPER(
       5,
       'TOMATO',
       'Tomato',
@@ -446,7 +488,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    6: new Produce_$WRAPPER(
       6,
       'SWEETCORN',
       'Sweetcorn',
@@ -458,7 +500,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    7: new Produce_$WRAPPER(
       7,
       'STRAWBERRY',
       'Strawberry',
@@ -470,7 +512,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    8: new Produce_$WRAPPER(
       8,
       'WATERMELON',
       'Watermelon',
@@ -482,7 +524,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    9: new Produce_$WRAPPER(
       9,
       'SNAPE_GRASS',
       'Snape grass',
@@ -494,7 +536,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    10: new Produce_$WRAPPER(
       10,
       'MARIGOLD',
       'Marigold',
@@ -504,7 +546,7 @@ PatchImplementation['__interfaces'] = [
       5,
       5
     ),
-    new Produce_$WRAPPER(
+    11: new Produce_$WRAPPER(
       11,
       'ROSEMARY',
       'Rosemary',
@@ -514,7 +556,7 @@ PatchImplementation['__interfaces'] = [
       5,
       5
     ),
-    new Produce_$WRAPPER(
+    12: new Produce_$WRAPPER(
       12,
       'NASTURTIUM',
       'Nasturtium',
@@ -524,7 +566,7 @@ PatchImplementation['__interfaces'] = [
       5,
       5
     ),
-    new Produce_$WRAPPER(
+    13: new Produce_$WRAPPER(
       13,
       'WOAD',
       'Woad',
@@ -534,7 +576,7 @@ PatchImplementation['__interfaces'] = [
       5,
       5
     ),
-    new Produce_$WRAPPER(
+    14: new Produce_$WRAPPER(
       14,
       'LIMPWURT',
       'Limpwurt',
@@ -544,7 +586,7 @@ PatchImplementation['__interfaces'] = [
       5,
       5
     ),
-    new Produce_$WRAPPER(
+    15: new Produce_$WRAPPER(
       15,
       'WHITE_LILY',
       'White lily',
@@ -554,7 +596,7 @@ PatchImplementation['__interfaces'] = [
       5,
       5
     ),
-    new Produce_$WRAPPER(
+    16: new Produce_$WRAPPER(
       16,
       'REDBERRIES',
       'Redberry',
@@ -566,7 +608,7 @@ PatchImplementation['__interfaces'] = [
       20,
       5
     ),
-    new Produce_$WRAPPER(
+    17: new Produce_$WRAPPER(
       17,
       'CADAVABERRIES',
       'Cadavaberry',
@@ -578,7 +620,7 @@ PatchImplementation['__interfaces'] = [
       20,
       5
     ),
-    new Produce_$WRAPPER(
+    18: new Produce_$WRAPPER(
       18,
       'DWELLBERRIES',
       'Dwellberry',
@@ -590,7 +632,7 @@ PatchImplementation['__interfaces'] = [
       20,
       5
     ),
-    new Produce_$WRAPPER(
+    19: new Produce_$WRAPPER(
       19,
       'JANGERBERRIES',
       'Jangerberry',
@@ -602,7 +644,7 @@ PatchImplementation['__interfaces'] = [
       20,
       5
     ),
-    new Produce_$WRAPPER(
+    20: new Produce_$WRAPPER(
       20,
       'WHITEBERRIES',
       'Whiteberry',
@@ -614,7 +656,7 @@ PatchImplementation['__interfaces'] = [
       20,
       5
     ),
-    new Produce_$WRAPPER(
+    21: new Produce_$WRAPPER(
       21,
       'POISON_IVY',
       'Poison ivy',
@@ -626,7 +668,7 @@ PatchImplementation['__interfaces'] = [
       20,
       5
     ),
-    new Produce_$WRAPPER(
+    22: new Produce_$WRAPPER(
       22,
       'BARLEY',
       'Barley',
@@ -638,7 +680,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    23: new Produce_$WRAPPER(
       23,
       'HAMMERSTONE',
       'Hammerstone',
@@ -650,7 +692,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    24: new Produce_$WRAPPER(
       24,
       'ASGARNIAN',
       'Asgarnian',
@@ -662,7 +704,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    25: new Produce_$WRAPPER(
       25,
       'JUTE',
       'Jute',
@@ -674,7 +716,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    26: new Produce_$WRAPPER(
       26,
       'YANILLIAN',
       'Yanillian',
@@ -686,7 +728,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    27: new Produce_$WRAPPER(
       27,
       'KRANDORIAN',
       'Krandorian',
@@ -698,7 +740,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    28: new Produce_$WRAPPER(
       28,
       'WILDBLOOD',
       'Wildblood',
@@ -710,7 +752,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    29: new Produce_$WRAPPER(
       29,
       'GUAM',
       'Guam',
@@ -722,7 +764,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    30: new Produce_$WRAPPER(
       30,
       'MARRENTILL',
       'Marrentill',
@@ -734,7 +776,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    31: new Produce_$WRAPPER(
       31,
       'TARROMIN',
       'Tarromin',
@@ -746,7 +788,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    32: new Produce_$WRAPPER(
       32,
       'HARRALANDER',
       'Harralander',
@@ -758,7 +800,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    33: new Produce_$WRAPPER(
       33,
       'RANARR',
       'Ranarr',
@@ -770,7 +812,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    34: new Produce_$WRAPPER(
       34,
       'TOADFLAX',
       'Toadflax',
@@ -782,7 +824,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    35: new Produce_$WRAPPER(
       35,
       'IRIT',
       'Irit',
@@ -794,7 +836,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    36: new Produce_$WRAPPER(
       36,
       'AVANTOE',
       'Avantoe',
@@ -806,7 +848,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    37: new Produce_$WRAPPER(
       37,
       'KWUARM',
       'Kwuarm',
@@ -818,7 +860,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    38: new Produce_$WRAPPER(
       38,
       'SNAPDRAGON',
       'Snapdragon',
@@ -830,7 +872,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    39: new Produce_$WRAPPER(
       39,
       'CADANTINE',
       'Cadantine',
@@ -842,7 +884,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    40: new Produce_$WRAPPER(
       40,
       'LANTADYME',
       'Lantadyme',
@@ -854,7 +896,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    41: new Produce_$WRAPPER(
       41,
       'DWARF_WEED',
       'Dwarf weed',
@@ -866,7 +908,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    42: new Produce_$WRAPPER(
       42,
       'TORSTOL',
       'Torstol',
@@ -878,7 +920,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    43: new Produce_$WRAPPER(
       43,
       'GOUTWEED',
       'Goutweed',
@@ -890,7 +932,7 @@ PatchImplementation['__interfaces'] = [
       0,
       2
     ),
-    new Produce_$WRAPPER(
+    44: new Produce_$WRAPPER(
       44,
       'ANYHERB',
       'Any herb',
@@ -902,7 +944,7 @@ PatchImplementation['__interfaces'] = [
       0,
       3
     ),
-    new Produce_$WRAPPER(
+    45: new Produce_$WRAPPER(
       45,
       'OAK',
       'Oak',
@@ -912,7 +954,7 @@ PatchImplementation['__interfaces'] = [
       40,
       5
     ),
-    new Produce_$WRAPPER(
+    46: new Produce_$WRAPPER(
       46,
       'WILLOW',
       'Willow',
@@ -922,7 +964,7 @@ PatchImplementation['__interfaces'] = [
       40,
       7
     ),
-    new Produce_$WRAPPER(
+    47: new Produce_$WRAPPER(
       47,
       'MAPLE',
       'Maple',
@@ -932,7 +974,7 @@ PatchImplementation['__interfaces'] = [
       40,
       9
     ),
-    new Produce_$WRAPPER(
+    48: new Produce_$WRAPPER(
       48,
       'YEW',
       'Yew',
@@ -942,7 +984,7 @@ PatchImplementation['__interfaces'] = [
       40,
       11
     ),
-    new Produce_$WRAPPER(
+    49: new Produce_$WRAPPER(
       49,
       'MAGIC',
       'Magic',
@@ -952,7 +994,7 @@ PatchImplementation['__interfaces'] = [
       40,
       13
     ),
-    new Produce_$WRAPPER(
+    50: new Produce_$WRAPPER(
       50,
       'APPLE',
       'Apple',
@@ -964,7 +1006,7 @@ PatchImplementation['__interfaces'] = [
       45,
       7
     ),
-    new Produce_$WRAPPER(
+    51: new Produce_$WRAPPER(
       51,
       'BANANA',
       'Banana',
@@ -976,7 +1018,7 @@ PatchImplementation['__interfaces'] = [
       45,
       7
     ),
-    new Produce_$WRAPPER(
+    52: new Produce_$WRAPPER(
       52,
       'ORANGE',
       'Orange',
@@ -988,7 +1030,7 @@ PatchImplementation['__interfaces'] = [
       45,
       7
     ),
-    new Produce_$WRAPPER(
+    53: new Produce_$WRAPPER(
       53,
       'CURRY',
       'Curry',
@@ -1000,7 +1042,7 @@ PatchImplementation['__interfaces'] = [
       45,
       7
     ),
-    new Produce_$WRAPPER(
+    54: new Produce_$WRAPPER(
       54,
       'PINEAPPLE',
       'Pineapple',
@@ -1012,7 +1054,7 @@ PatchImplementation['__interfaces'] = [
       45,
       7
     ),
-    new Produce_$WRAPPER(
+    55: new Produce_$WRAPPER(
       55,
       'PAPAYA',
       'Papaya',
@@ -1024,7 +1066,7 @@ PatchImplementation['__interfaces'] = [
       45,
       7
     ),
-    new Produce_$WRAPPER(
+    56: new Produce_$WRAPPER(
       56,
       'PALM',
       'Palm',
@@ -1036,7 +1078,7 @@ PatchImplementation['__interfaces'] = [
       45,
       7
     ),
-    new Produce_$WRAPPER(
+    57: new Produce_$WRAPPER(
       57,
       'DRAGONFRUIT',
       'Dragonfruit',
@@ -1048,7 +1090,7 @@ PatchImplementation['__interfaces'] = [
       45,
       7
     ),
-    new Produce_$WRAPPER(
+    58: new Produce_$WRAPPER(
       58,
       'CACTUS',
       'Cactus',
@@ -1060,7 +1102,7 @@ PatchImplementation['__interfaces'] = [
       20,
       4
     ),
-    new Produce_$WRAPPER(
+    59: new Produce_$WRAPPER(
       59,
       'POTATO_CACTUS',
       'Potato cactus',
@@ -1072,7 +1114,7 @@ PatchImplementation['__interfaces'] = [
       5,
       7
     ),
-    new Produce_$WRAPPER(
+    60: new Produce_$WRAPPER(
       60,
       'TEAK',
       'Teak',
@@ -1082,7 +1124,7 @@ PatchImplementation['__interfaces'] = [
       560,
       8
     ),
-    new Produce_$WRAPPER(
+    61: new Produce_$WRAPPER(
       61,
       'MAHOGANY',
       'Mahogany',
@@ -1092,7 +1134,7 @@ PatchImplementation['__interfaces'] = [
       640,
       9
     ),
-    new Produce_$WRAPPER(
+    62: new Produce_$WRAPPER(
       62,
       'ATTAS',
       'Attas',
@@ -1102,7 +1144,7 @@ PatchImplementation['__interfaces'] = [
       640,
       9
     ),
-    new Produce_$WRAPPER(
+    63: new Produce_$WRAPPER(
       63,
       'IASOR',
       'Iasor',
@@ -1112,7 +1154,7 @@ PatchImplementation['__interfaces'] = [
       640,
       9
     ),
-    new Produce_$WRAPPER(
+    64: new Produce_$WRAPPER(
       64,
       'KRONOS',
       'Kronos',
@@ -1122,7 +1164,7 @@ PatchImplementation['__interfaces'] = [
       640,
       9
     ),
-    new Produce_$WRAPPER(
+    65: new Produce_$WRAPPER(
       65,
       'SEAWEED',
       'Seaweed',
@@ -1134,7 +1176,7 @@ PatchImplementation['__interfaces'] = [
       0,
       4
     ),
-    new Produce_$WRAPPER(
+    66: new Produce_$WRAPPER(
       66,
       'GRAPE',
       'Grape',
@@ -1146,7 +1188,7 @@ PatchImplementation['__interfaces'] = [
       0,
       5
     ),
-    new Produce_$WRAPPER(
+    67: new Produce_$WRAPPER(
       67,
       'MUSHROOM',
       'Mushroom',
@@ -1158,7 +1200,7 @@ PatchImplementation['__interfaces'] = [
       0,
       7
     ),
-    new Produce_$WRAPPER(
+    68: new Produce_$WRAPPER(
       68,
       'BELLADONNA',
       'Belladonna',
@@ -1168,7 +1210,7 @@ PatchImplementation['__interfaces'] = [
       80,
       5
     ),
-    new Produce_$WRAPPER(
+    69: new Produce_$WRAPPER(
       69,
       'CALQUAT',
       'Calquat',
@@ -1180,7 +1222,7 @@ PatchImplementation['__interfaces'] = [
       0,
       7
     ),
-    new Produce_$WRAPPER(
+    70: new Produce_$WRAPPER(
       70,
       'SPIRIT_TREE',
       'Spirit tree',
@@ -1190,7 +1232,7 @@ PatchImplementation['__interfaces'] = [
       320,
       13
     ),
-    new Produce_$WRAPPER(
+    71: new Produce_$WRAPPER(
       71,
       'CELASTRUS',
       'Celastrus',
@@ -1202,7 +1244,7 @@ PatchImplementation['__interfaces'] = [
       0,
       4
     ),
-    new Produce_$WRAPPER(
+    72: new Produce_$WRAPPER(
       72,
       'REDWOOD',
       'Redwood',
@@ -1212,7 +1254,7 @@ PatchImplementation['__interfaces'] = [
       640,
       11
     ),
-    new Produce_$WRAPPER(
+    73: new Produce_$WRAPPER(
       73,
       'HESPORI',
       'Hespori',
@@ -1224,7 +1266,7 @@ PatchImplementation['__interfaces'] = [
       0,
       2
     ),
-    new Produce_$WRAPPER(
+    74: new Produce_$WRAPPER(
       74,
       'CRYSTAL_TREE',
       'Crystal tree',
@@ -1234,7 +1276,7 @@ PatchImplementation['__interfaces'] = [
       80,
       7
     ),
-    new Produce_$WRAPPER(
+    75: new Produce_$WRAPPER(
       75,
       'EMPTY_COMPOST_BIN',
       'Compost Bin',
@@ -1246,7 +1288,7 @@ PatchImplementation['__interfaces'] = [
       0,
       0
     ),
-    new Produce_$WRAPPER(
+    76: new Produce_$WRAPPER(
       76,
       'COMPOST',
       'Compost',
@@ -1258,7 +1300,7 @@ PatchImplementation['__interfaces'] = [
       0,
       15
     ),
-    new Produce_$WRAPPER(
+    77: new Produce_$WRAPPER(
       77,
       'SUPERCOMPOST',
       'Supercompost',
@@ -1270,7 +1312,7 @@ PatchImplementation['__interfaces'] = [
       0,
       15
     ),
-    new Produce_$WRAPPER(
+    78: new Produce_$WRAPPER(
       78,
       'ULTRACOMPOST',
       'Ultracompost',
@@ -1282,7 +1324,7 @@ PatchImplementation['__interfaces'] = [
       0,
       15
     ),
-    new Produce_$WRAPPER(
+    79: new Produce_$WRAPPER(
       79,
       'ROTTEN_TOMATO',
       'Rotten Tomato',
@@ -1294,7 +1336,7 @@ PatchImplementation['__interfaces'] = [
       0,
       15
     ),
-    new Produce_$WRAPPER(
+    80: new Produce_$WRAPPER(
       80,
       'EMPTY_GIANT_COMPOST_BIN',
       'Giant Compost Bin',
@@ -1306,7 +1348,7 @@ PatchImplementation['__interfaces'] = [
       0,
       0
     ),
-    new Produce_$WRAPPER(
+    81: new Produce_$WRAPPER(
       81,
       'GIANT_COMPOST',
       'Compost',
@@ -1318,7 +1360,7 @@ PatchImplementation['__interfaces'] = [
       0,
       30
     ),
-    new Produce_$WRAPPER(
+    82: new Produce_$WRAPPER(
       82,
       'GIANT_SUPERCOMPOST',
       'Supercompost',
@@ -1330,7 +1372,7 @@ PatchImplementation['__interfaces'] = [
       0,
       30
     ),
-    new Produce_$WRAPPER(
+    83: new Produce_$WRAPPER(
       83,
       'GIANT_ULTRACOMPOST',
       'Ultracompost',
@@ -1342,7 +1384,7 @@ PatchImplementation['__interfaces'] = [
       0,
       30
     ),
-    new Produce_$WRAPPER(
+    84: new Produce_$WRAPPER(
       84,
       'GIANT_ROTTEN_TOMATO',
       'Rotten Tomato',
@@ -1354,7 +1396,7 @@ PatchImplementation['__interfaces'] = [
       0,
       30
     )
-  ]
+  }
 })(PatchImplementation || (PatchImplementation = {}))
 ;(function (PatchImplementation) {
   /** @ignore */
@@ -1385,34 +1427,38 @@ PatchImplementation['__interfaces'] = [
         (typeof harvestStages === 'number' || harvestStages === null)
       ) {
         let __args = arguments
-        if (this.__name === undefined) this.__name = null
-        if (this.contractName === undefined) this.contractName = null
-        if (this.patchImplementation === undefined)
+        if (this.__name === undefined) {
+          this.__name = null
+        }
+        if (this.contractName === undefined) {
+          this.contractName = null
+        }
+        if (this.patchImplementation === undefined) {
           this.patchImplementation = null
-        if (this.itemID === undefined) this.itemID = 0
-        if (this.tickrate === undefined) this.tickrate = 0
-        if (this.stages === undefined) this.stages = 0
-        if (this.regrowTickrate === undefined) this.regrowTickrate = 0
-        if (this.harvestStages === undefined) this.harvestStages = 0
-        if (this.__name === undefined) this.__name = null
-        if (this.contractName === undefined) this.contractName = null
-        if (this.patchImplementation === undefined)
-          this.patchImplementation = null
-        if (this.itemID === undefined) this.itemID = 0
-        if (this.tickrate === undefined) this.tickrate = 0
-        if (this.stages === undefined) this.stages = 0
-        if (this.regrowTickrate === undefined) this.regrowTickrate = 0
-        if (this.harvestStages === undefined) this.harvestStages = 0
-        ;(() => {
-          this.__name = name
-          this.contractName = contractName
-          this.patchImplementation = patchImplementation
-          this.itemID = itemID
-          this.tickrate = tickrate
-          this.stages = stages
-          this.regrowTickrate = regrowTickrate
-          this.harvestStages = harvestStages
-        })()
+        }
+        if (this.itemID === undefined) {
+          this.itemID = 0
+        }
+        if (this.tickrate === undefined) {
+          this.tickrate = 0
+        }
+        if (this.stages === undefined) {
+          this.stages = 0
+        }
+        if (this.regrowTickrate === undefined) {
+          this.regrowTickrate = 0
+        }
+        if (this.harvestStages === undefined) {
+          this.harvestStages = 0
+        }
+        this.__name = name
+        this.contractName = contractName
+        this.patchImplementation = patchImplementation
+        this.itemID = itemID
+        this.tickrate = tickrate
+        this.stages = stages
+        this.regrowTickrate = regrowTickrate
+        this.harvestStages = harvestStages
       } else if (
         (typeof name === 'string' || name === null) &&
         (typeof contractName === 'string' || contractName === null) &&
@@ -1429,34 +1475,62 @@ PatchImplementation['__interfaces'] = [
           let __args = arguments
           let regrowTickrate = 0
           let harvestStages = 1
-          if (this.__name === undefined) this.__name = null
-          if (this.contractName === undefined) this.contractName = null
-          if (this.patchImplementation === undefined)
+          if (this.__name === undefined) {
+            this.__name = null
+          }
+          if (this.contractName === undefined) {
+            this.contractName = null
+          }
+          if (this.patchImplementation === undefined) {
             this.patchImplementation = null
-          if (this.itemID === undefined) this.itemID = 0
-          if (this.tickrate === undefined) this.tickrate = 0
-          if (this.stages === undefined) this.stages = 0
-          if (this.regrowTickrate === undefined) this.regrowTickrate = 0
-          if (this.harvestStages === undefined) this.harvestStages = 0
-          if (this.__name === undefined) this.__name = null
-          if (this.contractName === undefined) this.contractName = null
-          if (this.patchImplementation === undefined)
-            this.patchImplementation = null
-          if (this.itemID === undefined) this.itemID = 0
-          if (this.tickrate === undefined) this.tickrate = 0
-          if (this.stages === undefined) this.stages = 0
-          if (this.regrowTickrate === undefined) this.regrowTickrate = 0
-          if (this.harvestStages === undefined) this.harvestStages = 0
-          ;(() => {
-            this.__name = name
-            this.contractName = contractName
-            this.patchImplementation = patchImplementation
-            this.itemID = itemID
-            this.tickrate = tickrate
-            this.stages = stages
-            this.regrowTickrate = regrowTickrate
-            this.harvestStages = harvestStages
-          })()
+          }
+          if (this.itemID === undefined) {
+            this.itemID = 0
+          }
+          if (this.tickrate === undefined) {
+            this.tickrate = 0
+          }
+          if (this.stages === undefined) {
+            this.stages = 0
+          }
+          if (this.regrowTickrate === undefined) {
+            this.regrowTickrate = 0
+          }
+          if (this.harvestStages === undefined) {
+            this.harvestStages = 0
+          }
+          this.__name = name
+          this.contractName = contractName
+          this.patchImplementation = patchImplementation
+          this.itemID = itemID
+          this.tickrate = tickrate
+          this.stages = stages
+          this.regrowTickrate = regrowTickrate
+          this.harvestStages = harvestStages
+        }
+        if (this.__name === undefined) {
+          this.__name = null
+        }
+        if (this.contractName === undefined) {
+          this.contractName = null
+        }
+        if (this.patchImplementation === undefined) {
+          this.patchImplementation = null
+        }
+        if (this.itemID === undefined) {
+          this.itemID = 0
+        }
+        if (this.tickrate === undefined) {
+          this.tickrate = 0
+        }
+        if (this.stages === undefined) {
+          this.stages = 0
+        }
+        if (this.regrowTickrate === undefined) {
+          this.regrowTickrate = 0
+        }
+        if (this.harvestStages === undefined) {
+          this.harvestStages = 0
         }
       } else throw new Error('invalid overload')
     }
@@ -1487,7 +1561,7 @@ PatchImplementation['__interfaces'] = [
         i++
       ) {
         {
-          let produce = /* Enum.values */ (function () {
+          const produce = /* Enum.values */ (function () {
             let result = []
             for (let val in PatchImplementation.Produce) {
               if (!isNaN(val)) {
@@ -1522,7 +1596,7 @@ PatchImplementation['__interfaces'] = [
         i++
       ) {
         {
-          let produce = /* Enum.values */ (function () {
+          const produce = /* Enum.values */ (function () {
             let result = []
             for (let val in PatchImplementation.Produce) {
               if (!isNaN(val)) {
@@ -1575,6 +1649,9 @@ PatchImplementation['__interfaces'] = [
     }
     ordinal() {
       return this._$ordinal
+    }
+    compareTo(other) {
+      return this._$ordinal - (isNaN(other) ? other._$ordinal : other)
     }
   }
   PatchImplementation.Produce_$WRAPPER = Produce_$WRAPPER
@@ -5570,137 +5647,137 @@ PatchImplementation['__interfaces'] = [
   }
   PatchImplementation.PatchImplementation$21_$WRAPPER = PatchImplementation$21_$WRAPPER
 })(PatchImplementation || (PatchImplementation = {}))
-PatchImplementation['_$wrappers'] = [
-  new PatchImplementation.PatchImplementation$0_$WRAPPER(
+PatchImplementation['_$wrappers'] = {
+  0: new PatchImplementation.PatchImplementation$0_$WRAPPER(
     0,
     'BELLADONNA',
     Tab.SPECIAL,
     ''
   ),
-  new PatchImplementation.PatchImplementation$1_$WRAPPER(
+  1: new PatchImplementation.PatchImplementation$1_$WRAPPER(
     1,
     'MUSHROOM',
     Tab.SPECIAL,
     ''
   ),
-  new PatchImplementation.PatchImplementation$2_$WRAPPER(
+  2: new PatchImplementation.PatchImplementation$2_$WRAPPER(
     2,
     'HESPORI',
     Tab.SPECIAL,
     ''
   ),
-  new PatchImplementation.PatchImplementation$3_$WRAPPER(
+  3: new PatchImplementation.PatchImplementation$3_$WRAPPER(
     3,
     'ALLOTMENT',
     Tab.ALLOTMENT,
     ''
   ),
-  new PatchImplementation.PatchImplementation$4_$WRAPPER(
+  4: new PatchImplementation.PatchImplementation$4_$WRAPPER(
     4,
     'HERB',
     Tab.HERB,
     ''
   ),
-  new PatchImplementation.PatchImplementation$5_$WRAPPER(
+  5: new PatchImplementation.PatchImplementation$5_$WRAPPER(
     5,
     'FLOWER',
     Tab.FLOWER,
     ''
   ),
-  new PatchImplementation.PatchImplementation$6_$WRAPPER(
+  6: new PatchImplementation.PatchImplementation$6_$WRAPPER(
     6,
     'BUSH',
     Tab.BUSH,
     ''
   ),
-  new PatchImplementation.PatchImplementation$7_$WRAPPER(
+  7: new PatchImplementation.PatchImplementation$7_$WRAPPER(
     7,
     'FRUIT_TREE',
     Tab.FRUIT_TREE,
     ''
   ),
-  new PatchImplementation.PatchImplementation$8_$WRAPPER(
+  8: new PatchImplementation.PatchImplementation$8_$WRAPPER(
     8,
     'HOPS',
     Tab.HOPS,
     ''
   ),
-  new PatchImplementation.PatchImplementation$9_$WRAPPER(
+  9: new PatchImplementation.PatchImplementation$9_$WRAPPER(
     9,
     'TREE',
     Tab.TREE,
     ''
   ),
-  new PatchImplementation.PatchImplementation$10_$WRAPPER(
+  10: new PatchImplementation.PatchImplementation$10_$WRAPPER(
     10,
     'HARDWOOD_TREE',
     Tab.TREE,
     'Hardwood Trees'
   ),
-  new PatchImplementation.PatchImplementation$11_$WRAPPER(
+  11: new PatchImplementation.PatchImplementation$11_$WRAPPER(
     11,
     'REDWOOD',
     Tab.TREE,
     'Redwood Trees'
   ),
-  new PatchImplementation.PatchImplementation$12_$WRAPPER(
+  12: new PatchImplementation.PatchImplementation$12_$WRAPPER(
     12,
     'SPIRIT_TREE',
     Tab.TREE,
     'Spirit Trees'
   ),
-  new PatchImplementation.PatchImplementation$13_$WRAPPER(
+  13: new PatchImplementation.PatchImplementation$13_$WRAPPER(
     13,
     'ANIMA',
     Tab.SPECIAL,
     ''
   ),
-  new PatchImplementation.PatchImplementation$14_$WRAPPER(
+  14: new PatchImplementation.PatchImplementation$14_$WRAPPER(
     14,
     'CACTUS',
     Tab.SPECIAL,
     'Cactus'
   ),
-  new PatchImplementation.PatchImplementation$15_$WRAPPER(
+  15: new PatchImplementation.PatchImplementation$15_$WRAPPER(
     15,
     'SEAWEED',
     Tab.SPECIAL,
     'Seaweed'
   ),
-  new PatchImplementation.PatchImplementation$16_$WRAPPER(
+  16: new PatchImplementation.PatchImplementation$16_$WRAPPER(
     16,
     'CALQUAT',
     Tab.FRUIT_TREE,
     'Calquat'
   ),
-  new PatchImplementation.PatchImplementation$17_$WRAPPER(
+  17: new PatchImplementation.PatchImplementation$17_$WRAPPER(
     17,
     'CELASTRUS',
     Tab.FRUIT_TREE,
     'Celastrus'
   ),
-  new PatchImplementation.PatchImplementation$18_$WRAPPER(
+  18: new PatchImplementation.PatchImplementation$18_$WRAPPER(
     18,
     'GRAPES',
     Tab.GRAPE,
     ''
   ),
-  new PatchImplementation.PatchImplementation$19_$WRAPPER(
+  19: new PatchImplementation.PatchImplementation$19_$WRAPPER(
     19,
     'CRYSTAL_TREE',
     Tab.FRUIT_TREE,
     'Crystal Tree'
   ),
-  new PatchImplementation.PatchImplementation$20_$WRAPPER(
+  20: new PatchImplementation.PatchImplementation$20_$WRAPPER(
     20,
     'COMPOST',
     Tab.SPECIAL,
     'Compost Bin'
   ),
-  new PatchImplementation.PatchImplementation$21_$WRAPPER(
+  21: new PatchImplementation.PatchImplementation$21_$WRAPPER(
     21,
     'GIANT_COMPOST',
     Tab.SPECIAL,
     'Giant Compost Bin'
   )
-]
+}

@@ -44,7 +44,9 @@ export class Varbits_$WRAPPER {
   constructor(_$ordinal, _$name, id) {
     this._$ordinal = _$ordinal
     this._$name = _$name
-    if (this.id === undefined) this.id = 0
+    if (this.id === undefined) {
+      this.id = 0
+    }
     this.id = id
   }
   getId() {
@@ -56,35 +58,38 @@ export class Varbits_$WRAPPER {
   ordinal() {
     return this._$ordinal
   }
+  compareTo(other) {
+    return this._$ordinal - (isNaN(other) ? other._$ordinal : other)
+  }
 }
 Varbits['__class'] = 'timetracking.Varbits'
 Varbits['__interfaces'] = ['java.lang.Comparable', 'java.io.Serializable']
-Varbits['_$wrappers'] = [
-  new Varbits_$WRAPPER(0, 'FARMING_4771', 4771),
-  new Varbits_$WRAPPER(1, 'FARMING_4772', 4772),
-  new Varbits_$WRAPPER(2, 'FARMING_4773', 4773),
-  new Varbits_$WRAPPER(3, 'FARMING_4774', 4774),
-  new Varbits_$WRAPPER(4, 'FARMING_4775', 4775),
-  new Varbits_$WRAPPER(5, 'FARMING_7904', 7904),
-  new Varbits_$WRAPPER(6, 'FARMING_7905', 7905),
-  new Varbits_$WRAPPER(7, 'FARMING_7906', 7906),
-  new Varbits_$WRAPPER(8, 'FARMING_7907', 7907),
-  new Varbits_$WRAPPER(9, 'FARMING_7908', 7908),
-  new Varbits_$WRAPPER(10, 'FARMING_7909', 7909),
-  new Varbits_$WRAPPER(11, 'FARMING_7910', 7910),
-  new Varbits_$WRAPPER(12, 'FARMING_7911', 7911),
-  new Varbits_$WRAPPER(13, 'FARMING_7912', 7912),
-  new Varbits_$WRAPPER(14, 'GRAPES_4953', 4953),
-  new Varbits_$WRAPPER(15, 'GRAPES_4954', 4954),
-  new Varbits_$WRAPPER(16, 'GRAPES_4955', 4955),
-  new Varbits_$WRAPPER(17, 'GRAPES_4956', 4956),
-  new Varbits_$WRAPPER(18, 'GRAPES_4957', 4957),
-  new Varbits_$WRAPPER(19, 'GRAPES_4958', 4958),
-  new Varbits_$WRAPPER(20, 'GRAPES_4959', 4959),
-  new Varbits_$WRAPPER(21, 'GRAPES_4960', 4960),
-  new Varbits_$WRAPPER(22, 'GRAPES_4961', 4961),
-  new Varbits_$WRAPPER(23, 'GRAPES_4962', 4962),
-  new Varbits_$WRAPPER(24, 'GRAPES_4963', 4963),
-  new Varbits_$WRAPPER(25, 'GRAPES_4964', 4964),
-  new Varbits_$WRAPPER(26, 'AUTOWEED', 5557)
-]
+Varbits['_$wrappers'] = {
+  0: new Varbits_$WRAPPER(0, 'FARMING_4771', 4771),
+  1: new Varbits_$WRAPPER(1, 'FARMING_4772', 4772),
+  2: new Varbits_$WRAPPER(2, 'FARMING_4773', 4773),
+  3: new Varbits_$WRAPPER(3, 'FARMING_4774', 4774),
+  4: new Varbits_$WRAPPER(4, 'FARMING_4775', 4775),
+  5: new Varbits_$WRAPPER(5, 'FARMING_7904', 7904),
+  6: new Varbits_$WRAPPER(6, 'FARMING_7905', 7905),
+  7: new Varbits_$WRAPPER(7, 'FARMING_7906', 7906),
+  8: new Varbits_$WRAPPER(8, 'FARMING_7907', 7907),
+  9: new Varbits_$WRAPPER(9, 'FARMING_7908', 7908),
+  10: new Varbits_$WRAPPER(10, 'FARMING_7909', 7909),
+  11: new Varbits_$WRAPPER(11, 'FARMING_7910', 7910),
+  12: new Varbits_$WRAPPER(12, 'FARMING_7911', 7911),
+  13: new Varbits_$WRAPPER(13, 'FARMING_7912', 7912),
+  14: new Varbits_$WRAPPER(14, 'GRAPES_4953', 4953),
+  15: new Varbits_$WRAPPER(15, 'GRAPES_4954', 4954),
+  16: new Varbits_$WRAPPER(16, 'GRAPES_4955', 4955),
+  17: new Varbits_$WRAPPER(17, 'GRAPES_4956', 4956),
+  18: new Varbits_$WRAPPER(18, 'GRAPES_4957', 4957),
+  19: new Varbits_$WRAPPER(19, 'GRAPES_4958', 4958),
+  20: new Varbits_$WRAPPER(20, 'GRAPES_4959', 4959),
+  21: new Varbits_$WRAPPER(21, 'GRAPES_4960', 4960),
+  22: new Varbits_$WRAPPER(22, 'GRAPES_4961', 4961),
+  23: new Varbits_$WRAPPER(23, 'GRAPES_4962', 4962),
+  24: new Varbits_$WRAPPER(24, 'GRAPES_4963', 4963),
+  25: new Varbits_$WRAPPER(25, 'GRAPES_4964', 4964),
+  26: new Varbits_$WRAPPER(26, 'AUTOWEED', 5557)
+}

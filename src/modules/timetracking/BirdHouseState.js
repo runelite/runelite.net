@@ -1,6 +1,5 @@
 // @ts-nocheck
 /* eslint-disable */
-import { BirdHouse } from './BirdHouse'
 export var BirdHouseState
 ;(function (BirdHouseState) {
   BirdHouseState[(BirdHouseState['SEEDED'] = 0)] = 'SEEDED'
@@ -49,15 +48,19 @@ export class BirdHouseState_$WRAPPER {
   ordinal() {
     return this._$ordinal
   }
+  compareTo(other) {
+    return this._$ordinal - (isNaN(other) ? other._$ordinal : other)
+  }
 }
 BirdHouseState['__class'] = 'timetracking.BirdHouseState'
 BirdHouseState['__interfaces'] = [
   'java.lang.Comparable',
   'java.io.Serializable'
 ]
-BirdHouseState['_$wrappers'] = [
-  new BirdHouseState_$WRAPPER(0, 'SEEDED'),
-  new BirdHouseState_$WRAPPER(1, 'BUILT'),
-  new BirdHouseState_$WRAPPER(2, 'EMPTY'),
-  new BirdHouseState_$WRAPPER(3, 'UNKNOWN')
-]
+BirdHouseState['_$wrappers'] = {
+  0: new BirdHouseState_$WRAPPER(0, 'SEEDED'),
+  1: new BirdHouseState_$WRAPPER(1, 'BUILT'),
+  2: new BirdHouseState_$WRAPPER(2, 'EMPTY'),
+  3: new BirdHouseState_$WRAPPER(3, 'UNKNOWN')
+}
+import { BirdHouse } from './BirdHouse'

@@ -21,13 +21,17 @@ export class Tab_$WRAPPER {
   constructor(_$ordinal, _$name, name, itemID) {
     this._$ordinal = _$ordinal
     this._$name = _$name
-    if (this.__name === undefined) this.__name = null
-    if (this.itemID === undefined) this.itemID = 0
+    if (this.__name === undefined) {
+      this.__name = null
+    }
+    if (this.itemID === undefined) {
+      this.itemID = 0
+    }
     this.__name = name
     this.itemID = itemID
   }
   static FARMING_TABS_$LI$() {
-    if (Tab_$WRAPPER.FARMING_TABS == null)
+    if (Tab_$WRAPPER.FARMING_TABS == null) {
       Tab_$WRAPPER.FARMING_TABS = [
         Tab.HERB,
         Tab.TREE,
@@ -39,6 +43,7 @@ export class Tab_$WRAPPER {
         Tab.GRAPE,
         Tab.HOPS
       ]
+    }
     return Tab_$WRAPPER.FARMING_TABS
   }
   getName() {
@@ -53,21 +58,23 @@ export class Tab_$WRAPPER {
   ordinal() {
     return this._$ordinal
   }
+  compareTo(other) {
+    return this._$ordinal - (isNaN(other) ? other._$ordinal : other)
+  }
 }
 Tab['__class'] = 'timetracking.Tab'
 Tab['__interfaces'] = ['java.lang.Comparable', 'java.io.Serializable']
-Tab['_$wrappers'] = [
-  new Tab_$WRAPPER(0, 'OVERVIEW', 'Overview', ItemID.OLD_NOTES),
-  new Tab_$WRAPPER(1, 'CLOCK', 'Timers & Stopwatches', ItemID.WATCH),
-  new Tab_$WRAPPER(2, 'BIRD_HOUSE', 'Bird Houses', ItemID.OAK_BIRD_HOUSE),
-  new Tab_$WRAPPER(3, 'ALLOTMENT', 'Allotment Patches', ItemID.CABBAGE),
-  new Tab_$WRAPPER(4, 'FLOWER', 'Flower Patches', ItemID.RED_FLOWERS),
-  new Tab_$WRAPPER(5, 'HERB', 'Herb Patches', ItemID.GRIMY_RANARR_WEED),
-  new Tab_$WRAPPER(6, 'TREE', 'Tree Patches', ItemID.YEW_LOGS),
-  new Tab_$WRAPPER(7, 'FRUIT_TREE', 'Fruit Tree Patches', ItemID.PINEAPPLE),
-  new Tab_$WRAPPER(8, 'HOPS', 'Hops Patches', ItemID.BARLEY),
-  new Tab_$WRAPPER(9, 'BUSH', 'Bush Patches', ItemID.POISON_IVY_BERRIES),
-  new Tab_$WRAPPER(10, 'GRAPE', 'Grape Patches', ItemID.GRAPES),
-  new Tab_$WRAPPER(11, 'SPECIAL', 'Special Patches', ItemID.MUSHROOM)
-]
-Tab_$WRAPPER.FARMING_TABS_$LI$()
+Tab['_$wrappers'] = {
+  0: new Tab_$WRAPPER(0, 'OVERVIEW', 'Overview', ItemID.OLD_NOTES),
+  1: new Tab_$WRAPPER(1, 'CLOCK', 'Timers & Stopwatches', ItemID.WATCH),
+  2: new Tab_$WRAPPER(2, 'BIRD_HOUSE', 'Bird Houses', ItemID.OAK_BIRD_HOUSE),
+  3: new Tab_$WRAPPER(3, 'ALLOTMENT', 'Allotment Patches', ItemID.CABBAGE),
+  4: new Tab_$WRAPPER(4, 'FLOWER', 'Flower Patches', ItemID.RED_FLOWERS),
+  5: new Tab_$WRAPPER(5, 'HERB', 'Herb Patches', ItemID.GRIMY_RANARR_WEED),
+  6: new Tab_$WRAPPER(6, 'TREE', 'Tree Patches', ItemID.YEW_LOGS),
+  7: new Tab_$WRAPPER(7, 'FRUIT_TREE', 'Fruit Tree Patches', ItemID.PINEAPPLE),
+  8: new Tab_$WRAPPER(8, 'HOPS', 'Hops Patches', ItemID.BARLEY),
+  9: new Tab_$WRAPPER(9, 'BUSH', 'Bush Patches', ItemID.POISON_IVY_BERRIES),
+  10: new Tab_$WRAPPER(10, 'GRAPE', 'Grape Patches', ItemID.GRAPES),
+  11: new Tab_$WRAPPER(11, 'SPECIAL', 'Special Patches', ItemID.MUSHROOM)
+}

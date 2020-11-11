@@ -34,7 +34,9 @@ export class VarPlayer_$WRAPPER {
   constructor(_$ordinal, _$name, id) {
     this._$ordinal = _$ordinal
     this._$name = _$name
-    if (this.id === undefined) this.id = 0
+    if (this.id === undefined) {
+      this.id = 0
+    }
     this.id = id
   }
   getId() {
@@ -46,12 +48,15 @@ export class VarPlayer_$WRAPPER {
   ordinal() {
     return this._$ordinal
   }
+  compareTo(other) {
+    return this._$ordinal - (isNaN(other) ? other._$ordinal : other)
+  }
 }
 VarPlayer['__class'] = 'timetracking.VarPlayer'
 VarPlayer['__interfaces'] = ['java.lang.Comparable', 'java.io.Serializable']
-VarPlayer['_$wrappers'] = [
-  new VarPlayer_$WRAPPER(0, 'BIRD_HOUSE_MEADOW_NORTH', 1626),
-  new VarPlayer_$WRAPPER(1, 'BIRD_HOUSE_MEADOW_SOUTH', 1627),
-  new VarPlayer_$WRAPPER(2, 'BIRD_HOUSE_VALLEY_NORTH', 1628),
-  new VarPlayer_$WRAPPER(3, 'BIRD_HOUSE_VALLEY_SOUTH', 1629)
-]
+VarPlayer['_$wrappers'] = {
+  0: new VarPlayer_$WRAPPER(0, 'BIRD_HOUSE_MEADOW_NORTH', 1626),
+  1: new VarPlayer_$WRAPPER(1, 'BIRD_HOUSE_MEADOW_SOUTH', 1627),
+  2: new VarPlayer_$WRAPPER(2, 'BIRD_HOUSE_VALLEY_NORTH', 1628),
+  3: new VarPlayer_$WRAPPER(3, 'BIRD_HOUSE_VALLEY_SOUTH', 1629)
+}

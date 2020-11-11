@@ -1,12 +1,16 @@
 // @ts-nocheck
 /* eslint-disable */
-import { PatchImplementation } from './PatchImplementation'
-import { CropState } from './CropState'
 export class PatchState {
   constructor(produce, cropState, stage) {
-    if (this.produce === undefined) this.produce = null
-    if (this.cropState === undefined) this.cropState = null
-    if (this.stage === undefined) this.stage = 0
+    if (this.produce === undefined) {
+      this.produce = null
+    }
+    if (this.cropState === undefined) {
+      this.cropState = null
+    }
+    if (this.stage === undefined) {
+      this.stage = 0
+    }
     this.produce = produce
     this.cropState = cropState
     this.stage = stage
@@ -44,3 +48,5 @@ export class PatchState {
   }
 }
 PatchState['__class'] = 'timetracking.PatchState'
+import { CropState } from './CropState'
+import { PatchImplementation } from './PatchImplementation'

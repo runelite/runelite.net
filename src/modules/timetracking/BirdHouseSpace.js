@@ -13,8 +13,12 @@ export class BirdHouseSpace_$WRAPPER {
   constructor(_$ordinal, _$name, name, varp) {
     this._$ordinal = _$ordinal
     this._$name = _$name
-    if (this.__name === undefined) this.__name = null
-    if (this.varp === undefined) this.varp = null
+    if (this.__name === undefined) {
+      this.__name = null
+    }
+    if (this.varp === undefined) {
+      this.varp = null
+    }
     this.__name = name
     this.varp = varp
   }
@@ -30,35 +34,38 @@ export class BirdHouseSpace_$WRAPPER {
   ordinal() {
     return this._$ordinal
   }
+  compareTo(other) {
+    return this._$ordinal - (isNaN(other) ? other._$ordinal : other)
+  }
 }
 BirdHouseSpace['__class'] = 'timetracking.BirdHouseSpace'
 BirdHouseSpace['__interfaces'] = [
   'java.lang.Comparable',
   'java.io.Serializable'
 ]
-BirdHouseSpace['_$wrappers'] = [
-  new BirdHouseSpace_$WRAPPER(
+BirdHouseSpace['_$wrappers'] = {
+  0: new BirdHouseSpace_$WRAPPER(
     0,
     'MEADOW_NORTH',
     'Mushroom Meadow (North)',
     VarPlayer.BIRD_HOUSE_MEADOW_NORTH
   ),
-  new BirdHouseSpace_$WRAPPER(
+  1: new BirdHouseSpace_$WRAPPER(
     1,
     'MEADOW_SOUTH',
     'Mushroom Meadow (South)',
     VarPlayer.BIRD_HOUSE_MEADOW_SOUTH
   ),
-  new BirdHouseSpace_$WRAPPER(
+  2: new BirdHouseSpace_$WRAPPER(
     2,
     'VALLEY_NORTH',
     'Verdant Valley (Northeast)',
     VarPlayer.BIRD_HOUSE_VALLEY_NORTH
   ),
-  new BirdHouseSpace_$WRAPPER(
+  3: new BirdHouseSpace_$WRAPPER(
     3,
     'VALLEY_SOUTH',
     'Verdant Valley (Southwest)',
     VarPlayer.BIRD_HOUSE_VALLEY_SOUTH
   )
-]
+}
