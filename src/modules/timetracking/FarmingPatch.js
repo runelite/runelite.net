@@ -1,9 +1,19 @@
+// @ts-nocheck
+/* eslint-disable */
 export class FarmingPatch {
   constructor(name, varbit, implementation) {
-    if (this.region === undefined) this.region = null
-    if (this.name === undefined) this.name = null
-    if (this.varbit === undefined) this.varbit = null
-    if (this.implementation === undefined) this.implementation = null
+    if (this.region === undefined) {
+      this.region = null
+    }
+    if (this.name === undefined) {
+      this.name = null
+    }
+    if (this.varbit === undefined) {
+      this.varbit = null
+    }
+    if (this.implementation === undefined) {
+      this.implementation = null
+    }
     this.name = name
     this.varbit = varbit
     this.implementation = implementation

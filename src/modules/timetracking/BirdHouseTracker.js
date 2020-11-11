@@ -1,7 +1,5 @@
 // @ts-nocheck
 /* eslint-disable */
-import { BirdHouseSpace } from './BirdHouseSpace'
-import { BirdHouseData } from './BirdHouseData'
 import { VarPlayer } from './VarPlayer'
 export class BirdHouseTracker {
   loadFromConfig(
@@ -10,8 +8,8 @@ export class BirdHouseTracker {
     username,
     getConfiguration
   ) {
-    let birdHouseData = new Map()
-    let group = configGroup + '.' + username + '.' + birdHouseConfigGroup
+    const birdHouseData = new Map()
+    const group = configGroup + '.' + username + '.' + birdHouseConfigGroup
     for (
       let i = 0;
       i <
@@ -27,7 +25,7 @@ export class BirdHouseTracker {
       i++
     ) {
       {
-        let space = (function () {
+        const space = (function () {
           let result = []
           for (let val in BirdHouseSpace) {
             if (!isNaN(val)) {
@@ -36,22 +34,22 @@ export class BirdHouseTracker {
           }
           return result
         })()[i]
-        let key =
+        const key =
           '' +
           VarPlayer['_$wrappers'][
             BirdHouseSpace['_$wrappers'][space].getVarp()
           ].getId()
-        let storedValue = (target =>
+        const storedValue = (target =>
           typeof target === 'function'
             ? target(group, key)
             : target.apply(group, key))(getConfiguration)
         let updated = false
         if (storedValue != null) {
-          let parts = storedValue.split(':')
+          const parts = storedValue.split(':')
           if (parts.length === 2) {
             try {
-              let varp = parseInt(parts[0])
-              let timestamp = parseInt(parts[1])
+              const varp = parseInt(parts[0])
+              const timestamp = parseInt(parts[1])
               birdHouseData.set(
                 space,
                 new BirdHouseData(space, varp, timestamp)
@@ -69,3 +67,5 @@ export class BirdHouseTracker {
   }
 }
 BirdHouseTracker['__class'] = 'timetracking.BirdHouseTracker'
+import { BirdHouseData } from './BirdHouseData'
+import { BirdHouseSpace } from './BirdHouseSpace'
