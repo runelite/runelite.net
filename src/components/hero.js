@@ -148,7 +148,7 @@ class Hero extends Component {
               </a>
 
               <div id="download">
-                <div class="btn-group dropdown">
+                <div class="btn-group">
                   <a
                     id="direct-download-btn"
                     class={'btn btn-' + mainDropdownItem.color}
@@ -156,20 +156,22 @@ class Hero extends Component {
                   >
                     Download
                   </a>
-                  <button
-                    class={
-                      'btn dropdown-toggle dropdown-toggle-split btn-' +
-                      mainDropdownItem.color
-                    }
-                  >
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <div class="dropdown-menu" style={{ textShadow: 'none' }}>
-                    {dropdownButtons.map(({ link, icon, text }) => (
-                      <a class="dropdown-item" href={link} native>
-                        <i class={icon} /> {text}
-                      </a>
-                    ))}
+                  <div class="dropdown">
+                    <button
+                      class={
+                        'btn dropdown-toggle dropdown-toggle-split btn-' +
+                        mainDropdownItem.color
+                      }
+                    >
+                      <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu" style={{ textShadow: 'none' }}>
+                      {dropdownButtons.map(({ link, icon, text }) => (
+                        <a class="dropdown-item" href={link} native>
+                          <i class={icon} /> {text}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
