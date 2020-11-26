@@ -2,34 +2,36 @@
 /* eslint-disable */
 import { Varbits } from './Varbits'
 export class FarmingTracker {
-  predictPatch(
-    patch,
-    configGroup,
-    autoweedConfigGroup,
-    username,
-    getConfiguration
-  ) {
+  predictPatch(patch, getConfiguration) {
     const unixNow = (n => (n < 0 ? Math.ceil(n) : Math.floor(n)))(
       new Date().getTime() / 1000
     )
-    let autoweed
-    {
-      const group = configGroup + '.' + username
-      autoweed =
-        /* toString */ '' +
-          /* Enum.ordinal */ Autoweed[Autoweed[Autoweed.ON]] ===
-        (target =>
-          typeof target === 'function'
-            ? target(group, autoweedConfigGroup)
-            : target.apply(group, autoweedConfigGroup))(getConfiguration)
-    }
-    const group =
-      configGroup + '.' + username + '.' + patch.getRegion().getRegionID()
-    const key = '' + Varbits['_$wrappers'][patch.getVarbit()].getId()
+    const autoweed =
+      '' + /* Enum.ordinal */ Autoweed[Autoweed[Autoweed.ON]] ===
+      (target =>
+        typeof target === 'function'
+          ? target(TimeTrackingConfig.CONFIG_GROUP, TimeTrackingConfig.AUTOWEED)
+          : target.apply(
+              TimeTrackingConfig.CONFIG_GROUP,
+              TimeTrackingConfig.AUTOWEED
+            ))(getConfiguration)
+    const botanist =
+      true.toString() ===
+      (target =>
+        typeof target === 'function'
+          ? target(TimeTrackingConfig.CONFIG_GROUP, TimeTrackingConfig.BOTANIST)
+          : target.apply(
+              TimeTrackingConfig.CONFIG_GROUP,
+              TimeTrackingConfig.BOTANIST
+            ))(getConfiguration)
+    const key =
+      patch.getRegion().getRegionID() +
+      '.' +
+      Varbits['_$wrappers'][patch.getVarbit()].getId()
     const storedValue = (target =>
       typeof target === 'function'
-        ? target(group, key)
-        : target.apply(group, key))(getConfiguration)
+        ? target(TimeTrackingConfig.CONFIG_GROUP, key)
+        : target.apply(TimeTrackingConfig.CONFIG_GROUP, key))(getConfiguration)
     if (storedValue == null) {
       return null
     }
@@ -56,21 +58,29 @@ export class FarmingTracker {
     let stage = state.getStage()
     let stages = state.getStages()
     let tickrate = state.getTickRate() * 60
+    let farmingTickLength = 5 * 60
     if (autoweed && state.getProduce() === PatchImplementation.Produce.WEEDS) {
       stage = 0
       stages = 1
       tickrate = 0
     }
+    if (botanist) {
+      tickrate = (n => (n < 0 ? Math.ceil(n) : Math.floor(n)))(tickrate / 5)
+      farmingTickLength = (n => (n < 0 ? Math.ceil(n) : Math.floor(n)))(
+        farmingTickLength / 5
+      )
+    }
     let doneEstimate = 0
     if (tickrate > 0) {
       const tickNow = (n => (n < 0 ? Math.ceil(n) : Math.floor(n)))(
-        (unixNow + 5 * 60) / tickrate
+        (unixNow + farmingTickLength) / tickrate
       )
       const tickTime = (n => (n < 0 ? Math.ceil(n) : Math.floor(n)))(
-        (unixTime + 5 * 60) / tickrate
+        (unixTime + farmingTickLength) / tickrate
       )
       const delta = (tickNow - tickTime) | 0
-      doneEstimate = (stages - 1 - stage + tickTime) * tickrate + 5 * 60
+      doneEstimate =
+        (stages - 1 - stage + tickTime) * tickrate + farmingTickLength
       stage += delta
       if (stage >= stages) {
         stage = stages - 1
@@ -87,5 +97,6 @@ export class FarmingTracker {
 }
 FarmingTracker['__class'] = 'timetracking.FarmingTracker'
 import { PatchImplementation } from './PatchImplementation'
+import { TimeTrackingConfig } from './TimeTrackingConfig'
 import { Autoweed } from './Autoweed'
 import { PatchPrediction } from './PatchPrediction'

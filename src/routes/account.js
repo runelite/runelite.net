@@ -25,6 +25,7 @@ import './account.scss'
 import Tags from './account/tags'
 import TimeTracking from './account/time-tracking'
 import { getTimeTracking } from '../modules/time-tracking'
+import { upperToTitleCase } from '../util'
 
 const menu = [
   {
@@ -119,15 +120,24 @@ const menuExport = (currentMenu, props) => {
   )
 }
 
+const accountType = type => {
+  if (type !== 'STANDARD') {
+    return <span class="badge badge-info">{upperToTitleCase(type)}</span>
+  }
+
+  return ''
+}
+
 const accountMenu = (account, selectedAccount, changeAccount) => (
   <button
     class={
       'list-group-item list-group-item-action' +
-      (selectedAccount === account ? ' active' : '')
+      (selectedAccount.accountId === account.accountId ? ' active' : '')
     }
     onClick={() => changeAccount(account)}
   >
-    <i class="fas fa-fw fa-user" /> {account}
+    <i class="fas fa-fw fa-user" /> {account.displayName}{' '}
+    {accountType(account.type)}
   </button>
 )
 
@@ -168,9 +178,11 @@ const Account = ({
               <p className="list-title">{accountsTitle}</p>
               <ul class="list-group list-group-small mb-4">
                 {currentMenu.showAccounts ? (
-                  accounts.map(a =>
-                    accountMenu(a, props.selectedAccount, changeAccount)
-                  )
+                  accounts
+                    .filter(a => a.displayName !== null)
+                    .map(a =>
+                      accountMenu(a, props.selectedAccount, changeAccount)
+                    )
                 ) : (
                   <noscript />
                 )}
