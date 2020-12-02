@@ -2,14 +2,8 @@
 /* eslint-disable */
 import { VarPlayer } from './VarPlayer'
 export class BirdHouseTracker {
-  loadFromConfig(
-    configGroup,
-    birdHouseConfigGroup,
-    username,
-    getConfiguration
-  ) {
+  loadFromConfig(getConfiguration) {
     const birdHouseData = new Map()
-    const group = configGroup + '.' + username + '.' + birdHouseConfigGroup
     for (
       let i = 0;
       i <
@@ -35,14 +29,17 @@ export class BirdHouseTracker {
           return result
         })()[i]
         const key =
-          '' +
+          TimeTrackingConfig.BIRD_HOUSE +
+          '.' +
           VarPlayer['_$wrappers'][
             BirdHouseSpace['_$wrappers'][space].getVarp()
           ].getId()
         const storedValue = (target =>
           typeof target === 'function'
-            ? target(group, key)
-            : target.apply(group, key))(getConfiguration)
+            ? target(TimeTrackingConfig.CONFIG_GROUP, key)
+            : target.apply(TimeTrackingConfig.CONFIG_GROUP, key))(
+          getConfiguration
+        )
         let updated = false
         if (storedValue != null) {
           const parts = storedValue.split(':')
@@ -67,5 +64,6 @@ export class BirdHouseTracker {
   }
 }
 BirdHouseTracker['__class'] = 'timetracking.BirdHouseTracker'
+import { TimeTrackingConfig } from './TimeTrackingConfig'
 import { BirdHouseData } from './BirdHouseData'
 import { BirdHouseSpace } from './BirdHouseSpace'

@@ -6,13 +6,6 @@ import { flattenMap } from '../util'
 import { getItems } from './item'
 
 const runeliteApi = api('https://api.runelite.net/')
-const configNameFilters = [
-  /^(timetracking)\.(.+)\.(birdhouse\.[0-9]+)$/,
-  /^(timetracking)\.(.+)\.([0-9]+\.[0-9]+)$/,
-  /^(timetracking)\.(.+)\.(autoweed)$/,
-  /^(killcount)\.(.+)\.([^.]+)$/,
-  /^([^.]+)\.(.+)$/
-]
 
 // Actions
 export const { fetchConfig, setConfig, changeAccount } = createActions(
@@ -35,7 +28,7 @@ export const { fetchConfig, setConfig, changeAccount } = createActions(
       const config = {}
       for (let i in result.config) {
         const kv = result.config[i]
-        config[kv.key.toLowerCase()] = kv.value
+        config[kv.key] = kv.value
       }
 
       dispatch(setConfig(config))
@@ -71,7 +64,7 @@ export default handleActions(
   },
   {
     config: {},
-    selectedAccount: ''
+    selectedAccount: null
   }
 )
 
@@ -80,31 +73,31 @@ export const getConfig = state => state.config.config
 export const getSelectedAccount = state => state.config.selectedAccount
 
 export const getAccounts = createSelector(getConfig, config => {
-  const names = new Set()
+  const accounts = []
 
   for (let key in config) {
-    const matches = configNameFilters.map(r => key.match(r)).filter(m => !!m)
-    const matchesFound = matches.shift()
+    if (key.startsWith('rsprofile.rsprofile.')) {
+      const tokens = key.split('.')
+      const id = tokens[2]
+      const pkey = tokens[3]
 
-    if (!matchesFound) {
-      continue
+      let a = accounts.find(e => e.accountId === id)
+      if (a === undefined) {
+        a = {
+          accountId: id
+        }
+        accounts.push(a)
+      }
+
+      a[pkey] = config[key]
     }
-
-    const match = matchesFound.filter(m => m.length > 0)
-
-    if (!match || match.length !== 4) {
-      continue
-    }
-
-    const username = match[2]
-    names.add(username.toLowerCase())
   }
 
-  return [...names]
+  return accounts
 })
 
 export const getSlayerTask = createSelector(getConfig, config => {
-  if (!config['slayer.taskname']) {
+  if (!config['slayer.taskName']) {
     return {
       hasTask: false
     }
@@ -112,9 +105,9 @@ export const getSlayerTask = createSelector(getConfig, config => {
 
   return {
     hasTask: true,
-    name: config['slayer.taskname'],
-    location: config['slayer.tasklocation'],
-    start: config['slayer.initialamount'],
+    name: config['slayer.taskName'],
+    location: config['slayer.taskLocation'],
+    start: config['slayer.initialAmount'],
     remaining: config['slayer.amount'],
     streak: config['slayer.streak'],
     points: config['slayer.points']
@@ -125,23 +118,25 @@ export const getBossLog = createSelector(
   getConfig,
   getSelectedAccount,
   (config, selectedAccount) => {
-    const kcPrefix = 'killcount.'
-    const pbPrefix = 'personalbest.'
+    const kcPrefix = 'killcount.rsprofile.'
+    const pbPrefix = 'personalbest.rsprofile.'
     const data = new Map()
 
     if (!selectedAccount) {
       return flattenMap(data)
     }
 
+    const accountId = selectedAccount.accountId
+
     for (let [key, value] of Object.entries(config)) {
       if (key.startsWith(kcPrefix)) {
         key = key.replace(kcPrefix, '')
 
-        if (!key.startsWith(selectedAccount)) {
+        if (!key.startsWith(accountId)) {
           continue
         }
 
-        key = key.replace(selectedAccount + '.', '')
+        key = key.replace(accountId + '.', '')
 
         if (data.has(key)) {
           const existing = data.get(key)
@@ -152,11 +147,11 @@ export const getBossLog = createSelector(
       } else if (key.startsWith(pbPrefix)) {
         key = key.replace(pbPrefix, '')
 
-        if (!key.startsWith(selectedAccount)) {
+        if (!key.startsWith(accountId)) {
           continue
         }
 
-        key = key.replace(selectedAccount + '.', '')
+        key = key.replace(accountId + '.', '')
 
         if (data.has(key)) {
           const existing = data.get(key)
@@ -172,11 +167,11 @@ export const getBossLog = createSelector(
 )
 
 export const getExternalPlugins = createSelector(getConfig, config => {
-  if (!config['runelite.externalplugins']) {
+  if (!config['runelite.externalPlugins']) {
     return []
   }
 
-  return config['runelite.externalplugins'].split(',')
+  return config['runelite.externalPlugins'].split(',')
 })
 
 export const getTags = createSelector(getConfig, getItems, (config, items) => {

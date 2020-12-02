@@ -93,14 +93,9 @@ function preparePanel() {
   }
 }
 
-function buildBirdhouseData(tabEntries, username, getConfiguration) {
+function buildBirdhouseData(tabEntries, getConfiguration) {
   const birdhouseTracker = new BirdHouseTracker()
-  const birdhouseTabs = birdhouseTracker.loadFromConfig(
-    'timetracking',
-    'birdhouse',
-    username,
-    getConfiguration
-  )
+  const birdhouseTabs = birdhouseTracker.loadFromConfig(getConfiguration)
   const unixNow = new Date().getTime() / 1000
   const tab = Tab['_$wrappers'][Tab.BIRD_HOUSE]
 
@@ -170,7 +165,7 @@ function buildBirdhouseData(tabEntries, username, getConfiguration) {
   tabEntries.push(tabEntry)
 }
 
-function buildFarmingData(tabEntries, username, getConfiguration) {
+function buildFarmingData(tabEntries, getConfiguration) {
   const farmingTracker = new FarmingTracker()
   const farmingWorld = new FarmingWorld()
   const farmingTabs = farmingWorld.getTabs()
@@ -208,13 +203,7 @@ function buildFarmingData(tabEntries, username, getConfiguration) {
           ? implementation.getName()
           : ''
 
-      const prediction = farmingTracker.predictPatch(
-        patch,
-        'timetracking',
-        'autoweed',
-        username,
-        getConfiguration
-      )
+      const prediction = farmingTracker.predictPatch(patch, getConfiguration)
 
       if (prediction == null) {
         panel.tooltipText = 'Unknown state'
@@ -293,9 +282,14 @@ function buildFarmingData(tabEntries, username, getConfiguration) {
   }
 }
 
-function buildData(username, configuration) {
+function buildData(account, configuration) {
   function getConfiguration(group, key) {
-    let value = configuration[group + '.' + key]
+    if (!account) {
+      return null
+    }
+
+    let value =
+      configuration[group + '.rsprofile.' + account.accountId + '.' + key]
 
     if (!value) {
       value = null
@@ -305,8 +299,8 @@ function buildData(username, configuration) {
   }
 
   const tabEntries = []
-  buildFarmingData(tabEntries, username, getConfiguration)
-  buildBirdhouseData(tabEntries, username, getConfiguration)
+  buildFarmingData(tabEntries, getConfiguration)
+  buildBirdhouseData(tabEntries, getConfiguration)
   tabEntries.sort((a, b) => a.name.localeCompare(b.name))
   return tabEntries
 }
