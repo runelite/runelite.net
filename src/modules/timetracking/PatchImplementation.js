@@ -296,92 +296,6 @@ PatchImplementation['__interfaces'] = [
         }
       } else throw new Error('invalid overload')
     }
-    requiresHealthCheck() {
-      switch (this.patchImplementation) {
-        case PatchImplementation.BUSH:
-        case PatchImplementation.TREE:
-        case PatchImplementation.CACTUS:
-        case PatchImplementation.REDWOOD:
-        case PatchImplementation.CELASTRUS:
-          return true
-      }
-      return false
-    }
-    static getByItemID(itemId) {
-      for (
-        let i = 0;
-        i <
-        /* Enum.values */ (function () {
-          let result = []
-          for (let val in PatchImplementation.Produce) {
-            if (!isNaN(val)) {
-              result.push(parseInt(val, 10))
-            }
-          }
-          return result
-        })().length;
-        i++
-      ) {
-        {
-          const produce = /* Enum.values */ (function () {
-            let result = []
-            for (let val in PatchImplementation.Produce) {
-              if (!isNaN(val)) {
-                result.push(parseInt(val, 10))
-              }
-            }
-            return result
-          })()[i]
-          if (
-            PatchImplementation.Produce['_$wrappers'][produce].getItemID() ===
-            itemId
-          ) {
-            return produce
-          }
-        }
-      }
-      return null
-    }
-    static getByContractName(contractName) {
-      for (
-        let i = 0;
-        i <
-        /* Enum.values */ (function () {
-          let result = []
-          for (let val in PatchImplementation.Produce) {
-            if (!isNaN(val)) {
-              result.push(parseInt(val, 10))
-            }
-          }
-          return result
-        })().length;
-        i++
-      ) {
-        {
-          const produce = /* Enum.values */ (function () {
-            let result = []
-            for (let val in PatchImplementation.Produce) {
-              if (!isNaN(val)) {
-                result.push(parseInt(val, 10))
-              }
-            }
-            return result
-          })()[i]
-          if (
-            /* equalsIgnoreCase */ ((o1, o2) =>
-              o1.toUpperCase() === (o2 === null ? o2 : o2.toUpperCase()))(
-              PatchImplementation.Produce['_$wrappers'][
-                produce
-              ].getContractName(),
-              contractName
-            )
-          ) {
-            return produce
-          }
-        }
-      }
-      return null
-    }
     getName() {
       return this.__name
     }
@@ -673,7 +587,7 @@ PatchImplementation['__interfaces'] = [
       'BARLEY',
       'Barley',
       'Barley',
-      null,
+      PatchImplementation.HOPS,
       ItemID.BARLEY,
       10,
       5,
@@ -685,7 +599,7 @@ PatchImplementation['__interfaces'] = [
       'HAMMERSTONE',
       'Hammerstone',
       'Hammerstone',
-      null,
+      PatchImplementation.HOPS,
       ItemID.HAMMERSTONE_HOPS,
       10,
       5,
@@ -697,7 +611,7 @@ PatchImplementation['__interfaces'] = [
       'ASGARNIAN',
       'Asgarnian',
       'Asgarnian',
-      null,
+      PatchImplementation.HOPS,
       ItemID.ASGARNIAN_HOPS,
       10,
       6,
@@ -709,7 +623,7 @@ PatchImplementation['__interfaces'] = [
       'JUTE',
       'Jute',
       'Jute',
-      null,
+      PatchImplementation.HOPS,
       ItemID.JUTE_FIBRE,
       10,
       6,
@@ -721,7 +635,7 @@ PatchImplementation['__interfaces'] = [
       'YANILLIAN',
       'Yanillian',
       'Yanillian',
-      null,
+      PatchImplementation.HOPS,
       ItemID.YANILLIAN_HOPS,
       10,
       7,
@@ -733,7 +647,7 @@ PatchImplementation['__interfaces'] = [
       'KRANDORIAN',
       'Krandorian',
       'Krandorian',
-      null,
+      PatchImplementation.HOPS,
       ItemID.KRANDORIAN_HOPS,
       10,
       8,
@@ -745,7 +659,7 @@ PatchImplementation['__interfaces'] = [
       'WILDBLOOD',
       'Wildblood',
       'Wildblood',
-      null,
+      PatchImplementation.HOPS,
       ItemID.WILDBLOOD_HOPS,
       10,
       9,
@@ -1119,7 +1033,7 @@ PatchImplementation['__interfaces'] = [
       'TEAK',
       'Teak',
       'Teak',
-      null,
+      PatchImplementation.HARDWOOD_TREE,
       ItemID.TEAK_LOGS,
       560,
       8
@@ -1129,7 +1043,7 @@ PatchImplementation['__interfaces'] = [
       'MAHOGANY',
       'Mahogany',
       'Mahogany',
-      null,
+      PatchImplementation.HARDWOOD_TREE,
       ItemID.MAHOGANY_LOGS,
       640,
       9
@@ -1139,7 +1053,7 @@ PatchImplementation['__interfaces'] = [
       'ATTAS',
       'Attas',
       'Attas',
-      null,
+      PatchImplementation.ANIMA,
       NullItemID.NULL_22940,
       640,
       9
@@ -1149,7 +1063,7 @@ PatchImplementation['__interfaces'] = [
       'IASOR',
       'Iasor',
       'Iasor',
-      null,
+      PatchImplementation.ANIMA,
       NullItemID.NULL_22939,
       640,
       9
@@ -1159,7 +1073,7 @@ PatchImplementation['__interfaces'] = [
       'KRONOS',
       'Kronos',
       'Kronos',
-      null,
+      PatchImplementation.ANIMA,
       NullItemID.NULL_22938,
       640,
       9
@@ -1169,7 +1083,7 @@ PatchImplementation['__interfaces'] = [
       'SEAWEED',
       'Seaweed',
       'Seaweed',
-      null,
+      PatchImplementation.SEAWEED,
       ItemID.GIANT_SEAWEED,
       10,
       5,
@@ -1181,7 +1095,7 @@ PatchImplementation['__interfaces'] = [
       'GRAPE',
       'Grape',
       'Grape',
-      null,
+      PatchImplementation.GRAPES,
       ItemID.GRAPES,
       5,
       8,
@@ -1193,7 +1107,7 @@ PatchImplementation['__interfaces'] = [
       'MUSHROOM',
       'Mushroom',
       'Mushroom',
-      null,
+      PatchImplementation.MUSHROOM,
       ItemID.MUSHROOM,
       40,
       7,
@@ -1205,7 +1119,7 @@ PatchImplementation['__interfaces'] = [
       'BELLADONNA',
       'Belladonna',
       'Belladonna',
-      null,
+      PatchImplementation.BELLADONNA,
       ItemID.CAVE_NIGHTSHADE,
       80,
       5
@@ -1215,7 +1129,7 @@ PatchImplementation['__interfaces'] = [
       'CALQUAT',
       'Calquat',
       'Calquat',
-      null,
+      PatchImplementation.CALQUAT,
       ItemID.CALQUAT_FRUIT,
       160,
       9,
@@ -1227,7 +1141,7 @@ PatchImplementation['__interfaces'] = [
       'SPIRIT_TREE',
       'Spirit tree',
       'Spirit tree',
-      null,
+      PatchImplementation.SPIRIT_TREE,
       ItemID.SPIRIT_TREE,
       320,
       13
@@ -1259,7 +1173,7 @@ PatchImplementation['__interfaces'] = [
       'HESPORI',
       'Hespori',
       'Hespori',
-      null,
+      PatchImplementation.HESPORI,
       NullItemID.NULL_23044,
       640,
       4,
@@ -1271,7 +1185,7 @@ PatchImplementation['__interfaces'] = [
       'CRYSTAL_TREE',
       'Crystal tree',
       'Crystal tree',
-      null,
+      PatchImplementation.CRYSTAL_TREE,
       ItemID.CRYSTAL_SHARDS,
       80,
       7
@@ -1533,92 +1447,6 @@ PatchImplementation['__interfaces'] = [
           this.harvestStages = 0
         }
       } else throw new Error('invalid overload')
-    }
-    requiresHealthCheck() {
-      switch (this.patchImplementation) {
-        case PatchImplementation.BUSH:
-        case PatchImplementation.TREE:
-        case PatchImplementation.CACTUS:
-        case PatchImplementation.REDWOOD:
-        case PatchImplementation.CELASTRUS:
-          return true
-      }
-      return false
-    }
-    static getByItemID(itemId) {
-      for (
-        let i = 0;
-        i <
-        /* Enum.values */ (function () {
-          let result = []
-          for (let val in PatchImplementation.Produce) {
-            if (!isNaN(val)) {
-              result.push(parseInt(val, 10))
-            }
-          }
-          return result
-        })().length;
-        i++
-      ) {
-        {
-          const produce = /* Enum.values */ (function () {
-            let result = []
-            for (let val in PatchImplementation.Produce) {
-              if (!isNaN(val)) {
-                result.push(parseInt(val, 10))
-              }
-            }
-            return result
-          })()[i]
-          if (
-            PatchImplementation.Produce['_$wrappers'][produce].getItemID() ===
-            itemId
-          ) {
-            return produce
-          }
-        }
-      }
-      return null
-    }
-    static getByContractName(contractName) {
-      for (
-        let i = 0;
-        i <
-        /* Enum.values */ (function () {
-          let result = []
-          for (let val in PatchImplementation.Produce) {
-            if (!isNaN(val)) {
-              result.push(parseInt(val, 10))
-            }
-          }
-          return result
-        })().length;
-        i++
-      ) {
-        {
-          const produce = /* Enum.values */ (function () {
-            let result = []
-            for (let val in PatchImplementation.Produce) {
-              if (!isNaN(val)) {
-                result.push(parseInt(val, 10))
-              }
-            }
-            return result
-          })()[i]
-          if (
-            /* equalsIgnoreCase */ ((o1, o2) =>
-              o1.toUpperCase() === (o2 === null ? o2 : o2.toUpperCase()))(
-              PatchImplementation.Produce['_$wrappers'][
-                produce
-              ].getContractName(),
-              contractName
-            )
-          ) {
-            return produce
-          }
-        }
-      }
-      return null
     }
     getName() {
       return this.__name
