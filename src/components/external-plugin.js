@@ -27,7 +27,7 @@ const ExternalPlugin = ({
               <a
                 href={support}
                 alt="Support link"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 target="_blank"
               >
                 {displayName}
