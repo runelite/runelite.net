@@ -107,9 +107,9 @@ export const getSlayerTask = createSelector(
     }
   }
     
-  const prefix = 'slayer.rsprofile.' + selectedAccount.accountId
+  const prefix = 'slayer.rsprofile.' + selectedAccount.accountId + '.'
   
-  if (!config[prefix + '.taskName']) {
+  if (!config[prefix + 'taskName']) {
     return {
       hasTask: false
     }
@@ -117,12 +117,12 @@ export const getSlayerTask = createSelector(
 
   return {
     hasTask: true,
-    name: config[prefix + '.taskName'],
+    name: config[prefix + 'taskName'],
     location: config[prefix + 'taskLocation'],
     start: config[prefix + 'initialAmount'],
-    remaining: config[prefix + '.amount'],
-    streak: config[prefix + '.streak'],
-    points: config[prefix + '.points']
+    remaining: config[prefix + 'amount'],
+    streak: config[prefix + 'streak'],
+    points: config[prefix + 'points']
   }
 })
 
