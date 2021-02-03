@@ -96,8 +96,20 @@ export const getAccounts = createSelector(getConfig, config => {
   return accounts
 })
 
-export const getSlayerTask = createSelector(getConfig, config => {
-  if (!config['slayer.taskName']) {
+export const getSlayerTask = createSelector(
+  getConfig,
+  getSelectedAccount,
+  (config, selectedAccount) => {
+  
+  if (!selectedAccount) {
+    return {
+      hasTask: false
+    }
+  }
+    
+  const prefix = 'slayer.rsprofile.' + selectedAccount.accountId
+  
+  if (!config[prefix + '.taskName']) {
     return {
       hasTask: false
     }
@@ -105,12 +117,12 @@ export const getSlayerTask = createSelector(getConfig, config => {
 
   return {
     hasTask: true,
-    name: config['slayer.taskName'],
-    location: config['slayer.taskLocation'],
-    start: config['slayer.initialAmount'],
-    remaining: config['slayer.amount'],
-    streak: config['slayer.streak'],
-    points: config['slayer.points']
+    name: config[prefix + '.taskName'],
+    location: config[prefix + 'taskLocation'],
+    start: config[prefix + 'initialAmount'],
+    remaining: config[prefix + '.amount'],
+    streak: config[prefix + '.streak'],
+    points: config[prefix + '.points']
   }
 })
 
