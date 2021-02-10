@@ -124,7 +124,11 @@ export const getFilteredExternalPlugins = createSelector(
         !filter.name ||
         p.displayName.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1 ||
         p.author.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1 ||
-        p.description.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1
+        p.description.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1 ||
+        (p.tags &&
+          p.tags.some(tag =>
+            tag.toLowerCase().includes(filter.name.toLowerCase())
+          ))
     )
 )
 
