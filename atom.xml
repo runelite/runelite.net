@@ -9,7 +9,27 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2021-03-08T19:46:59.016Z</updated>
+  <updated>2021-03-08T20:12:10.245Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2021-03-08-Wiki-Ge-Partnership</id>
+    <link href="https://runelite.net/blog/show/2021-03-08-Wiki-Ge-Partnership" />
+    <title>RuneLite &amp; OSRS Wiki Partnership for GE prices</title>
+    <summary>RuneLite &amp; OSRS Wiki Partnership for Grand Exchange prices</summary>
+    <updated>2021-03-08T20:00:00.000Z</updated>
+    <author>
+      <name>Adam</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><p>We are happy to announce that we have partnered with the <a href="https://oldschool.runescape.wiki/">RuneScape Wiki</a> to bring more accurate Grand Exchange pricing to the OSRS Wiki. When looking up an item on the wiki, you will now see a <code>View Real-time Prices</code> button, which, using trades made through RuneLite, will provide a much more accurate representation of the item's current price.</p>
+<p><img src="/img/blog/wiki-ge-partnership/prices.png" alt="prices" /></p>
+<p>These new prices are updated every few minutes, which is much more frequent than the current Grand Exchange price data, which can be a day or two out of date.</p>
+<p>In conjunction with this, the Wiki is providing an API for the real-time price data for developers for free. If you are a developer and have a project or website that uses Grand Exchange price data, check out their API docs <a href="https://oldschool.runescape.wiki/w/RuneScape:Real-time_Prices">here</a>.</p>
+<p>We will be updating RuneLite soon to use this data as a source for item pricing, so features such as examining items and bank value will also be more accurate.</p>
+<p>- Adam</p>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2021-02-13-1.7.0-Release</id>
