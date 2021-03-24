@@ -42,7 +42,7 @@ export const {
         const result = newEntries.map(entry => {
           entry.name = names[entry.itemId]
           entry.date = new Date(0)
-          entry.date.setUTCSeconds(entry.time.seconds)
+          entry.date.setUTCSeconds(Math.floor(entry.time / 1000))
           return entry
         })
 
