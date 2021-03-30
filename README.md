@@ -1,4 +1,4 @@
-# runelite.net ![CI](https://github.com/runelite/runelite.net/workflows/CI/badge.svg)
+# runelite.net [![CI](https://github.com/runelite/runelite.net/workflows/CI/badge.svg)](https://github.com/runelite/runelite.net/actions?query=workflow%3ACI+branch%3Amaster)
 
 Based on [redux-boot](https://github.com/deathbeam/redux-boot).
 
