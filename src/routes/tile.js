@@ -10,10 +10,10 @@ import './tag.css'
 const Tile = ({ activeTile, setActiveTile }) => (
   <Layout>
     <Meta
-      title={`Select tile marker - ${hero.title}`}
+      title={`Select tile markers - ${hero.title}`}
       description="Paste tile markers code exported from RuneLite here"
     />
-    <section id="tags">
+    <section id="tiles">
       <div class="content-section tag-container">
         <div class="page-header">
           <h1>Enter tile markers</h1>
