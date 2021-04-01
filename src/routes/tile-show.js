@@ -23,12 +23,14 @@ const RS_OFFSET_X = 1152
 const RS_OFFSET_Y = 8328
 const BOUNDS_TOLERANCE = 4
 const RS_CENTER_X = 8
+const MIN_ZOOM = 4
+const MAX_ZOOM = 11
 
 const toLatLng = (map, x, y) => {
   x = (x - RS_OFFSET_X) * RS_TILE_WIDTH_PX + RS_TILE_WIDTH_PX / 4
   y = MAP_HEIGHT_PX - (y - RS_OFFSET_Y) * RS_TILE_HEIGHT_PX
   x -= RS_CENTER_X
-  const latLng = map.unproject(L.point(x, y), map.getMaxZoom())
+  const latLng = map.unproject(L.point(x, y), MAX_ZOOM)
   return [latLng.lat, latLng.lng]
 }
 
@@ -88,8 +90,8 @@ const TileMapHandler = ({ tiles }) => {
 
   map.fitBounds(viewport)
   map.setMaxBounds(viewport)
-  map.setMinZoom(Math.max(map.getZoom() - 1, map.getMinZoom()))
-  map.setMaxZoom(Math.min(map.getZoom() + 2, map.getMaxZoom()))
+  map.setMinZoom(Math.max(map.getZoom() - 1, MIN_ZOOM))
+  map.setMaxZoom(Math.min(map.getZoom() + 2, MAX_ZOOM))
 
   if (!map.reset) {
     const reset = new L.Control({ position: 'topleft' })
@@ -149,7 +151,7 @@ const TileMap = ({ tiles }) => {
   }
 
   return (
-    <MapContainer minZoom={4} maxZoom={11} zoom={10}>
+    <MapContainer minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM}>
       <TileLayer
         url="https://raw.githubusercontent.com/Explv/osrs_map_tiles/master/{plane}/{z}/{x}/{y}.png"
         noWrap={true}
