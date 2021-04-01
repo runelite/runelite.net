@@ -47,14 +47,17 @@ const mapTile = tile => {
   const regionId = tile['regionId']
   const regionX = tile['regionX']
   const regionY = tile['regionY']
-  const intColor = tile['color']['value']
-  let jsColor = '#33b5e5'
+  let jsColor = '#ffffff'
 
-  if (intColor) {
-    jsColor = toColor(intColor)
-  } else if (tile['color']) {
-    const argb = tile['color']
-    jsColor = '#' + argb.slice(3, 9) + argb[1] + argb[2]
+  if (tile['color']) {
+    const intColor = tile['color']['value']
+
+    if (intColor) {
+      jsColor = toColor(intColor)
+    } else if (tile['color']) {
+      const argb = tile['color']
+      jsColor = '#' + argb.slice(3, 9) + argb[1] + argb[2]
+    }
   }
 
   const x = ((regionId >>> 8) << 6) + regionX
