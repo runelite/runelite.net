@@ -5,7 +5,7 @@ import Meta from '../components/meta'
 import { connect } from 'react-redux'
 import '../components/tooltip.css'
 import './tag.css'
-import L from 'leaflet'
+import { point, rectangle, Control, DomUtil, DomEvent } from 'leaflet'
 import {
   MapContainer,
   TileLayer,
@@ -40,7 +40,7 @@ const toLatLng = (map, x, y) => {
   x = (x - RS_OFFSET_X) * RS_TILE_WIDTH_PX + RS_TILE_WIDTH_PX / 4
   y = MAP_HEIGHT_PX - (y - RS_OFFSET_Y) * RS_TILE_HEIGHT_PX
   x -= RS_CENTER_X
-  const latLng = map.unproject(L.point(x, y), MAX_ZOOM)
+  const latLng = map.unproject(point(x, y), MAX_ZOOM)
   return [latLng.lat, latLng.lng]
 }
 
@@ -84,7 +84,7 @@ const mapTile = tile => {
 }
 
 const prepareMap = map => {
-  const mouseRect = L.rectangle(
+  const mouseRect = rectangle(
     [
       [0, 0],
       [0, 0]
@@ -108,15 +108,15 @@ const prepareMap = map => {
     ])
   })
 
-  const resetButton = new L.Control({ position: 'topleft' })
+  const resetButton = new Control({ position: 'topleft' })
   resetButton.onAdd = map => {
-    const container = L.DomUtil.create(
+    const container = DomUtil.create(
       'div',
       'leaflet-bar leaflet-control leaflet-control-zoom'
     )
-    const button = L.DomUtil.create('a', 'fas fa-redo', container)
+    const button = DomUtil.create('a', 'fas fa-redo', container)
 
-    L.DomEvent.disableClickPropagation(button).addListener(
+    DomEvent.disableClickPropagation(button).addListener(
       button,
       'click',
       () => map.viewport && map.fitBounds(map.viewport),
