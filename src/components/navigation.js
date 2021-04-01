@@ -106,7 +106,7 @@ const Navigation = ({ dark, login, loggedIn, username }) => (
             activeClassName="active"
             href="/tile"
           >
-            Tile Markers
+            Tile markers
           </Link>
         </li>
         <li class="nav-item">
