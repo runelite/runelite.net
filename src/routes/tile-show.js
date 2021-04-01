@@ -153,11 +153,10 @@ const TileMapHandler = ({ tiles }) => {
       L.DomEvent.disableClickPropagation(button).addListener(
         button,
         'click',
-        function () {
-          map.fitBounds(viewport)
-        },
+        () => map.fitBounds(viewport),
         button
       )
+
       return container
     }
 
