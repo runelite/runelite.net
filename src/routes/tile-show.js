@@ -87,8 +87,8 @@ const TileMapHandler = ({ tiles }) => {
 
   map.fitBounds(viewport)
   map.setMaxBounds(viewport)
-  map.setMinZoom(map.getZoom() - 1)
-  map.setMaxZoom(map.getZoom() + 2)
+  map.setMinZoom(Math.max(map.getZoom() - 1, map.getMinZoom()))
+  map.setMaxZoom(Math.min(map.getZoom() + 2, map.getMaxZoom()))
 
   return tiles.map(tile => {
     const pos = toLatLng(map, tile.x, tile.y)
