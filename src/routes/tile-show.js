@@ -26,6 +26,16 @@ const RS_CENTER_X = 8
 const MIN_ZOOM = 8
 const MAX_ZOOM = 11
 
+const fromLatLng = (map, latLng) => {
+  const point = map.project(latLng, MAX_ZOOM)
+  point.x += RS_CENTER_X * 2
+  let y = MAP_HEIGHT_PX - point.y + RS_TILE_HEIGHT_PX / 4
+  y = Math.round((y - RS_TILE_HEIGHT_PX) / RS_TILE_HEIGHT_PX) + RS_OFFSET_Y
+  const x =
+    Math.round((point.x - RS_TILE_WIDTH_PX) / RS_TILE_WIDTH_PX) + RS_OFFSET_X
+  return { x, y }
+}
+
 const toLatLng = (map, x, y) => {
   x = (x - RS_OFFSET_X) * RS_TILE_WIDTH_PX + RS_TILE_WIDTH_PX / 4
   y = MAP_HEIGHT_PX - (y - RS_OFFSET_Y) * RS_TILE_HEIGHT_PX
@@ -96,6 +106,40 @@ const TileMapHandler = ({ tiles }) => {
 
   map.fitBounds(viewport)
   map.setMaxBounds(viewport)
+
+  if (!map.mouseRect) {
+    let prevMouseRect, prevMousePos
+
+    map.on('mousemove', function (e) {
+      const mousePos = fromLatLng(map, e.latlng)
+
+      if (prevMousePos !== mousePos) {
+        prevMousePos = mousePos
+
+        if (prevMouseRect !== undefined) {
+          map.removeLayer(prevMouseRect)
+        }
+
+        prevMouseRect = L.rectangle(
+          [
+            toLatLng(map, mousePos.x, mousePos.y),
+            toLatLng(map, mousePos.x + 1, mousePos.y + 1)
+          ],
+          {
+            color: '#FFFFFF',
+            fillColor: '#FFFFFF',
+            fillOpacity: 0.3,
+            weight: 1,
+            interactive: false
+          }
+        )
+
+        prevMouseRect.addTo(map)
+      }
+    })
+
+    map.mouseRect = true
+  }
 
   if (!map.reset) {
     const reset = new L.Control({ position: 'topleft' })
