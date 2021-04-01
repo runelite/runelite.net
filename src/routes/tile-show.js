@@ -151,7 +151,7 @@ const TileMap = ({ tiles }) => {
   }
 
   return (
-    <MapContainer minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM}>
+    <MapContainer>
       <TileLayer
         url="https://raw.githubusercontent.com/Explv/osrs_map_tiles/master/{plane}/{z}/{x}/{y}.png"
         noWrap={true}
