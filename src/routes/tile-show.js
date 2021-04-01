@@ -70,10 +70,10 @@ const TileMapHandler = ({ tiles }) => {
   const map = useMap()
   const tilesX = tiles.map(t => t.x)
   const tilesY = tiles.map(t => t.y)
-  const minX = Math.min(...tilesX)
-  const maxX = Math.max(...tilesX)
-  const minY = Math.min(...tilesY)
-  const maxY = Math.max(...tilesY)
+  const minX = Math.min(...tilesX) - 4
+  const maxX = Math.max(...tilesX) + 4
+  const minY = Math.min(...tilesY) - 4
+  const maxY = Math.max(...tilesY) + 4
   const minCorner = toLatLng(map, minX, minY)
   const maxCorner = toLatLng(map, maxX, maxY)
   const viewport = [minCorner, maxCorner]
