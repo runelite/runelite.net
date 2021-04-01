@@ -89,6 +89,30 @@ const TileMapHandler = ({ tiles }) => {
   map.setMinZoom(Math.max(map.getZoom() - 1, map.getMinZoom()))
   map.setMaxZoom(Math.min(map.getZoom() + 2, map.getMaxZoom()))
 
+  if (!map.reset) {
+    const reset = new L.Control({ position: 'topleft' })
+    reset.onAdd = map => {
+      const container = L.DomUtil.create(
+        'div',
+        'leaflet-bar leaflet-control leaflet-control-zoom'
+      )
+      const button = L.DomUtil.create('a', 'fas fa-redo', container)
+
+      L.DomEvent.disableClickPropagation(button).addListener(
+        button,
+        'click',
+        function () {
+          map.fitBounds(viewport)
+        },
+        button
+      )
+      return container
+    }
+
+    map.reset = reset
+    reset.addTo(map)
+  }
+
   return tiles.map(tile => {
     const pos = toLatLng(map, tile.x, tile.y)
     const pos2 = toLatLng(map, tile.x + 1, tile.y + 1)
