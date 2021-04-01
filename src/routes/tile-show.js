@@ -169,7 +169,8 @@ const TileMapHandler = ({ tiles }) => {
             color: tile.color,
             fillColor: tile.color,
             fillOpacity: 0.3,
-            weight: 1
+            weight: 1,
+            interactive: false
           }}
         >
           {tile.label && <Tooltip>{tile.label}</Tooltip>}
