@@ -21,11 +21,13 @@ const RS_TILE_WIDTH_PX = 32
 const RS_TILE_HEIGHT_PX = 32
 const RS_OFFSET_X = 1152
 const RS_OFFSET_Y = 8328
+const BOUNDS_TOLERANCE = 4
+const RS_CENTER_X = 8
 
 const toLatLng = (map, x, y) => {
   x = (x - RS_OFFSET_X) * RS_TILE_WIDTH_PX + RS_TILE_WIDTH_PX / 4
   y = MAP_HEIGHT_PX - (y - RS_OFFSET_Y) * RS_TILE_HEIGHT_PX
-  x -= 8
+  x -= RS_CENTER_X
   const latLng = map.unproject(L.point(x, y), map.getMaxZoom())
   return [latLng.lat, latLng.lng]
 }
@@ -70,10 +72,10 @@ const TileMapHandler = ({ tiles }) => {
   const map = useMap()
   const tilesX = tiles.map(t => t.x)
   const tilesY = tiles.map(t => t.y)
-  const minX = Math.min(...tilesX) - 4
-  const maxX = Math.max(...tilesX) + 4
-  const minY = Math.min(...tilesY) - 4
-  const maxY = Math.max(...tilesY) + 4
+  const minX = Math.min(...tilesX) - BOUNDS_TOLERANCE
+  const maxX = Math.max(...tilesX) + BOUNDS_TOLERANCE
+  const minY = Math.min(...tilesY) - BOUNDS_TOLERANCE
+  const maxY = Math.max(...tilesY) + BOUNDS_TOLERANCE
   const minCorner = toLatLng(map, minX, minY)
   const maxCorner = toLatLng(map, maxX, maxY)
   const viewport = [minCorner, maxCorner]
