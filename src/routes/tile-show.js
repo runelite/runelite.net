@@ -23,7 +23,7 @@ const RS_OFFSET_X = 1152
 const RS_OFFSET_Y = 8328
 const BOUNDS_TOLERANCE = 4
 const RS_CENTER_X = 8
-const MIN_ZOOM = 4
+const MIN_ZOOM = 8
 const MAX_ZOOM = 11
 
 const toLatLng = (map, x, y) => {
@@ -91,8 +91,6 @@ const TileMapHandler = ({ tiles }) => {
 
   map.fitBounds(viewport)
   map.setMaxBounds(viewport)
-  map.setMinZoom(Math.max(map.getZoom() - 1, MIN_ZOOM))
-  map.setMaxZoom(Math.min(map.getZoom() + 2, MAX_ZOOM))
 
   if (!map.reset) {
     const reset = new L.Control({ position: 'topleft' })
@@ -149,7 +147,11 @@ const TileMap = ({ tiles }) => {
   }
 
   return (
-    <MapContainer>
+    <MapContainer
+      minZoom={MIN_ZOOM}
+      maxZoom={MAX_ZOOM}
+      zoom={(MAX_ZOOM + MIN_ZOOM) / 2}
+    >
       <TileLayer
         url="https://raw.githubusercontent.com/Explv/osrs_map_tiles/master/{plane}/{z}/{x}/{y}.png"
         noWrap={true}
