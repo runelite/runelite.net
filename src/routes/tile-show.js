@@ -108,42 +108,34 @@ const TileMapHandler = ({ tiles }) => {
   map.setMaxBounds(viewport)
 
   if (!map.mouseRect) {
-    let prevMouseRect, prevMousePos
+    map.mouseRect = L.rectangle(
+      [
+        [0, 0],
+        [0, 0]
+      ],
+      {
+        color: '#FFFFFF',
+        fillColor: '#FFFFFF',
+        fillOpacity: 0.3,
+        weight: 1,
+        interactive: false
+      }
+    )
+
+    map.mouseRect.addTo(map)
 
     map.on('mousemove', function (e) {
       const mousePos = fromLatLng(map, e.latlng)
-
-      if (prevMousePos !== mousePos) {
-        prevMousePos = mousePos
-
-        if (prevMouseRect !== undefined) {
-          map.removeLayer(prevMouseRect)
-        }
-
-        prevMouseRect = L.rectangle(
-          [
-            toLatLng(map, mousePos.x, mousePos.y),
-            toLatLng(map, mousePos.x + 1, mousePos.y + 1)
-          ],
-          {
-            color: '#FFFFFF',
-            fillColor: '#FFFFFF',
-            fillOpacity: 0.3,
-            weight: 1,
-            interactive: false
-          }
-        )
-
-        prevMouseRect.addTo(map)
-      }
+      map.mouseRect.setBounds([
+        toLatLng(map, mousePos.x, mousePos.y),
+        toLatLng(map, mousePos.x + 1, mousePos.y + 1)
+      ])
     })
-
-    map.mouseRect = true
   }
 
-  if (!map.reset) {
-    const reset = new L.Control({ position: 'topleft' })
-    reset.onAdd = map => {
+  if (!map.resetButton) {
+    map.resetButton = new L.Control({ position: 'topleft' })
+    map.resetButton.onAdd = map => {
       const container = L.DomUtil.create(
         'div',
         'leaflet-bar leaflet-control leaflet-control-zoom'
@@ -160,8 +152,7 @@ const TileMapHandler = ({ tiles }) => {
       return container
     }
 
-    map.reset = reset
-    reset.addTo(map)
+    map.resetButton.addTo(map)
   }
 
   return tiles.map(tile => {
