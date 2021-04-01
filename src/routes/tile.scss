@@ -4,3 +4,9 @@
   height: 700px;
   width: 100%;
 }
+
+.leaflet-tooltip {
+  width: max-content;
+  max-width: 300px;
+  white-space: normal;
+}
