@@ -143,8 +143,8 @@ const TileShow = ({ data, tiles }) => {
       <section id="tiles">
         <div class="content-section tag-container">
           <h1 class="page-header">Tile markers</h1>
-          <pre class="pre-select">{data}</pre>
           <TileMap tiles={tiles.map(mapTile)} />
+          <pre class="pre-select">{data}</pre>
         </div>
       </section>
     </Layout>
