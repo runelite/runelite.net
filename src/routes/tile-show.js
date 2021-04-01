@@ -180,7 +180,7 @@ const TileShow = ({ data, tiles }) => {
 
 const mapStateToProps = (state, { b64 }) => {
   const decodedData = atob(b64)
-  var jsonData = []
+  let jsonData = []
 
   try {
     jsonData = JSON.parse(decodedData)
