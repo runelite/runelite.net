@@ -104,6 +104,16 @@ const Navigation = ({ dark, login, loggedIn, username }) => (
             onClick={toggleMenu}
             class="nav-link"
             activeClassName="active"
+            href="/tile"
+          >
+            Tile Markers
+          </Link>
+        </li>
+        <li class="nav-item">
+          <Link
+            onClick={toggleMenu}
+            class="nav-link"
+            activeClassName="active"
             href="/plugin-hub"
           >
             Plugin Hub
