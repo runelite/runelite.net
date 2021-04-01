@@ -85,6 +85,7 @@ const TileMapHandler = ({ tiles }) => {
   map.eachLayer(l => {
     if (l instanceof L.TileLayer) {
       l.options.plane = tiles[0].z
+      l.redraw()
     }
   })
 
