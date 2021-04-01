@@ -68,6 +68,15 @@ const mapTile = tile => {
 
 const TileMapHandler = ({ tiles }) => {
   const map = useMap()
+  const tilesX = tiles.map(t => t.x)
+  const tilesY = tiles.map(t => t.y)
+  const minX = Math.min(...tilesX)
+  const maxX = Math.max(...tilesX)
+  const minY = Math.min(...tilesY)
+  const maxY = Math.max(...tilesY)
+  const minCorner = toLatLng(map, minX, minY)
+  const maxCorner = toLatLng(map, maxX, maxY)
+  const viewport = [minCorner, maxCorner]
 
   map.eachLayer(l => {
     if (l instanceof L.TileLayer) {
@@ -76,7 +85,10 @@ const TileMapHandler = ({ tiles }) => {
     }
   })
 
-  map.setView(toLatLng(map, tiles[0].x, tiles[0].y))
+  map.fitBounds(viewport)
+  map.setMaxBounds(viewport)
+  map.setMinZoom(map.getZoom() - 1)
+  map.setMaxZoom(map.getZoom() + 2)
 
   return tiles.map(tile => {
     const pos = toLatLng(map, tile.x, tile.y)
