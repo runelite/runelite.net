@@ -70,6 +70,15 @@ const mapTile = tile => {
   }
 }
 
+const TileLayerHandler = ({ tiles }) => (
+  <TileLayer
+    url="https://raw.githubusercontent.com/Explv/osrs_map_tiles/master/{plane}/{z}/{x}/{y}.png"
+    noWrap={true}
+    tms={true}
+    plane={tiles[0].z}
+  />
+)
+
 const TileMapHandler = ({ tiles }) => {
   const map = useMap()
   const tilesX = tiles.map(t => t.x)
@@ -81,13 +90,6 @@ const TileMapHandler = ({ tiles }) => {
   const minCorner = toLatLng(map, minX, minY)
   const maxCorner = toLatLng(map, maxX, maxY)
   const viewport = [minCorner, maxCorner]
-
-  map.eachLayer(l => {
-    if (l instanceof L.TileLayer) {
-      l.options.plane = tiles[0].z
-      l.redraw()
-    }
-  })
 
   map.fitBounds(viewport)
   map.setMaxBounds(viewport)
@@ -152,12 +154,7 @@ const TileMap = ({ tiles }) => {
       maxZoom={MAX_ZOOM}
       zoom={(MAX_ZOOM + MIN_ZOOM) / 2}
     >
-      <TileLayer
-        url="https://raw.githubusercontent.com/Explv/osrs_map_tiles/master/{plane}/{z}/{x}/{y}.png"
-        noWrap={true}
-        tms={true}
-        plane={0}
-      />
+      <TileLayerHandler tiles={tiles} />
       <TileMapHandler tiles={tiles} />
     </MapContainer>
   )
