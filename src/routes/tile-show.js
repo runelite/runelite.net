@@ -83,12 +83,58 @@ const mapTile = tile => {
   }
 }
 
-const TileLayerHandler = ({ tiles }) => (
+const prepareMap = map => {
+  const mouseRect = L.rectangle(
+    [
+      [0, 0],
+      [0, 0]
+    ],
+    {
+      color: '#FFFFFF',
+      fillColor: '#FFFFFF',
+      fillOpacity: 0.3,
+      weight: 1,
+      interactive: false
+    }
+  )
+
+  mouseRect.addTo(map)
+
+  map.on('mousemove', function (e) {
+    const mousePos = fromLatLng(map, e.latlng)
+    mouseRect.setBounds([
+      toLatLng(map, mousePos.x, mousePos.y),
+      toLatLng(map, mousePos.x + 1, mousePos.y + 1)
+    ])
+  })
+
+  const resetButton = new L.Control({ position: 'topleft' })
+  resetButton.onAdd = map => {
+    const container = L.DomUtil.create(
+      'div',
+      'leaflet-bar leaflet-control leaflet-control-zoom'
+    )
+    const button = L.DomUtil.create('a', 'fas fa-redo', container)
+
+    L.DomEvent.disableClickPropagation(button).addListener(
+      button,
+      'click',
+      () => map.viewport && map.fitBounds(map.viewport),
+      button
+    )
+
+    return container
+  }
+
+  resetButton.addTo(map)
+}
+
+const TileLayerHandler = ({ plane }) => (
   <TileLayer
     url="https://raw.githubusercontent.com/Explv/osrs_map_tiles/master/{plane}/{z}/{x}/{y}.png"
     noWrap={true}
     tms={true}
-    plane={tiles[0].z}
+    plane={plane}
   />
 )
 
@@ -104,56 +150,9 @@ const TileMapHandler = ({ tiles }) => {
   const maxCorner = toLatLng(map, maxX, maxY)
   const viewport = [minCorner, maxCorner]
 
+  map.viewport = viewport
   map.fitBounds(viewport)
   map.setMaxBounds(viewport)
-
-  if (!map.mouseRect) {
-    map.mouseRect = L.rectangle(
-      [
-        [0, 0],
-        [0, 0]
-      ],
-      {
-        color: '#FFFFFF',
-        fillColor: '#FFFFFF',
-        fillOpacity: 0.3,
-        weight: 1,
-        interactive: false
-      }
-    )
-
-    map.mouseRect.addTo(map)
-
-    map.on('mousemove', function (e) {
-      const mousePos = fromLatLng(map, e.latlng)
-      map.mouseRect.setBounds([
-        toLatLng(map, mousePos.x, mousePos.y),
-        toLatLng(map, mousePos.x + 1, mousePos.y + 1)
-      ])
-    })
-  }
-
-  if (!map.resetButton) {
-    map.resetButton = new L.Control({ position: 'topleft' })
-    map.resetButton.onAdd = map => {
-      const container = L.DomUtil.create(
-        'div',
-        'leaflet-bar leaflet-control leaflet-control-zoom'
-      )
-      const button = L.DomUtil.create('a', 'fas fa-redo', container)
-
-      L.DomEvent.disableClickPropagation(button).addListener(
-        button,
-        'click',
-        () => map.fitBounds(viewport),
-        button
-      )
-
-      return container
-    }
-
-    map.resetButton.addTo(map)
-  }
 
   return tiles.map(tile => {
     const pos = toLatLng(map, tile.x, tile.y)
@@ -191,8 +190,9 @@ const TileMap = ({ tiles }) => {
       maxZoom={MAX_ZOOM}
       zoom={(MAX_ZOOM + MIN_ZOOM) / 2}
       attributionControl={false}
+      whenCreated={prepareMap}
     >
-      <TileLayerHandler tiles={tiles} />
+      <TileLayerHandler plane={tiles[0].z} />
       <TileMapHandler tiles={tiles} />
     </MapContainer>
   )
