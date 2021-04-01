@@ -100,31 +100,31 @@ export const getSlayerTask = createSelector(
   getConfig,
   getSelectedAccount,
   (config, selectedAccount) => {
-  
-  if (!selectedAccount) {
-    return {
-      hasTask: false
+    if (!selectedAccount) {
+      return {
+        hasTask: false
+      }
     }
-  }
-    
-  const prefix = 'slayer.rsprofile.' + selectedAccount.accountId + '.'
-  
-  if (!config[prefix + 'taskName']) {
-    return {
-      hasTask: false
-    }
-  }
 
-  return {
-    hasTask: true,
-    name: config[prefix + 'taskName'],
-    location: config[prefix + 'taskLocation'],
-    start: config[prefix + 'initialAmount'],
-    remaining: config[prefix + 'amount'],
-    streak: config[prefix + 'streak'],
-    points: config[prefix + 'points']
+    const prefix = 'slayer.rsprofile.' + selectedAccount.accountId + '.'
+
+    if (!config[prefix + 'taskName']) {
+      return {
+        hasTask: false
+      }
+    }
+
+    return {
+      hasTask: true,
+      name: config[prefix + 'taskName'],
+      location: config[prefix + 'taskLocation'],
+      start: config[prefix + 'initialAmount'],
+      remaining: config[prefix + 'amount'],
+      streak: config[prefix + 'streak'],
+      points: config[prefix + 'points']
+    }
   }
-})
+)
 
 export const getBossLog = createSelector(
   getConfig,

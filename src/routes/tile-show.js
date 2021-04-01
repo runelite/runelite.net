@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h, Fragment } from 'preact'
 import Layout from '../components/layout'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
@@ -11,6 +11,7 @@ import {
   TileLayer,
   Rectangle,
   Tooltip,
+  ImageOverlay,
   useMap
 } from 'react-leaflet'
 import './tile.scss'
@@ -43,7 +44,14 @@ const mapTile = tile => {
   const regionX = tile['regionX']
   const regionY = tile['regionY']
   const intColor = tile['color']['value']
-  const jsColor = intColor ? toColor(intColor) : '#33b5e5'
+  let jsColor = '#33b5e5'
+
+  if (intColor) {
+    jsColor = toColor(intColor)
+  } else if (tile['color']) {
+    const argb = tile['color']
+    jsColor = '#' + argb.slice(3, 9) + argb[1] + argb[2]
+  }
 
   const x = ((regionId >>> 8) << 6) + regionX
   const y = ((regionId & 0xff) << 6) + regionY
@@ -61,10 +69,6 @@ const mapTile = tile => {
 const TileMapHandler = ({ tiles }) => {
   const map = useMap()
 
-  if (!tiles) {
-    return null
-  }
-
   map.eachLayer(l => {
     if (l instanceof L.TileLayer) {
       l.options.plane = tiles[0].z
@@ -79,32 +83,46 @@ const TileMapHandler = ({ tiles }) => {
     const pos2 = toLatLng(map, tile.x + 1, tile.y + 1)
     const bounds = [pos, pos2]
     return (
-      <Rectangle
-        bounds={bounds}
-        pathOptions={{
-          color: tile.color,
-          fillColor: tile.color,
-          fillOpacity: 0.3,
-          weight: 1
-        }}
-      >
-        {tile.label && <Tooltip>{tile.label}</Tooltip>}
-      </Rectangle>
+      <Fragment>
+        {tile.label && (
+          <ImageOverlay
+            bounds={bounds}
+            url={'/img/tile-text.png'}
+          ></ImageOverlay>
+        )}
+        <Rectangle
+          bounds={bounds}
+          pathOptions={{
+            color: tile.color,
+            fillColor: tile.color,
+            fillOpacity: 0.3,
+            weight: 1
+          }}
+        >
+          {tile.label && <Tooltip>{tile.label}</Tooltip>}
+        </Rectangle>
+      </Fragment>
     )
   })
 }
 
-const TileMap = ({ tiles }) => (
-  <MapContainer minZoom={4} maxZoom={11} zoom={10}>
-    <TileLayer
-      url="https://raw.githubusercontent.com/Explv/osrs_map_tiles/master/{plane}/{z}/{x}/{y}.png"
-      noWrap={true}
-      tms={true}
-      plane={0}
-    />
-    <TileMapHandler tiles={tiles} />
-  </MapContainer>
-)
+const TileMap = ({ tiles }) => {
+  if (!tiles || tiles.length === 0) {
+    return null
+  }
+
+  return (
+    <MapContainer minZoom={4} maxZoom={11} zoom={10}>
+      <TileLayer
+        url="https://raw.githubusercontent.com/Explv/osrs_map_tiles/master/{plane}/{z}/{x}/{y}.png"
+        noWrap={true}
+        tms={true}
+        plane={0}
+      />
+      <TileMapHandler tiles={tiles} />
+    </MapContainer>
+  )
+}
 
 const TileShow = ({ data, tiles }) => {
   return (
@@ -112,6 +130,7 @@ const TileShow = ({ data, tiles }) => {
       <Meta title={`Tile markers - ${hero.title}`} description={data} />
       <section id="tiles">
         <div class="content-section tag-container">
+          <h1 class="page-header">Tile markers</h1>
           <pre class="pre-select">{data}</pre>
           <TileMap tiles={tiles.map(mapTile)} />
         </div>
@@ -122,7 +141,11 @@ const TileShow = ({ data, tiles }) => {
 
 const mapStateToProps = (state, { b64 }) => {
   const decodedData = atob(b64)
-  const jsonData = JSON.parse(decodedData)
+  var jsonData = []
+
+  try {
+    jsonData = JSON.parse(decodedData)
+  } catch (ignored) {}
 
   return {
     data: decodedData,

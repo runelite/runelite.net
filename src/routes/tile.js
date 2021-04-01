@@ -5,6 +5,7 @@ import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
 import { setActiveTile } from '../modules/tile'
 import { connect } from 'react-redux'
+import './tag.css'
 
 const Tile = ({ activeTile, setActiveTile }) => (
   <Layout>
