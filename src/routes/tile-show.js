@@ -190,6 +190,7 @@ const TileMap = ({ tiles }) => {
       minZoom={MIN_ZOOM}
       maxZoom={MAX_ZOOM}
       zoom={(MAX_ZOOM + MIN_ZOOM) / 2}
+      attributionControl={false}
     >
       <TileLayerHandler tiles={tiles} />
       <TileMapHandler tiles={tiles} />
