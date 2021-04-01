@@ -124,10 +124,7 @@ const TileMapHandler = ({ tiles }) => {
     return (
       <Fragment>
         {tile.label && (
-          <ImageOverlay
-            bounds={bounds}
-            url={'/img/tile-text.png'}
-          ></ImageOverlay>
+          <ImageOverlay bounds={bounds} url={'/img/tile-text.png'} />
         )}
         <Rectangle
           bounds={bounds}
