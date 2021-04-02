@@ -61,7 +61,7 @@ const prepareMap = map => {
 
   mouseRect.addTo(map)
 
-  map.on('mousemove', function (e) {
+  map.on('mousemove', e => {
     const mousePos = fromLatLng(map, e.latlng)
     mouseRect.setBounds([
       toLatLng(map, mousePos.x, mousePos.y),
