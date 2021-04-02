@@ -40,6 +40,7 @@ const mapTile = tile => {
     x,
     y,
     z,
+    region: regionId,
     label: tile['label'],
     color: jsColor
   }
@@ -51,7 +52,6 @@ const TileShow = ({ data, tiles }) => {
       <Meta title={`Tile markers - ${hero.title}`} description={data} />
       <section id="tiles">
         <div class="content-section tag-container">
-          <h1 class="page-header">Tile markers</h1>
           <RuneScapeMap tiles={tiles.map(mapTile)} />
           <pre class="pre-select">{data}</pre>
         </div>

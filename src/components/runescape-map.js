@@ -8,6 +8,7 @@ import {
   ImageOverlay,
   useMap
 } from 'react-leaflet'
+import regions from '../_data/regions'
 import './runescape-map.scss'
 
 // lat/lng calculations source
@@ -40,6 +41,18 @@ const toLatLng = (map, x, y) => {
   x -= RS_CENTER_X
   const latLng = map.unproject(point(x, y), MAX_ZOOM)
   return [latLng.lat, latLng.lng]
+}
+
+const findRegionName = tiles => {
+  for (const tile of tiles) {
+    for (const region of regions) {
+      if (region.regions.includes(tile.region)) {
+        return region.name
+      }
+    }
+  }
+
+  return 'Unknown area'
 }
 
 const prepareMap = map => {
@@ -154,18 +167,22 @@ const RuneScapeMap = ({ tiles }) => {
   }
 
   const plane = tiles.length > 0 ? tiles[0].z : 0
+  const region = findRegionName(tiles)
 
   return (
-    <MapContainer
-      minZoom={MIN_ZOOM}
-      maxZoom={MAX_ZOOM}
-      zoom={DEFAULT_ZOOM}
-      attributionControl={false}
-      whenCreated={prepareMap}
-    >
-      <TileLayerHandler plane={plane} />
-      <TileMapHandler tiles={tiles} />
-    </MapContainer>
+    <Fragment>
+      <h1 class="page-header">{region}</h1>
+      <MapContainer
+        minZoom={MIN_ZOOM}
+        maxZoom={MAX_ZOOM}
+        zoom={DEFAULT_ZOOM}
+        attributionControl={false}
+        whenCreated={prepareMap}
+      >
+        <TileLayerHandler plane={plane} />
+        <TileMapHandler tiles={tiles} />
+      </MapContainer>
+    </Fragment>
   )
 }
 
