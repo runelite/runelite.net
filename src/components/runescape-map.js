@@ -45,6 +45,10 @@ const toLatLng = (map, x, y) => {
 
 const findRegionName = tiles => {
   for (const tile of tiles) {
+    if (!tile.region) {
+      continue
+    }
+
     for (const region of regions) {
       if (region.regions.includes(tile.region)) {
         return region.name
@@ -52,7 +56,7 @@ const findRegionName = tiles => {
     }
   }
 
-  return 'Unknown area'
+  return ''
 }
 
 const prepareMap = map => {
@@ -171,7 +175,7 @@ const RuneScapeMap = ({ tiles }) => {
 
   return (
     <Fragment>
-      <h1 class="page-header">{region}</h1>
+      {region && <h1 class="page-header">{region}</h1>}
       <MapContainer
         minZoom={MIN_ZOOM}
         maxZoom={MAX_ZOOM}
