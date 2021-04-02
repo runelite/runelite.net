@@ -84,7 +84,7 @@ const prepareMap = map => {
       () =>
         map.viewport
           ? map.fitBounds(map.viewport)
-          : map.setView(defaultView) && map.setZoom(DEFAULT_ZOOM),
+          : map.setView(defaultView, DEFAULT_ZOOM),
       button
     )
 
