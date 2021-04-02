@@ -10,6 +10,7 @@ import sessionReducer from './session'
 import tagReducer from './tag'
 import pricesReducer from './prices'
 import externalPluginsReducer from './plugin-hub'
+import tileReducer from './tile'
 
 // Combine all redux reducers into one root reducer
 export default {
@@ -24,5 +25,6 @@ export default {
   loot: lootReducer,
   session: sessionReducer,
   tag: tagReducer,
-  prices: pricesReducer
+  prices: pricesReducer,
+  tile: tileReducer
 }
