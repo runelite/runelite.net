@@ -99,7 +99,7 @@ export const getAnnotatedLoot = createSelector(
       entry.date.setUTCSeconds(entry.last_time.seconds)
       entry.drops = entry.drops.map(drop => {
         const item = items.find(item => item.id === drop.id)
-        drop.name = item && item.name
+        drop.name = item && item.name ? item.name : 'null'
         const note = drop.name && items.find(item => item.id === drop.id - 1)
         const unnoted = note && note.name === drop.name && note.id
 
