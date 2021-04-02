@@ -18,10 +18,11 @@ const RS_TILE_HEIGHT_PX = 32
 const RS_OFFSET_X = 1152
 const RS_OFFSET_Y = 8328
 const BOUNDS_TOLERANCE = 4
-const MIN_ZOOM = 8
+const MIN_ZOOM = 6
 const MAX_ZOOM = 11
-const DEFAULT_ZOOM = 4
+const DEFAULT_ZOOM = 8
 const RS_CENTER_X = 8
+const DEFAULT_VIEW = [3225, 3219]
 
 const fromLatLng = (map, latLng) => {
   const point = map.project(latLng, MAX_ZOOM)
@@ -42,8 +43,8 @@ const toLatLng = (map, x, y) => {
 }
 
 const prepareMap = map => {
-  // Lumbridge default view
-  map.setView(toLatLng(map, 3225, 3219))
+  const defaultView = toLatLng(map, DEFAULT_VIEW[0], DEFAULT_VIEW[1])
+  map.setView(defaultView)
 
   const mouseRect = rectangle(
     [
@@ -80,7 +81,10 @@ const prepareMap = map => {
     DomEvent.disableClickPropagation(button).addListener(
       button,
       'click',
-      () => map.viewport && map.fitBounds(map.viewport),
+      () =>
+        map.viewport
+          ? map.fitBounds(map.viewport)
+          : map.setView(defaultView) && map.setZoom(DEFAULT_ZOOM),
       button
     )
 
