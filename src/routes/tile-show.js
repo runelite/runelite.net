@@ -16,15 +16,17 @@ import {
 } from 'react-leaflet'
 import './tile.scss'
 
+// lat/lng calculations source
+// https://github.com/Explv/Explv.github.io/blob/master/js/model/Position.js
 const MAP_HEIGHT_PX = 296704
 const RS_TILE_WIDTH_PX = 32
 const RS_TILE_HEIGHT_PX = 32
 const RS_OFFSET_X = 1152
 const RS_OFFSET_Y = 8328
 const BOUNDS_TOLERANCE = 4
-const RS_CENTER_X = 8
 const MIN_ZOOM = 8
 const MAX_ZOOM = 11
+const RS_CENTER_X = 8
 
 const fromLatLng = (map, latLng) => {
   const point = map.project(latLng, MAX_ZOOM)
