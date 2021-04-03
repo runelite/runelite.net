@@ -1,5 +1,4 @@
 import { h, Fragment } from 'preact'
-import '@gouch/to-title-case'
 import { bindActionCreators } from 'redux'
 import {
   fetchConfig,
