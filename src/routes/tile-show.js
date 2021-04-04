@@ -40,7 +40,6 @@ const mapTile = tile => {
     x,
     y,
     z,
-    region: regionId,
     label: tile['label'],
     color: jsColor
   }
