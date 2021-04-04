@@ -43,16 +43,14 @@ const toLatLng = (map, x, y) => {
   return [latLng.lat, latLng.lng]
 }
 
-const findRegionName = tiles => {
-  for (const tile of tiles) {
-    if (!tile.region) {
-      continue
-    }
+const findCurrentRegion = map => {
+  const center = map.getCenter()
+  const rsCenter = fromLatLng(map, center)
+  const rsRegion = ((rsCenter.x >> 6) << 8) | (rsCenter.y >> 6)
 
-    for (const region of regions) {
-      if (region.regions.includes(tile.region)) {
-        return region.name
-      }
+  for (const region of regions) {
+    if (region.regions.includes(rsRegion)) {
+      return region.name
     }
   }
 
@@ -69,8 +67,8 @@ const prepareMap = map => {
       [0, 0]
     ],
     {
-      color: '#FFFFFF',
-      fillColor: '#FFFFFF',
+      color: '#1e1e1e',
+      fillColor: '#1e1e1e',
       fillOpacity: 0.3,
       weight: 1,
       interactive: false
@@ -87,12 +85,27 @@ const prepareMap = map => {
     ])
   })
 
+  const locationControl = new Control({ position: 'topright' })
+  locationControl.onAdd = map => {
+    const container = DomUtil.create('div', 'leaflet-bar leaflet-control')
+
+    const button = DomUtil.create('span', 'leaflet-custom-control', container)
+    const updateButton = () => {
+      const region = findCurrentRegion(map)
+      button.hidden = !region
+      button.innerHTML = region
+    }
+
+    updateButton()
+    map.on('move', updateButton)
+    return container
+  }
+
+  locationControl.addTo(map)
+
   const resetButton = new Control({ position: 'topleft' })
   resetButton.onAdd = map => {
-    const container = DomUtil.create(
-      'div',
-      'leaflet-bar leaflet-control leaflet-control-zoom'
-    )
+    const container = DomUtil.create('div', 'leaflet-bar leaflet-control')
     const button = DomUtil.create('a', 'fas fa-redo', container)
 
     DomEvent.disableClickPropagation(button).addListener(
@@ -171,11 +184,9 @@ const RuneScapeMap = ({ tiles }) => {
   }
 
   const plane = tiles.length > 0 ? tiles[0].z : 0
-  const region = findRegionName(tiles)
 
   return (
     <Fragment>
-      {region && <h1 class="page-header">{region}</h1>}
       <MapContainer
         minZoom={MIN_ZOOM}
         maxZoom={MAX_ZOOM}

@@ -10,3 +10,37 @@
   max-width: 300px;
   white-space: normal;
 }
+
+.leaflet-bar a {
+  background-color: #1e1e1e;
+  color: white;
+  border-bottom: none;
+}
+
+.leaflet-bar a:hover {
+  background-color: #1e1e1e;
+  color: #dc8a00;
+  cursor: pointer;
+  border-bottom: none;
+}
+
+.leaflet-bar a.leaflet-disabled {
+  cursor: default;
+  background-color: #222222;
+  color: #5a5a5a;
+}
+
+.leaflet-custom-control {
+  height: 30px;
+  line-height: 30px;
+  border-radius: 2px;
+  background-color: #1e1e1e;
+  color: white;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 1.5em;
+  cursor: grab;
+}
