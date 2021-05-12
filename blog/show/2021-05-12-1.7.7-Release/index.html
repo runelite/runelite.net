@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><meta name="google-site-verification" content="_wxrTRAcgx3bHof630x75_YKSXklUH55NkOAA_5GfmU"><link rel="manifest" href="/manifest.json"><link rel="shortcut icon" href="/favicon.ico"><title>1.7.7 Release - RuneLite</title><meta name="description" content="Minor fixes and improvements"><meta name="author" content="Adam"><script type="text/javascript">!function(i){if(i.search){var a={};i.search.slice(1).split("&").forEach((function(i){var l=i.split("=");a[l[0]]=l.slice(1).join("=").replace(/~and~/g,"&")})),void 0!==a.p&&window.history.replaceState(null,null,i.pathname.slice(0,-1)+(a.p||"")+(a.q?"?"+a.q:"")+i.hash)}}(window.location)</script><link href="/static/css/2.0d21f304.chunk.css" rel="stylesheet"><link href="/static/css/main.605fcbba.chunk.css" rel="stylesheet"><link rel="stylesheet" type="text/css" href="/static/css/4.e2ed0cde.chunk.css"><script charset="utf-8" src="/static/js/4.c98b1336.chunk.js"></script><script charset="utf-8" src="/static/js/141.041c560d.chunk.js"></script></head><body><div id="root"><div style="height: 100%;"><div class="fixed-top animated loader" style="display: none;"></div><nav class="navbar navbar-expand-lg fixed-top navbar-dark"><a class="navbar-brand" activeclassname="active" href="/"><img src="/img/runelite_logo_transparent.png" class="icon" alt="RuneLite"> </a><input type="checkbox" id="navbar-check-box"><label for="navbar-check-box" class="navbar-toggler"><span class="navbar-toggler-icon"></span></label><div class="collapse navbar-collapse" id="navbar"><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" activeclassname="active" href="/features">Features</a></li><li class="nav-item"><a class="nav-link" activeclassname="active" href="/blog">Blog</a></li><li class="nav-item"><a class="nav-link" activeclassname="active" href="/pulse">Pulse</a></li><li class="nav-item"><a class="nav-link" href="https://github.com/runelite/runelite/wiki">Wiki</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown">API</a><div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item" href="https://static.runelite.net/api/http-service/">RuneLite HTTP API</a><a class="dropdown-item" href="https://static.runelite.net/api/runelite-api/">RuneLite API</a><a class="dropdown-item" href="https://static.runelite.net/api/runelite-client/">RuneLite Client API</a></div></li><li class="nav-item"><a class="nav-link" activeclassname="active" href="/tag">Tags</a></li><li class="nav-item"><a class="nav-link" activeclassname="active" href="/tile">Tile markers</a></li><li class="nav-item"><a class="nav-link" activeclassname="active" href="/plugin-hub">Plugin Hub</a></li></ul><ul class="navbar-nav ml-auto"><li class="nav-item"><a class="nav-link" href="https://merch.runelite.net">Buy Merch</a></li><li class="nav-item"><a class="nav-link" href="https://www.patreon.com/runelite">Become a patron</a></li><li class="nav-item"><a class="nav-link nav-icon" href="https://runelite.net/discord" title="Discord"><i class="fab fa-discord"></i><span class="d-lg-none"> Discord</span></a></li><li class="nav-item"><a class="nav-link nav-icon" href="https://twitter.com/RuneLiteClient" title="Twitter"><i class="fab fa-twitter"></i><span class="d-lg-none"> Twitter</span></a></li><li class="nav-item"><a class="nav-link nav-icon" href="https://github.com/runelite" title="GitHub"><i class="fab fa-github"></i><span class="d-lg-none"> GitHub</span></a></li><li class="nav-item"><form class="form-inline"><button class="btn btn-primary" type="button">Login</button></form></li></ul></div></nav><div class="container" id="layout"><section id="blog"><div class="content-section"><div class="page-header"><h1>1.7.7 Release</h1><p class="text-muted"><span title="Wed May 12 2021 10:00:00 GMT+0000 (Coordinated Universal Time)">6 hours ago</span> by Adam</p></div><div class="markdown-body news-page"><div><p>We've had a few updates since the last blog post, mostly minor, and so this post includes those changes as well as the changes today.</p>
+<p>The low detail plugin now has an option to hide lower floors, which is particularly useful on lower end computers in
+busy areas, like the hallowed sepulchre.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Before</th>
+<th style="text-align:center">After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/img/blog/1.7.7-Release/hallowed-sepulchre-normal.png" alt="Hallowed Sepulchre as it normally appears"></td>
+<td style="text-align:center"><img src="/img/blog/1.7.7-Release/hallowed-sepulchre-lower-floor-rendering-disabled.png" alt="Hallowed Sepulchre shown with the lower floor rendering disabled"></td>
+</tr>
+</tbody>
+</table>
+<p>The friend list plugin now has an option to show the world a player logged into on the log in message.</p>
+<p><img src="/img/blog/1.7.7-Release/login.png" alt="login"></p>
+<p>The item charges plugin can now show infoboxes with a charge count for braclets of slaughter, expeditious bracelets, and the chronicle.</p>
+<p><img src="/img/blog/1.7.7-Release/slaughter.png" alt="slaughter"></p>
+<p>A world region filter was added to the world switcher plugin, which causes the world hopper panel to only list worlds in a specific region.</p>
+<p><img src="/img/blog/1.7.7-Release/world-hopper.png" alt="world-hopper"></p>
+<p>The chat colors config has gained an additional option to allow recoloring your own username in chat.</p>
+<p><img src="/img/blog/1.7.7-Release/chat-name-color.png" alt="chat-name-color"></p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>STASH units that you've removed items from now stay highlighted after the clue step has been completed, to remind you to deposit the items back</li>
+<li>When using <code>Lookup</code> from the chatbox, the hiscore plugin will now use the correct hiscores based on the ironman symbol of the player</li>
+<li>Items required for skill challenge clues are now found when using the <code>clue</code> bank tag</li>
+<li>The fishing trawler time remaining display has been updated to reflect the recent changes to the game duration</li>
+<li>The status bars alignment in modern resizable mode has been fixed back to its original position</li>
+<li>The obstacles on the way to the Rellekka lighthouse now have their clickboxes highlighted</li>
+<li>Tempoross and the chest in the Threatre of Blood lobby are now tracked by the loot tracker</li>
+<li>The Imcando hammer has been added to the idle notifier, once again allowing idle notifications when done smithing</li>
+<li>A <code>!pb tempoross</code> command has been added (requires getting 1 additional kill post-update)</li>
+<li>The spec counter has been fixed to not count bandos godsword and bandos godsword (or) specs separately</li>
+<li>Battlestaffs have been added to the fletching calculator</li>
+<li>A <code>Leave</code> swap has been added to the menu entry swapper for leaving Tempoross after a game</li>
+<li>A bug causing the GPU plugin to break when antialiasing is forced by the system has been fixed</li>
+<li>The camera plugin now has an option to keep the vertical camera position when aligning the camera to cardinal directions</li>
+</ul>
+<p>Enjoy!</p>
+<p>- Adam</p>
+<h3>New commits</h3>
+<p>We had 21 contributors this release!</p>
+<pre><code>Adam (23):
+      wsclient: set ua on ws request
+      pom: rename maven-central repositories to central
+      api: add get/set min level to Scene
+      low detail: add option to hide lower planes
+      api: add getters for actor anim and spotanim frame
+      devtools: use setAnimationFrame
+      comp.cl: remove unused to_screen.cl import
+      Update build for jdk 16
+      containable frame: fix parsing version strings with only a major number
+      hiscore: use correct endpoint when looking up self with shortcut
+      hiscore: use correct endpoint when looking up chat messages
+      api: add player composition colors
+      api: add cross world message fields
+      clues: add skill challenge clue requirements to clue tag test
+      fishing plugin: update for fishing trawler changes
+      widgets: fix modern resizable interface container component id
+      chat message manager: add default color for friendschatnotification chat type
+      friends chat: use friendschatinfo color for join/part messages
+      agility plugin: add rellekka lighthouse obstacles
+      info: simplify language surrounding config import
+      client: accept custom javconfig url
+      item charges: simplify infobox creation logic
+      clientloader: don't use fallback config or client when jav_config is manually specified
+
+Alexsuperfly (2):
+      cannon: check invent cballs to initialize count when placing
+      cannon: set count when loading wrong type of cannonballs
+
+Amit G (1):
+      SkillChallengeClue: Support inactive crystal tools (#13517)
+
+Broooklyn (8):
+      loottracker: Separate events that do not produce ground items
+      loottracker: Add support for Tempoross Reward pool and new Casket
+      fishing: Add Tempoross IDs and config to highlight bubbling spots
+      Widget: Make Tempoross status indicator moveable
+      worldmap: Add fishing spots from Tempoross update
+      worldmap: Add Al Kharid and Ruins of Unkah Ferry locations
+      worldmap: Add Ruins of Unkah mining location
+      discord: finish naming over-world regions
+
+Cyborger1 (1):
+      SkillChallengeClue: Add Gold shade keys to Fiyr shade step (#13260)
+
+Hydrox (14):
+      Update discord invite links to start users in #welcome (#13549)
+      image util: add function to scale images while preserving aspect ratio
+      xp globes: scale icon while respecting aspect ratio
+      item charges: use RSProfiles for items with stored charges
+      time tracking: fix birdhouse notification buttons not doing anything
+      idle notifier: add support for the imcando hammer
+      wintertodt: add support for imcando hammer
+      clues: update reanimated abyssal demon task for new reanimation spells
+      skill calc: update arceuus spells
+      clues: highlight the last clue's STASH until items are deposited back
+      chat commands: add support for tempoross pb messages
+      item charges: add bracelet of slaughter and expeditious bracelet
+      slayer: remove bracelet charge tracking
+      camera: add option to preserve pitch on compass look menu entries
+
+Jordan Atwood (2):
+      HotColdLocation: Fix Seers' Village bank spot
+      menu manager: add menu entries in insert order
+
+LlemonDuck (2):
+      clues: Fix location of Captain Bleemadge (#13531)
+      Add Below Ice Mountain quest
+
+Maciej Lewicki (1):
+      friendlist: add option to show world in login notifications
+
+Martin H (1):
+      achievementdiary: Update Runecraft task texts (#13485)
+
+Matt Dennis (2):
+      spec counter: combine item variations into one weapon
+      examine: Improve plugin description and tags (#13399)
+
+Max Weber (4):
+      eventbus: preserve priority ordering during unregister
+      cache/ObjectLoader: add randomizeAnimStart opcode from rev 193
+      cache/NpcLoader: add category opcode from rev 195
+      Update IDs for 2021-4-28
+
+Nicholas Anzalone (2):
+      achievement diary: remove requirment from easy fishing trawler task
+      skill calc: Add battlesaff to fletching calculator (#13525)
+
+Owen (1):
+      clues: Support golden prospector kit (#13457)
+
+Robert (1):
+      chat colors: add color option for player's own name
+
+RuneLogApp (1):
+      music plugin: add null check to SettingsSideSlider icon on shutdown
+
+aHooder (1):
+      gpu: workaround for forced anti-aliasing
+
+emiljensen2 (1):
+      loot tracker: support tob lobby reward chest
+
+isaacph (1):
+      world hopper: add region filter config
+
+molo-pl (2):
+      clues: Support spirit angler's outfit (#13421)
+      menu entry swapper: add Tempoross leave swap
+
+superiorser9 (1):
+      wiki: only show vanilla wiki banner when enabled (#13380)
+</code></pre>
+</div></div></div></section><section id="footer"><div class="content-section"><footer><hr>Developed with <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i> using <a href="https://getbootstrap.com/">Bootstrap</a>, <a href="https://reactjs.org/">React</a> and <a href="https://fontawesome.com/">Font Awesome</a><a href="http://localhost:8000/atom.xml" class="float-right"><i class="fas fa-rss"></i> Subscribe via RSS</a></footer></div></section></div></div></div><script>!function(e){function c(c){for(var d,t,n=c[0],o=c[1],b=c[2],u=0,l=[];u<n.length;u++)t=n[u],Object.prototype.hasOwnProperty.call(a,t)&&a[t]&&l.push(a[t][0]),a[t]=0;for(d in o)Object.prototype.hasOwnProperty.call(o,d)&&(e[d]=o[d]);for(i&&i(c);l.length;)l.shift()();return r.push.apply(r,b||[]),f()}function f(){for(var e,c=0;c<r.length;c++){for(var f=r[c],d=!0,t=1;t<f.length;t++){var o=f[t];0!==a[o]&&(d=!1)}d&&(r.splice(c--,1),e=n(n.s=f[0]))}return e}var d={},t={1:0},a={1:0},r=[];function n(c){if(d[c])return d[c].exports;var f=d[c]={i:c,l:!1,exports:{}};return e[c].call(f.exports,f,f.exports,n),f.l=!0,f.exports}n.e=function(e){var c=[];t[e]?c.push(t[e]):0!==t[e]&&{3:1,4:1,5:1,6:1,8:1,9:1,10:1,11:1,12:1,13:1,14:1}[e]&&c.push(t[e]=new Promise((function(c,f){for(var d="static/css/"+({}[e]||e)+"."+{3:"515ef527",4:"e2ed0cde",5:"e2ed0cde",6:"f7c607bc",7:"31d6cfe0",8:"93df7b57",9:"4bba8a88",10:"e63a97c1",11:"b9c448b7",12:"af031052",13:"9deaab4c",14:"9deaab4c",15:"31d6cfe0",16:"31d6cfe0",17:"31d6cfe0",18:"31d6cfe0",19:"31d6cfe0",20:"31d6cfe0",21:"31d6cfe0",22:"31d6cfe0",23:"31d6cfe0",24:"31d6cfe0",25:"31d6cfe0",26:"31d6cfe0",27:"31d6cfe0",28:"31d6cfe0",29:"31d6cfe0",30:"31d6cfe0",31:"31d6cfe0",32:"31d6cfe0",33:"31d6cfe0",34:"31d6cfe0",35:"31d6cfe0",36:"31d6cfe0",37:"31d6cfe0",38:"31d6cfe0",39:"31d6cfe0",40:"31d6cfe0",41:"31d6cfe0",42:"31d6cfe0",43:"31d6cfe0",44:"31d6cfe0",45:"31d6cfe0",46:"31d6cfe0",47:"31d6cfe0",48:"31d6cfe0",49:"31d6cfe0",50:"31d6cfe0",51:"31d6cfe0",52:"31d6cfe0",53:"31d6cfe0",54:"31d6cfe0",55:"31d6cfe0",56:"31d6cfe0",57:"31d6cfe0",58:"31d6cfe0",59:"31d6cfe0",60:"31d6cfe0",61:"31d6cfe0",62:"31d6cfe0",63:"31d6cfe0",64:"31d6cfe0",65:"31d6cfe0",66:"31d6cfe0",67:"31d6cfe0",68:"31d6cfe0",69:"31d6cfe0",70:"31d6cfe0",71:"31d6cfe0",72:"31d6cfe0",73:"31d6cfe0",74:"31d6cfe0",75:"31d6cfe0",76:"31d6cfe0",77:"31d6cfe0",78:"31d6cfe0",79:"31d6cfe0",80:"31d6cfe0",81:"31d6cfe0",82:"31d6cfe0",83:"31d6cfe0",84:"31d6cfe0",85:"31d6cfe0",86:"31d6cfe0",87:"31d6cfe0",88:"31d6cfe0",89:"31d6cfe0",90:"31d6cfe0",91:"31d6cfe0",92:"31d6cfe0",93:"31d6cfe0",94:"31d6cfe0",95:"31d6cfe0",96:"31d6cfe0",97:"31d6cfe0",98:"31d6cfe0",99:"31d6cfe0",100:"31d6cfe0",101:"31d6cfe0",102:"31d6cfe0",103:"31d6cfe0",104:"31d6cfe0",105:"31d6cfe0",106:"31d6cfe0",107:"31d6cfe0",108:"31d6cfe0",109:"31d6cfe0",110:"31d6cfe0",111:"31d6cfe0",112:"31d6cfe0",113:"31d6cfe0",114:"31d6cfe0",115:"31d6cfe0",116:"31d6cfe0",117:"31d6cfe0",118:"31d6cfe0",119:"31d6cfe0",120:"31d6cfe0",121:"31d6cfe0",122:"31d6cfe0",123:"31d6cfe0",124:"31d6cfe0",125:"31d6cfe0",126:"31d6cfe0",127:"31d6cfe0",128:"31d6cfe0",129:"31d6cfe0",130:"31d6cfe0",131:"31d6cfe0",132:"31d6cfe0",133:"31d6cfe0",134:"31d6cfe0",135:"31d6cfe0",136:"31d6cfe0",137:"31d6cfe0",138:"31d6cfe0",139:"31d6cfe0",140:"31d6cfe0",141:"31d6cfe0"}[e]+".chunk.css",a=n.p+d,r=document.getElementsByTagName("link"),o=0;o<r.length;o++){var b=(i=r[o]).getAttribute("data-href")||i.getAttribute("href");if("stylesheet"===i.rel&&(b===d||b===a))return c()}var u=document.getElementsByTagName("style");for(o=0;o<u.length;o++){var i;if((b=(i=u[o]).getAttribute("data-href"))===d||b===a)return c()}var l=document.createElement("link");l.rel="stylesheet",l.type="text/css",l.onload=c,l.onerror=function(c){var d=c&&c.target&&c.target.src||a,r=new Error("Loading CSS chunk "+e+" failed.\n("+d+")");r.code="CSS_CHUNK_LOAD_FAILED",r.request=d,delete t[e],l.parentNode.removeChild(l),f(r)},l.href=a,document.getElementsByTagName("head")[0].appendChild(l)})).then((function(){t[e]=0})));var f=a[e];if(0!==f)if(f)c.push(f[2]);else{var d=new Promise((function(c,d){f=a[e]=[c,d]}));c.push(f[2]=d);var r,o=document.createElement("script");o.charset="utf-8",o.timeout=120,n.nc&&o.setAttribute("nonce",n.nc),o.src=function(e){return n.p+"static/js/"+({}[e]||e)+"."+{3:"e90be14d",4:"c98b1336",5:"0fdd7891",6:"d6ffce05",7:"68cdeef1",8:"26558860",9:"907dff35",10:"2fd24b32",11:"fe02b0dd",12:"3ce13e22",13:"3773d5eb",14:"f7631d19",15:"80f395da",16:"c65fa47c",17:"b4087308",18:"f95a7a19",19:"f12d5a30",20:"9b5a391a",21:"1fa4336e",22:"299d804e",23:"f82b9e77",24:"5e7c7212",25:"6877189f",26:"019349ed",27:"f4d3a279",28:"eb4de6d2",29:"4dcabd06",30:"5668490b",31:"b79420a3",32:"fab9eeb2",33:"da4ef52a",34:"cf5f94bc",35:"174724b8",36:"305145cb",37:"08c542f1",38:"ae142777",39:"cad55ce6",40:"91c193d3",41:"854a1df4",42:"ea952c02",43:"5482f29b",44:"2f627e65",45:"8e8f397a",46:"90d288b7",47:"5c79cc61",48:"ef06953d",49:"17e9693c",50:"0746775a",51:"d9446b98",52:"2e0caa3c",53:"3763e1ad",54:"91d612cd",55:"fd3028d1",56:"33ffc168",57:"c0b75b8d",58:"e34fb8d5",59:"75029cdd",60:"c8fae2de",61:"e296b555",62:"f892ca76",63:"ec2bc9e4",64:"c9345d3e",65:"f65f5fbb",66:"ec9eb3aa",67:"e4deb9db",68:"bebd914b",69:"1be783a9",70:"08d21a00",71:"80de5ece",72:"4c1dac91",73:"f952ea45",74:"f0726b66",75:"8f4f25f0",76:"37c13f85",77:"4d8133a1",78:"3a28da04",79:"e2cf493b",80:"680a8cf5",81:"b1439915",82:"4c2417b0",83:"f094f104",84:"4a292aa7",85:"0fd3820f",86:"68a49047",87:"eb516634",88:"84df93fc",89:"20866c71",90:"ad98cd7e",91:"399bbaf9",92:"9d4c8556",93:"c35dae78",94:"5452e91a",95:"e86ffcf6",96:"2fbcd20d",97:"2c043aae",98:"2f335989",99:"a496c6ff",100:"b1b2eed7",101:"fc72d973",102:"40497688",103:"760bcc84",104:"5b9d119a",105:"0c0044cd",106:"4ce440e4",107:"f3ae7f3f",108:"ea925cf6",109:"70f2abfd",110:"d55ac5d0",111:"fce65b7e",112:"58306909",113:"69e83e8b",114:"48dd3a16",115:"c00e60cb",116:"edf4cff7",117:"ca3798e4",118:"84c3c080",119:"14f90bc4",120:"7dce1ed7",121:"29c010c4",122:"ecdd1054",123:"c32dc96b",124:"771ac8d1",125:"81d96099",126:"150356f6",127:"d0f48965",128:"45face10",129:"bd87ed9b",130:"b108f6db",131:"b995aafa",132:"83eeebbc",133:"d447201d",134:"d85b1ac1",135:"fc602f83",136:"f00430f0",137:"f50e70d9",138:"3f6e3701",139:"c90f2359",140:"bb99161a",141:"041c560d"}[e]+".chunk.js"}(e);var b=new Error;r=function(c){o.onerror=o.onload=null,clearTimeout(u);var f=a[e];if(0!==f){if(f){var d=c&&("load"===c.type?"missing":c.type),t=c&&c.target&&c.target.src;b.message="Loading chunk "+e+" failed.\n("+d+": "+t+")",b.name="ChunkLoadError",b.type=d,b.request=t,f[1](b)}a[e]=void 0}};var u=setTimeout((function(){r({type:"timeout",target:o})}),12e4);o.onerror=o.onload=r,document.head.appendChild(o)}return Promise.all(c)},n.m=e,n.c=d,n.d=function(e,c,f){n.o(e,c)||Object.defineProperty(e,c,{enumerable:!0,get:f})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,c){if(1&c&&(e=n(e)),8&c)return e;if(4&c&&"object"==typeof e&&e&&e.__esModule)return e;var f=Object.create(null);if(n.r(f),Object.defineProperty(f,"default",{enumerable:!0,value:e}),2&c&&"string"!=typeof e)for(var d in e)n.d(f,d,function(c){return e[c]}.bind(null,d));return f},n.n=function(e){var c=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(c,"a",c),c},n.o=function(e,c){return Object.prototype.hasOwnProperty.call(e,c)},n.p="/",n.oe=function(e){throw console.error(e),e};var o=this["webpackJsonprunelite.net"]=this["webpackJsonprunelite.net"]||[],b=o.push.bind(o);o.push=c,o=o.slice();for(var u=0;u<o.length;u++)c(o[u]);var i=b;f()}([])</script><script src="/static/js/2.97dc74d4.chunk.js"></script><script src="/static/js/main.c4c63f64.chunk.js"></script></body></html>
