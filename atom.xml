@@ -9,7 +9,125 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2021-05-12T15:29:08.037Z</updated>
+  <updated>2021-05-28T17:10:15.802Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2021-05-28-1.7.10-Release</id>
+    <link href="https://runelite.net/blog/show/2021-05-28-1.7.10-Release" />
+    <title>1.7.8, 1.7.9, and 1.7.10 Releases</title>
+    <summary>Clans support, Party panel, and XP Tracker Per-Hour Rate Resetting</summary>
+    <updated>2021-05-28T10:00:00.000Z</updated>
+    <author>
+      <name>Jordan</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h1>Clans</h1>
+<p><img src="/img/blog/1.7.10-Release/clan-icons.png" alt="Clan member icons" /></p>
+<p>We've added support for clans across various plugins, including:</p>
+<ul>
+<li>Support for clan messages in the chat timestamps, chat history, chat commands, chat filter, emoji,
+chat colors, and chat notifications plugins</li>
+<li>The Minimap plugin can recolor clan member player dots</li>
+<li>You can hop-to clan members' worlds using the World Hopper plugin</li>
+<li>The Player Indicator plugin has highlighting for clan members</li>
+<li>The Twitch plugin now uses <code>/t</code> as its chat trigger</li>
+</ul>
+<p>Additionally, the friends chat plugin was renamed to <code>Chat Channels</code> and allows adding join/leave
+messages to clan and guest clan channels, as well as changing your target chat channel by simply
+typing <code>/f</code>, <code>/c</code>, <code>/g</code>, and <code>/p</code>, as shown below:</p>
+<p><img src="/img/blog/1.7.10-Release/chat-channel-typing-modes.gif" alt="Chat channel typing modes" /></p>
+<h1>Party Panel</h1>
+<p>We have added a plugin panel for the Party plugin which shows your active party members and has UI
+for adding new members to your party and toggling specific players' health and prayer displaying in
+the overlay. Because of the added panel button, <em>the Party plugin has been disabled by default</em> and
+must be re-enabled for those wishing to use it. It also simplifies the invite flow (still via Discord)
+so it is possible to create a party and send invites immediately, and also allows accepting join requests
+via the client in the panel.</p>
+<p><img src="/img/blog/1.7.10-Release/party-panel.png" alt="Party plugin panel" /></p>
+<h1>XP Tracker Per-Hour Rate Resetting</h1>
+<p>You can now manually reset the XP/hr rates of the XP Tracker plugin without resetting the gained XP,
+and configure it to automatically reset these rates after a set timeout duration.</p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>The Item Charges plugin now has a separate toggle for Guthix rests</li>
+<li>Chat message recoloring is fixed for players with spaces in their ingame name</li>
+<li>Skill challenge clues requiring a hammer now recognize the Imcando hammer as being accepted</li>
+</ul>
+<p>Enjoy!</p>
+<p>- Jordan</p>
+<h3>New commits</h3>
+<p>We had 6 contributors this release!</p>
+<pre><code>Adam (34):
+      item charges: add toggle for guthix rest
+      item charges: split up test into separate methods
+      chat message manager: fix recoloring own name with spaces
+      xptracker: use enum map for actions and other cleanup
+      chat timestamps: add timestamps for all message types
+      minimap: add clan chat dot color configuration
+      ui: queue repaint when progressbar is edited
+      discord plugin: sanity check user id and avatar id before building url
+      party service: sanitize user names
+      info panel: adjust nav button priority
+      party: only send location update when the location changes
+      twitch: change chat trigger to /t
+      chat history: support clan chat
+      chat history: rebuild pmbox when all is cleared
+      api: add getOnVarTransmitListener to Widget
+      friendschat: readd user count
+      api: add enum size
+      api: correct clans chattypes
+      devtools: add modicons command
+      friendchatmanager: rename to chaticonmanager
+      Change config name of party plugin to disable by default
+      api: add clan api
+      chat icon manager: add clan chat icons
+      chat colors: add clan recolors
+      world hopper: add hop-to clan member
+      player indicators: add clans
+      chat filter: add clan chat
+      emoji plugin: add clan chat
+      chat notifications: add clan chat
+      chat commands: add clan chat
+      Allow rs.version to be a double
+      runelite-api: add clan member join and leave events
+      friends chat: rename to chatchannel
+      chat channel: add typing modes
+
+Hydrox6 (2):
+      clues: support imcando hammer in skill challenges
+      skybox: add clan hall
+
+JoRouss (2):
+      party: add party panel
+      party: readd overlay leave party menu entry
+
+James Shelton (2):
+      xptracker: add option to reset per hour rates
+      xptracker: add auto reset per hour rates after set time
+
+Max Weber (15):
+      friendschat: remove Tab Chat option
+      friendschat: remove user count
+      gpu: increase texture limit
+      friendschat: remove unused title strings
+      SpriteID: update to 2021-5-19
+      screenshot: use new report button offset
+      interfacestyles: update chatbox sprite ids
+      rl-api: import getTopLevelInterfaceId
+      screenshot: don't attempt to draw a date when there is no report button
+      scripts/SkillTabBuilder: fix unbalanced stack
+      cache: update cs2 opcodes
+      rl-client: update cs2 overlay opcodes
+      rl-client: cleanup cs2 overlays
+      ChatboxPanelManager: use ScriptPreFired
+      timestamp: use less callbacks in script overlays
+
+emerald000 (1):
+      Rename Armadylian Guards to Armadylean Guards
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2021-05-12-1.7.7-Release</id>
