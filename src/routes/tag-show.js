@@ -3,13 +3,12 @@ import Layout from '../components/layout'
 import hero from '../_data/hero'
 import Meta from '../components/meta'
 import { bindActionCreators } from 'redux'
-import { fetchItemInfo } from '../modules/item'
+import { fetchItems } from '../modules/item'
 import { connect } from 'react-redux'
 import '../components/tooltip.css'
 import './tag.css'
 import prepare from '../components/prepare'
 import { formatIcon, wikiURLForItem } from '../util'
-import { fetchBootstrap, getLatestRelease } from '../modules/bootstrap'
 
 const TagShow = ({ name, icon, itemIds, items, csv }) => (
   <Layout>
@@ -26,7 +25,6 @@ const TagShow = ({ name, icon, itemIds, items, csv }) => (
           {itemIds.map(id => {
             const item = items.find(i => i.id === id) || {}
             const name = item.name || ''
-            const examine = item.examine || ''
 
             return (
               <div class="card">
@@ -36,8 +34,6 @@ const TagShow = ({ name, icon, itemIds, items, csv }) => (
                   </a>
                   <div class="tooltip-tag-text">
                     <b>{item.name || 'Loading...'}</b>
-                    <br />
-                    <small>{examine}</small>
                   </div>
                 </div>
               </div>
@@ -59,21 +55,15 @@ const mapStateToProps = (state, { csv }) => {
     name,
     icon,
     itemIds: parts,
-    items: state.item || [],
-    version: getLatestRelease(state)
+    items: state.item || []
   }
 }
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ fetchBootstrap, fetchItemInfo }, dispatch)
+  bindActionCreators({ fetchItems }, dispatch)
 
-const prepareComponentData = async ({
-  fetchBootstrap,
-  fetchItemInfo,
-  itemIds
-}) => {
-  await fetchBootstrap()
-  await fetchItemInfo(itemIds)
+const prepareComponentData = async ({ fetchItems }) => {
+  await fetchItems()
 }
 
 export default connect(
