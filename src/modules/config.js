@@ -8,7 +8,12 @@ import { getItems } from './item'
 const runeliteApi = api('https://api.runelite.net/')
 
 // Actions
-export const { fetchConfig, setConfig, changeAccount } = createActions(
+export const {
+  fetchConfig,
+  updateConfig,
+  setConfig,
+  changeAccount
+} = createActions(
   {
     FETCH_CONFIG: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState())
@@ -44,6 +49,33 @@ export const { fetchConfig, setConfig, changeAccount } = createActions(
       }
 
       return config
+    },
+    UPDATE_CONFIG: config => async (dispatch, getState) => {
+      const version = getLatestRelease(getState())
+      const uuid = getState().account.uuid
+
+      if (!uuid) {
+        return {}
+      }
+
+      config = {
+        config: Object.keys(config).map(key => ({
+          key: key,
+          value: config[key]
+        }))
+      }
+
+      await runeliteApi(`runelite-${version}/config`, {
+        method: 'PATCH',
+        headers: {
+          'RUNELITE-AUTH': uuid,
+          'content-type': 'application/json'
+        },
+        mode: 'cors',
+        body: config
+      })
+
+      await dispatch(fetchConfig())
     }
   },
   'SET_CONFIG',
@@ -234,3 +266,25 @@ export const getTags = createSelector(getConfig, getItems, (config, items) => {
 
   return flattenMap(data)
 })
+
+export const getProfileConfig = createSelector(
+  getConfig,
+  getSelectedAccount,
+  (config, selectedAccount) => {
+    const profileConfig = {}
+
+    if (!selectedAccount) {
+      return profileConfig
+    }
+
+    const accountId = selectedAccount.accountId
+
+    for (let [key, value] of Object.entries(config)) {
+      if (key.includes(accountId)) {
+        profileConfig[key] = value
+      }
+    }
+
+    return profileConfig
+  }
+)

@@ -26,6 +26,7 @@ import Tags from './account/tags'
 import TimeTracking from './account/time-tracking'
 import { getTimeTracking } from '../modules/time-tracking'
 import { upperToTitleCase } from '../util'
+import Delete from './account/delete'
 
 const menu = [
   {
@@ -82,25 +83,38 @@ const menu = [
     component: TimeTracking,
     showAccounts: true,
     data: ({ rawTimeTracking }) => rawTimeTracking
+  },
+  {
+    tag: 'delete',
+    label: 'Delete',
+    hidden: true,
+    component: Delete,
+    showAccounts: true
   }
 ]
 
 const menuItems = currentMenu =>
-  menu.map(m => (
-    <Link
-      class={
-        'list-group-item list-group-item-action' +
-        (currentMenu.tag === m.tag ? ' active' : '')
-      }
-      key={m.tag}
-      href={`/account/${m.tag}`}
-    >
-      <i class={m.icon} /> {m.label}
-    </Link>
-  ))
+  menu
+    .filter(m => !m.hidden)
+    .map(m => (
+      <Link
+        class={
+          'list-group-item list-group-item-action' +
+          (currentMenu.tag === m.tag ? ' active' : '')
+        }
+        key={m.tag}
+        href={`/account/${m.tag}`}
+      >
+        <i class={m.icon} /> {m.label}
+      </Link>
+    ))
 
 const menuBody = currentMenu => currentMenu.component
 const menuExport = (currentMenu, props) => {
+  if (currentMenu.hidden) {
+    return null
+  }
+
   const currentSelector = currentMenu.data
   const dataJson = currentSelector(props)
   const data = URL.createObjectURL(
@@ -132,7 +146,9 @@ const accountMenu = (account, selectedAccount, changeAccount) => (
   <button
     class={
       'list-group-item list-group-item-action' +
-      (selectedAccount.accountId === account.accountId ? ' active' : '')
+      (selectedAccount && selectedAccount.accountId === account.accountId
+        ? ' active'
+        : '')
     }
     onClick={() => changeAccount(account)}
   >
@@ -187,11 +203,20 @@ const Account = ({
                   <noscript />
                 )}
                 <button
-                  class="list-group-item list-group-item-action list-group-item-danger"
+                  class="list-group-item list-group-item-action"
                   onClick={logout}
                 >
                   <i class="fas fa-fw fa-power-off" /> Logout
                 </button>
+                {props.selectedAccount && (
+                  <a
+                    class="list-group-item list-group-item-action list-group-item-danger"
+                    href="/account/delete"
+                  >
+                    <i class="fas fa-fw fa-trash" /> Delete{' '}
+                    <b>{props.selectedAccount.displayName}</b>
+                  </a>
+                )}
               </ul>
             </div>
             <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
