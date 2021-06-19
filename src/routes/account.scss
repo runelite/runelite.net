@@ -22,6 +22,10 @@
   font-size: 14px;
 }
 
+#account .list-group-item-danger {
+  background-color: darkred !important;
+}
+
 #account .list-group a i,
 #account .list-group button i {
   margin-right: 10px;
