@@ -23,6 +23,17 @@ const deleteAccount = async (profileConfig, updateConfig, changeAccount) => {
   route('/account/home')
 }
 
+const changeList = profileConfig =>
+  Object.keys(profileConfig)
+    .map(k => k.split('.')[0])
+    .filter((v, i, a) => a.indexOf(v) === i)
+    .filter(k => k !== 'rsprofile')
+    .map(k => (
+      <li>
+        <small>{k}</small>
+      </li>
+    ))
+
 const Delete = ({
   selectedAccount,
   profileConfig,
@@ -40,21 +51,24 @@ const Delete = ({
   return (
     <div class="card">
       <div class="card-header">
-        Do you really want to delete{' '}
-        <b>{selectedAccount.displayName} account?</b>
+        Do you really want to delete <b>{selectedAccount.displayName}</b>{' '}
+        account?
+        <br />
+        <span class="text-muted">
+          You can select different account from the list on left.
+        </span>
       </div>
       <div class="card-body">
-        <p>This will delete following config entries:</p>
-
-        <ul>
-          {Object.keys(profileConfig).map(k => (
-            <li>
-              <small>{k}</small>
-            </li>
-          ))}
-        </ul>
+        <p>
+          This will delete the account for <b>{selectedAccount.displayName}</b>{' '}
+          which also includes data for:
+        </p>
+        <ul>{changeList(profileConfig)}</ul>
       </div>
       <div class="card-footer">
+        <p class="text-center">
+          <b>Warning:</b> This action is irreversible!
+        </p>
         <button
           class="btn btn-block btn-danger"
           onClick={() =>
