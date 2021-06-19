@@ -43,7 +43,7 @@ const Delete = ({
   if (!selectedAccount) {
     return (
       <div class="card">
-        <div class="card-body">No account selected</div>
+        <div class="card-body">No RuneScape profile selected</div>
       </div>
     )
   }
@@ -51,17 +51,17 @@ const Delete = ({
   return (
     <div class="card">
       <div class="card-header">
-        Do you really want to delete <b>{selectedAccount.displayName}</b>{' '}
-        account?
+        Do you really want to delete RuneScape profile{' '}
+        <b>{selectedAccount.displayName}</b> ?
         <br />
         <span class="text-muted">
-          You can select different account from the list on left.
+          You can select different profile from the list on left.
         </span>
       </div>
       <div class="card-body">
         <p>
-          This will delete the account for <b>{selectedAccount.displayName}</b>{' '}
-          which also includes data for:
+          This will delete the RuneScape profile for{' '}
+          <b>{selectedAccount.displayName}</b> which also includes data for:
         </p>
         <ul>{changeList(profileConfig)}</ul>
       </div>
