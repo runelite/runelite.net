@@ -95,6 +95,11 @@ video {
   background: #141414 !important;
 }
 
+.list-group-item-danger {
+  color: #fff !important;
+  background: #dc3545 !important;
+}
+
 .page-link,
 .pagination {
   background: #141414 !important;
@@ -108,6 +113,12 @@ video {
 .page-link:hover,
 .page-link:active {
   background: #101010 !important;
+}
+
+.list-group-item-danger:hover,
+.list-group-item-danger:active,
+.list-group-item-danger:focus {
+  background: #c82333 !important;
 }
 
 .btn.disabled {

@@ -86,32 +86,32 @@ const menu = [
   },
   {
     tag: 'delete',
-    label: 'Delete',
-    hidden: true,
+    label: 'Delete selected account',
+    icon: 'fa-fw fas fa-trash',
+    class: 'list-group-item-danger',
+    bottom: true,
     component: Delete,
     showAccounts: true
   }
 ]
 
-const menuItems = currentMenu =>
-  menu
-    .filter(m => !m.hidden)
-    .map(m => (
-      <Link
-        class={
-          'list-group-item list-group-item-action' +
-          (currentMenu.tag === m.tag ? ' active' : '')
-        }
-        key={m.tag}
-        href={`/account/${m.tag}`}
-      >
-        <i class={m.icon} /> {m.label}
-      </Link>
-    ))
+const menuItem = (currentMenu, m) => (
+  <Link
+    class={
+      'list-group-item list-group-item-action' +
+      (m.class ? ' ' + m.class : '') +
+      (currentMenu.tag === m.tag ? ' active' : '')
+    }
+    key={m.tag}
+    href={`/account/${m.tag}`}
+  >
+    <i class={m.icon} /> {m.label}
+  </Link>
+)
 
 const menuBody = currentMenu => currentMenu.component
 const menuExport = (currentMenu, props) => {
-  if (currentMenu.hidden) {
+  if (!currentMenu.data) {
     return null
   }
 
@@ -170,6 +170,8 @@ const Account = ({
   }
 
   const currentMenu = menu.find(m => m.tag === tag)
+  const topMenu = menu.filter(m => !m.bottom)
+  const bottomMenu = menu.filter(m => m.bottom)
 
   if (!currentMenu) {
     return <NotFound />
@@ -187,7 +189,7 @@ const Account = ({
           <div class="row">
             <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
               <ul class="list-group list-group-small mb-4">
-                {menuItems(currentMenu)}
+                {topMenu.map(m => menuItem(currentMenu, m))}
                 {menuExport(currentMenu, props)}
               </ul>
 
@@ -202,21 +204,13 @@ const Account = ({
                 ) : (
                   <noscript />
                 )}
+                {bottomMenu.map(m => menuItem(currentMenu, m))}
                 <button
                   class="list-group-item list-group-item-action"
                   onClick={logout}
                 >
                   <i class="fas fa-fw fa-power-off" /> Logout
                 </button>
-                {props.selectedAccount && (
-                  <a
-                    class="list-group-item list-group-item-action list-group-item-danger"
-                    href="/account/delete"
-                  >
-                    <i class="fas fa-fw fa-trash" /> Delete{' '}
-                    <b>{props.selectedAccount.displayName}</b>
-                  </a>
-                )}
               </ul>
             </div>
             <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
