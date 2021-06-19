@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import prepare from '../../components/prepare'
 import { fetchBootstrap } from '../../modules/bootstrap'
 import { route } from 'preact-router'
+import { upperToTitleCase } from '../../util'
 
 const deleteAccount = async (profileConfig, updateConfig, changeAccount) => {
   const newConfig = {
@@ -34,6 +35,14 @@ const changeList = profileConfig =>
       </li>
     ))
 
+const accountType = type => {
+  if (type !== 'STANDARD') {
+    return ' for ' + upperToTitleCase(type)
+  }
+
+  return ''
+}
+
 const Delete = ({
   selectedAccount,
   profileConfig,
@@ -52,7 +61,8 @@ const Delete = ({
     <div class="card">
       <div class="card-header">
         Do you really want to delete RuneScape profile{' '}
-        <b>{selectedAccount.displayName}</b> ?
+        <b>{selectedAccount.displayName}</b>
+        {accountType(selectedAccount.type)}?
         <br />
         <span class="text-muted">
           You can select different profile from the list on left.
@@ -60,8 +70,9 @@ const Delete = ({
       </div>
       <div class="card-body">
         <p>
-          This will delete the RuneScape profile for{' '}
-          <b>{selectedAccount.displayName}</b> which also includes data for:
+          This will delete the RuneScape profile{' '}
+          <b>{selectedAccount.displayName}</b>
+          {accountType(selectedAccount.type)} which also includes data for:
         </p>
         <ul>{changeList(profileConfig)}</ul>
       </div>
@@ -75,8 +86,8 @@ const Delete = ({
             deleteAccount(profileConfig, updateConfig, changeAccount)
           }
         >
-          Delete{' '}
-          <b>{selectedAccount ? selectedAccount.displayName : 'unknown'}</b>
+          Delete RuneScape profile <b>{selectedAccount.displayName}</b>
+          {accountType(selectedAccount.type)}
         </button>
       </div>
     </div>
