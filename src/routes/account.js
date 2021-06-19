@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h, Fragment } from 'preact'
 import { connect } from 'react-redux'
 import { Link } from 'preact-router'
 import { bindActionCreators } from 'redux'
@@ -86,7 +86,7 @@ const menu = [
   },
   {
     tag: 'delete',
-    label: 'Delete selected account',
+    label: 'Delete profile',
     icon: 'fa-fw fas fa-trash',
     class: 'list-group-item-danger',
     bottom: true,
@@ -178,8 +178,6 @@ const Account = ({
   }
 
   const MenuBody = menuBody(currentMenu)
-  const accountsTitle =
-    accounts.length > 1 && currentMenu.showAccounts ? 'Accounts' : 'Account'
 
   return (
     <Layout>
@@ -190,21 +188,9 @@ const Account = ({
             <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">
               <ul class="list-group list-group-small mb-4">
                 {topMenu.map(m => menuItem(currentMenu, m))}
-                {menuExport(currentMenu, props)}
               </ul>
-
-              <p className="list-title">{accountsTitle}</p>
               <ul class="list-group list-group-small mb-4">
-                {currentMenu.showAccounts ? (
-                  accounts
-                    .filter(a => a.displayName !== null)
-                    .map(a =>
-                      accountMenu(a, props.selectedAccount, changeAccount)
-                    )
-                ) : (
-                  <noscript />
-                )}
-                {bottomMenu.map(m => menuItem(currentMenu, m))}
+                {menuExport(currentMenu, props)}
                 <button
                   class="list-group-item list-group-item-action"
                   onClick={logout}
@@ -212,6 +198,19 @@ const Account = ({
                   <i class="fas fa-fw fa-power-off" /> Logout
                 </button>
               </ul>
+              {currentMenu.showAccounts && (
+                <Fragment>
+                  <p className="list-title">RuneScape Profile</p>
+                  <ul class="list-group list-group-small mb-4">
+                    {accounts
+                      .filter(a => a.displayName !== null)
+                      .map(a =>
+                        accountMenu(a, props.selectedAccount, changeAccount)
+                      )}
+                    {bottomMenu.map(m => menuItem(currentMenu, m))}
+                  </ul>
+                </Fragment>
+              )}
             </div>
             <div class="col-xl-9 col-md-8 col-sm-12 col-xs-12">
               <MenuBody {...props} />
