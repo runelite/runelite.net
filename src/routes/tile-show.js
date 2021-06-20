@@ -60,10 +60,12 @@ const TileShow = ({ data, tiles }) => {
 }
 
 const mapStateToProps = (state, { b64 }) => {
-  const decodedData = atob(b64)
+  let decodedData = ''
   let jsonData = []
 
   try {
+    const b64string = b64 || window.location.hash.substring(1)
+    decodedData = atob(b64string)
     jsonData = JSON.parse(decodedData)
   } catch (ignored) {}
 
