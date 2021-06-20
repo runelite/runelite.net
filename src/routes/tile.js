@@ -32,7 +32,7 @@ const Tile = ({ activeTile, setActiveTile }) => (
         </textarea>
         <a
           class="btn btn-block btn-success"
-          href={`/tile/show/${btoa(activeTile)}`}
+          href={`/tile/show/#${btoa(activeTile)}`}
         >
           Go
         </a>

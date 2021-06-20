@@ -54,6 +54,10 @@ const App = ({ loading, navbarDark, login, logout, loggedIn, username }) => (
       />
       <Async path="/tile" getComponent={() => import('../routes/tile')} />
       <Async
+        path="/tile/show"
+        getComponent={() => import('../routes/tile-show')}
+      />
+      <Async
         path="/tile/show/:b64"
         getComponent={() => import('../routes/tile-show')}
       />
