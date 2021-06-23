@@ -9,7 +9,197 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2021-06-20T16:02:01.019Z</updated>
+  <updated>2021-06-23T11:44:21.020Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2021-06-23-1.7.13-Release</id>
+    <link href="https://runelite.net/blog/show/2021-06-23-1.7.13-Release" />
+    <title>1.7.11, 1.7.12, and 1.7.13 Release</title>
+    <summary>Theatre of Blood: Hard and Story Mode, Shayzien and A Kingdom Divided, and other improvements</summary>
+    <updated>2021-06-23T10:00:00.000Z</updated>
+    <author>
+      <name>Jordan</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><p>RuneLite has been updated to support Theatre of Blood: Hard Mode and Story Mode. Players' Hard Mode
+kill counts are saved and can be shared using the <code>!kc</code> <a href="https://github.com/runelite/runelite/wiki/Chat-Commands">chat
+command</a> or looked up on the <a href="https://github.com/runelite/runelite/wiki/HiScore">hiscore
+plugin</a>.</p>
+<p>The various content updates centered around Shayzien and the A Kingdom Divided quest have been
+updated in the client, including:</p>
+<ul>
+<li>Many existing clue scrolls in the Shayzien region have had their solutions or directions changed,
+and a number of new clues have been added</li>
+<li>The new Arceuus spells now display timers of their duration and cooldown</li>
+<li>The Shayzien agility course has a lap counter and shows the number of laps needed to reach your
+level or xp goal</li>
+<li>World map icons and tooltips have been added for the A Kingdom Divided quest location and many
+skilling and resource icons in the Shayzien area</li>
+<li>Skill calculator entries have been added for demonic ashes, Shayzien agility courses, and the new
+Arceuus spells</li>
+</ul>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>You can now look up clan members' hiscore information via the clan member listing</li>
+<li>The team capes plugin has been renamed to the team plugin, and now supports listing of the number
+of nearby players sharing your team cape, friend chat, or clan</li>
+<li>The camera plugin no longer causes your camera pitch to increase when using the compass options
+while &quot;preserve pitch&quot; is enabled. Additionally, an option to preserve yaw while changing worlds
+has been added.</li>
+<li>Menu entry swapper options have been added for achievement diary item teleports and the
+construction cape</li>
+<li>Ground markers, NPC indicators, and object markers now support a configurable width for their
+overlays</li>
+<li>XP drops now support an option to override the standard client xp drop color allowing you to use
+any color, not just the select few client choices, for your xp drops</li>
+<li>POH icons for house objects decorated with the goblin decorations now display correctly</li>
+<li>Ground item despawn timers have been corrected for items appearing while fighting Tempoross</li>
+<li>The new A Kingdom Divided login screen has been added to the Login Screen plugin</li>
+<li>The colors of the inventory grid overlay are now customizable</li>
+<li>The spec counter plugin now displays special attacks landed on the Alchemical Hydra. It also
+resets its counter when leaving instanced areas.</li>
+<li>Wintertodt supply crate loots are now tracked in the Loot Tracker plugin</li>
+<li>An option has been added to capture screenshots when achieving new collection log entries</li>
+<li>Screenshots captured while on tournament/beta worlds are now stored to a separate folder for
+better organization</li>
+<li>Item stats shown for stamina potions while wearing the ring of endurance now correctly show it
+restoring 40 run energy rather than the usual 20</li>
+<li>A bug which could cause clients to launch without correctly downloading Plugin Hub listings has
+been fixed</li>
+</ul>
+<p>Enjoy!</p>
+<p>- Jordan</p>
+<h3>New commits</h3>
+<p>We had 19 contributors this release!</p>
+<pre><code>Adam (36):
+      Strip tags when doing friends chat lookups
+      api: add clan channel changed event
+      team capes: rename to team
+      team: add clan member counter
+      chatchannel: fix clan join/leave timeouts with fc join/leave off
+      sprite manager: use constructor injection
+      chat filter: fix collapsing replayed public chat
+      Use junit rule for mock webserver
+      camera: add zoom slider tooltip when dragging
+      chat channel: add target mode config
+      http-api: add tob hm hiscores
+      hiscore panel: add tob hard mode
+      chat filter: remove filter login
+      mta: clear hint arrow when leaving enchantment and alchemist room
+      config manager: disallow : in key names
+      chat commands: fix tob hm/sm kc/pb tracking
+      chat colors: fix clan chat message highlight keys
+      api: add setCameraYawTarget
+      camera: add option to preserve yaw when world hopping
+      chat commands: update tob new pb pattern
+      gpu: use renderbuffer for aa fbo
+      menu swapper: add con cape tele to poh
+      chat commands: update tob duration pattern
+      ground markers: add configurable border width
+      api: add widget line height accessors
+      menu swapper: add achievement diary items with non-standard teleport options
+      Remove examine api
+      screenshot plugin: consolidate kill count fields
+      screenshot plugin: make subdir strings constants
+      screenshot plugin: add tob story and hard mode screenshots
+      screenshot plugin: name tob hm/sm files differently
+      xp drops: add option to override standard client xp drop colors
+      loot tracker: add reset warning to event reset option
+      discord: fix npe from menu event timing out with elapsed total time
+      menu swapper: add enter-crypt to quick swap
+      api: add actor overhead cycle accessors
+
+Bird-Hands (1):
+      npc indicators: add configurable border width
+
+Broooklyn (2):
+      poh: Add icons for objects changed with Goblin Decorations
+      worldmap: Add TzHaar-Ket-Rak's Challenges minigame location
+
+Cyborger1 (4):
+      ItemIdentification: Add Ghorrock tablet
+      ChatHistory: Fix &quot;Copy to Clipboard&quot; after clan update
+      hiscore: add lookup clan member (#13706)
+      clues: Update description for coordinate south-west of Ferox
+
+FlashBasedGod (1):
+      ground items: Add Tempoross instance to normal despawn timers
+
+Hydrox6 (11):
+      clues: count bird glove as being correct for the weapon requirement
+      world map overlay: make icons display fully on the map when edge snapped
+      world map mouse listener: consume click if icon is clicked on
+      loginscreen: add a kingdom divided login screen
+      loot tracker: check for correct menu option type when deciding event
+      api: correct imcando hammer construction animation
+      skill calc: add demonic ashes
+      timers: add duration and cooldown timers for arceuus spells
+      skill calc: add shayzien courses
+      skill calc: add new arceuus spells
+      api: fix hitsplat sprite ids
+
+Jeremy Plsek (1):
+      inventory grid: add color config
+
+Jordan Atwood (12):
+      XpInfoBox: Give stats panel equal column widths
+      ProgressBar: Fix center label centering
+      item identification plugin: Add item mapping test
+      clues: Fix three step cryptic clue getLocations NPE
+      status bars: Add counter text drop shadow
+      HotColdLocation: Add clue type field
+      object indicators: add configurable border width
+      clues: Update and add clues for 6/16 Shayzien rework
+      clues: Add new A Kingdom Divided update clues
+      clues: Fix clues changed with A Kingdom Divided update
+      agility: Fix Shayzien basic course total xp
+      EmoteClue: Fix Shayzien war tent clue text
+
+LlemonDuck (3):
+      idle notifier: reset six hour notif on startup
+      camera: prevent pitch increment with &quot;preserve pitch&quot; enabled
+      Reset spec counter when leaving instanced fights
+
+Max Weber (8):
+      rl-client: never cache 4/5xx requests
+      client: correctly use Runnables::doNothing
+      cache: add 197 opcodes
+      rl-api: update Quest enum to 2021-6-16
+      worldmap: add shayzien rework locations
+      agility: add shayzien course
+      barbarianassault: remove dead overlay menuops
+      runelite-client: use menu entries for focusing world map points
+
+SirWrain (1):
+      achievementdiary: Fix hard Lumbridge diary entry text (#13689)
+
+SkylerPIlot (1):
+      spec counter: add Alchemical Hydra
+
+Steven Brice (1):
+      loot tracker: add Wintertodt supply crate
+
+ThePharros (1):
+      screenshot: Add option to screenshot collection log entries (#13625)
+
+andmcadams (1):
+      crowdsourcing/dialog: track start &amp; end of conversations (#13763)
+
+danshea00 (1):
+      screenshot: Use separate directory for tournament/beta worlds (#13631)
+
+emiljensen2 (1):
+      ItemMapping: add new tob kits
+
+petter (1):
+      clues: Add Giant's Den clue
+
+tanlines (1):
+      itemstats: Fix stamina restore with Ring of Endurance (#13692)
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2021-05-28-1.7.10-Release</id>
