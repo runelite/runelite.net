@@ -13,7 +13,8 @@ import {
   getBossLog,
   getSelectedAccount,
   getSlayerTask,
-  getTags
+  getTags,
+  getTileMarkers
 } from '../modules/config'
 import { getGe } from '../modules/ge'
 import { getLoot } from '../modules/loot'
@@ -27,6 +28,7 @@ import TimeTracking from './account/time-tracking'
 import { getTimeTracking } from '../modules/time-tracking'
 import { upperToTitleCase } from '../util'
 import Delete from './account/delete'
+import Tiles from './account/tiles'
 
 const menu = [
   {
@@ -70,6 +72,14 @@ const menu = [
       }))
   },
   {
+    tag: 'time-tracking',
+    label: 'Time Tracking',
+    icon: 'fa-fw fas fa-clock',
+    component: TimeTracking,
+    showAccounts: true,
+    data: ({ rawTimeTracking }) => rawTimeTracking
+  },
+  {
     tag: 'tags',
     label: 'Tags',
     icon: 'fa-fw fas fa-code',
@@ -77,12 +87,11 @@ const menu = [
     data: ({ rawTags }) => rawTags
   },
   {
-    tag: 'time-tracking',
-    label: 'Time Tracking',
-    icon: 'fa-fw fas fa-clock',
-    component: TimeTracking,
-    showAccounts: true,
-    data: ({ rawTimeTracking }) => rawTimeTracking
+    tag: 'tile-markers',
+    label: 'Tile markers',
+    icon: 'fa-fw fas fa-tree',
+    component: Tiles,
+    data: ({ rawTiles }) => rawTiles
   },
   {
     tag: 'delete',
@@ -232,7 +241,8 @@ const mapStateToProps = (state, props) => ({
   rawGe: getGe(state),
   rawLoot: getLoot(state),
   rawTags: getTags(state),
-  rawTimeTracking: getTimeTracking(state)
+  rawTimeTracking: getTimeTracking(state),
+  rawTiles: getTileMarkers(state)
 })
 
 const mapDispatchToProps = dispatch =>

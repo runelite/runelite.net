@@ -1,8 +1,14 @@
 import { h, Fragment } from 'preact'
-import { point, rectangle, Control, DomUtil, DomEvent } from 'leaflet'
+import {
+  point,
+  rectangle,
+  Control,
+  DomUtil,
+  DomEvent,
+  tileLayer
+} from 'leaflet'
 import {
   MapContainer,
-  TileLayer,
   Rectangle,
   Tooltip,
   ImageOverlay,
@@ -55,6 +61,45 @@ const findCurrentRegion = map => {
   }
 
   return ''
+}
+
+const toColor = num => {
+  num >>>= 0
+  const b = num & 0xff,
+    g = (num & 0xff00) >>> 8,
+    r = (num & 0xff0000) >>> 16,
+    a = ((num & 0xff000000) >>> 24) / 255
+  return 'rgba(' + [r, g, b, a].join(',') + ')'
+}
+
+const mapTile = tile => {
+  const regionId = tile['regionId']
+  const regionX = tile['regionX']
+  const regionY = tile['regionY']
+  let jsColor = '#ffffff'
+
+  if (tile['color']) {
+    const intColor = tile['color']['value']
+
+    if (intColor) {
+      jsColor = toColor(intColor)
+    } else if (tile['color']) {
+      const argb = tile['color']
+      jsColor = '#' + argb.slice(3, 9) + argb[1] + argb[2]
+    }
+  }
+
+  const x = ((regionId >>> 8) << 6) + regionX
+  const y = ((regionId & 0xff) << 6) + regionY
+  const z = tile['z']
+
+  return {
+    x,
+    y,
+    z,
+    label: tile['label'],
+    color: jsColor
+  }
 }
 
 const prepareMap = map => {
@@ -124,17 +169,24 @@ const prepareMap = map => {
   resetButton.addTo(map)
 }
 
-const TileLayerHandler = ({ plane }) => (
-  <TileLayer
-    url="https://raw.githubusercontent.com/Explv/osrs_map_tiles/master/{plane}/{z}/{x}/{y}.png"
-    noWrap={true}
-    tms={true}
-    plane={plane}
-  />
-)
-
-const TileMapHandler = ({ tiles }) => {
+const TileMapHandler = ({ tiles, plane }) => {
   const map = useMap()
+
+  const layer = tileLayer(
+    'https://raw.githubusercontent.com/Explv/osrs_map_tiles/master/{plane}/{z}/{x}/{y}.png',
+    {
+      noWrap: true,
+      tms: true,
+      plane: plane
+    }
+  )
+
+  if (map.tileLayer) {
+    map.tileLayer.removeFrom(map)
+  }
+
+  map.tileLayer = layer
+  map.tileLayer.addTo(map)
 
   if (tiles.length > 0) {
     const tilesX = tiles.map(t => t.x)
@@ -183,6 +235,8 @@ const RuneScapeMap = ({ tiles }) => {
     tiles = []
   }
 
+  tiles = tiles.map(mapTile)
+
   const plane = tiles.length > 0 ? tiles[0].z : 0
 
   return (
@@ -194,8 +248,7 @@ const RuneScapeMap = ({ tiles }) => {
         attributionControl={false}
         whenCreated={prepareMap}
       >
-        <TileLayerHandler plane={plane} />
-        <TileMapHandler tiles={tiles} />
+        <TileMapHandler tiles={tiles} plane={plane} />
       </MapContainer>
     </Fragment>
   )
