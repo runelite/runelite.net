@@ -4,6 +4,7 @@ import api from '../api'
 import { getLatestRelease } from './bootstrap'
 import { flattenMap } from '../util'
 import { getItems } from './item'
+import regions from '../_data/regions'
 
 const runeliteApi = api('https://api.runelite.net/')
 
@@ -12,7 +13,8 @@ export const {
   fetchConfig,
   updateConfig,
   setConfig,
-  changeAccount
+  changeAccount,
+  setTileMarkersFilter
 } = createActions(
   {
     FETCH_CONFIG: () => async (dispatch, getState) => {
@@ -79,7 +81,8 @@ export const {
     }
   },
   'SET_CONFIG',
-  'CHANGE_ACCOUNT'
+  'CHANGE_ACCOUNT',
+  'SET_TILE_MARKERS_FILTER'
 )
 
 // Reducer
@@ -92,17 +95,28 @@ export default handleActions(
     [changeAccount]: (state, { payload }) => ({
       ...state,
       selectedAccount: payload
+    }),
+    [setTileMarkersFilter]: (state, { payload }) => ({
+      ...state,
+      filter: {
+        ...state.filter,
+        tileMarkers: payload
+      }
     })
   },
   {
     config: {},
-    selectedAccount: null
+    selectedAccount: null,
+    filter: {
+      tileMarkers: ''
+    }
   }
 )
 
 // Selectors
 export const getConfig = state => state.config.config
 export const getSelectedAccount = state => state.config.selectedAccount
+export const getTileMarkersFilter = state => state.config.filter.tileMarkers
 
 export const getAccounts = createSelector(getConfig, config => {
   const accounts = []
@@ -265,6 +279,37 @@ export const getTags = createSelector(getConfig, getItems, (config, items) => {
   }
 
   return flattenMap(data)
+})
+
+export const getTileMarkers = createSelector(getConfig, config => {
+  const findCurrentRegion = regionNumber => {
+    for (const region of regions) {
+      if (region.regions.includes(regionNumber)) {
+        return region.name
+      }
+    }
+
+    return ''
+  }
+
+  const configPrefix = 'groundMarker.region_'
+  const tiles = []
+
+  for (let [key, value] of Object.entries(config)) {
+    if (!key.startsWith(configPrefix)) {
+      continue
+    }
+
+    const region = parseInt(key.replace(configPrefix, ''))
+
+    tiles.push({
+      name: findCurrentRegion(region),
+      region: region,
+      data: JSON.parse(value)
+    })
+  }
+
+  return tiles
 })
 
 export const getProfileConfig = createSelector(
