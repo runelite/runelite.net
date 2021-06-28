@@ -37,7 +37,14 @@ const Tiles = ({ tiles, filter, setTileMarkersFilter }) => {
         />
       </div>
       <RuneScapeMap tiles={mapTiles} />
-      <pre class="pre-select">{mapData}</pre>
+      <pre class="pre-select">
+        {mapData}
+        <div class="text-right">
+          <a href={'/tile/show/#' + btoa(mapData)} class="user-select-none">
+            Share
+          </a>
+        </div>
+      </pre>
     </Fragment>
   )
 }
