@@ -28,7 +28,14 @@ const buildTag = tag => {
         <img alt="" src={formatIcon(tag.icon)} /> {tag.name}
       </h1>
 
-      <pre class="pre-select">{csv}</pre>
+      <pre class="pre-select">
+        {csv}
+        <div class="text-right">
+          <a href={'/tag/show/' + csv} class="user-select-none">
+            Share
+          </a>
+        </div>
+      </pre>
       <div class="row pl-2">
         {tag.items.map(item => {
           const name = item.name || ''

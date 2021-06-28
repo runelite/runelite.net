@@ -125,3 +125,7 @@ video {
 .btn.disabled {
   cursor: default;
 }
+
+.user-select-none {
+  user-select: none !important;
+}
