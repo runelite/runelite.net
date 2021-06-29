@@ -191,7 +191,7 @@ const Account = ({
   return (
     <Layout>
       <Meta title={`${currentMenu.label} - Account - ${hero.title}`} />
-      <section id="account">
+      <section id="account" class="dark-card">
         <div class="content-section account-container">
           <div class="row">
             <div class="col-xl-3 col-md-4 col-sm-12 col-xs-12">

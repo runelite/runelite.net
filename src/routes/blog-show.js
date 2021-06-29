@@ -7,9 +7,7 @@ import Meta from '../components/meta'
 import Async from '../components/async'
 import NotFound from '../components/not-found'
 import './blog.scss'
-
-const InnerHTMLHelper = ({ tagName, html }) =>
-  h(tagName, { dangerouslySetInnerHTML: { __html: html } })
+import InnerHTMLHelper from '../components/inner-html-helper'
 
 const buildPost = ({ date, title, description, author, body }) => {
   if (!body) {
