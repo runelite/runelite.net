@@ -129,3 +129,35 @@ video {
 .user-select-none {
   user-select: none !important;
 }
+
+.dark-card .card {
+  margin-top: 0;
+  background: #171717;
+  border: none;
+  transform: translateZ(0);
+  position: relative;
+  z-index: 2;
+}
+
+.dark-card .card-header {
+  background: #171717;
+  padding: 10px;
+  color: white;
+  border: none;
+  border-bottom: 1px solid #232323;
+  font-size: 14px;
+}
+
+.dark-card .card-title {
+  font-size: 18px;
+}
+
+.dark-card .card-body {
+  color: white;
+  padding: 20px;
+  margin-top: 0;
+}
+
+.octicon {
+  display: none;
+}

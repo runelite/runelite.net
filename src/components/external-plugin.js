@@ -6,7 +6,7 @@ const ExternalPlugin = ({
   displayName,
   author,
   description,
-  support,
+  internalName,
   imageUrl,
   installed,
   count
@@ -23,18 +23,7 @@ const ExternalPlugin = ({
         </div>
         <div>
           <h5 class="card-title">
-            {support ? (
-              <a
-                href={support}
-                alt="Support link"
-                rel="noopener noreferrer nofollow"
-                target="_blank"
-              >
-                {displayName}
-              </a>
-            ) : (
-              displayName
-            )}
+            <a href={`/plugin-hub/show/${internalName}`}>{displayName}</a>
           </h5>
           <h6 class="card-subtitle mb-2 text-muted">
             <a href={`/plugin-hub/${author}`}>{author}</a>

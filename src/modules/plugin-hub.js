@@ -7,12 +7,18 @@ import api from '../api'
 const pluginHubUrl = 'https://repo.runelite.net/plugins/'
 const pluginHubApi = api(pluginHubUrl)
 const runeliteApi = api('https://api.runelite.net/')
+const githubApi = api('https://api.github.com/')
+const githubRawApi = api(
+  'https://raw.githubusercontent.com/runelite/plugin-hub/master/plugins/'
+)
 
 // Actions
 export const {
   fetchExternalPlugins,
+  fetchExternalPluginInfo,
   fetchPluginHubStats,
   setExternalPlugins,
+  setExternalPluginInfo,
   setPluginHubStats,
   setPluginFilter,
   setPluginSorting
@@ -45,6 +51,83 @@ export const {
       dispatch(setExternalPlugins(plugins))
       return plugins
     },
+    FETCH_EXTERNAL_PLUGIN_INFO: internalName => async (dispatch, getState) => {
+      const response = await githubRawApi(internalName, {
+        method: 'GET'
+      })
+
+      let repository = ''
+      let commit = ''
+
+      response.split('\n').forEach(line => {
+        const kv = line.split('=')
+
+        if (kv[0] === 'repository') {
+          repository = kv[1]
+        }
+
+        if (kv[0] === 'commit') {
+          commit = kv[1]
+        }
+      })
+
+      if (!repository) {
+        return
+      }
+
+      const repoSplit = repository
+        .replace('https://', '')
+        .replace('http://', '')
+        .split('/')
+
+      if (repoSplit.length < 3) {
+        return
+      }
+
+      const user = repoSplit[1]
+      const repo = repoSplit[2].replace('.git', '')
+
+      let readme = await githubApi(
+        `repos/${user}/${repo}/readme?ref=${commit}`,
+        {
+          method: 'GET',
+          headers: {
+            accept: 'application/vnd.github.VERSION.html'
+          }
+        }
+      )
+
+      readme = readme
+        // Fix relative URLs to images
+        .replace(
+          /<img src\s*=\s*"((?!http)[^"]+)"([^>]*)>/g,
+          `<img src="https://raw.githubusercontent.com/${user}/${repo}/${commit}/$1"$2>`
+        )
+        // Fix relative URLs for asset links
+        .replace(
+          /<a target="_blank" rel="noopener noreferrer" href\s*=\s*"((?!http)[^"]+)"([^>]*)>/g,
+          `<a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/${user}/${repo}/${commit}/$1"$2>`
+        )
+        // Replace GIFs with links to GIFs
+        .replace(
+          /<img src\s*=\s*"((?:.+\/)?(.+\.gif))"([^>]*)>/g,
+          '<a href="$1" target="_blank">$2</a>'
+        )
+
+      dispatch(
+        setExternalPluginInfo({
+          internalName,
+          github: {
+            readme,
+            user,
+            repo,
+            commit
+          }
+        })
+      )
+
+      return readme
+    },
     FETCH_PLUGIN_HUB_STATS: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState())
       const response = await runeliteApi(`runelite-${version}/pluginhub`, {
@@ -56,6 +139,7 @@ export const {
     }
   },
   'SET_EXTERNAL_PLUGINS',
+  'SET_EXTERNAL_PLUGIN_INFO',
   'SET_PLUGIN_HUB_STATS',
   'SET_PLUGIN_FILTER',
   'SET_PLUGIN_SORTING'
@@ -67,6 +151,17 @@ export default handleActions(
     [setExternalPlugins]: (state, { payload }) => ({
       ...state,
       data: payload
+    }),
+    [setExternalPluginInfo]: (state, { payload }) => ({
+      ...state,
+      data: state.data
+        .filter(p => p.internalName !== payload.internalName)
+        .concat([
+          {
+            ...state.data.find(d => d.internalName === payload.internalName),
+            ...payload
+          }
+        ])
     }),
     [setPluginHubStats]: (state, { payload }) => ({
       ...state,
