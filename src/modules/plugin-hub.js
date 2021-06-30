@@ -108,8 +108,8 @@ export const {
         )
         // Fix relative URLs for asset links
         .replace(
-          /<a target="_blank" rel="noopener noreferrer" href\s*=\s*"((?!http)[^"]+)"([^>]*)>/g,
-          `<a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/${user}/${repo}/${commit}/$1"$2>`
+          /<a(.*) href\s*=\s*"((?!http)[^"]+)"([^>]*)>/g,
+          `<a$1 href="https://raw.githubusercontent.com/${user}/${repo}/${commit}/$2"$3>`
         )
         // Replace GIFs with links to GIFs
         .replace(
