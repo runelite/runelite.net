@@ -232,7 +232,7 @@ const TileMapHandler = ({ tiles, plane }) => {
     map.viewport = viewport
     map.fitBounds(viewport)
 
-    if (map.locked) {
+    if (map.locked || map.locked === undefined) {
       map.setMaxBounds(viewport)
     }
   }
