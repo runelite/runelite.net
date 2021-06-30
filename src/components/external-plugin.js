@@ -37,9 +37,7 @@ const ExternalPlugin = ({
               {installed && <span class="badge badge-success">installed</span>}
             </p>
           )}
-          <p class="card-text">
-            {description.replace(/<br\/?>/g, '\n').replace(/<[^>]+>/g, '')}
-          </p>
+          <p class="card-text">{description}</p>
         </div>
       </div>
     </div>

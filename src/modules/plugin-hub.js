@@ -45,6 +45,9 @@ export const {
           p.imageUrl = `${pluginHubUrl}${version}/${p.internalName}/${p.commit}.png`
         }
 
+        p.description = p.description
+          .replace(/<br\/?>/g, '\n')
+          .replace(/<[^>]+>/g, '')
         return p
       })
 
