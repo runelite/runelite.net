@@ -113,8 +113,8 @@ export const {
         )
         // Replace GIFs with links to GIFs
         .replace(
-          /<img src\s*=\s*"((?:.+\/)?(.+\.gif))"([^>]*)>/g,
-          '<a href="$1" target="_blank">$2</a>'
+          /<img src\s*=\s*"((?:[^"]+\/)?([^"]+\.gif))"([^>]*)>/g,
+          '<a href="$1" target="_blank">$2</a> '
         )
 
       dispatch(
