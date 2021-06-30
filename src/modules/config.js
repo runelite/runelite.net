@@ -309,6 +309,11 @@ export const getTileMarkers = createSelector(getConfig, config => {
     })
   }
 
+  tiles.sort((a, b) =>
+    (a.name + a.region)
+      .toLowerCase()
+      .localeCompare((b.name + b.region).toLowerCase())
+  )
   return tiles
 })
 
