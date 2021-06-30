@@ -105,6 +105,7 @@ const mapTile = tile => {
 const prepareMap = map => {
   const defaultView = toLatLng(map, DEFAULT_VIEW[0], DEFAULT_VIEW[1])
   map.setView(defaultView)
+  map.locked = true
 
   const mouseRect = rectangle(
     [
@@ -167,6 +168,35 @@ const prepareMap = map => {
   }
 
   resetButton.addTo(map)
+
+  const lockButton = new Control({ position: 'topleft' })
+  lockButton.onAdd = map => {
+    const container = DomUtil.create('div', 'leaflet-bar leaflet-control')
+    const button = DomUtil.create('a', 'fas fa-lock', container)
+
+    DomEvent.disableClickPropagation(button).addListener(
+      button,
+      'click',
+      () => {
+        if (map.locked) {
+          map.setMaxBounds(defaultView)
+          map.locked = false
+          DomUtil.removeClass(button, 'fa-lock')
+          DomUtil.addClass(button, 'fa-lock-open')
+        } else if (map.viewport) {
+          map.fitBounds(map.viewport)
+          map.setMaxBounds(map.viewport)
+          map.locked = true
+          DomUtil.removeClass(button, 'fa-lock-open')
+          DomUtil.addClass(button, 'fa-lock')
+        }
+      }
+    )
+
+    return container
+  }
+
+  lockButton.addTo(map)
 }
 
 const TileMapHandler = ({ tiles, plane }) => {
@@ -201,7 +231,10 @@ const TileMapHandler = ({ tiles, plane }) => {
 
     map.viewport = viewport
     map.fitBounds(viewport)
-    map.setMaxBounds(viewport)
+
+    if (map.locked) {
+      map.setMaxBounds(viewport)
+    }
   }
 
   return tiles.map(tile => {
