@@ -15,10 +15,11 @@ import {
 import { fetchConfig } from '../modules/config'
 import { numberWithCommas } from '../util'
 import InnerHTMLHelper from '../components/inner-html-helper'
+import NotFound from '../components/not-found'
 
 const PluginHubShow = ({ externalPlugin }) => {
   if (!externalPlugin) {
-    return null
+    return <NotFound />
   }
 
   return (
