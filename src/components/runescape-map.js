@@ -1,11 +1,13 @@
 import { h, Fragment } from 'preact'
 import {
-  point,
   rectangle,
+  setOptions,
   Control,
   DomUtil,
   DomEvent,
-  tileLayer
+  TileLayer,
+  Util,
+  CRS
 } from 'leaflet'
 import {
   MapContainer,
@@ -17,41 +19,51 @@ import {
 import regions from '../_data/regions'
 import './runescape-map.scss'
 
-// lat/lng calculations source
-// https://github.com/Explv/Explv.github.io/blob/master/js/model/Position.js
-const MAP_HEIGHT_PX = 296704
-const RS_TILE_WIDTH_PX = 32
-const RS_TILE_HEIGHT_PX = 32
-const RS_OFFSET_X = 1152
-const RS_OFFSET_Y = 8328
 const BOUNDS_TOLERANCE = 4
-const MIN_ZOOM = 6
-const MAX_ZOOM = 11
-const DEFAULT_ZOOM = 8
-const RS_CENTER_X = 8
+const MIN_ZOOM = -4
+const MAX_ZOOM = 8
+const MAX_NATIVE_ZOOM = 2
+const DEFAULT_ZOOM = 0
 const DEFAULT_VIEW = [3225, 3219]
 
-const fromLatLng = (map, latLng) => {
-  const point = map.project(latLng, MAX_ZOOM)
-  point.x += RS_CENTER_X * 2
-  let y = MAP_HEIGHT_PX - point.y + RS_TILE_HEIGHT_PX / 4
-  y = Math.round((y - RS_TILE_HEIGHT_PX) / RS_TILE_HEIGHT_PX) + RS_OFFSET_Y
-  const x =
-    Math.round((point.x - RS_TILE_WIDTH_PX) / RS_TILE_WIDTH_PX) + RS_OFFSET_X
-  return { x, y }
+const MainTileLayer = TileLayer.extend({
+  initialize: function (url, options) {
+    this._url = url
+    setOptions(this, options)
+  },
+
+  getTileUrl: function (coords) {
+    return Util.template(this._url, {
+      source: this.options.source,
+      mapId: -1,
+      zoom: coords.z,
+      plane: this.options.plane,
+      x: coords.x,
+      y: -(1 + coords.y)
+    })
+  },
+
+  createTile: function (coords, done) {
+    let tile = TileLayer.prototype.createTile.call(this, coords, done)
+    tile.onerror = error => error.preventDefault()
+    return tile
+  }
+})
+
+const fromLatLng = latLng => {
+  return {
+    x: parseInt(latLng.lng),
+    y: parseInt(latLng.lat)
+  }
 }
 
-const toLatLng = (map, x, y) => {
-  x = (x - RS_OFFSET_X) * RS_TILE_WIDTH_PX + RS_TILE_WIDTH_PX / 4
-  y = MAP_HEIGHT_PX - (y - RS_OFFSET_Y) * RS_TILE_HEIGHT_PX
-  x -= RS_CENTER_X
-  const latLng = map.unproject(point(x, y), MAX_ZOOM)
-  return [latLng.lat, latLng.lng]
+const toLatLng = (x, y) => {
+  return [y, x]
 }
 
 const findCurrentRegion = map => {
   const center = map.getCenter()
-  const rsCenter = fromLatLng(map, center)
+  const rsCenter = fromLatLng(center)
   const rsRegion = ((rsCenter.x >> 6) << 8) | (rsCenter.y >> 6)
 
   for (const region of regions) {
@@ -103,14 +115,14 @@ const mapTile = tile => {
 }
 
 const prepareMap = map => {
-  const defaultView = toLatLng(map, DEFAULT_VIEW[0], DEFAULT_VIEW[1])
+  const defaultView = toLatLng(DEFAULT_VIEW[0], DEFAULT_VIEW[1])
   map.setView(defaultView)
   map.locked = true
 
   const mouseRect = rectangle(
     [
       [0, 0],
-      [0, 0]
+      [1, 1]
     ],
     {
       color: '#1e1e1e',
@@ -124,10 +136,10 @@ const prepareMap = map => {
   mouseRect.addTo(map)
 
   map.on('mousemove', e => {
-    const mousePos = fromLatLng(map, e.latlng)
+    const mousePos = fromLatLng(e.latlng)
     mouseRect.setBounds([
-      toLatLng(map, mousePos.x, mousePos.y),
-      toLatLng(map, mousePos.x + 1, mousePos.y + 1)
+      toLatLng(mousePos.x, mousePos.y),
+      toLatLng(mousePos.x + 1, mousePos.y + 1)
     ])
   })
 
@@ -202,12 +214,17 @@ const prepareMap = map => {
 const TileMapHandler = ({ tiles, plane }) => {
   const map = useMap()
 
-  const layer = tileLayer(
-    'https://raw.githubusercontent.com/Explv/osrs_map_tiles/master/{plane}/{z}/{x}/{y}.png',
+  const layer = new MainTileLayer(
+    'https://raw.githubusercontent.com/mejrs/mejrs.github.io/master/layers/{source}/-1/{zoom}/{plane}_{x}_{y}.png',
     {
       noWrap: true,
-      tms: true,
-      plane: plane
+      plane: plane,
+      source: 'map_squares_osrs',
+      minZoom: MIN_ZOOM,
+      maxNativeZoom: MAX_NATIVE_ZOOM,
+      maxZoom: MAX_ZOOM,
+      errorTileUrl:
+        'https://raw.githubusercontent.com/mejrs/mejrs.github.io/master/layers/alpha_pixel.png'
     }
   )
 
@@ -216,7 +233,7 @@ const TileMapHandler = ({ tiles, plane }) => {
   }
 
   map.tileLayer = layer
-  map.tileLayer.addTo(map)
+  map.tileLayer.addTo(map).bringToBack()
 
   if (tiles.length > 0) {
     const tilesX = tiles.map(t => t.x)
@@ -225,8 +242,8 @@ const TileMapHandler = ({ tiles, plane }) => {
     const maxX = Math.max(...tilesX) + BOUNDS_TOLERANCE
     const minY = Math.min(...tilesY) - BOUNDS_TOLERANCE
     const maxY = Math.max(...tilesY) + BOUNDS_TOLERANCE
-    const minCorner = toLatLng(map, minX, minY)
-    const maxCorner = toLatLng(map, maxX, maxY)
+    const minCorner = toLatLng(minX, minY)
+    const maxCorner = toLatLng(maxX, maxY)
     const viewport = [minCorner, maxCorner]
 
     map.viewport = viewport
@@ -238,8 +255,8 @@ const TileMapHandler = ({ tiles, plane }) => {
   }
 
   return tiles.map(tile => {
-    const pos = toLatLng(map, tile.x, tile.y)
-    const pos2 = toLatLng(map, tile.x + 1, tile.y + 1)
+    const pos = toLatLng(tile.x, tile.y)
+    const pos2 = toLatLng(tile.x + 1, tile.y + 1)
     const bounds = [pos, pos2]
     return (
       <Fragment>
@@ -277,9 +294,15 @@ const RuneScapeMap = ({ tiles }) => {
       <MapContainer
         minZoom={MIN_ZOOM}
         maxZoom={MAX_ZOOM}
+        maxBounds={[
+          [-1000, -1000],
+          [12800 + 1000, 12800 + 1000]
+        ]}
+        maxBoundsViscosity={0.5}
         zoom={DEFAULT_ZOOM}
         attributionControl={false}
         whenCreated={prepareMap}
+        crs={CRS.Simple}
       >
         <TileMapHandler tiles={tiles} plane={plane} />
       </MapContainer>

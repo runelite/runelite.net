@@ -3,6 +3,7 @@
 .leaflet-container {
   height: 700px;
   width: 100%;
+  background: black;
 }
 
 .leaflet-tooltip {
@@ -43,4 +44,10 @@
   padding-right: 6px;
   font-size: 1.5em;
   cursor: grab;
+}
+
+.leaflet-tile-loaded {
+  visibility: inherit;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
