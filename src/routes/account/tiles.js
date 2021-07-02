@@ -23,8 +23,9 @@ const Tiles = ({ tiles, filter, setTileMarkersFilter }) => {
 
   const choices = tiles.map(tileName)
   filter = filter || choices[0]
-  const mapTiles = tiles.find(t => tileName(t) === filter).data
-  const mapData = JSON.stringify(mapTiles)
+  const allTiles = tiles.flatMap(t => t.data)
+  const selectedTiles = tiles.find(t => tileName(t) === filter).data
+  const mapData = JSON.stringify(selectedTiles)
 
   return (
     <Fragment>
@@ -36,7 +37,7 @@ const Tiles = ({ tiles, filter, setTileMarkersFilter }) => {
           onClick={setTileMarkersFilter}
         />
       </div>
-      <RuneScapeMap tiles={mapTiles} />
+      <RuneScapeMap tiles={allTiles} selected={selectedTiles} />
       <pre class="pre-select">
         {mapData}
         <div class="text-right">
