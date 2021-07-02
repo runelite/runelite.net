@@ -25,11 +25,14 @@ const MAX_ZOOM = 8
 const MAX_NATIVE_ZOOM = 2
 const DEFAULT_ZOOM = 0
 const DEFAULT_VIEW = [3225, 3219]
+const MIN_PLANE = 0
+const MAX_PLANE = 3
 
 const MainTileLayer = TileLayer.extend({
   initialize: function (url, options) {
     this._url = url
     setOptions(this, options)
+    this.originalPlane = options.plane
   },
 
   getTileUrl: function (coords) {
@@ -41,6 +44,32 @@ const MainTileLayer = TileLayer.extend({
       x: coords.x,
       y: -(1 + coords.y)
     })
+  },
+
+  resetPlane: function () {
+    this.setPlane(this.originalPlane)
+  },
+
+  setPlane: function (plane) {
+    const original = this.getPlane()
+    plane = Math.max(plane, this.options.minPlane)
+    plane = Math.min(plane, this.options.maxPlane)
+
+    if (plane === original) {
+      return
+    }
+
+    this.options.plane = plane
+
+    if (this._map) {
+      this._map.fire('planechange')
+    }
+
+    this.redraw()
+  },
+
+  getPlane: function () {
+    return this.options.plane
   },
 
   createTile: function (coords, done) {
@@ -151,7 +180,7 @@ const prepareMap = map => {
     const updateButton = () => {
       const region = findCurrentRegion(map)
       button.hidden = !region
-      button.innerHTML = region
+      button.textContent = region
     }
 
     updateButton()
@@ -169,11 +198,15 @@ const prepareMap = map => {
     DomEvent.disableClickPropagation(button).addListener(
       button,
       'click',
-      () =>
-        map.viewport
-          ? map.fitBounds(map.viewport)
-          : map.setView(defaultView, DEFAULT_ZOOM),
-      button
+      () => {
+        if (map.viewport) {
+          map.fitBounds(map.viewport)
+        } else {
+          map.setView(defaultView, DEFAULT_ZOOM)
+        }
+
+        map.tileLayer.resetPlane()
+      }
     )
 
     return container
@@ -209,31 +242,87 @@ const prepareMap = map => {
   }
 
   lockButton.addTo(map)
+
+  const planeButtons = new Control({ position: 'topright' })
+  planeButtons.onAdd = map => {
+    const container = DomUtil.create('div', 'leaflet-bar leaflet-control')
+    const upButton = DomUtil.create('a', 'fas fa-sort-amount-up-alt', container)
+    const label = DomUtil.create('span', 'leaflet-custom-control', container)
+    const downButton = DomUtil.create('a', 'fas fa-sort-amount-down', container)
+
+    const updateButtons = () => {
+      if (!map.tileLayer) {
+        return
+      }
+
+      label.textContent = map.tileLayer.getPlane()
+
+      if (map.tileLayer.getPlane() === map.tileLayer.options.maxPlane) {
+        DomUtil.addClass(upButton, 'leaflet-disabled')
+      } else {
+        DomUtil.removeClass(upButton, 'leaflet-disabled')
+      }
+
+      if (map.tileLayer.getPlane() === map.tileLayer.options.minPlane) {
+        DomUtil.addClass(downButton, 'leaflet-disabled')
+      } else {
+        DomUtil.removeClass(downButton, 'leaflet-disabled')
+      }
+    }
+
+    updateButtons()
+    map.on('planechange', updateButtons)
+
+    DomEvent.disableClickPropagation(upButton).addListener(
+      upButton,
+      'click',
+      () => {
+        DomUtil.removeClass(upButton, 'leaflet-disabled')
+        DomUtil.removeClass(downButton, 'leaflet-disabled')
+        map.tileLayer.setPlane(map.tileLayer.getPlane() + 1)
+      }
+    )
+
+    DomEvent.disableClickPropagation(downButton).addListener(
+      downButton,
+      'click',
+      () => {
+        DomUtil.removeClass(upButton, 'leaflet-disabled')
+        DomUtil.removeClass(downButton, 'leaflet-disabled')
+        map.tileLayer.setPlane(map.tileLayer.getPlane() - 1)
+      }
+    )
+
+    return container
+  }
+
+  planeButtons.addTo(map)
 }
 
 const TileMapHandler = ({ tiles, plane }) => {
   const map = useMap()
 
-  const layer = new MainTileLayer(
-    'https://raw.githubusercontent.com/mejrs/mejrs.github.io/master/layers/{source}/-1/{zoom}/{plane}_{x}_{y}.png',
-    {
-      noWrap: true,
-      plane: plane,
-      source: 'map_squares_osrs',
-      minZoom: MIN_ZOOM,
-      maxNativeZoom: MAX_NATIVE_ZOOM,
-      maxZoom: MAX_ZOOM,
-      errorTileUrl:
-        'https://raw.githubusercontent.com/mejrs/mejrs.github.io/master/layers/alpha_pixel.png'
-    }
-  )
+  if (!map.tileLayer) {
+    map.tileLayer = new MainTileLayer(
+      'https://raw.githubusercontent.com/mejrs/mejrs.github.io/master/layers/{source}/-1/{zoom}/{plane}_{x}_{y}.png',
+      {
+        noWrap: true,
+        plane: plane,
+        minPlane: MIN_PLANE,
+        maxPlane: MAX_PLANE,
+        source: 'map_squares_osrs',
+        minZoom: MIN_ZOOM,
+        maxNativeZoom: MAX_NATIVE_ZOOM,
+        maxZoom: MAX_ZOOM,
+        errorTileUrl:
+          'https://raw.githubusercontent.com/mejrs/mejrs.github.io/master/layers/alpha_pixel.png'
+      }
+    )
 
-  if (map.tileLayer) {
-    map.tileLayer.removeFrom(map)
+    map.tileLayer.addTo(map)
   }
 
-  map.tileLayer = layer
-  map.tileLayer.addTo(map).bringToBack()
+  map.tileLayer.setPlane(plane)
 
   if (tiles.length > 0) {
     const tilesX = tiles.map(t => t.x)
