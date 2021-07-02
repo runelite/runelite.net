@@ -322,6 +322,7 @@ const TileMapHandler = ({ tiles, plane }) => {
     map.tileLayer.addTo(map)
   }
 
+  map.tileLayer.originalPlane = plane
   map.tileLayer.setPlane(plane)
 
   if (tiles.length > 0) {
@@ -376,7 +377,7 @@ const RuneScapeMap = ({ tiles }) => {
 
   tiles = tiles.map(mapTile)
 
-  const plane = tiles.length > 0 ? tiles[0].z : 0
+  const plane = tiles.length > 0 ? tiles[0].z || 0 : 0
 
   return (
     <Fragment>
