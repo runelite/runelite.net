@@ -146,7 +146,6 @@ const mapTile = tile => {
 const prepareMap = map => {
   const defaultView = toLatLng(DEFAULT_VIEW[0], DEFAULT_VIEW[1])
   map.setView(defaultView)
-  map.locked = true
 
   const mouseRect = rectangle(
     [
@@ -214,35 +213,6 @@ const prepareMap = map => {
 
   resetButton.addTo(map)
 
-  const lockButton = new Control({ position: 'topleft' })
-  lockButton.onAdd = map => {
-    const container = DomUtil.create('div', 'leaflet-bar leaflet-control')
-    const button = DomUtil.create('a', 'fas fa-lock', container)
-
-    DomEvent.disableClickPropagation(button).addListener(
-      button,
-      'click',
-      () => {
-        if (map.locked) {
-          map.setMaxBounds(defaultView)
-          map.locked = false
-          DomUtil.removeClass(button, 'fa-lock')
-          DomUtil.addClass(button, 'fa-lock-open')
-        } else if (map.viewport) {
-          map.fitBounds(map.viewport)
-          map.setMaxBounds(map.viewport)
-          map.locked = true
-          DomUtil.removeClass(button, 'fa-lock-open')
-          DomUtil.addClass(button, 'fa-lock')
-        }
-      }
-    )
-
-    return container
-  }
-
-  lockButton.addTo(map)
-
   const planeButtons = new Control({ position: 'topright' })
   planeButtons.onAdd = map => {
     const container = DomUtil.create('div', 'leaflet-bar leaflet-control')
@@ -299,7 +269,7 @@ const prepareMap = map => {
   planeButtons.addTo(map)
 }
 
-const TileMapHandler = ({ tiles, plane }) => {
+const TileMapHandler = ({ tiles, selected, plane }) => {
   const map = useMap()
 
   if (!map.tileLayer) {
@@ -325,9 +295,9 @@ const TileMapHandler = ({ tiles, plane }) => {
   map.tileLayer.originalPlane = plane
   map.tileLayer.setPlane(plane)
 
-  if (tiles.length > 0) {
-    const tilesX = tiles.map(t => t.x)
-    const tilesY = tiles.map(t => t.y)
+  if (selected.length > 0) {
+    const tilesX = selected.map(t => t.x)
+    const tilesY = selected.map(t => t.y)
     const minX = Math.min(...tilesX) - BOUNDS_TOLERANCE
     const maxX = Math.max(...tilesX) + BOUNDS_TOLERANCE
     const minY = Math.min(...tilesY) - BOUNDS_TOLERANCE
@@ -338,10 +308,6 @@ const TileMapHandler = ({ tiles, plane }) => {
 
     map.viewport = viewport
     map.fitBounds(viewport)
-
-    if (map.locked || map.locked === undefined) {
-      map.setMaxBounds(viewport)
-    }
   }
 
   return tiles.map(tile => {
@@ -370,14 +336,19 @@ const TileMapHandler = ({ tiles, plane }) => {
   })
 }
 
-const RuneScapeMap = ({ tiles }) => {
+const RuneScapeMap = ({ tiles, selected }) => {
   if (!tiles) {
     tiles = []
   }
 
-  tiles = tiles.map(mapTile)
+  if (!selected) {
+    selected = tiles
+  }
 
-  const plane = tiles.length > 0 ? tiles[0].z || 0 : 0
+  tiles = tiles.map(mapTile)
+  selected = selected.map(mapTile)
+
+  const plane = selected.length > 0 ? selected[0].z || 0 : 0
 
   return (
     <Fragment>
@@ -394,7 +365,7 @@ const RuneScapeMap = ({ tiles }) => {
         whenCreated={prepareMap}
         crs={CRS.Simple}
       >
-        <TileMapHandler tiles={tiles} plane={plane} />
+        <TileMapHandler tiles={tiles} selected={selected} plane={plane} />
       </MapContainer>
     </Fragment>
   )
