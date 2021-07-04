@@ -267,6 +267,10 @@ const prepareMap = map => {
   }
 
   planeButtons.addTo(map)
+
+  if (map.viewport) {
+    map.fitBounds(map.viewport)
+  }
 }
 
 const TileMapHandler = ({ tiles, selected, plane }) => {
