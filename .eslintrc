@@ -5,5 +5,8 @@
       "pragma": "h",
       "version": "16.0"
     }
+  },
+  "rules": {
+    "jsx-a11y/anchor-is-valid": "off"
   }
 }
