@@ -9,41 +9,51 @@ import '../components/tooltip.css'
 import './tag.css'
 import prepare from '../components/prepare'
 import { formatIcon, wikiURLForItem } from '../util'
+import NotFound from '../components/not-found'
 
-const TagShow = ({ name, icon, itemIds, items, csv }) => (
-  <Layout>
-    <Meta title={`${name} tag tab - ${hero.title}`} description={csv} />
-    <section id="tags">
-      <div class="content-section tag-container">
-        <h1 class="page-header">
-          <img alt="" src={formatIcon(icon)} /> {name}
-        </h1>
+const TagShow = ({ name, icon, itemIds, items, csv }) => {
+  const itemsToShow = itemIds
+    .map(id => items.find(i => i.id === id))
+    .filter(i => !!i)
 
-        <pre class="pre-select">{csv}</pre>
+  if (itemsToShow.length === 0) {
+    return <NotFound />
+  }
 
-        <div class="row pl-2">
-          {itemIds.map(id => {
-            const item = items.find(i => i.id === id) || {}
-            const name = item.name || ''
+  return (
+    <Layout>
+      <Meta title={`${name} tag tab - ${hero.title}`} description={csv} />
+      <section id="tags">
+        <div class="content-section tag-container">
+          <h1 class="page-header">
+            <img alt="" src={formatIcon(icon)} /> {name}
+          </h1>
 
-            return (
+          <pre class="pre-select">{csv}</pre>
+
+          <div class="row pl-2">
+            {itemsToShow.map(item => (
               <div class="card">
                 <div class="tooltip-tag">
                   <a href={wikiURLForItem(item)}>
-                    <img class="card-img-top" alt={name} src={formatIcon(id)} />
+                    <img
+                      class="card-img-top"
+                      alt={item.name}
+                      src={formatIcon(item.id)}
+                    />
                   </a>
                   <div class="tooltip-tag-text">
                     <b>{item.name || 'Loading...'}</b>
                   </div>
                 </div>
               </div>
-            )
-          })}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  </Layout>
-)
+      </section>
+    </Layout>
+  )
+}
 
 const mapStateToProps = (state, { csv }) => {
   let parts = csv.split(',')
