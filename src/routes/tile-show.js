@@ -5,8 +5,13 @@ import Meta from '../components/meta'
 import { connect } from 'react-redux'
 import RuneScapeMap from '../components/runescape-map'
 import './tag.css'
+import NotFound from '../components/not-found'
 
 const TileShow = ({ data, tiles }) => {
+  if (!tiles || tiles.length === 0) {
+    return <NotFound />
+  }
+
   return (
     <Layout>
       <Meta title={`Tile markers - ${hero.title}`} description={data} />
