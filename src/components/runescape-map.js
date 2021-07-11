@@ -31,8 +31,8 @@ const MAX_PLANE = 3
 const MainTileLayer = TileLayer.extend({
   initialize: function (url, options) {
     this._url = url
-    setOptions(this, options)
     this.originalPlane = options.plane
+    setOptions(this, options)
   },
 
   getTileUrl: function (coords) {
@@ -247,8 +247,6 @@ const prepareMap = map => {
       upButton,
       'click',
       () => {
-        DomUtil.removeClass(upButton, 'leaflet-disabled')
-        DomUtil.removeClass(downButton, 'leaflet-disabled')
         map.tileLayer.setPlane(map.tileLayer.getPlane() + 1)
       }
     )
@@ -257,8 +255,6 @@ const prepareMap = map => {
       downButton,
       'click',
       () => {
-        DomUtil.removeClass(upButton, 'leaflet-disabled')
-        DomUtil.removeClass(downButton, 'leaflet-disabled')
         map.tileLayer.setPlane(map.tileLayer.getPlane() - 1)
       }
     )
