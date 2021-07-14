@@ -1,8 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 const {
   override,
   addWebpackAlias,
-  useBabelRc,
-  useEslintRc
+  useBabelRc
 } = require('customize-cra')
 
 const fs = require('fs')
@@ -14,6 +14,7 @@ const SitemapPlugin = require('sitemap-webpack-plugin').default
 const md = require('markdown-it')
 const fm = require('front-matter')
 const parser = require('fast-xml-parser')
+const moduleAlias = require('module-alias')
 const hero = require('./src/_data/hero')
 const parseBlog = require('./src/parse-blog')
 const redirectConfig = require('./redirect')
@@ -91,7 +92,7 @@ const addSitePlugins = () => config => {
         const { id, date } = parseBlog(fileName)
         return {
           path: '/blog/show/' + id,
-          lastMod: date.toISOString().slice(0, 10)
+          lastmod: date.toISOString().slice(0, 10)
         }
       })
     )
@@ -111,9 +112,9 @@ const addSitePlugins = () => config => {
   )
 
   config.plugins.push(
-    new SitemapPlugin(hero.url, routes, {
-      lastMod: true,
-      changeFreq: 'weekly'
+    new SitemapPlugin({
+      base: hero.url,
+      paths: routes
     })
   )
 
@@ -156,9 +157,11 @@ const addSitePlugins = () => config => {
   return config
 }
 
+moduleAlias.addAlias('react', 'preact/compat')
+moduleAlias.addAlias('react-dom', 'preact/compat')
+
 module.exports = override(
   useBabelRc(),
-  useEslintRc(),
   addWebpackAlias({
     react: 'preact/compat',
     'react-dom': 'preact/compat'
