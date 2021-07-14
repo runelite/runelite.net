@@ -9,12 +9,154 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2021-07-11T05:26:32.828Z</updated>
+  <updated>2021-07-14T15:44:33.802Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2021-07-14-1.7.16-Release</id>
+    <link href="https://runelite.net/blog/show/2021-07-14-1.7.16-Release" />
+    <title>1.7.14, 1.7.15, and 1.7.16 Releases</title>
+    <summary>Model outline rendering, roof removal plugin, and website tile marker viewing and improved hub plugin pages</summary>
+    <updated>2021-07-14T10:00:00.000Z</updated>
+    <author>
+      <name>Jordan</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><p>We've added a new model outline renderer which can draw precise outlines of NPCs and objects via
+their respective indicator plugins.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1px outline</th>
+<th style="text-align:center">2px outline</th>
+<th style="text-align:center">10px feathered outline</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/img/blog/1.7.16-Release/npc-outline-1px.png" alt="Dust devils highlighted with a 1px outline" /></td>
+<td style="text-align:center"><img src="/img/blog/1.7.16-Release/npc-outline-2px.png" alt="Dust devils highlighted with a 2px outline" /></td>
+<td style="text-align:center"><img src="/img/blog/1.7.16-Release/npc-outline-feather.png" alt="Dust devils highlighted with a 1px outline" /></td>
+</tr>
+</tbody>
+</table>
+<p>We've added a roof removal plugin which can selectively hide roofs when standing or walking under
+them, hovering over them, or when they block the camera's view to your player. Experience the game's
+beautiful roofs without sacrificing visibility!</p>
+<p><img src="/img/blog/1.7.16-Release/roof-removal-plugin.mp4" alt="Roof removal plugin demo" /></p>
+<h1>Website feature additions</h1>
+<p>We've added a tile marker display page to the website. Just visit <a href="https://runelite.net/tile/">https://runelite.net/tile/</a> and
+<a href="https://github.com/runelite/runelite/wiki/Ground-Markers#importing--exporting">paste your exported ground
+markers</a> to see them
+visualized on the game map, like these Olm boss fight markers. If you are logged in to website you can also
+view your saved tile markers <a href="https://runelite.net/account/tile-markers">on tile markers account page</a></p>
+<p><a href="https://runelite.net/tile/show/W3sicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjozNywicmVnaW9uWSI6MzgsInoiOjAsImNvbG9yIjoiI0ZGQ0NDQ0NDIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjM2LCJyZWdpb25ZIjozOCwieiI6MCwiY29sb3IiOiIjRkZDQ0NDQ0MifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MzUsInJlZ2lvblkiOjM4LCJ6IjowLCJjb2xvciI6IiNGRkNDQ0NDQyJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjozNCwicmVnaW9uWSI6MzgsInoiOjAsImNvbG9yIjoiI0ZGQ0NDQ0NDIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjMzLCJyZWdpb25ZIjozOCwieiI6MCwiY29sb3IiOiIjRkZDQ0NDQ0MifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MzIsInJlZ2lvblkiOjM4LCJ6IjowLCJjb2xvciI6IiNGRkNDQ0NDQyJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjozMSwicmVnaW9uWSI6MzgsInoiOjAsImNvbG9yIjoiI0ZGQ0NDQ0NDIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjMwLCJyZWdpb25ZIjozOCwieiI6MCwiY29sb3IiOiIjRkZDQ0NDQ0MifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MjksInJlZ2lvblkiOjM4LCJ6IjowLCJjb2xvciI6IiNGRkNDQ0NDQyJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjoyOCwicmVnaW9uWSI6MzgsInoiOjAsImNvbG9yIjoiI0ZGQ0NDQ0NDIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjM3LCJyZWdpb25ZIjozNywieiI6MCwiY29sb3IiOiIjRkZGRjAwMDAifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MzcsInJlZ2lvblkiOjM5LCJ6IjowLCJjb2xvciI6IiNGRkZGMDAwMCJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjoyOCwicmVnaW9uWSI6NTEsInoiOjAsImNvbG9yIjoiI0ZGRkYwMDAwIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjI4LCJyZWdpb25ZIjo0OSwieiI6MCwiY29sb3IiOiIjRkZGRjAwMDAifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MzcsInJlZ2lvblkiOjUwLCJ6IjowLCJjb2xvciI6IiNGRkNDQ0NDQyJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjozNiwicmVnaW9uWSI6NTAsInoiOjAsImNvbG9yIjoiI0ZGQ0NDQ0NDIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjM1LCJyZWdpb25ZIjo1MCwieiI6MCwiY29sb3IiOiIjRkZDQ0NDQ0MifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MzQsInJlZ2lvblkiOjUwLCJ6IjowLCJjb2xvciI6IiNGRkNDQ0NDQyJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjozMywicmVnaW9uWSI6NTAsInoiOjAsImNvbG9yIjoiI0ZGQ0NDQ0NDIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjMyLCJyZWdpb25ZIjo1MCwieiI6MCwiY29sb3IiOiIjRkZDQ0NDQ0MifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MzEsInJlZ2lvblkiOjUwLCJ6IjowLCJjb2xvciI6IiNGRkNDQ0NDQyJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjozMCwicmVnaW9uWSI6NTAsInoiOjAsImNvbG9yIjoiI0ZGQ0NDQ0NDIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjI5LCJyZWdpb25ZIjo1MCwieiI6MCwiY29sb3IiOiIjRkZDQ0NDQ0MifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MjgsInJlZ2lvblkiOjUwLCJ6IjowLCJjb2xvciI6IiNGRkNDQ0NDQyJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjozMCwicmVnaW9uWSI6MzcsInoiOjAsImNvbG9yIjoiI0ZGNjk2OUZGIiwibGFiZWwiOiJtYWdlIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjM1LCJyZWdpb25ZIjo1MSwieiI6MCwiY29sb3IiOiIjRkY2OTY5RkYiLCJsYWJlbCI6Im1hZ2UifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MjgsInJlZ2lvblkiOjQ0LCJ6IjowLCJjb2xvciI6IiM2NENDQ0NDQyJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjoyOSwicmVnaW9uWSI6NDQsInoiOjAsImNvbG9yIjoiIzY0Q0NDQ0NDIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjMwLCJyZWdpb25ZIjo0NCwieiI6MCwiY29sb3IiOiIjNjRDQ0NDQ0MifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MzEsInJlZ2lvblkiOjQ0LCJ6IjowLCJjb2xvciI6IiM2NENDQ0NDQyJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjozMiwicmVnaW9uWSI6NDQsInoiOjAsImNvbG9yIjoiIzY0Q0NDQ0NDIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjMzLCJyZWdpb25ZIjo0NCwieiI6MCwiY29sb3IiOiIjNjRDQ0NDQ0MifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MzQsInJlZ2lvblkiOjQ0LCJ6IjowLCJjb2xvciI6IiM2NENDQ0NDQyJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjozNSwicmVnaW9uWSI6NDQsInoiOjAsImNvbG9yIjoiIzY0Q0NDQ0NDIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjM2LCJyZWdpb25ZIjo0NCwieiI6MCwiY29sb3IiOiIjNjRDQ0NDQ0MifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MzcsInJlZ2lvblkiOjQ0LCJ6IjowLCJjb2xvciI6IiM2NENDQ0NDQyJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjozNSwicmVnaW9uWSI6NDMsInoiOjAsImNvbG9yIjoiIzY0RkY4NzAwIiwibGFiZWwiOiJydW5uZXIifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MzUsInJlZ2lvblkiOjQ1LCJ6IjowLCJjb2xvciI6IiM2NEZGODcwMCIsImxhYmVsIjoicnVubmVyIn0seyJyZWdpb25JZCI6MTI4ODksInJlZ2lvblgiOjMwLCJyZWdpb25ZIjo0MywieiI6MCwiY29sb3IiOiIjNjRGRjg3MDAiLCJsYWJlbCI6InJ1bm5lciJ9LHsicmVnaW9uSWQiOjEyODg5LCJyZWdpb25YIjozMCwicmVnaW9uWSI6NDUsInoiOjAsImNvbG9yIjoiIzY0RkY4NzAwIiwibGFiZWwiOiJydW5uZXIifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MzcsInJlZ2lvblkiOjQxLCJ6IjowLCJjb2xvciI6IiNGRkZGMDBGRiIsImxhYmVsIjoidGh1bWIifSx7InJlZ2lvbklkIjoxMjg4OSwicmVnaW9uWCI6MjgsInJlZ2lvblkiOjQ3LCJ6IjowLCJjb2xvciI6IiNGRkZGMDBGRiIsImxhYmVsIjoidGh1bWIifV0="><img src="/img/blog/1.7.16-Release/olm-markers-website-map.png" alt="Olm boss fight markers" /></a></p>
+<p>Additionally, our <a href="https://runelite.net/plugin-hub">Plugin Hub page</a> has become even more
+informative, as you can now click on a listed plugin and its project introduction will be presented.</p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>A border width option has been added to the Ground Markers plugin</li>
+<li>The Inventory Viewer has an option to become hidden when your inventory tab is open</li>
+<li>The Barbarian Assault lobby and healer widgets are now moveable using our overlay system</li>
+<li>The cannon degrade timer is now shown for each stage of cannon setup, and a repair timer is added
+if your cannon degrades after being set up</li>
+<li>Recolored versions of the Blade of Saeldor and Bow of Faerdhinen correctly count toward your total
+bank value</li>
+<li>The Wintertodt plugin is now better at detecting when you have started fletching</li>
+<li>The thrall timer counts the extra time given from having a boosted magic level</li>
+<li>The XP Tracker plugin will no longer forget to draw an intermediate marker for the last level
+toward a configured XP goal</li>
+<li>A number of Shayzien and Great Kourend clue scroll steps have had their text or enemies corrected</li>
+</ul>
+<p>Enjoy!</p>
+<p>- Jordan</p>
+<h3>New commits</h3>
+<p>We had 15 contributors this release!</p>
+<pre><code>Adam (7):
+      tile indicators: add border width config
+      Revert &quot;http-service: fix hiscore test&quot;
+      http-service: fix hiscore test
+      inventory viewer: add option to hide when inventory is open
+      Close various resource inputstreams
+      object indicators: don't mark unnamed objects
+      api: fix computing scene coord for negative local points
+
+BegOsrs (1):
+      WidgetOverlay: Make Barbarian Assault widgets moveable (#13852)
+
+Cyborger1 (1):
+      clues: Fix capitalization for &quot;New Recruit Tony&quot; master anagram
+
+F.W. Dekker (1):
+      chat notifications: clarify how to enter multiple words
+
+Gamma91 (1):
+      roof removal: Add missing overrides for the lighthouse and falador castle (#13862)
+
+Hydrox6 (16):
+      loot manager: add phosani's nightmare
+      widgetoverlay: add back removed WidgetOverlays
+      combatlevel: fix attack range indicator
+      clues: fix hot/cold enemies for updated kourend locations
+      timers: make thrall timer use boosted magic level
+      overlay renderer: account for parent's position when clamping location
+      clues: fix the other kourend hot/cold enemies
+      chat commands: add shorthand names for phosani's nightmare
+      xp tracker: fix intermediate markers not showing for xp based goal ends
+      api: add roof removal api
+      plugins: add roof removal plugin
+      devtools: add tile region location and regionid to tile location tool
+      devtools: add roofs tool
+      roof removal: overrides to fix Pyramid Plunder and Yanille Bank
+      timers: add cannon repair timer
+      roof removal: change override.json file extension to .jsonc
+
+Jordan Atwood (4):
+      CoordinateClue: Add South of Shayziens' Wall clue
+      discord: Identify corrupted gauntlet separately
+      Remove unused Slf4j annotations and imports
+      CoordinateClue: Fix Crabclaw isle location
+
+LlemonDuck (1):
+      raids: screenshot overlay from client thread
+
+Loze-Put (1):
+      timers: Add cannon timer for each parts' setup (#13856)
+
+Max Weber (6):
+      Update script arguments to 2021-6-30
+      http-api, rl-client: add phosani's nightmare to hiscores
+      http-service: fix hiscore test
+      music: don't restart when rendrawing tli
+      worldmap: fix tooltip widget id
+      runelite-api: update Quest
+
+Meeran (1):
+      ItemMapping: Add Blade of Saeldor and Bow of Faerdhinen recolor mappings (#13859)
+
+Michael (1):
+      wintertodt: improve fletching activity status detection
+
+SirWrain (1):
+      achievement diary: Fix reworded hard desert diary entry (#13770)
+
+Woox (5):
+      Add model outline renderer
+      modeloutlinerenderer: fix clip boundaries in fixed mode
+      api: add actor current orientation
+      api: add decorative object offsets
+      api: add game object model orientation
+
+geheur (1):
+      mta: update alchemy room widgets ids
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2021-06-23-1.7.13-Release</id>
     <link href="https://runelite.net/blog/show/2021-06-23-1.7.13-Release" />
-    <title>1.7.11, 1.7.12, and 1.7.13 Release</title>
+    <title>1.7.11, 1.7.12, and 1.7.13 Releases</title>
     <summary>Theatre of Blood: Hard and Story Mode, Shayzien and A Kingdom Divided, and other improvements</summary>
     <updated>2021-06-23T10:00:00.000Z</updated>
     <author>
