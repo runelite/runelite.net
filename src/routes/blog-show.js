@@ -9,7 +9,7 @@ import NotFound from '../components/not-found'
 import './blog.scss'
 import InnerHTMLHelper from '../components/inner-html-helper'
 
-const buildPost = ({ date, title, description, author, body }) => {
+const buildPost = ({ date, title, description, author, body, image }) => {
   if (!body) {
     return <NotFound />
   }
@@ -20,6 +20,8 @@ const buildPost = ({ date, title, description, author, body }) => {
         title={`${title} - ${hero.title}`}
         description={description}
         author={author}
+        image={image}
+        type={'article'}
       />
       <section id="blog">
         <div class="content-section">

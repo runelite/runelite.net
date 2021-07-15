@@ -1,7 +1,18 @@
+import hero from './_data/hero'
+
+// Return current URL
+export const getCurrentUrl = () => {
+  if (!window) {
+    return hero.url
+  }
+
+  return hero.url + window.location.pathname
+}
+
 // Return base URL for site
 export const getBaseUrl = () => {
   if (!window) {
-    return 'https://runelite.net'
+    return hero.url
   }
 
   const getUrl = window.location
