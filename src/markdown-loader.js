@@ -35,6 +35,12 @@ module.exports = function (source) {
   }
 
   obj.body = parser.render(frontMatterContext.body, options)
+  const matcher = /<img[^>]+src="([^">]+)"/
+  const match = obj.body.match(matcher)
+
+  if (match && match.length >= 2) {
+    obj.image = match[1]
+  }
 
   return 'module.exports = ' + JSON.stringify(obj)
 }
