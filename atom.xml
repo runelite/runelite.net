@@ -9,7 +9,100 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2021-07-15T00:56:07.813Z</updated>
+  <updated>2021-07-21T11:18:34.384Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2021-07-21-1.7.17-Release</id>
+    <link href="https://runelite.net/blog/show/2021-07-21-1.7.17-Release" />
+    <title>1.7.17 Release</title>
+    <summary>Loot beams and pets chat command</summary>
+    <updated>2021-07-21T10:00:00.000Z</updated>
+    <author>
+      <name>Jordan</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><p>Options have been added to the Ground Items plugin to draw loot beams for highlighted items, and for
+items at or above a given price tier.</p>
+<p><img src="/img/blog/1.7.17-Release/loot-beams.gif" alt="Ground item loot beams" /></p>
+<p>A new command, <code>!pets</code>, has been added to the Chat Commands plugin, which will display the number of
+pets owned along with an icon of each pet owned. You must first check the <code>All pets</code> section of your collection
+log for RuneLite to learn which pets you have. Additional pets are automatically added if the collection log unlock
+notifications are enabled in the game settings.</p>
+<p><img src="/img/blog/1.7.17-Release/pets-chat-command.png" alt="Pets chat command" /></p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>An option has been added to the Status Bars plugin to hide them while outside of combat</li>
+<li>The Report Button plugin can now display idle time on the report button</li>
+<li>The Menu Entry Swapper plugin's &quot;Quick Pass/Open/Start/Travel&quot; swap now swaps Zulrah's sacrificial
+boat's Quick-board option</li>
+<li>Teleport scrolls are now given labels via the Item Identification plugin</li>
+<li>The Timers plugin now shows a timer for being stunned while pickpocketing</li>
+<li>A number of locations have had their roof removal mapping improved. No more random roof pieces
+floating in the air!</li>
+<li>Clue scrolls requiring you travel through the Mos Le'Harmless Cave no longer prompt you to bring
+a light source when you've already built and lit the Fire of Eternal Light there</li>
+<li>The Time Tracking overview panel is no longer blocked from opening when your farming contract crop
+is dead</li>
+</ul>
+<p>Enjoy!</p>
+<p>- Jordan</p>
+<h3>New commits</h3>
+<p>We had 12 contributors this release!</p>
+<pre><code>Adam (4):
+      item identification: clean up config enabled checks
+      report button: add idle time
+      menu entry swapper: add sacrificial boat quick board swap
+      chat commands: add pets command
+
+Hydrox6 (5):
+      roof removal: add overrides for Shilo Village
+      roof removal: fix entrance to Draynor Manor
+      roof removal: fix bridge at entrance to Lletya
+      roof removal: add overrides for Harmony Island
+      roof removal: fix Arceuus church upper floors
+
+Jordan Atwood (2):
+      CoordinateClue: Fix Isle of Souls enemies
+      roof removal: Add overrides for Keldagrim
+
+Max Weber (8):
+      rl-api: add JagexColor util
+      timetracking: don't fail rendering overview with dead contracts
+      worldmap: use correct bounds for tooltip hit checking
+      music: use vanilla's volume percentage conversion
+      jshell: run cleanups on the client thread
+      rl-client: render horizontal scroll bars
+      jshell: allow copy of shell console
+      jshell: better unresolved symbol handling
+
+Neil Rush (1):
+      roof removal: Fix magic guild first floor (#13879)
+
+Peter Mauldin (1):
+      item identification: add teleport scrolls
+
+RiddleTime (1):
+      skill calc: add wall safe to thieving
+
+Robert (1):
+      timers: add pickpocket stun timer
+
+Trevor (2):
+      rl-api: add RuneLiteObject
+      ground items plugin: add lootbeams
+
+Vetricci (1):
+      clues: Fix Shayzien cryptic clue crate location
+
+emerald000 (1):
+      api: Fix Mos Le'Harmless firepit varbit (#13906)
+
+ermalsh (1):
+      statusbars: Add option to hide outside of combat
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2021-07-14-1.7.16-Release</id>
