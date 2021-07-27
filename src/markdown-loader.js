@@ -31,6 +31,7 @@ module.exports = function (source) {
 
   parser.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     tokens[idx].attrPush(['native', ''])
+    tokens[idx].attrPush(['rel', 'nofollow'])
     return defaultRender(tokens, idx, options, env, self)
   }
 
