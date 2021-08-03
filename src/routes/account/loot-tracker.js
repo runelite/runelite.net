@@ -70,7 +70,8 @@ const buildQuantity = num => {
               style={{
                 width: g.w,
                 backgroundPositionX: -g.x,
-                backgroundPositionY: -g.y
+                backgroundPositionY: -g.y,
+                backgroundImage: 'url(/img/numbers.png)'
               }}
             />
           ))}
