@@ -43,7 +43,7 @@ const Home = ({ commit, release, sessionCount, loggedInCount }) => (
       <div class="content-section homepage">
         <h1 class="page-header">FEATURES</h1>
         <Link href="/features" style={{ color: 'inherit' }}>
-          <h4>SHOW ALL FEATURES</h4>
+          <h4 class="right-header">SHOW ALL FEATURES</h4>
         </Link>
 
         <div class="row">
@@ -64,7 +64,7 @@ const Home = ({ commit, release, sessionCount, loggedInCount }) => (
       <div class="content-section homepage">
         <h1 class="page-header">LATEST NEWS</h1>
         <Link href="/blog" style={{ color: 'inherit' }}>
-          <h4>SHOW ALL NEWS</h4>
+          <h4 class="right-header">SHOW ALL NEWS</h4>
         </Link>
 
         <Async
