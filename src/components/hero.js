@@ -1,4 +1,3 @@
-import platform from 'platform'
 import { h, Component } from 'preact'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -13,27 +12,40 @@ import links from '../_data/links'
 import Commit from './commit'
 
 function isOsCorrect(osName) {
-  if (!platform.os.family) {
-    return false
-  }
+  const platform = navigator.platform.toLowerCase()
 
-  const arch = platform.os.architecture
-  const family = platform.os.family.toLowerCase()
-
-  if (family.indexOf('os x') !== -1 || family.indexOf('mac') !== -1) {
+  if (platform.indexOf('os x') !== -1 || platform.indexOf('mac') !== -1) {
     return osName === 'macOS'
   }
 
-  if (family.indexOf('win') !== -1) {
-    // return osName === (arch === 64 ? 'Windows64' : 'Windows32')
+  if (platform.indexOf('win') !== -1) {
     return osName === 'Windows32'
   }
 
-  if (family.indexOf('linux') !== -1) {
-    return osName === (arch === 64 ? 'Linux64' : 'Linux32')
+  if (platform.indexOf('linux') !== -1) {
+    if (platform.indexOf('x86_64') !== -1) {
+      return osName === 'Linux64'
+    }
+
+    if (platform.indexOf('i686') !== -1) {
+      return osName === 'Linux32'
+    }
+
+    if (
+      platform.indexOf('armv8') !== -1 ||
+      platform.indexOf('aarch64') !== -1
+    ) {
+      return osName === 'LinuxAarch64'
+    }
+
+    if (platform.indexOf('arm') !== -1 || platform.indexOf('aarch32') !== -1) {
+      return osName === 'LinuxAarch32'
+    }
+
+    return osName === 'Linux32'
   }
 
-  return osName === family
+  return false
 }
 
 class Hero extends Component {
@@ -117,13 +129,11 @@ class Hero extends Component {
     loggedIn,
     heroImage
   }) {
-    const dropdownButtons = buttons.filter(button => button.dropdown)
-    const defaultDropdownItem = dropdownButtons.find(
-      button => button.os === 'all'
-    )
-    const mainDropdownItem =
-      dropdownButtons.find(button => isOsCorrect(button.os)) ||
-      defaultDropdownItem
+    let downloadButtons = buttons.filter(button => isOsCorrect(button.os))
+    if (downloadButtons.length === 0) {
+      downloadButtons = [buttons.find(button => button.os === 'all')]
+    }
+    const showDetail = downloadButtons.length > 1
 
     return (
       <div
@@ -149,26 +159,34 @@ class Hero extends Component {
 
               <div id="download">
                 <div class="btn-group">
-                  <a
-                    id="direct-download-btn"
-                    class={'btn btn-' + mainDropdownItem.color}
-                    href={mainDropdownItem.link}
-                  >
-                    Download
-                  </a>
+                  {downloadButtons.map(({ link, icon, text }) => (
+                    <a
+                      id="direct-download-btn"
+                      class={'btn btn-primary'}
+                      title={
+                        'Download for ' +
+                        text.os +
+                        (text.arch ? ' (' + text.arch + ')' : '')
+                      }
+                      href={link}
+                    >
+                      <i class={icon} /> Download
+                      {showDetail && text.arch ? ' (' + text.arch + ')' : ''}
+                    </a>
+                  ))}
                   <div class="dropdown">
                     <button
                       class={
-                        'btn dropdown-toggle dropdown-toggle-split btn-' +
-                        mainDropdownItem.color
+                        'btn dropdown-toggle dropdown-toggle-split btn-primary'
                       }
                     >
                       <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu" style={{ textShadow: 'none' }}>
-                      {dropdownButtons.map(({ link, icon, text }) => (
+                      {buttons.map(({ link, icon, text }) => (
                         <a class="dropdown-item" href={link} native>
-                          <i class={icon} /> {text}
+                          <i class={icon} /> Download for {text.os}{' '}
+                          {text.arch ? ' (' + text.arch + ')' : ''}
                         </a>
                       ))}
                     </div>
