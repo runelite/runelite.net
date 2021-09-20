@@ -157,7 +157,6 @@ class Verify extends Component {
       return (
         <Fragment>
           <div class="card-header bg-primary">
-            <span class="card-title">OK</span>
             <button class="btn btn-dark float-right" onClick={this.reset}>
               <i class="fa fa-fw fa-times" />
             </button>
@@ -165,7 +164,8 @@ class Verify extends Component {
           <div class="card-body">
             <p class="text-center mt-5 mb-5">
               <h3>
-                {name} is from{' '}
+                <i class="fa fa-fw fa-check-circle text-success" />{' '}
+                <b>{name}</b> is from{' '}
                 <a href="https://runelite.net">https://runelite.net</a>
               </h3>
             </p>
@@ -178,13 +178,14 @@ class Verify extends Component {
       return (
         <Fragment>
           <div class="card-header bg-warning">
-            <span class="card-title">WRONG FILE</span>
             <button class="btn btn-dark float-right" onClick={this.reset}>
               <i class="fa fa-fw fa-times" />
             </button>
           </div>
-          <div class="card-body">
-            <p>{name} is the desktop shortcut for RuneLite.</p>
+          <div class="card-body text-center">
+            <p>
+              <b>{name}</b> is the desktop shortcut for RuneLite.
+            </p>
             <p>Please drag and drop the setup file that you downloaded.</p>
           </div>
         </Fragment>
@@ -195,13 +196,14 @@ class Verify extends Component {
       return (
         <Fragment>
           <div class="card-header bg-warning">
-            <span class="card-title">WRONG FILE</span>
             <button class="btn btn-dark float-right" onClick={this.reset}>
               <i class="fa fa-fw fa-times" />
             </button>
           </div>
-          <div class="card-body">
-            <p>{name} is the launcher for RuneLite.</p>
+          <div class="card-body text-center">
+            <p>
+              <b>{name}</b> is the launcher for RuneLite.
+            </p>
             <p>Please drag and drop the setup file that you downloaded.</p>
           </div>
         </Fragment>
@@ -211,7 +213,6 @@ class Verify extends Component {
     return (
       <Fragment>
         <div class="card-header bg-danger">
-          <span class="card-title">WARNING</span>
           <button class="btn btn-dark float-right" onClick={this.reset}>
             <i class="fa fa-fw fa-times" />
           </button>
@@ -219,7 +220,8 @@ class Verify extends Component {
         <div class="card-body">
           <p class="text-center mt-5 mb-5">
             <h3>
-              {name} is <b class="text-danger">NOT</b> from{' '}
+              <i class="fa fa-fw fa-times-circle text-danger" /> <b>{name}</b>{' '}
+              is not from{' '}
               <a href="https://runelite.net">https://runelite.net</a>
             </h3>
           </p>
