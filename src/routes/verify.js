@@ -1,11 +1,13 @@
 import './verify.css'
 import Layout from '../components/layout'
+import hero from '../_data/hero'
 import { h, Component, Fragment } from 'preact'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchHashes, getFileNames, getHashes } from '../modules/git'
 import prepare from '../components/prepare'
 import { digest } from '../util'
+import Meta from '../components/meta'
 
 const FILE_STATE = Object.freeze({
   NONE: Symbol('NONE'),
@@ -271,6 +273,10 @@ class Verify extends Component {
   render() {
     return (
       <Layout>
+        <Meta
+          title={`Verify RuneLite setup - ${hero.title}`}
+          description="Verify your RuneLite setup files here"
+        />
         <section id="verify" class="dark-card">
           <div class="content-section">
             <div class="card mb-3">
