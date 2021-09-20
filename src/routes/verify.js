@@ -86,6 +86,7 @@ class Verify extends Component {
     const reader = new FileReader()
     reader.onload = e => digest(e.target.result, this.checkFile)
     reader.readAsArrayBuffer(file)
+    window.scrollTo(0, 0)
   }
 
   inputHandler(evt) {
@@ -146,13 +147,17 @@ class Verify extends Component {
   }
 
   createMsg(name, fileState) {
+    if (fileState === FILE_STATE.NONE) {
+      return null
+    }
+
     if (fileState === FILE_STATE.VALID) {
       return (
         <Fragment>
           <div class="card-header bg-primary">
             <span class="card-title">OK</span>
             <button class="btn btn-dark float-right" onClick={this.reset}>
-              Go Back
+              <i class="fa fa-fw fa-times" />
             </button>
           </div>
           <div class="card-body">
@@ -173,7 +178,7 @@ class Verify extends Component {
           <div class="card-header bg-warning">
             <span class="card-title">WRONG FILE</span>
             <button class="btn btn-dark float-right" onClick={this.reset}>
-              Go Back
+              <i class="fa fa-fw fa-times" />
             </button>
           </div>
           <div class="card-body">
@@ -190,7 +195,7 @@ class Verify extends Component {
           <div class="card-header bg-warning">
             <span class="card-title">WRONG FILE</span>
             <button class="btn btn-dark float-right" onClick={this.reset}>
-              Go Back
+              <i class="fa fa-fw fa-times" />
             </button>
           </div>
           <div class="card-body">
@@ -206,7 +211,7 @@ class Verify extends Component {
         <div class="card-header bg-danger">
           <span class="card-title">WARNING</span>
           <button class="btn btn-dark float-right" onClick={this.reset}>
-            Go Back
+            <i class="fa fa-fw fa-times" />
           </button>
         </div>
         <div class="card-body">
@@ -268,11 +273,10 @@ class Verify extends Component {
       <Layout>
         <section id="verify" class="dark-card">
           <div class="content-section">
-            <div class="card">
-              {this.state.fileState === FILE_STATE.NONE
-                ? this.createInput()
-                : this.createMsg(this.state.fileName, this.state.fileState)}
+            <div class="card mb-3">
+              {this.createMsg(this.state.fileName, this.state.fileState)}
             </div>
+            <div class="card">{this.createInput()}</div>
           </div>
         </section>
       </Layout>
