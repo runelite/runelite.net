@@ -5,30 +5,20 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchHashes, getFileNames, getHashes } from '../modules/git'
 import prepare from '../components/prepare'
-import Popup from '../components/popup'
-import { isIE11 } from '../util'
+import { digest } from '../util'
 
 const FILE_STATE = Object.freeze({
   NONE: Symbol('NONE'),
+  LAUNCHER: Symbol('LAUNCHER'),
+  SHORTCUT: Symbol('SHORTCUT'),
   INVALID: Symbol('INVALID'),
   VALID: Symbol('VALID')
 })
 
-const bytesToHexString = bytes => {
-  if (!bytes) return null
-
-  const uint = new Uint8Array(bytes)
-  const hexBytes = []
-  for (let i = 0; i < uint.length; ++i) {
-    let byteString = uint[i].toString(16)
-
-    if (byteString.length < 2) byteString = '0' + byteString
-
-    hexBytes.push(byteString)
-  }
-
-  return hexBytes.join('')
-}
+const launcherHashes = [
+  '49ab6cb2e916b1dd62db1f52f1223bc47226a226abd7f1e3d0c9a34351eb23d0',
+  'b590edee17e2a4236b5a179d35f5934ddf9c9075fb09e93a7408f63242394a5f'
+]
 
 const noop = e => {
   e.preventDefault()
@@ -40,136 +30,72 @@ class Verify extends Component {
     super(props)
 
     this.state = {
-      hashes: props.hashes,
-      fileNames: props.fileNames,
-      popupMsg: null,
-      dragging: false
+      dragging: false,
+      fileName: null,
+      fileState: FILE_STATE.NONE
     }
+
+    this.reset = this.reset.bind(this)
+    this.inputHandler = this.inputHandler.bind(this)
+    this.dropHandler = this.dropHandler.bind(this)
+    this.dragOver = this.dragOver.bind(this)
+    this.dragLeave = this.dragLeave.bind(this)
+    this.checkFile = this.checkFile.bind(this)
+    this.fileHandler = this.fileHandler.bind(this)
   }
 
-  checkFile(name, sha256) {
-    const found = !!this.state.hashes[sha256]
+  checkFile(sha256) {
+    const name = this.state.fileName
+
+    let fileState = FILE_STATE.INVALID
+    if (name == null) {
+      fileState = FILE_STATE.NONE
+    } else if (name.match(/.*runelite.*\.lnk/i)) {
+      fileState = FILE_STATE.SHORTCUT
+    } else if (launcherHashes.includes(sha256)) {
+      fileState = FILE_STATE.LAUNCHER
+    } else if (!!this.props.hashes[sha256]) {
+      fileState = FILE_STATE.VALID
+    }
+
     this.setState({
-      popupMsg: this.createMsg(
-        name,
-        found ? FILE_STATE.VALID : FILE_STATE.INVALID
-      )
+      fileState
     })
   }
 
-  createMsg(name, valid) {
-    if (valid === FILE_STATE.VALID) {
-      return (
-        <Fragment>
-          <h2 style={{ color: 'blue' }}>OK</h2>
-
-          <p>
-            {name} is from{' '}
-            <a href="https://runelite.net">https://runelite.net</a>.
-          </p>
-        </Fragment>
-      )
-    }
-
-    return (
-      <Fragment>
-        <h2 style={{ color: 'red' }}>WARNING</h2>
-
-        <p>
-          {name} is <b>NOT</b> from{' '}
-          <a href="https://runelite.net">https://runelite.net</a>.
-        </p>
-
-        {name.match(/.*runelite.*(dmg|jar|exe|appimage)/i) && (
-          <>
-            <h4>
-              You've downloaded a fake client, and your account has been
-              compromised. Remove the fake as soon as possible to minimise
-              further damage.
-            </h4>
-            <p>
-              The following actions should be performed from a secure computer
-              or secure mobile device:
-            </p>
-            <ul>
-              <li>Change your RuneScape password</li>
-              <li>Remove and re-add Authenticator to RuneScape</li>
-              <li>Change your RuneScape bank PIN</li>
-              <li>Change your email's password</li>
-              <li>Add 2FA to your email if you haven't got it enabled</li>
-              <li>
-                Check for any linked accounts by accessing the{' '}
-                <a href="https://www.runescape.com/account_settings">
-                  account settings page
-                </a>
-              </li>
-            </ul>
-
-            <p>
-              Some fake clients also install malware, only a fresh install of
-              your operating system can guarantee the total removal of any
-              unwanted software.
-            </p>
-            <p>
-              You might also want to change any email password if you reused the
-              same as your RuneScape account password.
-            </p>
-
-            <p>
-              Once your computer is secure, you should download RuneLite from{' '}
-              <a href="https://runelite.net">https://runelite.net</a>.
-            </p>
-          </>
-        )}
-      </Fragment>
-    )
+  reset() {
+    this.setState({
+      dragging: false,
+      fileName: null,
+      fileState: FILE_STATE.NONE
+    })
   }
 
-  msDigest(name) {
-    return e => {
-      window.msCrypto.subtle.digest(
-        {
-          name: 'SHA-256'
-        },
-        e.target.result
-      ).oncomplete = e => {
-        const sha256 = bytesToHexString(e.target.result)
-        this.checkFile(name, sha256)
-      }
+  fileHandler(files) {
+    if (!files || files.length === 0) {
+      this.reset()
+      return
     }
+
+    const file = files[0]
+
+    this.setState({
+      fileName: file.name
+    })
+
+    const reader = new FileReader()
+    reader.onload = e => digest(e.target.result, this.checkFile)
+    reader.readAsArrayBuffer(file)
   }
 
-  digest(name) {
-    return e => {
-      window.crypto.subtle
-        .digest(
-          {
-            name: 'SHA-256'
-          },
-          e.target.result
-        )
-        .then(hash => {
-          const sha256 = bytesToHexString(hash)
-          this.checkFile(name, sha256)
-        })
-    }
+  inputHandler(evt) {
+    noop(evt)
+    this.fileHandler(evt.target.files)
   }
 
   dropHandler(evt) {
     this.dragLeave(evt)
-
-    if (evt.dataTransfer.files && evt.dataTransfer.files.length === 0) {
-      this.setState({ popupMsg: 'Please select a file' })
-      return
-    }
-
-    const file = evt.dataTransfer.files[0]
-
-    const name = file.name
-    const reader = new FileReader()
-    reader.onload = !isIE11 ? this.digest(name) : this.msDigest(name)
-
-    reader.readAsArrayBuffer(file)
+    this.fileHandler(evt.dataTransfer.files)
   }
 
   dragOver(evt) {
@@ -182,25 +108,170 @@ class Verify extends Component {
     this.setState({ dragging: false })
   }
 
+  createInput() {
+    return (
+      <Fragment>
+        <div class="card-body">
+          <div
+            class={`drag-drop-zone ${this.state.dragging ? 'dragging' : ''}`}
+            onDrop={this.dropHandler}
+            onDragOver={this.dragOver}
+            onDragEnter={this.dragOver}
+            onDragLeave={this.dragLeave}
+            onDragEnd={this.dragLeave}
+          >
+            <p>
+              Drag and drop your RuneLite setup file here or manually select
+              file below
+            </p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="input-group mb-1">
+            <div class="custom-file">
+              <input
+                type="file"
+                class="custom-file-input"
+                id="inputGroupFile"
+                onChange={this.inputHandler}
+              />
+              <label class="custom-file-label" for="inputGroupFile">
+                Choose file
+              </label>
+            </div>
+          </div>
+        </div>
+      </Fragment>
+    )
+  }
+
+  createMsg(name, fileState) {
+    if (fileState === FILE_STATE.VALID) {
+      return (
+        <Fragment>
+          <div class="card-header bg-primary">
+            <span class="card-title">OK</span>
+            <button class="btn btn-dark float-right" onClick={this.reset}>
+              Go Back
+            </button>
+          </div>
+          <div class="card-body">
+            <p class="text-center mt-5 mb-5">
+              <h3>
+                {name} is from{' '}
+                <a href="https://runelite.net">https://runelite.net</a>
+              </h3>
+            </p>
+          </div>
+        </Fragment>
+      )
+    }
+
+    if (fileState === FILE_STATE.SHORTCUT) {
+      return (
+        <Fragment>
+          <div class="card-header bg-warning">
+            <span class="card-title">WRONG FILE</span>
+            <button class="btn btn-dark float-right" onClick={this.reset}>
+              Go Back
+            </button>
+          </div>
+          <div class="card-body">
+            <p>{name} is the desktop shortcut for RuneLite.</p>
+            <p>Please drag and drop the setup file that you downloaded.</p>
+          </div>
+        </Fragment>
+      )
+    }
+
+    if (fileState === FILE_STATE.LAUNCHER) {
+      return (
+        <Fragment>
+          <div class="card-header bg-warning">
+            <span class="card-title">WRONG FILE</span>
+            <button class="btn btn-dark float-right" onClick={this.reset}>
+              Go Back
+            </button>
+          </div>
+          <div class="card-body">
+            <p>{name} is the launcher for RuneLite.</p>
+            <p>Please drag and drop the setup file that you downloaded.</p>
+          </div>
+        </Fragment>
+      )
+    }
+
+    return (
+      <Fragment>
+        <div class="card-header bg-danger">
+          <span class="card-title">WARNING</span>
+          <button class="btn btn-dark float-right" onClick={this.reset}>
+            Go Back
+          </button>
+        </div>
+        <div class="card-body">
+          <p class="text-center mt-5 mb-5">
+            <h3>
+              {name} is <b class="text-danger">NOT</b> from{' '}
+              <a href="https://runelite.net">https://runelite.net</a>
+            </h3>
+          </p>
+
+          {name.match(/.*runelite.*(dmg|jar|exe|appimage)/i) && (
+            <>
+              <h5>
+                You've downloaded a fake client, and your account has been
+                compromised. Remove the fake as soon as possible to minimise
+                further damage.
+              </h5>
+              <p>
+                The following actions should be performed from a secure computer
+                or secure mobile device:
+              </p>
+              <ul>
+                <li>Change your RuneScape password</li>
+                <li>Remove and re-add Authenticator to RuneScape</li>
+                <li>Change your RuneScape bank PIN</li>
+                <li>Change your email's password</li>
+                <li>Add 2FA to your email if you haven't got it enabled</li>
+                <li>
+                  Check for any linked accounts by accessing the{' '}
+                  <a href="https://www.runescape.com/account_settings">
+                    account settings page
+                  </a>
+                </li>
+              </ul>
+
+              <p>
+                Some fake clients also install malware, only a fresh install of
+                your operating system can guarantee the total removal of any
+                unwanted software.
+              </p>
+              <p>
+                You might also want to change any email password if you reused
+                the same as your RuneScape account password.
+              </p>
+
+              <p>
+                Once your computer is secure, you should download RuneLite from{' '}
+                <a href="https://runelite.net">https://runelite.net</a>.
+              </p>
+            </>
+          )}
+        </div>
+      </Fragment>
+    )
+  }
+
   render() {
     return (
       <Layout>
-        <section id="verify">
+        <section id="verify" class="dark-card">
           <div class="content-section">
-            {this.state.popupMsg && (
-              <Popup handleClose={() => this.setState({ popupMsg: null })}>
-                {this.state.popupMsg}
-              </Popup>
-            )}
-            <div
-              class={`drag-drop-zone ${this.state.dragging ? 'dragging' : ''}`}
-              onDrop={this.dropHandler.bind(this)}
-              onDragOver={this.dragOver.bind(this)}
-              onDragEnter={this.dragOver.bind(this)}
-              onDragLeave={this.dragLeave.bind(this)}
-              onDragEnd={this.dragLeave.bind(this)}
-            >
-              <p>Drag and drop your RuneLite launcher file here...</p>
+            <div class="card">
+              {this.state.fileState === FILE_STATE.NONE
+                ? this.createInput()
+                : this.createMsg(this.state.fileName, this.state.fileState)}
             </div>
           </div>
         </section>

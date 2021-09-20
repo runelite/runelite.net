@@ -80,4 +80,46 @@ export const upperToTitleCase = string => {
   return sentence.join(' ')
 }
 
-export const isIE11 = !!window.MSInputMethodContext && !!document.documentMode
+export const bytesToHexString = bytes => {
+  if (!bytes) return null
+
+  const uint = new Uint8Array(bytes)
+  const hexBytes = []
+  for (let i = 0; i < uint.length; ++i) {
+    let byteString = uint[i].toString(16)
+
+    if (byteString.length < 2) byteString = '0' + byteString
+
+    hexBytes.push(byteString)
+  }
+
+  return hexBytes.join('')
+}
+
+export const digest = (data, callback) => {
+  const isIE11 = !!window.MSInputMethodContext && !!document.documentMode
+
+  if (isIE11) {
+    window.msCrypto.subtle.digest(
+      {
+        name: 'SHA-256'
+      },
+      data
+    ).oncomplete = e => {
+      const sha256 = bytesToHexString(e.target.result)
+      callback(sha256)
+    }
+  } else {
+    window.crypto.subtle
+      .digest(
+        {
+          name: 'SHA-256'
+        },
+        data
+      )
+      .then(hash => {
+        const sha256 = bytesToHexString(hash)
+        callback(sha256)
+      })
+  }
+}
