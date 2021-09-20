@@ -12,11 +12,14 @@ export const {
   fetchReleases,
   fetchPulls,
   fetchIssues,
+  fetchHashes,
   setCommits,
   setReleases,
   setPulls,
   setDetails,
-  setIssues
+  setIssues,
+  setHashes,
+  setFileNames
 } = createActions(
   {
     FETCH_COMMITS: () => async (dispatch, getState) => {
@@ -197,13 +200,46 @@ export const {
 
       dispatch(setIssues(issues))
       return issues
+    },
+    FETCH_HASHES: () => async (dispatch, getState) => {
+      const response = await githubApi(`repos/${git.user}/launcher/releases`, {
+        method: 'GET'
+      })
+
+      const hashes = {}
+      const names = {}
+
+      const regex = new RegExp(
+        /([a-zA-Z0-9]{64}) \*?(([\w-]+)?RuneLite[.\w-]+)/gi
+      )
+
+      response.forEach(release => {
+        if (!release.body) {
+          return
+        }
+
+        let line = regex.exec(release.body)
+        while (line) {
+          hashes[line[1]] = 1
+          names[line[2].toLowerCase()] = 1
+
+          line = regex.exec(release.body)
+        }
+      })
+
+      dispatch(setHashes(hashes))
+      dispatch(setFileNames(names))
+
+      return hashes
     }
   },
   'SET_COMMITS',
   'SET_RELEASES',
   'SET_PULLS',
   'SET_DETAILS',
-  'SET_ISSUES'
+  'SET_ISSUES',
+  'SET_HASHES',
+  'SET_FILE_NAMES'
 )
 
 // Reducer
@@ -228,6 +264,14 @@ export default handleActions(
     [setIssues]: (state, { payload }) => ({
       ...state,
       issues: payload
+    }),
+    [setHashes]: (state, { payload }) => ({
+      ...state,
+      hashes: payload
+    }),
+    [setFileNames]: (state, { payload }) => ({
+      ...state,
+      fileNames: payload
     })
   },
   {
@@ -242,7 +286,9 @@ export default handleActions(
       authors: 0,
       commits: 0,
       files: 0
-    }
+    },
+    hashes: {},
+    fileNames: {}
   }
 )
 
@@ -252,6 +298,9 @@ const getReleases = state => state.git.releases
 const getIssues = state => state.git.issues
 export const getCommits = state => state.git.commits
 export const getDetails = state => state.git.details
+
+export const getHashes = state => state.git.hashes
+export const getFileNames = state => state.git.fileNames
 
 export const getLatestCommit = createSelector(getCommits, commits => {
   if (commits.length > 0) {

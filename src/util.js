@@ -79,3 +79,5 @@ export const upperToTitleCase = string => {
 
   return sentence.join(' ')
 }
+
+export const isIE11 = !!window.MSInputMethodContext && !!document.documentMode
