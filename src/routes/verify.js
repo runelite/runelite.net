@@ -137,6 +137,8 @@ class Verify extends Component {
                 class="custom-file-input"
                 id="inputGroupFile"
                 onChange={this.inputHandler}
+                onClick={e => (e.target.value = '')}
+                accept=".dmg,.jar,.exe,.AppImage"
               />
               <label class="custom-file-label" for="inputGroupFile">
                 Choose file
