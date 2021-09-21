@@ -69,6 +69,7 @@ const App = ({ loading, navbarDark, login, logout, loggedIn, username }) => (
         path="/account/:tag"
         getComponent={() => import('../routes/account')}
       />
+      <Async path="/verify" getComponent={() => import('../routes/verify')} />
       <NotFound default />
     </Router>
   </div>

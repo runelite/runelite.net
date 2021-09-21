@@ -83,7 +83,15 @@ const addSitePlugins = () => config => {
   }
 
   const posts = fs.readdirSync(path.join('src', '_posts'))
-  const routes = ['/', '/features', '/blog', '/tag', '/tile', '/plugin-hub']
+  const routes = [
+    '/',
+    '/features',
+    '/blog',
+    '/tag',
+    '/tile',
+    '/plugin-hub',
+    '/verify'
+  ]
     .map(path => ({ path }))
     .concat(
       posts.map(fileName => {
