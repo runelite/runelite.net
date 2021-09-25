@@ -169,6 +169,8 @@ class Hero extends Component {
                         (text.arch ? ' (' + text.arch + ')' : '')
                       }
                       href={link}
+                      native
+                      rel="nofollow"
                     >
                       <i class={icon} /> Download
                       {showDetail && text.arch ? ' (' + text.arch + ')' : ''}
@@ -184,7 +186,12 @@ class Hero extends Component {
                     </button>
                     <div class="dropdown-menu" style={{ textShadow: 'none' }}>
                       {buttons.map(({ link, icon, text }) => (
-                        <a class="dropdown-item" href={link} native>
+                        <a
+                          class="dropdown-item"
+                          href={link}
+                          native
+                          rel="nofollow"
+                        >
                           <i class={icon} /> Download for {text.os}{' '}
                           {text.arch ? ' (' + text.arch + ')' : ''}
                         </a>
