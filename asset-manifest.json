@@ -6,8 +6,8 @@
     "static/js/1.6700f38d.chunk.js": "/static/js/1.6700f38d.chunk.js",
     "static/js/1.6700f38d.chunk.js.map": "/static/js/1.6700f38d.chunk.js.map",
     "main.css": "/static/css/main.1cf66c71.chunk.css",
-    "main.js": "/static/js/main.f1ac916f.chunk.js",
-    "main.js.map": "/static/js/main.f1ac916f.chunk.js.map",
+    "main.js": "/static/js/main.4b43a4d6.chunk.js",
+    "main.js.map": "/static/js/main.4b43a4d6.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.62de1257.js",
     "runtime-main.js.map": "/static/js/runtime-main.62de1257.js.map",
     "static/css/4.4b1c69b4.chunk.css": "/static/css/4.4b1c69b4.chunk.css",
@@ -313,7 +313,7 @@
     "atom.xml": "/atom.xml",
     "discord/index.html": "/discord/index.html",
     "index.html": "/index.html",
-    "precache-manifest.ed50912eca4aed3ef7c10ef549e0b7f8.js": "/precache-manifest.ed50912eca4aed3ef7c10ef549e0b7f8.js",
+    "precache-manifest.4d48ecdc5ca83f9cfb89bd5205ad42ef.js": "/precache-manifest.4d48ecdc5ca83f9cfb89bd5205ad42ef.js",
     "redirect/launcher/discord/index.html": "/redirect/launcher/discord/index.html",
     "redirect/launcher/troubleshooting/index.html": "/redirect/launcher/troubleshooting/index.html",
     "service-worker.js": "/service-worker.js",
@@ -343,6 +343,6 @@
     "static/css/4.4b1c69b4.chunk.css",
     "static/js/4.c080805e.chunk.js",
     "static/css/main.1cf66c71.chunk.css",
-    "static/js/main.f1ac916f.chunk.js"
+    "static/js/main.4b43a4d6.chunk.js"
   ]
 }
