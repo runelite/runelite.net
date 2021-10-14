@@ -274,13 +274,13 @@ const TileMapHandler = ({ tiles, selected, plane }) => {
 
   if (!map.tileLayer) {
     map.tileLayer = new MainTileLayer(
-      'https://raw.githubusercontent.com/mejrs/mejrs.github.io/master/layers/{source}/-1/{zoom}/{plane}_{x}_{y}.png',
+      'https://raw.githubusercontent.com/mejrs/layers_osrs/master/{source}/-1/{zoom}/{plane}_{x}_{y}.png',
       {
         noWrap: true,
         plane: plane,
         minPlane: MIN_PLANE,
         maxPlane: MAX_PLANE,
-        source: 'map_squares_osrs',
+        source: 'mapsquares',
         minZoom: MIN_ZOOM,
         maxNativeZoom: MAX_NATIVE_ZOOM,
         maxZoom: MAX_ZOOM,
