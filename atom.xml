@@ -9,7 +9,99 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2021-10-14T01:55:04.916Z</updated>
+  <updated>2021-10-28T20:06:47.145Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2021-10-28-1.8.0-Release</id>
+    <link href="https://runelite.net/blog/show/2021-10-28-1.8.0-Release" />
+    <title>1.8.0 Release</title>
+    <summary>Uncapped frame rate</summary>
+    <updated>2021-10-28T19:00:00.000Z</updated>
+    <author>
+      <name>Adam</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><p>The GPU plugin has a new <code>Unlock FPS</code> option which disables the 50 FPS hard cap on the client and allows the client to render frames at the maximum rate supported by your system. For most users, this will be 60 FPS, unless you have a display and GPU which supports a higher refresh rate. The higher frame rate is applied to camera movements, like how the steam and mobile clients work, which results in a smoother feel when moving the camera with mouse or keyboard input.</p>
+<p><img src="/img/blog/1.8.0-Release/unlocked_fps.mp4" alt="Unlocked FPS" /></p>
+<h3>MacOS M1 Launcher</h3>
+<p>If you missed the previous blog, a native launcher for the Apple M1/M1 Pro/M1 Max is now available. If you have one of these systems and haven't already, we highly recommend downloading the newer launcher <a href="https://github.com/runelite/launcher/releases/download/2.2.0/RuneLite-aarch64.dmg">here</a>.</p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>Selected bank tag tabs no longer get applied to shared storage. You may additionally also search shared storage using bank tag names when a bank tag is selected</li>
+<li>The actions required in the skill calculator now no longer sometimes give incorrect results when using partial xp</li>
+<li>The <code>!pets</code> command now correctly recognizes pet chinchompas</li>
+<li>The Shared Storage button no longer overlaps the bank capacity interface</li>
+<li>A bug causing HD healthbars widths to be incorrect was fixed</li>
+<li><code>Lookup</code> was added to player names in the group ironman group list</li>
+<li><code>!kc gg</code> and <code>ggs</code> short names were added for Grotesque Guardians</li>
+<li>A bird nest tier setting was added to the Woodcutting plugin to allow only sending notifications for bird nests of a certain clue level</li>
+<li>The spec counter now has a configuration option for the bulwark special attack threshold</li>
+<li>The black <code>Loading</code> and <code>Connection lost</code> boxes now get drawn correctly in the upper left when GPU is enabled</li>
+<li>The prayer dose overlay now correctly computes how much prayer sanfew serums restore</li>
+</ul>
+<p>Enjoy!</p>
+<p>- Adam</p>
+<h3>New commits</h3>
+<p>We had 11 contributors this release!</p>
+<pre><code>Adam (21):
+      api: make HashTable implement iterable
+      game event manager: send itemcontainer change events for all containers
+      api: add getItemContainer(int)
+      api: import model bottomY
+      gpu: improve model visible check
+      hiscore: simplify lookup menu option add logic
+      wiki: fix positioning wiki icon with wiki entity lookup off
+      api: add clan id to clan channel changed event
+      widget overlay: update gwd kc position
+      banktags: fix active tag being applied to shared storage
+      inventoryid: add gim shared storage inventories
+      prayer: fix sanfew prayer dose indicator
+      skillcalc: only recompute xp bonus values once when bonus changes
+      skillcalc: round bonus xp to nearest tenth
+      skillcalc: use double precision for xp
+      Add runelite_callback opcode to cache
+      gpu: fix drawing loading and connection lost boxes
+      skillcalc: use fixed point arithmetic for xp calculations
+      Bump to 1.8.0-SNAPSHOT
+      client loader: add new jagex certificate
+      gpu: add uncap fps option
+
+BrastaSauce (1):
+      hiscore: Add player lookup in group ironman tab
+
+BrianSchimert (1):
+      chat commands: Add shorthand names for Grotesque Guardians (#14305)
+
+Hydrox6 (3):
+      api: add group ironman account types
+      skill calculator: fix incorrect icon for Hespori
+      interface styles: fix incorrectly sized 140px healthbar
+
+Illya Myshakov (1):
+      chat commands: fix incorrect pet chin ID
+
+Kerzyte (1):
+      skill calculator: minor xp corrections
+
+Tal s (1):
+      woodcutting: Add clue nest notification config (#14132)
+
+TheStonedTurtle (1):
+      spec counter: add bulwark threshold config
+
+lkmrrs (1):
+      skill calculator: Add javelins to fletching calculator (#14317)
+
+melkypie (2):
+      banktags: fix bank equipment button and item count spacing
+      banktags: fix group storage button location
+
+shmeeps (1):
+      prayer: add blighted super restore
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2021-10-06-1.7.25-Release</id>
