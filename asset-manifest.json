@@ -6,10 +6,10 @@
     "static/js/1.621d3269.chunk.js": "/static/js/1.621d3269.chunk.js",
     "static/js/1.621d3269.chunk.js.map": "/static/js/1.621d3269.chunk.js.map",
     "main.css": "/static/css/main.1cf66c71.chunk.css",
-    "main.js": "/static/js/main.19d07dbd.chunk.js",
-    "main.js.map": "/static/js/main.19d07dbd.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.510bd9d7.js",
-    "runtime-main.js.map": "/static/js/runtime-main.510bd9d7.js.map",
+    "main.js": "/static/js/main.c8be2c2c.chunk.js",
+    "main.js.map": "/static/js/main.c8be2c2c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.aad42542.js",
+    "runtime-main.js.map": "/static/js/runtime-main.aad42542.js.map",
     "static/css/4.4b1c69b4.chunk.css": "/static/css/4.4b1c69b4.chunk.css",
     "static/js/4.c080805e.chunk.js": "/static/js/4.c080805e.chunk.js",
     "static/js/4.c080805e.chunk.js.map": "/static/js/4.c080805e.chunk.js.map",
@@ -38,8 +38,8 @@
     "static/js/12.eb61c068.chunk.js": "/static/js/12.eb61c068.chunk.js",
     "static/js/12.eb61c068.chunk.js.map": "/static/js/12.eb61c068.chunk.js.map",
     "static/css/13.5b14b3c6.chunk.css": "/static/css/13.5b14b3c6.chunk.css",
-    "static/js/13.0df26d58.chunk.js": "/static/js/13.0df26d58.chunk.js",
-    "static/js/13.0df26d58.chunk.js.map": "/static/js/13.0df26d58.chunk.js.map",
+    "static/js/13.a7bd0f07.chunk.js": "/static/js/13.a7bd0f07.chunk.js",
+    "static/js/13.a7bd0f07.chunk.js.map": "/static/js/13.a7bd0f07.chunk.js.map",
     "static/js/14.e1fe7b89.chunk.js": "/static/js/14.e1fe7b89.chunk.js",
     "static/js/14.e1fe7b89.chunk.js.map": "/static/js/14.e1fe7b89.chunk.js.map",
     "static/css/15.05f3feda.chunk.css": "/static/css/15.05f3feda.chunk.css",
@@ -319,7 +319,7 @@
     "atom.xml": "/atom.xml",
     "discord/index.html": "/discord/index.html",
     "index.html": "/index.html",
-    "precache-manifest.96a9e4232f02748fa0fdbf71144f4272.js": "/precache-manifest.96a9e4232f02748fa0fdbf71144f4272.js",
+    "precache-manifest.c82af6bd98701c695323743399b25a8c.js": "/precache-manifest.c82af6bd98701c695323743399b25a8c.js",
     "redirect/launcher/discord/index.html": "/redirect/launcher/discord/index.html",
     "redirect/launcher/troubleshooting/index.html": "/redirect/launcher/troubleshooting/index.html",
     "service-worker.js": "/service-worker.js",
@@ -345,10 +345,10 @@
     "static/media/app.scss": "/static/media/lato-normal.27bd77b9.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.510bd9d7.js",
+    "static/js/runtime-main.aad42542.js",
     "static/css/4.4b1c69b4.chunk.css",
     "static/js/4.c080805e.chunk.js",
     "static/css/main.1cf66c71.chunk.css",
-    "static/js/main.19d07dbd.chunk.js"
+    "static/js/main.c8be2c2c.chunk.js"
   ]
 }
