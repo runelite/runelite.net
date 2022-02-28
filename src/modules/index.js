@@ -5,7 +5,6 @@ import configReducer from './config'
 import geReducer from './ge'
 import gitReducer from './git'
 import itemReducer from './item'
-import lootReducer from './loot'
 import sessionReducer from './session'
 import tagReducer from './tag'
 import pricesReducer from './prices'
@@ -22,7 +21,6 @@ export default {
   ge: geReducer,
   git: gitReducer,
   item: itemReducer,
-  loot: lootReducer,
   session: sessionReducer,
   tag: tagReducer,
   prices: pricesReducer,
