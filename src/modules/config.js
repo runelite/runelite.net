@@ -195,7 +195,8 @@ export const getLoot = createSelector(
     }
 
     const entries = []
-    const prefix = 'loottracker.rsprofile.' + selectedAccount.accountId
+    const prefix =
+      'loottracker.rsprofile.' + selectedAccount.accountId + '.drops_'
 
     for (let [key, value] of Object.entries(config)) {
       if (!key.startsWith(prefix)) {
@@ -204,34 +205,40 @@ export const getLoot = createSelector(
 
       value = JSON.parse(value)
 
+      if (!('name' in value)) {
+        continue
+      }
+
       const entry = {
-        name: value['name'],
-        count: parseInt(value['kills']),
-        type: value['type'],
+        name: value['name'] || '',
+        count: parseInt(value['kills'] || ''),
+        type: value['type'] || '',
         drops: []
       }
 
       entry.date = new Date(0)
       entry.date.setUTCSeconds(parseFloat(value['last']))
 
-      for (let i = 0; i < value['drops'].length; i += 2) {
-        const drop = {
-          id: parseInt(value['drops'][i]),
-          qty: parseInt(value['drops'][i + 1])
+      if ('drops' in value) {
+        for (let i = 0; i < value['drops'].length; i += 2) {
+          const drop = {
+            id: parseInt(value['drops'][i]),
+            qty: parseInt(value['drops'][i + 1])
+          }
+
+          const item = items.find(item => item.id === drop.id)
+          drop.name = item && item.name ? item.name : 'null'
+          const note = drop.name && items.find(item => item.id === drop.id - 1)
+          const unnoted = note && note.name === drop.name && note.id
+
+          let price = prices[drop.id]
+          if (unnoted && (isNaN(price) || price <= 0)) {
+            price = prices[unnoted]
+          }
+
+          drop.price = (price || 0) * drop.qty
+          entry.drops.push(drop)
         }
-
-        const item = items.find(item => item.id === drop.id)
-        drop.name = item && item.name ? item.name : 'null'
-        const note = drop.name && items.find(item => item.id === drop.id - 1)
-        const unnoted = note && note.name === drop.name && note.id
-
-        let price = prices[drop.id]
-        if (unnoted && (isNaN(price) || price <= 0)) {
-          price = prices[unnoted]
-        }
-
-        drop.price = (price || 0) * drop.qty
-        entry.drops.push(drop)
       }
 
       entry.price = entry.drops.reduce((acc, drop) => acc + drop.price, 0)

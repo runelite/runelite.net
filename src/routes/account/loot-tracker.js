@@ -91,8 +91,7 @@ const buildDrop = drop => (
         />
       </a>
       <div class="tooltip-tag-text">
-        <b>{drop.name}</b>{' '}
-        <small>({formatPrice(drop.price * drop.qty)} gp)</small>
+        <b>{drop.name}</b> <small>({formatPrice(drop.price)} gp)</small>
       </div>
     </div>
   </div>

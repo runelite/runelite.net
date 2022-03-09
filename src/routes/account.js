@@ -137,7 +137,7 @@ const menuExport = (currentMenu, props) => {
 }
 
 const accountType = type => {
-  if (type !== 'STANDARD') {
+  if (type && type !== 'STANDARD') {
     return <span class="badge badge-info">{upperToTitleCase(type)}</span>
   }
 
