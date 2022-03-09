@@ -2,12 +2,6 @@ import { h, Fragment } from 'preact'
 import '../../components/tooltip.css'
 import './loot-tracker.css'
 import { connect } from 'react-redux'
-import {
-  fetchLoot,
-  getGroupedLoot,
-  getLootFilter,
-  setLootFilter
-} from '../../modules/loot'
 import { bindActionCreators } from 'redux'
 import prepare from '../../components/prepare'
 import { wikiURLForItem } from '../../util'
@@ -15,6 +9,12 @@ import SearchBar from '../../components/search-bar'
 import { fetchBootstrap } from '../../modules/bootstrap'
 import { fetchPrices } from '../../modules/prices'
 import { fetchItems } from '../../modules/item'
+import {
+  fetchConfig,
+  getFilteredLoot,
+  getLootFilter,
+  setLootFilter
+} from '../../modules/config'
 
 const getRlIcon = id => `https://static.runelite.net/cache/item/icon/${id}.png`
 
@@ -115,15 +115,12 @@ const buildLootRecord = record => (
   </div>
 )
 
-const handleChange = (event, setLootFilter) =>
-  setLootFilter({
-    name: event.target.value
-  })
+const handleChange = (event, setLootFilter) => setLootFilter(event.target.value)
 
 const LootTracker = ({ loot, lootFilter, setLootFilter }) => (
   <Fragment>
     <SearchBar
-      value={lootFilter.name}
+      value={lootFilter}
       onInput={e => handleChange(e, setLootFilter)}
     />
     <div class="card-columns">{loot.map(buildLootRecord)}</div>
@@ -132,7 +129,7 @@ const LootTracker = ({ loot, lootFilter, setLootFilter }) => (
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  loot: getGroupedLoot(state),
+  loot: getFilteredLoot(state),
   lootFilter: getLootFilter(state)
 })
 
@@ -142,7 +139,7 @@ const mapDispatchToProps = dispatch =>
       fetchBootstrap,
       fetchPrices,
       fetchItems,
-      fetchLoot,
+      fetchConfig,
       setLootFilter
     },
     dispatch
@@ -152,12 +149,12 @@ const prepareComponentData = async ({
   fetchBootstrap,
   fetchPrices,
   fetchItems,
-  fetchLoot
+  fetchConfig
 }) => {
   await fetchBootstrap()
   await fetchPrices()
   await fetchItems()
-  await fetchLoot()
+  await fetchConfig()
 }
 
 export default connect(

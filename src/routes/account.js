@@ -11,13 +11,13 @@ import {
   changeAccount,
   getAccounts,
   getBossLog,
+  getLoot,
   getSelectedAccount,
   getSlayerTask,
   getTags,
   getTileMarkers
 } from '../modules/config'
 import { getGe } from '../modules/ge'
-import { getLoot } from '../modules/loot'
 import Home from './account/home'
 import GrandExchange from './account/grand-exchange'
 import LootTracker from './account/loot-tracker'
@@ -61,15 +61,8 @@ const menu = [
     label: 'Loot Tracker',
     icon: 'fa-fw fas fa-file-invoice-dollar',
     component: LootTracker,
-    data: ({ rawLoot }) =>
-      rawLoot.map(entry => ({
-        eventId: entry.eventId,
-        type: entry.type,
-        drops: entry.drops.map(drop => ({
-          id: drop.id,
-          qty: drop.qty
-        }))
-      }))
+    showAccounts: true,
+    data: ({ rawLoot }) => rawLoot
   },
   {
     tag: 'time-tracking',
