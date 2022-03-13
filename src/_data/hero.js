@@ -27,7 +27,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.4.2/RuneLite-x64.dmg',
+        'https://github.com/runelite/launcher/releases/download/2.4.3/RuneLite-x64.dmg',
       icon: 'fab fa-fw fa-apple',
       text: {
         os: 'macOS',
