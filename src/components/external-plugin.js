@@ -14,7 +14,7 @@ const ExternalPlugin = ({
   <div class="col-md-4 col-sm-6 col-xs-12 mb-2">
     <div class="card">
       <div class="card-body d-flex align-self-stretch">
-        <div class="m-2">
+        <div className="mr-2 d-flex align-items-start">
           <img
             width="36"
             alt=""

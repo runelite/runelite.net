@@ -16,6 +16,7 @@ import { fetchConfig } from '../modules/config'
 import { numberWithCommas } from '../util'
 import InnerHTMLHelper from '../components/inner-html-helper'
 import NotFound from '../components/not-found'
+import '../components/feature.scss'
 
 const PluginHubShow = ({ externalPlugin }) => {
   if (!externalPlugin) {
@@ -32,57 +33,64 @@ const PluginHubShow = ({ externalPlugin }) => {
       <section id="externalPlugins">
         <div class="content-section dark-card">
           <div class="card">
-            <div class="card-header">
-              <img
-                width="36"
-                alt=""
-                src={
-                  externalPlugin.imageUrl
-                    ? externalPlugin.imageUrl
-                    : '/img/plugin-hub/missingicon.png'
-                }
-              />{' '}
-              {externalPlugin.support ? (
-                <a
-                  href={externalPlugin.support}
-                  alt="Support link"
-                  rel="noopener noreferrer nofollow"
-                  target="_blank"
-                >
-                  {externalPlugin.displayName}
-                </a>
-              ) : (
-                externalPlugin.displayName
-              )}{' '}
-              by{' '}
-              <a href={`/plugin-hub/${externalPlugin.author}`}>
-                {externalPlugin.author}
-              </a>
-              <div class="float-right">
+            <div class="card-header card-body d-flex align-self-stretch">
+              <div class="mr-4 d-flex align-items-center">
+                <img
+                  width="36"
+                  alt=""
+                  src={
+                    externalPlugin.imageUrl
+                      ? externalPlugin.imageUrl
+                      : '/img/plugin-hub/missingicon.png'
+                  }
+                />
+              </div>
+              <div>
+                <h5 class="card-title">
+                  {externalPlugin.support ? (
+                    <a
+                      href={externalPlugin.support}
+                      alt="Support link"
+                      rel="noopener noreferrer nofollow"
+                      target="_blank"
+                    >
+                      {externalPlugin.displayName}
+                    </a>
+                  ) : (
+                    externalPlugin.displayName
+                  )}
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                  <a href={`/plugin-hub/${externalPlugin.author}`}>
+                    {externalPlugin.author}
+                  </a>
+                </h6>
                 {externalPlugin.count > 0 && (
-                  <span class="badge badge-primary">
-                    {numberWithCommas(externalPlugin.count)}{' '}
-                    {externalPlugin.count > 1
-                      ? 'active installs'
-                      : 'active install'}
-                  </span>
-                )}{' '}
-                {externalPlugin.installed && (
-                  <span class="badge badge-success">installed</span>
+                  <p class="card-text">
+                    <span class="badge badge-primary">
+                      {numberWithCommas(externalPlugin.count)}{' '}
+                      {externalPlugin.count > 1
+                        ? 'active installs'
+                        : 'active install'}
+                    </span>{' '}
+                    {externalPlugin.installed && (
+                      <span class="badge badge-success">installed</span>
+                    )}
+                  </p>
                 )}
               </div>
+              <div className="ml-4 text-muted">
+                {externalPlugin.description}
+              </div>
             </div>
-            <div class="card-footer text-muted">
-              {externalPlugin.description}
-            </div>
-            <div class="card-body markdown-body">
-              {externalPlugin.github && (
+            {externalPlugin.github && (
+              <div class="card-body markdown-body">
                 <InnerHTMLHelper
                   tagName="div"
                   html={externalPlugin.github.readme}
                 />
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
