@@ -8,16 +8,17 @@
   margin-bottom: 50px;
 }
 
+.card-header,
 .card-body {
   padding: 0;
   margin-top: 20px;
-  font-size: 15px;
+  font-size: 15px !important;
   color: #a8a8a8;
 }
 
 .card-title {
   color: white;
-  font-size: 18px;
+  font-size: 18px !important;
 }
 
 .card-title a {
