@@ -1,0 +1,277 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><meta name="google-site-verification" content="_wxrTRAcgx3bHof630x75_YKSXklUH55NkOAA_5GfmU"><link rel="manifest" href="/manifest.json"><link rel="shortcut icon" href="/favicon.ico"><title>1.8.14 - 1.8.19 Releases - RuneLite</title><meta name="description" content="Compost tracking and menu swapper improvements"><meta name="author" content="Adam"><meta property="og:site_name" content="RuneLite"><meta property="og:url" content="https://runelite.net/blog/show/2022-05-11-1.8.19-Release"><meta property="og:title" content="1.8.14 - 1.8.19 Releases - RuneLite"><meta property="og:description" content="Compost tracking and menu swapper improvements"><meta property="og:image" content="https://runelite.net/img/blog/1.8.19-Release/compost1.png"><meta property="og:type" content="article"><meta property="twitter:card" content="summary_large_image"><script type="text/javascript">!function(i){if(i.search){var a={};i.search.slice(1).split("&").forEach((function(i){var l=i.split("=");a[l[0]]=l.slice(1).join("=").replace(/~and~/g,"&")})),void 0!==a.p&&window.history.replaceState(null,null,i.pathname.slice(0,-1)+(a.p||"")+(a.q?"?"+a.q:"")+i.hash)}}(window.location)</script><link href="/static/css/4.4b1c69b4.chunk.css" rel="stylesheet"><link href="/static/css/main.1cf66c71.chunk.css" rel="stylesheet"><link rel="stylesheet" type="text/css" href="/static/css/6.e2ed0cde.chunk.css"><script charset="utf-8" src="/static/js/6.503da6a4.chunk.js"></script><script charset="utf-8" src="/static/js/152.b3c1e091.chunk.js"></script></head><body><div id="root"><div style="height: 100%;"><div class="fixed-top animated loader" style="display: none;"></div><nav class="navbar navbar-expand-lg fixed-top navbar-dark"><a class="navbar-brand" activeclassname="active" href="/"><img src="/img/runelite_logo_transparent.png" class="icon" alt="RuneLite"> </a><input type="checkbox" id="navbar-check-box"><label for="navbar-check-box" class="navbar-toggler"><span class="navbar-toggler-icon"></span></label><div class="collapse navbar-collapse" id="navbar"><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" activeclassname="active" href="/features">Features</a></li><li class="nav-item"><a class="nav-link" activeclassname="active" href="/blog">Blog</a></li><li class="nav-item"><a class="nav-link" activeclassname="active" href="/pulse">Pulse</a></li><li class="nav-item"><a class="nav-link" href="https://github.com/runelite/runelite/wiki">Wiki</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown">API</a><div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item" href="https://static.runelite.net/api/runelite-api/">RuneLite API</a><a class="dropdown-item" href="https://static.runelite.net/api/runelite-client/">RuneLite Client API</a></div></li><li class="nav-item"><a class="nav-link" activeclassname="active" href="/tag">Tags</a></li><li class="nav-item"><a class="nav-link" activeclassname="active" href="/tile">Tile markers</a></li><li class="nav-item"><a class="nav-link" activeclassname="active" href="/plugin-hub">Plugin Hub</a></li></ul><ul class="navbar-nav ml-auto"><li class="nav-item"><a class="nav-link" href="https://merch.runelite.net">Buy Merch</a></li><li class="nav-item"><a class="nav-link" href="https://www.patreon.com/runelite">Become a patron</a></li><li class="nav-item"><a class="nav-link nav-icon" href="https://runelite.net/discord" title="Discord"><i class="fab fa-discord"></i><span class="d-lg-none"> Discord</span></a></li><li class="nav-item"><a class="nav-link nav-icon" href="https://twitter.com/RuneLiteClient" title="Twitter"><i class="fab fa-twitter"></i><span class="d-lg-none"> Twitter</span></a></li><li class="nav-item"><a class="nav-link nav-icon" href="https://github.com/runelite" title="GitHub"><i class="fab fa-github"></i><span class="d-lg-none"> GitHub</span></a></li><li class="nav-item"><form class="form-inline"><button class="btn btn-primary" type="button">Login</button></form></li></ul></div></nav><div class="container" id="layout"><section id="blog"><div class="content-section"><div class="page-header"><h1>1.8.14 - 1.8.19 Releases</h1><p class="text-muted"><span title="Wed May 11 2022 19:00:00 GMT+0000 (Coordinated Universal Time)">in 8 hours</span> by Adam</p></div><div class="markdown-body news-page"><div><h2>Compost tracking</h2>
+<p>The farming tracker now keeps track of compost state of each patch, so you no
+longer have to remember if you've composted patches or not. It works with the
+fertile soil spell, regular and bottomless compost buckets.</p>
+<p><img src="/img/blog/1.8.19-Release/compost1.png" alt="compost1">
+<img src="/img/blog/1.8.19-Release/compost2.png" alt="compost2"></p>
+<h2>Menu swapper improvements</h2>
+<p>The left-click option on most NPCs and objects can now be set by shift-right
+clicking and selecting the "Swap" option. These manually set swaps override
+the more general swaps in the plugin configuration.</p>
+<p>There are a few <a href="https://secure.runescape.com/m=news/another-message-about-unofficial-clients?oldschool=1" native="" rel="nofollow">exclusions</a>
+which are namely pickpocket swaps, blackjack swaps, and construction swaps, but
+most things should work.</p>
+<p><img src="/img/blog/1.8.19-Release/swap1.png" alt="swap1">
+<img src="/img/blog/1.8.19-Release/swap2.png" alt="swap2"></p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>Opening imp jars is now tracked in the loot tracker. It also should correctly handle opening multiple on the same tick.</li>
+<li>Catching implings is tracked by the loot tracker</li>
+<li>PBs for COX/TOB are now tracked per scale size, such as eg <code>!pb tob 3</code>, <code>!pb hmt 3</code> or <code>!pb cox 3</code>. The overall <code>!pb</code> is
+now for the best time at any scale.</li>
+<li>Boss shortnames now work with <code>!lvl</code>, eg <code>!lvl hydra</code>. This is similar to <code>!kc</code> but uses the hiscores instead, thus the
+rank is provided, but the kill count may be outdated</li>
+<li>Dragging inventory items with overlays, such as the rune pouch overlay or inv tags, once again drags the overlay too</li>
+<li>Bank searches now supports filtering by quantity, eg <code>qty&gt;30</code></li>
+<li>The chat filter default behavior <em>no longer</em> strips accents. If you want it to strip accents like before, enable the <code>Strip accents</code> option.
+This makes it easier to specifically filter accented characters.</li>
+<li>A bug causing the <code>!pets</code> icons to not show up sometimes was fixed</li>
+<li>A bug causing a Canifis agility course clickbox overlay to be drawn incorrectly was fixed</li>
+<li>Inventory viewer gained an option to hide the inventory view when the bank is open</li>
+<li>Menu entry swapper now supports swapping home teleport to the two new group ironman specific teleport options with shift</li>
+<li>Player indicators now additionally colors player names in the trade window</li>
+<li>The bank plugin now shows total value of group ironman storage</li>
+<li>The chatbox and inventory interfaces are now movable via holding <code>alt</code></li>
+</ul>
+<p>Enjoy!</p>
+<p>- Adam</p>
+<h3>New commits</h3>
+<p>We had 22 contributors this update!</p>
+<pre><code>Adam (112):
+      loottracker: refactor inv change events
+      loottracker: add imp jars
+      loot tracker: support opening multiple imp jars in 1 tick
+      loot tracker: track caught implings
+      loot tracker: add wilderness loot chest
+      loottracker: replace repaint calls with revalidate
+      Revert "gpu: Fix loading gluegen natives on some Windows configurations"
+      chat message manager: fix gim rl-format messages
+      loot tracker: add remember loot option
+      gpu: remove newt dependency
+      gpu: remove egl dependency
+      gpu: update to jogl 2.4.0-rc-20220318
+      client: allow setting system properties via runtime config
+      gpu: use DebugGL4 in debug mode
+      loot tracker: remove import notice
+      ground item: expand item lists by default
+      gpu: set jogamp.gluegen.TestTempDirExec=false
+      api: add Jagex api
+      client: add otl token requester
+      api: deprecate getUsername
+      plugins: replace getUsername uses with getAccountHash
+      chat commands: add gotr kc
+      chat commands: add hmt alias for theatre of blood hard mode
+      clientthread: log exceptions at error level
+      config manager: log profile changes
+      loot tracker: fix race with loading saved loot and client startup
+      plugins: readd quest list plugin
+      chat commands: fix tob pb tracking
+      xp updater: send account hash to templeosrs
+      runecraft: remove unnecessary rifts set
+      runecraft: update blood rift id
+      runecraft: add degraded colossal pouch
+      menu swapper: rename SwapConfig to ItemSwapConfig
+      menu swapper: add custom object left click swap
+      menu swapper: change object left click configure method
+      Revert "menu swapper: Add uncharged cell swap for gotr (#14795)"
+      chat commands: support boss shortnames for !lvl
+      chat commands: refactor skill abbreviation to a switch
+      boosts: default to display as infoboxes and only combat stats
+      api: add friends chat kick rank
+      session manager: open session on executor thread
+      menu swapper: add custom npc left click swap
+      overlay: add drawAfterLayer that accepts ids for plugins, and javadoc
+      api: exclude annotations package from runtime jar
+      Move SlayerUnlock to slayer plugin
+      FarmingRegion: remove unused varbits field
+      blast furnace: remove unused BarOres map
+      api: replace varbits enum with ints
+      api: deprecate getVar(int) and use getVarbitValue(int)
+      chat commands: track team sizes for raids pb
+      api: move autoweed to farming plugin
+      chat command: use plural "players" to be consistent with cox
+      mta: use widget item overlay
+      mta: disable by default
+      devtools: remove inventory tool
+      examine: support item examine on if3 components
+      Revert "menu swapper: add deposit-runes swap for gotr"
+      hiscores: add gotr
+      api: refactor some menu action names
+      api: add selected widget api
+      api: add menuentry widget accessor
+      api: pass menu entry to menu clicked event and forward accessors
+      menu swapper: move bank swaps to client tick
+      client: replace HttpUrl.parse with HttpUrl.get
+      client: replace MediaType.parse with MediaType.get
+      fatal error dialog: work with substance laf
+      external plugin client: use verificationexception for security exceptions
+      api: add item op menu api
+      client: update for if3 inventory
+      api: add dragTime accessor
+      inv grid: fix for if3 inv
+      antidrag: update for if3 inv
+      item stats: update for if3 inv
+      mes: fix item swaps with op4 and op5
+      clues: fix tracking cluescroll
+      statusbars: update for if3 inv
+      runelite: remove otl requester
+      timers: update for if3 inv
+      examine: fix item examine message recolor
+      interact highlight: fix using npc attack color on item use
+      interact highlight: fix detecting spell attacks on npc click
+      chat commands: update gotr kill message
+      examine: fix examining ground items
+      examine: remove unused import
+      api: remove Nullable on getLocalPlayer
+      cl: set pmd cache location
+      client: update pmd
+      ci: disable maven-shade-plugin
+      infobox: consistently require non-negative timer durations
+      util: use error log level for exception loggers
+      chat commands: support parsing team size pbs off adventure log
+      bank plugin: add quantity search
+      clues: update guardian mummy cryptic clue
+      fairy ring: add Necropolis
+      clues: add Necropolis mine coordinate clue hint
+      Don't overwrite okhttp ua if already set
+      crowdsourcing: don't include menuoptionclicked event in movementdata
+      script assembler: remove runelite-api dependency
+      maven: update surefire plugin to 2.22.2
+      loottracker: fix tracking imp jars
+      map image dumper: use BigBufferedImage
+      map image dumper: add main method
+      cache: make slf4j-simple an optional dependency
+      api: add object composition map setters
+      api: add post object composition event
+      api: add object composition cache accessor
+      chatfilter: add config option for stripping accents
+      cache: update indextype names
+      chat commands: fix loading pets modicons
+      emoji: clean up modicons loading
+      friendnotes: clean up modicons loading
+      timers: remove unused tzhaar complete matcher
+
+Bob Heine (1):
+      clues: Add abyssal lanterns as light sources (#14923)
+
+Cyborger1 (1):
+      clues: Fix capitalization for Dark Mage anagram
+
+Elias Lahham (2):
+      inventory viewer: hide when bank is open
+      menu entry swapper: add house teleport swap
+
+Giovanni van der Schelde (1):
+      chat commands: add shortnames for shayzien agility courses
+
+Hydrox6 (4):
+      ItemMapping: add shattered relics ornament kits
+      cannon: add support for shattered relics league ornamental cannon
+      npcaggro: always show tutorial overlay if plugin is not calibrated
+      npcaggro: fix unintended loss of calibration
+
+JZomDev (1):
+      clues: rename Traiborn to Wizard Traiborn
+
+Jacob Moody (1):
+      item charges: fix binding necklace degrading in gotr
+
+JoRouss (1):
+      dps counter: fix only boss damage to work in parties
+
+Jonathan Lee (1):
+      loot tracker: add guardians of the rift
+
+Jordan Atwood (25):
+      roof removal: Fix Cabin Fever ships
+      roof removal: Add Tutorial Island overrides
+      roof removal: Add Grim Tales tower override
+      discord: Add Guardians of the Rift minigame
+      HotColdLocation: Fix East of Watson's house spot
+      clues: Support rune crossbow and god book (or) variants
+      roof removal: Improve Lletya overrides
+      roof removal: Add Ardougne gazebo override
+      roof removal: Add Misthalin Mystery overrides
+      roof removal: Improve Falador castle overrides
+      roof removal: Improve SE Ardougne overrides
+      roof removal: Improve Port Phasmatys overrides
+      roof removal: Add chaos rc altar override
+      roof removal: Improve East Catherby overrides
+      roof removal: Add Meiyerditch overrides
+      roof removal: Add Keep Le Faye overrides
+      roof removal: Add House on the Hill overrides
+      roof removal: Improve Gnome Stronghold overrides
+      roof removal: Add Witchaven override
+      roof removal: Add Rising Sun Inn override
+      roof removal: Add Falador wall overrides
+      roof removal: Add Braindeath Island override
+      plugins: Rename Sedridor to Archmage Sedridor
+      github: Add Discussions issue template
+      HotColdLocation: Add South-east of Ruins of Ullek spot
+
+Joshua Filby (2):
+      cache: use LinkedHashMap for switch jump tables
+      rl-client: make overridden scripts have switch cases in defined order
+
+LlemonDuck (1):
+      timetracking: add compost tracking
+
+Mathew Hylkema (2):
+      menu swapper: add deposit-runes swap for gotr
+      menu swapper: Add uncharged cell swap for gotr (#14795)
+
+Max Weber (31):
+      rl-api: use TileObjects' z for hulls/clickboxes/outlines
+      rl-client: remove questlist plugin
+      rl-client/chatcommands/Pet: add abyssal protector
+      rl-api/Quest: update to 2022-3-22
+      api: add AccountHashChanged event
+      config: associate account hashes to rsprofiles
+      rl-client: open FatalErrorDialog early during outages
+      ClientLoader: allow skipping updating vanilla
+      rl-client: show FatalErrorDialog when the client crashes
+      config: do not start other plugins during startup
+      ScriptID: fix GROUP_IRONMAN_STORAGE_BUILD script arguments
+      rl-client: pin new Plugin Hub certificate
+      wiki: do not allow lookup-ing empty inventory slots
+      antidrag: respect hotkeys
+      ScriptID: remove unused scripts
+      rl-client: do not create a dependency reduced pom
+      Quest: update to 2022-4-27
+      rl-client: update ID references to 2022-4-27
+      cache: correctly link bought &amp; placeholder items
+      cache: do not return partially or doubly lit textures
+      rl-api: expose ObjectComposition::varbitId/varPlayerId
+      cache: unify jagex hsl conversion
+      cache/RegionLoader: allow plugging an external xtea key provider
+      cache/MapImageDumper: add layer &amp; brightness configuration
+      cache/MapImageDumper: add transparency support
+      cache/MapImageDumper: fix icon &amp; wall size &amp; placement
+      cache/MapImageDumper: handle pushdown objects correctly
+      cache/MapImageDumper: fix object wall checks
+      cache/MapImageDumper: draw cross region objs when drawing single regions
+      Perspective: fix clickbox for type 11 objects
+      rl-api: expose currently playing music/jingle
+
+SirGirion (1):
+      timetracking: fix tick rate of teak trees
+
+Stephen Au (1):
+      spriteid: fix Guthix typo
+
+Vandager (1):
+      player indicators: decorate player name in trade window
+
+emielv (1):
+      clues: add abyssal whip (or) variant
+
+orange-puff (1):
+      bank: Show Group Ironman storage value (#14395)
+
+pwatts6060 (1):
+      status bars: Add configurable width for modern resizable interface
+
+testing-ongithub (1):
+      xp tracker: Add toggle for "Open Wise Old Man" menu option
+</code></pre>
+</div></div></div></section><section id="footer"><div class="content-section"><footer><hr>Developed with <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i> using <a href="https://getbootstrap.com/">Bootstrap</a>, <a href="https://reactjs.org/">React</a> and <a href="https://fontawesome.com/">Font Awesome</a><a href="http://localhost:8000/atom.xml" class="float-right"><i class="fas fa-rss"></i> Subscribe via RSS</a></footer></div></section></div></div></div><script>!function(e){function c(c){for(var f,t,n=c[0],o=c[1],b=c[2],u=0,l=[];u<n.length;u++)t=n[u],Object.prototype.hasOwnProperty.call(a,t)&&a[t]&&l.push(a[t][0]),a[t]=0;for(f in o)Object.prototype.hasOwnProperty.call(o,f)&&(e[f]=o[f]);for(i&&i(c);l.length;)l.shift()();return r.push.apply(r,b||[]),d()}function d(){for(var e,c=0;c<r.length;c++){for(var d=r[c],f=!0,t=1;t<d.length;t++){var o=d[t];0!==a[o]&&(f=!1)}f&&(r.splice(c--,1),e=n(n.s=d[0]))}return e}var f={},t={3:0},a={3:0},r=[];function n(c){if(f[c])return f[c].exports;var d=f[c]={i:c,l:!1,exports:{}};return e[c].call(d.exports,d,d.exports,n),d.l=!0,d.exports}n.e=function(e){var c=[];t[e]?c.push(t[e]):0!==t[e]&&{1:1,5:1,6:1,7:1,8:1,9:1,10:1,11:1,12:1,13:1,14:1,15:1,16:1}[e]&&c.push(t[e]=new Promise((function(c,d){for(var f="static/css/"+({}[e]||e)+"."+{0:"31d6cfe0",1:"1028ed3b",5:"eda17f4a",6:"e2ed0cde",7:"e2ed0cde",8:"73fc8542",9:"e7c940a4",10:"6e5a9916",11:"56984a03",12:"c63dde9b",13:"c63dde9b",14:"5b14b3c6",15:"05f3feda",16:"05f3feda",17:"31d6cfe0",18:"31d6cfe0",19:"31d6cfe0",20:"31d6cfe0",21:"31d6cfe0",22:"31d6cfe0",23:"31d6cfe0",24:"31d6cfe0",25:"31d6cfe0",26:"31d6cfe0",27:"31d6cfe0",28:"31d6cfe0",29:"31d6cfe0",30:"31d6cfe0",31:"31d6cfe0",32:"31d6cfe0",33:"31d6cfe0",34:"31d6cfe0",35:"31d6cfe0",36:"31d6cfe0",37:"31d6cfe0",38:"31d6cfe0",39:"31d6cfe0",40:"31d6cfe0",41:"31d6cfe0",42:"31d6cfe0",43:"31d6cfe0",44:"31d6cfe0",45:"31d6cfe0",46:"31d6cfe0",47:"31d6cfe0",48:"31d6cfe0",49:"31d6cfe0",50:"31d6cfe0",51:"31d6cfe0",52:"31d6cfe0",53:"31d6cfe0",54:"31d6cfe0",55:"31d6cfe0",56:"31d6cfe0",57:"31d6cfe0",58:"31d6cfe0",59:"31d6cfe0",60:"31d6cfe0",61:"31d6cfe0",62:"31d6cfe0",63:"31d6cfe0",64:"31d6cfe0",65:"31d6cfe0",66:"31d6cfe0",67:"31d6cfe0",68:"31d6cfe0",69:"31d6cfe0",70:"31d6cfe0",71:"31d6cfe0",72:"31d6cfe0",73:"31d6cfe0",74:"31d6cfe0",75:"31d6cfe0",76:"31d6cfe0",77:"31d6cfe0",78:"31d6cfe0",79:"31d6cfe0",80:"31d6cfe0",81:"31d6cfe0",82:"31d6cfe0",83:"31d6cfe0",84:"31d6cfe0",85:"31d6cfe0",86:"31d6cfe0",87:"31d6cfe0",88:"31d6cfe0",89:"31d6cfe0",90:"31d6cfe0",91:"31d6cfe0",92:"31d6cfe0",93:"31d6cfe0",94:"31d6cfe0",95:"31d6cfe0",96:"31d6cfe0",97:"31d6cfe0",98:"31d6cfe0",99:"31d6cfe0",100:"31d6cfe0",101:"31d6cfe0",102:"31d6cfe0",103:"31d6cfe0",104:"31d6cfe0",105:"31d6cfe0",106:"31d6cfe0",107:"31d6cfe0",108:"31d6cfe0",109:"31d6cfe0",110:"31d6cfe0",111:"31d6cfe0",112:"31d6cfe0",113:"31d6cfe0",114:"31d6cfe0",115:"31d6cfe0",116:"31d6cfe0",117:"31d6cfe0",118:"31d6cfe0",119:"31d6cfe0",120:"31d6cfe0",121:"31d6cfe0",122:"31d6cfe0",123:"31d6cfe0",124:"31d6cfe0",125:"31d6cfe0",126:"31d6cfe0",127:"31d6cfe0",128:"31d6cfe0",129:"31d6cfe0",130:"31d6cfe0",131:"31d6cfe0",132:"31d6cfe0",133:"31d6cfe0",134:"31d6cfe0",135:"31d6cfe0",136:"31d6cfe0",137:"31d6cfe0",138:"31d6cfe0",139:"31d6cfe0",140:"31d6cfe0",141:"31d6cfe0",142:"31d6cfe0",143:"31d6cfe0",144:"31d6cfe0",145:"31d6cfe0",146:"31d6cfe0",147:"31d6cfe0",148:"31d6cfe0",149:"31d6cfe0",150:"31d6cfe0",151:"31d6cfe0",152:"31d6cfe0"}[e]+".chunk.css",a=n.p+f,r=document.getElementsByTagName("link"),o=0;o<r.length;o++){var b=(i=r[o]).getAttribute("data-href")||i.getAttribute("href");if("stylesheet"===i.rel&&(b===f||b===a))return c()}var u=document.getElementsByTagName("style");for(o=0;o<u.length;o++){var i;if((b=(i=u[o]).getAttribute("data-href"))===f||b===a)return c()}var l=document.createElement("link");l.rel="stylesheet",l.type="text/css",l.onload=c,l.onerror=function(c){var f=c&&c.target&&c.target.src||a,r=new Error("Loading CSS chunk "+e+" failed.\n("+f+")");r.code="CSS_CHUNK_LOAD_FAILED",r.request=f,delete t[e],l.parentNode.removeChild(l),d(r)},l.href=a,document.getElementsByTagName("head")[0].appendChild(l)})).then((function(){t[e]=0})));var d=a[e];if(0!==d)if(d)c.push(d[2]);else{var f=new Promise((function(c,f){d=a[e]=[c,f]}));c.push(d[2]=f);var r,o=document.createElement("script");o.charset="utf-8",o.timeout=120,n.nc&&o.setAttribute("nonce",n.nc),o.src=function(e){return n.p+"static/js/"+({}[e]||e)+"."+{0:"3e622e5f",1:"4e0ed7cb",5:"6d16b03c",6:"503da6a4",7:"cfafbdfd",8:"29047762",9:"d580bf55",10:"139f8ae2",11:"78a15adc",12:"ec0df300",13:"ba0e2ade",14:"97bcf094",15:"ab043f94",16:"3ceb1ed8",17:"f68a3e8d",18:"e1be4769",19:"ae4d1028",20:"c982ae12",21:"13bce132",22:"9ab89371",23:"421d2434",24:"7620018c",25:"8c0a2b7f",26:"ed4e82f2",27:"8632a230",28:"b8ad69de",29:"a35f77cf",30:"623cd374",31:"4813c72b",32:"81d774d7",33:"39eea9e9",34:"257f5845",35:"56a39722",36:"bd51ad54",37:"5561f721",38:"d004394b",39:"7075c4df",40:"0f31dee1",41:"b3e00322",42:"cd42de64",43:"0657ec19",44:"2b2b4b91",45:"e37c8db3",46:"e0212ad6",47:"d914cc85",48:"46a23132",49:"c7fbd66c",50:"0d7716cd",51:"6432c643",52:"8e597c2a",53:"04b4ef7a",54:"a9e4a8e8",55:"3466f2e8",56:"81fe962c",57:"91e1b095",58:"58e363e3",59:"6c2652e8",60:"cdd131c3",61:"268a3ee8",62:"17c911b8",63:"a3f16984",64:"ee43163b",65:"57744e19",66:"ac72db01",67:"3fb818e6",68:"95c47c41",69:"684b08d6",70:"ca8bde0b",71:"fbfbe3b3",72:"43aa1d43",73:"b56b4776",74:"5f0a2921",75:"41b11036",76:"0d20dd19",77:"0071b15d",78:"8d40a82c",79:"367af395",80:"c87fc15c",81:"24cca868",82:"389a5313",83:"8bb8d565",84:"11f308f7",85:"31dff7bf",86:"fd7d3443",87:"604788e3",88:"a028fd75",89:"9c392b31",90:"49b242de",91:"c6256d91",92:"c95da9b1",93:"e1b2692f",94:"bd861536",95:"84c73fd4",96:"091bd458",97:"072d315f",98:"7170e5c9",99:"e9ca28cf",100:"7cd9cdd7",101:"2fd7987b",102:"f45990a3",103:"e165b675",104:"c666dbec",105:"7ea2e104",106:"877a66d8",107:"8e889431",108:"b5b94470",109:"8f9d08d2",110:"7d0aa95a",111:"e7bece22",112:"34c4abfd",113:"36112663",114:"aab32cf2",115:"0ce26145",116:"919ab1f5",117:"dc083320",118:"4a65cb10",119:"4c7e86b9",120:"8557e8da",121:"83dc6a98",122:"0b9f711a",123:"14c0801f",124:"9624d0c0",125:"6b34ce81",126:"e4c19ca7",127:"51d6cb10",128:"83ba9b77",129:"757e1702",130:"d88e4301",131:"7f9f34fc",132:"533f5f6b",133:"e6e7711b",134:"6c944094",135:"cab6ca1e",136:"63c5830b",137:"f1162987",138:"5b11bc4e",139:"7dcb0c77",140:"217bd575",141:"d2108ed8",142:"8ab8bc50",143:"1062fdba",144:"cb1eae86",145:"be133592",146:"df5e8916",147:"41f7b848",148:"ea032c26",149:"cd5d2199",150:"925e1934",151:"b6933d1c",152:"b3c1e091"}[e]+".chunk.js"}(e);var b=new Error;r=function(c){o.onerror=o.onload=null,clearTimeout(u);var d=a[e];if(0!==d){if(d){var f=c&&("load"===c.type?"missing":c.type),t=c&&c.target&&c.target.src;b.message="Loading chunk "+e+" failed.\n("+f+": "+t+")",b.name="ChunkLoadError",b.type=f,b.request=t,d[1](b)}a[e]=void 0}};var u=setTimeout((function(){r({type:"timeout",target:o})}),12e4);o.onerror=o.onload=r,document.head.appendChild(o)}return Promise.all(c)},n.m=e,n.c=f,n.d=function(e,c,d){n.o(e,c)||Object.defineProperty(e,c,{enumerable:!0,get:d})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,c){if(1&c&&(e=n(e)),8&c)return e;if(4&c&&"object"==typeof e&&e&&e.__esModule)return e;var d=Object.create(null);if(n.r(d),Object.defineProperty(d,"default",{enumerable:!0,value:e}),2&c&&"string"!=typeof e)for(var f in e)n.d(d,f,function(c){return e[c]}.bind(null,f));return d},n.n=function(e){var c=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(c,"a",c),c},n.o=function(e,c){return Object.prototype.hasOwnProperty.call(e,c)},n.p="/",n.oe=function(e){throw console.error(e),e};var o=this["webpackJsonprunelite.net"]=this["webpackJsonprunelite.net"]||[],b=o.push.bind(o);o.push=c,o=o.slice();for(var u=0;u<o.length;u++)c(o[u]);var i=b;d()}([])</script><script src="/static/js/4.0a89bf83.chunk.js"></script><script src="/static/js/main.ce962ddb.chunk.js"></script></body></html>

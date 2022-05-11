@@ -9,7 +9,297 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2022-04-16T18:33:58.656Z</updated>
+  <updated>2022-05-11T10:59:56.252Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2022-05-11-1.8.19-Release</id>
+    <link href="https://runelite.net/blog/show/2022-05-11-1.8.19-Release" />
+    <title>1.8.14 - 1.8.19 Releases</title>
+    <summary>Compost tracking and menu swapper improvements</summary>
+    <updated>2022-05-11T19:00:00.000Z</updated>
+    <author>
+      <name>Adam</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Compost tracking</h2>
+<p>The farming tracker now keeps track of compost state of each patch, so you no
+longer have to remember if you've composted patches or not. It works with the
+fertile soil spell, regular and bottomless compost buckets.</p>
+<p><img src="/img/blog/1.8.19-Release/compost1.png" alt="compost1" />
+<img src="/img/blog/1.8.19-Release/compost2.png" alt="compost2" /></p>
+<h2>Menu swapper improvements</h2>
+<p>The left-click option on most NPCs and objects can now be set by shift-right
+clicking and selecting the &quot;Swap&quot; option. These manually set swaps override
+the more general swaps in the plugin configuration.</p>
+<p>There are a few <a href="https://secure.runescape.com/m=news/another-message-about-unofficial-clients?oldschool=1">exclusions</a>
+which are namely pickpocket swaps, blackjack swaps, and construction swaps, but
+most things should work.</p>
+<p><img src="/img/blog/1.8.19-Release/swap1.png" alt="swap1" />
+<img src="/img/blog/1.8.19-Release/swap2.png" alt="swap2" /></p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>Opening imp jars is now tracked in the loot tracker. It also should correctly handle opening multiple on the same tick.</li>
+<li>Catching implings is tracked by the loot tracker</li>
+<li>PBs for COX/TOB are now tracked per scale size, such as eg <code>!pb tob 3</code>, <code>!pb hmt 3</code> or <code>!pb cox 3</code>. The overall <code>!pb</code> is
+now for the best time at any scale.</li>
+<li>Boss shortnames now work with <code>!lvl</code>, eg <code>!lvl hydra</code>. This is similar to <code>!kc</code> but uses the hiscores instead, thus the
+rank is provided, but the kill count may be outdated</li>
+<li>Dragging inventory items with overlays, such as the rune pouch overlay or inv tags, once again drags the overlay too</li>
+<li>Bank searches now supports filtering by quantity, eg <code>qty&gt;30</code></li>
+<li>The chat filter default behavior <em>no longer</em> strips accents. If you want it to strip accents like before, enable the <code>Strip accents</code> option.
+This makes it easier to specifically filter accented characters.</li>
+<li>A bug causing the <code>!pets</code> icons to not show up sometimes was fixed</li>
+<li>A bug causing a Canifis agility course clickbox overlay to be drawn incorrectly was fixed</li>
+<li>Inventory viewer gained an option to hide the inventory view when the bank is open</li>
+<li>Menu entry swapper now supports swapping home teleport to the two new group ironman specific teleport options with shift</li>
+<li>Player indicators now additionally colors player names in the trade window</li>
+<li>The bank plugin now shows total value of group ironman storage</li>
+<li>The chatbox and inventory interfaces are now movable via holding <code>alt</code></li>
+</ul>
+<p>Enjoy!</p>
+<p>- Adam</p>
+<h3>New commits</h3>
+<p>We had 22 contributors this update!</p>
+<pre><code>Adam (112):
+      loottracker: refactor inv change events
+      loottracker: add imp jars
+      loot tracker: support opening multiple imp jars in 1 tick
+      loot tracker: track caught implings
+      loot tracker: add wilderness loot chest
+      loottracker: replace repaint calls with revalidate
+      Revert &quot;gpu: Fix loading gluegen natives on some Windows configurations&quot;
+      chat message manager: fix gim rl-format messages
+      loot tracker: add remember loot option
+      gpu: remove newt dependency
+      gpu: remove egl dependency
+      gpu: update to jogl 2.4.0-rc-20220318
+      client: allow setting system properties via runtime config
+      gpu: use DebugGL4 in debug mode
+      loot tracker: remove import notice
+      ground item: expand item lists by default
+      gpu: set jogamp.gluegen.TestTempDirExec=false
+      api: add Jagex api
+      client: add otl token requester
+      api: deprecate getUsername
+      plugins: replace getUsername uses with getAccountHash
+      chat commands: add gotr kc
+      chat commands: add hmt alias for theatre of blood hard mode
+      clientthread: log exceptions at error level
+      config manager: log profile changes
+      loot tracker: fix race with loading saved loot and client startup
+      plugins: readd quest list plugin
+      chat commands: fix tob pb tracking
+      xp updater: send account hash to templeosrs
+      runecraft: remove unnecessary rifts set
+      runecraft: update blood rift id
+      runecraft: add degraded colossal pouch
+      menu swapper: rename SwapConfig to ItemSwapConfig
+      menu swapper: add custom object left click swap
+      menu swapper: change object left click configure method
+      Revert &quot;menu swapper: Add uncharged cell swap for gotr (#14795)&quot;
+      chat commands: support boss shortnames for !lvl
+      chat commands: refactor skill abbreviation to a switch
+      boosts: default to display as infoboxes and only combat stats
+      api: add friends chat kick rank
+      session manager: open session on executor thread
+      menu swapper: add custom npc left click swap
+      overlay: add drawAfterLayer that accepts ids for plugins, and javadoc
+      api: exclude annotations package from runtime jar
+      Move SlayerUnlock to slayer plugin
+      FarmingRegion: remove unused varbits field
+      blast furnace: remove unused BarOres map
+      api: replace varbits enum with ints
+      api: deprecate getVar(int) and use getVarbitValue(int)
+      chat commands: track team sizes for raids pb
+      api: move autoweed to farming plugin
+      chat command: use plural &quot;players&quot; to be consistent with cox
+      mta: use widget item overlay
+      mta: disable by default
+      devtools: remove inventory tool
+      examine: support item examine on if3 components
+      Revert &quot;menu swapper: add deposit-runes swap for gotr&quot;
+      hiscores: add gotr
+      api: refactor some menu action names
+      api: add selected widget api
+      api: add menuentry widget accessor
+      api: pass menu entry to menu clicked event and forward accessors
+      menu swapper: move bank swaps to client tick
+      client: replace HttpUrl.parse with HttpUrl.get
+      client: replace MediaType.parse with MediaType.get
+      fatal error dialog: work with substance laf
+      external plugin client: use verificationexception for security exceptions
+      api: add item op menu api
+      client: update for if3 inventory
+      api: add dragTime accessor
+      inv grid: fix for if3 inv
+      antidrag: update for if3 inv
+      item stats: update for if3 inv
+      mes: fix item swaps with op4 and op5
+      clues: fix tracking cluescroll
+      statusbars: update for if3 inv
+      runelite: remove otl requester
+      timers: update for if3 inv
+      examine: fix item examine message recolor
+      interact highlight: fix using npc attack color on item use
+      interact highlight: fix detecting spell attacks on npc click
+      chat commands: update gotr kill message
+      examine: fix examining ground items
+      examine: remove unused import
+      api: remove Nullable on getLocalPlayer
+      cl: set pmd cache location
+      client: update pmd
+      ci: disable maven-shade-plugin
+      infobox: consistently require non-negative timer durations
+      util: use error log level for exception loggers
+      chat commands: support parsing team size pbs off adventure log
+      bank plugin: add quantity search
+      clues: update guardian mummy cryptic clue
+      fairy ring: add Necropolis
+      clues: add Necropolis mine coordinate clue hint
+      Don't overwrite okhttp ua if already set
+      crowdsourcing: don't include menuoptionclicked event in movementdata
+      script assembler: remove runelite-api dependency
+      maven: update surefire plugin to 2.22.2
+      loottracker: fix tracking imp jars
+      map image dumper: use BigBufferedImage
+      map image dumper: add main method
+      cache: make slf4j-simple an optional dependency
+      api: add object composition map setters
+      api: add post object composition event
+      api: add object composition cache accessor
+      chatfilter: add config option for stripping accents
+      cache: update indextype names
+      chat commands: fix loading pets modicons
+      emoji: clean up modicons loading
+      friendnotes: clean up modicons loading
+      timers: remove unused tzhaar complete matcher
+
+Bob Heine (1):
+      clues: Add abyssal lanterns as light sources (#14923)
+
+Cyborger1 (1):
+      clues: Fix capitalization for Dark Mage anagram
+
+Elias Lahham (2):
+      inventory viewer: hide when bank is open
+      menu entry swapper: add house teleport swap
+
+Giovanni van der Schelde (1):
+      chat commands: add shortnames for shayzien agility courses
+
+Hydrox6 (4):
+      ItemMapping: add shattered relics ornament kits
+      cannon: add support for shattered relics league ornamental cannon
+      npcaggro: always show tutorial overlay if plugin is not calibrated
+      npcaggro: fix unintended loss of calibration
+
+JZomDev (1):
+      clues: rename Traiborn to Wizard Traiborn
+
+Jacob Moody (1):
+      item charges: fix binding necklace degrading in gotr
+
+JoRouss (1):
+      dps counter: fix only boss damage to work in parties
+
+Jonathan Lee (1):
+      loot tracker: add guardians of the rift
+
+Jordan Atwood (25):
+      roof removal: Fix Cabin Fever ships
+      roof removal: Add Tutorial Island overrides
+      roof removal: Add Grim Tales tower override
+      discord: Add Guardians of the Rift minigame
+      HotColdLocation: Fix East of Watson's house spot
+      clues: Support rune crossbow and god book (or) variants
+      roof removal: Improve Lletya overrides
+      roof removal: Add Ardougne gazebo override
+      roof removal: Add Misthalin Mystery overrides
+      roof removal: Improve Falador castle overrides
+      roof removal: Improve SE Ardougne overrides
+      roof removal: Improve Port Phasmatys overrides
+      roof removal: Add chaos rc altar override
+      roof removal: Improve East Catherby overrides
+      roof removal: Add Meiyerditch overrides
+      roof removal: Add Keep Le Faye overrides
+      roof removal: Add House on the Hill overrides
+      roof removal: Improve Gnome Stronghold overrides
+      roof removal: Add Witchaven override
+      roof removal: Add Rising Sun Inn override
+      roof removal: Add Falador wall overrides
+      roof removal: Add Braindeath Island override
+      plugins: Rename Sedridor to Archmage Sedridor
+      github: Add Discussions issue template
+      HotColdLocation: Add South-east of Ruins of Ullek spot
+
+Joshua Filby (2):
+      cache: use LinkedHashMap for switch jump tables
+      rl-client: make overridden scripts have switch cases in defined order
+
+LlemonDuck (1):
+      timetracking: add compost tracking
+
+Mathew Hylkema (2):
+      menu swapper: add deposit-runes swap for gotr
+      menu swapper: Add uncharged cell swap for gotr (#14795)
+
+Max Weber (31):
+      rl-api: use TileObjects' z for hulls/clickboxes/outlines
+      rl-client: remove questlist plugin
+      rl-client/chatcommands/Pet: add abyssal protector
+      rl-api/Quest: update to 2022-3-22
+      api: add AccountHashChanged event
+      config: associate account hashes to rsprofiles
+      rl-client: open FatalErrorDialog early during outages
+      ClientLoader: allow skipping updating vanilla
+      rl-client: show FatalErrorDialog when the client crashes
+      config: do not start other plugins during startup
+      ScriptID: fix GROUP_IRONMAN_STORAGE_BUILD script arguments
+      rl-client: pin new Plugin Hub certificate
+      wiki: do not allow lookup-ing empty inventory slots
+      antidrag: respect hotkeys
+      ScriptID: remove unused scripts
+      rl-client: do not create a dependency reduced pom
+      Quest: update to 2022-4-27
+      rl-client: update ID references to 2022-4-27
+      cache: correctly link bought &amp; placeholder items
+      cache: do not return partially or doubly lit textures
+      rl-api: expose ObjectComposition::varbitId/varPlayerId
+      cache: unify jagex hsl conversion
+      cache/RegionLoader: allow plugging an external xtea key provider
+      cache/MapImageDumper: add layer &amp; brightness configuration
+      cache/MapImageDumper: add transparency support
+      cache/MapImageDumper: fix icon &amp; wall size &amp; placement
+      cache/MapImageDumper: handle pushdown objects correctly
+      cache/MapImageDumper: fix object wall checks
+      cache/MapImageDumper: draw cross region objs when drawing single regions
+      Perspective: fix clickbox for type 11 objects
+      rl-api: expose currently playing music/jingle
+
+SirGirion (1):
+      timetracking: fix tick rate of teak trees
+
+Stephen Au (1):
+      spriteid: fix Guthix typo
+
+Vandager (1):
+      player indicators: decorate player name in trade window
+
+emielv (1):
+      clues: add abyssal whip (or) variant
+
+orange-puff (1):
+      bank: Show Group Ironman storage value (#14395)
+
+pwatts6060 (1):
+      status bars: Add configurable width for modern resizable interface
+
+testing-ongithub (1):
+      xp tracker: Add toggle for &quot;Open Wise Old Man&quot; menu option
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2022-03-09-1.8.13-Release</id>
