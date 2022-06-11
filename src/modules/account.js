@@ -3,9 +3,7 @@ import { createActions, handleActions } from 'redux-actions'
 import api from '../api'
 import { getLatestRelease } from './bootstrap'
 import { getBaseUrl } from '../util'
-import { route } from 'preact-router'
 
-const runeliteWs = 'wss://api.runelite.net/ws'
 const runeliteApi = api('https://api.runelite.net/')
 
 // Actions
@@ -19,61 +17,17 @@ export const {
   {
     LOGIN: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState())
-      const localUuid = getState().account.uuid
-      const baseUrl = getBaseUrl()
-
-      const loadingPane = window.open(baseUrl + '/loading', '_blank')
-      loadingPane.focus()
+      const redirUrl = getBaseUrl() + '/logged-in'
 
       const authResponse = await runeliteApi(
-        `runelite-${version}/account/login?uuid=${localUuid}`,
+        `runelite-${version}/account/login?redirectUrl=${redirUrl}&port=0000`,
         {
           method: 'GET'
         }
       )
 
-      const uuid = authResponse.uid
-
-      const sessionPromise = new Promise((resolve, reject) => {
-        const ws = new WebSocket(runeliteWs)
-
-        ws.onopen = () => {
-          ws.send(
-            JSON.stringify({
-              type: 'Handshake',
-              _party: false,
-              session: uuid
-            })
-          )
-
-          loadingPane.location.href = authResponse.oauthUrl
-        }
-
-        ws.onmessage = event => {
-          const msg = JSON.parse(event.data)
-
-          if (msg.type !== 'LoginResponse') {
-            return
-          }
-
-          const session = {
-            ...msg,
-            uuid
-          }
-
-          dispatch(setSession(session))
-          loadingPane.close()
-          resolve(session)
-          ws.close()
-        }
-
-        ws.onclose = msg => reject(msg)
-        ws.onerror = msg => reject(msg)
-      })
-
-      const response = await sessionPromise
-      route('/account/home')
-      return response
+      window.location.href = authResponse.oauthUrl
+      return authResponse
     },
     LOGOUT: () => async (dispatch, getState) => {
       const version = getLatestRelease(getState())
