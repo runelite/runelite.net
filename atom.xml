@@ -9,7 +9,7 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2022-06-17T14:32:05.391Z</updated>
+  <updated>2022-06-17T19:10:31.887Z</updated>
   
   <entry>
     <id>https://runelite.net/blog/show/2022-06-17-1.8.24-Release</id>
@@ -39,7 +39,9 @@ is no longer rendered.</p>
 <p><img src="/img/blog/1.8.24-Release/deadnpc.mp4" alt="deadnpc" /></p>
 <h3>Walk here swap</h3>
 <p>It is now possible to swap Walk here for both left click and shift click on NPC
-by shift-right clicking them and selecting the corresponding swap option.</p>
+by shift-right clicking them and selecting the corresponding swap option. There
+is also a global shift click walk here setting in the menu swapper
+configuration that affects all NPCs.</p>
 <p><img src="/img/blog/1.8.24-Release/walk.png" alt="walk" /></p>
 <h3>Worn item swaps</h3>
 <p>Menus on worn items can now have both their left click and shift click option
@@ -76,7 +78,8 @@ plugin</li>
 <li>The mining plugin now shows respawn timers for gold veins</li>
 <li>The bank plugin now has an option to force right click the placeholder toggle button</li>
 <li>The <code>Left click walk on core</code> option of the Corporeal Beast plugin has returned once again</li>
-<li>NPC indicators <code>Highlight south west tile</code> option now highlights the &quot;true tile&quot; position of the NPC</li>
+<li>NPC indicators now has an option to highlight true south-west tile and true
+tile</li>
 </ul>
 <p>Enjoy!</p>
 <p>- Adam</p>
