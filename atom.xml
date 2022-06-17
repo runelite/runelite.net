@@ -9,7 +9,215 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2022-06-11T14:29:01.004Z</updated>
+  <updated>2022-06-17T14:32:05.391Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2022-06-17-1.8.24-Release</id>
+    <link href="https://runelite.net/blog/show/2022-06-17-1.8.24-Release" />
+    <title>1.8.24 Release</title>
+    <summary>Jagex rules update and party improvements</summary>
+    <updated>2022-06-17T19:00:00.000Z</updated>
+    <author>
+      <name>Adam</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Jagex rules update</h2>
+<p>Jagex have published a new <a href="https://secure.runescape.com/m=news/third-party-clients-update?oldschool=1">third party client update</a>,
+and with it a new set of <a href="https://secure.runescape.com/m=news/third-party-client-guidelines?oldschool=1">third party client
+guidelines</a>.
+These new guidelines remove some previous restrictions which allows us to add
+some new features. We've added these features in this update.</p>
+<h3>Pickpocket swap</h3>
+<p><code>Pickpocket</code> can now be swapped on all NPCs, even with a <code>Talk-to</code> option, by
+shift-right clicking them and selecting <code>Swap Pickpocket</code></p>
+<p><img src="/img/blog/1.8.24-Release/pickpocket.png" alt="pickpocket" /></p>
+<h3>Removing dead NPC menus</h3>
+<p>The menu entry swapper now has a setting to remove menus for dead NPCs. This
+prevents clicking on them while they are dieing, as well as casting spells.
+The entity hider additionally has an option to remove the NPC completely so it
+is no longer rendered.</p>
+<p><img src="/img/blog/1.8.24-Release/deadnpc.mp4" alt="deadnpc" /></p>
+<h3>Walk here swap</h3>
+<p>It is now possible to swap Walk here for both left click and shift click on NPC
+by shift-right clicking them and selecting the corresponding swap option.</p>
+<p><img src="/img/blog/1.8.24-Release/walk.png" alt="walk" /></p>
+<h3>Worn item swaps</h3>
+<p>Menus on worn items can now have both their left click and shift click option
+swapped, which can be configured by shift-right clicking the item when wielded.</p>
+<p><img src="/img/blog/1.8.24-Release/wornitems.png" alt="wornitems" /></p>
+<h2>Party system improvements</h2>
+<p>As you may have noticed, we recently updated the special attack counter plugin
+to show a &quot;spec drop&quot; overlay on the player when a special attack lands. This
+feature works with the reworked party system, which allows the spec drops to
+show on your party members.</p>
+<p>The party system no longer requires Discord integration to send or join invites,
+and instead uses a passphrase system. This is a lot less finicky and works more
+reliably when multiple clients are running.</p>
+<p>Creating a party now gives you a passphrase, such as <code>robe-set-raw-purple</code>,
+which you share with your friends. They just need to click <code>Join party</code> and
+paste the passphrase to join.</p>
+<p><img src="/img/blog/1.8.24-Release/createparty.png" alt="createparty" /></p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>The inventory and chatbox are now movable by holding alt. As usual they can
+be reset to their default position via alt-right click. The <code>alt</code> key used to
+drag overlays around is also configurable within the <code>RuneLite</code> settings.</li>
+<li>Keris partisan defensive style is now correctly hidden by the attack styles
+plugin</li>
+<li>Another bug causing the <code>!pets</code> icons to not show up has been fixed, again.</li>
+<li>Minigame reset timer no longer shows if the setting to enable it is off.</li>
+<li>A bug causing entity hider's hide pets option to not work has been fixed.</li>
+<li><code>!lvl cox cm</code> now works correctly</li>
+<li>Ancient brew, mixed potions, and other more obscure things have been added to the item stats plugin</li>
+<li>The stamina timer now works more reliably and also with stamina mixes</li>
+<li>NPC agression timer now has a setting to show for slayer tasks</li>
+<li>The timers plugin now has a timer for Shadow Veil</li>
+<li>Item charges now supports imbued ring of wealth, and braclet of clay</li>
+<li>The mining plugin now shows respawn timers for gold veins</li>
+<li>The bank plugin now has an option to force right click the placeholder toggle button</li>
+<li>The <code>Left click walk on core</code> option of the Corporeal Beast plugin has returned once again</li>
+<li>NPC indicators <code>Highlight south west tile</code> option now highlights the &quot;true tile&quot; position of the NPC</li>
+</ul>
+<p>Enjoy!</p>
+<p>- Adam</p>
+<h3>New commits</h3>
+<p>We had 19 contributors this update!</p>
+<pre><code>Adam (57):
+      compost tracking: fix tracking fertile soil with ash covered tome
+      overlay: make alt drag hotkey configurable
+      overlay: better handle picking up overlapping overlays
+      menu swapper: removetags object/npc names
+      menu swapper: removetags npc name on reset swap
+      widget overlay: change minimap position back to top_right
+      overlay: add movable and snappable overlay flags
+      overlay: disallow transformPosition with dynamic/tooltip
+      overlay: set g2d clip per layer
+      overlay: worldmap: prefer rect2d as g2d clip shape
+      devtools: allow pgup/down to cycle through previous commands
+      overlay: use hovered overlay for picking managed overlay
+      overlay manager: remove spurious position reset logs
+      gpu: initialize scene uploader scene id with nanotime
+      api: add setForcedPosition widget method
+      widget overlay: use setForcedPosition
+      overlay: prevent moving non-movable overlays
+      prayer: don't return dimension for dynamic overlays
+      api: pass menu entry to menu add event and forward accessors
+      events: add tostring/equalsandhashcode to menuoption clicked
+      api: add npc accessor to menuentry
+      api: add player accessor to menuentry
+      attackstyles: add weapon types 28 and 29
+      fix race loading modicons
+      api: add player id accessor
+      party: remove Discord requirement
+      party: use passphrases for party ids
+      party: remove overlay
+      spec counter: add devmode check for spec command
+      gpu: fix debug mode on macos
+      worldmap: add akp and bjp fairy rings
+      chat commands: fix !lvl cox cm
+      api: deprecate if1 usage
+      chat commands: add rifts closed to gotr bossnames
+      chatfilter: fix matching lt/gt
+      Move entity hider logic to plugin
+      hooks: add exception handler for renderable draw listener
+      hooks: raise exception logs to error level
+      account: use http redirect for oauth login response
+      chat channel: use fc max size from container
+      runelite: set jagex.disableBouncyCastle=true
+      cannon: use varp for cannonball count
+      Move party messages from http-api
+      spec counter: add config option for infoboxes
+      party: no longer use account session id
+      party: send join on reconnect
+      entity hider: fix hide pets
+      timers: fix showMinigameTeleports check
+      raids: remove party scout message
+      xpglobes: add time to level to tooltip
+      corp plugin: add dark core attack deprioritization
+      npc overlay: use true tile for south west tile
+      menu swapper: remove Pickpocket block
+      menu swapper: add option to remove dead npc menu options
+      menu swapper: add npc walk here swap
+      entity hider: add option to hide dead npcs
+      menu swapper: add worn item swaps
+
+Ben Puryear (1):
+      Add .DS_Store to .gitignore (#14925)
+
+Cameron Hetzler (1):
+      loottracker: reverse collapse all tooltips
+
+David Luong (1):
+      item identification: Add Desert Treasure diamonds (#14764)
+
+Hexagon (1):
+      spec counter: add spec drops
+
+Hydrox6 (2):
+      item stats: add support for stat boosts with a cap
+      item stats: add ancient brew
+
+Jonathan Forscher (1):
+      item stats: Add some missing beverages (#14412)
+
+Jordan Atwood (10):
+      chat commands: Update clear word and clear line defaults
+      item stats: Clean up saradomin brew code
+      item stats: Use variables for reused potion effects
+      item stats: Add mixed potions
+      item stats: Remove combo primaries
+      item stats: Fix jangerberries stats
+      status bars: Override hitpoints and prayer max values in LMS
+      special counter: Fix test
+      hunter: Remove unused lastActionTime field
+      timers: Don't clear stamina on death
+
+LlemonDuck (5):
+      chatcommands: consume &quot;clear single word&quot; keypress
+      interfacestyles: 2005-style quest tab headers
+      clientui: setResizable after setVisible
+      slayer: expose slayer task data in service
+      npcaggro: show for current slayer task option
+
+MasonPMGit (2):
+      item charges: add bracelet of clay
+      clues: Allow Daeyalt essence for runecrafting skill challenges
+
+Matthew C (1):
+      skill calculator: Fix herblore typos (#14324)
+
+Max Weber (5):
+      rl-api, groundmarkers: handle instance plane conversion correctly
+      overlay: do not move snap points backwards
+      fairyring: add isle of souls ring
+      ClientLoader: don't fail patching to hidden files
+      SessionManager: don't fail to login with a existing hidden session file
+
+ProjectileRage (1):
+      timers: Add Shadow Veil protection detection (#14687)
+
+Stefan Zopfi (1):
+      itemcharges: add imbued ring of wealth
+
+Zander Bolgar (1):
+      mining: add gold vein respawn timer
+
+emerald000 (1):
+      item stats: Add missing consumables
+
+sjpfeiffer (1):
+      bank: Add option to force right click on placeholder toggle button
+
+superiorser9 (2):
+      timers: Track home and minigame teleports using vars (#14842)
+      timers: Check stamina effect using varbits (#15014)
+
+vmarlowe (1):
+      fishing: Add frog spawn spot NPC (#14659)
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2022-05-11-1.8.19-Release</id>
