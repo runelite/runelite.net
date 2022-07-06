@@ -41,7 +41,7 @@ module.exports = {
       icon: 'fab fa-fw fa-apple',
       text: {
         os: 'macOS',
-        arch: 'Apple M1'
+        arch: 'Apple silicon'
       },
       os: 'macOS'
     },
