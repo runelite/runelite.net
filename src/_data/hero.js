@@ -7,7 +7,7 @@ module.exports = {
   buttons: [
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.4.4/RuneLiteSetup32.exe',
+        'https://github.com/runelite/launcher/releases/download/2.4.2/RuneLiteSetup32.exe',
       icon: 'fab fa-fw fa-windows',
       text: {
         os: 'Windows',
@@ -17,7 +17,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.4.4/RuneLiteSetup.exe',
+        'https://github.com/runelite/launcher/releases/download/2.4.2/RuneLiteSetup.exe',
       icon: 'fab fa-fw fa-windows',
       text: {
         os: 'Windows',
