@@ -9,7 +9,186 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2022-08-10T22:17:56.972Z</updated>
+  <updated>2022-08-21T20:00:30.248Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2022-08-21-1.8.31-Release</id>
+    <link href="https://runelite.net/blog/show/2022-08-21-1.8.31-Release" />
+    <title>1.8.31 Release</title>
+    <summary>Custom UI swaps and ToA preparations</summary>
+    <updated>2022-08-21T19:00:00.000Z</updated>
+    <author>
+      <name>Adam</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h3>UI swaps</h3>
+<p>Many UI elements now support the shift-right-click swap configuration that we've been standardizing on lately. This works on things such as spells, items in the bank, and in shops. When set on items in the bank or on a shop interface, the configuration is per-item, which allow easily configuring eg. one item as withdraw-x while another is withdraw-1.</p>
+<p><img src="/img/blog/1.8.31-Release/uiswap1.png" alt="uiswap1" />
+<img src="/img/blog/1.8.31-Release/uiswap2.png" alt="uiswap2" /></p>
+<p>Due to the standardization of swaps around the shift-click configure method, many of the existing swaps built into the plugin are no longer necessary. We're removed some of the less used swaps with this update. If you notice one is missing, shift-right click the npc/object/ui and re-configure it using the new system.</p>
+<h3>Tombs of Amascut</h3>
+<p>We've been working on updates in preparation for Tombs of Amascut coming on the 24th. There is a new runepouch overlay for runepouches with 4 rune stacks due to the text not fitting on the rune pouch. It displays a green bar for rune quantities 1-10k and a red bar for anything under 1k. The old display format is still used for pouches with less than 4 stacks of runes.</p>
+<p><img src="/img/blog/1.8.31-Release/runepouch.png" alt="runepouch" /></p>
+<p>ToA has been added to the hiscore panel:</p>
+<p><img src="/img/blog/1.8.31-Release/hiscores.png" alt="hiscores" /></p>
+<p>Additionally, we've been able to add loot tracking for Tombs of Amascut already and expect it to be working for release day.</p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>Minor graphical inconsistences on GPU with <code>compute shaders</code> off have been fixed, such as the GE floor appearing to have white dots between the tiles</li>
+<li>The maximum model size on GPU with <code>compute shaders</code> on has been increased. This may cause some additional GPU load in busy areas, but is required to get the ToA bosses to render correctly.</li>
+<li>Clan members are included in the hiscore search name autocompleter</li>
+<li>Clan members previous chat message ranks no longer change to &quot;unranked&quot; after they log out</li>
+<li>Friends chat rank icon now displays to the left of the user's name instead of to the right of the channel name</li>
+<li>Bank searching by value now supports searching by per-item value. For example, <code>per &gt;5k</code> finds any stack of items where the individual items are worth more than 5k each, while <code>&gt;5k</code> finds any stack of items worth more than 5k total.</li>
+<li>Members items in a free to play world now show their name with <code>(Members)</code> appended, eg <code>Abyssal whip (Members)</code>, instead of <code>Members object</code>. Making it easier to identify items on free to play worlds.</li>
+<li>The loot tracker no longer shows member items as <code>Members object</code> when logged into a free to play world.</li>
+<li>The double ammo mould has been added to the smelting plugin</li>
+<li>Clown <code>:O)</code> and cow <code>3:O</code> have been added to the Emoji plugin.</li>
+<li>The agility plugin once again highlights the skull slope obstacle clickbox</li>
+</ul>
+<p>Enjoy!</p>
+<p>- Adam</p>
+<h3>New commits</h3>
+<p>We had 20 contributors this update!</p>
+<pre><code>Adam (59):
+      gpu: remove double clickbox check with compute shaders off
+      pom: remove ciManagement
+      gpu: remove double getModel call with compute shaders off
+      gpu: remove unused wrapper functions
+      clues: fix wizard traiborn cryptic clue text
+      gpu: combine small and large comp shaders
+      gpu: fix shader test
+      api: update MenuEntry getItemId javadoc
+      name autocompleter: include clan members
+      client: remove jogl deps
+      gpu: fix shader test
+      spec counter: only count hitsplats applied to spec target
+      gpu: set custom org.lwjgl.system.SharedLibraryExtractDirectory
+      npc manager: fix npe if srn npc data request is unsuccessful
+      npc highlight: add option to ignore pets
+      npc highlight: minor code cleanup
+      chat commands: fix findHiscoreSkill finding pvp arena - ranked
+      chat commands: show unranked for unranked skills
+      api: add max damage hitsplats
+      api: use magicconstant for hitsplat type ids
+      config: use config api v2
+      config client: use injected gson
+      Replace references to RuneLiteAPI.GSON with injected gson
+      gpu: use floats for projection on cpu
+      gpu: increase max faces to 6144
+      loottracker: add toa
+      rune pouch: add grid view
+      chat commands: add toa tests
+      chat commands: use client enum for pet list
+      menu swapper: remove recite-prayer swap
+      menu swapper: remove battlestaff swap
+      menu swapper: remove guzzle swap
+      menu swapper: remove quick-leave swap
+      menu swapper: remove house advertisement swap
+      menu swapper: remove hardwood grove swap
+      menu swapper: remove dive swap
+      menu swapper: remove gauntlet swap
+      menu swapper: remove claim slime swap
+      menu swapper: remove contract swap
+      menu swapper: remove decant swap
+      menu swapper: remove enchant swap
+      menu swapper: remove send-parcel swap
+      menu swapper: remove misc swap
+      menu swapper: remove nets swap
+      menu swapper: remove start-minigame swap
+      menu swapper: remove repairs swap
+      menu swapper: remove task swap
+      menu swapper: add custom ui swaps
+      menu swapper: remove shift click teleport swap
+      menu swapper: remove house teleport swap
+      menu swapper: remove npc contact swap
+      menu swapper: move bank withdraw and deposit swaps to ui
+      hiscores: add toa
+      api: add accessors for pose animation frame
+      api: add scene max plane accessor
+      chat channels: use script events for inserting fc rank
+      menu swapper: exclude (worn) item swaps from ui swap check
+      HotkeyButton: use mouse1 to reset hotkey
+      ChatBuilder: use clansettings for finding member rank
+
+Birjot (1):
+      game: Add isDying support for Damis transformations (#15293)
+
+Cole Springer (1):
+      xp tracker: Fix &quot;Hide maxed skills&quot; config description (#15408)
+
+David Reess (1):
+      bank: add individual item value search (#15015)
+
+Enriath (6):
+      runelite-api: add real item name support
+      plugins: update various plugins to use getMembersName
+      skill calculator: use guice injection
+      skill calculator: adjust bonuses to be actual multipliers
+      skill calculator: don't show members actions or bonuses on f2p worlds
+      skill calculator: reload panel when switching P2P &lt;-&gt; F2P
+
+Eric Sciullo (1):
+      emoji: Add clown emoji (#15382)
+
+Fiber | James (1):
+      blastfurnace: add smiths gloves (i) to ice gloves check (#15162)
+
+HcaryShours (1):
+      agility obstacles: fix skull slope highlighting
+
+JZomDev (1):
+      smelting plugin: support double ammo mould
+
+Jordan Atwood (10):
+      clues: Update clue text from 2022-07-27 update
+      AgilityShortcut: Add Necropolis stepping stones
+      world map: Add Necropolis and Ullek region locations
+      game: Add isDying support for Skotizo altar transformations
+      dev tools: Use non-instanced region ID for tile location
+      Varbits: Fix PVP_SPEC_ORB javadoc
+      Varbits: Fix TELEBLOCK javadoc html
+      HotColdSolver: Simplify temperature change filtering
+      HotColdSolver: Improve temperature change narrowing
+      clues: Fix named object clue plane change scan
+
+Jordan Hans (1):
+      roof removal: add Barrows tunnel override
+
+Macweese (2):
+      timers: Track charge spell duration using varp
+      timers: Track teleblock duration using varbit
+
+Max Weber (2):
+      rl-client: update for split music &amp; emote scroll widgets
+      rl-client: dynamically configure hiscore result indexes
+
+Nick (1):
+      clues: add fairy ring to Isle of Souls step
+
+Nick Wolff (1):
+      roof removal: add etceteria overrides
+
+Paul Norton (2):
+      skill calculator: per-action bonus applicability
+      skill calculator: ignore (daeyalt) bonus for camdozaal cores
+
+Sam (1):
+      fishing: Add missing fish to shrimp and trout spot text (#15472)
+
+SirWrain (2):
+      agility shortcut: add meiyerditch lab (#15183)
+      worldmap: add true blood altar location (#15182)
+
+Spencer Kane (1):
+      clues: fix world map location for Vannaka (#15211)
+
+Woodse07 (1):
+      emoji: add cow emoji
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2022-07-13-1.8.27-Release</id>
