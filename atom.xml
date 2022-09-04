@@ -9,7 +9,7 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2022-09-04T20:17:46.644Z</updated>
+  <updated>2022-09-04T20:30:12.919Z</updated>
   
   <entry>
     <id>https://runelite.net/blog/show/2022-09-04-recent-performance-regressions-and-tombs-of-amascut</id>
@@ -47,7 +47,7 @@
 }
 </code></pre>
 <p>The former has 2 objects, the <code>Vec4</code> and the <code>float[4]</code>, while the latter only has one, despite using the same amount of memory.</p>
-<p>This removed an enourmous amount of type 2 GC pressure, which fixed the large problems for most people. At this point, running the client in safe mode to disable 3rd party plugins would very well, and we could no longer find any credible crash reports of the client when running in safe mode.</p>
+<p>This removed an enourmous amount of type 2 GC pressure, which fixed the large problems for most people. At this point, running the client in safe mode to disable 3rd party plugins worked very well, and we could no longer find any credible crash reports of the client when running in safe mode.</p>
 <p>With that fixed, the client was still using a much larger amount of memory than normal, just with less live objects. Thus the remaining issue reports were all from users with type 1 GC pressure due to pluginhub plugins. We began digging through user reported heap dumps and identified a few notible offenders, most prominately: the HD plugin.</p>
 <p>The HD plugin has complex code dealing with coloring models, and as a result tries to cache that computation to reuse between frames. This normally is okay, and has been working correctly for some time. However with the addition of the new animations, particularly animations which affect translucency, since the number of unique frames the animated models has is <em>much</em> higher than what would normally be seen, it was computing and caching a lot of color data. This snowballed a bit when combined with the very large sizes of the ToA boss models (many are well over 5k faces), which are much larger than anything else you would typically find. I've excluded most of these from being cached, and also optimized the way which is it storing the cached data. This went out in updates on Aug 31 and Sep 1 as 1.1.3.1 and 1.1.3.2, and from all reports has removed the ToA lag with the HD plugin enabled.</p>
 <p>After this we began looking at ways to optimize the Jagex client further to not use as much memory. We found the vast majority of the memory used by the animation system was used to precompute animation tables, however, precomputing them was not noticibly faster than just computing the animations on demand. We then proceeded to rewrite large portions of the new animation system, and were able to remove most of the additional memory overhead incured by the new system. This went out in an update on Sep 3.</p>
