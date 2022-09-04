@@ -49,7 +49,7 @@ class Vec4 {
 
 The former has 2 objects, the `Vec4` and the `float[4]`, while the latter only has one, despite using the same amount of memory.
 
-This removed an enourmous amount of type 2 GC pressure, which fixed the large problems for most people. At this point, running the client in safe mode to disable 3rd party plugins would very well, and we could no longer find any credible crash reports of the client when running in safe mode.
+This removed an enourmous amount of type 2 GC pressure, which fixed the large problems for most people. At this point, running the client in safe mode to disable 3rd party plugins worked very well, and we could no longer find any credible crash reports of the client when running in safe mode.
 
 With that fixed, the client was still using a much larger amount of memory than normal, just with less live objects. Thus the remaining issue reports were all from users with type 1 GC pressure due to pluginhub plugins. We began digging through user reported heap dumps and identified a few notible offenders, most prominately: the HD plugin.
 
