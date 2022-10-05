@@ -9,7 +9,211 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2022-09-11T19:08:59.586Z</updated>
+  <updated>2022-10-05T14:54:43.445Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2022-10-05-1.9.0-Release</id>
+    <link href="https://runelite.net/blog/show/2022-10-05-1.9.0-Release" />
+    <title>1.9.0 Release</title>
+    <summary>Zoomable minimap and submenus</summary>
+    <updated>2022-10-05T19:00:00.000Z</updated>
+    <author>
+      <name>Adam</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h3>Minimap zooming</h3>
+<p>The minimap now supports zooming! This works similar to the zoom you may be familiar with on the official mobile or steam clients. Enable the <code>Zoom</code> option in the <code>Minimap</code> plugin to use it. The zoom can be reset to the default level by right clicking the minimap.</p>
+<table>
+<thead>
+<tr>
+<th>In</th>
+<th>Default</th>
+<th>Out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/img/blog/1.9.0-Release/zoom-in.png" alt="zoom-in" /></td>
+<td><img src="/img/blog/1.9.0-Release/zoom-default.png" alt="zoom-default" /></td>
+<td><img src="/img/blog/1.9.0-Release/zoom-out.png" alt="zoom-out" /></td>
+</tr>
+</tbody>
+</table>
+<h3>Submenus</h3>
+<p>Last week we added support for collapsible submenus. This works similar to how the one from RS3 works. You may have noticed we've already converted the menu swapper for inventory and worn items to use this. Submenus allow grouping similar menus logically together, and greatly decreases the length and complexity of the menus on screen. You can tell if a menu has submenus by the presence of the <code>&gt;</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/img/blog/1.9.0-Release/submenuold.png" alt="submenuold" /></td>
+<td><img src="/img/blog/1.9.0-Release/submenunew.png" alt="submenunew" /></td>
+</tr>
+</tbody>
+</table>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>The run energy plugin now correctly accounts for the passive Ring of Endurance effect</li>
+<li>A bug causing the window to maximize over the Windows taskbar on the newest launcher version has been fixed</li>
+<li><code>terminal-notifier</code> on MacOS is now more reliably detected when installed into nonstandard locations</li>
+<li>The pickpocket timer now works with Martin the Master Farmer</li>
+<li>Drinking Liquid Adrenaline prior to the timer running out now correctly resets the timer</li>
+<li>Fix <code>!lvl toa expert</code> to work as expected</li>
+<li>Fresh start hiscores have been added to the hiscore panel</li>
+<li>The Tombs of Amascut background has been added to the login screen plugin</li>
+</ul>
+<p>Enjoy!</p>
+<p>- Adam</p>
+<h3>New commits</h3>
+<p>We had 22 contributors this update!</p>
+<pre><code>Adam (61):
+      menu swapper: remove old swap configs
+      party: idle timeout when on login screen
+      hiscore: add toa to mappings
+      runepouch: add divine runepouch
+      clues: add divine runepouch
+      use client runepouch rune id enum
+      chat commands: add toa shortnames
+      runelite: log input arguments at startup
+      loottracker: add cache of runes
+      loottracker: combine intricate pouch with common case
+      screenshot: add toa chest loot
+      overlay: layout toa party and raid interfaces
+      api: add varbit id and value to event
+      menu swapper: hide swap use/reset menus when customizable click is off
+      api: rename getVar to getVarpValue
+      infobox: add updateDuration method for timer
+      timers: add smelling salts buff timer
+      timers: add liquid adrenaline timer
+      timers: add silk dressing and blessed crystal scarb
+      crowdsourcing: remove movement crowdsourcing
+      menu swapper: fix npc currentAction check for shift
+      clientui: add low memory limit warning
+      client: invalidate declaredAnnotations caches after startup
+      clientui: make low memory link clickable
+      clientui: make low memory limits configurable
+      loottracker: add toa metadata
+      regen-timer: add lightbearer support
+      runelite.properties: change github link to discussions
+      opponent info: apply hp display style to hp hud
+      client: add logout timer plugin
+      devtools: fix examine tool for npcs
+      party: add isInParty method instead of checking members
+      party: remove unused inParty
+      party: include message type in Data message
+      ContainableFrame: fix parsing versions with patch level
+      world hopper: skip offline worlds
+      add quest speedrunning world type
+      client: add telemetry
+      run energy: use script event for replacing orb text
+      run energy: fix clearing text with replaceOrbText off
+      ui: fix frame maximized bounds with dpi scaling
+      containable frame: correct jdk bug number
+      menu swapper: remove redundant code block
+      api: add submenu api
+      menu swapper: use submenus for inv and worn item swaps
+      achievement diary: update to use new scroll interface
+      telemetry: include client errors
+      achievement diary: invoke new diary scrollbar update script
+      api: add localpoint support for hintarrow
+      notifier: add comment about terminal-notifier launcher version check
+      notifier: remove needless commands list copy
+      mta: fix telekinetic room
+      Bump to 1.9.0-SNAPSHOT
+      api: add fsw
+      world hopper: add fsw
+      xp updater: add fsw
+      hiscores: add fsw
+      ge: add fsw
+      colorpicker: use clientui icon
+      colorpicker: use parent always on top setting
+      api: add zoomable minimap
+
+Alexsuperfly (1):
+      chat-commands: fix widget id for counters page
+
+Blake Felt (1):
+      item identification: Add Tombs of Amascut potions (#15581)
+
+Brady Ryun (1):
+      timers: Add Martin the Master Farmer pickpocket timer
+
+Ecki (1):
+      emoji: Change clown image to twemoji version (#15533)
+
+Elias Lahham (1):
+      GameTimer: Update Liq Adrenaline time to 150s
+
+Ferrariic (1):
+      icontextfield: allow custom image icons
+
+Hammmed (1):
+      game: Add isDying override for Wall beasts (#15699)
+
+Hugo (1):
+      run energy: add ring of endurance
+
+JZomDev (1):
+      timers: fix liquid adrenaline reset
+
+Jonathan Lee (1):
+      run energy: improve energy remaining formula
+
+Jordan Atwood (10):
+      skill calc: Add Menaphite remedy
+      item stats: Add Menaphite remedy
+      ItemMapping: Add Tombs of Amascut items
+      HotColdLocation: Fix vertical centering of dark altar spot
+      worldmap: Add Tombs of Amascut location
+      clues: Clarify Kamil dig cryptic clue message
+      world map: Add Necropolis obelisk sceptre teleport
+      ItemMapping: Add Tumeken's shadow
+      ItemMapping: Add Arcane sigil component of Elidinis' ward
+      ItemMapping: Fix Tumeken's shadow definition
+
+LlemonDuck (1):
+      devtools: highlight current region in locations tool inside instances
+
+Max Weber (4):
+      rl-client/PluginHubPanel: release entries when not active
+      rl-client/PluginHubPanel: defer loading of icons until they are visible
+      client/PluginHubPanel: reactivate with filter set correctly
+      client/PluginHubPanel: fix reload on (un)install
+
+Ron Young (1):
+      loginscreen: add toa background
+
+Sam (1):
+      skill calc: Fix Menaphite remedy level and xp values (#15718)
+
+SirWrain (2):
+      achievementdiary: fix ardy elite castle wars task
+      achievementdiary: fix fremennik gwd task text (#15552)
+
+Skretzo (1):
+      client: fix logout timer javadoc typo
+
+ThePharros (2):
+      agility: add Necropolis obstacle (#15706)
+      discord: Add Necropolis, Ruins of Ullek, and Tombs of Amascut regions (#15757)
+
+Yestin L. Harrison (1):
+      notifier: get terminal-notifier from login shell on macOS
+
+YvesW (1):
+      chat commands: fix !lvl toa expert
+
+geheur (2):
+      chat commands: fix short name of kril tsutsaroth
+      ba: fix detecting end of wave
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2022-09-04-recent-performance-regressions-and-tombs-of-amascut</id>
