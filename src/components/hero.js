@@ -19,7 +19,14 @@ function isOsCorrect(osName) {
   }
 
   if (platform.indexOf('win') !== -1) {
-    return osName === 'Windows32'
+    if (
+      navigator.userAgent.indexOf('Win64') !== -1 ||
+      navigator.userAgent.indexOf('WOW64') !== -1
+    ) {
+      return osName === 'Windows64'
+    } else {
+      return osName === 'Windows32'
+    }
   }
 
   if (platform.indexOf('linux') !== -1) {
