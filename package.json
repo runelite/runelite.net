@@ -32,7 +32,7 @@
     "customize-cra": "0.9.1",
     "fast-xml-parser": "^3.17.4",
     "front-matter": "^4.0.1",
-    "husky": "4.2.5",
+    "husky": "4.3.8",
     "lato-font": "^3.0.0",
     "loader-utils": "^0.2.9",
     "markdown-it": "^11.0.0",
