@@ -1,6 +1,6 @@
 import { h, Fragment } from 'preact'
 import ago from 's-ago'
-import { numberWithCommas } from '../../util'
+import { numberWithCommas, determineTax } from '../../util'
 import { connect } from 'react-redux'
 import {
   fetchGe,
@@ -42,8 +42,11 @@ const buildRecord = record => (
         <p class="mb-0">
           <img src={`/img/ge_${record.buy ? 'bought' : 'sold'}.png`} alt="" />
           <span>{record.buy ? 'Bought' : 'Sold'}</span> for{' '}
-          <span>{numberWithCommas(record.price * record.quantity)}</span> gp (
-          <span>{numberWithCommas(record.price)}</span> gp/ea)
+          <span title={determineTax(record)}>
+            {' '}
+            {numberWithCommas(record.price * record.quantity)}
+          </span>{' '}
+          gp (<span>{numberWithCommas(record.price)}</span> gp/ea)
         </p>
       </div>
       <div class="ge-record-timestamp ml-auto">
