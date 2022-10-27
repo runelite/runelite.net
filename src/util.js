@@ -153,9 +153,10 @@ export const determineTax = item => {
 
   const tax = Math.floor(item.price * 0.01) * item.quantity
   const gross = item.price * item.quantity
-  const net = numberWithCommas(gross - tax)
+  const net = gross - tax
+  const netEach = Math.floor(net / item.quantity)
 
-  return `Net of ${net} gp = ${numberWithCommas(gross)} - ${numberWithCommas(
-    tax
-  )}`
+  return `Net of ${numberWithCommas(net)} gp = ${numberWithCommas(
+    gross
+  )} - ${numberWithCommas(tax)} (${numberWithCommas(netEach)} gp/ea)`
 }
