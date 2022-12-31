@@ -54,6 +54,10 @@ video {
   overflow-y: auto;
 }
 
+.dropdown {
+  display: flex;
+}
+
 .dropdown:hover .dropdown-menu {
   display: block;
   margin-top: 0;
