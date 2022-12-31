@@ -5,7 +5,7 @@
     "static/css/1.16e0dd9b.chunk.css": "/static/css/1.16e0dd9b.chunk.css",
     "static/js/1.b15bf560.chunk.js": "/static/js/1.b15bf560.chunk.js",
     "static/js/1.b15bf560.chunk.js.map": "/static/js/1.b15bf560.chunk.js.map",
-    "main.css": "/static/css/main.971b3c00.chunk.css",
+    "main.css": "/static/css/main.84e8af82.chunk.css",
     "main.js": "/static/js/main.594605f2.chunk.js",
     "main.js.map": "/static/js/main.594605f2.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.4eaca658.js",
@@ -336,7 +336,7 @@
     "atom.xml": "/atom.xml",
     "discord/index.html": "/discord/index.html",
     "index.html": "/index.html",
-    "precache-manifest.bce687357101e5910cbd17e923aba20c.js": "/precache-manifest.bce687357101e5910cbd17e923aba20c.js",
+    "precache-manifest.a62fff873915a9f1651752f79fe229f0.js": "/precache-manifest.a62fff873915a9f1651752f79fe229f0.js",
     "redirect/launcher/discord/index.html": "/redirect/launcher/discord/index.html",
     "redirect/launcher/troubleshooting/index.html": "/redirect/launcher/troubleshooting/index.html",
     "service-worker.js": "/service-worker.js",
@@ -356,7 +356,7 @@
     "static/css/7.f60f02d9.chunk.css.map": "/static/css/7.f60f02d9.chunk.css.map",
     "static/css/8.363ba192.chunk.css.map": "/static/css/8.363ba192.chunk.css.map",
     "static/css/9.82ef209d.chunk.css.map": "/static/css/9.82ef209d.chunk.css.map",
-    "static/css/main.971b3c00.chunk.css.map": "/static/css/main.971b3c00.chunk.css.map",
+    "static/css/main.84e8af82.chunk.css.map": "/static/css/main.84e8af82.chunk.css.map",
     "static/js/0.73f09e2c.chunk.js.LICENSE.txt": "/static/js/0.73f09e2c.chunk.js.LICENSE.txt",
     "static/js/4.09604780.chunk.js.LICENSE.txt": "/static/js/4.09604780.chunk.js.LICENSE.txt",
     "static/media/all.min.css": "/static/media/fa-solid-900.ec763292.svg",
@@ -366,7 +366,7 @@
     "static/js/runtime-main.4eaca658.js",
     "static/css/4.4b1c69b4.chunk.css",
     "static/js/4.09604780.chunk.js",
-    "static/css/main.971b3c00.chunk.css",
+    "static/css/main.84e8af82.chunk.css",
     "static/js/main.594605f2.chunk.js"
   ]
 }
