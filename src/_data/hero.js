@@ -47,7 +47,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.6.0/RuneLite.AppImage',
+        'https://github.com/runelite/launcher/releases/download/2.5.0/RuneLite.AppImage',
       icon: 'fab fa-fw fa-linux',
       text: {
         os: 'Linux',
@@ -57,7 +57,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.6.0/RuneLite-aarch64.AppImage',
+        'https://github.com/runelite/launcher/releases/download/2.5.0/RuneLite-aarch64.AppImage',
       icon: 'fab fa-fw fa-linux',
       text: {
         os: 'Linux',
