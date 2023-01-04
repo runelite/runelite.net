@@ -108,9 +108,20 @@ export const {
         )
         // Fix relative URLs for asset links
         .replace(
-          /<a(.*) href\s*=\s*"((?!http)[^"]+)"([^>]*)>/g,
+          /<a(.*) href\s*=\s*"((?!http)(?!#)[^"]+)"([^>]*)>/g,
           `<a$1 href="https://raw.githubusercontent.com/${user}/${repo}/${commit}/$2"$3>`
         )
+        // Fix links to elements
+        .replace(/<a(.*) href\s*=\s*"#([^"]+)"([^>]*)>/g, function (
+          match,
+          p1,
+          p2,
+          p3,
+          offset,
+          string
+        ) {
+          return `<a${p1} href="#user-content-${p2.toLowerCase()}"${p3}>`
+        })
         // Replace GIFs with links to GIFs
         .replace(
           /<img src\s*=\s*"((?:[^"]+\/)?([^"]+\.gif))"([^>]*)>/g,
