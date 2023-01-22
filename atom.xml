@@ -9,7 +9,7 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2023-01-22T19:03:23.286Z</updated>
+  <updated>2023-01-22T19:06:43.288Z</updated>
   
   <entry>
     <id>https://runelite.net/blog/show/2023-01-22-security-incident-jan21</id>
@@ -21,7 +21,7 @@
       <name>Adam</name>
     </author>
     <content type="xhtml">
-      <div xmlns="http://www.w3.org/1999/xhtml"><p>On Janurary 10 a plugin named <code>ChatClip</code> was erroneously published to the plugin hub which, under non-default configuration, would permit an attacker to remotely execute code on a victims computer by sending an in-game message.</p>
+      <div xmlns="http://www.w3.org/1999/xhtml"><p>On January 10 a plugin named <code>ChatClip</code> was erroneously published to the plugin hub which, under non-default configuration, would permit an attacker to remotely execute code on a victims computer by sending an in-game message.</p>
 <p>This was caused by human error on our part, where we approved the plugin despite the code being exploitable.</p>
 <p>To be affected by this issue, you would have had to 1) installed the chat clip plugin, and 2) enabled the <code>Add to history</code> option within the plugin.</p>
 <p>Over the 11 day period the plugin was active on the plugin hub, the plugin was installed 118 times by 78 unique IPs. We have no way to determine how many of those users enabled the <code>Add to history</code> option allowing the exploitable behavior.</p>
