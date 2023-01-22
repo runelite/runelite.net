@@ -9,7 +9,29 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2023-01-22T15:19:44.388Z</updated>
+  <updated>2023-01-22T19:03:23.286Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2023-01-22-security-incident-jan21</id>
+    <link href="https://runelite.net/blog/show/2023-01-22-security-incident-jan21" />
+    <title>Security Incident Jan 21 2023</title>
+    <summary>Security Incident Jan 21 2023</summary>
+    <updated>2023-01-22T10:00:00.000Z</updated>
+    <author>
+      <name>Adam</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><p>On Janurary 10 a plugin named <code>ChatClip</code> was erroneously published to the plugin hub which, under non-default configuration, would permit an attacker to remotely execute code on a victims computer by sending an in-game message.</p>
+<p>This was caused by human error on our part, where we approved the plugin despite the code being exploitable.</p>
+<p>To be affected by this issue, you would have had to 1) installed the chat clip plugin, and 2) enabled the <code>Add to history</code> option within the plugin.</p>
+<p>Over the 11 day period the plugin was active on the plugin hub, the plugin was installed 118 times by 78 unique IPs. We have no way to determine how many of those users enabled the <code>Add to history</code> option allowing the exploitable behavior.</p>
+<p>We raised the issue to Jagex, and provided to them the IPs of the players who we think could be affected. A staff member briefly took a look at the possibly affected accounts on Saturday, did not find anything requiring immediate attention, and has promised to look into it this week. I hope that they will be able to take corrective action if any compromised accounts are found.</p>
+<p>We have also checked all existing plugin hub plugins and found no other plugins with similarly exploitable code.</p>
+<p>To prevent this from happening again in the future, we will be automatically flagging plugins which use potentially dangerous APIs that can allow command injection, to require them to be more closely scrutinized.</p>
+<p>- Adam</p>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2022-12-07-1.9.5-Release</id>
