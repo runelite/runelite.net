@@ -56,13 +56,19 @@ export const {
         return {}
       }
 
+      const edit = {}
+      const unset = []
+      for (const [key, value] of Object.entries(config)) {
+        if (value !== null && value !== '') {
+          edit[key] = value
+        } else {
+          unset.push(key)
+        }
+      }
+
       const patch = {
-        edit: Object.keys(config).filter(
-          key => config[key] !== null && config[key] !== ''
-        ),
-        unset: Object.keys(config).filter(
-          key => config[key] === null || config[key] === ''
-        )
+        edit,
+        unset
       }
 
       await runeliteApi(`runelite-${version}/config/v2`, {
