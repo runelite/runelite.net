@@ -27,18 +27,12 @@ export const {
         return {}
       }
 
-      const result = await runeliteApi(`runelite-${version}/config`, {
+      const config = await runeliteApi(`runelite-${version}/config/v2`, {
         method: 'GET',
         headers: {
           'RUNELITE-AUTH': uuid
         }
       })
-
-      const config = {}
-      for (let i in result.config) {
-        const kv = result.config[i]
-        config[kv.key] = kv.value
-      }
 
       dispatch(setConfig(config))
       const state = getState()
@@ -62,21 +56,23 @@ export const {
         return {}
       }
 
-      config = {
-        config: Object.keys(config).map(key => ({
-          key: key,
-          value: config[key]
-        }))
+      const patch = {
+        edit: Object.keys(config).filter(
+          key => config[key] !== null && config[key] !== ''
+        ),
+        unset: Object.keys(config).filter(
+          key => config[key] === null || config[key] === ''
+        )
       }
 
-      await runeliteApi(`runelite-${version}/config`, {
+      await runeliteApi(`runelite-${version}/config/v2`, {
         method: 'PATCH',
         headers: {
           'RUNELITE-AUTH': uuid,
           'content-type': 'application/json'
         },
         mode: 'cors',
-        body: config
+        body: patch
       })
 
       await dispatch(fetchConfig())
