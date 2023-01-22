@@ -4,7 +4,7 @@ description: 'Security Incident Jan 21 2023'
 author: Adam
 ---
 
-On Janurary 10 a plugin named `ChatClip` was erroneously published to the plugin hub which, under non-default configuration, would permit an attacker to remotely execute code on a victims computer by sending an in-game message.
+On January 10 a plugin named `ChatClip` was erroneously published to the plugin hub which, under non-default configuration, would permit an attacker to remotely execute code on a victims computer by sending an in-game message.
 
 This was caused by human error on our part, where we approved the plugin despite the code being exploitable.
 
