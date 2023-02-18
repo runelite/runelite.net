@@ -9,7 +9,237 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2023-02-13T15:58:25.490Z</updated>
+  <updated>2023-02-18T20:13:23.198Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2023-02-18-1.9.11-Release</id>
+    <link href="https://runelite.net/blog/show/2023-02-18-1.9.11-Release" />
+    <title>1.9.11 Release</title>
+    <summary>Profiles</summary>
+    <updated>2023-02-18T15:00:00.000Z</updated>
+    <author>
+      <name>Adam</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h3>Profiles</h3>
+<p>Profiles have been added to RuneLite, which are separate sets of plugins and settings that can be switched between at any time. There is a new UI in the configuration panel for managing profiles. Profiles are useful for players who want different settings for different accounts, or for different activites.</p>
+<p>Your existing settings will be migrated into a single profile named <code>default</code> automatically.</p>
+<p><img src="/img/blog/1.9.11-Release/profile.png" alt="profile" /></p>
+<p>In addition to creating and deleting profiles, the profile panel also allows duplicating (copying an existing profile's settings to a new profile), exporting, and importing profiles.</p>
+<p>For advanced users, there is a new <code>--profile</code> client argument to choose the profile the client uses at startup. By default the client will select the profile it was last using. If you currently use the <code>--config</code> client argument, import the config file you use into a new profile, and then use <code>--profile name</code> to launch the client with that profile.</p>
+<h3>Launcher updates</h3>
+<p>Last week we began showing an outdated launcher warning to a small percentage of users whose launcher version is 1.6 or older (prior to Aug 2019). If you are receiving this warning at startup, you should update your launcher to the latest version by redownloading RuneLite from <a href="https://runelite.net">https://runelite.net</a>. You don't need to uninstall your previous launcher, and also your settings will not be reset.</p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>Player indicators has an option to disable when outside of PvP</li>
+<li>Camera plugin expand pitch mode now also expands the lower pitch limit</li>
+<li>Various missing random events were added to the random event plugin</li>
+<li>Entity hider can now hide random events</li>
+<li>1 defence and level 3 combat hiscores have been added to the hiscore plugin</li>
+<li>Volcanic mine ore packs have been added to the loot tracker</li>
+<li>xBR UI scaling now works correctly on M1 Macs</li>
+<li>Farmer's affinity has been added to the timers plugin</li>
+<li>A bug causing timers to turn red too early has been fixed</li>
+</ul>
+<p>- Adam</p>
+<h3>New commits</h3>
+<p>We had 27 contributors this update!</p>
+<pre><code>Adam (62):
+      timers: add Menaphite remedy
+      ci: update actions
+      client: update protobuf to 3.21.12
+      overlay: add widget overlay drag warning
+      overlay: remove menuEntryShift
+      overlay: use configured hotkey in drag warning
+      inv grid: use drag delay from interface
+      hooks: release stretched mode image when disabled
+      hooks: invalidate volatile g2d when drawing surface is restored
+      hooks: remove canvas fill on resize
+      clientui: add outdated launcher warning
+      api: move worldmap classes into worldmap package
+      worldmap: use map icon locations for quest start locations
+      worldmap: fix pmd errors
+      player indicators: add disable outside pvp option
+      api: add camera yaw/pitch target accessors
+      camera: change vertical camera name to expand pitch limit
+      config: hide tooltips of config items with no description
+      random events: reorder config items alphebetically
+      random events: add missing random events
+      entity hider: add option to hide random events
+      skill calc: update ham member thieving xp
+      twitch: accept urls for channels
+      github: update issue template
+      gpu: use ui graphics configuration to get affine transform
+      gpu: apply affine transform to aa fbo
+      clientui: fix y scale of clientbounds
+      config manager: synchronize iteration of properties keySet
+      config manager: add logging for settings import
+      hiscores: add phantom muspah
+      rt config: support boolean values
+      hiscore: update pnm icon
+      npc util: add exclusion for strange creature
+      twitch: decrease ping timeout
+      twitch: send USER command
+      twitch: fix /t command
+      chat: use eventbus for chat input events
+      worldmap: fix loading quest start locations
+      agility shortcut: add weiss broken fence
+      worldmap: fix placement of CIS fairy ring
+      session: fix config sync on session close
+      config: add config sync event
+      loottracker: sync config on configsync
+      chat notifications: exclude dialog and mesbox chattypes
+      party: throttle status updates in large parties
+      client: update to 2023-01-25-c1-rev210
+      xtea: cache seen keys on disk
+      config panel: harden spinner and dimension parsing
+      config panel: revert checkbox boolean parsing
+      progressbar: fix divide by 0 with maximumValue 0
+      party: don't throttle forceSend messages
+      hiscore: use json endpoint
+      consistently capitalize plugins on splashscreen action text
+      consistently capitalize plugins on splashscreen action text v2
+      Revert &quot;timers: Reset var timers when duration increases&quot;
+      timers: reset var timers when duration increases
+      session manager: fix stopping http server on login
+      grandexchange: add fsw to openGeLink
+      config: add type constraint to setDefaultConfiguration
+      hiscore: add account builds hiscores
+      config: add profiles
+      client: use both Windows root trust store and bundled trust store
+
+Alex Jurkiewicz (1):
+      gpu: add draw distance requires compute shaders (#15939)
+
+Alexsuperfly (1):
+      loot tracker: add Volcanic Mine ore pack (#16213)
+
+Bo (2):
+      worldmap: add ghommal's hilt teleport location (#16138)
+      CrypticClie: Update &quot;Anger Abbot Langley&quot; step description (#16143)
+
+Brian (1):
+      screenshot plugin: add loot keys
+
+Calvin Kroese (1):
+      chat commands: Fix Al Kharid Rooftop expansion (#16229)
+
+Enriath (6):
+      loot tracker: add support for frozen caches
+      bosstimers: use TemporalUnit instead of ChronoUnit
+      bosstimers: fix Scorpia and Sarachnis respawn times
+      bosstimers: add test to check that respawn timers are a number of ticks
+      interface styles: add HD healthbars for phantom muspah's shield
+      timers: use varbit to track remaining overload time
+
+Jae Ren (1):
+      item charges: Add Tombs of Amascut supplies (#16044)
+
+Jason O'Neill (1):
+      item stats: add Kovac's grog
+
+Jordan Atwood (28):
+      achievement diary: Fix runecrafting step requirements
+      SkillChallengeClue: Fix Charlie clues update regression
+      NpcUtil: Indicate gargoyles are dead during death animation
+      api: Improve VarPlayer#POISON javadoc
+      timers: Use Duration.of(..., RSTimeUnit.GAME_TICKS)
+      slayer: Set streak and points when receiving first task
+      item stats: Add Saturated heart
+      item stats: Add Forgotten brew
+      item stats: Fix Ring of the gods (i) detection
+      dev tools: Fix setvarp and setvarb
+      timers: Remove imbued heart timer duration
+      timers: Update imbued heart timer tooltip
+      timers: Fix imbued heart duration test
+      item charges: Reset slayer bracelet charges on recharge
+      game: Fix Antidote++ item variation mapping test
+      game: Fix isDying for Vet'ion, add Calvar'ion
+      ItemMapping: Add upgraded wilderness weapons
+      world map: Add wilderness rework dungeons
+      world map: Fix west Revenant caves location
+      world map: Add various dungeon locations
+      api: add WorldPoint#toWorldArea()
+      loot tracker: add wilderness rework bosses
+      boss timers: Wilderness rework boss timers
+      timers: Consolidate var-controlled timer tracking
+      timers: Track Dragonfire shield cooldown via varbit
+      roof removal: Add Monkey Madness II airship platform override
+      WeaponType: Add argument length check
+      ItemMapping: Add crystal armour variants
+
+Kenneth Chung (1):
+      GPU: Fix xBR scaling on M1 macs
+
+Kyle (1):
+      npc indicators: add list format to config description (#16031)
+
+LameGames (1):
+      clues: reset panel width before rendering hint
+
+Max Weber (9):
+      rl-api: allow replacing the minimap tile drawing method
+      Update Quest to 2023-1-11
+      Revert ChatBuilder: use clansettings for finding member rank
+      loginscreen: do not allow non-number characters into the OTP field
+      feed: reduce useless text layouts
+      feed: only load feed on demand
+      cache: update Model face limit
+      ConfigManager: only key rsprofiles off of account hash
+      config: use tabs for switching between plugin hub &amp; plugin list panels
+
+Mike (1):
+      EmoteClue: Allow bowfa for crystal bow clue requirement (#16157)
+
+Paul Norton (3):
+      idle notifier: Re-check NPC interaction on transform
+      slayer: cancel task on inferno fail
+      xptracker: prevent negative values with hide maxed
+
+Peter Forsling (1):
+      clue: add climbing boots (g) to emote steps (#16008)
+
+Roelof (1):
+      boss timers: Add Phantom Muspah
+
+SirWrain (1):
+      timers: add farmer's affinity effect timer
+
+Skretzo (1):
+      attack styles: Fix type 28 attack style indices
+
+YvesW (2):
+      random events: fix bob and MoM related events
+      entity hider: fix frog random event
+
+fioxxu (1):
+      agility shortcut: remove requirement for Weiss shortcut
+
+iProdigy (1):
+      twitch: use login name in place of unrenderable display names
+
+maxmaximus123456 (1):
+      worldmap: fix typo for Skavid Caves
+
+tcoy (1):
+      questlist: Update quest list tab index
+
+testing-ongithub (8):
+      timers: Fix antivenom timers expiring too early (#16073)
+      timers: Track antifire durations using varbits
+      timers: Track divine potion durations using varbits
+      timers: Track magic imbue duration using varbit
+      timers: Null buffTimer and remedyTimer on shutdown
+      timers: Track Arceuus spell durations using varbits
+      menu swapper: Remove tags from UI swap feedback message (#16235)
+      timers: Reset var timers when duration increases
+
+Łukasz Kliś (1):
+      chat commands: add short names for Phantom Muspah
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2023-01-22-security-incident-jan21</id>
