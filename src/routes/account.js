@@ -15,7 +15,8 @@ import {
   getSelectedAccount,
   getSlayerTask,
   getTags,
-  getTileMarkers
+  getTileMarkers,
+  getGe as getGeProfile
 } from '../modules/config'
 import { getGe } from '../modules/ge'
 import Home from './account/home'
@@ -29,6 +30,7 @@ import { getTimeTracking } from '../modules/time-tracking'
 import { upperToTitleCase } from '../util'
 import Delete from './account/delete'
 import Tiles from './account/tiles'
+import GrandExchangeProfile from './account/grand-exchange-profile'
 
 const menu = [
   {
@@ -49,6 +51,21 @@ const menu = [
     component: GrandExchange,
     data: ({ rawGe }) =>
       rawGe.map(ge => ({
+        buy: ge.buy,
+        itemId: ge.itemId,
+        quantity: ge.quantity,
+        price: ge.price,
+        time: ge.time
+      }))
+  },
+  {
+    tag: 'grand-exchange-profile',
+    label: 'Grand Exchange (Profile)',
+    icon: 'fa-fw fas fa-balance-scale',
+    component: GrandExchangeProfile,
+    showAccounts: true,
+    data: ({ rawGeProfile }) =>
+      rawGeProfile.map(ge => ({
         buy: ge.buy,
         itemId: ge.itemId,
         quantity: ge.quantity,
@@ -232,6 +249,7 @@ const mapStateToProps = (state, props) => ({
   slayerTask: getSlayerTask(state),
   bossLog: getBossLog(state),
   rawGe: getGe(state),
+  rawGeProfile: getGeProfile(state),
   rawLoot: getLoot(state),
   rawTags: getTags(state),
   rawTimeTracking: getTimeTracking(state),

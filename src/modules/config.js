@@ -16,7 +16,8 @@ export const {
   setConfig,
   changeAccount,
   setTileMarkersFilter,
-  setLootFilter
+  setLootFilter,
+  setGeFilter
 } = createActions(
   {
     FETCH_CONFIG: () => async (dispatch, getState) => {
@@ -87,7 +88,8 @@ export const {
   'SET_CONFIG',
   'CHANGE_ACCOUNT',
   'SET_TILE_MARKERS_FILTER',
-  'SET_LOOT_FILTER'
+  'SET_LOOT_FILTER',
+  'SET_GE_FILTER'
 )
 
 // Reducer
@@ -114,6 +116,13 @@ export default handleActions(
         ...state.filter,
         loot: payload
       }
+    }),
+    [setGeFilter]: (state, { payload }) => ({
+      ...state,
+      filter: {
+        ...state.filter,
+        ge: payload
+      }
     })
   },
   {
@@ -121,7 +130,8 @@ export default handleActions(
     selectedAccount: null,
     filter: {
       tileMarkers: '',
-      loot: ''
+      loot: '',
+      ge: ''
     }
   }
 )
@@ -131,6 +141,7 @@ export const getConfig = state => state.config.config
 export const getSelectedAccount = state => state.config.selectedAccount
 export const getTileMarkersFilter = state => state.config.filter.tileMarkers
 export const getLootFilter = state => state.config.filter.loot
+export const getGeFilter = state => state.config.filter.ge
 
 export const getAccounts = createSelector(getConfig, config => {
   const accounts = []
@@ -432,4 +443,54 @@ export const getProfileConfig = createSelector(
 
     return profileConfig
   }
+)
+
+export const getGe = createSelector(
+  getConfig,
+  getItems,
+  getSelectedAccount,
+  (config, items, selectedAccount) => {
+    if (!selectedAccount) {
+      return []
+    }
+
+    const entries = []
+    const key =
+      'grandexchange.rsprofile.' + selectedAccount.accountId + '.tradeHistory'
+
+    if (config[key]) {
+      const allData = JSON.parse(config[key])
+
+      for (const data of allData) {
+        const date = new Date(0)
+        date.setUTCSeconds(Math.floor(data['t'] / 1000))
+        const item = items.find(item => item.id === data['i'])
+        const entry = {
+          itemId: data['i'],
+          name: item && item.name ? item.name : 'null',
+          price: data['p'],
+          quantity: data['q'],
+          buy: data['b'],
+          time: data['t'],
+          date
+        }
+
+        entries.push(entry)
+      }
+    }
+
+    return entries
+  }
+)
+
+export const getFilteredGe = createSelector(
+  getGe,
+  getGeFilter,
+  (data, filter) =>
+    data
+      .filter(
+        l =>
+          !filter || l.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1
+      )
+      .sort((a, b) => b.date - a.date)
 )
