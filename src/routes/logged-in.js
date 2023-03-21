@@ -26,8 +26,13 @@ class LoggedIn extends Component {
         </p>
       ) : (
         <p>
-          You have successfully logged into RuneLite. You may now close this
-          window.
+          You have successfully logged into RuneLite. Your profiles have been
+          synced to the client, if you have any. If you want to use one of these
+          profiles now, switch to the profile by double clicking the profile in
+          the profiles panel.
+          <br />
+          <br />
+          You may now close this window.
         </p>
       )
 
