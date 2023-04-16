@@ -29,8 +29,8 @@ export default handleActions(
 const getBootstrap = state => state.bootstrap
 
 export const getLatestRelease = createSelector(getBootstrap, bootstrap => {
-  if ('client' in bootstrap) {
-    return bootstrap['client']['version']
+  if ('version' in bootstrap) {
+    return bootstrap['version']
   }
 
   return ''
