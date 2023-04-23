@@ -69,6 +69,14 @@ const PluginHubShow = ({ externalPlugin }) => {
               <div className="ml-4 text-muted">
                 {externalPlugin.description}
               </div>
+              <div className="ml-auto">
+                <a
+                  href={`https://github.com/${externalPlugin.github.user}/${externalPlugin.github.repo}/issues`}
+                >
+                  <i class="fab fa-github" />
+                  <span> Report an issue</span>
+                </a>
+              </div>
             </div>
             {externalPlugin.github && (
               <div class="card-body markdown-body">
