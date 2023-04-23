@@ -46,20 +46,7 @@ const PluginHubShow = ({ externalPlugin }) => {
                 />
               </div>
               <div>
-                <h5 class="card-title">
-                  {externalPlugin.support ? (
-                    <a
-                      href={externalPlugin.support}
-                      alt="Support link"
-                      rel="noopener noreferrer nofollow"
-                      target="_blank"
-                    >
-                      {externalPlugin.displayName}
-                    </a>
-                  ) : (
-                    externalPlugin.displayName
-                  )}
-                </h5>
+                <h5 class="card-title">{externalPlugin.displayName}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
                   <a href={`/plugin-hub/${externalPlugin.author}`}>
                     {externalPlugin.author}
