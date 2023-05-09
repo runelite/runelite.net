@@ -7,7 +7,7 @@ module.exports = {
   buttons: [
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.6.3/RuneLiteSetup32.exe',
+        'https://github.com/runelite/launcher/releases/download/2.6.4/RuneLiteSetup32.exe',
       icon: 'fab fa-fw fa-windows',
       text: {
         os: 'Windows',
@@ -17,7 +17,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.6.3/RuneLiteSetup.exe',
+        'https://github.com/runelite/launcher/releases/download/2.6.4/RuneLiteSetup.exe',
       icon: 'fab fa-fw fa-windows',
       text: {
         os: 'Windows',
@@ -27,7 +27,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.6.3/RuneLite-x64.dmg',
+        'https://github.com/runelite/launcher/releases/download/2.6.4/RuneLite-x64.dmg',
       icon: 'fab fa-fw fa-apple',
       text: {
         os: 'macOS',
@@ -37,7 +37,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.6.3/RuneLite-aarch64.dmg',
+        'https://github.com/runelite/launcher/releases/download/2.6.4/RuneLite-aarch64.dmg',
       icon: 'fab fa-fw fa-apple',
       text: {
         os: 'macOS',
@@ -47,7 +47,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.6.3/RuneLite.AppImage',
+        'https://github.com/runelite/launcher/releases/download/2.6.4/RuneLite.AppImage',
       icon: 'fab fa-fw fa-linux',
       text: {
         os: 'Linux',
@@ -57,7 +57,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.6.3/RuneLite-aarch64.AppImage',
+        'https://github.com/runelite/launcher/releases/download/2.6.4/RuneLite-aarch64.AppImage',
       icon: 'fab fa-fw fa-linux',
       text: {
         os: 'Linux',
@@ -67,7 +67,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.6.3/RuneLite.jar',
+        'https://github.com/runelite/launcher/releases/download/2.6.4/RuneLite.jar',
       icon: 'fas fa-fw fa-coffee',
       text: {
         os: 'All platforms'
