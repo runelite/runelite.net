@@ -9,7 +9,245 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2023-05-09T23:18:57.545Z</updated>
+  <updated>2023-05-13T20:55:39.034Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2023-05-13-1.10.0-Release</id>
+    <link href="https://runelite.net/blog/show/2023-05-13-1.10.0-Release" />
+    <title>1.10.0 Release</title>
+    <summary>Map loading improvements</summary>
+    <updated>2023-05-13T15:00:00.000Z</updated>
+    <author>
+      <name>Adam</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Map loading improvements</h2>
+<p>The short <code>Loading - please wait</code> freeze which happens when a new map is loaded (also sometimes referred to as crossing &quot;loading lines&quot;) has been greatly reduced, and in many cases, completely removed. This allows for a much smoother game play experience, and is most noticible in content like the Gauntlet and Chambers of Xeric which have multiple map loads. We've also fixed projectiles so they no longer disappear when loading a new map.</p>
+<p><img src="/img/blog/1.10.0-Release/maploading.webm" alt="maploading" /></p>
+<h4>Jagex Account PSA</h4>
+<p>With Jagex recently pushing people towords using the new Jagex Account system, we've seen many people lock themselves out of their accounts by migrating their account without fully understanding the consequences. This occurs most prominently to users whose computers can not run the Jagex Launcher. Please do not migrate your accounts without first verifying that the Jagex Launcher works on <em>all</em> of the computers you play on.</p>
+<p>Jagex Accounts are still in beta, and so it is expected there will be some teething problems. If your computer does not support the Jagex launcher we highly recommend <em>not</em> migrating your account yet as you will be unable to play on RuneLite.</p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>Multi kills on abyssal demons on task are now correctly counted</li>
+<li>Mirror shield's &quot;mirror&quot; effect now renders correctly on GPU</li>
+<li><code>Walk here</code> can now be swapped on a per-object basis, similar to NPCs</li>
+<li>Profiles can now be reordered via drag and drop in the profile list</li>
+<li>Fix the ring of forging tracker being off by 1</li>
+<li>The GE plugin can now notify you when an offer is fully complete, instead of on each update</li>
+</ul>
+<p>- Adam</p>
+<h3>New commits</h3>
+<p>We had 28 contributors this update!</p>
+<pre><code>Adam (94):
+      runelite: fix npe from --insecure-skip-tls-verificiation
+      external plugins: reload plugin list on profile change
+      ground markers: reload points on profile change
+      profile panel: info level log more profile operations
+      config: null check fetched profiles
+      profile panel: remember expanded state between rebuilds
+      profile panel: require profile names to be valid file names
+      config manager: distribute initial config sync delay
+      drag and drop panel: add drag listener
+      drag and drop panel: fix components of varying size
+      profile panel: support reordering
+      player indicators: add per-setting pvp option
+      config manager: handle exceptions from scheduled sendConfig task
+      grand exchange: save trades to rsprofile config
+      slayer: remove profile migration
+      player indicators: fix test for highlight own player
+      slayer: use vars for task tracking
+      slayer: use task location enum for location verification
+      slayer: fix !task location checking
+      run energy: fix parsing roe with 1000 charges
+      slayer: fix test
+      feed: fix npe on shutdown
+      config: mark lost remote profile as not synced
+      chatfilter: fix cme from rebuilding patterns
+      cache: remove various savers
+      cache: refactor item renderer
+      cache: fix texture projection on models without tex coords
+      clientui: add java8 brownout
+      api: add tex triangles to Model
+      item charges: fix setting rsprofile config before login
+      gpu: move uv calculation to gpu
+      api: add Actor isInteracting
+      containable frame: log insets in getWindowAreaBounds()
+      api: update 212
+      api: replace varp enum with ints
+      api: remove model uvs
+      devtools: add wear/tex commands
+      gpu: fix vanilla uvs with a depth offset
+      ping: move unknown host exception log to debug
+      slayer: display infobox on task check
+      external plugins: fix refresh race with plugin manager
+      external plugins: remove unused session event handlers
+      client: cache update 3-15-2023
+      ground markers: cap fill opacity at 255
+      ground items: Fix Kalphite Queen instance despawn times (#16382)
+      config manager: reset lost profile active flag
+      config manager: log profiles at startup
+      config manager: use inactive profile if no profile is active
+      config manager: avoid removing active profile on logout
+      runelite: remove --config argument
+      camera plugin: remove preserve yaw
+      gpu: fix min10 initializer
+      overlay manager: remove plugin changed hook
+      api: remove WorldArea calculateNextTravellingPoint
+      logback: include timezone in date pattern
+      gpu: don't double offset of tile models
+      gpu: fix a few comments
+      gpu: remove unused vb clear
+      gpu: use a separate vao for compute and temp buffers
+      gpu: fix initialization of uniform block index
+      gpu: allow quoting filenames in #include
+      gpu: add clang-format config
+      gpu: clang-format shaders
+      gpu: fix derotating jau computation for uvs
+      gpu: fix derotating jau on cpu too
+      hiscore panel: repaint entire panel on lookup
+      screenshot: fix screenshots with j2d scaling
+      clientui: fix applying client bounds with j2d scaling
+      screen markers: reload markers on profile change
+      infobox manager: rebuild infoboxes on profile change
+      slayer: remove twisted league tasks
+      slayer: fix detecting Check on worn items
+      gpu: fix amd miscompile of frag.glsl
+      cache: update uv calculation code
+      gpu: move uv calculation to geometry shader
+      gpu: simplify face sorting comparison
+      gpu: check aa framebuffer status
+      hiscore: add wilderness bosses
+      screenshot: fix scaling on macos
+      clientui: keep size when resetting client position
+      api: update 213
+      api: add frame cycle to actorspotanim and dynamicobject
+      external plugins: change support link to plugin hub readme
+      cache: rename ambient sound fields
+      menu swapper: use submenus for object swaps
+      menu swapper: add object walk here swap
+      screenshot: remove points from combat achievement file names
+      screenshot: remove points from notification popup too
+      devtools: add loading lines tool
+      gpu: use power of 2 for gl buffer sizes
+      gpu: name gl buffers
+      gpu: invalidate buffer data before updating
+      ge: add notify on offer complete
+      api: add scene loading callbacks
+
+Alberto Pluecker (2):
+      slayer: Add Phantom Muspah to task list (#16414)
+      slayer: Add Forgotten Soul as an alternative for Ghosts task (#16427)
+
+Arnaud Peralta (1):
+      roof removal: Add Camelot Castle override
+
+Basil Mahmood (1):
+      clues: Identify Eastfloor spade as a valid spade (#16464)
+
+Bob Heine (1):
+      item stats: Fix Choc-ice healing amount (#16545)
+
+Filip Åsberg (2):
+      clues: Include all combat bracelet variants (#16520)
+      mining: update mlm ore-vein respawn times
+
+Fiori (1):
+      roof removal: add Uzer Oasis override (#16355)
+
+Ilkka Kallioniemi (1):
+      plugins: Fix Ectofuntus spelling (#16393)
+
+InfernoStats (1):
+      timers: fix liquid adrenaline timer being removed on death
+
+JZomDev (2):
+      profile panel: default file chooser directory to RUNELITE_DIR
+      cannon: Improve Meiyerditch Laboratories bloodveld spot (#16455)
+
+Jordan (1):
+      fishing: add Camdozaal fishing spots
+
+Jordan Atwood (10):
+      item stats: Fix capped stat boosts when starting from overheal
+      ground items: Update KBD instance despawn time
+      feed: Remove unused @Slf4j annotation and import
+      loot tracker: Fix toa loot value config check
+      roof removal: Add Karuulm Slayer Dungeon overrides
+      timers: Add Heal Group cooldown timer
+      client: Log loaded local rtconf contents
+      game: Fix isDying for Runite golems
+      game: Add isDying override for Agrith Naar
+      game: Fix comment spelling
+
+LootBagger (1):
+      skill calc: Add true blood altar runecrafting (#16259)
+
+Macweese (1):
+      slayer: match task names to enum
+
+Max Weber (14):
+      config: register panels to the eventbus correctly
+      client: specify utf8 encoding
+      rl-api: expose DBRowConfig
+      rl-api: fix DBTableID runtime exclusion
+      widgetid: remove unused widgets
+      ConfigManager: don't rely on HashSet ordering when picking rsprofiles
+      ConfigManager: merge imported rsprofile keys
+      config: document RSProfileType ordinal stability
+      config: merge imported profiles correctly
+      client/ItemMapping: update to 2023-4-12
+      rl-client: add --insecure-write-credentials
+      MaterialTabGroup: do not select tabs that are already selected
+      wiki: do not trip asserts for despawned npcs
+      music: update for 2023-5-10 game update
+
+Morgan Lewis (1):
+      api: Fix SpriteIDs from April 2023 updates (#16519)
+
+Mustafa (1):
+      ItemMapping: Add Venator bow (#16394)
+
+Newbcake (1):
+      worldmap: fix typo for Skeletal Tombs (#16546)
+
+Paul Norton (2):
+      cluescrolls: wildy boss update clue descriptions
+      kourendlibrary: reset state on new gamemessage
+
+PkZ (1):
+      slayer: Add Revenants as an alternative for Ghosts task (#16436)
+
+SevenEightFour (1):
+      skill calculator: Fix Slimy Eel experience (#16536)
+
+SirGirion (1):
+      woodcutting: Add farming guild redwood tree (#16505)
+
+Velite12 (1):
+      idle notifier: Add Imcando hammer infernal eel crushing animation (#16350)
+
+YvesW (1):
+      drag and drop panel: fix typo (#16314)
+
+Zoinkwiz (1):
+      outline renderer: add RuneliteObject support
+
+geheur (3):
+      overlay manager: reload overlay config on profile change
+      item manager: Add quest speedrunning graceful to worn items map (#16404)
+      item charges: Add Forgotten brew (#16526)
+
+olligobber (1):
+      item charges: Fix Ring of forging breaking being off by one (#16500)
+
+testing-ongithub (2):
+      timers: Switch back to message-based detection for thrall creation timer
+      timers: Don't create shadow veil / liquid adrenaline timers with varbits
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2023-02-18-1.9.11-Release</id>
