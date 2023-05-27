@@ -3,20 +3,17 @@ import ago from 's-ago'
 import { numberWithCommas } from '../../util'
 import { connect } from 'react-redux'
 import {
-  fetchGe,
+  fetchConfig,
+  getFilteredGe,
   getGeFilter,
-  getGePagination,
-  getPageCount,
-  getPaginatedGe,
-  setGeFilter,
-  setGePagination
-} from '../../modules/ge'
+  setGeFilter
+} from '../../modules/config'
+import { fetchItems } from '../../modules/item'
 import { bindActionCreators } from 'redux'
 import prepare from '../../components/prepare'
 import SearchBar from '../../components/search-bar'
 import './grand-exchange.css'
 import { fetchBootstrap } from '../../modules/bootstrap'
-import Pagination from '../../components/pagination'
 
 const formatGeIcon = id =>
   `https://services.runescape.com/m=itemdb_oldschool/obj_big.gif?id=${id}`
@@ -55,63 +52,42 @@ const buildRecord = record => (
   </a>
 )
 
-const handleChange = (event, setGeFilter) =>
-  setGeFilter({
-    name: event.target.value
-  })
+const handleChange = (event, setGeFilter) => setGeFilter(event.target.value)
 
-const GrandExchange = ({
-  ge,
-  geFilter,
-  gePagination,
-  pageCount,
-  setGeFilter,
-  setGePagination
-}) => (
+const GrandExchange = ({ ge, geFilter, setGeFilter }) => (
   <Fragment>
-    <SearchBar
-      value={geFilter.name}
-      onInput={e => handleChange(e, setGeFilter)}
-    />
+    <SearchBar value={geFilter} onInput={e => handleChange(e, setGeFilter)} />
     <ul class="ge-records list-group list-group-small">
       {ge.sort((a, b) => b.date - a.date).map(buildRecord)}
     </ul>
-    <Pagination
-      currentPage={gePagination.page}
-      totalPages={pageCount}
-      pageNeighbours={6}
-      onClick={page =>
-        setGePagination({
-          page,
-          perPage: 100
-        })
-      }
-    />
   </Fragment>
 )
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  ge: getPaginatedGe(state),
-  geFilter: getGeFilter(state),
-  gePagination: getGePagination(state),
-  pageCount: getPageCount(state)
+  ge: getFilteredGe(state),
+  geFilter: getGeFilter(state)
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchBootstrap,
-      fetchGe,
-      setGeFilter,
-      setGePagination
+      fetchItems,
+      fetchConfig,
+      setGeFilter
     },
     dispatch
   )
 
-const prepareComponentData = async ({ fetchBootstrap, fetchGe }) => {
+const prepareComponentData = async ({
+  fetchBootstrap,
+  fetchItems,
+  fetchConfig
+}) => {
   await fetchBootstrap()
-  await fetchGe()
+  await fetchItems()
+  await fetchConfig()
 }
 
 export default connect(

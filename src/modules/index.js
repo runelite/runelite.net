@@ -2,7 +2,6 @@ import accountReducer from './account'
 import appReducer from './app'
 import bootstrapReducer from './bootstrap'
 import configReducer from './config'
-import geReducer from './ge'
 import gitReducer from './git'
 import itemReducer from './item'
 import sessionReducer from './session'
@@ -18,7 +17,6 @@ export default {
   bootstrap: bootstrapReducer,
   config: configReducer,
   externalPlugins: externalPluginsReducer,
-  ge: geReducer,
   git: gitReducer,
   item: itemReducer,
   session: sessionReducer,
