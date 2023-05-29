@@ -15,6 +15,14 @@
   position: absolute;
 }
 
+.tooltip-tag .tooltip-tag-text-simple {
+  margin-left: 0 !important;
+  bottom: auto;
+  left: auto;
+  margin-top: 25px;
+  position: absolute;
+}
+
 .tooltip-tag-text small {
   font-size: 12px !important;
   color: gray;
