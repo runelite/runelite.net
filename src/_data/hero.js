@@ -3,7 +3,12 @@ module.exports = {
   url: 'https://runelite.net',
   logo: '/img/runelite_logo_transparent.png',
   description: `A popular free, open-source and super fast client for Old School RuneScape`,
-  images: ['/img/carousel/1.png', '/img/carousel/2.png', '/img/carousel/3.png'],
+  images: [
+    '/img/carousel/1.webp',
+    '/img/carousel/2.webp',
+    '/img/carousel/3.webp',
+    '/img/carousel/4.webp'
+  ],
   buttons: [
     {
       link:
