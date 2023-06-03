@@ -42,6 +42,6 @@ export default handleActions(
   {
     loading: 0,
     navbarDark: false,
-    heroImage: randInt(0, heroModule.images.length)
+    heroImage: randInt(0, heroModule.images.length - 1)
   }
 )
