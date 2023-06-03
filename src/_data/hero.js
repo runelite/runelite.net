@@ -6,8 +6,7 @@ module.exports = {
   images: [
     '/img/carousel/1.webp',
     '/img/carousel/2.webp',
-    '/img/carousel/3.webp',
-    '/img/carousel/4.webp'
+    '/img/carousel/3.webp'
   ],
   buttons: [
     {
