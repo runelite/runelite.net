@@ -21,6 +21,7 @@ import { Link } from 'preact-router'
 import Async from '../components/async'
 import prepare from '../components/prepare'
 import { fetchBootstrap, getLatestRelease } from '../modules/bootstrap'
+import { InView } from 'react-intersection-observer'
 
 const Home = ({ commit, release, sessionCount, loggedInCount }) => (
   <Layout>
@@ -67,16 +68,24 @@ const Home = ({ commit, release, sessionCount, loggedInCount }) => (
           <h4 class="right-header">SHOW ALL NEWS</h4>
         </Link>
 
-        <Async
-          getComponent={() =>
-            latest().then(({ body }) => (
-              <div
-                class="markdown-body news-page"
-                dangerouslySetInnerHTML={{ __html: body }}
-              />
-            ))
-          }
-        />
+        <InView>
+          {({ inView, ref }) => (
+            <div ref={ref}>
+              {inView ? (
+                <Async
+                  getComponent={() =>
+                    latest().then(({ body }) => (
+                      <div
+                        class="markdown-body news-page"
+                        dangerouslySetInnerHTML={{ __html: body }}
+                      />
+                    ))
+                  }
+                />
+              ) : null}
+            </div>
+          )}
+        </InView>
       </div>
     </section>
   </Layout>
