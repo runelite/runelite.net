@@ -1,4 +1,6 @@
 import { createActions, handleActions } from 'redux-actions'
+import heroModule from '../_data/hero'
+import { randInt } from '../util'
 
 export const {
   startLoading,
@@ -40,6 +42,6 @@ export default handleActions(
   {
     loading: 0,
     navbarDark: false,
-    heroImage: 0
+    heroImage: randInt(0, heroModule.images.length)
   }
 )
