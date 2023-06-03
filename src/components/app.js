@@ -1,4 +1,3 @@
-import '@fortawesome/fontawesome-free/css/all.min.css'
 import { h } from 'preact'
 import { connect } from 'react-redux'
 import Router from 'preact-router'
