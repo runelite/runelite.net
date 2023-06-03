@@ -106,7 +106,7 @@ const prepareComponentData = async ({
   fetchSessionCount,
   fetchLoggedInCount
 }) => {
-  await fetchBootstrap()
+  fetchBootstrap()
   fetchCommits()
   fetchSessionCount()
   fetchLoggedInCount()
