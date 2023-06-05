@@ -2,7 +2,8 @@ const {
   override,
   addWebpackAlias,
   useBabelRc,
-  useEslintRc
+  useEslintRc,
+  babelInclude
 } = require('customize-cra')
 
 const fs = require('fs')
@@ -171,5 +172,10 @@ module.exports = override(
     react: 'preact/compat',
     'react-dom': 'preact/compat'
   }),
-  addSitePlugins()
+  addSitePlugins(),
+  babelInclude([
+    path.resolve(__dirname, 'src'),
+    path.resolve(__dirname, 'node_modules/react-leaflet'),
+    path.resolve(__dirname, 'node_modules/@react-leaflet')
+  ])
 )
