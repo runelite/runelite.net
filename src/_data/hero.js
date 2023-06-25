@@ -11,6 +11,16 @@ module.exports = {
   buttons: [
     {
       link:
+        'https://github.com/runelite/launcher/releases/download/2.6.4/RuneLiteSetup.exe',
+      icon: 'fab fa-fw fa-windows',
+      text: {
+        os: 'Windows',
+        arch: '64 bit'
+      },
+      os: 'Windows64'
+    },
+    {
+      link:
         'https://github.com/runelite/launcher/releases/download/2.6.4/RuneLiteSetup32.exe',
       icon: 'fab fa-fw fa-windows',
       text: {
@@ -21,13 +31,13 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.6.4/RuneLiteSetup.exe',
+        'https://github.com/runelite/launcher/releases/download/2.6.6/RuneLiteSetupAArch64.exe',
       icon: 'fab fa-fw fa-windows',
       text: {
         os: 'Windows',
-        arch: '64 bit'
+        arch: 'ARM64'
       },
-      os: 'Windows64'
+      os: 'WindowsArm64'
     },
     {
       link:
@@ -65,7 +75,7 @@ module.exports = {
       icon: 'fab fa-fw fa-linux',
       text: {
         os: 'Linux',
-        arch: 'Aarch64'
+        arch: 'ARM64'
       },
       os: 'LinuxAarch64'
     },
