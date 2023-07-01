@@ -210,7 +210,7 @@ export const {
       const names = {}
 
       const regex = new RegExp(
-        /([a-zA-Z0-9]{64}) \*?(([\w-]+)?RuneLite[.\w-]+)/gi
+        /([a-zA-Z0-9]{64})\s+\*?(([\w-]+)?RuneLite[.\w-]+)/gi
       )
 
       response.forEach(release => {
