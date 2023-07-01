@@ -9,7 +9,151 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2023-07-01T13:47:27.670Z</updated>
+  <updated>2023-07-01T14:23:05.590Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2023-07-01-1.10.6-Release</id>
+    <link href="https://runelite.net/blog/show/2023-07-01-1.10.6-Release" />
+    <title>1.10.6 Release</title>
+    <summary>Forestry</summary>
+    <updated>2023-07-01T15:00:00.000Z</updated>
+    <author>
+      <name>Adam</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Forestry</h2>
+<p>The woodcutting plugin has had support for forestry added. This includes notifications for each type of event, and an overlay aiding it.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/img/blog/1.10.6-Release/bees.png" alt="bees" /></td>
+<td><img src="/img/blog/1.10.6-Release/roots.png" alt="roots" /></td>
+<td><img src="/img/blog/1.10.6-Release/sapling.png" alt="sapling" /></td>
+</tr>
+</tbody>
+</table>
+<h3>Prayer reordering</h3>
+<p>As you may have seen a couple weeks ago, Jagex has changed their rules regarding prayer reordering, and so we have added prayer reordering support to the prayer plugin.
+A bug causing prayer filtering to be broken when prayer reordering is on has also been fixed</p>
+<p><img src="/img/blog/1.10.6-Release/prayerreordering.mp4" alt="prayerreorder" /></p>
+<h4>Windows ARM launcher</h4>
+<p>We now have a native Windows ARM launcher. If you have a Windows laptop or tablet with an ARM processor (common in Microsoft Surface Pro) machines, you can download it from the homepage by selecting the <code>Download for Windows (ARM64)</code> option. Additionally, the GPU plugin is now supported on ARM, regardless of what launcher you use.</p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>When pluginhub plugins become incompatible due to an update, they now show as incompatible instead of silently disappearing</li>
+<li>The motherlode mine respawn timers have been fixed, again, and are now definitely correct</li>
+<li><code>!pb</code> now supports hours</li>
+<li>The feed panel has been removed due to Twitter removing their free API access</li>
+</ul>
+<h3>New commits</h3>
+<p>We had 17 contributors this update!</p>
+<pre><code>Adam (34):
+      coords: add scene overload for toLocalInstance
+      api: deprecate AccountType
+      time tracking: disallow composting compost bins
+      slayer: fix forgetting initial amount on disconnect
+      hiscore: update bh target regex
+      hiscore: allow any color for bh target regex
+      client: remove feed plugin
+      client: remove feed resources
+      loot tracker: remove unused http-api client methods
+      spec counter: add dragon warhammer (cr)
+      Update to JDK 11
+      clientui: remove java 8 warnings
+      client: update orange-extensions to 1.1
+      update http-api to 1.2.5
+      world hopper: add beta worlds
+      cache-client: skip index 16
+      cache-client: support removing archives
+      cache-updater: update to spring 2
+      loot manager: add wall beasts
+      prayer: add prayer reordering
+      prayer: fix prayer filtering with reordering
+      gpu: update to lwjgl 3.3.2
+      gpu: use lwjgl-opencl
+      xp tracker: remove game tick rebuildSkills call
+      api: deprecate and remove overall skill
+      mining: use add_overlaytimer_loc clientscript for mlm timer
+      gpu: fix crash on shutdown if cl library is not initialized
+      gpu: add windows aarch64 support
+      gpu: improve opencl context creation error handling
+      woodcutting: add forestry event notifications
+      woodcutting: add glowing roots highlight
+      woodcutting: add mulch highlight
+      Revert &quot;random events: add more frog npcids&quot;
+      woodcutting: add flower highlighter
+
+Adam Sharp (1):
+      chat commands: add hours support for !pb
+
+Chris (1):
+      loot tracker: Add fishing level to slayer chest metadata (#16694)
+
+Felanbird (2):
+      clues: Move arrows for NPCs found on upper floors (#16618)
+      clues: Support Forestry outfit
+
+Filip Åsberg (1):
+      item charges: update explorer charges at plugin startup
+
+Frosty-J (1):
+      clues: clarify Chaos Temple location
+
+Jatie (1):
+      clues: add primordial boots to dragon boots requirement
+
+Jordan Atwood (6):
+      grand exchange: Fix slot detail panels with wrapped text
+      grand exchange: Use constant for panel height
+      grand exchange: Initialize offers panel on startup
+      report button: Remove &quot;Off&quot; display option
+      ItemMapping: Add Bounty Hunter item variants
+      discord: Fix ordering of minigame definitions
+
+Joshua Kuan (2):
+      clues: Update location text for Gallow medium anagram clue (#16332)
+      random events: add more frog npcids
+
+Max Weber (7):
+      cache/item: use correct texture brightness
+      rl-client/RSProfileType: support new BETA world type
+      rl-client: use pluginhub manifest v2 format
+      rl-client: allow rtconf-ing keys from runelite.properties
+      osxutil: do not reference eawt classes during verification
+      rl-client/GameEventManager: don't use pointless Optionals
+      rl-client/GameEventManager: post TileObjects for bridge tiles
+
+Shane Doherty (1):
+       discord: Add Giants' Foundry area
+
+adam-a (1):
+      osxutil: update frame extended state for fullscreen mode
+
+crab-pancake (1):
+      spec counter: fix tracking weapon with 1 tick specs
+
+geheur (1):
+      menu swapper: fix object walk here swap with multilocs
+
+iProdigy (1):
+      hiscore: avoid AccountType enum usage
+
+jonas-fo (1):
+      screenshot: suport screenshots with level-up interface disabled
+
+shi-vy (1):
+      clues: add fairy ring to elite clue step for gutanoth
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2023-05-13-1.10.0-Release</id>
