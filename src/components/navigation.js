@@ -116,11 +116,6 @@ const Navigation = ({ dark, login, loggedIn, username }) => (
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href={links.merch}>
-            Buy Merch
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href={links.patreon}>
             Become a patron
           </a>
