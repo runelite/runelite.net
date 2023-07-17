@@ -31,7 +31,7 @@ const PluginHubShow = ({ externalPlugin }) => {
       />
 
       <section id="externalPlugins">
-        <div class="content-section dark-card">
+        <div class="content-section dark-card pb-0">
           <div class="card">
             <div class="card-header card-body d-flex align-self-stretch">
               <div class="mr-4 d-flex align-items-center">
