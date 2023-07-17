@@ -62,7 +62,7 @@ const PluginHub = ({
       />
 
       <section id="externalPlugins">
-        <div class="content-section">
+        <div class="content-section pb-0">
           <h1 class="page-header">{author ? author + ' ' : ''}Plugin Hub</h1>
           <div class="row">
             <div class="col-sm-8">
