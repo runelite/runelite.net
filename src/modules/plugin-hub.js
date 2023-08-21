@@ -95,7 +95,7 @@ export const {
       const user = repoSplit[1]
       const repo = repoSplit[2].replace('.git', '')
 
-      let readme = await githubApi(
+      let rawReadmeHTML = await githubApi(
         `repos/${user}/${repo}/readme?ref=${commit}`,
         {
           method: 'GET',
@@ -105,33 +105,67 @@ export const {
         }
       )
 
-      readme = readme
-        // Fix relative URLs to images
-        .replace(
-          /<img src\s*=\s*"((?!http)[^"]+)"([^>]*)>/g,
-          `<img src="https://raw.githubusercontent.com/${user}/${repo}/${commit}/$1"$2>`
-        )
-        // Fix relative URLs for asset links
-        .replace(
-          /<a(.*) href\s*=\s*"((?!http)(?!#)[^"]+)"([^>]*)>/g,
-          `<a$1 href="https://raw.githubusercontent.com/${user}/${repo}/${commit}/$2"$3>`
-        )
-        // Fix links to elements
-        .replace(/<a(.*) href\s*=\s*"#([^"]+)"([^>]*)>/g, function (
-          match,
-          p1,
-          p2,
-          p3,
-          offset,
-          string
-        ) {
-          return `<a${p1} href="#user-content-${p2.toLowerCase()}"${p3}>`
+      let readme = ''
+
+      /**
+       * @param {string} url
+       * @param {HTMLElement} context
+       * @returns {string}
+       */
+      function mungeURL(url, context) {
+        if (url.startsWith('#')) {
+          // this is a fragment only url; it should be relative to this page
+
+          // the ids in the page start with `user-content-`, but the urls do not
+          return '#user-content-' + url.substring(1)
+        }
+
+        // github allows users to make their url an absolute-path, but actually refer to their repo root
+        if (url.startsWith('/')) {
+          url = url.substring(1)
+        }
+
+        let newRoot = `https://github.com/${user}/${repo}/tree/${commit}/`
+        if (context.tagName === 'IMG') {
+          newRoot = `https://raw.githubusercontent.com/${user}/${repo}/${commit}/`
+        }
+
+        url = new URL(url, newRoot).toString()
+
+        return url
+      }
+
+      try {
+        let dom = new DOMParser().parseFromString(rawReadmeHTML, 'text/html')
+        dom.querySelectorAll('a').forEach(el => {
+          el.href = mungeURL(el.getAttribute('href'), el)
         })
-        // Replace GIFs with links to GIFs
-        .replace(
-          /<img src\s*=\s*"((?:[^"]+\/)?([^"]+\.gif))"([^>]*)>/g,
-          '<a href="$1" target="_blank">$2</a> '
-        )
+        dom.querySelectorAll('img').forEach(el => {
+          let src = el.getAttribute('src')
+
+          // people like to use massive (50+ MiB) gifs, so turn these into links
+          if (src.endsWith('.gif')) {
+            let label = el.title || el.alt || src
+            if (el.parentElement?.tagName === 'A') {
+              // we are already in a link, just use that
+              el.parentElement.textContent = label
+            } else {
+              let replacement = document.createElement('a')
+              replacement.target = '_blank'
+              replacement.textContent = label
+              replacement.href = mungeURL(src, replacement)
+              el.replaceWith(replacement)
+            }
+          } else {
+            el.src = mungeURL(src, el)
+          }
+        })
+
+        // this is dumb, but react makes doing this right painful
+        readme = dom.body.innerHTML
+      } catch (e) {
+        console.error('Loading readme failed', e)
+      }
 
       dispatch(
         setExternalPluginInfo({
