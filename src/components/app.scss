@@ -119,7 +119,9 @@ video {
 .list-group-item-action:hover,
 .list-group-item-action:active,
 .page-link:hover,
-.page-link:active {
+.page-link:active,
+.dropdown-item:hover,
+.dropdown-item:focus {
   background: #101010 !important;
 }
 
@@ -173,9 +175,4 @@ video {
 
 .octicon {
   display: none;
-}
-
-.dropdown-item:hover,
-.dropdown-item:focus {
-  background-color: #141414;
 }
