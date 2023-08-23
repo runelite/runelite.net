@@ -67,7 +67,7 @@ nav {
   padding: 10px;
 }
 
-.navbar-nav .dropdown-menu .dropdown-item:hover {
+.navbar-nav .dropdown-menu .dropdown-item:is(:hover, :focus) {
   color: #dc8a00;
   background: inherit;
 }
