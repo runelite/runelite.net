@@ -174,3 +174,8 @@ video {
 .octicon {
   display: none;
 }
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #141414;
+}
