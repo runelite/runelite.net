@@ -30,7 +30,7 @@
     "uuid": "8.0.0"
   },
   "devDependencies": {
-    "customize-cra": "0.9.1",
+    "customize-cra": "^1.0.0",
     "fast-xml-parser": "^3.17.4",
     "front-matter": "^4.0.1",
     "husky": "4.2.5",
@@ -42,8 +42,8 @@
     "prerender-spa-plugin": "3.4.0",
     "prettier": "2.0.5",
     "pretty-quick": "2.0.1",
-    "react-app-rewired": "2.1.6",
-    "react-scripts": "^3.4.3",
+    "react-app-rewired": "^2.2.1",
+    "react-scripts": "^3.4.4",
     "redux-logger": "3.0.6",
     "sass": "^1.55.0",
     "sitemap-webpack-plugin": "0.7.1"
@@ -52,7 +52,8 @@
     "fix": "eslint --fix src && prettier --write '{*,public/*,src/**,src/**/*,src/**/**/*}.{js,json,css,scss,md,html}'",
     "test": "react-app-rewired test",
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build"
+    "build": "react-app-rewired build",
+    "start20": "react-app-rewired --openssl-legacy-provider start"
   },
   "husky": {
     "hooks": {

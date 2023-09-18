@@ -21,6 +21,12 @@ To start local server, simply run
 npm start
 ```
 
+or if you are on a newer node version (>= 16)
+
+```
+npm run start20
+```
+
 from console. Your app should be now running on `http://localhost:3000` and you
 will be able to see it from your web browser. To debug Redux actions, simply check
 your web console.
