@@ -27,7 +27,7 @@ jobs:
         run: npm test
 
       - name: Build
-        run: npm run build
+        run: npm run ci-build
 
       - name: Deploy
         if: ${{ github.event_name == 'push' }}
