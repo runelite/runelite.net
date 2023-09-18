@@ -51,8 +51,8 @@
   "scripts": {
     "fix": "eslint --fix src && prettier --write '{*,public/*,src/**,src/**/*,src/**/**/*}.{js,json,css,scss,md,html}'",
     "test": "react-app-rewired test",
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build"
+    "start": "react-app-rewired --openssl-legacy-provider start",
+    "build": "react-app-rewired --openssl-legacy-provider build"
   },
   "husky": {
     "hooks": {
