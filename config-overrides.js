@@ -14,7 +14,7 @@ const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 const SitemapPlugin = require('sitemap-webpack-plugin').default
 const md = require('markdown-it')
 const fm = require('front-matter')
-const { XMLValidator } = require('fast-xml-parser')
+const parser = require('fast-xml-parser')
 const hero = require('./src/_data/hero')
 const parseBlog = require('./src/parse-blog')
 const redirectConfig = require('./redirect')
@@ -62,7 +62,7 @@ const feedMapper = fileName => {
   const url = `${hero.url}/blog/show/${id}`
 
   // Validate xml
-  const result = XMLValidator.validate('<div>' + body + '</div>')
+  const result = parser.validate('<div>' + body + '</div>')
 
   if (result !== true) {
     throw result
@@ -120,13 +120,9 @@ const addSitePlugins = () => config => {
   )
 
   config.plugins.push(
-    new SitemapPlugin({
-      base: hero.url,
-      paths: routes,
-      options: {
-        lastmod: true,
-        changefreq: 'weekly'
-      }
+    new SitemapPlugin(hero.url, routes, {
+      lastMod: true,
+      changeFreq: 'weekly'
     })
   )
 
@@ -170,9 +166,7 @@ const addSitePlugins = () => config => {
 }
 
 module.exports = override(
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useBabelRc(),
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEslintRc(),
   addWebpackAlias({
     react: 'preact/compat',
