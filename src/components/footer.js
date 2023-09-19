@@ -1,4 +1,5 @@
 import { h } from 'preact'
+import { getBaseUrl } from '../util'
 
 const Footer = () => (
   <section id="footer">
