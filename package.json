@@ -53,7 +53,8 @@
     "test": "react-app-rewired test",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "start20": "react-app-rewired --openssl-legacy-provider start"
+    "start20": "react-app-rewired --openssl-legacy-provider start",
+    "build20": "react-app-rewired --openssl-legacy-provider build"
   },
   "husky": {
     "hooks": {
