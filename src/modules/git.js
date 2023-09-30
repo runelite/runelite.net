@@ -14,6 +14,7 @@ export const {
   fetchIssues,
   fetchHashes,
   setCommits,
+  setLatestCommit,
   setReleases,
   setPulls,
   setDetails,
@@ -25,6 +26,7 @@ export const {
     FETCH_COMMITS: () => async (dispatch, getState) => {
       const version = getLatestBootstrapRelease(getState())
 
+      // find the commits in master not in the last tag
       const response = await githubApi(
         `repos/${git.user}/${git.repository}/compare/${git.repository}:runelite-parent-${version}...${git.repository}:master`,
         {
@@ -32,32 +34,39 @@ export const {
         }
       )
 
+      let createCommit = commit => {
+        const message = commit.commit.message
+        const split = message.split('\n')
+        const title = split.shift()
+        const body = split.join('\n')
+
+        return {
+          title,
+          body,
+          url: commit.html_url,
+          date: new Date(commit.commit.committer.date),
+          author: {
+            name: commit.commit.author ? commit.commit.author.name : '',
+            url: commit.author ? commit.author.html_url : null,
+            avatar: commit.author ? commit.author.avatar_url : null
+          }
+        }
+      }
+
       const commits = response.commits
         .filter(
           commit => !commit.commit.message.startsWith('Merge pull request #')
         )
-        .map(commit => {
-          const message = commit.commit.message
-          const split = message.split('\n')
-          const title = split.shift()
-          const body = split.join('\n')
-
-          return {
-            title,
-            body,
-            url: commit.html_url,
-            date: new Date(commit.commit.committer.date),
-            author: {
-              name: commit.commit.author ? commit.commit.author.name : '',
-              url: commit.author ? commit.author.html_url : null,
-              avatar: commit.author ? commit.author.avatar_url : null
-            }
-          }
-        })
+        .map(createCommit)
         .reverse()
 
-      if (commits.length === 0) {
-        return commits
+      let latestCommit
+      if (commits.length > 0) {
+        latestCommit = commits[0]
+      } else {
+        // If master has been merged into the last tag, there are no commit differences, and so use the merge base instead.
+        // This is the most recent commit in both the tag and master.
+        latestCommit = createCommit(response.merge_base_commit)
       }
 
       const details = response.files.reduce(
@@ -81,6 +90,7 @@ export const {
 
       dispatch(setDetails(details))
       dispatch(setCommits(commits))
+      dispatch(setLatestCommit(latestCommit))
       return commits
     },
     FETCH_RELEASES: () => async dispatch => {
@@ -234,6 +244,7 @@ export const {
     }
   },
   'SET_COMMITS',
+  'SET_LATEST_COMMIT',
   'SET_RELEASES',
   'SET_PULLS',
   'SET_DETAILS',
@@ -248,6 +259,10 @@ export default handleActions(
     [setCommits]: (state, { payload }) => ({
       ...state,
       commits: payload
+    }),
+    [setLatestCommit]: (state, { payload }) => ({
+      ...state,
+      latestCommit: payload
     }),
     [setReleases]: (state, { payload }) => ({
       ...state,
@@ -298,17 +313,10 @@ const getReleases = state => state.git.releases
 const getIssues = state => state.git.issues
 export const getCommits = state => state.git.commits
 export const getDetails = state => state.git.details
+export const getLatestCommit = state => state.git.latestCommit
 
 export const getHashes = state => state.git.hashes
 export const getFileNames = state => state.git.fileNames
-
-export const getLatestCommit = createSelector(getCommits, commits => {
-  if (commits.length > 0) {
-    return commits[0]
-  }
-
-  return {}
-})
 
 export const getLatestRelease = createSelector(getReleases, releases => {
   if (releases.length > 0) {
