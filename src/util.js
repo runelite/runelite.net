@@ -42,7 +42,7 @@ export const flattenMap = map => {
 export const toMMSS = s => {
   const minutes = Math.floor(s / 60)
   // Weird arithmetic is needed here to prevent rounding errors due to JS's floating point math
-  const seconds = Math.round(s % 60 * 10) / 10
+  const seconds = Math.round((s % 60) * 10) / 10
   const minutesStr = String(minutes).padStart(2, '0')
   const secondsStr = String(seconds).padStart(2, '0')
   return minutesStr + ':' + secondsStr
@@ -123,4 +123,40 @@ export const digest = (data, callback) => {
         callback(sha256)
       })
   }
+}
+
+export const determineTax = item => {
+  if (item.buy) return ''
+
+  const exemptMessage = 'Item is exempt from tax'
+
+  const exemptItems = [
+    1755, // chisel
+    5343, // dibber
+    5325, // gardening trowel
+    1785, // glassblowing pipe
+    2347, // hammer
+    1733, // needle
+    233, // pestle and mortar
+    5341, // rake
+    8794, // saw
+    5329, // secateurs
+    1735, // shears
+    952, // spade
+    5331 // watering can (0)
+  ]
+  const foundExemptItem = exemptItems.includes(item.itemId)
+  if (foundExemptItem) return exemptMessage
+
+  if (item.price < 100) return exemptMessage
+  if (item.price > 499999999) return numberWithCommas(5000000)
+
+  const tax = Math.floor(item.price * 0.01) * item.quantity
+  const gross = item.price * item.quantity
+  const net = gross - tax
+  const netEach = Math.floor(net / item.quantity)
+
+  return `Net of ${numberWithCommas(net)} gp = ${numberWithCommas(
+    gross
+  )} - ${numberWithCommas(tax)} (${numberWithCommas(netEach)} gp/ea)`
 }
