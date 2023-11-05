@@ -4,15 +4,19 @@
 
 .news-page ul {
   list-style: none;
+
+  li::before {
+    content: '\2022';
+    color: #dc8a00;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
 }
 
-.news-page li::before {
-  content: '\2022';
+.news-page ol li::marker {
   color: #dc8a00;
-  font-weight: bold;
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
 }
 
 .news-page table {
