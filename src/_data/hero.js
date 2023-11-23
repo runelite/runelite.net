@@ -41,7 +41,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.6.9/RuneLite-x64.dmg',
+        'https://github.com/runelite/launcher/releases/download/2.6.11/RuneLite-x64.dmg',
       icon: 'fab fa-fw fa-apple',
       text: {
         os: 'macOS',
@@ -51,7 +51,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.6.9/RuneLite-aarch64.dmg',
+        'https://github.com/runelite/launcher/releases/download/2.6.11/RuneLite-aarch64.dmg',
       icon: 'fab fa-fw fa-apple',
       text: {
         os: 'macOS',
