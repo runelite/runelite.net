@@ -160,7 +160,7 @@ class Hero extends Component {
               </h1>
               <p>{description}</p>
 
-              <a id="contribute" class="btn" href={links.github}>
+              <a id="contribute" class="btn" href={links.contribute}>
                 Contribute
               </a>
 
