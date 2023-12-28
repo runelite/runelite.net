@@ -63,26 +63,6 @@ const Navigation = ({ dark, login, loggedIn, username }) => (
             Wiki
           </a>
         </li>
-        <li class="nav-item dropdown">
-          {/* eslint-disable-next-line */}
-          <a class="nav-link dropdown-toggle" id="navbarDropdown">
-            API
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a
-              class="dropdown-item"
-              href="https://static.runelite.net/api/runelite-api/"
-            >
-              RuneLite API
-            </a>
-            <a
-              class="dropdown-item"
-              href="https://static.runelite.net/api/runelite-client/"
-            >
-              RuneLite Client API
-            </a>
-          </div>
-        </li>
         <li class="nav-item">
           <Link
             onClick={toggleMenu}
