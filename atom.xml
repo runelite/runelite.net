@@ -9,7 +9,304 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2024-01-31T18:43:01.585Z</updated>
+  <updated>2024-02-25T00:28:26.672Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2024-02-24-1.10.23-Release</id>
+    <link href="https://runelite.net/blog/show/2024-02-24-1.10.23-Release" />
+    <title>1.10.23 Release</title>
+    <summary>New UI Look and Feel</summary>
+    <updated>2024-02-24T23:00:00.000Z</updated>
+    <author>
+      <name>Adam</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>New UI Look and Feel</h2>
+<p>We've recently completed a large overhaul of our UI, the first change since <a href="https://runelite.net/blog/show/2018-05-24-1.4.0-Release">2018</a>.
+This allows native Window snapping support on Windows 10 and 11, on MacOS uses the native titlebar, and fixes inconsistent maximize behavior when using multiple displays of different scaling factors. The titlebar and tray icon has also been updated to a new pixelart version of the logo thanks to <code>con_no_1</code>.</p>
+<p><img src="/img/blog/1.10.23-Release/sidebar.png" alt="sidebar" /></p>
+<p>Additionally I would like to apologize for how bumpy this update was. We went through several iterations of update &amp; rollback between January 13 and 30 which you might have noticed, causing the client to switch between the old and new L&amp;F multiple times. While we do rollbacks occasionally, applying this to the UI updates caused a lot more consternation due to the changes being so visible. Many of the issues brought to our attention were changes to behaviors that we didn't know we had or that people relied upon. We have since fixed back the behaviors of everything that we can reasonably do.</p>
+<h3>Player menu collapsing</h3>
+<p>The interface styles plugin has a new option to place player menu options into a submenu, similar to RuneScape.</p>
+<p><img src="/img/blog/1.10.23-Release/player-menus.png" alt="player menus" /></p>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>You can now locate all your dashing clue gear that is storable in the POH treasure chest with the new <code>treasure chest</code> bank tag, freeing up bank space!</li>
+<li>US servers now show east or west on the world hopper.</li>
+<li>Time tracking now correctly tracks payment to any farmer, instead of only to ones with a single patch.</li>
+<li>The <code>Window opacity</code> setting now works on more systems (MacOS/Linux) and also with custom chrome off.</li>
+<li>The wiki plugin adds a <code>View DPS</code> button to the equipment screen to open the <a href="https://tools.runescape.wiki/osrs-dps/">OSRS Wiki DPS calculator</a> with your current gear.</li>
+<li>Tree respawn timers now use the Jagex respawn timers.</li>
+<li>The message from the NPC unaggression plugin being uncalibrated is now an infobox.</li>
+<li>Camera speed can now be adjusted in the camera plugin.</li>
+<li>Custom notification volume can now be adjusted under notification settings.</li>
+<li>Group ironman shared storage can now be searched using the search hotkey.</li>
+<li>Loot tracking for the Nightmare and Phosani's Nightmare has been fixed.</li>
+<li>A bug causing KC/PB tracking of 6+ size TOA teams to record the wrong team size has been fixed.</li>
+<li>The chat filter plugin has been optimized to no longer cause lag with an excessively large regex filter list.</li>
+</ul>
+<p>Enjoy!</p>
+<p>- Adam</p>
+<h3>New commits</h3>
+<p>We had 31 contributors this update!</p>
+<pre><code>Adam (98):
+      gpu: regions: fix air altar
+      status bars: fix lms check
+      friendlist: fix friend list title component id
+      api: add AmbientSoundEffectCreated event
+      api: add ambient sound effect background ids
+      widget util: add utility method for packing component ids
+      loottracker: include relic selections in npc metadata
+      gpu: regions: add pyramid plunder
+      null check getSelectedWidget() on menu click
+      prayer: move drain rate to prayer plugin
+      prayer: add drain rate test
+      prayer: convert drain rate to drain effect
+      prayer: add ruinous powers
+      xpdrop: support multiple prayer types per prayer
+      xpdrop: rename package to xpdrop
+      xpdrop: add ruinous powers
+      rs: add js5connect error message
+      clues: add treasure chest bank tag
+      xp drops: fix coloring defensive casting
+      clues: fix treasure chest tag test
+      api: add widget createStaticChild
+      api: add widget setOnScrollWheelListener
+      bank tags: refactor ui to use layers
+      bank tags: rebuild tag tab tab on new/import/delete
+      bank tags: fix scrolling the tag tab
+      bank tags: remove separators prior to computing scroll
+      bank tags: remove use of dummy script null
+      bank tags: fix pmd violation
+      menu swapper: fix ui swapping optarget
+      raids: simplify login scout check
+      raids: fix scouting on raid reload
+      chat filter: cache filter results
+      raids: reset raid on party id change
+      bank tags: move onMenuOptionClicked subscriber to TabInterface
+      bank tags: remove unused import
+      api: add scene tile model/paint isFlat()
+      gpu: fix tile uvs
+      clues: include alternatives in treasure chest tag
+      gpu: flip y/z in projection
+      gpu: reverse z
+      api: include WidgetConfig in runtime api
+      gpu: remove radius from compute shaders
+      gpu: use floating point for vertex positions
+      music: correctly apply ambient sound mute on startup and shutdown
+      clues: use builder for cryptic clues
+      clues: add npc regions for cryptic clues
+      fishing: fix tracking Karambwanji
+      gpu: fix cl compilation on amd gpus
+      Revert &quot;gpu: fix cl compilation on amd gpus&quot;
+      Revert &quot;gpu: use floating point for vertex positions&quot;
+      world hopper: cleanup
+      world hopper: add us east/west coast flags
+      cryptic clues: fix object id initializer
+      time tracking: support payment tracking of multi-patch npcs
+      containable frame: remove setMaximizedBounds workaround
+      ui: remove contain in screen ALWAYS
+      IconTextField: fix popup suggestion list size
+      config: use default font for JPasswordField
+      containable frame: fix Window.setMinimumSize DPI scaling
+      laf: disable text antialiasing for rs fonts
+      banktags: fix tabtabs tab
+      worldpoint: use signed right shift for local to world conversion
+      laf: change titlepane height to 27px
+      ui: remove window opacity setting
+      screenshot: image capture: support insets on client frame
+      update flatlaf to 3.2.5-rl2
+      ui: readd contain in screen ALWAYS
+      add scurrius
+      hiscores: add scurrius boss icon
+      devtools: cleanup location overlays
+      ContainableFrame: apply insets to old rhs offset behavior
+      laf: change titlepane height to 23px
+      clientui: adjust for frame insets when performing display bounds check
+      ui: readd window opacity setting
+      use backgroundless logo for image icon
+      update flatlaf to 3.2.5-rl3
+      Revert &quot;update flatlaf to 3.2.5-rl3&quot;
+      update flatlaf to 3.2.5-rl4
+      api: add size x/y to ObjectComposition
+      overlay: use floating point overlay priority
+      replace OverlayPriority use with corresponding constants
+      woodcutting: use add_overlaytimer_loc for respawn timer
+      bank tags: use only dynamic components for tab layer
+      Revert &quot;api: add widget createStaticChild&quot;
+      worldmap: strip pngs
+      api: add setter for ScriptEvent op
+      bank: use scriptevent for shared bank search trigger
+      rs: add error dialog for js5io and crash errors
+      npc unaggro: remove recheckActive on LOGGED_IN
+      Revert &quot;npc unaggro: remove recheckActive on LOGGED_IN&quot;
+      npc unaggro: remove recheckActive on LOGGED_IN
+      npc unaggro: change uncalibrated overlay into an infobox
+      Revert &quot;clientui: force keep window size on when snapped on windows&quot;
+      woodcutting: fix respawn overlay on rotated objects
+      cache: update 220
+      Revert &quot;npc unaggro: remove recheckActive on LOGGED_IN&quot;
+      npc unaggro: check active before doing npc scans
+      roof removal: fix race applying roof flags with startup
+
+Christopher Michael Mescher (1):
+      world map: Add capes of achievement teleports
+
+David Pedersen (1):
+      xp updater: add runetracker support
+
+Emil Hansen (1):
+      ground items: fix inferno despawn timer
+
+Eric White (1):
+      notifier: add flash taskbar option
+
+Felanbird (11):
+      achievement diary: update fremennik astral rune task (#17221)
+      idle notifier: add cow milking animation id
+      idle notifier: add dairy churn animation ids
+      clues: add fairy ring to mudskipper point emote step
+      achievement diary: add new kourend task
+      achievement diary: remove kourend favour
+      clues: update lizardman canyon hot-cold step
+      idle notifier: add specimen cleaning animation ids
+      world map: add AKR fairy ring
+      worldmap: fix Kourend teleport level
+      achievement diary: update various tasks
+
+Geordan Neukum (1):
+      clues: recognize (l)(t) variant of dragon defender
+
+JZomDev (1):
+      ui: don't apply opacity in safe mode
+
+Jason O'Neill (1):
+      npc aggro area: ignore unattackable NPCs
+
+Jordan Atwood (8):
+      loot tracker: Fix TOB chest interface id
+      loot tracker: Fix interface id in tests
+      loot tracker: Track unsired loot
+      slayer: Fix initial amount when task changes
+      clues: Fix Lovada cryptic clue text
+      clientui: Support Linux WM layout
+      clues: Add Wizards' tower region to Wizards' tower clue
+      timers: Track god wars altar cooldown via varbit
+
+Joshua Kuan (1):
+      clues: fix single item fulfilledBy check
+
+Louis Hong (1):
+      notifier: add custom notification volume control
+
+Lukas Hönig (2):
+      achievement diary: add 30 Constr. req. to crane repair task
+      woodcutting: fix division by zero computing hourly rate
+
+Macweese (3):
+      clues: fix comment grammar
+      clues: add felling axes
+      clues: add trailblazer tools
+
+Max Weber (31):
+      api: add Animation::restartMode accessors
+      runepouch: skip empty slots in grid view
+      api: expose drawFrustum &amp; drawWidgetText
+      fairyring: add vinery fairy ring
+      kourendlibrary: remove dark manuscripts
+      runelite-client: use FlatLaf
+      devtools: add swing inspector
+      clientui: optimize for FlatLaf
+      config: optimize for FlatLaf
+      clientui: apply client size config correctly
+      clientui: use sidebar pref width as min width
+      clientui: add 4px border in custom chrome mode
+      clientui: do not try to shift the frame in screen when not changing size
+      clientui: do not show custom chrome border when maximized
+      clientui: do not include insets in game size config
+      clientui: correctly apply suction when expanding via min size change
+      ContainableFrame: fix dpi scaled minimum size hack
+      ContainableFrame: restore old rhs offset behavior
+      ContainableFrame: set suction when shifted by native containment
+      ContainableFrame: use hungarian to prevent window / content coord misuse
+      clientui: listen for sidebar hotkeys when the client is not focused
+      clientui: give client focus when closing or hiding the sidebar
+      clientui: synchronously update the root pane's size
+      rl-client: remove ItemVariationMappingTest
+      ContainableFrame: remove non-native containedInScreen==ALWAYS code
+      ContainableFrame: always contain &amp; suction when snapped on windows
+      clientui: force keep window size on when snapped on windows
+      clientui: save game size instead of window size when keeping game size
+      clientui: remember last restored bounds when starting maximized
+      skillcalculator: remove checkbox panel background
+      config: remove unused JCheckBox::setBackground
+
+PhraZier (1):
+      bank: support group storage with search hotkey
+
+PortAGuy (1):
+      party: tie ping duration to system time
+
+Rasmus Karlsson (2):
+      clues: reword Varrock Apothecary cryptic clue solution
+      clues: clarify Burthorpe Games Room emote clue location
+
+Robin (1):
+      update wise old man API endpoints
+
+Ron Young (1):
+      overlay manager: revalidate overlays on profile change
+
+Yenof (1):
+      clues: Add Team Cape 0/X/I to emote clue steps (#17273)
+
+YvesW (5):
+      prayer: disable reordering on shutdown
+      idle notifier: add crystal felling axe (inactive) animation
+      wintertodt: add crystal felling axe (inactive) animation
+      woodcutting: add crystal felling axe (inactive) animation
+      chat commands: fix theatre of blood: entry mode Previously the branch was unreachable: the label contained uppercase symbols while the selector is lowercase-only (boss.toLowerCase())
+
+geheur (3):
+      clues: fix hotcold class initialization
+      bank tags: only close chatbox interface when clicking bank ops
+      prayer: reorder prayers on profile change
+
+iProdigy (1):
+      chat commands: fix off-by-one team size for out-of-order toa pb
+
+ldahleen54 (1):
+      config: allow using tab key for hotkeys
+
+pkhermouch (1):
+      cryptic clues: update Sinclair Mansion solution
+
+sam (1):
+      Trailblazer league reloaded rune pouch up to 6 runes.
+
+smol-tako (2):
+      item identification: add Forgotten brew and Blighted super restore
+      chat history: fix Copy to clipboard for friend dms
+
+sonnypb (1):
+      timers: add Spellbook Swap timer
+
+testing-ongithub (8):
+      worldmap: fix Lovakengj mine cart location
+      worldmap: add new minecart locations
+      worldmap: rename minecarts to match in-game list
+      worldmap: fix DIP fairy ring location
+      worldmap: add ALR fairy ring
+      worldmap: alphabetize fairy rings
+      worldmap: use Zanaris fairy code rather than location
+      worldmap: comment fairy rings that don't exist on the world map
+
+timleafy (1):
+      worldmap: add mining guild west amethyst
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2023-11-05-1.10.15-Release</id>
