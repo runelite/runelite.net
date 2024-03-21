@@ -1,6 +1,5 @@
 // @ts-nocheck
 /* eslint-disable */
-import { VarPlayer } from './VarPlayer'
 export class BirdHouseTracker {
   loadFromConfig(getConfiguration) {
     const birdHouseData = new Map()
@@ -31,9 +30,7 @@ export class BirdHouseTracker {
         const key =
           TimeTrackingConfig.BIRD_HOUSE +
           '.' +
-          VarPlayer['_$wrappers'][
-            BirdHouseSpace['_$wrappers'][space].getVarp()
-          ].getId()
+          BirdHouseSpace['_$wrappers'][space].getVarp()
         const storedValue = (target =>
           typeof target === 'function'
             ? target(TimeTrackingConfig.CONFIG_GROUP, key)

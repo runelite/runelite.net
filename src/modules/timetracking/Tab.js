@@ -63,7 +63,6 @@ export class Tab_$WRAPPER {
   }
 }
 Tab['__class'] = 'timetracking.Tab'
-Tab['__interfaces'] = ['java.lang.Comparable', 'java.io.Serializable']
 Tab['_$wrappers'] = {
   0: new Tab_$WRAPPER(0, 'OVERVIEW', 'Overview', ItemID.OLD_NOTES),
   1: new Tab_$WRAPPER(1, 'CLOCK', 'Timers & Stopwatches', ItemID.WATCH),

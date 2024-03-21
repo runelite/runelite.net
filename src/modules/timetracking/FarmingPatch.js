@@ -9,7 +9,7 @@ export class FarmingPatch {
       this.name = null
     }
     if (this.varbit === undefined) {
-      this.varbit = null
+      this.varbit = 0
     }
     if (this.implementation === undefined) {
       this.implementation = null

@@ -11,6 +11,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Al Kharid',
         13106,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.CACTUS)
       ),
       13362,
@@ -20,6 +21,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Ardougne',
         10290,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.BUSH)
       ),
       10546
@@ -28,6 +30,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Ardougne',
         10548,
+        false,
         new FarmingPatch(
           'North',
           Varbits.FARMING_4771,
@@ -45,8 +48,22 @@ export class FarmingWorld {
     )
     this.add(
       new FarmingRegion(
+        'Avium Savannah',
+        6702,
+        true,
+        new FarmingPatch(
+          '',
+          Varbits.FARMING_4771,
+          PatchImplementation.HARDWOOD_TREE
+        )
+      ),
+      6446
+    )
+    this.add(
+      new FarmingRegion(
         'Brimhaven',
         11058,
+        false,
         new FarmingPatch(
           '',
           Varbits.FARMING_4771,
@@ -64,6 +81,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Catherby',
         11062,
+        false,
         new FarmingPatch(
           'North',
           Varbits.FARMING_4771,
@@ -86,6 +104,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Catherby',
         11317,
+        false,
         new FarmingPatch(
           '',
           Varbits.FARMING_4771,
@@ -95,8 +114,30 @@ export class FarmingWorld {
     )
     this.add(
       new FarmingRegion(
+        'Civitas illa Fortis',
+        6192,
+        false,
+        new FarmingPatch(
+          'North',
+          Varbits.FARMING_4771,
+          PatchImplementation.ALLOTMENT
+        ),
+        new FarmingPatch(
+          'South',
+          Varbits.FARMING_4772,
+          PatchImplementation.ALLOTMENT
+        ),
+        new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
+        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB),
+        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.COMPOST)
+      ),
+      6448
+    )
+    this.add(
+      new FarmingRegion(
         "Champions' Guild",
         12596,
+        true,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.BUSH)
       )
     )
@@ -104,6 +145,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Draynor Manor',
         12340,
+        false,
         new FarmingPatch(
           'Belladonna',
           Varbits.FARMING_4771,
@@ -115,6 +157,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Entrana',
         11060,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.HOPS)
       ),
       11316
@@ -123,6 +166,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Etceteria',
         10300,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.BUSH),
         new FarmingPatch(
           '',
@@ -135,6 +179,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Falador',
         11828,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.TREE)
       ),
       12084
@@ -143,6 +188,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Falador',
         12083,
+        false,
         new FarmingPatch(
           'North West',
           Varbits.FARMING_4771,
@@ -162,6 +208,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Fossil Island',
         14651,
+        false,
         new FarmingPatch(
           'East',
           Varbits.FARMING_4771,
@@ -191,6 +238,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Seaweed',
         15008,
+        false,
         new FarmingPatch(
           'North',
           Varbits.FARMING_4771,
@@ -207,6 +255,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Gnome Stronghold',
         9781,
+        true,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.TREE),
         new FarmingPatch(
           '',
@@ -222,6 +271,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Harmony',
         15148,
+        false,
         new FarmingPatch(
           '',
           Varbits.FARMING_4771,
@@ -234,6 +284,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Kourend',
         6967,
+        false,
         new FarmingPatch(
           'North East',
           Varbits.FARMING_4771,
@@ -259,6 +310,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Kourend',
         7223,
+        false,
         new FarmingPatch(
           'East 1',
           Varbits.GRAPES_4953,
@@ -325,6 +377,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Lletya',
         9265,
+        false,
         new FarmingPatch(
           '',
           Varbits.FARMING_4771,
@@ -337,6 +390,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Lumbridge',
         12851,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.HOPS)
       )
     )
@@ -344,6 +398,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Lumbridge',
         12594,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.TREE)
       ),
       12850
@@ -352,6 +407,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Morytania',
         13622,
+        false,
         new FarmingPatch(
           'Mushroom',
           Varbits.FARMING_4771,
@@ -364,6 +420,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Morytania',
         14391,
+        false,
         new FarmingPatch(
           'North West',
           Varbits.FARMING_4771,
@@ -384,6 +441,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Port Sarim',
         12082,
+        false,
         new FarmingPatch(
           '',
           Varbits.FARMING_4771,
@@ -396,6 +454,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Rimmington',
         11570,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.BUSH)
       ),
       11826
@@ -404,6 +463,7 @@ export class FarmingWorld {
       new FarmingRegion(
         "Seers' Village",
         10551,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.HOPS)
       ),
       10550
@@ -412,6 +472,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Tai Bwo Wannai',
         11056,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.CALQUAT)
       )
     )
@@ -419,6 +480,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Taverley',
         11573,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.TREE)
       ),
       11829
@@ -427,6 +489,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Tree Gnome Village',
         9777,
+        true,
         new FarmingPatch(
           '',
           Varbits.FARMING_4771,
@@ -439,6 +502,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Troll Stronghold',
         11321,
+        true,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.HERB)
       )
     )
@@ -446,6 +510,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Varrock',
         12854,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.TREE)
       ),
       12853
@@ -454,6 +519,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Yanille',
         10288,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.HOPS)
       )
     )
@@ -461,6 +527,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Weiss',
         11325,
+        false,
         new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.HERB)
       )
     )
@@ -468,6 +535,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Farming Guild',
         5021,
+        true,
         new FarmingPatch(
           'Hespori',
           Varbits.FARMING_7908,
@@ -479,6 +547,7 @@ export class FarmingWorld {
       (this.farmingGuildRegion = new FarmingRegion(
         'Farming Guild',
         4922,
+        true,
         new FarmingPatch('', Varbits.FARMING_7905, PatchImplementation.TREE),
         new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.HERB),
         new FarmingPatch('', Varbits.FARMING_4772, PatchImplementation.BUSH),
@@ -496,7 +565,7 @@ export class FarmingWorld {
         new FarmingPatch(
           '',
           Varbits.FARMING_7912,
-          PatchImplementation.GIANT_COMPOST
+          PatchImplementation.BIG_COMPOST
         ),
         new FarmingPatch('', Varbits.FARMING_7904, PatchImplementation.CACTUS),
         new FarmingPatch(
@@ -534,6 +603,7 @@ export class FarmingWorld {
       new FarmingRegion(
         'Prifddinas',
         13151,
+        false,
         new FarmingPatch(
           'North',
           Varbits.FARMING_4771,
