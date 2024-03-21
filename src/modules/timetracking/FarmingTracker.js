@@ -1,6 +1,5 @@
 // @ts-nocheck
 /* eslint-disable */
-import { Varbits } from './Varbits'
 export class FarmingTracker {
   predictPatch(patch, getConfiguration) {
     const unixNow = (n => (n < 0 ? Math.ceil(n) : Math.floor(n)))(
@@ -24,10 +23,7 @@ export class FarmingTracker {
               TimeTrackingConfig.CONFIG_GROUP,
               TimeTrackingConfig.BOTANIST
             ))(getConfiguration)
-    const key =
-      patch.getRegion().getRegionID() +
-      '.' +
-      Varbits['_$wrappers'][patch.getVarbit()].getId()
+    const key = patch.getRegion().getRegionID() + '.' + patch.getVarbit()
     const storedValue = (target =>
       typeof target === 'function'
         ? target(TimeTrackingConfig.CONFIG_GROUP, key)

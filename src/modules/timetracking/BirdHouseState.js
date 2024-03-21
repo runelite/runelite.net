@@ -53,10 +53,6 @@ export class BirdHouseState_$WRAPPER {
   }
 }
 BirdHouseState['__class'] = 'timetracking.BirdHouseState'
-BirdHouseState['__interfaces'] = [
-  'java.lang.Comparable',
-  'java.io.Serializable'
-]
 BirdHouseState['_$wrappers'] = {
   0: new BirdHouseState_$WRAPPER(0, 'SEEDED'),
   1: new BirdHouseState_$WRAPPER(1, 'BUILT'),

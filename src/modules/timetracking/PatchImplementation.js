@@ -30,12 +30,11 @@ export var PatchImplementation
   PatchImplementation[(PatchImplementation['CRYSTAL_TREE'] = 19)] =
     'CRYSTAL_TREE'
   PatchImplementation[(PatchImplementation['COMPOST'] = 20)] = 'COMPOST'
-  PatchImplementation[(PatchImplementation['GIANT_COMPOST'] = 21)] =
-    'GIANT_COMPOST'
+  PatchImplementation[(PatchImplementation['BIG_COMPOST'] = 21)] = 'BIG_COMPOST'
 })(PatchImplementation || (PatchImplementation = {}))
 /** @ignore */
 export class PatchImplementation_$WRAPPER {
-  constructor(_$ordinal, _$name, tab, name) {
+  constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
     this._$ordinal = _$ordinal
     this._$name = _$name
     if (this.tab === undefined) {
@@ -64,10 +63,6 @@ export class PatchImplementation_$WRAPPER {
   }
 }
 PatchImplementation['__class'] = 'timetracking.PatchImplementation'
-PatchImplementation['__interfaces'] = [
-  'java.lang.Comparable',
-  'java.io.Serializable'
-]
 ;(function (PatchImplementation) {
   let Produce
   ;(function (Produce) {
@@ -151,12 +146,11 @@ PatchImplementation['__interfaces'] = [
     Produce[(Produce['SUPERCOMPOST'] = 77)] = 'SUPERCOMPOST'
     Produce[(Produce['ULTRACOMPOST'] = 78)] = 'ULTRACOMPOST'
     Produce[(Produce['ROTTEN_TOMATO'] = 79)] = 'ROTTEN_TOMATO'
-    Produce[(Produce['EMPTY_GIANT_COMPOST_BIN'] = 80)] =
-      'EMPTY_GIANT_COMPOST_BIN'
-    Produce[(Produce['GIANT_COMPOST'] = 81)] = 'GIANT_COMPOST'
-    Produce[(Produce['GIANT_SUPERCOMPOST'] = 82)] = 'GIANT_SUPERCOMPOST'
-    Produce[(Produce['GIANT_ULTRACOMPOST'] = 83)] = 'GIANT_ULTRACOMPOST'
-    Produce[(Produce['GIANT_ROTTEN_TOMATO'] = 84)] = 'GIANT_ROTTEN_TOMATO'
+    Produce[(Produce['EMPTY_BIG_COMPOST_BIN'] = 80)] = 'EMPTY_BIG_COMPOST_BIN'
+    Produce[(Produce['BIG_COMPOST'] = 81)] = 'BIG_COMPOST'
+    Produce[(Produce['BIG_SUPERCOMPOST'] = 82)] = 'BIG_SUPERCOMPOST'
+    Produce[(Produce['BIG_ULTRACOMPOST'] = 83)] = 'BIG_ULTRACOMPOST'
+    Produce[(Produce['BIG_ROTTEN_TOMATO'] = 84)] = 'BIG_ROTTEN_TOMATO'
   })(
     (Produce =
       PatchImplementation.Produce || (PatchImplementation.Produce = {}))
@@ -167,7 +161,6 @@ PatchImplementation['__interfaces'] = [
       _$ordinal,
       _$name,
       name,
-      contractName,
       patchImplementation,
       itemID,
       tickrate,
@@ -179,7 +172,6 @@ PatchImplementation['__interfaces'] = [
       this._$name = _$name
       if (
         (typeof name === 'string' || name === null) &&
-        (typeof contractName === 'string' || contractName === null) &&
         (typeof patchImplementation === 'number' ||
           patchImplementation === null) &&
         (typeof itemID === 'number' || itemID === null) &&
@@ -191,9 +183,6 @@ PatchImplementation['__interfaces'] = [
         let __args = arguments
         if (this.__name === undefined) {
           this.__name = null
-        }
-        if (this.contractName === undefined) {
-          this.contractName = null
         }
         if (this.patchImplementation === undefined) {
           this.patchImplementation = null
@@ -214,7 +203,6 @@ PatchImplementation['__interfaces'] = [
           this.harvestStages = 0
         }
         this.__name = name
-        this.contractName = contractName
         this.patchImplementation = patchImplementation
         this.itemID = itemID
         this.tickrate = tickrate
@@ -223,7 +211,6 @@ PatchImplementation['__interfaces'] = [
         this.harvestStages = harvestStages
       } else if (
         (typeof name === 'string' || name === null) &&
-        (typeof contractName === 'string' || contractName === null) &&
         (typeof patchImplementation === 'number' ||
           patchImplementation === null) &&
         (typeof itemID === 'number' || itemID === null) &&
@@ -239,9 +226,6 @@ PatchImplementation['__interfaces'] = [
           let harvestStages = 1
           if (this.__name === undefined) {
             this.__name = null
-          }
-          if (this.contractName === undefined) {
-            this.contractName = null
           }
           if (this.patchImplementation === undefined) {
             this.patchImplementation = null
@@ -262,7 +246,6 @@ PatchImplementation['__interfaces'] = [
             this.harvestStages = 0
           }
           this.__name = name
-          this.contractName = contractName
           this.patchImplementation = patchImplementation
           this.itemID = itemID
           this.tickrate = tickrate
@@ -272,9 +255,6 @@ PatchImplementation['__interfaces'] = [
         }
         if (this.__name === undefined) {
           this.__name = null
-        }
-        if (this.contractName === undefined) {
-          this.contractName = null
         }
         if (this.patchImplementation === undefined) {
           this.patchImplementation = null
@@ -298,9 +278,6 @@ PatchImplementation['__interfaces'] = [
     }
     getName() {
       return this.__name
-    }
-    getContractName() {
-      return this.contractName
     }
     getItemID() {
       return this.itemID
@@ -332,22 +309,11 @@ PatchImplementation['__interfaces'] = [
   }
   PatchImplementation.Produce_$WRAPPER = Produce_$WRAPPER
   Produce['__class'] = 'timetracking.PatchImplementation.Produce'
-  Produce['__interfaces'] = ['java.lang.Comparable', 'java.io.Serializable']
   Produce['_$wrappers'] = {
-    0: new Produce_$WRAPPER(
-      0,
-      'WEEDS',
-      'Weeds',
-      'Weeds',
-      null,
-      ItemID.WEEDS,
-      5,
-      4
-    ),
+    0: new Produce_$WRAPPER(0, 'WEEDS', 'Weeds', null, ItemID.WEEDS, 5, 4),
     1: new Produce_$WRAPPER(
       1,
       'SCARECROW',
-      'Scarecrow',
       'Scarecrow',
       null,
       ItemID.SCARECROW,
@@ -358,7 +324,6 @@ PatchImplementation['__interfaces'] = [
       2,
       'POTATO',
       'Potato',
-      'Potatoes',
       PatchImplementation.ALLOTMENT,
       ItemID.POTATO,
       10,
@@ -370,7 +335,6 @@ PatchImplementation['__interfaces'] = [
       3,
       'ONION',
       'Onion',
-      'Onions',
       PatchImplementation.ALLOTMENT,
       ItemID.ONION,
       10,
@@ -382,7 +346,6 @@ PatchImplementation['__interfaces'] = [
       4,
       'CABBAGE',
       'Cabbage',
-      'Cabbages',
       PatchImplementation.ALLOTMENT,
       ItemID.CABBAGE,
       10,
@@ -394,7 +357,6 @@ PatchImplementation['__interfaces'] = [
       5,
       'TOMATO',
       'Tomato',
-      'Tomatoes',
       PatchImplementation.ALLOTMENT,
       ItemID.TOMATO,
       10,
@@ -406,11 +368,10 @@ PatchImplementation['__interfaces'] = [
       6,
       'SWEETCORN',
       'Sweetcorn',
-      'Sweetcorn',
       PatchImplementation.ALLOTMENT,
       ItemID.SWEETCORN,
       10,
-      6,
+      7,
       0,
       3
     ),
@@ -418,7 +379,6 @@ PatchImplementation['__interfaces'] = [
       7,
       'STRAWBERRY',
       'Strawberry',
-      'Strawberries',
       PatchImplementation.ALLOTMENT,
       ItemID.STRAWBERRY,
       10,
@@ -430,18 +390,16 @@ PatchImplementation['__interfaces'] = [
       8,
       'WATERMELON',
       'Watermelon',
-      'Watermelons',
       PatchImplementation.ALLOTMENT,
       ItemID.WATERMELON,
       10,
-      8,
+      9,
       0,
       3
     ),
     9: new Produce_$WRAPPER(
       9,
       'SNAPE_GRASS',
-      'Snape grass',
       'Snape grass',
       PatchImplementation.ALLOTMENT,
       ItemID.SNAPE_GRASS,
@@ -454,7 +412,6 @@ PatchImplementation['__interfaces'] = [
       10,
       'MARIGOLD',
       'Marigold',
-      'Marigolds',
       PatchImplementation.FLOWER,
       ItemID.MARIGOLDS,
       5,
@@ -463,7 +420,6 @@ PatchImplementation['__interfaces'] = [
     11: new Produce_$WRAPPER(
       11,
       'ROSEMARY',
-      'Rosemary',
       'Rosemary',
       PatchImplementation.FLOWER,
       ItemID.ROSEMARY,
@@ -474,7 +430,6 @@ PatchImplementation['__interfaces'] = [
       12,
       'NASTURTIUM',
       'Nasturtium',
-      'Nasturtiums',
       PatchImplementation.FLOWER,
       ItemID.NASTURTIUMS,
       5,
@@ -483,7 +438,6 @@ PatchImplementation['__interfaces'] = [
     13: new Produce_$WRAPPER(
       13,
       'WOAD',
-      'Woad',
       'Woad',
       PatchImplementation.FLOWER,
       ItemID.WOAD_LEAF,
@@ -494,7 +448,6 @@ PatchImplementation['__interfaces'] = [
       14,
       'LIMPWURT',
       'Limpwurt',
-      'Limpwurt roots',
       PatchImplementation.FLOWER,
       ItemID.LIMPWURT_ROOT,
       5,
@@ -504,7 +457,6 @@ PatchImplementation['__interfaces'] = [
       15,
       'WHITE_LILY',
       'White lily',
-      'White lillies',
       PatchImplementation.FLOWER,
       ItemID.WHITE_LILY,
       5,
@@ -514,7 +466,6 @@ PatchImplementation['__interfaces'] = [
       16,
       'REDBERRIES',
       'Redberry',
-      'Redberries',
       PatchImplementation.BUSH,
       ItemID.REDBERRIES,
       20,
@@ -526,7 +477,6 @@ PatchImplementation['__interfaces'] = [
       17,
       'CADAVABERRIES',
       'Cadavaberry',
-      'Cadava berries',
       PatchImplementation.BUSH,
       ItemID.CADAVA_BERRIES,
       20,
@@ -538,7 +488,6 @@ PatchImplementation['__interfaces'] = [
       18,
       'DWELLBERRIES',
       'Dwellberry',
-      'Dwellberries',
       PatchImplementation.BUSH,
       ItemID.DWELLBERRIES,
       20,
@@ -550,7 +499,6 @@ PatchImplementation['__interfaces'] = [
       19,
       'JANGERBERRIES',
       'Jangerberry',
-      'Jangerberries',
       PatchImplementation.BUSH,
       ItemID.JANGERBERRIES,
       20,
@@ -562,7 +510,6 @@ PatchImplementation['__interfaces'] = [
       20,
       'WHITEBERRIES',
       'Whiteberry',
-      'White berries',
       PatchImplementation.BUSH,
       ItemID.WHITE_BERRIES,
       20,
@@ -574,7 +521,6 @@ PatchImplementation['__interfaces'] = [
       21,
       'POISON_IVY',
       'Poison ivy',
-      'Poison ivy berries',
       PatchImplementation.BUSH,
       ItemID.POISON_IVY_BERRIES,
       20,
@@ -585,7 +531,6 @@ PatchImplementation['__interfaces'] = [
     22: new Produce_$WRAPPER(
       22,
       'BARLEY',
-      'Barley',
       'Barley',
       PatchImplementation.HOPS,
       ItemID.BARLEY,
@@ -598,7 +543,6 @@ PatchImplementation['__interfaces'] = [
       23,
       'HAMMERSTONE',
       'Hammerstone',
-      'Hammerstone',
       PatchImplementation.HOPS,
       ItemID.HAMMERSTONE_HOPS,
       10,
@@ -609,7 +553,6 @@ PatchImplementation['__interfaces'] = [
     24: new Produce_$WRAPPER(
       24,
       'ASGARNIAN',
-      'Asgarnian',
       'Asgarnian',
       PatchImplementation.HOPS,
       ItemID.ASGARNIAN_HOPS,
@@ -622,7 +565,6 @@ PatchImplementation['__interfaces'] = [
       25,
       'JUTE',
       'Jute',
-      'Jute',
       PatchImplementation.HOPS,
       ItemID.JUTE_FIBRE,
       10,
@@ -633,7 +575,6 @@ PatchImplementation['__interfaces'] = [
     26: new Produce_$WRAPPER(
       26,
       'YANILLIAN',
-      'Yanillian',
       'Yanillian',
       PatchImplementation.HOPS,
       ItemID.YANILLIAN_HOPS,
@@ -646,7 +587,6 @@ PatchImplementation['__interfaces'] = [
       27,
       'KRANDORIAN',
       'Krandorian',
-      'Krandorian',
       PatchImplementation.HOPS,
       ItemID.KRANDORIAN_HOPS,
       10,
@@ -657,7 +597,6 @@ PatchImplementation['__interfaces'] = [
     28: new Produce_$WRAPPER(
       28,
       'WILDBLOOD',
-      'Wildblood',
       'Wildblood',
       PatchImplementation.HOPS,
       ItemID.WILDBLOOD_HOPS,
@@ -670,7 +609,6 @@ PatchImplementation['__interfaces'] = [
       29,
       'GUAM',
       'Guam',
-      'Guam',
       PatchImplementation.HERB,
       ItemID.GUAM_LEAF,
       20,
@@ -681,7 +619,6 @@ PatchImplementation['__interfaces'] = [
     30: new Produce_$WRAPPER(
       30,
       'MARRENTILL',
-      'Marrentill',
       'Marrentill',
       PatchImplementation.HERB,
       ItemID.MARRENTILL,
@@ -694,7 +631,6 @@ PatchImplementation['__interfaces'] = [
       31,
       'TARROMIN',
       'Tarromin',
-      'Tarromin',
       PatchImplementation.HERB,
       ItemID.TARROMIN,
       20,
@@ -705,7 +641,6 @@ PatchImplementation['__interfaces'] = [
     32: new Produce_$WRAPPER(
       32,
       'HARRALANDER',
-      'Harralander',
       'Harralander',
       PatchImplementation.HERB,
       ItemID.HARRALANDER,
@@ -718,7 +653,6 @@ PatchImplementation['__interfaces'] = [
       33,
       'RANARR',
       'Ranarr',
-      'Harralander',
       PatchImplementation.HERB,
       ItemID.RANARR_WEED,
       20,
@@ -729,7 +663,6 @@ PatchImplementation['__interfaces'] = [
     34: new Produce_$WRAPPER(
       34,
       'TOADFLAX',
-      'Toadflax',
       'Toadflax',
       PatchImplementation.HERB,
       ItemID.TOADFLAX,
@@ -742,7 +675,6 @@ PatchImplementation['__interfaces'] = [
       35,
       'IRIT',
       'Irit',
-      'Irit',
       PatchImplementation.HERB,
       ItemID.IRIT_LEAF,
       20,
@@ -753,7 +685,6 @@ PatchImplementation['__interfaces'] = [
     36: new Produce_$WRAPPER(
       36,
       'AVANTOE',
-      'Avantoe',
       'Avantoe',
       PatchImplementation.HERB,
       ItemID.AVANTOE,
@@ -766,7 +697,6 @@ PatchImplementation['__interfaces'] = [
       37,
       'KWUARM',
       'Kwuarm',
-      'Kwuarm',
       PatchImplementation.HERB,
       ItemID.KWUARM,
       20,
@@ -777,7 +707,6 @@ PatchImplementation['__interfaces'] = [
     38: new Produce_$WRAPPER(
       38,
       'SNAPDRAGON',
-      'Snapdragon',
       'Snapdragon',
       PatchImplementation.HERB,
       ItemID.SNAPDRAGON,
@@ -790,7 +719,6 @@ PatchImplementation['__interfaces'] = [
       39,
       'CADANTINE',
       'Cadantine',
-      'Cadantine',
       PatchImplementation.HERB,
       ItemID.CADANTINE,
       20,
@@ -801,7 +729,6 @@ PatchImplementation['__interfaces'] = [
     40: new Produce_$WRAPPER(
       40,
       'LANTADYME',
-      'Lantadyme',
       'Lantadyme',
       PatchImplementation.HERB,
       ItemID.LANTADYME,
@@ -814,7 +741,6 @@ PatchImplementation['__interfaces'] = [
       41,
       'DWARF_WEED',
       'Dwarf weed',
-      'Dwarf weed',
       PatchImplementation.HERB,
       ItemID.DWARF_WEED,
       20,
@@ -825,7 +751,6 @@ PatchImplementation['__interfaces'] = [
     42: new Produce_$WRAPPER(
       42,
       'TORSTOL',
-      'Torstol',
       'Torstol',
       PatchImplementation.HERB,
       ItemID.TORSTOL,
@@ -838,7 +763,6 @@ PatchImplementation['__interfaces'] = [
       43,
       'GOUTWEED',
       'Goutweed',
-      'Goutweed',
       PatchImplementation.HERB,
       ItemID.GOUTWEED,
       20,
@@ -849,7 +773,6 @@ PatchImplementation['__interfaces'] = [
     44: new Produce_$WRAPPER(
       44,
       'ANYHERB',
-      'Any herb',
       'Any herb',
       PatchImplementation.HERB,
       ItemID.GUAM_LEAF,
@@ -862,7 +785,6 @@ PatchImplementation['__interfaces'] = [
       45,
       'OAK',
       'Oak',
-      'Oak tree',
       PatchImplementation.TREE,
       ItemID.OAK_LOGS,
       40,
@@ -872,7 +794,6 @@ PatchImplementation['__interfaces'] = [
       46,
       'WILLOW',
       'Willow',
-      'Willow tree',
       PatchImplementation.TREE,
       ItemID.WILLOW_LOGS,
       40,
@@ -882,7 +803,6 @@ PatchImplementation['__interfaces'] = [
       47,
       'MAPLE',
       'Maple',
-      'Maple tree',
       PatchImplementation.TREE,
       ItemID.MAPLE_LOGS,
       40,
@@ -892,7 +812,6 @@ PatchImplementation['__interfaces'] = [
       48,
       'YEW',
       'Yew',
-      'Yew tree',
       PatchImplementation.TREE,
       ItemID.YEW_LOGS,
       40,
@@ -902,7 +821,6 @@ PatchImplementation['__interfaces'] = [
       49,
       'MAGIC',
       'Magic',
-      'Magic tree',
       PatchImplementation.TREE,
       ItemID.MAGIC_LOGS,
       40,
@@ -912,7 +830,6 @@ PatchImplementation['__interfaces'] = [
       50,
       'APPLE',
       'Apple',
-      'Apple tree',
       PatchImplementation.FRUIT_TREE,
       ItemID.COOKING_APPLE,
       160,
@@ -924,7 +841,6 @@ PatchImplementation['__interfaces'] = [
       51,
       'BANANA',
       'Banana',
-      'Banana tree',
       PatchImplementation.FRUIT_TREE,
       ItemID.BANANA,
       160,
@@ -936,7 +852,6 @@ PatchImplementation['__interfaces'] = [
       52,
       'ORANGE',
       'Orange',
-      'Orange tree',
       PatchImplementation.FRUIT_TREE,
       ItemID.ORANGE,
       160,
@@ -948,7 +863,6 @@ PatchImplementation['__interfaces'] = [
       53,
       'CURRY',
       'Curry',
-      'Curry tree',
       PatchImplementation.FRUIT_TREE,
       ItemID.CURRY_LEAF,
       160,
@@ -960,7 +874,6 @@ PatchImplementation['__interfaces'] = [
       54,
       'PINEAPPLE',
       'Pineapple',
-      'Pineapple plant',
       PatchImplementation.FRUIT_TREE,
       ItemID.PINEAPPLE,
       160,
@@ -972,7 +885,6 @@ PatchImplementation['__interfaces'] = [
       55,
       'PAPAYA',
       'Papaya',
-      'Papaya tree',
       PatchImplementation.FRUIT_TREE,
       ItemID.PAPAYA_FRUIT,
       160,
@@ -984,7 +896,6 @@ PatchImplementation['__interfaces'] = [
       56,
       'PALM',
       'Palm',
-      'Palm tree',
       PatchImplementation.FRUIT_TREE,
       ItemID.COCONUT,
       160,
@@ -996,7 +907,6 @@ PatchImplementation['__interfaces'] = [
       57,
       'DRAGONFRUIT',
       'Dragonfruit',
-      'Dragonfruit tree',
       PatchImplementation.FRUIT_TREE,
       ItemID.DRAGONFRUIT,
       160,
@@ -1007,7 +917,6 @@ PatchImplementation['__interfaces'] = [
     58: new Produce_$WRAPPER(
       58,
       'CACTUS',
-      'Cactus',
       'Cactus',
       PatchImplementation.CACTUS,
       ItemID.CACTUS_SPINE,
@@ -1020,7 +929,6 @@ PatchImplementation['__interfaces'] = [
       59,
       'POTATO_CACTUS',
       'Potato cactus',
-      'Potato cacti',
       PatchImplementation.CACTUS,
       ItemID.POTATO_CACTUS,
       10,
@@ -1032,16 +940,14 @@ PatchImplementation['__interfaces'] = [
       60,
       'TEAK',
       'Teak',
-      'Teak',
       PatchImplementation.HARDWOOD_TREE,
       ItemID.TEAK_LOGS,
-      560,
+      640,
       8
     ),
     61: new Produce_$WRAPPER(
       61,
       'MAHOGANY',
-      'Mahogany',
       'Mahogany',
       PatchImplementation.HARDWOOD_TREE,
       ItemID.MAHOGANY_LOGS,
@@ -1052,7 +958,6 @@ PatchImplementation['__interfaces'] = [
       62,
       'ATTAS',
       'Attas',
-      'Attas',
       PatchImplementation.ANIMA,
       NullItemID.NULL_22940,
       640,
@@ -1061,7 +966,6 @@ PatchImplementation['__interfaces'] = [
     63: new Produce_$WRAPPER(
       63,
       'IASOR',
-      'Iasor',
       'Iasor',
       PatchImplementation.ANIMA,
       NullItemID.NULL_22939,
@@ -1072,7 +976,6 @@ PatchImplementation['__interfaces'] = [
       64,
       'KRONOS',
       'Kronos',
-      'Kronos',
       PatchImplementation.ANIMA,
       NullItemID.NULL_22938,
       640,
@@ -1081,7 +984,6 @@ PatchImplementation['__interfaces'] = [
     65: new Produce_$WRAPPER(
       65,
       'SEAWEED',
-      'Seaweed',
       'Seaweed',
       PatchImplementation.SEAWEED,
       ItemID.GIANT_SEAWEED,
@@ -1094,7 +996,6 @@ PatchImplementation['__interfaces'] = [
       66,
       'GRAPE',
       'Grape',
-      'Grape',
       PatchImplementation.GRAPES,
       ItemID.GRAPES,
       5,
@@ -1105,7 +1006,6 @@ PatchImplementation['__interfaces'] = [
     67: new Produce_$WRAPPER(
       67,
       'MUSHROOM',
-      'Mushroom',
       'Mushroom',
       PatchImplementation.MUSHROOM,
       ItemID.MUSHROOM,
@@ -1118,7 +1018,6 @@ PatchImplementation['__interfaces'] = [
       68,
       'BELLADONNA',
       'Belladonna',
-      'Belladonna',
       PatchImplementation.BELLADONNA,
       ItemID.CAVE_NIGHTSHADE,
       80,
@@ -1127,7 +1026,6 @@ PatchImplementation['__interfaces'] = [
     69: new Produce_$WRAPPER(
       69,
       'CALQUAT',
-      'Calquat',
       'Calquat',
       PatchImplementation.CALQUAT,
       ItemID.CALQUAT_FRUIT,
@@ -1140,7 +1038,6 @@ PatchImplementation['__interfaces'] = [
       70,
       'SPIRIT_TREE',
       'Spirit tree',
-      'Spirit tree',
       PatchImplementation.SPIRIT_TREE,
       ItemID.SPIRIT_TREE,
       320,
@@ -1150,7 +1047,6 @@ PatchImplementation['__interfaces'] = [
       71,
       'CELASTRUS',
       'Celastrus',
-      'Celastrus tree',
       PatchImplementation.CELASTRUS,
       ItemID.BATTLESTAFF,
       160,
@@ -1162,7 +1058,6 @@ PatchImplementation['__interfaces'] = [
       72,
       'REDWOOD',
       'Redwood',
-      'Redwood tree',
       PatchImplementation.REDWOOD,
       ItemID.REDWOOD_LOGS,
       640,
@@ -1171,7 +1066,6 @@ PatchImplementation['__interfaces'] = [
     73: new Produce_$WRAPPER(
       73,
       'HESPORI',
-      'Hespori',
       'Hespori',
       PatchImplementation.HESPORI,
       NullItemID.NULL_23044,
@@ -1184,7 +1078,6 @@ PatchImplementation['__interfaces'] = [
       74,
       'CRYSTAL_TREE',
       'Crystal tree',
-      'Crystal tree',
       PatchImplementation.CRYSTAL_TREE,
       ItemID.CRYSTAL_SHARDS,
       80,
@@ -1193,7 +1086,6 @@ PatchImplementation['__interfaces'] = [
     75: new Produce_$WRAPPER(
       75,
       'EMPTY_COMPOST_BIN',
-      'Compost Bin',
       'Compost Bin',
       PatchImplementation.COMPOST,
       ItemID.COMPOST_BIN,
@@ -1206,7 +1098,6 @@ PatchImplementation['__interfaces'] = [
       76,
       'COMPOST',
       'Compost',
-      'Compost',
       PatchImplementation.COMPOST,
       ItemID.COMPOST,
       40,
@@ -1217,7 +1108,6 @@ PatchImplementation['__interfaces'] = [
     77: new Produce_$WRAPPER(
       77,
       'SUPERCOMPOST',
-      'Supercompost',
       'Supercompost',
       PatchImplementation.COMPOST,
       ItemID.SUPERCOMPOST,
@@ -1230,7 +1120,6 @@ PatchImplementation['__interfaces'] = [
       78,
       'ULTRACOMPOST',
       'Ultracompost',
-      'Ultracompost',
       PatchImplementation.COMPOST,
       ItemID.ULTRACOMPOST,
       0,
@@ -1242,7 +1131,6 @@ PatchImplementation['__interfaces'] = [
       79,
       'ROTTEN_TOMATO',
       'Rotten Tomato',
-      'Rotten Tomato',
       PatchImplementation.COMPOST,
       ItemID.ROTTEN_TOMATO,
       40,
@@ -1252,9 +1140,8 @@ PatchImplementation['__interfaces'] = [
     ),
     80: new Produce_$WRAPPER(
       80,
-      'EMPTY_GIANT_COMPOST_BIN',
-      'Giant Compost Bin',
-      'Giant Compost Bin',
+      'EMPTY_BIG_COMPOST_BIN',
+      'Big Compost Bin',
       PatchImplementation.COMPOST,
       ItemID.COMPOST_BIN,
       0,
@@ -1264,10 +1151,9 @@ PatchImplementation['__interfaces'] = [
     ),
     81: new Produce_$WRAPPER(
       81,
-      'GIANT_COMPOST',
+      'BIG_COMPOST',
       'Compost',
-      'Compost',
-      PatchImplementation.GIANT_COMPOST,
+      PatchImplementation.BIG_COMPOST,
       ItemID.COMPOST,
       40,
       3,
@@ -1276,10 +1162,9 @@ PatchImplementation['__interfaces'] = [
     ),
     82: new Produce_$WRAPPER(
       82,
-      'GIANT_SUPERCOMPOST',
+      'BIG_SUPERCOMPOST',
       'Supercompost',
-      'Supercompost',
-      PatchImplementation.GIANT_COMPOST,
+      PatchImplementation.BIG_COMPOST,
       ItemID.SUPERCOMPOST,
       40,
       3,
@@ -1288,10 +1173,9 @@ PatchImplementation['__interfaces'] = [
     ),
     83: new Produce_$WRAPPER(
       83,
-      'GIANT_ULTRACOMPOST',
+      'BIG_ULTRACOMPOST',
       'Ultracompost',
-      'Ultracompost',
-      PatchImplementation.GIANT_COMPOST,
+      PatchImplementation.BIG_COMPOST,
       ItemID.ULTRACOMPOST,
       0,
       3,
@@ -1300,10 +1184,9 @@ PatchImplementation['__interfaces'] = [
     ),
     84: new Produce_$WRAPPER(
       84,
-      'GIANT_ROTTEN_TOMATO',
+      'BIG_ROTTEN_TOMATO',
       'Rotten Tomato',
-      'Rotten Tomato',
-      PatchImplementation.GIANT_COMPOST,
+      PatchImplementation.BIG_COMPOST,
       ItemID.ROTTEN_TOMATO,
       40,
       3,
@@ -1319,7 +1202,6 @@ PatchImplementation['__interfaces'] = [
       _$ordinal,
       _$name,
       name,
-      contractName,
       patchImplementation,
       itemID,
       tickrate,
@@ -1331,7 +1213,6 @@ PatchImplementation['__interfaces'] = [
       this._$name = _$name
       if (
         (typeof name === 'string' || name === null) &&
-        (typeof contractName === 'string' || contractName === null) &&
         (typeof patchImplementation === 'number' ||
           patchImplementation === null) &&
         (typeof itemID === 'number' || itemID === null) &&
@@ -1343,9 +1224,6 @@ PatchImplementation['__interfaces'] = [
         let __args = arguments
         if (this.__name === undefined) {
           this.__name = null
-        }
-        if (this.contractName === undefined) {
-          this.contractName = null
         }
         if (this.patchImplementation === undefined) {
           this.patchImplementation = null
@@ -1366,7 +1244,6 @@ PatchImplementation['__interfaces'] = [
           this.harvestStages = 0
         }
         this.__name = name
-        this.contractName = contractName
         this.patchImplementation = patchImplementation
         this.itemID = itemID
         this.tickrate = tickrate
@@ -1375,7 +1252,6 @@ PatchImplementation['__interfaces'] = [
         this.harvestStages = harvestStages
       } else if (
         (typeof name === 'string' || name === null) &&
-        (typeof contractName === 'string' || contractName === null) &&
         (typeof patchImplementation === 'number' ||
           patchImplementation === null) &&
         (typeof itemID === 'number' || itemID === null) &&
@@ -1391,9 +1267,6 @@ PatchImplementation['__interfaces'] = [
           let harvestStages = 1
           if (this.__name === undefined) {
             this.__name = null
-          }
-          if (this.contractName === undefined) {
-            this.contractName = null
           }
           if (this.patchImplementation === undefined) {
             this.patchImplementation = null
@@ -1414,7 +1287,6 @@ PatchImplementation['__interfaces'] = [
             this.harvestStages = 0
           }
           this.__name = name
-          this.contractName = contractName
           this.patchImplementation = patchImplementation
           this.itemID = itemID
           this.tickrate = tickrate
@@ -1424,9 +1296,6 @@ PatchImplementation['__interfaces'] = [
         }
         if (this.__name === undefined) {
           this.__name = null
-        }
-        if (this.contractName === undefined) {
-          this.contractName = null
         }
         if (this.patchImplementation === undefined) {
           this.patchImplementation = null
@@ -1450,9 +1319,6 @@ PatchImplementation['__interfaces'] = [
     }
     getName() {
       return this.__name
-    }
-    getContractName() {
-      return this.contractName
     }
     getItemID() {
       return this.itemID
@@ -1485,14 +1351,10 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.Produce_$WRAPPER = Produce_$WRAPPER
   PatchImplementation.Produce['__class'] =
     'timetracking.PatchImplementation.Produce'
-  PatchImplementation.Produce['__interfaces'] = [
-    'java.lang.Comparable',
-    'java.io.Serializable'
-  ]
   /** @ignore */
   class PatchImplementation$0_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -1548,8 +1410,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$0_$WRAPPER = PatchImplementation$0_$WRAPPER
   /** @ignore */
   class PatchImplementation$1_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -1605,8 +1467,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$1_$WRAPPER = PatchImplementation$1_$WRAPPER
   /** @ignore */
   class PatchImplementation$2_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -1648,8 +1510,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$2_$WRAPPER = PatchImplementation$2_$WRAPPER
   /** @ignore */
   class PatchImplementation$3_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -2118,8 +1980,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$3_$WRAPPER = PatchImplementation$3_$WRAPPER
   /** @ignore */
   class PatchImplementation$4_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -2497,8 +2359,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$4_$WRAPPER = PatchImplementation$4_$WRAPPER
   /** @ignore */
   class PatchImplementation$5_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -2883,8 +2745,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$5_$WRAPPER = PatchImplementation$5_$WRAPPER
   /** @ignore */
   class PatchImplementation$6_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -3225,8 +3087,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$6_$WRAPPER = PatchImplementation$6_$WRAPPER
   /** @ignore */
   class PatchImplementation$7_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -3641,8 +3503,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$7_$WRAPPER = PatchImplementation$7_$WRAPPER
   /** @ignore */
   class PatchImplementation$8_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -4069,8 +3931,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$8_$WRAPPER = PatchImplementation$8_$WRAPPER
   /** @ignore */
   class PatchImplementation$9_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -4479,8 +4341,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$9_$WRAPPER = PatchImplementation$9_$WRAPPER
   /** @ignore */
   class PatchImplementation$10_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -4603,8 +4465,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$10_$WRAPPER = PatchImplementation$10_$WRAPPER
   /** @ignore */
   class PatchImplementation$11_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -4676,8 +4538,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$11_$WRAPPER = PatchImplementation$11_$WRAPPER
   /** @ignore */
   class PatchImplementation$12_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -4749,8 +4611,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$12_$WRAPPER = PatchImplementation$12_$WRAPPER
   /** @ignore */
   class PatchImplementation$13_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -4806,8 +4668,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$13_$WRAPPER = PatchImplementation$13_$WRAPPER
   /** @ignore */
   class PatchImplementation$14_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -4916,8 +4778,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$14_$WRAPPER = PatchImplementation$14_$WRAPPER
   /** @ignore */
   class PatchImplementation$15_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -4973,8 +4835,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$15_$WRAPPER = PatchImplementation$15_$WRAPPER
   /** @ignore */
   class PatchImplementation$16_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -5039,8 +4901,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$16_$WRAPPER = PatchImplementation$16_$WRAPPER
   /** @ignore */
   class PatchImplementation$17_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -5126,8 +4988,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$17_$WRAPPER = PatchImplementation$17_$WRAPPER
   /** @ignore */
   class PatchImplementation$18_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -5169,8 +5031,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$18_$WRAPPER = PatchImplementation$18_$WRAPPER
   /** @ignore */
   class PatchImplementation$19_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -5214,8 +5076,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$19_$WRAPPER = PatchImplementation$19_$WRAPPER
   /** @ignore */
   class PatchImplementation$20_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -5324,8 +5186,8 @@ PatchImplementation['__interfaces'] = [
   PatchImplementation.PatchImplementation$20_$WRAPPER = PatchImplementation$20_$WRAPPER
   /** @ignore */
   class PatchImplementation$21_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name) {
-      super(_$ordinal, _$name, tab, name)
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
     /**
      *
@@ -5335,137 +5197,137 @@ PatchImplementation['__interfaces'] = [
     forVarbitValue(value) {
       if (value === 0) {
         return new PatchState(
-          PatchImplementation.Produce.EMPTY_GIANT_COMPOST_BIN,
+          PatchImplementation.Produce.EMPTY_BIG_COMPOST_BIN,
           CropState.EMPTY,
           0
         )
       }
       if (value >= 1 && value <= 15) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_COMPOST,
+          PatchImplementation.Produce.BIG_COMPOST,
           CropState.FILLING,
           value - 1
         )
       }
       if (value >= 16 && value <= 30) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_COMPOST,
+          PatchImplementation.Produce.BIG_COMPOST,
           CropState.HARVESTABLE,
           value - 16
         )
       }
       if (value >= 33 && value <= 47) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_SUPERCOMPOST,
+          PatchImplementation.Produce.BIG_SUPERCOMPOST,
           CropState.FILLING,
           value - 33
         )
       }
       if (value >= 48 && value <= 62) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_SUPERCOMPOST,
+          PatchImplementation.Produce.BIG_SUPERCOMPOST,
           CropState.HARVESTABLE,
           value - 48
         )
       }
       if (value >= 63 && value <= 77) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_COMPOST,
+          PatchImplementation.Produce.BIG_COMPOST,
           CropState.FILLING,
           15 + value - 63
         )
       }
       if (value >= 78 && value <= 92) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_COMPOST,
+          PatchImplementation.Produce.BIG_COMPOST,
           CropState.HARVESTABLE,
           15 + value - 78
         )
       }
       if (value === 93) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_COMPOST,
+          PatchImplementation.Produce.BIG_COMPOST,
           CropState.GROWING,
           PatchImplementation.Produce['_$wrappers'][
-            PatchImplementation.Produce.GIANT_COMPOST
+            PatchImplementation.Produce.BIG_COMPOST
           ].getStages() - 1
         )
       }
       if (value >= 97 && value <= 99) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_SUPERCOMPOST,
+          PatchImplementation.Produce.BIG_SUPERCOMPOST,
           CropState.GROWING,
           value - 97
         )
       }
       if (value >= 100 && value <= 114) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_SUPERCOMPOST,
+          PatchImplementation.Produce.BIG_SUPERCOMPOST,
           CropState.HARVESTABLE,
           15 + value - 100
         )
       }
       if (value >= 127 && value <= 128) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_COMPOST,
+          PatchImplementation.Produce.BIG_COMPOST,
           CropState.GROWING,
           value - 127
         )
       }
       if (value >= 129 && value <= 143) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_ROTTEN_TOMATO,
+          PatchImplementation.Produce.BIG_ROTTEN_TOMATO,
           CropState.FILLING,
           value - 129
         )
       }
       if (value >= 144 && value <= 158) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_ROTTEN_TOMATO,
+          PatchImplementation.Produce.BIG_ROTTEN_TOMATO,
           CropState.HARVESTABLE,
           value - 144
         )
       }
       if (value >= 159 && value <= 160) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_ROTTEN_TOMATO,
+          PatchImplementation.Produce.BIG_ROTTEN_TOMATO,
           CropState.GROWING,
           value - 159
         )
       }
       if (value >= 161 && value <= 175) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_SUPERCOMPOST,
+          PatchImplementation.Produce.BIG_SUPERCOMPOST,
           CropState.FILLING,
           15 + value - 161
         )
       }
       if (value >= 176 && value <= 205) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_ULTRACOMPOST,
+          PatchImplementation.Produce.BIG_ULTRACOMPOST,
           CropState.HARVESTABLE,
           value - 176
         )
       }
       if (value >= 207 && value <= 221) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_ROTTEN_TOMATO,
+          PatchImplementation.Produce.BIG_ROTTEN_TOMATO,
           CropState.HARVESTABLE,
           15 + value - 207
         )
       }
       if (value === 222) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_ROTTEN_TOMATO,
+          PatchImplementation.Produce.BIG_ROTTEN_TOMATO,
           CropState.GROWING,
           PatchImplementation.Produce['_$wrappers'][
-            PatchImplementation.Produce.GIANT_ROTTEN_TOMATO
+            PatchImplementation.Produce.BIG_ROTTEN_TOMATO
           ].getStages() - 1
         )
       }
       if (value >= 223 && value <= 237) {
         return new PatchState(
-          PatchImplementation.Produce.GIANT_ROTTEN_TOMATO,
+          PatchImplementation.Produce.BIG_ROTTEN_TOMATO,
           CropState.FILLING,
           15 + value - 223
         )
@@ -5480,132 +5342,154 @@ PatchImplementation['_$wrappers'] = {
     0,
     'BELLADONNA',
     Tab.SPECIAL,
-    ''
+    '',
+    false
   ),
   1: new PatchImplementation.PatchImplementation$1_$WRAPPER(
     1,
     'MUSHROOM',
     Tab.SPECIAL,
-    ''
+    '',
+    false
   ),
   2: new PatchImplementation.PatchImplementation$2_$WRAPPER(
     2,
     'HESPORI',
     Tab.SPECIAL,
-    ''
+    '',
+    true
   ),
   3: new PatchImplementation.PatchImplementation$3_$WRAPPER(
     3,
     'ALLOTMENT',
     Tab.ALLOTMENT,
-    ''
+    '',
+    false
   ),
   4: new PatchImplementation.PatchImplementation$4_$WRAPPER(
     4,
     'HERB',
     Tab.HERB,
-    ''
+    '',
+    false
   ),
   5: new PatchImplementation.PatchImplementation$5_$WRAPPER(
     5,
     'FLOWER',
     Tab.FLOWER,
-    ''
+    '',
+    false
   ),
   6: new PatchImplementation.PatchImplementation$6_$WRAPPER(
     6,
     'BUSH',
     Tab.BUSH,
-    ''
+    '',
+    true
   ),
   7: new PatchImplementation.PatchImplementation$7_$WRAPPER(
     7,
     'FRUIT_TREE',
     Tab.FRUIT_TREE,
-    ''
+    '',
+    true
   ),
   8: new PatchImplementation.PatchImplementation$8_$WRAPPER(
     8,
     'HOPS',
     Tab.HOPS,
-    ''
+    '',
+    false
   ),
   9: new PatchImplementation.PatchImplementation$9_$WRAPPER(
     9,
     'TREE',
     Tab.TREE,
-    ''
+    '',
+    true
   ),
   10: new PatchImplementation.PatchImplementation$10_$WRAPPER(
     10,
     'HARDWOOD_TREE',
     Tab.TREE,
-    'Hardwood Trees'
+    'Hardwood Trees',
+    true
   ),
   11: new PatchImplementation.PatchImplementation$11_$WRAPPER(
     11,
     'REDWOOD',
     Tab.TREE,
-    'Redwood Trees'
+    'Redwood Trees',
+    true
   ),
   12: new PatchImplementation.PatchImplementation$12_$WRAPPER(
     12,
     'SPIRIT_TREE',
     Tab.TREE,
-    'Spirit Trees'
+    'Spirit Trees',
+    true
   ),
   13: new PatchImplementation.PatchImplementation$13_$WRAPPER(
     13,
     'ANIMA',
     Tab.SPECIAL,
-    ''
+    '',
+    false
   ),
   14: new PatchImplementation.PatchImplementation$14_$WRAPPER(
     14,
     'CACTUS',
     Tab.SPECIAL,
-    'Cactus'
+    'Cactus',
+    true
   ),
   15: new PatchImplementation.PatchImplementation$15_$WRAPPER(
     15,
     'SEAWEED',
     Tab.SPECIAL,
-    'Seaweed'
+    'Seaweed',
+    false
   ),
   16: new PatchImplementation.PatchImplementation$16_$WRAPPER(
     16,
     'CALQUAT',
     Tab.FRUIT_TREE,
-    'Calquat'
+    'Calquat',
+    true
   ),
   17: new PatchImplementation.PatchImplementation$17_$WRAPPER(
     17,
     'CELASTRUS',
     Tab.FRUIT_TREE,
-    'Celastrus'
+    'Celastrus',
+    true
   ),
   18: new PatchImplementation.PatchImplementation$18_$WRAPPER(
     18,
     'GRAPES',
     Tab.GRAPE,
-    ''
+    '',
+    true
   ),
   19: new PatchImplementation.PatchImplementation$19_$WRAPPER(
     19,
     'CRYSTAL_TREE',
     Tab.FRUIT_TREE,
-    'Crystal Tree'
+    'Crystal Tree',
+    true
   ),
   20: new PatchImplementation.PatchImplementation$20_$WRAPPER(
     20,
     'COMPOST',
     Tab.SPECIAL,
-    'Compost Bin'
+    'Compost Bin',
+    true
   ),
   21: new PatchImplementation.PatchImplementation$21_$WRAPPER(
     21,
-    'GIANT_COMPOST',
+    'BIG_COMPOST',
     Tab.SPECIAL,
-    'Giant Compost Bin'
+    'Big Compost Bin',
+    true
   )
 }

@@ -76,7 +76,6 @@ export class BirdHouse_$WRAPPER {
   }
 }
 BirdHouse['__class'] = 'timetracking.BirdHouse'
-BirdHouse['__interfaces'] = ['java.lang.Comparable', 'java.io.Serializable']
 BirdHouse['_$wrappers'] = {
   0: new BirdHouse_$WRAPPER(0, 'NORMAL', 'Bird House', ItemID.BIRD_HOUSE),
   1: new BirdHouse_$WRAPPER(1, 'OAK', 'Oak Bird House', ItemID.OAK_BIRD_HOUSE),

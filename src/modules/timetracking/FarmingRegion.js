@@ -1,7 +1,7 @@
 // @ts-nocheck
 /* eslint-disable */
 export class FarmingRegion {
-  constructor(name, regionID, ...patches) {
+  constructor(name, regionID, definite, ...patches) {
     if (this.name === undefined) {
       this.name = null
     }
@@ -19,7 +19,7 @@ export class FarmingRegion {
     this.patches = patches
     this.varbits = (s => {
       let a = []
-      while (s-- > 0) a.push(null)
+      while (s-- > 0) a.push(0)
       return a
     })(patches.length)
     for (let i = 0; i < patches.length; i++) {

@@ -17,7 +17,7 @@ export class BirdHouseSpace_$WRAPPER {
       this.__name = null
     }
     if (this.varp === undefined) {
-      this.varp = null
+      this.varp = 0
     }
     this.__name = name
     this.varp = varp
@@ -39,10 +39,6 @@ export class BirdHouseSpace_$WRAPPER {
   }
 }
 BirdHouseSpace['__class'] = 'timetracking.BirdHouseSpace'
-BirdHouseSpace['__interfaces'] = [
-  'java.lang.Comparable',
-  'java.io.Serializable'
-]
 BirdHouseSpace['_$wrappers'] = {
   0: new BirdHouseSpace_$WRAPPER(
     0,
