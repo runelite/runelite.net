@@ -9,7 +9,166 @@
   <link href="https://runelite.net" />
   <link href="https://runelite.net/atom.xml" rel="self" />
   <id>https://runelite.net/</id>
-  <updated>2024-03-21T21:32:03.443Z</updated>
+  <updated>2024-03-22T00:44:41.000Z</updated>
+  
+  <entry>
+    <id>https://runelite.net/blog/show/2024-03-21-1.10.25-Release</id>
+    <link href="https://runelite.net/blog/show/2024-03-21-1.10.25-Release" />
+    <title>1.10.25 Release</title>
+    <summary>Varlamore: Part one</summary>
+    <updated>2024-03-21T23:00:00.000Z</updated>
+    <author>
+      <name>Adam</name>
+    </author>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml"><h2>Varlamore</h2>
+<p>Varlamore: Part one is here! We've been working on adding a bunch of the new content to the various plugins in the last day. This includes:</p>
+<ul>
+<li>New farming patches have been added to timetracking, and to the website</li>
+<li>The hiscores have been updated for Colosseum Glory, Lunar chests, and Sol Heredit</li>
+<li>The world map plugin includes new Varlamore transports, fishing spots, trees, rocks, patches, fairy rings, hunter spots, and dungeons.</li>
+<li>New clues have been added to the clue scroll plugin</li>
+<li>Loot tracking for Lunar chest, Colosseum, and hunters loot sacks have been added</li>
+<li>Embertailed jerboa has been added to the hunter plugin</li>
+</ul>
+<p>There are also several smaller improvements and bug fixes, including:</p>
+<ul>
+<li>A visual bug affecting the hunter guild roof with GPU on has been fixed</li>
+<li>Fix the attack styles plugin to recognize the new weapon types</li>
+<li>Fix roof removal for the hunter guild</li>
+<li>Fix a bug preventing reordering of bank tag tabs on the sidebar</li>
+<li>The color of ground items can now be set via shift + right click on the item</li>
+<li>The moons of peril overlay is now movable</li>
+<li>A bug preventing quest states from showing on the world map has been fixed</li>
+</ul>
+<p>Enjoy!</p>
+<p>- Adam</p>
+<h3>New commits</h3>
+<p>We had 19 contributors this update!</p>
+<pre><code>Adam (29):
+      widgetconfig: swap drag and drag on
+      bank tags: fix rememberTab with tagtabs
+      bank tags: fix scrolling while reordering
+      camera: add right click blocks camera setting
+      camera: add camera speed setting
+      clientui: increase tooltip timeout to 10s
+      guice: eagerly instantiate rtconfig refresher
+      hooks: skip outdated check in developer mode
+      party: don't delay spec attack usages
+      loot manager: fix nightmare tracking
+      interface styles: move adjustWidgetDimensions to PostClientTick
+      interface styles: early return if no skin is set
+      party: invert spec regen check
+      wiki: add dps calc buttons
+      rtconfig: mark RuntimeConfig Nullable in RuntimeConfigRefresher
+      Revert &quot;npc aggro area: ignore unattackable NPCs&quot;
+      cache: cleanup temp cache folder if store location setup fails
+      discord: simplify total activity time
+      discord: default elapsed time to total
+      hitsplat: fix poison hitsplat id
+      hitsplat: add other hitsplats
+      ground items: cache item hidden, highlight, and colors
+      ground items: add per item highlight colors
+      clientui: add developer version outdated error message
+      hiscores: move activities from skill_icons_small
+      hiscores: add varlamore
+      gpu: fix texture hillskew
+      clues: support wall decorations for ObjectClueScrolls
+      attack styles: use client enum for looking up weapon attack styles
+
+Adam Sharp (1):
+      interface styles: add player menu condense option
+
+BatedUrGonnaDie (1):
+      worldmap: remove kourend task map points
+
+Chris (1):
+      wiki: add toggle for wiki lookup button
+
+DominickCobb (1):
+      mining: fix tracking runite ore
+
+Felanbird (5):
+      achievement diary: update various tasks
+      clues: fix incorrect naming for Wizards' Guild/Tower
+      worldmap: add AJP fairy ring
+      fairyring: add AJP fairy ring
+      clues: add Valmore clues
+
+Frazer Smith (1):
+      ci: update github actions
+
+Hexagon (2):
+      api: add isRlClientOutdated hook
+      client: add runtimeConfig refresh functionality
+
+Hooder (1):
+      clientui: apply custom borders when maximizing
+
+JZomDev (1):
+      hunter: add Embertailed jerboa
+
+Jordan Atwood (8):
+      pmd: Require locale for case conversions
+      timers: Check all timers for resetting on config change
+      worldmap: add varlamore mining spots
+      worldmap: Alphabetize minigame locations and add test for alphabetization
+      worldmap: Add test for world point uniqueness
+      worldmap: add Great Kourend minigames
+      worldmap: add varlamore dungeons
+      worldmap: Add sandworms hunter spot
+
+Macweese (11):
+      worldmap: add varlamore transports
+      fishingspot: add varlamore fishing spots
+      worldmap: add varlamore fishing spots
+      worldmap: add varlamore rare trees
+      worldmap: add varlamore patches
+      worldmap: fix Entrana hops patch location
+      worldmap: add varlamore minigames
+      worldmap: add Grand Exchange Games Zone
+      agility: add varlamore shortcut
+      worldmap: add varlamore hunter spots
+      fishing: prevent false positive session
+
+Max Weber (5):
+      rl-client: update for 2024-3-20
+      timetracking: add varlamore patches
+      api: allow cloning face transparencies if they don't exist
+      api: expose Model::drawOrtho
+      roofremoval: add Varlamore roofs
+
+Michael Parsakia (1):
+      item identification: add sacred and olive oils
+
+Morgan Lewis (5):
+      loot tracker: track lunar chest
+      loot tracker: track fortis colosseum rewards
+      loot tracker: track hunters loot sacks
+      timetracking: add additional farming regions for civitas illa fortis (#17602)
+      widget: make moons of peril overlay movable
+
+Rhea (1):
+      chatcommands: add dt2 awakened shorthands (#16956)
+
+YvesW (4):
+      screenshot: add required rs settings to descriptions
+      screenshot: uniformize periods in config descriptions
+      party: add ping information to descriptions
+      party: uniformize periods in config descriptions
+
+Zoinkwiz (2):
+      world map: Update outdated DBTableID values
+      clues: fix outdated skill challenge for shayzien armour (#17573)
+
+testing-ongithub (3):
+      clues: Fix Squire anagram clue challenge text
+      fairyrings: Alphabetize fairy rings and add test for alphabetization
+      worldmap: Add tests for fairy ring plugin overlap and alphabetization
+</code></pre>
+</div>
+    </content>
+  </entry>
   
   <entry>
     <id>https://runelite.net/blog/show/2024-02-24-1.10.23-Release</id>
