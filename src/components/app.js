@@ -34,7 +34,11 @@ const App = ({ loading, navbarDark, login, logout, loggedIn, username }) => (
       />
       <Async path="/pulse" getComponent={() => import('../routes/pulse')} />
       <Async
-        path="/plugin-hub/:author?"
+        path="/plugin-hub/author/:author/:search?"
+        getComponent={() => import('../routes/plugin-hub')}
+      />
+      <Async
+        path="/plugin-hub/search/:search?"
         getComponent={() => import('../routes/plugin-hub')}
       />
       <Async
@@ -77,6 +81,7 @@ const App = ({ loading, navbarDark, login, logout, loggedIn, username }) => (
 export default connect(
   state => ({
     loggedIn: isLoggedIn(state),
+    search: state.filter,
     ...state.app,
     ...state.account
   }),
