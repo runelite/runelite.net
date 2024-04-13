@@ -88,7 +88,7 @@ const Navigation = ({ dark, login, loggedIn, username }) => (
             onClick={toggleMenu}
             class="nav-link"
             activeClassName="active"
-            href="/plugin-hub/search"
+            href="/plugin-hub"
           >
             Plugin Hub
           </Link>

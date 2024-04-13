@@ -1,13 +1,12 @@
 import { h, Fragment } from 'preact'
 import './feature.scss'
 import './tooltip.css'
-import { getPluginFilter } from '../modules/plugin-hub'
 import { numberWithCommas } from '../util'
 
 const ExternalPlugin = ({
   displayName,
   author,
-  search,
+  s,
   description,
   internalName,
   imageUrl,
@@ -31,11 +30,7 @@ const ExternalPlugin = ({
             <a href={`/plugin-hub/show/${internalName}`}>{displayName}</a>
           </h5>
           <h6 class="card-subtitle mb-2 text-muted">
-            <a
-              href={`/plugin-hub/author/${
-                search ? author + '/' + search : author
-              }`}
-            >
+            <a href={`/plugin-hub/${s ? author + '?s=' + s : author}`}>
               {author}
             </a>
           </h6>

@@ -20,7 +20,7 @@ import SearchBar from '../components/search-bar'
 import { fetchConfig } from '../modules/config'
 import Choice from '../components/choice'
 import { numberWithCommas } from '../util'
-import { Router, route } from 'preact-router'
+import { route } from 'preact-router'
 
 const description =
   'The Plugin Hub is a repository of plugins that are created and ' +
@@ -37,7 +37,7 @@ const handleChange = (event, setPluginFilter) => {
 
 const PluginHub = ({
   author,
-  search,
+  s,
   externalPlugins,
   pluginFilter,
   pluginSorting,
@@ -53,13 +53,11 @@ const PluginHub = ({
   const totalCount = externalPlugins.reduce((a, b) => a + b.count, 0)
   const sortChoices = ['active installs', 'name', 'time updated', 'time added']
 
-  if (search) {
-    pluginFilter.name = search
-  }
-
   if (installedPluginCount > 0) {
     sortChoices.push('installed')
   }
+
+  pluginFilter.name = s
 
   return (
     <Layout>
@@ -112,9 +110,17 @@ const PluginHub = ({
                 value={pluginFilter.name}
                 onInput={e => {
                   if (author) {
-                    route(`/plugin-hub/author/${author}/${e.target.value}`)
+                    route(
+                      `/plugin-hub/${author}${
+                        e.target.value ? '?s=' + e.target.value : ''
+                      }`
+                    )
                   } else {
-                    route(`/plugin-hub/search/${e.target.value}`)
+                    route(
+                      `/plugin-hub/${
+                        e.target.value ? '?s=' + e.target.value : ''
+                      }`
+                    )
                   }
                   handleChange(e, setPluginFilter)
                 }}
@@ -131,11 +137,7 @@ const PluginHub = ({
           </div>
           <div class="row">
             {externalPlugins.map(plugin => (
-              <ExternalPlugin
-                key={plugin.internalName}
-                search={search}
-                {...plugin}
-              />
+              <ExternalPlugin key={plugin.internalName} s={s} {...plugin} />
             ))}
           </div>
         </div>
