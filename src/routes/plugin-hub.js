@@ -20,6 +20,7 @@ import SearchBar from '../components/search-bar'
 import { fetchConfig } from '../modules/config'
 import Choice from '../components/choice'
 import { numberWithCommas } from '../util'
+import { route } from 'preact-router'
 
 const description =
   'The Plugin Hub is a repository of plugins that are created and ' +
@@ -28,13 +29,25 @@ const description =
   "Developers to ensure they comply with Jagex's 3rd party client rules " +
   'and are not malicious in some other way.'
 
-const handleChange = (event, setPluginFilter) =>
+const handleChange = (event, author, setPluginFilter) => {
   setPluginFilter({
     name: event.target.value
   })
+  if (author) {
+    route(
+      `/plugin-hub/${author}${
+        event.target.value ? '?s=' + event.target.value : ''
+      }`
+    )
+  } else {
+    route(`/plugin-hub/${event.target.value ? '?s=' + event.target.value : ''}`)
+  }
+}
 
+// "s" is the search param from the query parameters to filter plugins
 const PluginHub = ({
   author,
+  s,
   externalPlugins,
   pluginFilter,
   pluginSorting,
@@ -44,6 +57,16 @@ const PluginHub = ({
   externalPlugins = externalPlugins.filter(plugin =>
     author ? plugin.author === author : true
   )
+
+  if (s) {
+    if (s !== pluginFilter.name) {
+      setPluginFilter({ name: s })
+    }
+  } else {
+    if (pluginFilter.name !== '') {
+      setPluginFilter({ name: '' })
+    }
+  }
 
   const pluginCount = externalPlugins.length
   const installedPluginCount = externalPlugins.filter(p => p.installed).length
@@ -103,7 +126,9 @@ const PluginHub = ({
             <div class="col-sm-8">
               <SearchBar
                 value={pluginFilter.name}
-                onInput={e => handleChange(e, setPluginFilter)}
+                onInput={e => {
+                  handleChange(e, author, setPluginFilter)
+                }}
               />
             </div>
             <div class="col-sm-4">
@@ -117,7 +142,7 @@ const PluginHub = ({
           </div>
           <div class="row">
             {externalPlugins.map(plugin => (
-              <ExternalPlugin key={plugin.internalName} {...plugin} />
+              <ExternalPlugin key={plugin.internalName} s={s} {...plugin} />
             ))}
           </div>
         </div>
@@ -126,12 +151,14 @@ const PluginHub = ({
   )
 }
 
-const mapStateToProps = (state, props) => ({
-  ...props,
-  externalPlugins: getSortedExternalPlugins(state),
-  pluginFilter: getPluginFilter(state),
-  pluginSorting: getPluginSorting(state)
-})
+const mapStateToProps = (state, props) => {
+  return {
+    ...props,
+    externalPlugins: getSortedExternalPlugins(state),
+    pluginFilter: getPluginFilter(state),
+    pluginSorting: getPluginSorting(state)
+  }
+}
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
