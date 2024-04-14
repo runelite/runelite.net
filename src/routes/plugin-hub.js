@@ -29,12 +29,22 @@ const description =
   "Developers to ensure they comply with Jagex's 3rd party client rules " +
   'and are not malicious in some other way.'
 
-const handleChange = (event, setPluginFilter) => {
+const handleChange = (event, author, setPluginFilter) => {
   setPluginFilter({
     name: event.target.value
   })
+  if (author) {
+    route(
+      `/plugin-hub/${author}${
+        event.target.value ? '?s=' + event.target.value : ''
+      }`
+    )
+  } else {
+    route(`/plugin-hub/${event.target.value ? '?s=' + event.target.value : ''}`)
+  }
 }
 
+// "s" is the search param from the query parameters to filter plugins
 const PluginHub = ({
   author,
   s,
@@ -48,6 +58,16 @@ const PluginHub = ({
     author ? plugin.author === author : true
   )
 
+  if (s) {
+    if (s !== pluginFilter.name) {
+      setPluginFilter({ name: s })
+    }
+  } else {
+    if (pluginFilter.name !== '') {
+      setPluginFilter({ name: '' })
+    }
+  }
+
   const pluginCount = externalPlugins.length
   const installedPluginCount = externalPlugins.filter(p => p.installed).length
   const totalCount = externalPlugins.reduce((a, b) => a + b.count, 0)
@@ -56,8 +76,6 @@ const PluginHub = ({
   if (installedPluginCount > 0) {
     sortChoices.push('installed')
   }
-
-  pluginFilter.name = s
 
   return (
     <Layout>
@@ -109,20 +127,7 @@ const PluginHub = ({
               <SearchBar
                 value={pluginFilter.name}
                 onInput={e => {
-                  if (author) {
-                    route(
-                      `/plugin-hub/${author}${
-                        e.target.value ? '?s=' + e.target.value : ''
-                      }`
-                    )
-                  } else {
-                    route(
-                      `/plugin-hub/${
-                        e.target.value ? '?s=' + e.target.value : ''
-                      }`
-                    )
-                  }
-                  handleChange(e, setPluginFilter)
+                  handleChange(e, author, setPluginFilter)
                 }}
               />
             </div>
@@ -146,12 +151,14 @@ const PluginHub = ({
   )
 }
 
-const mapStateToProps = (state, props) => ({
-  ...props,
-  externalPlugins: getSortedExternalPlugins(state),
-  pluginFilter: getPluginFilter(state),
-  pluginSorting: getPluginSorting(state)
-})
+const mapStateToProps = (state, props) => {
+  return {
+    ...props,
+    externalPlugins: getSortedExternalPlugins(state),
+    pluginFilter: getPluginFilter(state),
+    pluginSorting: getPluginSorting(state)
+  }
+}
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
