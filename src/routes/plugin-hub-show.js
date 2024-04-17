@@ -48,7 +48,11 @@ const PluginHubShow = ({ externalPlugin }) => {
               <div>
                 <h5 class="card-title">{externalPlugin.displayName}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
-                  <a href={`/plugin-hub/${externalPlugin.author}`}>
+                  <a
+                    href={`/plugin-hub/${encodeURIComponent(
+                      externalPlugin.author
+                    )}`}
+                  >
                     {externalPlugin.author}
                   </a>
                 </h6>

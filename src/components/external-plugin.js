@@ -29,7 +29,7 @@ const ExternalPlugin = ({
             <a href={`/plugin-hub/show/${internalName}`}>{displayName}</a>
           </h5>
           <h6 class="card-subtitle mb-2 text-muted">
-            <a href={`/plugin-hub/${author}`}>{author}</a>
+            <a href={`/plugin-hub/${encodeURIComponent(author)}`}>{author}</a>
           </h6>
           <p class="card-text">
             {count > 0 && (
