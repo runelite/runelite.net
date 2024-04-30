@@ -281,13 +281,6 @@ export default [
     link: 'https://github.com/runelite/runelite/wiki/Motherlode-Mine'
   },
   {
-    image: '/img/features/newsfeed.png',
-    title: 'News feed',
-    description:
-      'Displays the latest RuneLite blog posts, OldSchool RuneScape news, and a Twitter feed of JMods.',
-    link: 'https://github.com/runelite/runelite/wiki/News-Feed'
-  },
-  {
     image: '/img/features/nmz.png',
     title: 'Nightmare Zone',
     description:
