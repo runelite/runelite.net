@@ -11,7 +11,7 @@ module.exports = {
   buttons: [
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.7.1/RuneLiteSetup.exe',
+        'https://github.com/runelite/launcher/releases/download/2.7.2/RuneLiteSetup.exe',
       icon: 'fab fa-fw fa-windows',
       text: {
         os: 'Windows',
@@ -21,7 +21,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.7.1/RuneLiteSetup32.exe',
+        'https://github.com/runelite/launcher/releases/download/2.7.2/RuneLiteSetup32.exe',
       icon: 'fab fa-fw fa-windows',
       text: {
         os: 'Windows',
@@ -31,7 +31,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.7.1/RuneLiteSetupAArch64.exe',
+        'https://github.com/runelite/launcher/releases/download/2.7.2/RuneLiteSetupAArch64.exe',
       icon: 'fab fa-fw fa-windows',
       text: {
         os: 'Windows',
@@ -41,7 +41,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.7.1/RuneLite-x64.dmg',
+        'https://github.com/runelite/launcher/releases/download/2.7.2/RuneLite-x64.dmg',
       icon: 'fab fa-fw fa-apple',
       text: {
         os: 'macOS',
@@ -51,7 +51,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.7.1/RuneLite-aarch64.dmg',
+        'https://github.com/runelite/launcher/releases/download/2.7.2/RuneLite-aarch64.dmg',
       icon: 'fab fa-fw fa-apple',
       text: {
         os: 'macOS',
@@ -61,7 +61,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.7.1/RuneLite.AppImage',
+        'https://github.com/runelite/launcher/releases/download/2.7.2/RuneLite.AppImage',
       icon: 'fab fa-fw fa-linux',
       text: {
         os: 'Linux',
@@ -71,7 +71,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.7.1/RuneLite-aarch64.AppImage',
+        'https://github.com/runelite/launcher/releases/download/2.7.2/RuneLite-aarch64.AppImage',
       icon: 'fab fa-fw fa-linux',
       text: {
         os: 'Linux',
@@ -81,7 +81,7 @@ module.exports = {
     },
     {
       link:
-        'https://github.com/runelite/launcher/releases/download/2.7.1/RuneLite.jar',
+        'https://github.com/runelite/launcher/releases/download/2.7.2/RuneLite.jar',
       icon: 'fas fa-fw fa-coffee',
       text: {
         os: 'All platforms'
