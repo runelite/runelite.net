@@ -66,6 +66,7 @@ export const {
 
       let repository = ''
       let commit = ''
+      let disabled = false
 
       response.split('\n').forEach(line => {
         const kv = line.split('=')
@@ -77,9 +78,13 @@ export const {
         if (kv[0] === 'commit') {
           commit = kv[1]
         }
+
+        if (kv[0] === 'disabled') {
+          disabled = true
+        }
       })
 
-      if (!repository) {
+      if (!repository || disabled) {
         return
       }
 
