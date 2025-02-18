@@ -143,10 +143,18 @@ export const {
       try {
         let dom = new DOMParser().parseFromString(rawReadmeHTML, 'text/html')
         dom.querySelectorAll('a').forEach(el => {
-          el.href = mungeURL(el.getAttribute('href'), el)
+          let href = el.getAttribute('href')
+          if (!href) {
+            return;
+          }
+
+          el.href = mungeURL(href, el)
         })
         dom.querySelectorAll('img').forEach(el => {
           let src = el.getAttribute('src')
+          if (!src) {
+            return;
+          }
 
           // people like to use massive (50+ MiB) gifs, so turn these into links
           if (src.endsWith('.gif')) {
