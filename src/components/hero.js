@@ -21,10 +21,10 @@ function isOsCorrect(architecture, osName) {
     if (navigator.userAgentData) {
       if (architecture === 'arm') {
         return osName === 'WindowsArm64'
-        // ua.architecture is x86 for WOW64
       } else if (
         architecture === 'x86-64' ||
         userAgent.indexOf('Win64') !== -1 ||
+        // ua.architecture is x86 for WOW64
         userAgent.indexOf('WOW64') !== -1
       ) {
         return osName === 'Windows64'
