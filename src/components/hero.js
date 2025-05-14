@@ -11,17 +11,31 @@ import { numberWithCommas } from '../util'
 import links from '../_data/links'
 import Commit from './commit'
 
-function isOsCorrect(osName) {
+function isOsCorrect(architecture, osName) {
   const platform = navigator.platform.toLowerCase()
-
+  const userAgent = navigator.userAgent
   if (platform.indexOf('os x') !== -1 || platform.indexOf('mac') !== -1) {
     return osName === 'macOS'
   }
-
   if (platform.indexOf('win') !== -1) {
-    if (
-      navigator.userAgent.indexOf('Win64') !== -1 ||
-      navigator.userAgent.indexOf('WOW64') !== -1
+    if (navigator.userAgentData) {
+      if (architecture === 'arm') {
+        return osName === 'WindowsArm64'
+      } else if (
+        architecture === 'x86-64' ||
+        userAgent.indexOf('Win64') !== -1 ||
+        // ua.architecture is x86 for WOW64
+        userAgent.indexOf('WOW64') !== -1
+      ) {
+        return osName === 'Windows64'
+      } else if (architecture === 'x86') {
+        return osName === 'Windows32'
+      } else {
+        return false
+      }
+    } else if (
+      userAgent.indexOf('Win64') !== -1 ||
+      userAgent.indexOf('WOW64') !== -1
     ) {
       return osName === 'Windows64'
     } else {
@@ -61,7 +75,8 @@ class Hero extends Component {
     this.handleScroll = this.handleScroll.bind(this)
 
     this.state = {
-      interval: 0
+      interval: 0,
+      architecture: ''
     }
   }
 
@@ -83,9 +98,16 @@ class Hero extends Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // Add background updater
+    let architecture = ''
+    if (navigator.userAgentData) {
+      architecture = (
+        await navigator.userAgentData.getHighEntropyValues(['architecture'])
+      ).architecture
+    }
     this.setState({
+      architecture,
       interval: setInterval(() => {
         const { images, heroImage, nextHeroImage } = this.props
         const numImages = images.length
@@ -136,7 +158,9 @@ class Hero extends Component {
     loggedIn,
     heroImage
   }) {
-    let downloadButtons = buttons.filter(button => isOsCorrect(button.os))
+    let downloadButtons = buttons.filter(button =>
+      isOsCorrect(this.state.architecture, button.os)
+    )
     if (downloadButtons.length === 0) {
       downloadButtons = [buttons.find(button => button.os === 'all')]
     }
