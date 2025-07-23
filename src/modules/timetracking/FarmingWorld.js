@@ -12,17 +12,42 @@ export class FarmingWorld {
         'Al Kharid',
         13106,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.CACTUS)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.CACTUS
+        )
       ),
       13362,
       13105
     )
     this.add(
       new FarmingRegion(
+        'Aldarin',
+        5421,
+        false,
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.HOPS
+        )
+      ),
+      5165,
+      5166,
+      5422,
+      5677,
+      5678
+    )
+    this.add(
+      new FarmingRegion(
         'Ardougne',
         10290,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.BUSH)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.BUSH
+        )
       ),
       10546
     )
@@ -33,18 +58,49 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           'North',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch(
           'South',
-          Varbits.FARMING_4772,
+          VarbitID.FARMING_TRANSMIT_B,
           PatchImplementation.ALLOTMENT
         ),
-        new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
-        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB),
-        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.COMPOST)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_C,
+          PatchImplementation.FLOWER
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_D,
+          PatchImplementation.HERB
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_E,
+          PatchImplementation.COMPOST
+        )
       )
+    )
+    this.add(
+      new FarmingRegion(
+        'Auburnvale',
+        5427,
+        false,
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.TREE
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_B,
+          PatchImplementation.BELLADONNA
+        )
+      ),
+      5428,
+      5684
     )
     this.add(
       new FarmingRegion(
@@ -53,7 +109,7 @@ export class FarmingWorld {
         true,
         new FarmingPatch(
           '',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.HARDWOOD_TREE
         )
       ),
@@ -66,12 +122,12 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           '',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.FRUIT_TREE
         ),
         new FarmingPatch(
           '',
-          Varbits.FARMING_4772,
+          VarbitID.FARMING_TRANSMIT_B,
           PatchImplementation.SPIRIT_TREE
         )
       ),
@@ -84,17 +140,29 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           'North',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch(
           'South',
-          Varbits.FARMING_4772,
+          VarbitID.FARMING_TRANSMIT_B,
           PatchImplementation.ALLOTMENT
         ),
-        new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
-        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB),
-        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.COMPOST)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_C,
+          PatchImplementation.FLOWER
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_D,
+          PatchImplementation.HERB
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_E,
+          PatchImplementation.COMPOST
+        )
       ),
       11061,
       11318,
@@ -107,7 +175,7 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           '',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.FRUIT_TREE
         )
       )
@@ -119,26 +187,46 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           'North',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch(
           'South',
-          Varbits.FARMING_4772,
+          VarbitID.FARMING_TRANSMIT_B,
           PatchImplementation.ALLOTMENT
         ),
-        new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
-        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB),
-        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.COMPOST)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_C,
+          PatchImplementation.FLOWER
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_D,
+          PatchImplementation.HERB
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_E,
+          PatchImplementation.COMPOST
+        )
       ),
-      6448
+      6447,
+      6448,
+      6449,
+      6191,
+      6193
     )
     this.add(
       new FarmingRegion(
         "Champions' Guild",
         12596,
         true,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.BUSH)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.BUSH
+        )
       )
     )
     this.add(
@@ -147,8 +235,8 @@ export class FarmingWorld {
         12340,
         false,
         new FarmingPatch(
-          'Belladonna',
-          Varbits.FARMING_4771,
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.BELLADONNA
         )
       )
@@ -158,7 +246,11 @@ export class FarmingWorld {
         'Entrana',
         11060,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.HOPS)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.HOPS
+        )
       ),
       11316
     )
@@ -167,10 +259,14 @@ export class FarmingWorld {
         'Etceteria',
         10300,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.BUSH),
         new FarmingPatch(
           '',
-          Varbits.FARMING_4772,
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.BUSH
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_B,
           PatchImplementation.SPIRIT_TREE
         )
       )
@@ -180,7 +276,11 @@ export class FarmingWorld {
         'Falador',
         11828,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.TREE)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.TREE
+        )
       ),
       12084
     )
@@ -191,17 +291,29 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           'North West',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch(
           'South East',
-          Varbits.FARMING_4772,
+          VarbitID.FARMING_TRANSMIT_B,
           PatchImplementation.ALLOTMENT
         ),
-        new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
-        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB),
-        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.COMPOST)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_C,
+          PatchImplementation.FLOWER
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_D,
+          PatchImplementation.HERB
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_E,
+          PatchImplementation.COMPOST
+        )
       )
     )
     this.add(
@@ -211,17 +323,17 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           'East',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.HARDWOOD_TREE
         ),
         new FarmingPatch(
           'Middle',
-          Varbits.FARMING_4772,
+          VarbitID.FARMING_TRANSMIT_B,
           PatchImplementation.HARDWOOD_TREE
         ),
         new FarmingPatch(
           'West',
-          Varbits.FARMING_4773,
+          VarbitID.FARMING_TRANSMIT_C,
           PatchImplementation.HARDWOOD_TREE
         )
       ),
@@ -241,12 +353,12 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           'North',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.SEAWEED
         ),
         new FarmingPatch(
           'South',
-          Varbits.FARMING_4772,
+          VarbitID.FARMING_TRANSMIT_B,
           PatchImplementation.SEAWEED
         )
       )
@@ -256,10 +368,14 @@ export class FarmingWorld {
         'Gnome Stronghold',
         9781,
         true,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.TREE),
         new FarmingPatch(
           '',
-          Varbits.FARMING_4772,
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.TREE
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_B,
           PatchImplementation.FRUIT_TREE
         )
       ),
@@ -274,11 +390,39 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           '',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.ALLOTMENT
         ),
-        new FarmingPatch('', Varbits.FARMING_4772, PatchImplementation.HERB)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_B,
+          PatchImplementation.HERB
+        )
       )
+    )
+    this.add(
+      new FarmingRegion(
+        'Kastori',
+        5243,
+        false,
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.CALQUAT
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_B,
+          PatchImplementation.FRUIT_TREE
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_C,
+          PatchImplementation.FLOWER
+        )
+      ),
+      5167,
+      5424
     )
     this.add(
       new FarmingRegion(
@@ -287,20 +431,32 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           'North East',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch(
           'South West',
-          Varbits.FARMING_4772,
+          VarbitID.FARMING_TRANSMIT_B,
           PatchImplementation.ALLOTMENT
         ),
-        new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
-        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB),
-        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.COMPOST),
         new FarmingPatch(
           '',
-          Varbits.FARMING_7904,
+          VarbitID.FARMING_TRANSMIT_C,
+          PatchImplementation.FLOWER
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_D,
+          PatchImplementation.HERB
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_E,
+          PatchImplementation.COMPOST
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_F,
           PatchImplementation.SPIRIT_TREE
         )
       ),
@@ -313,62 +469,62 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           'East 1',
-          Varbits.GRAPES_4953,
+          VarbitID.FARMING_TRANSMIT_A1,
           PatchImplementation.GRAPES
         ),
         new FarmingPatch(
           'East 2',
-          Varbits.GRAPES_4954,
+          VarbitID.FARMING_TRANSMIT_A2,
           PatchImplementation.GRAPES
         ),
         new FarmingPatch(
           'East 3',
-          Varbits.GRAPES_4955,
+          VarbitID.FARMING_TRANSMIT_B1,
           PatchImplementation.GRAPES
         ),
         new FarmingPatch(
           'East 4',
-          Varbits.GRAPES_4956,
+          VarbitID.FARMING_TRANSMIT_B2,
           PatchImplementation.GRAPES
         ),
         new FarmingPatch(
           'East 5',
-          Varbits.GRAPES_4957,
+          VarbitID.FARMING_TRANSMIT_C1,
           PatchImplementation.GRAPES
         ),
         new FarmingPatch(
           'East 6',
-          Varbits.GRAPES_4958,
+          VarbitID.FARMING_TRANSMIT_C2,
           PatchImplementation.GRAPES
         ),
         new FarmingPatch(
           'West 1',
-          Varbits.GRAPES_4959,
+          VarbitID.FARMING_TRANSMIT_D1,
           PatchImplementation.GRAPES
         ),
         new FarmingPatch(
           'West 2',
-          Varbits.GRAPES_4960,
+          VarbitID.FARMING_TRANSMIT_D2,
           PatchImplementation.GRAPES
         ),
         new FarmingPatch(
           'West 3',
-          Varbits.GRAPES_4961,
+          VarbitID.FARMING_TRANSMIT_E1,
           PatchImplementation.GRAPES
         ),
         new FarmingPatch(
           'West 4',
-          Varbits.GRAPES_4962,
+          VarbitID.FARMING_TRANSMIT_E2,
           PatchImplementation.GRAPES
         ),
         new FarmingPatch(
           'West 5',
-          Varbits.GRAPES_4963,
+          VarbitID.FARMING_TRANSMIT_F1,
           PatchImplementation.GRAPES
         ),
         new FarmingPatch(
           'West 6',
-          Varbits.GRAPES_4964,
+          VarbitID.FARMING_TRANSMIT_F2,
           PatchImplementation.GRAPES
         )
       )
@@ -380,7 +536,7 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           '',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.FRUIT_TREE
         )
       ),
@@ -391,7 +547,11 @@ export class FarmingWorld {
         'Lumbridge',
         12851,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.HOPS)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.HOPS
+        )
       )
     )
     this.add(
@@ -399,7 +559,11 @@ export class FarmingWorld {
         'Lumbridge',
         12594,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.TREE)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.TREE
+        )
       ),
       12850
     )
@@ -410,7 +574,7 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           'Mushroom',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.MUSHROOM
         )
       ),
@@ -423,17 +587,29 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           'North West',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch(
           'South East',
-          Varbits.FARMING_4772,
+          VarbitID.FARMING_TRANSMIT_B,
           PatchImplementation.ALLOTMENT
         ),
-        new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
-        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.HERB),
-        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.COMPOST)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_C,
+          PatchImplementation.FLOWER
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_D,
+          PatchImplementation.HERB
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_E,
+          PatchImplementation.COMPOST
+        )
       ),
       14390
     )
@@ -444,7 +620,7 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           '',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.SPIRIT_TREE
         )
       ),
@@ -455,7 +631,11 @@ export class FarmingWorld {
         'Rimmington',
         11570,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.BUSH)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.BUSH
+        )
       ),
       11826
     )
@@ -464,7 +644,11 @@ export class FarmingWorld {
         "Seers' Village",
         10551,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.HOPS)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.HOPS
+        )
       ),
       10550
     )
@@ -473,7 +657,11 @@ export class FarmingWorld {
         'Tai Bwo Wannai',
         11056,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.CALQUAT)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.CALQUAT
+        )
       )
     )
     this.add(
@@ -481,7 +669,11 @@ export class FarmingWorld {
         'Taverley',
         11573,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.TREE)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.TREE
+        )
       ),
       11829
     )
@@ -492,7 +684,7 @@ export class FarmingWorld {
         true,
         new FarmingPatch(
           '',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.FRUIT_TREE
         )
       ),
@@ -503,7 +695,11 @@ export class FarmingWorld {
         'Troll Stronghold',
         11321,
         true,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.HERB)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.HERB
+        )
       )
     )
     this.add(
@@ -511,7 +707,11 @@ export class FarmingWorld {
         'Varrock',
         12854,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.TREE)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.TREE
+        )
       ),
       12853
     )
@@ -520,7 +720,11 @@ export class FarmingWorld {
         'Yanille',
         10288,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.HOPS)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.HOPS
+        )
       )
     )
     this.add(
@@ -528,7 +732,11 @@ export class FarmingWorld {
         'Weiss',
         11325,
         false,
-        new FarmingPatch('', Varbits.FARMING_4771, PatchImplementation.HERB)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.HERB
+        )
       )
     )
     this.add(
@@ -538,7 +746,7 @@ export class FarmingWorld {
         true,
         new FarmingPatch(
           'Hespori',
-          Varbits.FARMING_7908,
+          VarbitID.FARMING_TRANSMIT_J,
           PatchImplementation.HESPORI
         )
       )
@@ -548,47 +756,71 @@ export class FarmingWorld {
         'Farming Guild',
         4922,
         true,
-        new FarmingPatch('', Varbits.FARMING_7905, PatchImplementation.TREE),
-        new FarmingPatch('', Varbits.FARMING_4775, PatchImplementation.HERB),
-        new FarmingPatch('', Varbits.FARMING_4772, PatchImplementation.BUSH),
-        new FarmingPatch('', Varbits.FARMING_7906, PatchImplementation.FLOWER),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_G,
+          PatchImplementation.TREE
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_E,
+          PatchImplementation.HERB
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_B,
+          PatchImplementation.BUSH
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_H,
+          PatchImplementation.FLOWER
+        ),
         new FarmingPatch(
           'North',
-          Varbits.FARMING_4773,
+          VarbitID.FARMING_TRANSMIT_C,
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch(
           'South',
-          Varbits.FARMING_4774,
+          VarbitID.FARMING_TRANSMIT_D,
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch(
           '',
-          Varbits.FARMING_7912,
+          VarbitID.FARMING_TRANSMIT_N,
           PatchImplementation.BIG_COMPOST
         ),
-        new FarmingPatch('', Varbits.FARMING_7904, PatchImplementation.CACTUS),
         new FarmingPatch(
           '',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_F,
+          PatchImplementation.CACTUS
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.SPIRIT_TREE
         ),
         new FarmingPatch(
           '',
-          Varbits.FARMING_7909,
+          VarbitID.FARMING_TRANSMIT_K,
           PatchImplementation.FRUIT_TREE
         ),
         new FarmingPatch(
           'Anima',
-          Varbits.FARMING_7911,
+          VarbitID.FARMING_TRANSMIT_M,
           PatchImplementation.ANIMA
         ),
         new FarmingPatch(
           '',
-          Varbits.FARMING_7910,
+          VarbitID.FARMING_TRANSMIT_L,
           PatchImplementation.CELASTRUS
         ),
-        new FarmingPatch('', Varbits.FARMING_7907, PatchImplementation.REDWOOD)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_I,
+          PatchImplementation.REDWOOD
+        )
       )),
       5177,
       5178,
@@ -606,21 +838,29 @@ export class FarmingWorld {
         false,
         new FarmingPatch(
           'North',
-          Varbits.FARMING_4771,
+          VarbitID.FARMING_TRANSMIT_A,
           PatchImplementation.ALLOTMENT
         ),
         new FarmingPatch(
           'South',
-          Varbits.FARMING_4772,
+          VarbitID.FARMING_TRANSMIT_B,
           PatchImplementation.ALLOTMENT
         ),
-        new FarmingPatch('', Varbits.FARMING_4773, PatchImplementation.FLOWER),
         new FarmingPatch(
           '',
-          Varbits.FARMING_4775,
+          VarbitID.FARMING_TRANSMIT_C,
+          PatchImplementation.FLOWER
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_E,
           PatchImplementation.CRYSTAL_TREE
         ),
-        new FarmingPatch('', Varbits.FARMING_4774, PatchImplementation.COMPOST)
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_D,
+          PatchImplementation.COMPOST
+        )
       ),
       12895,
       12894,
@@ -667,6 +907,6 @@ export class FarmingWorld {
 }
 FarmingWorld['__class'] = 'timetracking.FarmingWorld'
 import { PatchImplementation } from './PatchImplementation'
-import { Varbits } from './Varbits'
+import { VarbitID } from './VarbitID'
 import { FarmingPatch } from './FarmingPatch'
 import { FarmingRegion } from './FarmingRegion'
