@@ -7,21 +7,21 @@ import { ItemID } from './ItemID'
 import { NullItemID } from './NullItemID'
 export var PatchImplementation
 ;(function (PatchImplementation) {
-  PatchImplementation[(PatchImplementation['BELLADONNA'] = 0)] = 'BELLADONNA'
-  PatchImplementation[(PatchImplementation['MUSHROOM'] = 1)] = 'MUSHROOM'
-  PatchImplementation[(PatchImplementation['HESPORI'] = 2)] = 'HESPORI'
-  PatchImplementation[(PatchImplementation['ALLOTMENT'] = 3)] = 'ALLOTMENT'
-  PatchImplementation[(PatchImplementation['HERB'] = 4)] = 'HERB'
-  PatchImplementation[(PatchImplementation['FLOWER'] = 5)] = 'FLOWER'
-  PatchImplementation[(PatchImplementation['BUSH'] = 6)] = 'BUSH'
-  PatchImplementation[(PatchImplementation['FRUIT_TREE'] = 7)] = 'FRUIT_TREE'
-  PatchImplementation[(PatchImplementation['HOPS'] = 8)] = 'HOPS'
-  PatchImplementation[(PatchImplementation['TREE'] = 9)] = 'TREE'
-  PatchImplementation[(PatchImplementation['HARDWOOD_TREE'] = 10)] =
+  PatchImplementation[(PatchImplementation['MUSHROOM'] = 0)] = 'MUSHROOM'
+  PatchImplementation[(PatchImplementation['HESPORI'] = 1)] = 'HESPORI'
+  PatchImplementation[(PatchImplementation['ALLOTMENT'] = 2)] = 'ALLOTMENT'
+  PatchImplementation[(PatchImplementation['HERB'] = 3)] = 'HERB'
+  PatchImplementation[(PatchImplementation['FLOWER'] = 4)] = 'FLOWER'
+  PatchImplementation[(PatchImplementation['BUSH'] = 5)] = 'BUSH'
+  PatchImplementation[(PatchImplementation['FRUIT_TREE'] = 6)] = 'FRUIT_TREE'
+  PatchImplementation[(PatchImplementation['HOPS'] = 7)] = 'HOPS'
+  PatchImplementation[(PatchImplementation['TREE'] = 8)] = 'TREE'
+  PatchImplementation[(PatchImplementation['HARDWOOD_TREE'] = 9)] =
     'HARDWOOD_TREE'
-  PatchImplementation[(PatchImplementation['REDWOOD'] = 11)] = 'REDWOOD'
-  PatchImplementation[(PatchImplementation['SPIRIT_TREE'] = 12)] = 'SPIRIT_TREE'
-  PatchImplementation[(PatchImplementation['ANIMA'] = 13)] = 'ANIMA'
+  PatchImplementation[(PatchImplementation['REDWOOD'] = 10)] = 'REDWOOD'
+  PatchImplementation[(PatchImplementation['SPIRIT_TREE'] = 11)] = 'SPIRIT_TREE'
+  PatchImplementation[(PatchImplementation['ANIMA'] = 12)] = 'ANIMA'
+  PatchImplementation[(PatchImplementation['BELLADONNA'] = 13)] = 'BELLADONNA'
   PatchImplementation[(PatchImplementation['CACTUS'] = 14)] = 'CACTUS'
   PatchImplementation[(PatchImplementation['SEAWEED'] = 15)] = 'SEAWEED'
   PatchImplementation[(PatchImplementation['CALQUAT'] = 16)] = 'CALQUAT'
@@ -1369,63 +1369,6 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
           3 - value
         )
       }
-      if (value >= 4 && value <= 7) {
-        return new PatchState(
-          PatchImplementation.Produce.BELLADONNA,
-          CropState.GROWING,
-          value - 4
-        )
-      }
-      if (value === 8) {
-        return new PatchState(
-          PatchImplementation.Produce.BELLADONNA,
-          CropState.HARVESTABLE,
-          0
-        )
-      }
-      if (value >= 9 && value <= 11) {
-        return new PatchState(
-          PatchImplementation.Produce.BELLADONNA,
-          CropState.DISEASED,
-          value - 8
-        )
-      }
-      if (value >= 12 && value <= 14) {
-        return new PatchState(
-          PatchImplementation.Produce.BELLADONNA,
-          CropState.DEAD,
-          value - 11
-        )
-      }
-      if (value >= 15 && value <= 255) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      return null
-    }
-  }
-  PatchImplementation.PatchImplementation$0_$WRAPPER = PatchImplementation$0_$WRAPPER
-  /** @ignore */
-  class PatchImplementation$1_$WRAPPER extends PatchImplementation_$WRAPPER {
-    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
-      super(_$ordinal, _$name, tab, name, healthCheckRequired)
-    }
-    /**
-     *
-     * @param {number} value
-     * @return {PatchState}
-     */
-    forVarbitValue(value) {
-      if (value >= 0 && value <= 3) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3 - value
-        )
-      }
       if (value >= 4 && value <= 9) {
         return new PatchState(
           PatchImplementation.Produce.MUSHROOM,
@@ -1464,9 +1407,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$1_$WRAPPER = PatchImplementation$1_$WRAPPER
+  PatchImplementation.PatchImplementation$0_$WRAPPER = PatchImplementation$0_$WRAPPER
   /** @ignore */
-  class PatchImplementation$2_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$1_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -1507,9 +1450,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$2_$WRAPPER = PatchImplementation$2_$WRAPPER
+  PatchImplementation.PatchImplementation$1_$WRAPPER = PatchImplementation$1_$WRAPPER
   /** @ignore */
-  class PatchImplementation$3_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$2_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -1977,9 +1920,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$3_$WRAPPER = PatchImplementation$3_$WRAPPER
+  PatchImplementation.PatchImplementation$2_$WRAPPER = PatchImplementation$2_$WRAPPER
   /** @ignore */
-  class PatchImplementation$4_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$3_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -2356,9 +2299,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$4_$WRAPPER = PatchImplementation$4_$WRAPPER
+  PatchImplementation.PatchImplementation$3_$WRAPPER = PatchImplementation$3_$WRAPPER
   /** @ignore */
-  class PatchImplementation$5_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$4_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -2742,9 +2685,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$5_$WRAPPER = PatchImplementation$5_$WRAPPER
+  PatchImplementation.PatchImplementation$4_$WRAPPER = PatchImplementation$4_$WRAPPER
   /** @ignore */
-  class PatchImplementation$6_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$5_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -3084,9 +3027,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$6_$WRAPPER = PatchImplementation$6_$WRAPPER
+  PatchImplementation.PatchImplementation$5_$WRAPPER = PatchImplementation$5_$WRAPPER
   /** @ignore */
-  class PatchImplementation$7_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$6_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -3500,9 +3443,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$7_$WRAPPER = PatchImplementation$7_$WRAPPER
+  PatchImplementation.PatchImplementation$6_$WRAPPER = PatchImplementation$6_$WRAPPER
   /** @ignore */
-  class PatchImplementation$8_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$7_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -3928,9 +3871,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$8_$WRAPPER = PatchImplementation$8_$WRAPPER
+  PatchImplementation.PatchImplementation$7_$WRAPPER = PatchImplementation$7_$WRAPPER
   /** @ignore */
-  class PatchImplementation$9_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$8_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -4338,9 +4281,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$9_$WRAPPER = PatchImplementation$9_$WRAPPER
+  PatchImplementation.PatchImplementation$8_$WRAPPER = PatchImplementation$8_$WRAPPER
   /** @ignore */
-  class PatchImplementation$10_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$9_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -4462,9 +4405,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$10_$WRAPPER = PatchImplementation$10_$WRAPPER
+  PatchImplementation.PatchImplementation$9_$WRAPPER = PatchImplementation$9_$WRAPPER
   /** @ignore */
-  class PatchImplementation$11_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$10_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -4535,9 +4478,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$11_$WRAPPER = PatchImplementation$11_$WRAPPER
+  PatchImplementation.PatchImplementation$10_$WRAPPER = PatchImplementation$10_$WRAPPER
   /** @ignore */
-  class PatchImplementation$12_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$11_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -4608,9 +4551,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$12_$WRAPPER = PatchImplementation$12_$WRAPPER
+  PatchImplementation.PatchImplementation$11_$WRAPPER = PatchImplementation$11_$WRAPPER
   /** @ignore */
-  class PatchImplementation$13_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$12_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -4656,6 +4599,63 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
         )
       }
       if (value >= 35 && value <= 255) {
+        return new PatchState(
+          PatchImplementation.Produce.WEEDS,
+          CropState.GROWING,
+          3
+        )
+      }
+      return null
+    }
+  }
+  PatchImplementation.PatchImplementation$12_$WRAPPER = PatchImplementation$12_$WRAPPER
+  /** @ignore */
+  class PatchImplementation$13_$WRAPPER extends PatchImplementation_$WRAPPER {
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
+    }
+    /**
+     *
+     * @param {number} value
+     * @return {PatchState}
+     */
+    forVarbitValue(value) {
+      if (value >= 0 && value <= 3) {
+        return new PatchState(
+          PatchImplementation.Produce.WEEDS,
+          CropState.GROWING,
+          3 - value
+        )
+      }
+      if (value >= 4 && value <= 7) {
+        return new PatchState(
+          PatchImplementation.Produce.BELLADONNA,
+          CropState.GROWING,
+          value - 4
+        )
+      }
+      if (value === 8) {
+        return new PatchState(
+          PatchImplementation.Produce.BELLADONNA,
+          CropState.HARVESTABLE,
+          0
+        )
+      }
+      if (value >= 9 && value <= 11) {
+        return new PatchState(
+          PatchImplementation.Produce.BELLADONNA,
+          CropState.DISEASED,
+          value - 8
+        )
+      }
+      if (value >= 12 && value <= 14) {
+        return new PatchState(
+          PatchImplementation.Produce.BELLADONNA,
+          CropState.DEAD,
+          value - 11
+        )
+      }
+      if (value >= 15 && value <= 255) {
         return new PatchState(
           PatchImplementation.Produce.WEEDS,
           CropState.GROWING,
@@ -5340,98 +5340,98 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
 PatchImplementation['_$wrappers'] = {
   0: new PatchImplementation.PatchImplementation$0_$WRAPPER(
     0,
-    'BELLADONNA',
+    'MUSHROOM',
     Tab.SPECIAL,
     '',
     false
   ),
   1: new PatchImplementation.PatchImplementation$1_$WRAPPER(
     1,
-    'MUSHROOM',
-    Tab.SPECIAL,
-    '',
-    false
-  ),
-  2: new PatchImplementation.PatchImplementation$2_$WRAPPER(
-    2,
     'HESPORI',
     Tab.SPECIAL,
     '',
     true
   ),
-  3: new PatchImplementation.PatchImplementation$3_$WRAPPER(
-    3,
+  2: new PatchImplementation.PatchImplementation$2_$WRAPPER(
+    2,
     'ALLOTMENT',
     Tab.ALLOTMENT,
     '',
     false
   ),
-  4: new PatchImplementation.PatchImplementation$4_$WRAPPER(
-    4,
+  3: new PatchImplementation.PatchImplementation$3_$WRAPPER(
+    3,
     'HERB',
     Tab.HERB,
     '',
     false
   ),
-  5: new PatchImplementation.PatchImplementation$5_$WRAPPER(
-    5,
+  4: new PatchImplementation.PatchImplementation$4_$WRAPPER(
+    4,
     'FLOWER',
     Tab.FLOWER,
     '',
     false
   ),
-  6: new PatchImplementation.PatchImplementation$6_$WRAPPER(
-    6,
+  5: new PatchImplementation.PatchImplementation$5_$WRAPPER(
+    5,
     'BUSH',
     Tab.BUSH,
     '',
     true
   ),
-  7: new PatchImplementation.PatchImplementation$7_$WRAPPER(
-    7,
+  6: new PatchImplementation.PatchImplementation$6_$WRAPPER(
+    6,
     'FRUIT_TREE',
     Tab.FRUIT_TREE,
     '',
     true
   ),
-  8: new PatchImplementation.PatchImplementation$8_$WRAPPER(
-    8,
+  7: new PatchImplementation.PatchImplementation$7_$WRAPPER(
+    7,
     'HOPS',
     Tab.HOPS,
     '',
     false
   ),
-  9: new PatchImplementation.PatchImplementation$9_$WRAPPER(
-    9,
+  8: new PatchImplementation.PatchImplementation$8_$WRAPPER(
+    8,
     'TREE',
     Tab.TREE,
     '',
     true
   ),
-  10: new PatchImplementation.PatchImplementation$10_$WRAPPER(
-    10,
+  9: new PatchImplementation.PatchImplementation$9_$WRAPPER(
+    9,
     'HARDWOOD_TREE',
     Tab.TREE,
     'Hardwood Trees',
     true
   ),
-  11: new PatchImplementation.PatchImplementation$11_$WRAPPER(
-    11,
+  10: new PatchImplementation.PatchImplementation$10_$WRAPPER(
+    10,
     'REDWOOD',
     Tab.TREE,
     'Redwood Trees',
     true
   ),
-  12: new PatchImplementation.PatchImplementation$12_$WRAPPER(
-    12,
+  11: new PatchImplementation.PatchImplementation$11_$WRAPPER(
+    11,
     'SPIRIT_TREE',
     Tab.TREE,
     'Spirit Trees',
     true
   ),
+  12: new PatchImplementation.PatchImplementation$12_$WRAPPER(
+    12,
+    'ANIMA',
+    Tab.SPECIAL,
+    '',
+    false
+  ),
   13: new PatchImplementation.PatchImplementation$13_$WRAPPER(
     13,
-    'ANIMA',
+    'BELLADONNA',
     Tab.SPECIAL,
     '',
     false
