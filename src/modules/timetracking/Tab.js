@@ -64,16 +64,26 @@ export class Tab_$WRAPPER {
 }
 Tab['__class'] = 'timetracking.Tab'
 Tab['_$wrappers'] = {
-  0: new Tab_$WRAPPER(0, 'OVERVIEW', 'Overview', ItemID.OLD_NOTES),
-  1: new Tab_$WRAPPER(1, 'CLOCK', 'Timers & Stopwatches', ItemID.WATCH),
-  2: new Tab_$WRAPPER(2, 'BIRD_HOUSE', 'Bird Houses', ItemID.OAK_BIRD_HOUSE),
+  0: new Tab_$WRAPPER(0, 'OVERVIEW', 'Overview', ItemID.DS2_CRANDOR_NOTES),
+  1: new Tab_$WRAPPER(1, 'CLOCK', 'Timers & Stopwatches', ItemID.TRAIL_WATCH),
+  2: new Tab_$WRAPPER(2, 'BIRD_HOUSE', 'Bird Houses', ItemID.BIRDHOUSE_OAK),
   3: new Tab_$WRAPPER(3, 'ALLOTMENT', 'Allotment Patches', ItemID.CABBAGE),
-  4: new Tab_$WRAPPER(4, 'FLOWER', 'Flower Patches', ItemID.RED_FLOWERS),
-  5: new Tab_$WRAPPER(5, 'HERB', 'Herb Patches', ItemID.GRIMY_RANARR_WEED),
+  4: new Tab_$WRAPPER(
+    4,
+    'FLOWER',
+    'Flower Patches',
+    ItemID.FLOWERS_WATERFALL_QUEST_RED
+  ),
+  5: new Tab_$WRAPPER(5, 'HERB', 'Herb Patches', ItemID.UNIDENTIFIED_RANARR),
   6: new Tab_$WRAPPER(6, 'TREE', 'Tree Patches', ItemID.YEW_LOGS),
   7: new Tab_$WRAPPER(7, 'FRUIT_TREE', 'Fruit Tree Patches', ItemID.PINEAPPLE),
   8: new Tab_$WRAPPER(8, 'HOPS', 'Hops Patches', ItemID.BARLEY),
-  9: new Tab_$WRAPPER(9, 'BUSH', 'Bush Patches', ItemID.POISON_IVY_BERRIES),
+  9: new Tab_$WRAPPER(9, 'BUSH', 'Bush Patches', ItemID.POISONIVY_BERRIES),
   10: new Tab_$WRAPPER(10, 'GRAPE', 'Grape Patches', ItemID.GRAPES),
-  11: new Tab_$WRAPPER(11, 'SPECIAL', 'Special Patches', ItemID.MUSHROOM)
+  11: new Tab_$WRAPPER(
+    11,
+    'SPECIAL',
+    'Special Patches',
+    ItemID.BITTERCAP_MUSHROOM
+  )
 }
