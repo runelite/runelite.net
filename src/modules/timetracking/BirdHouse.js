@@ -77,43 +77,43 @@ export class BirdHouse_$WRAPPER {
 }
 BirdHouse['__class'] = 'timetracking.BirdHouse'
 BirdHouse['_$wrappers'] = {
-  0: new BirdHouse_$WRAPPER(0, 'NORMAL', 'Bird House', ItemID.BIRD_HOUSE),
-  1: new BirdHouse_$WRAPPER(1, 'OAK', 'Oak Bird House', ItemID.OAK_BIRD_HOUSE),
+  0: new BirdHouse_$WRAPPER(0, 'NORMAL', 'Bird House', ItemID.BIRDHOUSE_NORMAL),
+  1: new BirdHouse_$WRAPPER(1, 'OAK', 'Oak Bird House', ItemID.BIRDHOUSE_OAK),
   2: new BirdHouse_$WRAPPER(
     2,
     'WILLOW',
     'Willow Bird House',
-    ItemID.WILLOW_BIRD_HOUSE
+    ItemID.BIRDHOUSE_WILLOW
   ),
   3: new BirdHouse_$WRAPPER(
     3,
     'TEAK',
     'Teak Bird House',
-    ItemID.TEAK_BIRD_HOUSE
+    ItemID.BIRDHOUSE_TEAK
   ),
   4: new BirdHouse_$WRAPPER(
     4,
     'MAPLE',
     'Maple Bird House',
-    ItemID.MAPLE_BIRD_HOUSE
+    ItemID.BIRDHOUSE_MAPLE
   ),
   5: new BirdHouse_$WRAPPER(
     5,
     'MAHOGANY',
     'Mahogany Bird House',
-    ItemID.MAHOGANY_BIRD_HOUSE
+    ItemID.BIRDHOUSE_MAHOGANY
   ),
-  6: new BirdHouse_$WRAPPER(6, 'YEW', 'Yew Bird House', ItemID.YEW_BIRD_HOUSE),
+  6: new BirdHouse_$WRAPPER(6, 'YEW', 'Yew Bird House', ItemID.BIRDHOUSE_YEW),
   7: new BirdHouse_$WRAPPER(
     7,
     'MAGIC',
     'Magic Bird House',
-    ItemID.MAGIC_BIRD_HOUSE
+    ItemID.BIRDHOUSE_MAGIC
   ),
   8: new BirdHouse_$WRAPPER(
     8,
     'REDWOOD',
     'Redwood Bird House',
-    ItemID.REDWOOD_BIRD_HOUSE
+    ItemID.BIRDHOUSE_REDWOOD
   )
 }

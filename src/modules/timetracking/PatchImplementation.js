@@ -4,7 +4,6 @@ import { Tab } from './Tab'
 import { PatchState } from './PatchState'
 import { CropState } from './CropState'
 import { ItemID } from './ItemID'
-import { NullItemID } from './NullItemID'
 export var PatchImplementation
 ;(function (PatchImplementation) {
   PatchImplementation[(PatchImplementation['MUSHROOM'] = 0)] = 'MUSHROOM'
@@ -23,14 +22,15 @@ export var PatchImplementation
   PatchImplementation[(PatchImplementation['ANIMA'] = 12)] = 'ANIMA'
   PatchImplementation[(PatchImplementation['BELLADONNA'] = 13)] = 'BELLADONNA'
   PatchImplementation[(PatchImplementation['CACTUS'] = 14)] = 'CACTUS'
-  PatchImplementation[(PatchImplementation['SEAWEED'] = 15)] = 'SEAWEED'
-  PatchImplementation[(PatchImplementation['CALQUAT'] = 16)] = 'CALQUAT'
-  PatchImplementation[(PatchImplementation['CELASTRUS'] = 17)] = 'CELASTRUS'
-  PatchImplementation[(PatchImplementation['GRAPES'] = 18)] = 'GRAPES'
-  PatchImplementation[(PatchImplementation['CRYSTAL_TREE'] = 19)] =
+  PatchImplementation[(PatchImplementation['CORAL'] = 15)] = 'CORAL'
+  PatchImplementation[(PatchImplementation['SEAWEED'] = 16)] = 'SEAWEED'
+  PatchImplementation[(PatchImplementation['CALQUAT'] = 17)] = 'CALQUAT'
+  PatchImplementation[(PatchImplementation['CELASTRUS'] = 18)] = 'CELASTRUS'
+  PatchImplementation[(PatchImplementation['GRAPES'] = 19)] = 'GRAPES'
+  PatchImplementation[(PatchImplementation['CRYSTAL_TREE'] = 20)] =
     'CRYSTAL_TREE'
-  PatchImplementation[(PatchImplementation['COMPOST'] = 20)] = 'COMPOST'
-  PatchImplementation[(PatchImplementation['BIG_COMPOST'] = 21)] = 'BIG_COMPOST'
+  PatchImplementation[(PatchImplementation['COMPOST'] = 21)] = 'COMPOST'
+  PatchImplementation[(PatchImplementation['BIG_COMPOST'] = 22)] = 'BIG_COMPOST'
 })(PatchImplementation || (PatchImplementation = {}))
 /** @ignore */
 export class PatchImplementation_$WRAPPER {
@@ -93,64 +93,74 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
     Produce[(Produce['ASGARNIAN'] = 24)] = 'ASGARNIAN'
     Produce[(Produce['JUTE'] = 25)] = 'JUTE'
     Produce[(Produce['YANILLIAN'] = 26)] = 'YANILLIAN'
-    Produce[(Produce['KRANDORIAN'] = 27)] = 'KRANDORIAN'
-    Produce[(Produce['WILDBLOOD'] = 28)] = 'WILDBLOOD'
-    Produce[(Produce['GUAM'] = 29)] = 'GUAM'
-    Produce[(Produce['MARRENTILL'] = 30)] = 'MARRENTILL'
-    Produce[(Produce['TARROMIN'] = 31)] = 'TARROMIN'
-    Produce[(Produce['HARRALANDER'] = 32)] = 'HARRALANDER'
-    Produce[(Produce['RANARR'] = 33)] = 'RANARR'
-    Produce[(Produce['TOADFLAX'] = 34)] = 'TOADFLAX'
-    Produce[(Produce['IRIT'] = 35)] = 'IRIT'
-    Produce[(Produce['AVANTOE'] = 36)] = 'AVANTOE'
-    Produce[(Produce['KWUARM'] = 37)] = 'KWUARM'
-    Produce[(Produce['SNAPDRAGON'] = 38)] = 'SNAPDRAGON'
-    Produce[(Produce['CADANTINE'] = 39)] = 'CADANTINE'
-    Produce[(Produce['LANTADYME'] = 40)] = 'LANTADYME'
-    Produce[(Produce['DWARF_WEED'] = 41)] = 'DWARF_WEED'
-    Produce[(Produce['TORSTOL'] = 42)] = 'TORSTOL'
-    Produce[(Produce['GOUTWEED'] = 43)] = 'GOUTWEED'
-    Produce[(Produce['ANYHERB'] = 44)] = 'ANYHERB'
-    Produce[(Produce['OAK'] = 45)] = 'OAK'
-    Produce[(Produce['WILLOW'] = 46)] = 'WILLOW'
-    Produce[(Produce['MAPLE'] = 47)] = 'MAPLE'
-    Produce[(Produce['YEW'] = 48)] = 'YEW'
-    Produce[(Produce['MAGIC'] = 49)] = 'MAGIC'
-    Produce[(Produce['APPLE'] = 50)] = 'APPLE'
-    Produce[(Produce['BANANA'] = 51)] = 'BANANA'
-    Produce[(Produce['ORANGE'] = 52)] = 'ORANGE'
-    Produce[(Produce['CURRY'] = 53)] = 'CURRY'
-    Produce[(Produce['PINEAPPLE'] = 54)] = 'PINEAPPLE'
-    Produce[(Produce['PAPAYA'] = 55)] = 'PAPAYA'
-    Produce[(Produce['PALM'] = 56)] = 'PALM'
-    Produce[(Produce['DRAGONFRUIT'] = 57)] = 'DRAGONFRUIT'
-    Produce[(Produce['CACTUS'] = 58)] = 'CACTUS'
-    Produce[(Produce['POTATO_CACTUS'] = 59)] = 'POTATO_CACTUS'
-    Produce[(Produce['TEAK'] = 60)] = 'TEAK'
-    Produce[(Produce['MAHOGANY'] = 61)] = 'MAHOGANY'
-    Produce[(Produce['ATTAS'] = 62)] = 'ATTAS'
-    Produce[(Produce['IASOR'] = 63)] = 'IASOR'
-    Produce[(Produce['KRONOS'] = 64)] = 'KRONOS'
-    Produce[(Produce['SEAWEED'] = 65)] = 'SEAWEED'
-    Produce[(Produce['GRAPE'] = 66)] = 'GRAPE'
-    Produce[(Produce['MUSHROOM'] = 67)] = 'MUSHROOM'
-    Produce[(Produce['BELLADONNA'] = 68)] = 'BELLADONNA'
-    Produce[(Produce['CALQUAT'] = 69)] = 'CALQUAT'
-    Produce[(Produce['SPIRIT_TREE'] = 70)] = 'SPIRIT_TREE'
-    Produce[(Produce['CELASTRUS'] = 71)] = 'CELASTRUS'
-    Produce[(Produce['REDWOOD'] = 72)] = 'REDWOOD'
-    Produce[(Produce['HESPORI'] = 73)] = 'HESPORI'
-    Produce[(Produce['CRYSTAL_TREE'] = 74)] = 'CRYSTAL_TREE'
-    Produce[(Produce['EMPTY_COMPOST_BIN'] = 75)] = 'EMPTY_COMPOST_BIN'
-    Produce[(Produce['COMPOST'] = 76)] = 'COMPOST'
-    Produce[(Produce['SUPERCOMPOST'] = 77)] = 'SUPERCOMPOST'
-    Produce[(Produce['ULTRACOMPOST'] = 78)] = 'ULTRACOMPOST'
-    Produce[(Produce['ROTTEN_TOMATO'] = 79)] = 'ROTTEN_TOMATO'
-    Produce[(Produce['EMPTY_BIG_COMPOST_BIN'] = 80)] = 'EMPTY_BIG_COMPOST_BIN'
-    Produce[(Produce['BIG_COMPOST'] = 81)] = 'BIG_COMPOST'
-    Produce[(Produce['BIG_SUPERCOMPOST'] = 82)] = 'BIG_SUPERCOMPOST'
-    Produce[(Produce['BIG_ULTRACOMPOST'] = 83)] = 'BIG_ULTRACOMPOST'
-    Produce[(Produce['BIG_ROTTEN_TOMATO'] = 84)] = 'BIG_ROTTEN_TOMATO'
+    Produce[(Produce['FLAX'] = 27)] = 'FLAX'
+    Produce[(Produce['KRANDORIAN'] = 28)] = 'KRANDORIAN'
+    Produce[(Produce['WILDBLOOD'] = 29)] = 'WILDBLOOD'
+    Produce[(Produce['HEMP'] = 30)] = 'HEMP'
+    Produce[(Produce['COTTON'] = 31)] = 'COTTON'
+    Produce[(Produce['GUAM'] = 32)] = 'GUAM'
+    Produce[(Produce['MARRENTILL'] = 33)] = 'MARRENTILL'
+    Produce[(Produce['TARROMIN'] = 34)] = 'TARROMIN'
+    Produce[(Produce['HARRALANDER'] = 35)] = 'HARRALANDER'
+    Produce[(Produce['RANARR'] = 36)] = 'RANARR'
+    Produce[(Produce['TOADFLAX'] = 37)] = 'TOADFLAX'
+    Produce[(Produce['IRIT'] = 38)] = 'IRIT'
+    Produce[(Produce['AVANTOE'] = 39)] = 'AVANTOE'
+    Produce[(Produce['KWUARM'] = 40)] = 'KWUARM'
+    Produce[(Produce['HUASCA'] = 41)] = 'HUASCA'
+    Produce[(Produce['SNAPDRAGON'] = 42)] = 'SNAPDRAGON'
+    Produce[(Produce['CADANTINE'] = 43)] = 'CADANTINE'
+    Produce[(Produce['LANTADYME'] = 44)] = 'LANTADYME'
+    Produce[(Produce['DWARF_WEED'] = 45)] = 'DWARF_WEED'
+    Produce[(Produce['TORSTOL'] = 46)] = 'TORSTOL'
+    Produce[(Produce['GOUTWEED'] = 47)] = 'GOUTWEED'
+    Produce[(Produce['ANYHERB'] = 48)] = 'ANYHERB'
+    Produce[(Produce['OAK'] = 49)] = 'OAK'
+    Produce[(Produce['WILLOW'] = 50)] = 'WILLOW'
+    Produce[(Produce['MAPLE'] = 51)] = 'MAPLE'
+    Produce[(Produce['YEW'] = 52)] = 'YEW'
+    Produce[(Produce['MAGIC'] = 53)] = 'MAGIC'
+    Produce[(Produce['APPLE'] = 54)] = 'APPLE'
+    Produce[(Produce['BANANA'] = 55)] = 'BANANA'
+    Produce[(Produce['ORANGE'] = 56)] = 'ORANGE'
+    Produce[(Produce['CURRY'] = 57)] = 'CURRY'
+    Produce[(Produce['PINEAPPLE'] = 58)] = 'PINEAPPLE'
+    Produce[(Produce['PAPAYA'] = 59)] = 'PAPAYA'
+    Produce[(Produce['PALM'] = 60)] = 'PALM'
+    Produce[(Produce['DRAGONFRUIT'] = 61)] = 'DRAGONFRUIT'
+    Produce[(Produce['CACTUS'] = 62)] = 'CACTUS'
+    Produce[(Produce['POTATO_CACTUS'] = 63)] = 'POTATO_CACTUS'
+    Produce[(Produce['TEAK'] = 64)] = 'TEAK'
+    Produce[(Produce['MAHOGANY'] = 65)] = 'MAHOGANY'
+    Produce[(Produce['CAMPHOR'] = 66)] = 'CAMPHOR'
+    Produce[(Produce['IRONWOOD'] = 67)] = 'IRONWOOD'
+    Produce[(Produce['ROSEWOOD'] = 68)] = 'ROSEWOOD'
+    Produce[(Produce['ATTAS'] = 69)] = 'ATTAS'
+    Produce[(Produce['IASOR'] = 70)] = 'IASOR'
+    Produce[(Produce['KRONOS'] = 71)] = 'KRONOS'
+    Produce[(Produce['ELKHORN_CORAL'] = 72)] = 'ELKHORN_CORAL'
+    Produce[(Produce['PILLAR_CORAL'] = 73)] = 'PILLAR_CORAL'
+    Produce[(Produce['UMBRAL_CORAL'] = 74)] = 'UMBRAL_CORAL'
+    Produce[(Produce['SEAWEED'] = 75)] = 'SEAWEED'
+    Produce[(Produce['GRAPE'] = 76)] = 'GRAPE'
+    Produce[(Produce['MUSHROOM'] = 77)] = 'MUSHROOM'
+    Produce[(Produce['BELLADONNA'] = 78)] = 'BELLADONNA'
+    Produce[(Produce['CALQUAT'] = 79)] = 'CALQUAT'
+    Produce[(Produce['SPIRIT_TREE'] = 80)] = 'SPIRIT_TREE'
+    Produce[(Produce['CELASTRUS'] = 81)] = 'CELASTRUS'
+    Produce[(Produce['REDWOOD'] = 82)] = 'REDWOOD'
+    Produce[(Produce['HESPORI'] = 83)] = 'HESPORI'
+    Produce[(Produce['CRYSTAL_TREE'] = 84)] = 'CRYSTAL_TREE'
+    Produce[(Produce['EMPTY_COMPOST_BIN'] = 85)] = 'EMPTY_COMPOST_BIN'
+    Produce[(Produce['COMPOST'] = 86)] = 'COMPOST'
+    Produce[(Produce['SUPERCOMPOST'] = 87)] = 'SUPERCOMPOST'
+    Produce[(Produce['ULTRACOMPOST'] = 88)] = 'ULTRACOMPOST'
+    Produce[(Produce['ROTTEN_TOMATO'] = 89)] = 'ROTTEN_TOMATO'
+    Produce[(Produce['EMPTY_BIG_COMPOST_BIN'] = 90)] = 'EMPTY_BIG_COMPOST_BIN'
+    Produce[(Produce['BIG_COMPOST'] = 91)] = 'BIG_COMPOST'
+    Produce[(Produce['BIG_SUPERCOMPOST'] = 92)] = 'BIG_SUPERCOMPOST'
+    Produce[(Produce['BIG_ULTRACOMPOST'] = 93)] = 'BIG_ULTRACOMPOST'
+    Produce[(Produce['BIG_ROTTEN_TOMATO'] = 94)] = 'BIG_ROTTEN_TOMATO'
   })(
     (Produce =
       PatchImplementation.Produce || (PatchImplementation.Produce = {}))
@@ -180,7 +190,7 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
         (typeof regrowTickrate === 'number' || regrowTickrate === null) &&
         (typeof harvestStages === 'number' || harvestStages === null)
       ) {
-        let __args = arguments
+        let __args = Array.prototype.slice.call(arguments, [1])
         if (this.__name === undefined) {
           this.__name = null
         }
@@ -219,9 +229,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
         regrowTickrate === undefined &&
         harvestStages === undefined
       ) {
-        let __args = arguments
+        let __args = Array.prototype.slice.call(arguments, [1])
         {
-          let __args = arguments
+          let __args = Array.prototype.slice.call(arguments, [1])
           let regrowTickrate = 0
           let harvestStages = 1
           if (this.__name === undefined) {
@@ -316,7 +326,7 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       'SCARECROW',
       'Scarecrow',
       null,
-      ItemID.SCARECROW,
+      ItemID.SCARECROW_COMPLETE,
       5,
       4
     ),
@@ -413,7 +423,7 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       'MARIGOLD',
       'Marigold',
       PatchImplementation.FLOWER,
-      ItemID.MARIGOLDS,
+      ItemID.MARIGOLD,
       5,
       5
     ),
@@ -431,7 +441,7 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       'NASTURTIUM',
       'Nasturtium',
       PatchImplementation.FLOWER,
-      ItemID.NASTURTIUMS,
+      ItemID.NASTURTIUM,
       5,
       5
     ),
@@ -440,7 +450,7 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       'WOAD',
       'Woad',
       PatchImplementation.FLOWER,
-      ItemID.WOAD_LEAF,
+      ItemID.WOADLEAF,
       5,
       5
     ),
@@ -458,7 +468,7 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       'WHITE_LILY',
       'White lily',
       PatchImplementation.FLOWER,
-      ItemID.WHITE_LILY,
+      ItemID.WHITELILLY,
       5,
       5
     ),
@@ -478,7 +488,7 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       'CADAVABERRIES',
       'Cadavaberry',
       PatchImplementation.BUSH,
-      ItemID.CADAVA_BERRIES,
+      ItemID.CADAVABERRIES,
       20,
       7,
       20,
@@ -522,7 +532,7 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       'POISON_IVY',
       'Poison ivy',
       PatchImplementation.BUSH,
-      ItemID.POISON_IVY_BERRIES,
+      ItemID.POISONIVY_BERRIES,
       20,
       9,
       20,
@@ -585,6 +595,17 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
     ),
     27: new Produce_$WRAPPER(
       27,
+      'FLAX',
+      'Flax',
+      PatchImplementation.HOPS,
+      ItemID.FLAX,
+      20,
+      4,
+      0,
+      3
+    ),
+    28: new Produce_$WRAPPER(
+      28,
       'KRANDORIAN',
       'Krandorian',
       PatchImplementation.HOPS,
@@ -594,8 +615,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    28: new Produce_$WRAPPER(
-      28,
+    29: new Produce_$WRAPPER(
+      29,
       'WILDBLOOD',
       'Wildblood',
       PatchImplementation.HOPS,
@@ -605,8 +626,30 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    29: new Produce_$WRAPPER(
-      29,
+    30: new Produce_$WRAPPER(
+      30,
+      'HEMP',
+      'Hemp',
+      PatchImplementation.HOPS,
+      ItemID.HEMP,
+      20,
+      5,
+      0,
+      3
+    ),
+    31: new Produce_$WRAPPER(
+      31,
+      'COTTON',
+      'Cotton',
+      PatchImplementation.HOPS,
+      ItemID.COTTON_BOLL,
+      20,
+      6,
+      0,
+      3
+    ),
+    32: new Produce_$WRAPPER(
+      32,
       'GUAM',
       'Guam',
       PatchImplementation.HERB,
@@ -616,19 +659,19 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    30: new Produce_$WRAPPER(
-      30,
+    33: new Produce_$WRAPPER(
+      33,
       'MARRENTILL',
       'Marrentill',
       PatchImplementation.HERB,
-      ItemID.MARRENTILL,
+      ItemID.MARENTILL,
       20,
       5,
       0,
       3
     ),
-    31: new Produce_$WRAPPER(
-      31,
+    34: new Produce_$WRAPPER(
+      34,
       'TARROMIN',
       'Tarromin',
       PatchImplementation.HERB,
@@ -638,8 +681,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    32: new Produce_$WRAPPER(
-      32,
+    35: new Produce_$WRAPPER(
+      35,
       'HARRALANDER',
       'Harralander',
       PatchImplementation.HERB,
@@ -649,8 +692,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    33: new Produce_$WRAPPER(
-      33,
+    36: new Produce_$WRAPPER(
+      36,
       'RANARR',
       'Ranarr',
       PatchImplementation.HERB,
@@ -660,8 +703,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    34: new Produce_$WRAPPER(
-      34,
+    37: new Produce_$WRAPPER(
+      37,
       'TOADFLAX',
       'Toadflax',
       PatchImplementation.HERB,
@@ -671,8 +714,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    35: new Produce_$WRAPPER(
-      35,
+    38: new Produce_$WRAPPER(
+      38,
       'IRIT',
       'Irit',
       PatchImplementation.HERB,
@@ -682,8 +725,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    36: new Produce_$WRAPPER(
-      36,
+    39: new Produce_$WRAPPER(
+      39,
       'AVANTOE',
       'Avantoe',
       PatchImplementation.HERB,
@@ -693,8 +736,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    37: new Produce_$WRAPPER(
-      37,
+    40: new Produce_$WRAPPER(
+      40,
       'KWUARM',
       'Kwuarm',
       PatchImplementation.HERB,
@@ -704,8 +747,19 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    38: new Produce_$WRAPPER(
-      38,
+    41: new Produce_$WRAPPER(
+      41,
+      'HUASCA',
+      'Huasca',
+      PatchImplementation.HERB,
+      ItemID.HUASCA,
+      20,
+      5,
+      0,
+      3
+    ),
+    42: new Produce_$WRAPPER(
+      42,
       'SNAPDRAGON',
       'Snapdragon',
       PatchImplementation.HERB,
@@ -715,8 +769,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    39: new Produce_$WRAPPER(
-      39,
+    43: new Produce_$WRAPPER(
+      43,
       'CADANTINE',
       'Cadantine',
       PatchImplementation.HERB,
@@ -726,8 +780,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    40: new Produce_$WRAPPER(
-      40,
+    44: new Produce_$WRAPPER(
+      44,
       'LANTADYME',
       'Lantadyme',
       PatchImplementation.HERB,
@@ -737,8 +791,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    41: new Produce_$WRAPPER(
-      41,
+    45: new Produce_$WRAPPER(
+      45,
       'DWARF_WEED',
       'Dwarf weed',
       PatchImplementation.HERB,
@@ -748,8 +802,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    42: new Produce_$WRAPPER(
-      42,
+    46: new Produce_$WRAPPER(
+      46,
       'TORSTOL',
       'Torstol',
       PatchImplementation.HERB,
@@ -759,19 +813,19 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    43: new Produce_$WRAPPER(
-      43,
+    47: new Produce_$WRAPPER(
+      47,
       'GOUTWEED',
       'Goutweed',
       PatchImplementation.HERB,
-      ItemID.GOUTWEED,
+      ItemID.EADGAR_GOUTWEED_HERB,
       20,
       5,
       0,
       2
     ),
-    44: new Produce_$WRAPPER(
-      44,
+    48: new Produce_$WRAPPER(
+      48,
       'ANYHERB',
       'Any herb',
       PatchImplementation.HERB,
@@ -781,8 +835,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       3
     ),
-    45: new Produce_$WRAPPER(
-      45,
+    49: new Produce_$WRAPPER(
+      49,
       'OAK',
       'Oak',
       PatchImplementation.TREE,
@@ -790,8 +844,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       40,
       5
     ),
-    46: new Produce_$WRAPPER(
-      46,
+    50: new Produce_$WRAPPER(
+      50,
       'WILLOW',
       'Willow',
       PatchImplementation.TREE,
@@ -799,8 +853,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       40,
       7
     ),
-    47: new Produce_$WRAPPER(
-      47,
+    51: new Produce_$WRAPPER(
+      51,
       'MAPLE',
       'Maple',
       PatchImplementation.TREE,
@@ -808,8 +862,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       40,
       9
     ),
-    48: new Produce_$WRAPPER(
-      48,
+    52: new Produce_$WRAPPER(
+      52,
       'YEW',
       'Yew',
       PatchImplementation.TREE,
@@ -817,8 +871,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       40,
       11
     ),
-    49: new Produce_$WRAPPER(
-      49,
+    53: new Produce_$WRAPPER(
+      53,
       'MAGIC',
       'Magic',
       PatchImplementation.TREE,
@@ -826,8 +880,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       40,
       13
     ),
-    50: new Produce_$WRAPPER(
-      50,
+    54: new Produce_$WRAPPER(
+      54,
       'APPLE',
       'Apple',
       PatchImplementation.FRUIT_TREE,
@@ -837,8 +891,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       45,
       7
     ),
-    51: new Produce_$WRAPPER(
-      51,
+    55: new Produce_$WRAPPER(
+      55,
       'BANANA',
       'Banana',
       PatchImplementation.FRUIT_TREE,
@@ -848,8 +902,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       45,
       7
     ),
-    52: new Produce_$WRAPPER(
-      52,
+    56: new Produce_$WRAPPER(
+      56,
       'ORANGE',
       'Orange',
       PatchImplementation.FRUIT_TREE,
@@ -859,8 +913,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       45,
       7
     ),
-    53: new Produce_$WRAPPER(
-      53,
+    57: new Produce_$WRAPPER(
+      57,
       'CURRY',
       'Curry',
       PatchImplementation.FRUIT_TREE,
@@ -870,8 +924,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       45,
       7
     ),
-    54: new Produce_$WRAPPER(
-      54,
+    58: new Produce_$WRAPPER(
+      58,
       'PINEAPPLE',
       'Pineapple',
       PatchImplementation.FRUIT_TREE,
@@ -881,19 +935,19 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       45,
       7
     ),
-    55: new Produce_$WRAPPER(
-      55,
+    59: new Produce_$WRAPPER(
+      59,
       'PAPAYA',
       'Papaya',
       PatchImplementation.FRUIT_TREE,
-      ItemID.PAPAYA_FRUIT,
+      ItemID.PAPAYA,
       160,
       7,
       45,
       7
     ),
-    56: new Produce_$WRAPPER(
-      56,
+    60: new Produce_$WRAPPER(
+      60,
       'PALM',
       'Palm',
       PatchImplementation.FRUIT_TREE,
@@ -903,8 +957,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       45,
       7
     ),
-    57: new Produce_$WRAPPER(
-      57,
+    61: new Produce_$WRAPPER(
+      61,
       'DRAGONFRUIT',
       'Dragonfruit',
       PatchImplementation.FRUIT_TREE,
@@ -914,8 +968,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       45,
       7
     ),
-    58: new Produce_$WRAPPER(
-      58,
+    62: new Produce_$WRAPPER(
+      62,
       'CACTUS',
       'Cactus',
       PatchImplementation.CACTUS,
@@ -925,19 +979,19 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       20,
       4
     ),
-    59: new Produce_$WRAPPER(
-      59,
+    63: new Produce_$WRAPPER(
+      63,
       'POTATO_CACTUS',
       'Potato cactus',
       PatchImplementation.CACTUS,
-      ItemID.POTATO_CACTUS,
+      ItemID.CACTUS_POTATO,
       10,
       8,
       5,
       7
     ),
-    60: new Produce_$WRAPPER(
-      60,
+    64: new Produce_$WRAPPER(
+      64,
       'TEAK',
       'Teak',
       PatchImplementation.HARDWOOD_TREE,
@@ -945,8 +999,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       640,
       8
     ),
-    61: new Produce_$WRAPPER(
-      61,
+    65: new Produce_$WRAPPER(
+      65,
       'MAHOGANY',
       'Mahogany',
       PatchImplementation.HARDWOOD_TREE,
@@ -954,35 +1008,89 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       640,
       9
     ),
-    62: new Produce_$WRAPPER(
-      62,
+    66: new Produce_$WRAPPER(
+      66,
+      'CAMPHOR',
+      'Camphor',
+      PatchImplementation.HARDWOOD_TREE,
+      ItemID.CAMPHOR_LOGS,
+      640,
+      9
+    ),
+    67: new Produce_$WRAPPER(
+      67,
+      'IRONWOOD',
+      'Ironwood',
+      PatchImplementation.HARDWOOD_TREE,
+      ItemID.IRONWOOD_LOGS,
+      640,
+      9
+    ),
+    68: new Produce_$WRAPPER(
+      68,
+      'ROSEWOOD',
+      'Rosewood',
+      PatchImplementation.HARDWOOD_TREE,
+      ItemID.ROSEWOOD_LOGS,
+      640,
+      10
+    ),
+    69: new Produce_$WRAPPER(
+      69,
       'ATTAS',
       'Attas',
       PatchImplementation.ANIMA,
-      NullItemID.NULL_22940,
+      ItemID.ANIMA_ATTAS,
       640,
       9
     ),
-    63: new Produce_$WRAPPER(
-      63,
+    70: new Produce_$WRAPPER(
+      70,
       'IASOR',
       'Iasor',
       PatchImplementation.ANIMA,
-      NullItemID.NULL_22939,
+      ItemID.ANIMA_IASOR,
       640,
       9
     ),
-    64: new Produce_$WRAPPER(
-      64,
+    71: new Produce_$WRAPPER(
+      71,
       'KRONOS',
       'Kronos',
       PatchImplementation.ANIMA,
-      NullItemID.NULL_22938,
+      ItemID.ANIMA_KRONOS,
       640,
       9
     ),
-    65: new Produce_$WRAPPER(
-      65,
+    72: new Produce_$WRAPPER(
+      72,
+      'ELKHORN_CORAL',
+      'Elkhorn',
+      PatchImplementation.CORAL,
+      ItemID.CORAL_ELKHORN,
+      40,
+      5
+    ),
+    73: new Produce_$WRAPPER(
+      73,
+      'PILLAR_CORAL',
+      'Pillar',
+      PatchImplementation.CORAL,
+      ItemID.CORAL_PILLAR,
+      40,
+      5
+    ),
+    74: new Produce_$WRAPPER(
+      74,
+      'UMBRAL_CORAL',
+      'Umbral',
+      PatchImplementation.CORAL,
+      ItemID.CORAL_UMBRAL,
+      40,
+      5
+    ),
+    75: new Produce_$WRAPPER(
+      75,
       'SEAWEED',
       'Seaweed',
       PatchImplementation.SEAWEED,
@@ -992,8 +1100,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       4
     ),
-    66: new Produce_$WRAPPER(
-      66,
+    76: new Produce_$WRAPPER(
+      76,
       'GRAPE',
       'Grape',
       PatchImplementation.GRAPES,
@@ -1003,28 +1111,28 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       5
     ),
-    67: new Produce_$WRAPPER(
-      67,
+    77: new Produce_$WRAPPER(
+      77,
       'MUSHROOM',
       'Mushroom',
       PatchImplementation.MUSHROOM,
-      ItemID.MUSHROOM,
+      ItemID.BITTERCAP_MUSHROOM,
       40,
       7,
       0,
       7
     ),
-    68: new Produce_$WRAPPER(
-      68,
+    78: new Produce_$WRAPPER(
+      78,
       'BELLADONNA',
       'Belladonna',
       PatchImplementation.BELLADONNA,
-      ItemID.CAVE_NIGHTSHADE,
+      ItemID.NIGHTSHADE,
       80,
       5
     ),
-    69: new Produce_$WRAPPER(
-      69,
+    79: new Produce_$WRAPPER(
+      79,
       'CALQUAT',
       'Calquat',
       PatchImplementation.CALQUAT,
@@ -1034,17 +1142,17 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       7
     ),
-    70: new Produce_$WRAPPER(
-      70,
+    80: new Produce_$WRAPPER(
+      80,
       'SPIRIT_TREE',
       'Spirit tree',
       PatchImplementation.SPIRIT_TREE,
-      ItemID.SPIRIT_TREE,
+      ItemID.SPIRIT_TREE_DUMMY,
       320,
       13
     ),
-    71: new Produce_$WRAPPER(
-      71,
+    81: new Produce_$WRAPPER(
+      81,
       'CELASTRUS',
       'Celastrus',
       PatchImplementation.CELASTRUS,
@@ -1054,8 +1162,8 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       4
     ),
-    72: new Produce_$WRAPPER(
-      72,
+    82: new Produce_$WRAPPER(
+      82,
       'REDWOOD',
       'Redwood',
       PatchImplementation.REDWOOD,
@@ -1063,72 +1171,72 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       640,
       11
     ),
-    73: new Produce_$WRAPPER(
-      73,
+    83: new Produce_$WRAPPER(
+      83,
       'HESPORI',
       'Hespori',
       PatchImplementation.HESPORI,
-      NullItemID.NULL_23044,
+      ItemID.HESPORI,
       640,
       4,
       0,
       2
     ),
-    74: new Produce_$WRAPPER(
-      74,
+    84: new Produce_$WRAPPER(
+      84,
       'CRYSTAL_TREE',
       'Crystal tree',
       PatchImplementation.CRYSTAL_TREE,
-      ItemID.CRYSTAL_SHARDS,
+      ItemID.GAUNTLET_CRYSTAL_SHARD,
       80,
       7
     ),
-    75: new Produce_$WRAPPER(
-      75,
+    85: new Produce_$WRAPPER(
+      85,
       'EMPTY_COMPOST_BIN',
       'Compost Bin',
       PatchImplementation.COMPOST,
-      ItemID.COMPOST_BIN,
+      ItemID.EADGAR_FADE_TO_BLACK_INV,
       0,
       1,
       0,
       0
     ),
-    76: new Produce_$WRAPPER(
-      76,
+    86: new Produce_$WRAPPER(
+      86,
       'COMPOST',
       'Compost',
       PatchImplementation.COMPOST,
-      ItemID.COMPOST,
+      ItemID.BUCKET_COMPOST,
       40,
       3,
       0,
       15
     ),
-    77: new Produce_$WRAPPER(
-      77,
+    87: new Produce_$WRAPPER(
+      87,
       'SUPERCOMPOST',
       'Supercompost',
       PatchImplementation.COMPOST,
-      ItemID.SUPERCOMPOST,
+      ItemID.BUCKET_SUPERCOMPOST,
       40,
       3,
       0,
       15
     ),
-    78: new Produce_$WRAPPER(
-      78,
+    88: new Produce_$WRAPPER(
+      88,
       'ULTRACOMPOST',
       'Ultracompost',
       PatchImplementation.COMPOST,
-      ItemID.ULTRACOMPOST,
+      ItemID.BUCKET_ULTRACOMPOST,
       0,
       3,
       0,
       15
     ),
-    79: new Produce_$WRAPPER(
-      79,
+    89: new Produce_$WRAPPER(
+      89,
       'ROTTEN_TOMATO',
       'Rotten Tomato',
       PatchImplementation.COMPOST,
@@ -1138,52 +1246,52 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       0,
       15
     ),
-    80: new Produce_$WRAPPER(
-      80,
+    90: new Produce_$WRAPPER(
+      90,
       'EMPTY_BIG_COMPOST_BIN',
       'Big Compost Bin',
       PatchImplementation.COMPOST,
-      ItemID.COMPOST_BIN,
+      ItemID.EADGAR_FADE_TO_BLACK_INV,
       0,
       1,
       0,
       0
     ),
-    81: new Produce_$WRAPPER(
-      81,
+    91: new Produce_$WRAPPER(
+      91,
       'BIG_COMPOST',
       'Compost',
       PatchImplementation.BIG_COMPOST,
-      ItemID.COMPOST,
+      ItemID.BUCKET_COMPOST,
       40,
       3,
       0,
       30
     ),
-    82: new Produce_$WRAPPER(
-      82,
+    92: new Produce_$WRAPPER(
+      92,
       'BIG_SUPERCOMPOST',
       'Supercompost',
       PatchImplementation.BIG_COMPOST,
-      ItemID.SUPERCOMPOST,
+      ItemID.BUCKET_SUPERCOMPOST,
       40,
       3,
       0,
       30
     ),
-    83: new Produce_$WRAPPER(
-      83,
+    93: new Produce_$WRAPPER(
+      93,
       'BIG_ULTRACOMPOST',
       'Ultracompost',
       PatchImplementation.BIG_COMPOST,
-      ItemID.ULTRACOMPOST,
+      ItemID.BUCKET_ULTRACOMPOST,
       0,
       3,
       0,
       30
     ),
-    84: new Produce_$WRAPPER(
-      84,
+    94: new Produce_$WRAPPER(
+      94,
       'BIG_ROTTEN_TOMATO',
       'Rotten Tomato',
       PatchImplementation.BIG_COMPOST,
@@ -1221,7 +1329,7 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
         (typeof regrowTickrate === 'number' || regrowTickrate === null) &&
         (typeof harvestStages === 'number' || harvestStages === null)
       ) {
-        let __args = arguments
+        let __args = Array.prototype.slice.call(arguments, [1])
         if (this.__name === undefined) {
           this.__name = null
         }
@@ -1260,9 +1368,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
         regrowTickrate === undefined &&
         harvestStages === undefined
       ) {
-        let __args = arguments
+        let __args = Array.prototype.slice.call(arguments, [1])
         {
-          let __args = arguments
+          let __args = Array.prototype.slice.call(arguments, [1])
           let regrowTickrate = 0
           let harvestStages = 1
           if (this.__name === undefined) {
@@ -2051,7 +2159,21 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
           59 - value
         )
       }
-      if (value >= 60 && value <= 67) {
+      if (value >= 60 && value <= 63) {
+        return new PatchState(
+          PatchImplementation.Produce.HUASCA,
+          CropState.GROWING,
+          value - 60
+        )
+      }
+      if (value >= 64 && value <= 66) {
+        return new PatchState(
+          PatchImplementation.Produce.HUASCA,
+          CropState.HARVESTABLE,
+          66 - value
+        )
+      }
+      if (value === 67) {
         return new PatchState(
           PatchImplementation.Produce.WEEDS,
           CropState.GROWING,
@@ -2247,7 +2369,14 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
           value - 169
         )
       }
-      if (value >= 173 && value <= 191) {
+      if (value >= 173 && value <= 175) {
+        return new PatchState(
+          PatchImplementation.Produce.HUASCA,
+          CropState.DISEASED,
+          value - 172
+        )
+      }
+      if (value >= 176 && value <= 191) {
         return new PatchState(
           PatchImplementation.Produce.WEEDS,
           CropState.GROWING,
@@ -3473,395 +3602,430 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
         return new PatchState(
           PatchImplementation.Produce.HAMMERSTONE,
           CropState.HARVESTABLE,
-          value - 8
+          10 - value
         )
       }
-      if (value >= 11 && value <= 15) {
+      if (value >= 11 && value <= 13) {
+        return new PatchState(
+          PatchImplementation.Produce.HAMMERSTONE,
+          CropState.DISEASED,
+          value - 10
+        )
+      }
+      if (value >= 14 && value <= 18) {
         return new PatchState(
           PatchImplementation.Produce.ASGARNIAN,
           CropState.GROWING,
-          value - 11
+          value - 14
         )
       }
-      if (value >= 16 && value <= 18) {
+      if (value >= 19 && value <= 21) {
         return new PatchState(
           PatchImplementation.Produce.ASGARNIAN,
           CropState.HARVESTABLE,
-          value - 16
+          21 - value
         )
       }
-      if (value >= 19 && value <= 24) {
+      if (value >= 22 && value <= 25) {
+        return new PatchState(
+          PatchImplementation.Produce.ASGARNIAN,
+          CropState.DISEASED,
+          value - 21
+        )
+      }
+      if (value >= 26 && value <= 31) {
         return new PatchState(
           PatchImplementation.Produce.YANILLIAN,
           CropState.GROWING,
-          value - 19
+          value - 26
         )
       }
-      if (value >= 25 && value <= 27) {
+      if (value >= 32 && value <= 34) {
         return new PatchState(
           PatchImplementation.Produce.YANILLIAN,
           CropState.HARVESTABLE,
-          value - 25
+          34 - value
         )
       }
-      if (value >= 28 && value <= 34) {
+      if (value >= 35 && value <= 39) {
+        return new PatchState(
+          PatchImplementation.Produce.YANILLIAN,
+          CropState.DISEASED,
+          value - 34
+        )
+      }
+      if (value >= 40 && value <= 46) {
         return new PatchState(
           PatchImplementation.Produce.KRANDORIAN,
           CropState.GROWING,
-          value - 28
+          value - 40
         )
       }
-      if (value >= 35 && value <= 37) {
+      if (value >= 47 && value <= 49) {
         return new PatchState(
           PatchImplementation.Produce.KRANDORIAN,
           CropState.HARVESTABLE,
-          value - 35
+          49 - value
         )
       }
-      if (value >= 38 && value <= 45) {
+      if (value >= 50 && value <= 55) {
         return new PatchState(
-          PatchImplementation.Produce.WILDBLOOD,
-          CropState.GROWING,
-          value - 38
-        )
-      }
-      if (value >= 46 && value <= 48) {
-        return new PatchState(
-          PatchImplementation.Produce.WILDBLOOD,
-          CropState.HARVESTABLE,
-          value - 46
-        )
-      }
-      if (value >= 49 && value <= 52) {
-        return new PatchState(
-          PatchImplementation.Produce.BARLEY,
-          CropState.GROWING,
+          PatchImplementation.Produce.KRANDORIAN,
+          CropState.DISEASED,
           value - 49
         )
       }
-      if (value >= 53 && value <= 55) {
+      if (value >= 56 && value <= 63) {
         return new PatchState(
-          PatchImplementation.Produce.BARLEY,
-          CropState.HARVESTABLE,
-          value - 53
-        )
-      }
-      if (value >= 56 && value <= 60) {
-        return new PatchState(
-          PatchImplementation.Produce.JUTE,
+          PatchImplementation.Produce.WILDBLOOD,
           CropState.GROWING,
           value - 56
         )
       }
-      if (value >= 61 && value <= 63) {
+      if (value >= 64 && value <= 66) {
+        return new PatchState(
+          PatchImplementation.Produce.WILDBLOOD,
+          CropState.HARVESTABLE,
+          66 - value
+        )
+      }
+      if (value >= 67 && value <= 73) {
+        return new PatchState(
+          PatchImplementation.Produce.WILDBLOOD,
+          CropState.DISEASED,
+          value - 66
+        )
+      }
+      if (value >= 74 && value <= 77) {
+        return new PatchState(
+          PatchImplementation.Produce.BARLEY,
+          CropState.GROWING,
+          value - 74
+        )
+      }
+      if (value >= 78 && value <= 80) {
+        return new PatchState(
+          PatchImplementation.Produce.BARLEY,
+          CropState.HARVESTABLE,
+          80 - value
+        )
+      }
+      if (value >= 81 && value <= 83) {
+        return new PatchState(
+          PatchImplementation.Produce.BARLEY,
+          CropState.DISEASED,
+          value - 80
+        )
+      }
+      if (value >= 84 && value <= 88) {
         return new PatchState(
           PatchImplementation.Produce.JUTE,
-          CropState.HARVESTABLE,
-          value - 61
-        )
-      }
-      if (value >= 64 && value <= 67) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
           CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 68 && value <= 71) {
-        return new PatchState(
-          PatchImplementation.Produce.HAMMERSTONE,
-          CropState.GROWING,
-          value - 68
-        )
-      }
-      if (value >= 72 && value <= 74) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 75 && value <= 79) {
-        return new PatchState(
-          PatchImplementation.Produce.ASGARNIAN,
-          CropState.GROWING,
-          value - 75
-        )
-      }
-      if (value >= 80 && value <= 82) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 83 && value <= 88) {
-        return new PatchState(
-          PatchImplementation.Produce.YANILLIAN,
-          CropState.GROWING,
-          value - 83
+          value - 84
         )
       }
       if (value >= 89 && value <= 91) {
         return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
+          PatchImplementation.Produce.JUTE,
+          CropState.HARVESTABLE,
+          91 - value
         )
       }
-      if (value >= 92 && value <= 98) {
+      if (value >= 92 && value <= 95) {
         return new PatchState(
-          PatchImplementation.Produce.KRANDORIAN,
+          PatchImplementation.Produce.JUTE,
+          CropState.DISEASED,
+          value - 91
+        )
+      }
+      if (value >= 96 && value <= 98) {
+        return new PatchState(
+          PatchImplementation.Produce.FLAX,
           CropState.GROWING,
-          value - 92
+          value - 96
         )
       }
       if (value >= 99 && value <= 101) {
         return new PatchState(
+          PatchImplementation.Produce.FLAX,
+          CropState.HARVESTABLE,
+          101 - value
+        )
+      }
+      if (value >= 102 && value <= 103) {
+        return new PatchState(
+          PatchImplementation.Produce.FLAX,
+          CropState.DISEASED,
+          value - 101
+        )
+      }
+      if (value >= 104 && value <= 107) {
+        return new PatchState(
+          PatchImplementation.Produce.HEMP,
+          CropState.GROWING,
+          value - 104
+        )
+      }
+      if (value >= 108 && value <= 110) {
+        return new PatchState(
+          PatchImplementation.Produce.HEMP,
+          CropState.HARVESTABLE,
+          110 - value
+        )
+      }
+      if (value >= 111 && value <= 113) {
+        return new PatchState(
+          PatchImplementation.Produce.HEMP,
+          CropState.DISEASED,
+          value - 110
+        )
+      }
+      if (value >= 114 && value <= 118) {
+        return new PatchState(
+          PatchImplementation.Produce.COTTON,
+          CropState.GROWING,
+          value - 114
+        )
+      }
+      if (value >= 119 && value <= 121) {
+        return new PatchState(
+          PatchImplementation.Produce.COTTON,
+          CropState.HARVESTABLE,
+          121 - value
+        )
+      }
+      if (value >= 122 && value <= 125) {
+        return new PatchState(
+          PatchImplementation.Produce.COTTON,
+          CropState.DISEASED,
+          value - 121
+        )
+      }
+      if (value >= 126 && value <= 131) {
+        return new PatchState(
           PatchImplementation.Produce.WEEDS,
           CropState.GROWING,
           3
         )
       }
-      if (value >= 102 && value <= 109) {
-        return new PatchState(
-          PatchImplementation.Produce.WILDBLOOD,
-          CropState.GROWING,
-          value - 102
-        )
-      }
-      if (value >= 110 && value <= 112) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 113 && value <= 116) {
-        return new PatchState(
-          PatchImplementation.Produce.BARLEY,
-          CropState.GROWING,
-          value - 113
-        )
-      }
-      if (value >= 117 && value <= 119) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 120 && value <= 124) {
-        return new PatchState(
-          PatchImplementation.Produce.JUTE,
-          CropState.GROWING,
-          value - 120
-        )
-      }
-      if (value >= 125 && value <= 132) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 133 && value <= 135) {
+      if (value >= 132 && value <= 135) {
         return new PatchState(
           PatchImplementation.Produce.HAMMERSTONE,
-          CropState.DISEASED,
+          CropState.GROWING,
           value - 132
         )
       }
-      if (value >= 136 && value <= 139) {
+      if (value >= 136 && value <= 138) {
         return new PatchState(
           PatchImplementation.Produce.WEEDS,
           CropState.GROWING,
           3
         )
       }
-      if (value >= 140 && value <= 143) {
-        return new PatchState(
-          PatchImplementation.Produce.ASGARNIAN,
-          CropState.DISEASED,
-          value - 139
-        )
-      }
-      if (value >= 144 && value <= 147) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 148 && value <= 152) {
-        return new PatchState(
-          PatchImplementation.Produce.YANILLIAN,
-          CropState.DISEASED,
-          value - 147
-        )
-      }
-      if (value >= 153 && value <= 156) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 157 && value <= 162) {
-        return new PatchState(
-          PatchImplementation.Produce.KRANDORIAN,
-          CropState.DISEASED,
-          value - 156
-        )
-      }
-      if (value >= 163 && value <= 166) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 167 && value <= 173) {
-        return new PatchState(
-          PatchImplementation.Produce.WILDBLOOD,
-          CropState.DISEASED,
-          value - 166
-        )
-      }
-      if (value >= 174 && value <= 177) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 178 && value <= 180) {
-        return new PatchState(
-          PatchImplementation.Produce.BARLEY,
-          CropState.DISEASED,
-          value - 177
-        )
-      }
-      if (value === 181) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 183 && value <= 184) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 185 && value <= 188) {
-        return new PatchState(
-          PatchImplementation.Produce.JUTE,
-          CropState.DISEASED,
-          value - 184
-        )
-      }
-      if (value >= 189 && value <= 196) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 197 && value <= 199) {
+      if (value >= 139 && value <= 141) {
         return new PatchState(
           PatchImplementation.Produce.HAMMERSTONE,
           CropState.DEAD,
-          value - 196
+          value - 138
         )
       }
-      if (value >= 200 && value <= 203) {
+      if (value >= 142 && value <= 146) {
+        return new PatchState(
+          PatchImplementation.Produce.ASGARNIAN,
+          CropState.GROWING,
+          value - 142
+        )
+      }
+      if (value >= 147 && value <= 149) {
         return new PatchState(
           PatchImplementation.Produce.WEEDS,
           CropState.GROWING,
           3
         )
       }
-      if (value >= 204 && value <= 207) {
+      if (value >= 150 && value <= 153) {
         return new PatchState(
           PatchImplementation.Produce.ASGARNIAN,
           CropState.DEAD,
-          value - 203
+          value - 149
         )
       }
-      if (value >= 208 && value <= 211) {
+      if (value >= 154 && value <= 159) {
+        return new PatchState(
+          PatchImplementation.Produce.YANILLIAN,
+          CropState.GROWING,
+          value - 154
+        )
+      }
+      if (value >= 160 && value <= 162) {
         return new PatchState(
           PatchImplementation.Produce.WEEDS,
           CropState.GROWING,
           3
+        )
+      }
+      if (value >= 163 && value <= 167) {
+        return new PatchState(
+          PatchImplementation.Produce.YANILLIAN,
+          CropState.DEAD,
+          value - 162
+        )
+      }
+      if (value >= 168 && value <= 174) {
+        return new PatchState(
+          PatchImplementation.Produce.KRANDORIAN,
+          CropState.GROWING,
+          value - 168
+        )
+      }
+      if (value >= 175 && value <= 177) {
+        return new PatchState(
+          PatchImplementation.Produce.WEEDS,
+          CropState.GROWING,
+          3
+        )
+      }
+      if (value >= 178 && value <= 183) {
+        return new PatchState(
+          PatchImplementation.Produce.KRANDORIAN,
+          CropState.DEAD,
+          value - 177
+        )
+      }
+      if (value >= 184 && value <= 191) {
+        return new PatchState(
+          PatchImplementation.Produce.WILDBLOOD,
+          CropState.GROWING,
+          value - 184
+        )
+      }
+      if (value >= 192 && value <= 194) {
+        return new PatchState(
+          PatchImplementation.Produce.WEEDS,
+          CropState.GROWING,
+          3
+        )
+      }
+      if (value >= 195 && value <= 201) {
+        return new PatchState(
+          PatchImplementation.Produce.WILDBLOOD,
+          CropState.DEAD,
+          value - 194
+        )
+      }
+      if (value >= 202 && value <= 205) {
+        return new PatchState(
+          PatchImplementation.Produce.BARLEY,
+          CropState.GROWING,
+          value - 202
+        )
+      }
+      if (value >= 206 && value <= 208) {
+        return new PatchState(
+          PatchImplementation.Produce.WEEDS,
+          CropState.GROWING,
+          3
+        )
+      }
+      if (value >= 209 && value <= 211) {
+        return new PatchState(
+          PatchImplementation.Produce.BARLEY,
+          CropState.DEAD,
+          value - 208
         )
       }
       if (value >= 212 && value <= 216) {
         return new PatchState(
-          PatchImplementation.Produce.YANILLIAN,
-          CropState.DEAD,
-          value - 211
+          PatchImplementation.Produce.JUTE,
+          CropState.GROWING,
+          value - 212
         )
       }
-      if (value >= 217 && value <= 220) {
+      if (value >= 217 && value <= 219) {
         return new PatchState(
           PatchImplementation.Produce.WEEDS,
           CropState.GROWING,
           3
         )
       }
-      if (value >= 221 && value <= 226) {
-        return new PatchState(
-          PatchImplementation.Produce.KRANDORIAN,
-          CropState.DEAD,
-          value - 220
-        )
-      }
-      if (value >= 227 && value <= 230) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 231 && value <= 237) {
-        return new PatchState(
-          PatchImplementation.Produce.WILDBLOOD,
-          CropState.DEAD,
-          value - 230
-        )
-      }
-      if (value >= 238 && value <= 241) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 242 && value <= 244) {
-        return new PatchState(
-          PatchImplementation.Produce.BARLEY,
-          CropState.DEAD,
-          value - 241
-        )
-      }
-      if (value >= 245 && value <= 248) {
-        return new PatchState(
-          PatchImplementation.Produce.WEEDS,
-          CropState.GROWING,
-          3
-        )
-      }
-      if (value >= 249 && value <= 252) {
+      if (value >= 220 && value <= 223) {
         return new PatchState(
           PatchImplementation.Produce.JUTE,
           CropState.DEAD,
-          value - 248
+          value - 219
         )
       }
-      if (value >= 253 && value <= 255) {
+      if (value >= 224 && value <= 226) {
+        return new PatchState(
+          PatchImplementation.Produce.FLAX,
+          CropState.GROWING,
+          value - 224
+        )
+      }
+      if (value >= 227 && value <= 229) {
+        return new PatchState(
+          PatchImplementation.Produce.WEEDS,
+          CropState.GROWING,
+          3
+        )
+      }
+      if (value >= 230 && value <= 231) {
+        return new PatchState(
+          PatchImplementation.Produce.FLAX,
+          CropState.DEAD,
+          value - 229
+        )
+      }
+      if (value >= 232 && value <= 235) {
+        return new PatchState(
+          PatchImplementation.Produce.HEMP,
+          CropState.GROWING,
+          value - 232
+        )
+      }
+      if (value >= 236 && value <= 238) {
+        return new PatchState(
+          PatchImplementation.Produce.WEEDS,
+          CropState.GROWING,
+          3
+        )
+      }
+      if (value >= 239 && value <= 240) {
+        return new PatchState(
+          PatchImplementation.Produce.HEMP,
+          CropState.DEAD,
+          value - 238
+        )
+      }
+      if (value === 241) {
+        return new PatchState(
+          PatchImplementation.Produce.HEMP,
+          CropState.DEAD,
+          3
+        )
+      }
+      if (value >= 242 && value <= 246) {
+        return new PatchState(
+          PatchImplementation.Produce.COTTON,
+          CropState.GROWING,
+          value - 242
+        )
+      }
+      if (value >= 247 && value <= 249) {
+        return new PatchState(
+          PatchImplementation.Produce.WEEDS,
+          CropState.GROWING,
+          3
+        )
+      }
+      if (value >= 250 && value <= 253) {
+        return new PatchState(
+          PatchImplementation.Produce.COTTON,
+          CropState.DEAD,
+          value - 249
+        )
+      }
+      if (value >= 254 && value <= 255) {
         return new PatchState(
           PatchImplementation.Produce.WEEDS,
           CropState.GROWING,
@@ -4395,7 +4559,139 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
           value - 47
         )
       }
-      if (value >= 55 && value <= 255) {
+      if (value >= 55 && value <= 62) {
+        return new PatchState(
+          PatchImplementation.Produce.CAMPHOR,
+          CropState.GROWING,
+          value - 55
+        )
+      }
+      if (value === 63) {
+        return new PatchState(
+          PatchImplementation.Produce.CAMPHOR,
+          CropState.GROWING,
+          PatchImplementation.Produce['_$wrappers'][
+            PatchImplementation.Produce.CAMPHOR
+          ].getStages() - 1
+        )
+      }
+      if (value === 64) {
+        return new PatchState(
+          PatchImplementation.Produce.CAMPHOR,
+          CropState.HARVESTABLE,
+          0
+        )
+      }
+      if (value === 65) {
+        return new PatchState(
+          PatchImplementation.Produce.CAMPHOR,
+          CropState.HARVESTABLE,
+          0
+        )
+      }
+      if (value >= 66 && value <= 72) {
+        return new PatchState(
+          PatchImplementation.Produce.CAMPHOR,
+          CropState.DISEASED,
+          value - 65
+        )
+      }
+      if (value >= 73 && value <= 79) {
+        return new PatchState(
+          PatchImplementation.Produce.CAMPHOR,
+          CropState.DEAD,
+          value - 72
+        )
+      }
+      if (value >= 80 && value <= 87) {
+        return new PatchState(
+          PatchImplementation.Produce.IRONWOOD,
+          CropState.GROWING,
+          value - 80
+        )
+      }
+      if (value === 88) {
+        return new PatchState(
+          PatchImplementation.Produce.IRONWOOD,
+          CropState.GROWING,
+          PatchImplementation.Produce['_$wrappers'][
+            PatchImplementation.Produce.IRONWOOD
+          ].getStages() - 1
+        )
+      }
+      if (value === 89) {
+        return new PatchState(
+          PatchImplementation.Produce.IRONWOOD,
+          CropState.HARVESTABLE,
+          0
+        )
+      }
+      if (value === 90) {
+        return new PatchState(
+          PatchImplementation.Produce.IRONWOOD,
+          CropState.HARVESTABLE,
+          0
+        )
+      }
+      if (value >= 91 && value <= 97) {
+        return new PatchState(
+          PatchImplementation.Produce.IRONWOOD,
+          CropState.DISEASED,
+          value - 90
+        )
+      }
+      if (value >= 98 && value <= 104) {
+        return new PatchState(
+          PatchImplementation.Produce.IRONWOOD,
+          CropState.DEAD,
+          value - 97
+        )
+      }
+      if (value >= 105 && value <= 113) {
+        return new PatchState(
+          PatchImplementation.Produce.ROSEWOOD,
+          CropState.GROWING,
+          value - 105
+        )
+      }
+      if (value === 114) {
+        return new PatchState(
+          PatchImplementation.Produce.ROSEWOOD,
+          CropState.GROWING,
+          PatchImplementation.Produce['_$wrappers'][
+            PatchImplementation.Produce.ROSEWOOD
+          ].getStages() - 1
+        )
+      }
+      if (value === 115) {
+        return new PatchState(
+          PatchImplementation.Produce.ROSEWOOD,
+          CropState.HARVESTABLE,
+          0
+        )
+      }
+      if (value === 116) {
+        return new PatchState(
+          PatchImplementation.Produce.ROSEWOOD,
+          CropState.HARVESTABLE,
+          0
+        )
+      }
+      if (value >= 117 && value <= 124) {
+        return new PatchState(
+          PatchImplementation.Produce.ROSEWOOD,
+          CropState.DISEASED,
+          value - 116
+        )
+      }
+      if (value >= 125 && value <= 132) {
+        return new PatchState(
+          PatchImplementation.Produce.ROSEWOOD,
+          CropState.DEAD,
+          value - 124
+        )
+      }
+      if (value >= 133 && value <= 255) {
         return new PatchState(
           PatchImplementation.Produce.WEEDS,
           CropState.GROWING,
@@ -4791,6 +5087,119 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
         return new PatchState(
           PatchImplementation.Produce.WEEDS,
           CropState.GROWING,
+          3
+        )
+      }
+      if (value >= 4 && value <= 7) {
+        return new PatchState(
+          PatchImplementation.Produce.ELKHORN_CORAL,
+          CropState.GROWING,
+          value - 4
+        )
+      }
+      if (value === 8) {
+        return new PatchState(
+          PatchImplementation.Produce.ELKHORN_CORAL,
+          CropState.GROWING,
+          4
+        )
+      }
+      if (value >= 9 && value <= 11) {
+        return new PatchState(
+          PatchImplementation.Produce.ELKHORN_CORAL,
+          CropState.DISEASED,
+          value - 8
+        )
+      }
+      if (value >= 12 && value <= 14) {
+        return new PatchState(
+          PatchImplementation.Produce.ELKHORN_CORAL,
+          CropState.DEAD,
+          value - 11
+        )
+      }
+      if (value >= 15 && value <= 18) {
+        return new PatchState(
+          PatchImplementation.Produce.PILLAR_CORAL,
+          CropState.GROWING,
+          value - 15
+        )
+      }
+      if (value === 19) {
+        return new PatchState(
+          PatchImplementation.Produce.PILLAR_CORAL,
+          CropState.GROWING,
+          4
+        )
+      }
+      if (value >= 20 && value <= 22) {
+        return new PatchState(
+          PatchImplementation.Produce.PILLAR_CORAL,
+          CropState.DISEASED,
+          value - 19
+        )
+      }
+      if (value >= 23 && value <= 25) {
+        return new PatchState(
+          PatchImplementation.Produce.PILLAR_CORAL,
+          CropState.DEAD,
+          value - 22
+        )
+      }
+      if (value >= 26 && value <= 29) {
+        return new PatchState(
+          PatchImplementation.Produce.UMBRAL_CORAL,
+          CropState.GROWING,
+          value - 26
+        )
+      }
+      if (value === 30) {
+        return new PatchState(
+          PatchImplementation.Produce.UMBRAL_CORAL,
+          CropState.GROWING,
+          4
+        )
+      }
+      if (value >= 31 && value <= 33) {
+        return new PatchState(
+          PatchImplementation.Produce.UMBRAL_CORAL,
+          CropState.DISEASED,
+          value - 30
+        )
+      }
+      if (value >= 34 && value <= 36) {
+        return new PatchState(
+          PatchImplementation.Produce.UMBRAL_CORAL,
+          CropState.DEAD,
+          value - 33
+        )
+      }
+      if (value >= 37 && value <= 255) {
+        return new PatchState(
+          PatchImplementation.Produce.WEEDS,
+          CropState.GROWING,
+          0
+        )
+      }
+      return null
+    }
+  }
+  PatchImplementation.PatchImplementation$15_$WRAPPER = PatchImplementation$15_$WRAPPER
+  /** @ignore */
+  class PatchImplementation$16_$WRAPPER extends PatchImplementation_$WRAPPER {
+    constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
+      super(_$ordinal, _$name, tab, name, healthCheckRequired)
+    }
+    /**
+     *
+     * @param {number} value
+     * @return {PatchState}
+     */
+    forVarbitValue(value) {
+      if (value >= 0 && value <= 3) {
+        return new PatchState(
+          PatchImplementation.Produce.WEEDS,
+          CropState.GROWING,
           3 - value
         )
       }
@@ -4832,9 +5241,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$15_$WRAPPER = PatchImplementation$15_$WRAPPER
+  PatchImplementation.PatchImplementation$16_$WRAPPER = PatchImplementation$16_$WRAPPER
   /** @ignore */
-  class PatchImplementation$16_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$17_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -4898,9 +5307,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$16_$WRAPPER = PatchImplementation$16_$WRAPPER
+  PatchImplementation.PatchImplementation$17_$WRAPPER = PatchImplementation$17_$WRAPPER
   /** @ignore */
-  class PatchImplementation$17_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$18_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -4985,9 +5394,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$17_$WRAPPER = PatchImplementation$17_$WRAPPER
+  PatchImplementation.PatchImplementation$18_$WRAPPER = PatchImplementation$18_$WRAPPER
   /** @ignore */
-  class PatchImplementation$18_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$19_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -5028,9 +5437,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$18_$WRAPPER = PatchImplementation$18_$WRAPPER
+  PatchImplementation.PatchImplementation$19_$WRAPPER = PatchImplementation$19_$WRAPPER
   /** @ignore */
-  class PatchImplementation$19_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$20_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -5073,9 +5482,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$19_$WRAPPER = PatchImplementation$19_$WRAPPER
+  PatchImplementation.PatchImplementation$20_$WRAPPER = PatchImplementation$20_$WRAPPER
   /** @ignore */
-  class PatchImplementation$20_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$21_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -5183,9 +5592,9 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$20_$WRAPPER = PatchImplementation$20_$WRAPPER
+  PatchImplementation.PatchImplementation$21_$WRAPPER = PatchImplementation$21_$WRAPPER
   /** @ignore */
-  class PatchImplementation$21_$WRAPPER extends PatchImplementation_$WRAPPER {
+  class PatchImplementation$22_$WRAPPER extends PatchImplementation_$WRAPPER {
     constructor(_$ordinal, _$name, tab, name, healthCheckRequired) {
       super(_$ordinal, _$name, tab, name, healthCheckRequired)
     }
@@ -5335,7 +5744,7 @@ PatchImplementation['__class'] = 'timetracking.PatchImplementation'
       return null
     }
   }
-  PatchImplementation.PatchImplementation$21_$WRAPPER = PatchImplementation$21_$WRAPPER
+  PatchImplementation.PatchImplementation$22_$WRAPPER = PatchImplementation$22_$WRAPPER
 })(PatchImplementation || (PatchImplementation = {}))
 PatchImplementation['_$wrappers'] = {
   0: new PatchImplementation.PatchImplementation$0_$WRAPPER(
@@ -5433,7 +5842,7 @@ PatchImplementation['_$wrappers'] = {
     13,
     'BELLADONNA',
     Tab.SPECIAL,
-    '',
+    'Belladonna',
     false
   ),
   14: new PatchImplementation.PatchImplementation$14_$WRAPPER(
@@ -5445,48 +5854,55 @@ PatchImplementation['_$wrappers'] = {
   ),
   15: new PatchImplementation.PatchImplementation$15_$WRAPPER(
     15,
+    'CORAL',
+    Tab.SPECIAL,
+    'Coral',
+    false
+  ),
+  16: new PatchImplementation.PatchImplementation$16_$WRAPPER(
+    16,
     'SEAWEED',
     Tab.SPECIAL,
     'Seaweed',
     false
   ),
-  16: new PatchImplementation.PatchImplementation$16_$WRAPPER(
-    16,
+  17: new PatchImplementation.PatchImplementation$17_$WRAPPER(
+    17,
     'CALQUAT',
     Tab.FRUIT_TREE,
     'Calquat',
     true
   ),
-  17: new PatchImplementation.PatchImplementation$17_$WRAPPER(
-    17,
+  18: new PatchImplementation.PatchImplementation$18_$WRAPPER(
+    18,
     'CELASTRUS',
     Tab.FRUIT_TREE,
     'Celastrus',
     true
   ),
-  18: new PatchImplementation.PatchImplementation$18_$WRAPPER(
-    18,
+  19: new PatchImplementation.PatchImplementation$19_$WRAPPER(
+    19,
     'GRAPES',
     Tab.GRAPE,
     '',
     true
   ),
-  19: new PatchImplementation.PatchImplementation$19_$WRAPPER(
-    19,
+  20: new PatchImplementation.PatchImplementation$20_$WRAPPER(
+    20,
     'CRYSTAL_TREE',
     Tab.FRUIT_TREE,
     'Crystal Tree',
     true
   ),
-  20: new PatchImplementation.PatchImplementation$20_$WRAPPER(
-    20,
+  21: new PatchImplementation.PatchImplementation$21_$WRAPPER(
+    21,
     'COMPOST',
     Tab.SPECIAL,
     'Compost Bin',
     true
   ),
-  21: new PatchImplementation.PatchImplementation$21_$WRAPPER(
-    21,
+  22: new PatchImplementation.PatchImplementation$22_$WRAPPER(
+    22,
     'BIG_COMPOST',
     Tab.SPECIAL,
     'Big Compost Bin',

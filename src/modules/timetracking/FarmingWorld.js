@@ -40,6 +40,18 @@ export class FarmingWorld {
     )
     this.add(
       new FarmingRegion(
+        "Anglers' Retreat",
+        9770,
+        false,
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.HARDWOOD_TREE
+        )
+      )
+    )
+    this.add(
+      new FarmingRegion(
         'Ardougne',
         10290,
         false,
@@ -385,6 +397,42 @@ export class FarmingWorld {
     )
     this.add(
       new FarmingRegion(
+        'Great Conch',
+        12581,
+        true,
+        new FarmingPatch(
+          'East',
+          VarbitID.FARMING_TRANSMIT_A,
+          PatchImplementation.CORAL
+        ),
+        new FarmingPatch(
+          'West',
+          VarbitID.FARMING_TRANSMIT_B,
+          PatchImplementation.CORAL
+        ),
+        new FarmingPatch(
+          '',
+          VarbitID.FARMING_TRANSMIT_C,
+          PatchImplementation.CALQUAT
+        )
+      ),
+      12325,
+      12326,
+      12327,
+      12580,
+      12581,
+      12582,
+      12583,
+      12836,
+      12837,
+      12838,
+      12839,
+      13092,
+      13093,
+      13194
+    )
+    this.add(
+      new FarmingRegion(
         'Harmony',
         15148,
         false,
@@ -403,7 +451,7 @@ export class FarmingWorld {
     this.add(
       new FarmingRegion(
         'Kastori',
-        5243,
+        5423,
         false,
         new FarmingPatch(
           '',
