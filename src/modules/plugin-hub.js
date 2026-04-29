@@ -112,9 +112,7 @@ export const {
             }
           }
         )
-      } catch (e) {
-        console.error('Failed to fetch readme: ', e)
-      }
+      } catch (e) {}
 
       let readme = ''
 
