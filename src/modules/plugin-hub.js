@@ -100,15 +100,19 @@ export const {
       const user = repoSplit[1]
       const repo = repoSplit[2].replace('.git', '')
 
-      let rawReadmeHTML = await githubApi(
-        `repos/${user}/${repo}/readme?ref=${commit}`,
-        {
-          method: 'GET',
-          headers: {
-            accept: 'application/vnd.github.VERSION.html'
+      let rawReadmeHTML = ''
+
+      try {
+        rawReadmeHTML = await githubApi(
+          `repos/${user}/${repo}/readme?ref=${commit}`,
+          {
+            method: 'GET',
+            headers: {
+              accept: 'application/vnd.github.VERSION.html'
+            }
           }
-        }
-      )
+        )
+      } catch (e) {}
 
       let readme = ''
 
@@ -145,7 +149,7 @@ export const {
         dom.querySelectorAll('a').forEach(el => {
           let href = el.getAttribute('href')
           if (!href) {
-            return;
+            return
           }
 
           el.href = mungeURL(href, el)
@@ -153,7 +157,7 @@ export const {
         dom.querySelectorAll('img').forEach(el => {
           let src = el.getAttribute('src')
           if (!src) {
-            return;
+            return
           }
 
           // people like to use massive (50+ MiB) gifs, so turn these into links
