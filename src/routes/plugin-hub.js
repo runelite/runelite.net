@@ -22,11 +22,7 @@ import Choice from '../components/choice'
 import { numberWithCommas } from '../util'
 
 const description =
-  'The Plugin Hub is a repository of plugins that are created and ' +
-  'maintained by members of the community who are not officially ' +
-  'affiliated with RuneLite. These plugins are verified by RuneLite ' +
-  "Developers to ensure they comply with Jagex's 3rd party client rules " +
-  'and are not malicious in some other way.'
+  'The Plugin Hub is a collection of plugins that are provided by third parties not affiliated with RuneLite.'
 
 const handleChange = (event, setPluginFilter) =>
   setPluginFilter({
