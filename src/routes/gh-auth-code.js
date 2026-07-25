@@ -12,7 +12,7 @@ const GitHubAuthCode = ({ code }) => (
         <h1 class="page-header">Almost there...</h1>
         <div>
           To complete authentication, send:
-          <pre class="pre-select">/ghauth oauth_code:{code}</pre>
+          <pre class="pre-select">/ghverify oauth_code:{code}</pre>
           In the{' '}
           <a href="https://runelite.net/discord" title="RuneLite Discord">
             RuneLite Discord
