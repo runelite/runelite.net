@@ -28,3 +28,53 @@
 .card-text {
   overflow-wrap: anywhere;
 }
+
+.plugin-update-history {
+  margin-top: 24px;
+}
+
+.plugin-update {
+  border-left: 2px solid #404040;
+  padding: 0 0 28px 24px;
+  position: relative;
+}
+
+.plugin-update:last-child {
+  padding-bottom: 0;
+}
+
+.plugin-update::before {
+  background: #dc8a00;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #171717;
+  content: '';
+  height: 10px;
+  left: -6px;
+  position: absolute;
+  top: 5px;
+  width: 10px;
+}
+
+.plugin-update-heading {
+  align-items: center;
+  display: flex;
+  min-height: 20px;
+}
+
+.plugin-update-heading[href]:hover {
+  text-decoration: none;
+}
+
+.plugin-update-heading[href]:hover .plugin-update-date {
+  color: #eebb63;
+}
+.plugin-update-date {
+  color: white;
+  font-weight: 700;
+}
+
+.plugin-update-body {
+  color: #a8a8a8;
+  margin: 8px 0 0;
+  white-space: pre-wrap;
+}
