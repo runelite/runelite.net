@@ -18,10 +18,18 @@ import InnerHTMLHelper from '../components/inner-html-helper'
 import NotFound from '../components/not-found'
 import '../components/feature.scss'
 
+const formatDate = date =>
+  new Date(date).toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  })
+
 const PluginHubShow = ({ externalPlugin }) => {
   if (!externalPlugin) {
     return <NotFound />
   }
+  const updates = externalPlugin.github?.updates || []
 
   return (
     <Layout>
@@ -93,6 +101,50 @@ const PluginHubShow = ({ externalPlugin }) => {
               </div>
             )}
           </div>
+          {updates.length > 0 && (
+            <aside class="card">
+              <div class="card-body">
+                <h5 class="card-title">Recent updates</h5>
+                <div class="plugin-update-history">
+                  {updates.map(update => {
+                    const Tag = update.pullRequestUrl ? 'a' : 'div'
+
+                    return (
+                      <article class="plugin-update" key={update.sha}>
+                        <Tag
+                          class="plugin-update-heading"
+                          href={update.pullRequestUrl}
+                          target={update.pullRequestUrl ? '_blank' : undefined}
+                          rel={
+                            update.pullRequestUrl
+                              ? 'noopener noreferrer'
+                              : undefined
+                          }
+                        >
+                          <time
+                            class="plugin-update-date"
+                            dateTime={update.date}
+                          >
+                            {formatDate(update.date)}
+                          </time>
+                          {update.version && (
+                            <span class="badge badge-primary ml-2">
+                              {update.version}
+                            </span>
+                          )}
+                        </Tag>
+                        {update.body && (
+                          <p class="card-text plugin-update-body">
+                            {update.body}
+                          </p>
+                        )}
+                      </article>
+                    )
+                  })}
+                </div>
+              </div>
+            </aside>
+          )}
         </div>
       </section>
     </Layout>

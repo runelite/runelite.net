@@ -11,6 +11,44 @@ const githubApi = api('https://api.github.com/')
 const githubRawApi = api(
   'https://raw.githubusercontent.com/runelite/plugin-hub/master/plugins/'
 )
+async function fetchPluginUpdates(internalName) {
+  const commits = await githubApi(
+    `repos/runelite/plugin-hub/commits?path=plugins/${encodeURIComponent(
+      internalName
+    )}`,
+    { method: 'GET' }
+  )
+
+  const updates = commits
+    .filter(({ commit }) => /^(create|update)\b/i.test(commit.message))
+    .slice(0, 3)
+
+  return Promise.all(
+    updates.map(async ({ sha, commit }) => {
+      const version = commit.message.match(/^version\s+(\S+)/im)?.[1]
+      const commitHash = commit.message.match(/^commit\s+(\S+)/im)?.[1]
+      const update = {
+        sha,
+        date: commit.author?.date || commit.committer?.date,
+        version: version || commitHash?.slice(0, 8)
+      }
+
+      try {
+        const pulls = await githubApi(
+          `repos/runelite/plugin-hub/commits/${sha}/pulls`,
+          {
+            method: 'GET',
+            headers: { accept: 'application/vnd.github+json' }
+          }
+        )
+        update.body = pulls[0]?.body || ''
+        update.pullRequestUrl = pulls[0]?.html_url
+      } catch (e) {}
+
+      return update
+    })
+  )
+}
 
 // Actions
 export const {
@@ -101,6 +139,13 @@ export const {
       const repo = repoSplit[2].replace('.git', '')
 
       let rawReadmeHTML = ''
+      let updates = []
+
+      try {
+        updates = await fetchPluginUpdates(internalName)
+      } catch (e) {
+        console.error('Loading plugin update history failed', e)
+      }
 
       try {
         rawReadmeHTML = await githubApi(
@@ -191,7 +236,8 @@ export const {
             readme,
             user,
             repo,
-            commit
+            commit,
+            updates
           }
         })
       )
