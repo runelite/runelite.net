@@ -104,7 +104,7 @@ const PluginHubShow = ({ externalPlugin }) => {
           {updates.length > 0 && (
             <aside class="card">
               <div class="card-body">
-                <h5 class="card-title">Update history</h5>
+                <h5 class="card-title">Recent updates</h5>
                 <div class="plugin-update-history">
                   {updates.map(update => {
                     const Tag = update.pullRequestUrl ? 'a' : 'div'

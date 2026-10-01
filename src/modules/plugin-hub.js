@@ -21,10 +21,10 @@ async function fetchPluginUpdates(internalName) {
 
   const updates = commits
     .filter(({ commit }) => /^(create|update)\b/i.test(commit.message))
-    .slice(0, 5)
+    .slice(0, 3)
 
   return Promise.all(
-    updates.map(async ({ sha, commit }, index) => {
+    updates.map(async ({ sha, commit }) => {
       const version = commit.message.match(/^version\s+(\S+)/im)
       const update = {
         sha,
@@ -32,19 +32,17 @@ async function fetchPluginUpdates(internalName) {
         version: version?.[1]
       }
 
-      if (index < 5) {
-        try {
-          const pulls = await githubApi(
-            `repos/runelite/plugin-hub/commits/${sha}/pulls`,
-            {
-              method: 'GET',
-              headers: { accept: 'application/vnd.github+json' }
-            }
-          )
-          update.body = pulls[0]?.body || ''
-          update.pullRequestUrl = pulls[0]?.html_url
-        } catch (e) {}
-      }
+      try {
+        const pulls = await githubApi(
+          `repos/runelite/plugin-hub/commits/${sha}/pulls`,
+          {
+            method: 'GET',
+            headers: { accept: 'application/vnd.github+json' }
+          }
+        )
+        update.body = pulls[0]?.body || ''
+        update.pullRequestUrl = pulls[0]?.html_url
+      } catch (e) {}
 
       return update
     })
