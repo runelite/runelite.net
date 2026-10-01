@@ -25,11 +25,12 @@ async function fetchPluginUpdates(internalName) {
 
   return Promise.all(
     updates.map(async ({ sha, commit }) => {
-      const version = commit.message.match(/^version\s+(\S+)/im)
+      const version = commit.message.match(/^version\s+(\S+)/im)?.[1]
+      const commitHash = commit.message.match(/^commit\s+(\S+)/im)?.[1]
       const update = {
         sha,
         date: commit.author?.date || commit.committer?.date,
-        version: version?.[1]
+        version: version || commitHash?.slice(0, 8)
       }
 
       try {
