@@ -11,64 +11,6 @@ import { numberWithCommas } from '../util'
 import links from '../_data/links'
 import Commit from './commit'
 
-function isOsCorrect(architecture, osName) {
-  const platform = navigator.platform.toLowerCase()
-  const userAgent = navigator.userAgent
-  if (platform.indexOf('os x') !== -1 || platform.indexOf('mac') !== -1) {
-    return osName === 'macOS'
-  }
-  if (platform.indexOf('win') !== -1) {
-    if (navigator.userAgentData) {
-      if (architecture === 'arm') {
-        return osName === 'WindowsArm64'
-      } else if (
-        architecture === 'x86-64' ||
-        userAgent.indexOf('Win64') !== -1 ||
-        // ua.architecture is x86 for WOW64
-        userAgent.indexOf('WOW64') !== -1
-      ) {
-        return osName === 'Windows64'
-      } else if (architecture === 'x86') {
-        return osName === 'Windows32'
-      } else {
-        return false
-      }
-    } else if (
-      userAgent.indexOf('Win64') !== -1 ||
-      userAgent.indexOf('WOW64') !== -1
-    ) {
-      return osName === 'Windows64'
-    } else {
-      return osName === 'Windows32'
-    }
-  }
-
-  if (platform.indexOf('linux') !== -1) {
-    if (platform.indexOf('x86_64') !== -1) {
-      return osName === 'Linux64'
-    }
-
-    if (platform.indexOf('i686') !== -1) {
-      return osName === 'Linux32'
-    }
-
-    if (
-      platform.indexOf('armv8') !== -1 ||
-      platform.indexOf('aarch64') !== -1
-    ) {
-      return osName === 'LinuxAarch64'
-    }
-
-    if (platform.indexOf('arm') !== -1 || platform.indexOf('aarch32') !== -1) {
-      return osName === 'LinuxAarch32'
-    }
-
-    return osName === 'Linux32'
-  }
-
-  return false
-}
-
 class Hero extends Component {
   constructor(props) {
     super(props)
@@ -158,13 +100,13 @@ class Hero extends Component {
     loggedIn,
     heroImage
   }) {
-    let downloadButtons = buttons.filter(button =>
-      isOsCorrect(this.state.architecture, button.os)
-    )
-    if (downloadButtons.length === 0) {
-      downloadButtons = [buttons.find(button => button.os === 'all')]
-    }
-    const showDetail = downloadButtons.length > 1
+    const windowsArm =
+      typeof navigator !== 'undefined' &&
+      navigator.platform.toLowerCase().indexOf('win') !== -1 &&
+      this.state.architecture === 'arm'
+    const armDownload =
+      windowsArm &&
+      (buttons.find(button => button.os === 'WindowsArm64') || buttons[0])
 
     return (
       <div
@@ -190,23 +132,34 @@ class Hero extends Component {
 
               <div id="download">
                 <div class="btn-group">
-                  {downloadButtons.map(({ link, icon, text }) => (
+                  {armDownload ? (
                     <a
                       id="direct-download-btn"
-                      class={'btn btn-primary'}
+                      class="btn btn-primary"
                       title={
                         'Download for ' +
-                        text.os +
-                        (text.arch ? ' (' + text.arch + ')' : '')
+                        armDownload.text.os +
+                        (armDownload.text.arch
+                          ? ' (' + armDownload.text.arch + ')'
+                          : '')
                       }
-                      href={link}
+                      href={armDownload.link}
                       native
                       rel="nofollow"
                     >
-                      <i class={icon} /> Download
-                      {showDetail && text.arch ? ' (' + text.arch + ')' : ''}
+                      <i class={armDownload.icon} /> Download
                     </a>
-                  ))}
+                  ) : (
+                    <a
+                      id="direct-download-btn"
+                      class="btn btn-primary"
+                      href="https://oldschool.runescape.com/play?utm_source=runelite"
+                      native
+                      rel="nofollow"
+                    >
+                      Download the Jagex Launcher
+                    </a>
+                  )}
                   <div class="dropdown">
                     <button
                       class={
@@ -223,7 +176,7 @@ class Hero extends Component {
                           native
                           rel="nofollow"
                         >
-                          <i class={icon} /> Download for {text.os}{' '}
+                          <i class={icon} /> Download RuneLite for {text.os}{' '}
                           {text.arch ? ' (' + text.arch + ')' : ''}
                         </a>
                       ))}
