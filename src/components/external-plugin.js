@@ -19,6 +19,7 @@ const ExternalPlugin = ({
       <div class="card-body d-flex align-self-stretch">
         <div className="mr-2 d-flex align-items-start">
           <img
+            loading="lazy"
             width="36"
             alt=""
             src={imageUrl ? imageUrl : '/img/plugin-hub/missingicon.png'}

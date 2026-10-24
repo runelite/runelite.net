@@ -149,9 +149,11 @@ const prepareComponentData = async ({
   fetchPluginHubStats
 }) => {
   await fetchBootstrap()
-  await fetchConfig()
-  await fetchExternalPlugins()
-  await fetchPluginHubStats()
+  await Promise.all([
+    fetchConfig(),
+    fetchExternalPlugins(),
+    fetchPluginHubStats()
+  ])
 }
 
 export default connect(
