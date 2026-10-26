@@ -79,12 +79,12 @@ export const {
 
       const pluginManifest = JSON.parse(jsonStr)
       const pluginDisplay = pluginManifest.display
-      const pluginJars = pluginManifest.jars
+      const pluginJars = new Set(pluginManifest.jars.map(j => j.internalName))
       const plugins = pluginDisplay.map(p => {
         if (p.iconHash) {
           p.imageUrl = `${pluginHubUrl}icon/${p.internalName}_${p.iconHash}.png`
         }
-        p.working = !!pluginJars.find(j => j.internalName === p.internalName)
+        p.working = pluginJars.has(p.internalName)
         p.description = p.description
           .replace(/<br\/?>/g, '\n')
           .replace(/<[^>]+>/g, '')
