@@ -100,10 +100,18 @@ class Hero extends Component {
     loggedIn,
     heroImage
   }) {
+    const platform =
+      typeof navigator !== 'undefined' ? navigator.platform.toLowerCase() : ''
+    const platformIcon =
+      platform.indexOf('win') !== -1
+        ? 'fab fa-windows'
+        : platform.indexOf('os x') !== -1 || platform.indexOf('mac') !== -1
+        ? 'fab fa-apple'
+        : platform.indexOf('linux') !== -1
+        ? 'fab fa-linux'
+        : 'fas fa-download'
     const windowsArm =
-      typeof navigator !== 'undefined' &&
-      navigator.platform.toLowerCase().indexOf('win') !== -1 &&
-      this.state.architecture === 'arm'
+      platform.indexOf('win') !== -1 && this.state.architecture === 'arm'
     const armDownload =
       windowsArm &&
       (buttons.find(button => button.os === 'WindowsArm64') || buttons[0])
@@ -157,7 +165,7 @@ class Hero extends Component {
                       native
                       rel="nofollow"
                     >
-                      Download the Jagex Launcher
+                      <i class={platformIcon} /> Download the Jagex Launcher
                     </a>
                   )}
                   <div class="dropdown">
